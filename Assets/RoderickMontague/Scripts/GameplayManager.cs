@@ -13,6 +13,16 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.touchCount != 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            // checks to see if the user has touched it.
+            if (touch.phase == TouchPhase.Began)
+            {
+                Debug.Log("Finger has touched screen.");
+            }
+        }
         
     }
 }
