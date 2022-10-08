@@ -5,7 +5,10 @@
       "readyToPlay": 20,
       "pressContinue": 50,
       "greatJob": 20,
-      "onePlusOne": 30
+      "onePlusOne": 30,
+
+      "viewControlsText": 10,
+      "viewOptionsText": 10
     }
   },
   "en": {
@@ -18,7 +21,10 @@
     "continue": "Continue",
     "pantry": "Pantry",
     "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
-    "autoSave": "...Auto Saving Complete"
+    "autoSave": "...Auto Saving Complete",
+
+    "viewControls": "Controls",
+    "viewOptions": "Options"
   },
   "es": {
     "welcome": "¡Bienvenido!",

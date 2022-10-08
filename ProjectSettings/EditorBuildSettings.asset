@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RoderickMontague/Scenes/TestSceneLOL.unity
     guid: a7db51e9d77502e458a65f3e11331eed
+  - enabled: 1
+    path: Assets/RoderickMontague/Scenes/TitleScene.unity
+    guid: 3200e985de77f6247a5d0a9b35bdb047
   m_configObjects: {}
