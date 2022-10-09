@@ -34,6 +34,7 @@ public class TitleManager : MonoBehaviour
         {
             Debug.LogError("LOL SDK NOT INITIALIZED.");
         }
+
     }
 
     // Start is called before the first frame update

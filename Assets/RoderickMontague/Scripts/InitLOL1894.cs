@@ -2,77 +2,146 @@ using LoLSDK;
 using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Initializes the LOL content and then enters the title screen.
+// This code was taken from Loader.cs (a file from the LOL template content) and then modified.
 public class InitLOL1894 : MonoBehaviour
 {
-    // Awake is called when the script is being loaded
-    private void Awake()
+    // Relative to Assets /StreamingAssets/
+    private const string languageJSONFilePath = "language.json";
+    private const string questionsJSONFilePath = "questions.json";
+    private const string startGameJSONFilePath = "startGame.json";
+
+    // Use to determine when all data is preset to load to next state.
+    // This will protect against async request race conditions in webgl.
+    LoLDataType _receivedData;
+
+    // This should represent the data you're expecting from the platform.
+    // Most games are expecting 2 types of data, Start and Language.
+    LoLDataType _expectedData = LoLDataType.START | LoLDataType.LANGUAGE;
+
+    [System.Flags]
+    enum LoLDataType
     {
-        // the sdk for the LoL component.
-        ILOLSDK sdk;
+        START = 0,
+        LANGUAGE = 1 << 0,
+        QUESTIONS = 1 << 1
+    }
 
-        // checks the platform the editor is running in.
+    void Awake()
+    {
+        // Create the WebGL (or mock) object
 #if UNITY_EDITOR
-        sdk = new LoLSDK.MockWebGL();
+        ILOLSDK webGL = new LoLSDK.MockWebGL();
 #elif UNITY_WEBGL
-        sdk = new LoLSDK.WebGL();
-
+        ILOLSDK webGL = new LoLSDK.WebGL();
 #endif
 
-        // initialization
-        LOLSDK.Init(sdk, "lol_1894.battle-bot-training-sim");
+        // Initialize the object, passing in the WebGL
+        LOLSDK.Init(webGL, "com.legends-of-learning.battle-bot-training-sim");
 
-        // // event handlers
-        // LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(StartGame);
-        // LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(gameState => Debug.Log(gameState));
-        // LOLSDK.Instance.QuestionsReceived += new QuestionListReceivedHandler(questionList => Debug.Log(questionList));
-        // LOLSDK.Instance.LanguageDefsReceived += new LanguageDefsReceivedHandler(LanguageUpdate);
+        // Register event handlers
+        LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(HandleStartGame);
+        LOLSDK.Instance.LanguageDefsReceived += new LanguageDefsReceivedHandler(HandleLanguageDefs);
+        LOLSDK.Instance.QuestionsReceived += new QuestionListReceivedHandler(HandleQuestions);
+        LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(HandleGameStateChange);
+
+        // Mock the platform-to-game messages when in the Unity editor.
+#if UNITY_EDITOR
+        LoadMockData();
+#endif
+
+        // Then, tell the platform the game is ready.
+        LOLSDK.Instance.GameIsReady();
+        StartCoroutine(_WaitForData());
     }
 
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator _WaitForData()
     {
-        SceneManager.LoadScene("TitleScene");
+        yield return new WaitUntil(() => (_receivedData & _expectedData) != 0);
+        SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
-    // called for starting the game.
-    private void StartGame(string startGameJSON)
+    // Start the game here
+    void HandleStartGame(string json)
     {
-        if (string.IsNullOrEmpty(startGameJSON))
-            return;
-
-        JSONNode startGamePayload = JSON.Parse(startGameJSON);
-        // Capture the language code from the start payload. Use this to switch fonts
-        // _langCode = startGamePayload["languageCode"];
+        SharedState.StartGameData = JSON.Parse(json);
+        _receivedData |= LoLDataType.START;
     }
 
-    // function called for saving the game.
-    private void Save()
-    {
 
+    // Use language to populate UI
+    void HandleLanguageDefs(string json)
+    {
+        JSONNode langDefs = JSON.Parse(json);
+
+        // Example of accessing language strings
+        // Debug.Log(langDefs);
+        // Debug.Log(langDefs["welcome"]);
+
+        SharedState.LanguageDefs = langDefs;
+        _receivedData |= LoLDataType.LANGUAGE;
     }
 
-    // function called after saving.
-    private void OnSaveResult()
+    // Store the questions and show them in order based on your game flow.
+    void HandleQuestions(MultipleChoiceQuestionList questionList)
     {
-
+        Debug.Log("HandleQuestions");
+        SharedState.QuestionList = questionList;
+        _receivedData |= LoLDataType.QUESTIONS;
     }
 
-    private void LanguageUpdate(string _langNode)
+    // Handle pause / resume
+    void HandleGameStateChange(GameState gameState)
     {
-        // if (string.IsNullOrEmpty(langJSON))
-        //     return;
-        // 
-        // _langNode = JSON.Parse(langJSON);
-        // 
-        // TextDisplayUpdate();
+        // Either GameState.Paused or GameState.Resumed
+        Debug.Log("HandleGameStateChange");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadMockData()
     {
-        
+#if UNITY_EDITOR
+        // Load Dev Language File from StreamingAssets
+
+        string startDataFilePath = Path.Combine(Application.streamingAssetsPath, startGameJSONFilePath);
+        string langCode = "en";
+
+        Debug.Log(File.Exists(startDataFilePath));
+
+        if (File.Exists(startDataFilePath))
+        {
+            string startDataAsJSON = File.ReadAllText(startDataFilePath);
+            JSONNode startGamePayload = JSON.Parse(startDataAsJSON);
+            // Capture the language code from the start payload. Use this to switch fonts
+            langCode = startGamePayload["languageCode"];
+            HandleStartGame(startDataAsJSON);
+        }
+
+        // Load Dev Language File from StreamingAssets
+        string langFilePath = Path.Combine(Application.streamingAssetsPath, languageJSONFilePath);
+        if (File.Exists(langFilePath))
+        {
+            string langDataAsJson = File.ReadAllText(langFilePath);
+            // The dev payload in language.json includes all languages.
+            // Parse this file as JSON, encode, and stringify to mock
+            // the platform payload, which includes only a single language.
+            JSONNode langDefs = JSON.Parse(langDataAsJson);
+            // use the languageCode from startGame.json captured above
+            HandleLanguageDefs(langDefs[langCode].ToString());
+        }
+
+        // Load Dev Questions from StreamingAssets
+        string questionsFilePath = Path.Combine(Application.streamingAssetsPath, questionsJSONFilePath);
+        if (File.Exists(questionsFilePath))
+        {
+            string questionsDataAsJson = File.ReadAllText(questionsFilePath);
+            MultipleChoiceQuestionList qs =
+                MultipleChoiceQuestionList.CreateFromJSON(questionsDataAsJson);
+            HandleQuestions(qs);
+        }
+#endif
     }
 }
