@@ -20,10 +20,10 @@ public class TitleManager : MonoBehaviour
         Application.targetFrameRate = 30;
 
         // checks if LOL SDK has been initialized.
-        bool initialized = LOLSDK.Instance.IsInitialized;
+        GameSettings settings = GameSettings.Instance;
 
         // if the LOL SDK has been initialized...
-        if(initialized)
+        if(settings.InitializedLOLSDK)
         {
             JSONNode defs = SharedState.LanguageDefs;
 
@@ -33,6 +33,7 @@ public class TitleManager : MonoBehaviour
         else
         {
             Debug.LogError("LOL SDK NOT INITIALIZED.");
+            settings.ApplyAudioLevels();
         }
 
     }
