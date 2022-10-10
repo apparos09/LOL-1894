@@ -1331,6 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129568070}
   - component: {fileID: 1129568071}
+  - component: {fileID: 1129568072}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: BGM
@@ -1366,7 +1367,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1448,6 +1449,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1129568072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129568069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27dec99b05473c4c943dd2e26183566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!1 &1186927125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd01db7e4ec8c148a7e0d83b07e6994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSettings: {fileID: 0}
   textToSpeechToggle: {fileID: 415572609}
   tutorialToggle: {fileID: 363534496}
   bgmVolumeSlider: {fileID: 376690595}

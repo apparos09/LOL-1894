@@ -33,7 +33,7 @@ public class TitleManager : MonoBehaviour
         else
         {
             Debug.LogError("LOL SDK NOT INITIALIZED.");
-            settings.ApplyAudioLevels();
+            settings.AdjustAllAudioLevels();
         }
 
     }

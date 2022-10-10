@@ -23,8 +23,14 @@ public class GameSettings : MonoBehaviour
     // this is only relevant when starting up the game scene.
     public bool useTutorial = true;
 
+    // the tag for BGM objects.
+    public const string BGM_TAG = "BGM";
+
     // the volume for the background music.
     private float bgmVolume = 1.0F;
+
+    // the tag for the SFX objects.
+    public const string SFX_TAG = "SFX";
 
     // the volume for the sound effects.
     private float sfxVolume = 1.0F;
@@ -52,17 +58,17 @@ public class GameSettings : MonoBehaviour
         initializedLOLSDK = LOLSDK.Instance.IsInitialized;
     }
 
-    // This function is called when the object is enabled and active
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // This function is called when the behaviour becomes disabled or inactive
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    // // This function is called when the object is enabled and active
+    // private void OnEnable()
+    // {
+    //     SceneManager.sceneLoaded += OnSceneLoaded;
+    // }
+    // 
+    // // This function is called when the behaviour becomes disabled or inactive
+    // private void OnDisable()
+    // {
+    //     SceneManager.sceneLoaded -= OnSceneLoaded;
+    // }
 
     // returns the instance of the game settings.
     public static GameSettings Instance
@@ -136,7 +142,7 @@ public class GameSettings : MonoBehaviour
 
         set
         {
-            AdjustAudioLevels(Mathf.Clamp01(value), sfxVolume);
+            AdjustAllAudioLevels(Mathf.Clamp01(value), sfxVolume);
         }
     }
 
@@ -150,72 +156,50 @@ public class GameSettings : MonoBehaviour
 
         set
         {
-            AdjustAudioLevels(bgmVolume, Mathf.Clamp01(value));
+            AdjustAllAudioLevels(bgmVolume, Mathf.Clamp01(value));
+        }
+    }
+
+    // adjusts the audio source that's supplied through this function.
+    // for this to work, it needs to have a usable tag and set source audio object.
+    public void AdjustAudio(AudioSourceControl audio)
+    {
+        // checks which tag to use.
+        if(audio.CompareTag(BGM_TAG)) // BGM
+        {
+            audio.audioSource.volume = audio.MaxVolume * bgmVolume;
+        }
+        else if(audio.CompareTag(SFX_TAG)) // SFX
+        {
+            audio.audioSource.volume = audio.MaxVolume * sfxVolume;
+        }
+        else // no recognizable tag.
+        {
+            Debug.LogAssertion("No recognizable audio tag has been set, so the audio can't be adjusted.");
         }
     }
 
 
     // applies the audio levels by using the saved audio settings.
-    public void ApplyAudioLevels()
+    public void AdjustAllAudioLevels()
     {
-        AdjustAudioLevels(bgmVolume, sfxVolume);
-    }
-
-    // adjusts the audio levels for the game.
-    // by default, the audio is at 100% for everything.
-    public void AdjustAudioLevels(float newBgmVolume, float newSfxVolume)
-    {
-        // adjusts the audio levels. Since this is not the first time the audio is being adjusted, the audio will be adjusted.
-        AdjustAudioLevels(false, SceneManager.GetActiveScene(), newBgmVolume, newSfxVolume);
+        AdjustAllAudioLevels(bgmVolume, sfxVolume);
     }
 
     // adjusts the audio levels.
-    // firstTime: this is the first time the audio is being adjusted for the scene.
-    // TODO: this is NOT efficient for a menu component. Make sure you change it or find a workaround.
-    private void AdjustAudioLevels(bool firstTime, Scene scene, float newBgmVolume, float newSfxVolume)
+    public void AdjustAllAudioLevels(float newBgmVolume, float newSfxVolume)
     {
-        // TODO: maybe split them into two seperate functions for BGM and SFX?
-        // TODO: create loading scene.
+        // finds all the audio source controls.
+        AudioSourceControl[] audios = FindObjectsOfType<AudioSourceControl>();
 
-        // finds all the audio sources.
-        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+        // saves the bgm and sfx volume objects.
+        bgmVolume = Mathf.Clamp01(newBgmVolume);
+        sfxVolume = Mathf.Clamp01(newSfxVolume);
 
         // goes through each source.
-        foreach(AudioSource source in sources)
+        foreach(AudioSourceControl audio in audios)
         {
-            // if the game object's scene is not set to this scene.
-            if (source.gameObject.scene != scene)
-                continue;
-
-            // old and new volume objects.
-            float oldVol = -1, newVol = -1;
-
-            // checks the audio type
-            if(source.tag == "BGM") // background music
-            {
-                oldVol = bgmVolume;
-                newVol = newBgmVolume;
-            }
-            else if(source.tag == "SFX") // sound effect.
-            {
-                oldVol = sfxVolume;
-                newVol = newSfxVolume;
-            }
-            else // no recognizable tag found, so audio levels can't be adjusted.
-            {
-                continue;
-            }
-
-            // if this is NOT the first time the audio is being adjusted in this scene...
-            // then the audio levels need to be set to max first.
-            if (!firstTime)
-            {
-                // returns to max audio level
-                source.volume /= oldVol;
-            }
-
-            // adjusts the audio source.
-            source.volume *= newVol;
+            AdjustAudio(audio);
         }
 
         // changing the values.
@@ -224,13 +208,11 @@ public class GameSettings : MonoBehaviour
 
     }
 
-    // called when a scene is loaded.
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // adjusts the audio levels.
-        AdjustAudioLevels(true, scene, bgmVolume, sfxVolume);
-    }
-
-    
+    // // called when a scene is loaded.
+    // public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     // adjusts the audio levels.
+    //     AdjustAudioLevels(bgmVolume, sfxVolume);
+    // }
 
 }

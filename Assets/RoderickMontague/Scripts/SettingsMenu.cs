@@ -23,6 +23,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Save the instance.
         gameSettings = GameSettings.Instance;
 
         // Current text-to-speech tutorial.
@@ -65,6 +66,10 @@ public class SettingsMenu : MonoBehaviour
         gameSettings = GameSettings.Instance;
     }
 
+    public void OnTextSpeechChange()
+    {
+        OnTextToSpeechChange(textToSpeechToggle);
+    }
 
     // On the text-to-speech changes.
     public void OnTextToSpeechChange(Toggle toggle)
@@ -81,13 +86,13 @@ public class SettingsMenu : MonoBehaviour
     // on the bgm volume change.
     public void OnBgmVolumeChange(Slider slider)
     {
-        gameSettings.BgmVolume = slider.value;
+        gameSettings.BgmVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
     }
 
     // on the sfx volume change.
     public void OnSfxVolumeChange(Slider slider)
     {
-        gameSettings.SfxVolume = slider.value;
+        gameSettings.SfxVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
     }
 
     // Update is called once per frame
