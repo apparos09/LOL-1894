@@ -126,6 +126,35 @@ public class GameSettings : MonoBehaviour
         }
     }
 
+    // setting the background volume.
+    public float BgmVolume
+    {
+        get
+        {
+            return bgmVolume;
+        }
+
+        set
+        {
+            AdjustAudioLevels(Mathf.Clamp01(value), sfxVolume);
+        }
+    }
+
+    // setting the sound effect volume.
+    public float SfxVolume
+    {
+        get
+        {
+            return sfxVolume;
+        }
+
+        set
+        {
+            AdjustAudioLevels(bgmVolume, Mathf.Clamp01(value));
+        }
+    }
+
+
     // applies the audio levels by using the saved audio settings.
     public void ApplyAudioLevels()
     {
