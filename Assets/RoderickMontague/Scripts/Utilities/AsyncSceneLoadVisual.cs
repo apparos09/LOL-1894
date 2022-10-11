@@ -18,7 +18,7 @@ public class AsyncSceneLoadVisual : MonoBehaviour
         if(loader == null)
             loader = FindObjectOfType<AsyncSceneLoader>();
 
-        loader.LoadScene("TitleScene");
+        // loader.LoadScene("TitleScene");
     }
 
     // Update is called once per frame

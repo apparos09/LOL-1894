@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234620012}
   - component: {fileID: 234620014}
-  - component: {fileID: 234620013}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -238,20 +237,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &234620013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234620011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5c9dbdecc4b564182198e5fb3dcbca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 234620014}
-  loader: {fileID: 1292542824}
 --- !u!114 &234620014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,8 +640,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 234620012}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1292542823}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -673,6 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292542823}
   - component: {fileID: 1292542824}
+  - component: {fileID: 1292542825}
   m_Layer: 0
   m_Name: Loading Screen
   m_TagString: Untagged
@@ -690,9 +676,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 877343949}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1292542824
 MonoBehaviour:
@@ -706,6 +693,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a124439835595a746a59ac58bb762999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1292542825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292542822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5c9dbdecc4b564182198e5fb3dcbca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 234620014}
+  loader: {fileID: 1292542824}
 --- !u!1 &1470458638
 GameObject:
   m_ObjectHideFlags: 0
