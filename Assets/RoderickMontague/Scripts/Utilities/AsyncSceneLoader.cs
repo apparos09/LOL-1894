@@ -7,11 +7,20 @@ using UnityEngine.SceneManagement;
 // Loads a scene asynchronously, which allows there to be a loading screen.
 public class AsyncSceneLoader : MonoBehaviour
 {
-    // set to 'true' if the scene loader is loading.
+    // the scene that's being loaded.
+    private string loadingScene = "";
+
+    // Set to 'true' if the scene loader is loading.
     private bool isLoading = false;
 
     // How much has already been loaded.
     private float progress = 0.0F;
+
+    // Returns the scene that's being loaded. If no scene is being loaded then the string will be blank ("").
+    public string LoadingScene
+    {
+        get { return loadingScene; }
+    }
 
     // Returns 'true' if the scene is now loading.
     public bool IsLoading
@@ -29,7 +38,7 @@ public class AsyncSceneLoader : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         // TODO: check to see if a scene exists.
-
+        
         // Spreads an operation across multiple frames.
         StartCoroutine(LoadSceneAsync(sceneName));
     }    
@@ -42,6 +51,7 @@ public class AsyncSceneLoader : MonoBehaviour
 
         // the operation is now loading.
         isLoading = true;
+        loadingScene = sceneName;
 
         // While the operation is going.
         while(!operation.isDone)
@@ -56,6 +66,10 @@ public class AsyncSceneLoader : MonoBehaviour
             // Tells the program to stall the operation and return controls back to Unity.
             yield return null;
         }
+
+        // the scene has finished loading, so change these values.
+        isLoading = false;
+        loadingScene = "";
     }
 
 

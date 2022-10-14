@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// the asynchronous scene loader visual
 public class AsyncSceneLoadVisual : MonoBehaviour
 {
     // Scene loader.
@@ -27,7 +28,6 @@ public class AsyncSceneLoadVisual : MonoBehaviour
         // if the load operation is going on.
         if(loader.IsLoading)
         {
-            
             // changes the slider.
             slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, loader.Progress);
         }

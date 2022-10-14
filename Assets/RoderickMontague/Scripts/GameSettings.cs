@@ -46,7 +46,7 @@ public class GameSettings : MonoBehaviour
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        // this object should not be called.
+        // This object should not be destroyed.
         DontDestroyOnLoad(this);
 
         

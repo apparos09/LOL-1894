@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Loading Screen
+    uniqueID: 292953459
+    locked: 0
