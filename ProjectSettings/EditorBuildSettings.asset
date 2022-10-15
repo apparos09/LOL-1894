@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/WebGLLoLDemo/Scenes/Speech.unity
     guid: 57bb3b159a4464d7d813b921528142ea
   - enabled: 1
-    path: Assets/RoderickMontague/Scenes/TestSceneLOL.unity
+    path: Assets/RoderickMontague/Scenes/TestScene.unity
     guid: a7db51e9d77502e458a65f3e11331eed
   - enabled: 1
     path: Assets/RoderickMontague/Scenes/TitleScene.unity
