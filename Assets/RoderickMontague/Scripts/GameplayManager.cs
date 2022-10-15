@@ -17,11 +17,13 @@ public class GameplayManager : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            // checks to see if the user has touched it.
-            if (touch.phase == TouchPhase.Began)
-            {
-                Debug.Log("Finger has touched screen.");
-            }
+            Debug.Log("Finger has touched screen. Tap Count: " + touch.tapCount);
+
+            // // checks to see if the user has touched it.
+            // if (touch.phase == TouchPhase.Began)
+            // {
+            //     // Debug.Log("Finger has touched screen.");
+            // }
         }
         
     }
