@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// the asynchronous scene loader visual
-public class AsyncSceneLoadVisual : MonoBehaviour
+namespace RoderickMontague_BattleBotTrainingSimulation
 {
-    // Scene loader.
-    public Slider slider;
-
-    // Load operation.
-    public AsyncSceneLoader loader;
-
-    // Start is called before the first frame update
-    void Start()
+    // the asynchronous scene loader visual
+    public class AsyncSceneLoadVisual : MonoBehaviour
     {
-        // tries to find the load operation.
-        if(loader == null)
-            loader = FindObjectOfType<AsyncSceneLoader>();
+        // Scene loader.
+        public Slider slider;
 
-        // loader.LoadScene("TitleScene");
-    }
+        // Load operation.
+        public AsyncSceneLoader loader;
 
-    // Update is called once per frame
-    void Update()
-    {
-        // if the load operation is going on.
-        if(loader.IsLoading)
+        // Start is called before the first frame update
+        void Start()
         {
-            // changes the slider.
-            slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, loader.Progress);
+            // tries to find the load operation.
+            if (loader == null)
+                loader = FindObjectOfType<AsyncSceneLoader>();
+
+            // loader.LoadScene("TitleScene");
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // if the load operation is going on.
+            if (loader.IsLoading)
+            {
+                // changes the slider.
+                slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, loader.Progress);
+            }
         }
     }
 }

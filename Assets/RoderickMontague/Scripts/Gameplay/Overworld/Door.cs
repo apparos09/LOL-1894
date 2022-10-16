@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+namespace RoderickMontague_BattleBotTrainingSimulation
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Door : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    private void OnMouseOver()
-    {
-        // Debug.Log("Test");
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnMouseOver()
+        {
+            // Debug.Log("Test");
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

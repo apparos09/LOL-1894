@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // The namespace should be <YourCompany> <GameName>.
-namespace RoderickMontague_LOL_1894
+namespace RoderickMontague_BattleBotTrainingSimulation
 {
     // a class for the accessibility components
     public class Accessibility : MonoBehaviour

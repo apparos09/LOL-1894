@@ -7,46 +7,49 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // the manager for the title scene.
-public class TitleManager : MonoBehaviour
+namespace RoderickMontague_BattleBotTrainingSimulation
 {
-    [Header("Buttons")]
-    public TMP_Text viewControlsButtonText;
-    public TMP_Text viewOptionsButtonText;
-
-    // Awake is called when the script instance is loaded.
-    private void Awake()
+    public class TitleManager : MonoBehaviour
     {
-        // set to 30 FPS
-        Application.targetFrameRate = 30;
+        [Header("Buttons")]
+        public TMP_Text viewControlsButtonText;
+        public TMP_Text viewOptionsButtonText;
 
-        // checks if LOL SDK has been initialized.
-        GameSettings settings = GameSettings.Instance;
-
-        // if the LOL SDK has been initialized...
-        if(settings.InitializedLOLSDK)
+        // Awake is called when the script instance is loaded.
+        private void Awake()
         {
-            JSONNode defs = SharedState.LanguageDefs;
+            // set to 30 FPS
+            Application.targetFrameRate = 30;
 
-            viewControlsButtonText.text = defs["viewControls"];
-            viewOptionsButtonText.text = defs["viewOptions"];
+            // checks if LOL SDK has been initialized.
+            GameSettings settings = GameSettings.Instance;
+
+            // if the LOL SDK has been initialized...
+            if (settings.InitializedLOLSDK)
+            {
+                JSONNode defs = SharedState.LanguageDefs;
+
+                viewControlsButtonText.text = defs["viewControls"];
+                viewOptionsButtonText.text = defs["viewOptions"];
+            }
+            else
+            {
+                Debug.LogError("LOL SDK NOT INITIALIZED.");
+                settings.AdjustAllAudioLevels();
+            }
+
         }
-        else
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.LogError("LOL SDK NOT INITIALIZED.");
-            settings.AdjustAllAudioLevels();
+
         }
 
-    }
+        // Update is called once per frame
+        void Update()
+        {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }

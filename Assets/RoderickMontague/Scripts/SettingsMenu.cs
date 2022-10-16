@@ -3,101 +3,108 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+namespace RoderickMontague_BattleBotTrainingSimulation
 {
-    // the game settings object.
-    public GameSettings gameSettings;
-
-    // the toggle for the text-to-speech toggle.
-    public Toggle textToSpeechToggle;
-
-    // the tutorial toggle.
-    public Toggle tutorialToggle;
-
-    // the bgm volume slider.
-    public Slider bgmVolumeSlider;
-
-    // the sound effect slider.
-    public Slider sfxVolumeSlider;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SettingsMenu : MonoBehaviour
     {
-        // Save the instance.
-        gameSettings = GameSettings.Instance;
+        // the game settings object.
+        public GameSettings gameSettings;
 
-        // Current text-to-speech tutorial.
-        textToSpeechToggle.isOn = gameSettings.TextToSpeech;
+        // the toggle for the text-to-speech toggle.
+        public Toggle textToSpeechToggle;
 
-        // Listener for the text-to-speech.
-        textToSpeechToggle.onValueChanged.AddListener(delegate {
+        // the tutorial toggle.
+        public Toggle tutorialToggle;
+
+        // the bgm volume slider.
+        public Slider bgmVolumeSlider;
+
+        // the sound effect slider.
+        public Slider sfxVolumeSlider;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // Save the instance.
+            gameSettings = GameSettings.Instance;
+
+            // Current text-to-speech tutorial.
+            textToSpeechToggle.isOn = gameSettings.TextToSpeech;
+
+            // Listener for the text-to-speech.
+            textToSpeechToggle.onValueChanged.AddListener(delegate
+            {
+                OnTextToSpeechChange(textToSpeechToggle);
+            });
+
+            // Current tutorial toggle setting.
+            tutorialToggle.isOn = gameSettings.useTutorial;
+
+            // Listener for the tutorial toggle.
+            tutorialToggle.onValueChanged.AddListener(delegate
+            {
+                OnTutorialChange(tutorialToggle);
+            });
+
+            // Current bgm volume setting.
+            bgmVolumeSlider.value = gameSettings.BgmVolume;
+
+            // Listener for the bgm slider.
+            bgmVolumeSlider.onValueChanged.AddListener(delegate
+            {
+                OnBgmVolumeChange(bgmVolumeSlider);
+            });
+
+            // Current sfx volume setting.
+            sfxVolumeSlider.value = gameSettings.SfxVolume;
+
+            // Listener for the sfx slider.
+            sfxVolumeSlider.onValueChanged.AddListener(delegate
+            {
+                OnSfxVolumeChange(sfxVolumeSlider);
+            });
+
+        }
+
+        // This function is called when the object becomes enabled and active
+        private void OnEnable()
+        {
+            gameSettings = GameSettings.Instance;
+        }
+
+        public void OnTextSpeechChange()
+        {
             OnTextToSpeechChange(textToSpeechToggle);
-        });
+        }
 
-        // Current tutorial toggle setting.
-        tutorialToggle.isOn = gameSettings.useTutorial;
+        // On the text-to-speech changes.
+        public void OnTextToSpeechChange(Toggle toggle)
+        {
+            gameSettings.TextToSpeech = toggle.isOn;
+        }
 
-        // Listener for the tutorial toggle.
-        tutorialToggle.onValueChanged.AddListener(delegate {
-             OnTutorialChange(tutorialToggle);
-        });
+        // On the tutorial changes.
+        public void OnTutorialChange(Toggle toggle)
+        {
+            gameSettings.useTutorial = toggle.isOn;
+        }
 
-        // Current bgm volume setting.
-        bgmVolumeSlider.value = gameSettings.BgmVolume;
+        // on the bgm volume change.
+        public void OnBgmVolumeChange(Slider slider)
+        {
+            gameSettings.BgmVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
+        }
 
-        // Listener for the bgm slider.
-        bgmVolumeSlider.onValueChanged.AddListener(delegate {
-            OnBgmVolumeChange(bgmVolumeSlider);
-        });
+        // on the sfx volume change.
+        public void OnSfxVolumeChange(Slider slider)
+        {
+            gameSettings.SfxVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
+        }
 
-        // Current sfx volume setting.
-        sfxVolumeSlider.value = gameSettings.SfxVolume;
+        // Update is called once per frame
+        void Update()
+        {
 
-        // Listener for the sfx slider.
-        sfxVolumeSlider.onValueChanged.AddListener(delegate {
-            OnSfxVolumeChange(sfxVolumeSlider);
-        });
-
-    }
-
-    // This function is called when the object becomes enabled and active
-    private void OnEnable()
-    {
-        gameSettings = GameSettings.Instance;
-    }
-
-    public void OnTextSpeechChange()
-    {
-        OnTextToSpeechChange(textToSpeechToggle);
-    }
-
-    // On the text-to-speech changes.
-    public void OnTextToSpeechChange(Toggle toggle)
-    {
-        gameSettings.TextToSpeech = toggle.isOn;
-    }
-
-    // On the tutorial changes.
-    public void OnTutorialChange(Toggle toggle)
-    {
-        gameSettings.useTutorial = toggle.isOn;
-    }
-
-    // on the bgm volume change.
-    public void OnBgmVolumeChange(Slider slider)
-    {
-        gameSettings.BgmVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
-    }
-
-    // on the sfx volume change.
-    public void OnSfxVolumeChange(Slider slider)
-    {
-        gameSettings.SfxVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }
