@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 // Initializes the LOL content and then enters the title screen.
 // This code was taken from Loader.cs (a file from the LOL template content) and then modified.
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class InitGame : MonoBehaviour
     {

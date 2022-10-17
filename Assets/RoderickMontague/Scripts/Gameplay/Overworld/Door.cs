@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class Door : MonoBehaviour
     {

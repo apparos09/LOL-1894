@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class SettingsMenu : MonoBehaviour
     {

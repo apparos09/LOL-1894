@@ -4,7 +4,7 @@ using System.Transactions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     // Loads a scene asynchronously, which allows there to be a loading screen.
     public class AsyncSceneLoader : MonoBehaviour

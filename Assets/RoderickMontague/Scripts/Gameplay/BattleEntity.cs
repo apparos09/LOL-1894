@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
-    public class BattleManager : MonoBehaviour
+    public class BattleEntity : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()

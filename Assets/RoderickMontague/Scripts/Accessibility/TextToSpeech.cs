@@ -5,7 +5,7 @@ using LoLSDK;
 
 
 // The namespace should be <YourCompany> <GameName>.
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class TextToSpeech : MonoBehaviour
     {

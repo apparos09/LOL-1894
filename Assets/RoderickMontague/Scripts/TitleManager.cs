@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // the manager for the title scene.
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class TitleManager : MonoBehaviour
     {

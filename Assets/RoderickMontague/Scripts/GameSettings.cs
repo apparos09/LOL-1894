@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 // the settings for the game, which is created in the init scene.
 // the init isn't visited again, so this object will not be recreated.
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class GameSettings : MonoBehaviour
     {

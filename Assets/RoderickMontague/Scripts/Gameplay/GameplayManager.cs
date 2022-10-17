@@ -4,7 +4,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RoderickMontague_BattleBotTrainingSimulation
+namespace RM_BBTS
 {
     public class GameplayManager : MonoBehaviour
     {
@@ -23,6 +23,16 @@ namespace RoderickMontague_BattleBotTrainingSimulation
         // the input from the mouse and touch screen.
         public MouseTouchInput mouseTouchInput;
 
+        // Awake is called when the script instance is being loaded
+        private void Awake()
+        {
+            // turns on the overworld component.
+            overworld.enabled = true;
+
+            // turns off the battle component.
+            battle.enabled = false;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -32,7 +42,13 @@ namespace RoderickMontague_BattleBotTrainingSimulation
 
             // Adds a component.
             if (mouseTouchInput == null)
-                mouseTouchInput = GetComponent<MouseTouchInput>();
+                mouseTouchInput = gameObject.AddComponent<MouseTouchInput>();
+        }
+
+        // Initializes the gameplay manager.
+        public void Initialize()
+        {
+
         }
 
         // // Called when a level has been loaded.
