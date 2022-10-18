@@ -26,29 +26,29 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            // turns on the overworld component.
-            overworld.enabled = true;
+            // Turns on the overworld component.
+            overworld.gameObject.SetActive(false);
 
-            // turns off the battle component.
-            battle.enabled = false;
+            // Turns off the battle component.
+            battle.gameObject.SetActive(false);
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            // Tries to find the object.
+            // Finds the mouse touch input object.
             if (mouseTouchInput == null)
                 mouseTouchInput = FindObjectOfType<MouseTouchInput>();
 
-            // Adds a component.
-            if (mouseTouchInput == null)
-                mouseTouchInput = gameObject.AddComponent<MouseTouchInput>();
+
+            Initialize();
         }
 
         // Initializes the gameplay manager.
         public void Initialize()
         {
-
+            overworld.Initialize();
+            overworld.gameObject.SetActive(true);
         }
 
         // // Called when a level has been loaded.
