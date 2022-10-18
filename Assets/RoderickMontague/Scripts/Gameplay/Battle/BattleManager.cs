@@ -5,10 +5,13 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // Manages the battle operations for the game. This becomes active when the game enters a battle state.
-    public class BattleManager : MonoBehaviour
+    public class BattleManager : GameState
     {
         // Becomes 'true' when the overworld is initialized.
         public bool initialized = false;
+
+        // the manager for the game.
+        public GameplayManager gameManager;
 
         // The player.
         public Player player;
@@ -35,9 +38,33 @@ namespace RM_BBTS
         }
 
         // Initializes the overworld.
-        public void Initialize()
+        public override void Initialize()
         {
             initialized = true;
+        }
+
+        // Called when the mouse hovers over an object.
+        public override void OnMouseHovered(GameObject hoveredObject)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        // Called when the mouse interacts with an entity.
+        public override void OnMouseInteract(GameObject heldObject)
+        {
+
+        }
+
+        // Called when the user's touch interacts with an entity.
+        public override void OnTouchInteract(GameObject touchedObject, Touch touch)
+        {
+
+        }
+
+        // Called with the object that was received with the interaction.
+        protected override void OnInteractReceive(GameObject gameObject)
+        {
+            throw new System.NotImplementedException();
         }
 
         // Update is called once per frame
@@ -45,5 +72,7 @@ namespace RM_BBTS
         {
 
         }
+
+        
     }
 }

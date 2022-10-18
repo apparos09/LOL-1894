@@ -6,11 +6,8 @@ using UnityEngine.SceneManagement;
 
 namespace RM_BBTS
 {
-    public class GameplayManager : MonoBehaviour
+    public class GameplayManager : GameState
     {
-        // the state of the game.
-        public enum gameState { none, overworld, battle }
-
         // the state of the game.
         public gameState state;
 
@@ -45,16 +42,116 @@ namespace RM_BBTS
         }
 
         // Initializes the gameplay manager.
-        public void Initialize()
+        public override void Initialize()
         {
             overworld.Initialize();
             overworld.gameObject.SetActive(true);
+        }
+
+        // Called when the mouse hovers over an object.
+        public override void OnMouseHovered(GameObject hoveredObject)
+        {
+            // ...
+        }
+
+        // Called when the mouse interacts with an entity.
+        public override void OnMouseInteract(GameObject heldObject)
+        {
+            // ...
+        }
+
+        // Called when the user's touch interacts with an entity.
+        public override void OnTouchInteract(GameObject touchedObject, Touch touch)
+        {
+            // ...
         }
 
         // // Called when a level has been loaded.
         // private void OnLevelWasLoaded(int level)
         // {
         // }
+
+        // Checks the mouse and touch to see if there's any object to use.
+        public void MouseTouchCheck()
+        {
+            // The object that was interacted with.
+            GameObject hitObject;
+
+            // TODO: hovered check.
+
+
+            // Tries grabbing the mouse object.
+            hitObject = mouseTouchInput.mouseHeldObject;
+
+            // The hit object was not found from the mouse, so check the touch instead.
+            if (hitObject == null)
+            {
+                // Grabs the last object in the list.
+                if (mouseTouchInput.touchObjects.Count > 0)
+                {
+                    // Grabs the index.
+                    int index = mouseTouchInput.touchObjects.Count - 1;
+
+                    // Saves the hit object.
+                    hitObject = mouseTouchInput.touchObjects[index];
+                    Touch touch = mouseTouchInput.currentTouches[index];
+
+                    // Checks the state variable to see what kind of scene the game is in.
+                    // Calls the appropriate touch interaction.
+                    switch (state)
+                    {
+                        case gameState.overworld:
+                            overworld.OnTouchInteract(hitObject, touch);
+                            break;
+
+                        case gameState.battle:
+                            battle.OnTouchInteract(hitObject, touch);
+                            break;
+                    }
+                }
+                
+            }
+            else
+            {
+                // Checks the state variable to see what kind of scene the game is in.
+                switch (state)
+                {
+                    case gameState.overworld:
+                        overworld.OnMouseInteract(hitObject);
+                        break;
+
+                    case gameState.battle:
+                        battle.OnMouseInteract(hitObject);
+                        break;
+                }
+            }
+
+            // Print message for testing.
+            // if(hitObject != null)
+            //     Debug.Log("Hit Found");
+
+        }
+
+        // Called with the object that was received with the interaction.
+        protected override void OnInteractReceive(GameObject gameObject)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        // Call this function to enter the overworld.
+        public void EnterOverworld()
+        {
+
+        }
+
+        // Call to enter the battle world.
+        public void EnterBattle()
+        {
+
+        }
+
+        
 
         // Update is called once per frame
         void Update()
@@ -75,6 +172,9 @@ namespace RM_BBTS
             // Checks how many touches there are.
             if (mouseTouchInput.currentTouches.Count > 0)
                 Debug.Log("Touch Count: " + mouseTouchInput.currentTouches.Count);
+
+            // Checks for some mouse input.
+            MouseTouchCheck();
 
 
             // Checks the state variable to see what kind of scene the game is in.

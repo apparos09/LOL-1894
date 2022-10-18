@@ -103,7 +103,7 @@ namespace RM_BBTS
         }
 
         // Handle pause / resume
-        void HandleGameStateChange(GameState gameState)
+        void HandleGameStateChange(LoLSDK.GameState gameState)
         {
             // Either GameState.Paused or GameState.Resumed
             Debug.Log("HandleGameStateChange");
