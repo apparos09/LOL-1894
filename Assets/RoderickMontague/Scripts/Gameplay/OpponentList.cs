@@ -3,27 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// The list of battle enttity for the game. There only needs to be one instance of this list.
-public class BattleEntityList
+// The list of opponents for the game. There only needs to be one instance of this list.
+public class OpponentList
 {
     // The instance of the opponent list.
-    private static BattleEntityList instance;
+    private static OpponentList instance;
 
     // The amount of opponents in the list.
     public static int OPPONENT_COUNT = 1;
 
     // Constructor.
-    private BattleEntityList()
+    private OpponentList()
     {
     }
 
     // Gets the instance.
-    public static BattleEntityList Instance
+    public static OpponentList Instance
     {
         get
         {
             if (instance == null)
-                instance = new BattleEntityList();
+                instance = new OpponentList();
 
             return instance;
         }
