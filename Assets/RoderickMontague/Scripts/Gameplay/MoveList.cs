@@ -41,6 +41,11 @@ public class MoveList
         return null;
     }
 
+    public Move GenerateMV00()
+    {
+        return null;
+    }
+
     // MV01 - ...
     public Move GenerateMV01()
     {

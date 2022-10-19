@@ -40,13 +40,15 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and active
         private void OnEnable()
         {
-            ui.SetActive(true);
+            if (ui != null)
+                ui.SetActive(true);
         }
 
         // This function is called when the behaviour becomes disabled or inactive
         private void OnDisable()
         {
-            ui.SetActive(false);
+            if(ui != null)
+                ui.SetActive(false);
         }
 
         // Initializes the overworld.
@@ -83,6 +85,31 @@ namespace RM_BBTS
         protected override void OnInteractReceive(GameObject gameObject)
         {
             throw new System.NotImplementedException();
+        }
+
+        // Called when the player attempts to run away.
+        public void RunAway()
+        {
+            // Becomes 'true' if the run attempt was successful.
+            bool success = false;
+
+            // If there's no opponent then the player can always run away.
+            if (opponent == null)
+            {
+                success = true;
+            }
+            // If there is an opponent there the player may be unable to leave.
+            else
+            {
+                // There's a 1/2 chance of running away.
+                success = (Random.Range(0, 2) == 1);
+            }
+
+            // Returns to the overworld if the run was successful.
+            if (success)
+                gameManager.EnterOverworld();
+            else
+                Debug.Log("Run failed.");
         }
 
         // Update is called once per frame

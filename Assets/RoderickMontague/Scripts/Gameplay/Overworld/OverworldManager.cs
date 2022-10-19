@@ -49,13 +49,15 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and active
         private void OnEnable()
         {
-            ui.SetActive(true);
+            if(ui != null)
+                ui.SetActive(true);
         }
 
         // This function is called when the behaviour becomes disabled or inactive
         private void OnDisable()
         {
-            ui.SetActive(false);
+            if(ui != null)
+                ui.SetActive(false);
         }
 
         // Initializes the overworld.
@@ -169,6 +171,7 @@ namespace RM_BBTS
             door.locked = false;
 
             // Make sure the battle entity is parented to the door.
+            // TODO: have algorithm for generating enemies.
         }
 
         // Update is called once per frame

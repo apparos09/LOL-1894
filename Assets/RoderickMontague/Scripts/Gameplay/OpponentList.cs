@@ -44,7 +44,7 @@ public class OpponentList
         return null;
     }
 
-    // Generates BE00 (player)
+    // Generates BE00 (-)
     public BattleEntity GenerateBE00()
     {
         return null;

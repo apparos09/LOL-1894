@@ -23,11 +23,13 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            // Turns on the overworld component.
+            // Turns on the overworld object and its ui.
             overworld.gameObject.SetActive(false);
+            overworld.ui.SetActive(false);
 
-            // Turns off the battle component.
+            // Turns off the battle object and its ui.
             battle.gameObject.SetActive(false);
+            battle.ui.SetActive(false);
         }
 
         // Start is called before the first frame update
@@ -143,7 +145,10 @@ namespace RM_BBTS
         // Call this function to enter the overworld.
         public void EnterOverworld()
         {
+            battle.gameObject.SetActive(false);
+            overworld.gameObject.SetActive(false);
 
+            overworld.gameObject.SetActive(true);
         }
 
         // Call to enter the battle world.
