@@ -4,15 +4,52 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
+
+    // The data for a battle entity.
+    public struct BattleEntityData
+    {
+        // The battle entity id.
+        public uint id;
+
+        // The level
+        public uint level;
+
+        // The stats
+        public float maxHealth;
+        public float health;
+
+        public float attack;
+        public float defense;
+        public float speed;
+        public float energy;
+
+        // The moves
+        public Move move0, move1, move2, move3;
+
+        // The sprite image of the entity.
+        public Sprite sprite;
+
+    }
+
     // A class inherited by entities that do battle.
     public class BattleEntity : MonoBehaviour
     {
+        // The sprite that the battle entity uses.
+        public Sprite sprite;
+
+        // the id number of the entity.
+        public uint id;
+
+        [Header("Stats")]
+
         // Level
         public uint level = 1;
 
         // Stats
         // The stats of the battle entity.
+        private float maxHealth = 1;
         private float health = 1;
+
         private float attack = 1;
         private float defense = 1;
         private float speed = 1;

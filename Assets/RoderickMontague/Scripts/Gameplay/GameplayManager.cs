@@ -46,6 +46,7 @@ namespace RM_BBTS
         {
             overworld.Initialize();
             overworld.gameObject.SetActive(true);
+            state = gameState.overworld;
         }
 
         // Called when the mouse hovers over an object.
@@ -146,8 +147,24 @@ namespace RM_BBTS
         }
 
         // Call to enter the battle world.
-        public void EnterBattle()
+        public void EnterBattle(Door door)
         {
+            // TODO: comment this out in the final game.
+            if(door.locked)
+            {
+                Debug.Log("The door can't be opened.");
+                return;
+            }
+
+            overworld.gameObject.SetActive(false);
+            battle.gameObject.SetActive(false);
+
+            // Initialize the battle scene.
+            battle.door = door;
+            battle.Initialize();
+
+            // Activates the battle object.
+            battle.gameObject.SetActive(true);
 
         }
 

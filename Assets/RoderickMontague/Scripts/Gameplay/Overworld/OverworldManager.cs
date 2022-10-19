@@ -9,10 +9,14 @@ namespace RM_BBTS
         // Becomes 'true' when the overworld is initialized.
         public bool initialized = false;
 
+        // The gameplay manager.
         public GameplayManager gameManager;
 
+        // The user interface.
+        public GameObject ui;
+
         // The object that was selected in the overworld.
-        public GameObject selectedObject;
+        // public GameObject selectedObject;
 
         [Header("Doors")]
         // The list of doors.
@@ -45,13 +49,13 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and active
         private void OnEnable()
         {
-            // ...
+            ui.SetActive(true);
         }
 
         // This function is called when the behaviour becomes disabled or inactive
         private void OnDisable()
         {
-            // ...
+            ui.SetActive(false);
         }
 
         // Initializes the overworld.
@@ -112,31 +116,50 @@ namespace RM_BBTS
         // Called when the mouse hovers over an object.
         public override void OnMouseHovered(GameObject hoveredObject)
         {
-            // ...
+            // ... highlight
         }
 
         // Called when the mouse interacts with an entity.
         public override void OnMouseInteract(GameObject heldObject)
         {
-            selectedObject = heldObject;
+            // selectedObject = heldObject;
+
+            OnInteractReceive(heldObject);
         }
 
         // Called when the user's touch interacts with an entity.
         public override void OnTouchInteract(GameObject touchedObject, Touch touch)
         {
-            selectedObject = touchedObject;
+            // selectedObject = touchedObject;
 
-            // If the object is not set to null, and has been t
-            if(selectedObject != null && touch.tapCount > 1)
+            // If the object is not set to null.
+
+            // This is the first time the object has been tapped.
+            if (touch.tapCount > 1)
             {
-
+                // ENTER
             }
+            // This is the first tap.
+            else if (touch.tapCount == 1)
+            {
+                // HIGHLIGHT
+            }
+
+            OnInteractReceive(touchedObject);
         }
 
         // Called with the object that was received with the interaction.
         protected override void OnInteractReceive(GameObject gameObject)
         {
-            throw new System.NotImplementedException();
+            // Door object.
+            Door door = null;
+
+            // Tries to grab the door component.
+            if(gameObject.TryGetComponent<Door>(out door))
+            {
+                // Enters the battle.
+                gameManager.EnterBattle(door);
+            }
         }
 
         // Generates a room for the door.
@@ -144,6 +167,8 @@ namespace RM_BBTS
         {
             // ...
             door.locked = false;
+
+            // Make sure the battle entity is parented to the door.
         }
 
         // Update is called once per frame

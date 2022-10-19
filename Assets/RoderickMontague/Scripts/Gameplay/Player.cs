@@ -10,6 +10,9 @@ namespace RM_BBTS
         new void Start()
         {
             base.Start();
+
+            // The player is 'id' 0.
+            id = 0;
         }
 
         // Update is called once per frame

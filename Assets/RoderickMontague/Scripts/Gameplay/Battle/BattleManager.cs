@@ -13,11 +13,23 @@ namespace RM_BBTS
         // the manager for the game.
         public GameplayManager gameManager;
 
+        // The user interface.
+        public GameObject ui;
+
+        // The door
+        public Door door;
+
+        [Header("Battle")]
+
         // The player.
         public Player player;
 
-        // The enemy. Each room will only have one enemy.
-        public Enemy enemy;
+        // The opponent for the player.
+        public BattleEntity opponent;
+
+        // The sprite for the opponent.
+        public SpriteRenderer opponentSprite;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -28,19 +40,25 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and active
         private void OnEnable()
         {
-
+            ui.SetActive(true);
         }
 
         // This function is called when the behaviour becomes disabled or inactive
         private void OnDisable()
         {
-
+            ui.SetActive(false);
         }
 
         // Initializes the overworld.
         public override void Initialize()
         {
             initialized = true;
+
+            // Sets the battle entity from the door.
+            opponent = door.battleEntity;
+            
+            if(opponent != null)
+                opponentSprite.sprite = opponent.sprite;
         }
 
         // Called when the mouse hovers over an object.

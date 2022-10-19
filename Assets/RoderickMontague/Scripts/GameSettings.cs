@@ -41,8 +41,6 @@ namespace RM_BBTS
         // the constructor.
         private GameSettings()
         {
-            // Prevents multiple instances of this object being made.
-            instance = this;
         }
 
         // Awake is called when the script instance is being loaded
