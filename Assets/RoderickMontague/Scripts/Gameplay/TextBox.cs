@@ -19,11 +19,22 @@ public class TextBox : MonoBehaviour
     // If 'true', all the shown is shown at once. If false, the text is shown letter by letter.
     public bool instantText = true;
 
+    // A queue of text for progressive character loading.
+    private Queue<char> charQueue = new Queue<char>();
+
+    // The timer for loading in a new char.
+    private float charTimer = 0.0F;
+
     // The speed that the text is shown on the screen. This is ignored if the text is instantly shown.
     public float textSpeed = 10.0F;
 
     // Becomes 'true' when characters are loading up.
     private bool loadingChars = false;
+
+    // CALLBACKS
+    // a callback for when all the text has been gone through.
+    public delegate void TextFinishedCallback();
+    private TextFinishedCallback doneCallback;
 
     // Start is called before the first frame update
     void Start()
@@ -103,21 +114,39 @@ public class TextBox : MonoBehaviour
     }
 
     // Sets the text that's on the page.
-    private void SetPageText(int nextPageIndex, bool finishText = true)
+    private void SetPageText(int nextPageIndex, bool finishPage = true)
     {
         // If text is still being loaded just sub in the rest and stop loading in new characters.
         if (loadingChars)
         {
+            // No longer loading characters.
             loadingChars = false;
 
-            // If the text should be finished.
-            if(finishText)
+            // If the text should be finished, or if it should just skip to the next page.
+            // If there is no next page then the rest of the text is loaded regardless of 'finishPage's value.
+            // TODO: maybe make it so that a callback is called when the dialog box is finished.
+
+            if(finishPage || !(nextPageIndex >= 0 && nextPageIndex < pages.Count)) // Finsih loading the page.
             {
                 // Finishes the text instead of replacing the page.
                 boxText.text = pages[currPageIndex];
+                charQueue.Clear();
+                charTimer = 0.0F;
                 return;
             }
         }
+
+        // There's no next page, so don't change the text.
+        if (nextPageIndex >= pages.Count || nextPageIndex < 0)
+        {
+            // The text has all been displayed, so call the callbacks.
+            if (nextPageIndex >= pages.Count)
+                OnTextFinished();
+
+            return;
+        }
+            
+
 
         // Clears out the existing text.
         boxText.text = "";
@@ -140,7 +169,11 @@ public class TextBox : MonoBehaviour
         }
         else // Letter by Letter
         {
-            StartCoroutine(LoadCharacterByCharacter());
+            // Set to load characters, and loads up the char queue.
+            loadingChars = true;
+            charQueue.Clear();
+            charQueue = new Queue<char>(pages[currPageIndex]);
+            charTimer = 0.0F;
         }
         
 
@@ -148,50 +181,66 @@ public class TextBox : MonoBehaviour
     }
 
     // Loads character by character.
-    private IEnumerator LoadCharacterByCharacter()
+    private void LoadCharacterByCharacter()
     {
-        // Now loading characters.
-        loadingChars = true;
-        
-        // The countdown to displaying the next character.
-        float timer = 0.0F;
-
-        // The new text to be loaded.
-        Queue<char> newText = new Queue<char>(pages[currPageIndex]);
-
-        // While characters are being loaded.
-        while (loadingChars && newText.Count > 0)
+        // Checks if the timer has reached 0 for displaying the next character.
+        if(charQueue.Count != 0)
         {
-            // Checks if the timer has reached 0 for displaying the next character.
-            if(timer <= 0.0F)
+            // If the timer has reached 0 or less.
+            if (charTimer <= 0.0F)
             {
-                // Replaces the string.
+                // Adds to the string.
                 string temp = boxText.text;
-                temp += newText.Dequeue();
+                temp += charQueue.Dequeue();
                 boxText.text = temp;
 
                 // If the text speed is set to 0 the new char will load on the next frame.
                 if (textSpeed > 0)
-                    timer = 1 / textSpeed;
+                    charTimer = 1 / textSpeed;
                 else
-                    timer = 0.0F;
+                    charTimer = 0.0F;
 
             }
             else // Reduce timer.
             {
-                timer -= Time.deltaTime;
+                charTimer -= Time.deltaTime;
             }
-
-            yield return null;
         }
+        else
+        {
+            // No characters to load.
+            loadingChars = false;
+            charTimer = 0.0F;
+        }
+    }
 
-        // No longer loading chars.
-        loadingChars = false;
+    // TODO: check callbacks.
+    // A callback function for when all the text is finished.
+    // This is only called if the user attempts to go onto the next page when there is none.
+    public void OnTextFinishedAddCallback(TextFinishedCallback callback)
+    {
+        doneCallback += callback;
+    }
+
+    // Removes the callback.
+    public void OnTextFinishedRemoveCallback(TextFinishedCallback callback)
+    {
+        doneCallback -= callback;
+    }
+
+    // Called when all the text has been displayed.
+    private void OnTextFinished()
+    {
+        // Checks if there are functions to call.
+        if(doneCallback != null)
+            doneCallback();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Changed this from the courtine version.
+        if (loadingChars)
+            LoadCharacterByCharacter();
     }
 }

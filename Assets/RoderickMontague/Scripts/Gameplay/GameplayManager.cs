@@ -54,9 +54,16 @@ namespace RM_BBTS
             state = gameState.overworld;
 
 
-            List<string> test = new List<string>() { "This is a test.", "This is only a text." };
+            List<string> test = new List<string>() { "This is a test.", "This is only a test." };
+            // textBox.OnTextFinishedAddCallback(Test);
+            // textBox.OnTextFinishedRemoveCallback(Test);
             textBox.LoadPageText(test);
         }
+
+        // public void Test()
+        // {
+        //     Debug.Log("Test");
+        // }
 
         // Called when the mouse hovers over an object.
         public override void OnMouseHovered(GameObject hoveredObject)
