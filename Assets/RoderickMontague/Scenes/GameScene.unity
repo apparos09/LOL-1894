@@ -1189,6 +1189,7 @@ MonoBehaviour:
   overworld: {fileID: 1472320084}
   battle: {fileID: 1163903607}
   mouseTouchInput: {fileID: 203223313}
+  textBox: {fileID: 1178415351}
 --- !u!114 &933859327 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8247993992043946924, guid: 6ad1b64b977dbef43bce9bc5cdedbb44, type: 3}
@@ -1590,13 +1591,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178415350}
+  - component: {fileID: 1178415351}
   m_Layer: 5
   m_Name: Text Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1178415350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1617,6 +1619,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1178415351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178415349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07f5c71e98c42e4c86c12e0a9e9e4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pages: []
+  boxText: {fileID: 1194298960}
+  instantText: 0
+  textSpeed: 10
 --- !u!114 &1187826822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8247993992043946924, guid: 6ad1b64b977dbef43bce9bc5cdedbb44, type: 3}

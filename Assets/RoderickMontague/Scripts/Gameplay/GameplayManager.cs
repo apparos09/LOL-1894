@@ -20,6 +20,9 @@ namespace RM_BBTS
         // the input from the mouse and touch screen.
         public MouseTouchInput mouseTouchInput;
 
+        // The text box used for the game.
+        public TextBox textBox;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
@@ -49,6 +52,10 @@ namespace RM_BBTS
             overworld.Initialize();
             overworld.gameObject.SetActive(true);
             state = gameState.overworld;
+
+
+            List<string> test = new List<string>() { "This is a test.", "This is only a text." };
+            textBox.LoadPageText(test);
         }
 
         // Called when the mouse hovers over an object.
