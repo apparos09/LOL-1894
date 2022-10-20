@@ -19,12 +19,6 @@ public class TextBox : MonoBehaviour
     // If 'true', all the shown is shown at once. If false, the text is shown letter by letter.
     public bool instantText = true;
 
-    // A queue of text for progressive character loading.
-    private Queue<char> charQueue = new Queue<char>();
-
-    // The timer for loading in a new char.
-    private float charTimer = 0.0F;
-
     // The speed that the text is shown on the screen. This is ignored if the text is instantly shown.
     public float textSpeed = 10.0F;
 
@@ -146,10 +140,7 @@ public class TextBox : MonoBehaviour
         }
         else // Letter by Letter
         {
-            // Set to load characters, and loads up the char queue.
-            loadingChars = true;
-            charQueue.Clear();
-            charQueue = new Queue<char>(pages[currPageIndex]);
+            StartCoroutine(LoadCharacterByCharacter());
         }
         
 
@@ -157,42 +148,50 @@ public class TextBox : MonoBehaviour
     }
 
     // Loads character by character.
-    private void LoadCharacterByCharacter()
+    private IEnumerator LoadCharacterByCharacter()
     {
-        // Checks if the timer has reached 0 for displaying the next character.
-        if(charQueue.Count != 0)
+        // Now loading characters.
+        loadingChars = true;
+        
+        // The countdown to displaying the next character.
+        float timer = 0.0F;
+
+        // The new text to be loaded.
+        Queue<char> newText = new Queue<char>(pages[currPageIndex]);
+
+        // While characters are being loaded.
+        while (loadingChars && newText.Count > 0)
         {
-            // If the timer has reached 0 or less.
-            if (charTimer <= 0.0F)
+            // Checks if the timer has reached 0 for displaying the next character.
+            if(timer <= 0.0F)
             {
-                // Adds to the string.
+                // Replaces the string.
                 string temp = boxText.text;
-                temp += charQueue.Dequeue();
+                temp += newText.Dequeue();
                 boxText.text = temp;
 
                 // If the text speed is set to 0 the new char will load on the next frame.
                 if (textSpeed > 0)
-                    charTimer = 1 / textSpeed;
+                    timer = 1 / textSpeed;
                 else
-                    charTimer = 0.0F;
+                    timer = 0.0F;
 
             }
             else // Reduce timer.
             {
-                charTimer -= Time.deltaTime;
+                timer -= Time.deltaTime;
             }
+
+            yield return null;
         }
-        else
-        {
-            // No characters to load.
-            loadingChars = false;
-        }
+
+        // No longer loading chars.
+        loadingChars = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (loadingChars)
-            LoadCharacterByCharacter();
+        
     }
 }
