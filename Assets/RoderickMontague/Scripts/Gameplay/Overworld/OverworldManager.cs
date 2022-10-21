@@ -12,8 +12,7 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        // The user interface.
-        public GameObject ui;
+        
 
         // The object that was selected in the overworld.
         // public GameObject selectedObject;
@@ -39,6 +38,11 @@ namespace RM_BBTS
         // 
         // // the position offset for placing doors.
         // public Vector3 doorPosOffset = new Vector3(2.0F, -2.0F, 0);
+
+        [Header("UI")]
+        
+        // The user interface.
+        public GameObject ui;
 
         // Start is called before the first frame update
         void Start()

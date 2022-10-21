@@ -2,9 +2,9 @@ using LoLSDK;
 using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // the manager for the title scene.
 namespace RM_BBTS

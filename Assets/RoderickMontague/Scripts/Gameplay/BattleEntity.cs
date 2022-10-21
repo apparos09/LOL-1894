@@ -21,6 +21,8 @@ namespace RM_BBTS
         public float attack;
         public float defense;
         public float speed;
+
+        public float maxEnergy;
         public float energy;
 
         // The moves
@@ -53,14 +55,20 @@ namespace RM_BBTS
         private float attack = 1;
         private float defense = 1;
         private float speed = 1;
+
+        private float maxEnergy = 1;
         private float energy = 1;
 
         // Moves
+        [Header("Moves")]
         // The moves that the battle entity has.
         public Move[] moves = new Move[4] {null, null, null, null};
 
         // The total amount of moves.
         public const int MOVE_COUNT = 4;
+
+        // The selected move to be used.
+        public Move selectedMove = null;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -109,6 +117,12 @@ namespace RM_BBTS
             set { energy = (value < 0) ? 1 : value; }
         }
 
+        // Returns 'true' if the entity has the maximum amount of energy.
+        public bool HasFullCharge()
+        {
+            return energy == maxEnergy;
+        }
+
         // MOVES //
         // Move 0
         public Move Move0
@@ -140,6 +154,45 @@ namespace RM_BBTS
             get { return moves[3]; }
 
             set { moves[3] = value; }
+        }
+
+        // Selects the move from the provided index.
+        public void SelectMove(int index)
+        {
+            if (index < 0 || index >= moves.Length)
+                selectedMove = moves[index];
+            else
+                selectedMove = null;
+        }
+
+        // Selects hte move at index 0.
+        public void SelectMove0()
+        {
+            SelectMove(0);
+        }
+
+        // Selects hte move at index 1.
+        public void SelectMove1()
+        {
+            SelectMove(1);
+        }
+
+        // Selects move at index 2.
+        public void SelectMove2()
+        {
+            SelectMove(2);
+        }
+
+        // Selects the move at index 3.
+        public void SelectMove3()
+        {
+            SelectMove(3);
+        }
+
+        // Selects the charge move.
+        public void SelectCharge()
+        {
+            // ...
         }
 
         // Update is called once per frame

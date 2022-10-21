@@ -9,17 +9,17 @@ public class Move
     private uint id;
 
     // The name of the move.
-    private string moveName;
+    protected string name;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // TODO: get move name from language file.    
-    }
+    // The power that a move has.
+    protected float power;
 
-    // Update is called once per frame
-    void Update()
+    // The accuracy of a move.
+    protected float accuracy;
+
+    // TODO: create variables for battle effects.
+    public string Name
     {
-        
+        get { return name; }
     }
 }

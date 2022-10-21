@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace RM_BBTS
 {
@@ -12,9 +14,6 @@ namespace RM_BBTS
 
         // the manager for the game.
         public GameplayManager gameManager;
-
-        // The user interface.
-        public GameObject ui;
 
         // The door
         public Door door;
@@ -29,7 +28,33 @@ namespace RM_BBTS
 
         // The sprite for the opponent.
         public SpriteRenderer opponentSprite;
-        
+
+        [Header("UI")]
+        // The user interface.
+        public GameObject ui;
+
+        // Move 0 (index 0) button.
+        [Tooltip("The button for using Player Move 0, which is at index [0].")]
+        public Button move0Button;
+        public TMP_Text move0Text;
+
+        // Move 1 (index 1) button.
+        [Tooltip("The button for using Player Move 1, which is at index [1].")]
+        public Button move1Button;
+        public TMP_Text move1Text;
+
+        // Move 2 (index 2) button.
+        [Tooltip("The button for using Player Move 2, which is at index [2].")]
+        public Button move2Button;
+        public TMP_Text move2Text;
+
+        // Move 3 (index 3) button.
+        [Tooltip("The button for using Player Move 3, which is at index [3].")]
+        public Button move3Button;
+        public TMP_Text move3Text;
+
+        // Charge Button
+        public Button chargeButton;
 
         // Start is called before the first frame update
         void Start()
@@ -61,6 +86,28 @@ namespace RM_BBTS
             
             if(opponent != null)
                 opponentSprite.sprite = opponent.sprite;
+
+            // Checks move activity to see if the player can use it or not.
+            // Also changes the move name on the display.
+
+            // Move 0
+            move0Button.interactable = player.Move0 != null;
+            move0Text.text = (player.Move0 != null) ? player.Move0.Name : "-";
+
+            // Move 1
+            move1Button.interactable = player.Move1 != null;
+            move1Text.text = (player.Move1 != null) ? player.Move1.Name : "-";
+
+            // Move 2
+            move2Button.interactable = player.Move2 != null;
+            move2Text.text = (player.Move2 != null) ? player.Move2.Name : "-";
+
+            // Move 3
+            move3Button.interactable = player.Move3 != null;
+            move3Text.text = (player.Move3 != null) ? player.Move3.Name : "-";
+
+            // Checks if the player has a full charge.
+            chargeButton.interactable = !player.HasFullCharge();
         }
 
         // Called when the mouse hovers over an object.
