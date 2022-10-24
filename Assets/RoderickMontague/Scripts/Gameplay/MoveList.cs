@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // The list of moves for the game.
-public class MoveList
+public class MoveList : MonoBehaviour
 {
     // The instance of the move list.
     private static MoveList instance;
+
+    // TODO: include list of move animations.
 
     // Constructor.
     private MoveList()

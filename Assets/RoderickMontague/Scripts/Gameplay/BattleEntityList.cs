@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // The list of entities for the game. There only needs to be one instance of this list.
-public class BattleEntityList
+public class BattleEntityList : MonoBehaviour
 {
     // The instance of the opponent list.
     private static BattleEntityList instance;
+
+    // TODO: include list of battle entity sprites
 
     // The amount of opponents in the list.
     public static int OPPONENT_COUNT = 1;
@@ -44,10 +46,12 @@ public class BattleEntityList
         return null;
     }
 
-    // Generates BE00 - Player
+    // Generates BE00 - Player/Copy
     public BattleEntity GenerateBE00()
     {
-        return null;
+        GameObject go = new GameObject("Battle Entity");
+        BattleEntity be = go.AddComponent<BattleEntity>();
+        return be;
     }
 
     // Generate BE00's move list.
