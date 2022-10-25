@@ -27,9 +27,13 @@ namespace RM_BBTS
         // TODO: should a new opponent be generated everytime? Should really just cycle through some pre-build objects.
         public BattleEntity opponent;
 
-
         // The sprite for the opponent.
         public SpriteRenderer opponentSprite;
+
+        // Base objects that are activated for battle.
+        public Enemy enemyBase;
+        public Treasure treasureBase;
+
 
         [Header("UI")]
         // The user interface.

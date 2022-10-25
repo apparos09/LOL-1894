@@ -4,19 +4,16 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    // The class for the player.
-    public class Player : BattleEntity
+    // A treasure entity.
+    public class Treasure : BattleEntity
     {
         // Start is called before the first frame update
         new void Start()
         {
             base.Start();
 
-            // The player is 'id' 0.
-            id = battleEntityId.unknown;
-
-            // Starter move.
-            Move0 = MoveList.Instance.GenerateMV00();
+            // The treasure is 'id' 0.
+            id = battleEntityId.treasure;
         }
 
         // Update is called once per frame

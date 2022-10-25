@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace RM_BBTS
+{
+public enum battleEntityId { unknown, treasure }
+
 // The list of entities for the game. There only needs to be one instance of this list.
 public class BattleEntityList : MonoBehaviour
 {
@@ -69,9 +73,10 @@ public class BattleEntityList : MonoBehaviour
         return null;
     }
 
-    // Generates BE00 - Debug
+    // Generates BE00 - Unknown
     public BattleEntity GenerateBE00()
     {
+        // TODO: change to generating an enemy.
         GameObject go = new GameObject("Battle Entity");
         BattleEntity be = go.AddComponent<BattleEntity>();
         return be;
@@ -95,4 +100,6 @@ public class BattleEntityList : MonoBehaviour
     {
         return null;
     }
+}
+
 }

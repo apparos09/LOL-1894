@@ -9,10 +9,10 @@ namespace RM_BBTS
     public struct BattleEntityData
     {
         // The battle entity id.
-        public uint id;
+        public battleEntityId id;
 
-        // The level
-        public uint level;
+        // The base level of the entity. This is increased by 5 for every (...) battles completed.
+        public uint baseLevel;
 
         // The stats
         public float maxHealth;
@@ -26,7 +26,7 @@ namespace RM_BBTS
         public float energy;
 
         // The moves
-        public Move move0, move1, move2, move3;
+        public moveId move0, move1, move2, move3;
 
         // The sprite image of the entity.
         public Sprite sprite;
@@ -40,7 +40,7 @@ namespace RM_BBTS
         public Sprite sprite;
 
         // the id number of the entity.
-        public uint id;
+        public battleEntityId id = 0;
 
         [Header("Stats")]
 
