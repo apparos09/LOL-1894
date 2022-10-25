@@ -3263,6 +3263,13 @@ MonoBehaviour:
   sprite: {fileID: 0}
   id: 0
   level: 1
+  maxHealth: 10
+  health: 1
+  attack: 1
+  defense: 1
+  speed: 1
+  maxEnergy: 10
+  energy: 1
 --- !u!4 &1467642234
 Transform:
   m_ObjectHideFlags: 0
