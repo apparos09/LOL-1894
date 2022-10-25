@@ -49,15 +49,15 @@ namespace RM_BBTS
 
         // Stats
         // The stats of the battle entity.
-        private float maxHealth = 1;
-        private float health = 1;
+        public float maxHealth = 1;
+        public float health = 1;
 
-        private float attack = 1;
-        private float defense = 1;
-        private float speed = 1;
+        public float attack = 1;
+        public float defense = 1;
+        public float speed = 1;
 
-        private float maxEnergy = 1;
-        private float energy = 1;
+        public float maxEnergy = 10;
+        public float energy = 10;
 
         // Moves
         [Header("Moves")]
@@ -73,7 +73,8 @@ namespace RM_BBTS
         // Start is called before the first frame update
         protected virtual void Start()
         {
-
+            health = maxHealth;
+            energy = maxEnergy;
         }
 
         // STATS //

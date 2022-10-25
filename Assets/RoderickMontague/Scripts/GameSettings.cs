@@ -46,10 +46,19 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
+            // Checks for the instance.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+                return;
+            }
+
             // This object should not be destroyed.
             DontDestroyOnLoad(this);
-
-
         }
 
         // Start is called before the first frame update
@@ -78,11 +87,18 @@ namespace RM_BBTS
                 // checks to see if the instance exists. If it doesn't, generate an object.
                 if (instance == null)
                 {
-                    // makes a new settings object.
-                    GameObject go = new GameObject("Settings");
+                    instance = FindObjectOfType<GameSettings>(true);
 
-                    // adds the instance component to the new object.
-                    instance = go.AddComponent<GameSettings>();
+                    // Generate new instance if an existing instance was not found.
+                    if(instance == null)
+                    {
+                        // makes a new settings object.
+                        GameObject go = new GameObject("Settings");
+
+                        // adds the instance component to the new object.
+                        instance = go.AddComponent<GameSettings>();
+                    }
+                    
                 }
 
                 // returns the instance.

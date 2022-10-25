@@ -13,6 +13,9 @@ namespace RM_BBTS
 
             // The player is 'id' 0.
             id = 0;
+
+            // Starter move.
+            Move0 = MoveList.Instance.GenerateMV00();
         }
 
         // Update is called once per frame

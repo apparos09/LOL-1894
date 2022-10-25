@@ -14,9 +14,20 @@ public class BattleEntityList : MonoBehaviour
     // The amount of opponents in the list.
     public static int OPPONENT_COUNT = 1;
 
+    public List<Sprite> entitySprites;
+
     // Constructor.
     private BattleEntityList()
     {
+    }
+
+    // Awake is called when the script is loaded.
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
     }
 
     // Gets the instance.
@@ -24,8 +35,20 @@ public class BattleEntityList : MonoBehaviour
     {
         get
         {
+            // Generates the instance if it isn't set.
             if (instance == null)
-                instance = new BattleEntityList();
+            {
+                // Searches for the instance if it is not set.
+                instance = FindObjectOfType<BattleEntityList>(true);
+
+                // No instance found, so make a new object.
+                if(instance == null)
+                {
+                    GameObject go = new GameObject("Battle Entity List");
+                    instance = go.AddComponent<BattleEntityList>();
+                }    
+                
+            }
 
             return instance;
         }
@@ -46,7 +69,7 @@ public class BattleEntityList : MonoBehaviour
         return null;
     }
 
-    // Generates BE00 - Player/Copy
+    // Generates BE00 - Debug
     public BattleEntity GenerateBE00()
     {
         GameObject go = new GameObject("Battle Entity");
