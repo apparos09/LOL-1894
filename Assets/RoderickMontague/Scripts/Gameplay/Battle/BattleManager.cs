@@ -33,7 +33,7 @@ namespace RM_BBTS
         // Base objects that are activated for battle.
         public Enemy enemyBase;
         public Treasure treasureBase;
-
+        public Boss bossBase;
 
         [Header("UI")]
         // The user interface.
@@ -65,7 +65,31 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            // ...
+            // enemy base not set, so make a base.
+            if(enemyBase == null)
+            {
+                GameObject go = new GameObject("Enemy Base");
+                enemyBase = go.AddComponent<Enemy>(); 
+            }
+
+            // treasure base not set, so make a base.
+            if (treasureBase == null)
+            {
+                GameObject go = new GameObject("Treasure Base");
+                treasureBase = go.AddComponent<Treasure>();
+            }
+
+            // enemy base not set, so make a base.
+            if (bossBase == null)
+            {
+                GameObject go = new GameObject("Boss Base");
+                bossBase = go.AddComponent<Boss>();
+            }
+
+            // Turns off the bases.
+            enemyBase.gameObject.SetActive(false);
+            treasureBase.gameObject.SetActive(false);
+            bossBase.gameObject.SetActive(false);
         }
 
         // This function is called when the object becomes enabled and active
