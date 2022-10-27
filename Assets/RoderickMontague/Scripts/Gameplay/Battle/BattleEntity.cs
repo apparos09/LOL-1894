@@ -11,8 +11,8 @@ namespace RM_BBTS
         // The battle entity id.
         public battleEntityId id;
 
-        // The base level of the entity. This is increased by 5 for every (...) battles completed.
-        public uint baseLevel;
+        // The level of the entity.
+        public uint level;
 
         // The stats
         public float maxHealth;
@@ -75,6 +75,31 @@ namespace RM_BBTS
         {
             health = maxHealth;
             energy = maxEnergy;
+        }
+
+        // Loads the battle data into this object.
+        public void LoadBattleData(BattleEntityData data)
+        {
+            id = data.id;
+            level = data.level;
+
+            maxHealth = data.maxHealth;
+            health = data.health;
+
+            attack = data.attack;
+            defense = data.defense;
+            speed = data.speed;
+
+            maxEnergy = data.maxEnergy;
+            energy = data.energy;
+
+            // Generates the four moves and adds them in as objects.
+            Move0 = MoveList.Instance.GenerateMove(data.move0);
+            Move1 = MoveList.Instance.GenerateMove(data.move1);
+            Move2 = MoveList.Instance.GenerateMove(data.move2);
+            Move3 = MoveList.Instance.GenerateMove(data.move3);
+
+            sprite = data.sprite;
         }
 
         // STATS //

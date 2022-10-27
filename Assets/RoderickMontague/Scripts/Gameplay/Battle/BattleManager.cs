@@ -69,7 +69,8 @@ namespace RM_BBTS
             if(enemyBase == null)
             {
                 GameObject go = new GameObject("Enemy Base");
-                enemyBase = go.AddComponent<Enemy>(); 
+                enemyBase = go.AddComponent<Enemy>();
+                go.transform.parent = gameObject.transform;
             }
 
             // treasure base not set, so make a base.
@@ -77,6 +78,7 @@ namespace RM_BBTS
             {
                 GameObject go = new GameObject("Treasure Base");
                 treasureBase = go.AddComponent<Treasure>();
+                go.transform.parent = gameObject.transform;
             }
 
             // enemy base not set, so make a base.
@@ -84,6 +86,7 @@ namespace RM_BBTS
             {
                 GameObject go = new GameObject("Boss Base");
                 bossBase = go.AddComponent<Boss>();
+                go.transform.parent = gameObject.transform;
             }
 
             // Turns off the bases.

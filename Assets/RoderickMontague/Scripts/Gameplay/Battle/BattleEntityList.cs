@@ -5,101 +5,124 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-public enum battleEntityId { unknown, treasure }
+    public enum battleEntityId { unknown, treasure }
 
-// The list of entities for the game. There only needs to be one instance of this list.
-public class BattleEntityList : MonoBehaviour
-{
-    // The instance of the opponent list.
-    private static BattleEntityList instance;
-
-    // TODO: include list of battle entity sprites
-
-    // The amount of opponents in the list.
-    public static int OPPONENT_COUNT = 1;
-
-    public List<Sprite> entitySprites;
-
-    // Constructor.
-    private BattleEntityList()
+    // The list of entities for the game. There only needs to be one instance of this list.
+    public class BattleEntityList : MonoBehaviour
     {
-    }
+        // The instance of the opponent list.
+        private static BattleEntityList instance;
 
-    // Awake is called when the script is loaded.
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-    }
+        // TODO: include list of battle entity sprites
 
-    // Gets the instance.
-    public static BattleEntityList Instance
-    {
-        get
+        // The amount of opponents in the list.
+        public static int OPPONENT_COUNT = 1;
+
+        public List<Sprite> entitySprites;
+
+        // Constructor.
+        private BattleEntityList()
         {
-            // Generates the instance if it isn't set.
-            if (instance == null)
-            {
-                // Searches for the instance if it is not set.
-                instance = FindObjectOfType<BattleEntityList>(true);
+        }
 
-                // No instance found, so make a new object.
-                if(instance == null)
+        // Awake is called when the script is loaded.
+        private void Awake()
+        {
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(this);
+        }
+
+        // Gets the instance.
+        public static BattleEntityList Instance
+        {
+            get
+            {
+                // Generates the instance if it isn't set.
+                if (instance == null)
                 {
-                    GameObject go = new GameObject("Battle Entity List");
-                    instance = go.AddComponent<BattleEntityList>();
-                }    
-                
+                    // Searches for the instance if it is not set.
+                    instance = FindObjectOfType<BattleEntityList>(true);
+
+                    // No instance found, so make a new object.
+                    if (instance == null)
+                    {
+                        GameObject go = new GameObject("Battle Entity List");
+                        instance = go.AddComponent<BattleEntityList>();
+                    }
+
+                }
+
+                return instance;
             }
 
-            return instance;
         }
-        
-    }
 
-    // Generates and returns a battle entity.
-    public BattleEntity GenerateBattleEntity(int id)
-    {
-        switch(id)
+        // Generates and returns a battle entity.
+        public BattleEntityData GenerateBattleEntityData(battleEntityId id)
         {
-            case 0:
-                return null;
-            case 1: // treasure chest
-                return null;
+            BattleEntityData data = new BattleEntityData();
+            switch (id)
+            {
+                // An unknown battle entity.
+                case battleEntityId.unknown:
+                    data.id = battleEntityId.unknown;
+
+                    data.maxHealth = 1;
+                    data.health = 1;
+
+                    data.attack = 1;
+                    data.defense = 1;
+                    data.speed = 1;
+
+                    data.maxEnergy = 1;
+                    data.energy = 1;
+
+                    break;
+
+                case battleEntityId.treasure: // treasure chest
+                    data.id = battleEntityId.treasure;
+
+                    data.maxHealth = 1;
+                    data.health = 1;
+
+                    data.attack = 1;
+                    data.defense = 1;
+                    data.speed = 1;
+
+                    data.maxEnergy = 1;
+                    data.energy = 1;
+                    break;
+            }
+
+            return data;
         }
 
-        return null;
-    }
+        // Generates a battle entity move list.
+        public List<moveId> GenerateBattleEntityMoveList(battleEntityId id)
+        {
+            // The move list.
+            List<moveId> moveList = new List<moveId>();
 
-    // Generates BE00 - Unknown
-    public BattleEntity GenerateBE00()
-    {
-        // TODO: change to generating an enemy.
-        GameObject go = new GameObject("Battle Entity");
-        BattleEntity be = go.AddComponent<BattleEntity>();
-        return be;
-    }
+            // Checks the ID of the battleEntity to get its move list.
+            switch(id)
+            {
+                case battleEntityId.unknown:
+                    moveList = new List<moveId>() { moveId.hit };
+                    break;
 
-    // Generate BE00's move list.
-    public List<int> GetBE00MoveList()
-    {
-        return null;
-    }
+                case battleEntityId.treasure:
+                    moveList = new List<moveId>() { moveId.hit };
+                    break;
 
-    // BE01 - Treasure Chest
-    public BattleEntity GenerateBE01()
-    {
-        return null;
-    }
+                default:
+                    moveList = new List<moveId>();
+                    break;
+            }
 
-
-    // Generate BE01's move list.
-    public List<int> GetBE01MoveList()
-    {
-        return null;
+            return moveList;
+        }
     }
-}
 
 }
