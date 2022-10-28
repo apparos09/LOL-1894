@@ -11,6 +11,12 @@ namespace RM_BBTS
         // The battle entity id.
         public battleEntityId id;
 
+        // The pre-evolution id.
+        public battleEntityId preEvoId;
+
+        // The evolution id.
+        public battleEntityId evoId;
+
         // The level of the entity.
         public uint level;
 
@@ -42,6 +48,12 @@ namespace RM_BBTS
         // the id number of the entity.
         public battleEntityId id = 0;
 
+        // the id number of the pre-evolution. If this is 0, or if it is set to the same as 'id', then the entity has no pre-evolution.
+        public battleEntityId preEvoId = 0;
+
+        // the id number of the evolution. If this is 0, or if it is set to the same as 'id', then the entity has no evolution.
+        public battleEntityId evoId = 0;
+
         [Header("Stats")]
 
         // Level
@@ -58,6 +70,7 @@ namespace RM_BBTS
 
         public float maxEnergy = 10;
         public float energy = 10;
+
 
         // Moves
         [Header("Moves")]
@@ -147,6 +160,12 @@ namespace RM_BBTS
         public bool HasFullCharge()
         {
             return energy == maxEnergy;
+        }
+
+        // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
+        public void LevelUp()
+        {
+
         }
 
         // MOVES //

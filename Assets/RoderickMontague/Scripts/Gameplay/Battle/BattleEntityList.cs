@@ -59,7 +59,7 @@ namespace RM_BBTS
 
         }
 
-        // Generates and returns a battle entity.
+        // Generates and returns a battle entity with its base stats (stats it has at level 1).
         public BattleEntityData GenerateBattleEntityData(battleEntityId id)
         {
             BattleEntityData data = new BattleEntityData();
@@ -68,6 +68,7 @@ namespace RM_BBTS
                 // An unknown battle entity.
                 case battleEntityId.unknown:
                     data.id = battleEntityId.unknown;
+                    data.level = 1;
 
                     data.maxHealth = 1;
                     data.health = 1;
@@ -83,6 +84,7 @@ namespace RM_BBTS
 
                 case battleEntityId.treasure: // treasure chest
                     data.id = battleEntityId.treasure;
+                    data.level = 1;
 
                     data.maxHealth = 1;
                     data.health = 1;
