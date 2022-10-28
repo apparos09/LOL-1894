@@ -70,15 +70,15 @@ namespace RM_BBTS
                     data.id = battleEntityId.unknown;
                     data.level = 1;
 
-                    data.maxHealth = 1;
-                    data.health = 1;
+                    data.maxHealth = 10;
+                    data.health = 10;
 
-                    data.attack = 1;
-                    data.defense = 1;
+                    data.attack = 3;
+                    data.defense = 2;
                     data.speed = 1;
 
-                    data.maxEnergy = 1;
-                    data.energy = 1;
+                    data.maxEnergy = 10;
+                    data.energy = 10;
 
                     break;
 
