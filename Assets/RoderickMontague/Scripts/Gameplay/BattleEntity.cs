@@ -253,7 +253,7 @@ namespace RM_BBTS
         // Selects the charge move.
         public void SelectCharge()
         {
-            // ...
+            selectedMove = MoveList.Instance.ChargeMove;
         }
 
         // Update is called once per frame

@@ -35,6 +35,13 @@ namespace RM_BBTS
         public Treasure treasureBase;
         public Boss bossBase;
 
+        [Header("Battle/Mechanics")]
+        // The move the player has selected.
+        public Move playerMove;
+
+        // The move the opponent has selected.
+        public Move opponentMove;
+
         [Header("UI")]
         // The user interface.
         public GameObject ui;
@@ -193,6 +200,49 @@ namespace RM_BBTS
             throw new System.NotImplementedException();
         }
 
+        // Performs the two moves.
+        public void PerformMoves()
+        {
+            // Both sides have selected a move.
+            if (playerMove != null && opponentMove != null)
+            {
+                // Checks who goes first.
+                bool playerFirst = false;
+
+                // TODO: account for status effects.
+
+                // Determines who goes first.
+                if (player.Speed > opponent.Speed) // player first
+                    playerFirst = true;
+                else if (player.Speed < opponent.Speed) // opponent first
+                    playerFirst = false;
+                else // random
+                    playerFirst = (Random.Range(0, 2) == 1);
+
+                // Performs the moves.
+                if(playerFirst) // player first
+                {
+                    player.selectedMove.Perform(player, opponent);
+                    opponent.selectedMove.Perform(opponent, player);
+                }
+                else // enemy first
+                {
+                    opponent.selectedMove.Perform(opponent, player);
+                    player.selectedMove.Perform(player, opponent);
+                }
+
+                player.selectedMove = null;
+                opponent.selectedMove = null;
+            }
+            else
+            {
+                // Gets the moves from the player and the opponent.
+                playerMove = player.selectedMove;
+                opponentMove = opponent.selectedMove;
+
+            }
+        }
+
         // Called when the player attempts to run away.
         public void RunAway()
         {
@@ -218,11 +268,24 @@ namespace RM_BBTS
                 Debug.Log("Run failed.");
         }
 
+        // Updates the user interface.
+        public void UpdateUI()
+        {
+            // TODO: remove the safety checK??
+            if (opponent != null)
+                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+        }
+
         // Update is called once per frame
         void Update()
         {
-            if (opponent != null)
-                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+            UpdateUI();
+
+            // If both entities are alive do battle calculations.
+            if(player.Health > 0 && opponent.Health > 0)
+            {
+                PerformMoves();
+            }
         }
 
         

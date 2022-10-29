@@ -82,6 +82,8 @@ namespace RM_BBTS
                     data.maxEnergy = 10;
                     data.energy = 10;
 
+                    data.move0 = moveId.hit;
+
                     break;
 
                 case battleEntityId.treasure: // treasure chest
@@ -112,6 +114,8 @@ namespace RM_BBTS
 
                     data.maxEnergy = 1;
                     data.energy = 1;
+
+                    data.move0 = moveId.hit;
                     break;
 
             }

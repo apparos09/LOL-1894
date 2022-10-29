@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace RM_BBTS
 {
@@ -34,7 +35,7 @@ namespace RM_BBTS
             energy = baseData.energy;
 
             // Starter move.
-            Move0 = MoveList.Instance.GenerateMV00();
+            Move0 = MoveList.Instance.GenerateMove(moveId.hit);
             Move1 = null;
             Move2 = null;
             Move3 = null;

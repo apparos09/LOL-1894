@@ -70,5 +70,11 @@ namespace RM_BBTS
         {
             get { return energy; }
         }
+
+        // Called when the move is being performed.
+        public void Perform(BattleEntity user, BattleEntity target)
+        {
+            target.Health -= 1.0F;
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    public enum moveId { hit, bam, wham, kablam }
+    public enum moveId { charge, hit, bam, wham, kablam }
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -13,11 +13,19 @@ namespace RM_BBTS
         // The instance of the move list.
         private static MoveList instance;
 
+        // The charge move that entities use.
+        // This is copied whenever someone performs a charge, and is never put into the 1-4 move slots.
+        private static Move chargeMove;
+
         // TODO: include list of move animations.
 
         // Constructor.
         private MoveList()
         {
+            // Saves the charge move to the list.
+            if(chargeMove == null)
+                chargeMove = GenerateMove(moveId.charge);
+
             if (instance == null)
                 instance = this;
             else
@@ -49,48 +57,41 @@ namespace RM_BBTS
 
         }
 
+        // Gets the charge move.
+        public Move ChargeMove
+        {
+            get { return chargeMove; }
+        }
+
         // Generates the move.
         public Move GenerateMove(moveId id)
         {
-            return GenerateMove((int)id);
-        }
+            Move move = null;
 
-        // Generates and returns a battle entity.
-        public Move GenerateMove(int id)
-        {
             switch (id)
             {
-                case 0:
-                    return null;
-                case 1: // ...
-                    return null;
+                case moveId.charge: // 0. Charge
+                    move = new Move(moveId.charge, "Charge", 1, 0.0F, -1.0F, 0.0F);
+                    break;
+
+                case moveId.hit: // 1. Hit
+                    move = new Move(moveId.hit, "Hit", 1, 1.0F, 1.0F, 1.0F);
+                    break;
+
+                case moveId.bam: // 2. Bam
+                    move = new Move(moveId.hit, "Bam", 1, 1.0F, 1.0F, 1.0F);
+                    break;
+
+                case moveId.wham: // 3. Wham
+                    move = new Move(moveId.hit, "Wham", 2, 1.0F, 1.0F, 1.0F);
+                    break;
+
+                case moveId.kablam: // 4. Kablam
+                    move = new Move(moveId.hit, "Kablam", 3, 1.0F, 1.0F, 1.0F);
+                    break;
             }
 
-            return null;
-        }
-
-        // MV00 - Hit (Debug Move)
-        public Move GenerateMV00()
-        {
-            return new Move(moveId.hit, "Hit", 1, 1.0F, 1.0F, 1.0F);
-        }
-
-        // MV01 - Bam
-        public Move GenerateMV01()
-        {
-            return new Move(moveId.bam, "Bam", 1, 1.0F, 1.0F, 1.0F);
-        }
-
-        // MV02 - Wham
-        public Move GenerateMV02()
-        {
-            return new Move(moveId.wham, "Wham", 2, 1.0F, 1.0F, 1.0F);
-        }
-
-        // MV03 - Kablam
-        public Move GenerateMV03()
-        {
-            return new Move(moveId.kablam, "Kablam", 3, 1.0F, 1.0F, 1.0F);
+            return move;
         }
     }
 }
