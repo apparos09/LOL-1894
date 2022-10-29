@@ -71,6 +71,7 @@ namespace RM_BBTS
         protected float maxEnergy = 10;
         protected float energy = 10;
 
+        // float chargeRate = 1.0F; // the rate for charging - may not be used.
 
         // Moves
         [Header("Moves")]
@@ -220,7 +221,7 @@ namespace RM_BBTS
         // Selects the move from the provided index.
         public void SelectMove(int index)
         {
-            if (index < 0 || index >= moves.Length)
+            if (index >= 0 && index < moves.Length)
                 selectedMove = moves[index];
             else
                 selectedMove = null;
@@ -254,6 +255,12 @@ namespace RM_BBTS
         public void SelectCharge()
         {
             selectedMove = MoveList.Instance.ChargeMove;
+        }
+
+        // Called when a turn happens during a battle.
+        public virtual void OnBattleTurn()
+        {
+            // ...
         }
 
         // Update is called once per frame

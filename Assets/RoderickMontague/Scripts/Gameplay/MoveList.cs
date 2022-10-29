@@ -15,7 +15,7 @@ namespace RM_BBTS
 
         // The charge move that entities use.
         // This is copied whenever someone performs a charge, and is never put into the 1-4 move slots.
-        private static Move chargeMove;
+        private static ChargeMove chargeMove;
 
         // TODO: include list of move animations.
 
@@ -24,8 +24,9 @@ namespace RM_BBTS
         {
             // Saves the charge move to the list.
             if(chargeMove == null)
-                chargeMove = GenerateMove(moveId.charge);
+                chargeMove = (ChargeMove)GenerateMove(moveId.charge);
 
+            // Instance not set.
             if (instance == null)
                 instance = this;
             else
@@ -71,7 +72,7 @@ namespace RM_BBTS
             switch (id)
             {
                 case moveId.charge: // 0. Charge
-                    move = new Move(moveId.charge, "Charge", 1, 0.0F, -1.0F, 0.0F);
+                    move = new ChargeMove();
                     break;
 
                 case moveId.hit: // 1. Hit

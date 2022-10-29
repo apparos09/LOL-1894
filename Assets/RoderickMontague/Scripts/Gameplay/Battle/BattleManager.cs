@@ -35,12 +35,12 @@ namespace RM_BBTS
         public Treasure treasureBase;
         public Boss bossBase;
 
-        [Header("Battle/Mechanics")]
-        // The move the player has selected.
-        public Move playerMove;
-
-        // The move the opponent has selected.
-        public Move opponentMove;
+        // [Header("Battle/Mechanics")]
+        // // The move the player has selected.
+        // public Move playerMove;
+        // 
+        // // The move the opponent has selected.
+        // public Move opponentMove;
 
         [Header("UI")]
         // The user interface.
@@ -157,23 +157,26 @@ namespace RM_BBTS
             // Also changes the move name on the display.
 
             // Move 0
-            move0Button.interactable = player.Move0 != null;
+            // move0Button.interactable = player.Move0 != null;
             move0Text.text = (player.Move0 != null) ? player.Move0.Name : "-";
 
             // Move 1
-            move1Button.interactable = player.Move1 != null;
+            // move1Button.interactable = player.Move1 != null;
             move1Text.text = (player.Move1 != null) ? player.Move1.Name : "-";
 
             // Move 2
-            move2Button.interactable = player.Move2 != null;
+            // move2Button.interactable = player.Move2 != null;
             move2Text.text = (player.Move2 != null) ? player.Move2.Name : "-";
 
             // Move 3
-            move3Button.interactable = player.Move3 != null;
+            // move3Button.interactable = player.Move3 != null;
             move3Text.text = (player.Move3 != null) ? player.Move3.Name : "-";
 
             // Checks if the player has a full charge.
-            chargeButton.interactable = !player.HasFullCharge();
+            // chargeButton.interactable = !player.HasFullCharge();
+
+            // Changes the 'interactable' toggle for the buttons.
+            RefreshPlayerOptions();
         }
 
         // Called when the mouse hovers over an object.
@@ -200,11 +203,46 @@ namespace RM_BBTS
             throw new System.NotImplementedException();
         }
 
+        public void RefreshPlayerOptions()
+        {
+            // Checks move activity to see if the player can use it or not.
+            // Also changes the move name on the display.
+
+            // Enables/disables various buttons.
+
+            // Move 0 
+            if(player.Move0 != null)
+                move0Button.interactable = player.Move0.Energy <= player.Energy;
+            else
+                move0Button.interactable = false;
+
+            // Move 1
+            if (player.Move1 != null)
+                move1Button.interactable = player.Move1.Energy <= player.Energy;
+            else
+                move1Button.interactable = false;
+
+            // Move 2 
+            if (player.Move2 != null)
+                move2Button.interactable = player.Move2.Energy <= player.Energy;
+            else
+                move2Button.interactable = false;
+
+            // Move 3
+            if (player.Move3 != null)
+                move3Button.interactable = player.Move3.Energy <= player.Energy;
+            else
+                move3Button.interactable = false;
+
+            // Checks if the player has a full charge.
+            chargeButton.interactable = !player.HasFullCharge();
+        }
+
         // Performs the two moves.
         public void PerformMoves()
         {
             // Both sides have selected a move.
-            if (playerMove != null && opponentMove != null)
+            if (player.selectedMove != null && opponent.selectedMove != null)
             {
                 // Checks who goes first.
                 bool playerFirst = false;
@@ -217,7 +255,7 @@ namespace RM_BBTS
                 else if (player.Speed < opponent.Speed) // opponent first
                     playerFirst = false;
                 else // random
-                    playerFirst = (Random.Range(0, 2) == 1);
+                    playerFirst = Random.Range(0, 2) == 1;
 
                 // Performs the moves.
                 if(playerFirst) // player first
@@ -233,17 +271,20 @@ namespace RM_BBTS
 
                 player.selectedMove = null;
                 opponent.selectedMove = null;
+
+                RefreshPlayerOptions();
             }
             else
             {
                 // Gets the moves from the player and the opponent.
-                playerMove = player.selectedMove;
-                opponentMove = opponent.selectedMove;
+                player.OnBattleTurn(); // does nothing right now.
 
+                // opponent.
+                opponent.OnBattleTurn(); // calculates next move (evenutally)
             }
         }
 
-        // Called when the player attempts to run away.
+        // Called when the player attempts to run away. TODO: have the enemy's move still go off if the run fails.
         public void RunAway()
         {
             // Becomes 'true' if the run attempt was successful.

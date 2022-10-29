@@ -16,7 +16,13 @@ namespace RM_BBTS
             base.Start();
         }
 
-        // Called to have the enemy select a move.
+        // Called when a battle turn is happening.
+        public override void OnBattleTurn()
+        {
+            SelectMove();
+        }
+
+        // Called to have the enemy select a move. This has the enemy choose the move for themself.
         public void SelectMove()
         {
             selectedMove = Move0;
