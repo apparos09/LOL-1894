@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
+    // The list of IDs.
     public enum battleEntityId { unknown, treasure, boss, ufo }
 
     // The list of entities for the game. There only needs to be one instance of this list.
@@ -16,8 +17,9 @@ namespace RM_BBTS
         // TODO: include list of battle entity sprites
 
         // The amount of opponents in the list.
-        public static int OPPONENT_COUNT = 1;
+        public const int BATTLE_ENTITY_ID_COUNT = 4;
 
+        // The list of entities
         public List<Sprite> entitySprites;
 
         // Constructor.

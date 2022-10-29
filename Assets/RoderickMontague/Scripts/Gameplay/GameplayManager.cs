@@ -20,14 +20,19 @@ namespace RM_BBTS
         // the input from the mouse and touch screen.
         public MouseTouchInput mouseTouchInput;
 
+        // The player for the game.
+        public Player player;
+
         [Header("UI")]
 
         // The text box used for the game.
         public TextBox textBox;
 
-        // public TMPro.TMP_Text playerHpText;
-        // 
-        // public TMPro.TMP_Text playerEngText;
+        // The text for the player's health (TODO: include a progress bar).
+        public TMPro.TMP_Text playerHealthText;
+        
+        // The text for the player's enegy (TODO: include a progress bar).
+        public TMPro.TMP_Text playerEnergyText;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -195,6 +200,12 @@ namespace RM_BBTS
 
         }
 
+        // Updates the UI
+        public void UpdateUI()
+        {
+            playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+            playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+        }
         
 
         // Update is called once per frame
@@ -220,6 +231,8 @@ namespace RM_BBTS
             // Checks for some mouse input.
             MouseTouchCheck();
 
+            // Updates the player's UI.
+            UpdateUI();
 
             // Checks the state variable to see what kind of scene the game is in.
             switch (state)

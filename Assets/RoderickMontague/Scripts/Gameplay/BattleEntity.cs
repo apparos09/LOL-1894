@@ -57,19 +57,19 @@ namespace RM_BBTS
         [Header("Stats")]
 
         // Level
-        public uint level = 1;
+        protected uint level = 1;
 
         // Stats
         // The stats of the battle entity.
-        public float maxHealth = 1;
-        public float health = 1;
+        protected float maxHealth = 1;
+        protected float health = 1;
 
-        public float attack = 1;
-        public float defense = 1;
-        public float speed = 1;
+        protected float attack = 1;
+        protected float defense = 1;
+        protected float speed = 1;
 
-        public float maxEnergy = 10;
-        public float energy = 10;
+        protected float maxEnergy = 10;
+        protected float energy = 10;
 
 
         // Moves
@@ -116,12 +116,20 @@ namespace RM_BBTS
         }
 
         // STATS //
+        // The max health getter/setter.
+        public float MaxHealth
+        {
+            get { return maxHealth; }
+
+            // set { maxHealth = (value < 0) ? 1 : value; }
+        }
+
         // The health getter/setter.
         public float Health
         {
             get { return health; }
 
-            set { health = (value < 0) ? 1 : value; }
+            set { health = (value < 0) ? 0 : (value > maxHealth) ? maxHealth : value; }
         }
 
         // The attack getter/setter.
@@ -148,12 +156,20 @@ namespace RM_BBTS
             set { speed = (value < 0) ? 1 : value; }
         }
 
+        // The max energy getter/setter.
+        public float MaxEnergy
+        {
+            get { return maxEnergy; }
+
+            // set { maxEnergy = (value < 0) ? 1 : value; }
+        }
+
         // The energy getter/setter.
         public float Energy
         {
             get { return energy; }
 
-            set { energy = (value < 0) ? 1 : value; }
+            set { energy = (value < 0) ? 0 : (value > maxEnergy) ? maxEnergy : value; }
         }
 
         // Returns 'true' if the entity has the maximum amount of energy.

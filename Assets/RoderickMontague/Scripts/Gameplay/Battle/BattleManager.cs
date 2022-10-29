@@ -39,6 +39,8 @@ namespace RM_BBTS
         // The user interface.
         public GameObject ui;
 
+        [Header("UI/Player")]
+
         // Move 0 (index 0) button.
         [Tooltip("The button for using Player Move 0, which is at index [0].")]
         public Button move0Button;
@@ -62,32 +64,36 @@ namespace RM_BBTS
         // Charge Button
         public Button chargeButton;
 
+        [Header("UI/Other")]
+        // TODO: this will not be shown n the final game.
+        public TMP_Text opponentHealthText;
+
         // Start is called before the first frame update
         void Start()
         {
-            // enemy base not set, so make a base.
-            if(enemyBase == null)
-            {
-                GameObject go = new GameObject("Enemy Base");
-                enemyBase = go.AddComponent<Enemy>();
-                go.transform.parent = gameObject.transform;
-            }
-
-            // treasure base not set, so make a base.
-            if (treasureBase == null)
-            {
-                GameObject go = new GameObject("Treasure Base");
-                treasureBase = go.AddComponent<Treasure>();
-                go.transform.parent = gameObject.transform;
-            }
-
-            // enemy base not set, so make a base.
-            if (bossBase == null)
-            {
-                GameObject go = new GameObject("Boss Base");
-                bossBase = go.AddComponent<Boss>();
-                go.transform.parent = gameObject.transform;
-            }
+            // // enemy base not set, so make a base.
+            // if(enemyBase == null)
+            // {
+            //     GameObject go = new GameObject("Enemy Base");
+            //     enemyBase = go.AddComponent<Enemy>();
+            //     go.transform.parent = gameObject.transform;
+            // }
+            // 
+            // // treasure base not set, so make a base.
+            // if (treasureBase == null)
+            // {
+            //     GameObject go = new GameObject("Treasure Base");
+            //     treasureBase = go.AddComponent<Treasure>();
+            //     go.transform.parent = gameObject.transform;
+            // }
+            // 
+            // // enemy base not set, so make a base.
+            // if (bossBase == null)
+            // {
+            //     GameObject go = new GameObject("Boss Base");
+            //     bossBase = go.AddComponent<Boss>();
+            //     go.transform.parent = gameObject.transform;
+            // }
 
             // Turns off the bases.
             enemyBase.gameObject.SetActive(false);
@@ -115,21 +121,30 @@ namespace RM_BBTS
             initialized = true;
 
             // Sets the battle entity from the door.
-            opponent = null; // TODO: comment out.
+            // opponent = null; // TODO: comment out.
             
+            // Checks the type of entity.
             switch(door.battleEntity.id)
             {
                 case battleEntityId.treasure: // treasure
                     opponent = treasureBase;
                     break;
-                    // TODO: add boss number
+                case battleEntityId.boss: // boss
+                    opponent = bossBase;
+                    break;
+                default: // enemy
+                    opponent = enemyBase;
+                    break;
                     
             }
 
-            // opponent = battleEntity door.battleEntity;
-            
+            // Opponent has been set.
             if(opponent != null)
+            {
+                opponent.LoadBattleData(door.battleEntity);
                 opponentSprite.sprite = opponent.sprite;
+            }    
+                
 
             // Checks move activity to see if the player can use it or not.
             // Also changes the move name on the display.
@@ -206,7 +221,8 @@ namespace RM_BBTS
         // Update is called once per frame
         void Update()
         {
-
+            if (opponent != null)
+                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
         }
 
         
