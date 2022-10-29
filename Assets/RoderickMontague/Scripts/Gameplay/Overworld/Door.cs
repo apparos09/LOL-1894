@@ -13,7 +13,7 @@ namespace RM_BBTS
         public bool isBossDoor = false;
 
         // The battle entity behind the door.
-        public BattleEntity battleEntity;
+        public BattleEntityData battleEntity;
 
         // Says whether the door is locked or not.
         public bool locked = true;

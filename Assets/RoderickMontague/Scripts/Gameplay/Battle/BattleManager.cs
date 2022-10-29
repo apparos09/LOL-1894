@@ -115,7 +115,18 @@ namespace RM_BBTS
             initialized = true;
 
             // Sets the battle entity from the door.
-            opponent = door.battleEntity;
+            opponent = null; // TODO: comment out.
+            
+            switch(door.battleEntity.id)
+            {
+                case battleEntityId.treasure: // treasure
+                    opponent = treasureBase;
+                    break;
+                    // TODO: add boss number
+                    
+            }
+
+            // opponent = battleEntity door.battleEntity;
             
             if(opponent != null)
                 opponentSprite.sprite = opponent.sprite;

@@ -20,8 +20,14 @@ namespace RM_BBTS
         // the input from the mouse and touch screen.
         public MouseTouchInput mouseTouchInput;
 
+        [Header("UI")]
+
         // The text box used for the game.
         public TextBox textBox;
+
+        // public TMPro.TMP_Text playerHpText;
+        // 
+        // public TMPro.TMP_Text playerEngText;
 
         // Awake is called when the script instance is being loaded
         private void Awake()

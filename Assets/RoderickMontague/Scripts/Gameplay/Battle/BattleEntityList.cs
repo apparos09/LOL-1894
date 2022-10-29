@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    public enum battleEntityId { unknown, treasure }
+    public enum battleEntityId { unknown, treasure, boss, ufo }
 
     // The list of entities for the game. There only needs to be one instance of this list.
     public class BattleEntityList : MonoBehaviour
@@ -96,6 +96,22 @@ namespace RM_BBTS
                     data.maxEnergy = 1;
                     data.energy = 1;
                     break;
+
+                default:
+                    data.id = battleEntityId.unknown;
+                    data.level = 1;
+
+                    data.maxHealth = 1;
+                    data.health = 1;
+
+                    data.attack = 1;
+                    data.defense = 1;
+                    data.speed = 1;
+
+                    data.maxEnergy = 1;
+                    data.energy = 1;
+                    break;
+
             }
 
             return data;
@@ -119,7 +135,7 @@ namespace RM_BBTS
                     break;
 
                 default:
-                    moveList = new List<moveId>();
+                    moveList = new List<moveId>() { moveId.hit };
                     break;
             }
 
