@@ -6,6 +6,9 @@ using UnityEngine.UI;
 // The clas sfor the text box for the game.
 public class TextBox : MonoBehaviour
 {
+    // the text box object to be opened/closed.
+    public GameObject boxObject;
+
     // The current page.
     private int currPageIndex = 0;
 
@@ -15,7 +18,20 @@ public class TextBox : MonoBehaviour
     // The text in the text box.
     public TMPro.TMP_Text boxText;
 
+    // Closes the text box when all the end has been reached.
+    public bool closeOnEnd = true;
+
     [Header("Animation")]
+    // The animator.
+    public Animator animator;
+
+    // Animation for opening the textbox.
+    public AnimationClip openClip;
+
+    // Animation for closing the textbox.
+    public AnimationClip closeClip;
+
+    [Header("Animation/Text")]
     // If 'true', all the shown is shown at once. If false, the text is shown letter by letter.
     public bool instantText = true;
 
@@ -39,7 +55,9 @@ public class TextBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Sets the box object to the game object.
+        // if (boxObject == null)
+        //     boxObject = gameObject;
     }
 
     // TODO: add touch and mouse for going onto the next page.
@@ -72,17 +90,17 @@ public class TextBox : MonoBehaviour
     }
 
     // Shows the textbox.
-    public void Show()
+    public void Open()
     {
         // TODO: add animation.
-        boxText.gameObject.SetActive(true);
+        boxObject.SetActive(true);
     }
 
     // Hides the textbox.
-    public void Hide()
+    public void Close()
     {
         // TODO: add animation.
-        boxText.gameObject.SetActive(false);
+        boxObject.SetActive(false);
     }
 
     // Changes the page index.
@@ -234,6 +252,10 @@ public class TextBox : MonoBehaviour
         // Checks if there are functions to call.
         if(doneCallback != null)
             doneCallback();
+
+        // If the text box should be closed when it's done.
+        if (closeOnEnd)
+            Close();
     }
 
     // Update is called once per frame

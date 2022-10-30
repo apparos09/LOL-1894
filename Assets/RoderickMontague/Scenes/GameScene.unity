@@ -2903,6 +2903,7 @@ MonoBehaviour:
   initialized: 0
   gameManager: {fileID: 877465982}
   door: {fileID: 0}
+  textBox: {fileID: 0}
   player: {fileID: 1467642233}
   opponent: {fileID: 0}
   opponentSprite: {fileID: 154329596}
@@ -2936,7 +2937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1178415350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2972,9 +2973,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07f5c71e98c42e4c86c12e0a9e9e4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxObject: {fileID: 1178415349}
   pages: []
   boxText: {fileID: 1194298960}
-  instantText: 1
+  closeOnEnd: 1
+  animator: {fileID: 0}
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  instantText: 0
   textSpeed: 10
 --- !u!114 &1187826822 stripped
 MonoBehaviour:

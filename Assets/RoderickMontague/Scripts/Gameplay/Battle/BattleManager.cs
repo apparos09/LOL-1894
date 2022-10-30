@@ -18,6 +18,9 @@ namespace RM_BBTS
         // The door
         public Door door;
 
+        // The textbox
+        public TextBox textBox;
+
         [Header("Battle")]
 
         // The player.
@@ -260,13 +263,13 @@ namespace RM_BBTS
                 // Performs the moves.
                 if(playerFirst) // player first
                 {
-                    player.selectedMove.Perform(player, opponent);
-                    opponent.selectedMove.Perform(opponent, player);
+                    player.selectedMove.Perform(player, opponent, this);
+                    opponent.selectedMove.Perform(opponent, player, this);
                 }
                 else // enemy first
                 {
-                    opponent.selectedMove.Perform(opponent, player);
-                    player.selectedMove.Perform(player, opponent);
+                    opponent.selectedMove.Perform(opponent, player, this);
+                    player.selectedMove.Perform(player, opponent, this);
                 }
 
                 player.selectedMove = null;
@@ -333,6 +336,9 @@ namespace RM_BBTS
             else
             {
                 // Returns to the overworld. TODO: account for game over.
+                if (player.Health <= 0) // game over
+                    player.Health = player.MaxHealth;
+
                 gameManager.EnterOverworld();
             }
         }

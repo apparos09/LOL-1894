@@ -72,7 +72,7 @@ namespace RM_BBTS
         }
 
         // Called when the move is being performed.
-        public virtual bool Perform(BattleEntity user, BattleEntity target)
+        public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
