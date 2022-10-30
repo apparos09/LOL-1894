@@ -290,6 +290,9 @@ namespace RM_BBTS
             // Becomes 'true' if the run attempt was successful.
             bool success = false;
 
+            // Overrides the selected move.
+            player.selectedMove = MoveList.Instance.RunMove;
+
             // If there's no opponent then the player can always run away.
             if (opponent == null)
             {
@@ -326,6 +329,11 @@ namespace RM_BBTS
             if(player.Health > 0 && opponent.Health > 0)
             {
                 PerformMoves();
+            }
+            else
+            {
+                // Returns to the overworld. TODO: account for game over.
+                gameManager.EnterOverworld();
             }
         }
 

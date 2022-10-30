@@ -36,9 +36,9 @@ namespace RM_BBTS
 
             // Starter move.
             Move0 = MoveList.Instance.GenerateMove(moveId.hit);
-            Move1 = null;
-            Move2 = null;
-            Move3 = null;
+            Move1 = MoveList.Instance.GenerateMove(moveId.bam);
+            Move2 = MoveList.Instance.GenerateMove(moveId.wham);
+            Move3 = MoveList.Instance.GenerateMove(moveId.kablam);
 
             // sprite = data.sprite;
         }

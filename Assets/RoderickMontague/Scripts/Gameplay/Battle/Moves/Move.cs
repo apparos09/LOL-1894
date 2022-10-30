@@ -79,7 +79,7 @@ namespace RM_BBTS
                 return;
 
             // Does damage.
-            target.Health -= 1.0F;
+            target.Health -= 1.0F; // power * user.Attack;
 
             // Uses energy.
             user.Energy -= energy;

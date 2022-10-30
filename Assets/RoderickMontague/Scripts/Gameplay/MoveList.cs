@@ -5,13 +5,16 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    public enum moveId { charge, hit, bam, wham, kablam }
+    public enum moveId { run, charge, hit, bam, wham, kablam }
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
     {
         // The instance of the move list.
         private static MoveList instance;
+
+        // The run move that is used to play through the turn.
+        private static RunMove runMove;
 
         // The charge move that entities use.
         // This is copied whenever someone performs a charge, and is never put into the 1-4 move slots.
@@ -22,8 +25,12 @@ namespace RM_BBTS
         // Constructor.
         private MoveList()
         {
-            // Saves the charge move to the list.
-            if(chargeMove == null)
+            // Saves the run move from the list.
+            if (runMove == null)
+                runMove = (RunMove)GenerateMove(moveId.run);
+
+            // Saves the charge move from the list.
+            if (chargeMove == null)
                 chargeMove = (ChargeMove)GenerateMove(moveId.charge);
 
             // Instance not set.
@@ -58,8 +65,15 @@ namespace RM_BBTS
 
         }
 
+        // Gets the run move.
+        public RunMove RunMove
+        {
+            get { return runMove; }
+        }
+
+
         // Gets the charge move.
-        public Move ChargeMove
+        public ChargeMove ChargeMove
         {
             get { return chargeMove; }
         }
@@ -71,24 +85,28 @@ namespace RM_BBTS
 
             switch (id)
             {
-                case moveId.charge: // 0. Charge
+                case moveId.run: // Run
+                    move = new RunMove();
+                    break;
+
+                case moveId.charge: // Charge
                     move = new ChargeMove();
                     break;
 
-                case moveId.hit: // 1. Hit
+                case moveId.hit: // Hit
                     move = new Move(moveId.hit, "Hit", 1, 1.0F, 1.0F, 1.0F);
                     break;
 
-                case moveId.bam: // 2. Bam
+                case moveId.bam: // Bam
                     move = new Move(moveId.hit, "Bam", 1, 1.0F, 1.0F, 1.0F);
                     break;
 
-                case moveId.wham: // 3. Wham
-                    move = new Move(moveId.hit, "Wham", 2, 1.0F, 1.0F, 1.0F);
+                case moveId.wham: // Wham
+                    move = new Move(moveId.hit, "Wham", 2, 3.0F, 1.0F, 1.5F);
                     break;
 
-                case moveId.kablam: // 4. Kablam
-                    move = new Move(moveId.hit, "Kablam", 3, 1.0F, 1.0F, 1.0F);
+                case moveId.kablam: // Kablam
+                    move = new Move(moveId.hit, "Kablam", 3, 5.0F, 1.0F, 2.0F);
                     break;
             }
 

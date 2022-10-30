@@ -174,6 +174,9 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(false);
 
             overworld.gameObject.SetActive(true);
+
+            // The player has no move selected.
+            player.selectedMove = null; 
         }
 
         // Call to enter the battle world.
