@@ -14,10 +14,11 @@ namespace RM_BBTS
         }
 
         // Called when performing a move.
-        public override void Perform(BattleEntity user, BattleEntity target)
+        public override bool Perform(BattleEntity user, BattleEntity target)
         {
             float chargePlus = user.MaxEnergy * 0.4F;
             user.Energy += chargePlus;
+            return true;
         }
     }
 }

@@ -15,9 +15,10 @@ namespace RM_BBTS
         }
 
         // Called when performing a move.
-        public override void Perform(BattleEntity user, BattleEntity target)
+        public override bool Perform(BattleEntity user, BattleEntity target)
         {
             // ...
+            return true;
         }
     }
 }

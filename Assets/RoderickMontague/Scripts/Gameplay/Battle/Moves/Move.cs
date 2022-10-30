@@ -72,17 +72,19 @@ namespace RM_BBTS
         }
 
         // Called when the move is being performed.
-        public virtual void Perform(BattleEntity user, BattleEntity target)
+        public virtual bool Perform(BattleEntity user, BattleEntity target)
         {
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
-                return;
+                return false;
 
             // Does damage.
             target.Health -= 1.0F; // power * user.Attack;
 
             // Uses energy.
             user.Energy -= energy;
+
+            return true;
         }
     }
 }
