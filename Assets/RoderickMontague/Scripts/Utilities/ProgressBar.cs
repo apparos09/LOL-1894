@@ -20,11 +20,14 @@ namespace RM_BBTS
         // The value for the progress bar.
         public float value = 0.0F;
 
-        // The starting value that's used for animation.
-        private float startValue = 0.0F;
-
         // The scroll speed for the transitions.
         public float speed = 1.0F;
+
+        // If 'true', the bar scrolls at a fixed speed.
+        public bool fixedSpeed = false;
+
+        // The starting value that's used for animation.
+        private float startValue = 0.0F;
 
         // Set to 'true' if the bar is transitioning between values.
         private bool transitioning = false;
@@ -39,7 +42,31 @@ namespace RM_BBTS
             if (bar == null)
                 bar = GetComponent<Slider>();
 
-            SetValue(1.0F);
+            SetValue(0.4F);
+        }
+
+        // The minimum value.
+        public float MinValue
+        {
+            get { return minValue; }
+
+            set
+            {
+                minValue = value;
+                SetValue(this.value);
+            }
+        }
+
+        // The maximum value.
+        public float MaxValue
+        {
+            get { return maxValue; }
+
+            set
+            {
+                maxValue = value;
+                SetValue(this.value);
+            }
         }
 
         // Returns the value.
@@ -72,6 +99,10 @@ namespace RM_BBTS
             // If there should be a transition.
             if (transition)
             {
+                // If currently transitioning, recalculate the current v_t value.
+                if (transitioning)
+                    v_t = Mathf.InverseLerp(startValue, value, bar.value);
+
                 // Transitioning.
                 transitioning = true;
             }
@@ -96,7 +127,39 @@ namespace RM_BBTS
                 v_t += Time.deltaTime * speed;
                 v_t = Mathf.Clamp01(v_t);
 
-                bar.value = Mathf.Lerp(startValue, value, v_t);
+                // Checks if the bar should be moving at a fixed pace.
+                if(fixedSpeed) // Fixed speed.
+                {
+                    // If the start value is less than the destination value then the bar is increasing.
+                    if(value > startValue) // Increase
+                    {
+                        bar.value = Mathf.Lerp(minValue, maxValue, v_t);
+
+                        // If the bar value has reached the desired value then it should stop moving.
+                        if (bar.value >= value)
+                        {
+                            v_t = 1.0F;
+                            bar.value = value;
+                        }    
+                            
+                    }
+                    else // Decrease
+                    {
+                        bar.value = Mathf.Lerp(maxValue, minValue, v_t);
+
+                        // If the bar value has reached the desired value then it should stop moving.
+                        if (bar.value <= value)
+                        {
+                            v_t = 1.0F;
+                            bar.value = value;
+                        }
+                            
+                    }
+                }
+                else // Not moving at a fixed speed.
+                {
+                    bar.value = Mathf.Lerp(startValue, value, v_t);
+                }
 
                 // If the transition is complete.
                 if (v_t >= 1.0F)
@@ -106,6 +169,18 @@ namespace RM_BBTS
                 }
 
             }
+            else
+            {
+                // if the bar value does not match.
+                if (bar.value != value)
+                {
+                    bar.minValue = minValue;
+                    bar.maxValue = maxValue;
+                    bar.value = value;
+                }
+            }
+
+            
         }
     }
 }

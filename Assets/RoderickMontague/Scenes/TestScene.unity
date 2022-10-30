@@ -901,11 +901,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be4f22ed5a5637489a8444fc16f6f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 0}
+  bar: {fileID: 1406168942}
   minValue: 0
   maxValue: 1
   value: 0
   speed: 1
+  fixedSpeed: 0
 --- !u!1 &1607894655
 GameObject:
   m_ObjectHideFlags: 0
