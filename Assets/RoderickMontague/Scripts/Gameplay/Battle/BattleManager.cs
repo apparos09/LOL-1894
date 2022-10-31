@@ -81,6 +81,10 @@ namespace RM_BBTS
         public Button runButton;
 
         [Header("UI/Other")]
+
+        // The health bar for the opponent.
+        public ProgressBar opponentHealthBar;
+
         // TODO: this will not be shown n the final game.
         public TMP_Text opponentHealthText;
 
@@ -195,6 +199,9 @@ namespace RM_BBTS
 
             // Changes the 'interactable' toggle for the buttons.
             RefreshPlayerOptions();
+
+            // Updates the interface.
+            UpdateUI();
         }
 
         // Called when the mouse hovers over an object.
@@ -310,12 +317,30 @@ namespace RM_BBTS
                 if(playerFirst) // player first
                 {
                     player.selectedMove.Perform(player, opponent, this);
+
+                    // Update the opponent UI.
+                    if (turnText.Count > 0)
+                        turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
+
                     opponent.selectedMove.Perform(opponent, player, this);
+
+                    // Update the player UI.
+                    if (turnText.Count > 0)
+                        turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
                 }
                 else // enemy first
                 {
                     opponent.selectedMove.Perform(opponent, player, this);
+
+                    // Update the player UI.
+                    if (turnText.Count > 0)
+                        turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+
                     player.selectedMove.Perform(player, opponent, this);
+
+                    // Update the opponent UI.
+                    if (turnText.Count > 0)
+                        turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
                 }
 
                 player.selectedMove = null;
@@ -362,37 +387,46 @@ namespace RM_BBTS
 
             // Returns to the overworld if the run was successful.
             if (success)
-                gameManager.EnterOverworld();
+                ToOverworld();
             else
                 Debug.Log("Run failed.");
+        }
+
+        // Goes to the overworld.
+        public void ToOverworld()
+        {
+            gameManager.EnterOverworld();
         }
 
         // Updates the user interface.
         public void UpdateUI()
         {
             // TODO: remove the safety checK??
-            if (opponent != null)
-                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+            opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth);
+            opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
         }
 
         // Update is called once per frame
         void Update()
         {
-            UpdateUI();
-
-            // If both entities are alive do battle calculations.
-            if(player.Health > 0 && opponent.Health > 0)
+            // If the text box is not visible.
+            if(!textBox.IsVisible())
             {
-                PerformMoves();
-            }
-            else
-            {
-                // Returns to the overworld. TODO: account for game over.
-                if (player.Health <= 0) // game over
-                    player.Health = player.MaxHealth;
+                // If both entities are alive do battle calculations.
+                if (player.Health > 0 && opponent.Health > 0)
+                {
+                    PerformMoves();
+                }
+                else
+                {
+                    // Returns to the overworld. TODO: account for game over.
+                    if (player.Health <= 0) // game over
+                        player.Health = player.MaxHealth;
 
-                gameManager.EnterOverworld();
+                    ToOverworld();
+                }
             }
+            
         }
 
         

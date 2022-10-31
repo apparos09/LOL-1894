@@ -8,8 +8,29 @@ namespace RM_BBTS
     // The class for the player.
     public class Player : BattleEntity
     {
+        // Setting the player's stats.
+        protected new void Awake()
+        {
+            // The player is 'id' 0.
+            id = 0;
+            preEvoId = 0;
+            evoId = 0;
+            level = 1;
+
+            // Saves the default stats (maybe you should hardcode this).
+            maxHealth = 10;
+            health = 10;
+
+            attack = 3;
+            defense = 2;
+            speed = 1;
+
+            maxEnergy = 10;
+            energy = 10;
+        }
+
         // Start is called before the first frame update
-        new void Start()
+        protected new void Start()
         {
             base.Start();
 
@@ -17,24 +38,7 @@ namespace RM_BBTS
             BattleEntityData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
             LoadBattleData(baseData);
 
-            // The player is 'id' 0.
-            id = baseData.id;
-            preEvoId = baseData.id;
-            evoId = baseData.id;
-            level = baseData.level;
-
-            // Saves the default stats (maybe you should hardcode this).
-            maxHealth = baseData.maxHealth;
-            health = baseData.health;
-
-            attack = baseData.attack;
-            defense = baseData.defense;
-            speed = baseData.speed;
-
-            maxEnergy = baseData.maxEnergy;
-            energy = baseData.energy;
-
-            // Starter move.
+            // Starter moves.
             Move0 = MoveList.Instance.GenerateMove(moveId.hit);
             Move1 = MoveList.Instance.GenerateMove(moveId.bam);
             Move2 = MoveList.Instance.GenerateMove(moveId.wham);
@@ -44,7 +48,7 @@ namespace RM_BBTS
         }
 
         // Update is called once per frame
-        new void Update()
+        protected new void Update()
         {
             base.Update();
         }
