@@ -20,8 +20,8 @@ namespace RM_BBTS
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
-            maxHealth = 10;
-            health = 10;
+            maxHealth = 20;
+            health = 20;
 
             attack = 3;
             defense = 2;

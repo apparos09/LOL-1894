@@ -210,6 +210,16 @@ namespace RM_BBTS
 
         }
 
+        // Called when the player gets a game over.
+        public void OnGameOver()
+        {
+            player.Health = player.MaxHealth;
+            player.Energy = player.MaxEnergy;
+
+            // TODO: restore enemy powers.
+
+        }
+
         // Updates the UI
         public void UpdateUI()
         {
@@ -247,9 +257,9 @@ namespace RM_BBTS
             //     // }
             // }
 
-            // Checks how many touches there are.
-            if (mouseTouchInput.currentTouches.Count > 0)
-                Debug.Log("Touch Count: " + mouseTouchInput.currentTouches.Count);
+            // // Checks how many touches there are.
+            // if (mouseTouchInput.currentTouches.Count > 0)
+            //     Debug.Log("Touch Count: " + mouseTouchInput.currentTouches.Count);
 
             // Checks for some mouse input.
             MouseTouchCheck();

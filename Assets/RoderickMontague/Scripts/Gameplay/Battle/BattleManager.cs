@@ -445,6 +445,7 @@ namespace RM_BBTS
         // Goes to the overworld.
         public void ToOverworld()
         {
+            gameManager.UpdateUI();
             gameManager.EnterOverworld();
         }
 
@@ -470,10 +471,17 @@ namespace RM_BBTS
                 else
                 {
                     // Returns to the overworld. TODO: account for game over.
+                    // The player got a game over.
                     if (player.Health <= 0) // game over
-                        player.Health = player.MaxHealth;
-
-                    ToOverworld();
+                    {
+                        gameManager.OnGameOver();
+                        ToOverworld();
+                    }
+                    else // The player won the fight.
+                    {
+                        player.LevelUp();
+                        ToOverworld();
+                    }
                 }
             }
             

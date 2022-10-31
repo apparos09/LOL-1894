@@ -198,6 +198,52 @@ namespace RM_BBTS
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         public void LevelUp()
         {
+            // Relative hp and energy.
+            float hpPercent = health / maxHealth;
+            float engPercent = energy / maxEnergy;
+
+            // Bonus increase.
+            float bonus = 3;
+            int rand = Random.Range(0, 5);
+
+            // The restoration percentage.
+            float restorePercent = 0.20F;
+
+            // Increases the 5 stats.
+            maxHealth += Random.Range(1, 3);
+            attack += Random.Range(1, 3);
+            defense += Random.Range(1, 3);
+            speed += Random.Range(1, 3);
+            maxEnergy += Random.Range(1, 3);
+
+
+            // Random +3 factor
+            switch(rand)
+            {
+                case 0: // HP
+                    health += bonus;
+                    break;
+                case 1: // ATTACK
+                    attack += bonus;
+                    break;
+                case 2: // DEFENSE
+                    defense += bonus;
+                    break;
+                case 3: // SPEED
+                    speed += bonus;
+                    break;
+                case 4: // ENERGY
+                    energy += bonus;
+                    break;
+            }
+
+            // Sets new health and energy proportional to new maxes.
+            health = hpPercent * maxHealth;
+            energy = engPercent * maxEnergy;
+
+            // Restores health and energy
+            Health += maxHealth * restorePercent;
+            Energy += maxEnergy * restorePercent;
 
         }
 
