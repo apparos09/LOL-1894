@@ -213,7 +213,6 @@ namespace RM_BBTS
         // Updates the UI
         public void UpdateUI()
         {
-<<<<<<< HEAD
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
         }
@@ -228,11 +227,6 @@ namespace RM_BBTS
         // Updates the player energy UI.
         public void UpdatePlayerEnergyUI()
         {
-=======
-            playerHealthBar.SetValue(player.Health / player.MaxHealth);
-            playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
-
->>>>>>> main
             playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
             playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
         }

@@ -41,8 +41,6 @@ namespace RM_BBTS
             // Grabs the slider component from the object if this hasn't been set.
             if (bar == null)
                 bar = GetComponent<Slider>();
-
-            SetValue(0.4F);
         }
 
         // The minimum value.

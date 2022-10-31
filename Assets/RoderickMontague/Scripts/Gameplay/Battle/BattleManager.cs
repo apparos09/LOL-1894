@@ -302,7 +302,7 @@ namespace RM_BBTS
                 if(playerTurn) // Player turn
                 {
                     turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
-                    // turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+                    turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
                 }
                 else
                 {
