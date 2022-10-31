@@ -17,6 +17,8 @@ namespace RM_BBTS
         // The evolution id.
         public battleEntityId evoId;
 
+        public string displayName;
+
         // The level of the entity.
         public uint level;
 
@@ -108,6 +110,7 @@ namespace RM_BBTS
         public void LoadBattleData(BattleEntityData data)
         {
             id = data.id;
+            displayName = data.displayName;
             level = data.level;
 
             maxHealth = data.maxHealth;

@@ -15,6 +15,8 @@ namespace RM_BBTS
             id = 0;
             preEvoId = 0;
             evoId = 0;
+
+            displayName = "Player";
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
@@ -36,7 +38,7 @@ namespace RM_BBTS
 
             // Gets the base data and loads the battle data.
             BattleEntityData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
-            LoadBattleData(baseData);
+            // LoadBattleData(baseData);
 
             // Starter moves.
             Move0 = MoveList.Instance.GenerateMove(moveId.hit);

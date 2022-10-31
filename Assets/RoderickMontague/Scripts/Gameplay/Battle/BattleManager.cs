@@ -52,6 +52,12 @@ namespace RM_BBTS
         // The turn text. Each entry is a different page.
         public List<Page> turnText;
 
+        // The player's move page.
+        public Page playerMovePage;
+
+        // The opponent's move page.
+        public Page opponentMovePage;
+
         [Header("UI/Player")]
 
         // Move 0 (index 0) button.
@@ -123,8 +129,8 @@ namespace RM_BBTS
             // Initializes the list.
             turnText = new List<Page>();
 
-            // Unlock player options when the textbox is done.
-            textBox.OnTextBoxFinishedAddCallback(EnablePlayerOptions);
+            // When the textbox disappears the turn is over, so call this function.
+            textBox.OnTextBoxFinishedAddCallback(OnTurnOver);
 
             // Close the textbox when the player is done.
             textBox.closeOnEnd = true;
@@ -312,6 +318,18 @@ namespace RM_BBTS
             }
         }
 
+        // Called to perform the player's move.
+        private void PerformPlayerMove()
+        {
+            player.selectedMove.Perform(player, opponent, this);
+        }
+
+        // Called to perform the opponent's move.
+        private void PerformOpponentMove()
+        {
+            opponent.selectedMove.Perform(opponent, player, this);
+        }
+
         // Performs the two moves.
         public void PerformMoves()
         {
@@ -334,41 +352,37 @@ namespace RM_BBTS
                 else // random
                     playerFirst = Random.Range(0, 2) == 1;
 
-                // Performs the moves.
-                if(playerFirst) // player first
+
+                // Loads the selected moves.
+                // The two pages for the player and the opponent.
+
+                // Adds the player's move.
+                playerMovePage = new Page(player.displayName + " used " + player.selectedMove.Name + "!");
+                playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
+
+                // Adds the opponent's move.
+                opponentMovePage = new Page(opponent.displayName + " used " + opponent.selectedMove.Name + "!");
+                opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
+
+                // Places the pages in order.
+                if(playerFirst)
                 {
-                    player.selectedMove.Perform(player, opponent, this);
-
-                    // Updates the UI from the player action.
-                    AddVisualUpdateCallbacks(true);
-
-                    opponent.selectedMove.Perform(opponent, player, this);
-
-                    // Updates the battle visuals based on the opponent changes.
-                    AddVisualUpdateCallbacks(false);
+                    turnText.Add(playerMovePage);
+                    turnText.Add(opponentMovePage);
                 }
-                else // enemy first
+                else
                 {
-                    opponent.selectedMove.Perform(opponent, player, this);
-
-                    // Updates the battle visuals from the enemy.
-                    AddVisualUpdateCallbacks(false);
-
-                    player.selectedMove.Perform(player, opponent, this);
-
-                    // Updates the battle visuals from the player.
-                    AddVisualUpdateCallbacks(true);
+                    turnText.Add(opponentMovePage);
+                    turnText.Add(playerMovePage);
                 }
-
-                player.selectedMove = null;
-                opponent.selectedMove = null;
+                
 
                 // Show the textbox.
                 // TODO: hide player move controls.
                 textBox.ReplacePages(turnText);
                 textBox.Open();
 
-                // Disable the player options if the textbox was set.
+                // Disable the player options since the textbox is open.
                 DisablePlayerOptions();
             }
             else
@@ -379,6 +393,18 @@ namespace RM_BBTS
                 // opponent.
                 opponent.OnBattleTurn(); // calculates next move (evenutally)
             }
+        }
+
+        // Called when the turn is over.
+        private void OnTurnOver()
+        {
+            player.selectedMove = null;
+            opponent.selectedMove = null;
+
+            playerMovePage = null;
+            opponentMovePage = null;
+
+            EnablePlayerOptions();
         }
 
         // Called when the player attempts to run away. TODO: have the enemy's move still go off if the run fails.
