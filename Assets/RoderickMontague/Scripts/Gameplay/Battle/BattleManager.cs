@@ -291,6 +291,27 @@ namespace RM_BBTS
             chargeButton.interactable = !player.HasFullCharge();
         }
 
+        // Updates the battle visuals.
+        // If 'playerTurn' is true, then the update is coming from the player's turn.
+        // If false, it's coming from the enemy's turn.
+        private void AddVisualUpdateCallbacks(bool playerTurn)
+        {
+            // If there are pages to attach callbacks too.
+            if(turnText.Count > 0)
+            {
+                if(playerTurn) // Player turn
+                {
+                    turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
+                    // turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+                }
+                else
+                {
+                    // turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdatePlayerHealthUI);
+                    turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+                }
+            }
+        }
+
         // Performs the two moves.
         public void PerformMoves()
         {
@@ -318,29 +339,25 @@ namespace RM_BBTS
                 {
                     player.selectedMove.Perform(player, opponent, this);
 
-                    // Update the opponent UI.
-                    if (turnText.Count > 0)
-                        turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
+                    // Updates the UI from the player action.
+                    AddVisualUpdateCallbacks(true);
 
                     opponent.selectedMove.Perform(opponent, player, this);
 
-                    // Update the player UI.
-                    if (turnText.Count > 0)
-                        turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+                    // Updates the battle visuals based on the opponent changes.
+                    AddVisualUpdateCallbacks(false);
                 }
                 else // enemy first
                 {
                     opponent.selectedMove.Perform(opponent, player, this);
 
-                    // Update the player UI.
-                    if (turnText.Count > 0)
-                        turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
+                    // Updates the battle visuals from the enemy.
+                    AddVisualUpdateCallbacks(false);
 
                     player.selectedMove.Perform(player, opponent, this);
 
-                    // Update the opponent UI.
-                    if (turnText.Count > 0)
-                        turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
+                    // Updates the battle visuals from the player.
+                    AddVisualUpdateCallbacks(true);
                 }
 
                 player.selectedMove = null;

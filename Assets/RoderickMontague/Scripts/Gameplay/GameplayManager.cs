@@ -213,13 +213,23 @@ namespace RM_BBTS
         // Updates the UI
         public void UpdateUI()
         {
+            UpdatePlayerHealthUI();
+            UpdatePlayerEnergyUI();
+        }
+        
+        // Updates the health bar UI.
+        public void UpdatePlayerHealthUI()
+        {
             playerHealthBar.SetValue(player.Health / player.MaxHealth);
             playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+        }
 
+        // Updates the player energy UI.
+        public void UpdatePlayerEnergyUI()
+        {
             playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
             playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
         }
-        
 
         // Update is called once per frame
         void Update()
