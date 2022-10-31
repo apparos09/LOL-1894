@@ -70,6 +70,7 @@ namespace RM_BBTS
                 // An unknown battle entity.
                 case battleEntityId.unknown:
                     data.id = battleEntityId.unknown;
+                    data.displayName = "Unknown";
                     data.level = 1;
 
                     data.maxHealth = 10;
@@ -88,6 +89,7 @@ namespace RM_BBTS
 
                 case battleEntityId.treasure: // treasure chest
                     data.id = battleEntityId.treasure;
+                    data.displayName = "Treasure";
                     data.level = 1;
 
                     data.maxHealth = 1;
@@ -103,6 +105,7 @@ namespace RM_BBTS
 
                 default:
                     data.id = battleEntityId.unknown;
+                    data.displayName = "Unknown";
                     data.level = 1;
 
                     data.maxHealth = 1;

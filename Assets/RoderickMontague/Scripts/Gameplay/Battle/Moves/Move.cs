@@ -71,16 +71,21 @@ namespace RM_BBTS
             get { return energy; }
         }
 
+        // Called to play the move animation.
+        public void PlayAnimation()
+        {
+            // TODO: implement.
+        }
+
         // Called when the move is being performed.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // Initial message.
-            battle.turnText.Add(new Page(user.name + " used " + name + "!"));
+            // The move inserts a message after the current page in the text box.
 
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
             {
-                battle.turnText.Add(new Page(user.name + " does not have enough power!"));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(user.name + " does not have enough power!"));
                 return false;
             }
                 
@@ -94,15 +99,31 @@ namespace RM_BBTS
                 user.Energy -= energy;
 
                 // Adds the new page.
-                battle.turnText.Add(new Page("The move hit!"));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit!"));
+
+                // TODO: maybe move this to the battle script?
+                // Checks if the user is the player or not.
+                if(user is Player) // Is the player.
+                {
+                    battle.gameManager.UpdatePlayerEnergyUI();
+                    battle.UpdateUI(); // Updates enemy health bar.
+                }
+                else // Not the player.
+                {
+                    battle.gameManager.UpdatePlayerHealthUI();
+                }
 
                 return true;
             }
+            else
+            {
+                // Failure.
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move failed."));
 
-            // Failure.
-            battle.turnText.Add(new Page("The attack failed!"));
+                return false;
+            }
 
-            return false;
+            
             
         }
     }

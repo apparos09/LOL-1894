@@ -16,11 +16,15 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // Running away text.
-            battle.turnText.Add(new Page(user.displayName + " is charging their energy!"));
+            // Charging text.
+            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(user.displayName + " charged their energy!"));
 
             float chargePlus = user.MaxEnergy * 0.4F;
             user.Energy += chargePlus;
+
+            // Updates the player's energy level.
+            battle.gameManager.UpdatePlayerEnergyUI();
+
             return true;
         }
     }
