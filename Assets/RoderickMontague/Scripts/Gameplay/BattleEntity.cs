@@ -87,6 +87,12 @@ namespace RM_BBTS
         // The selected move to be used.
         public Move selectedMove = null;
 
+        // Awake is called when the script instacne is being loaded.
+        protected virtual void Awake()
+        {
+            
+        }
+
         // Start is called before the first frame update
         protected virtual void Start()
         {

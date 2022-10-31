@@ -103,6 +103,13 @@ namespace RM_BBTS
             boxObject.SetActive(false);
         }
 
+        // Checks if the textbox is visible.
+        public bool IsVisible()
+        {
+            return boxObject.activeSelf;
+        }
+
+
         // TODO: is this necessary?
         // Changes the page index.
         public void SetPage(int index)
@@ -177,6 +184,9 @@ namespace RM_BBTS
             // There's no next page, so don't change the text.
             if (nextPageIndex >= pages.Count || nextPageIndex < 0)
             {
+                // The textbox is about to be closed, so call the 'on page closed' callback for the last page.
+                pages[currPageIndex].OnPageClosed();
+
                 // The text has all been displayed, so call the callbacks.
                 if (nextPageIndex >= pages.Count)
                     OnTextBoxFinished();

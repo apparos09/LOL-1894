@@ -28,9 +28,15 @@ namespace RM_BBTS
         // The text box used for the game.
         public TextBox textBox;
 
+        // The health bar for the player.
+        public ProgressBar playerHealthBar;
+
         // The text for the player's health (TODO: include a progress bar).
         public TMPro.TMP_Text playerHealthText;
-        
+
+        // The health bar for the player.
+        public ProgressBar playerEnergyBar;
+
         // The text for the player's enegy (TODO: include a progress bar).
         public TMPro.TMP_Text playerEnergyText;
 
@@ -64,6 +70,7 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(true);
             state = gameState.overworld;
 
+            UpdateUI();
 
             List<string> test = new List<string>() { "This is a test.", "This is only a test." };
             // textBox.OnTextFinishedAddCallback(Test);
@@ -206,7 +213,10 @@ namespace RM_BBTS
         // Updates the UI
         public void UpdateUI()
         {
+            playerHealthBar.SetValue(player.Health / player.MaxHealth);
             playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+
+            playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
             playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
         }
         
@@ -235,7 +245,7 @@ namespace RM_BBTS
             MouseTouchCheck();
 
             // Updates the player's UI.
-            UpdateUI();
+            // UpdateUI();
 
             // Checks the state variable to see what kind of scene the game is in.
             switch (state)

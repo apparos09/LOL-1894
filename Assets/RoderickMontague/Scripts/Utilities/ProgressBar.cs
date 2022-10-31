@@ -12,13 +12,13 @@ namespace RM_BBTS
         public Slider bar;
 
         // The minimum value.
-        public float minValue = 0.0F;
+        private float minValue = 0.0F;
 
         // The maximum value.
-        public float maxValue = 1.0F;
+        private float maxValue = 1.0F;
 
         // The value for the progress bar.
-        public float value = 0.0F;
+        private float value = 0.0F;
 
         // The scroll speed for the transitions.
         public float speed = 1.0F;
