@@ -74,17 +74,36 @@ namespace RM_BBTS
         // Called when the move is being performed.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
+            // Initial message.
+            battle.turnText.Add(new Page(user.name + " used " + name + "!"));
+
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
+            {
+                battle.turnText.Add(new Page(user.name + " does not have enough power!"));
                 return false;
+            }
+                
+            // If the move hit successfully.
+            if(Random.Range(0.0F, 1.0F) <= accuracy)
+            {
+                // Does damage.
+                target.Health -= 1.0F; // power * user.Attack;
 
-            // Does damage.
-            target.Health -= 1.0F; // power * user.Attack;
+                // Uses energy.
+                user.Energy -= energy;
 
-            // Uses energy.
-            user.Energy -= energy;
+                // Adds the new page.
+                battle.turnText.Add(new Page("The move hit!"));
 
-            return true;
+                return true;
+            }
+
+            // Failure.
+            battle.turnText.Add(new Page("The attack failed!"));
+
+            return false;
+            
         }
     }
 }

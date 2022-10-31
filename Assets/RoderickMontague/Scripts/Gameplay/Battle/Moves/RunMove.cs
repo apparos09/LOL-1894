@@ -17,7 +17,11 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // ...
+            // Running away text.
+            // battle.turnText.Add(new Page(user.displayName + " is trying to run away!"));
+
+            // Maybe only play a sound since the screen switches over before the textbox plays.
+
             return true;
         }
     }

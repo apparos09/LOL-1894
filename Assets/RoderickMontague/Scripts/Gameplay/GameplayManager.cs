@@ -68,7 +68,7 @@ namespace RM_BBTS
             List<string> test = new List<string>() { "This is a test.", "This is only a test." };
             // textBox.OnTextFinishedAddCallback(Test);
             // textBox.OnTextFinishedRemoveCallback(Test);
-            textBox.LoadPageText(test);
+            textBox.ReplacePages(test);
         }
 
         // public void Test()

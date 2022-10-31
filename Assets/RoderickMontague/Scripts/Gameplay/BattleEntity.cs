@@ -42,6 +42,9 @@ namespace RM_BBTS
     // A class inherited by entities that do battle.
     public class BattleEntity : MonoBehaviour
     {
+        // The display name for the battle entity.
+        public string displayName = "";
+
         // The sprite that the battle entity uses.
         public Sprite sprite;
 
@@ -87,6 +90,10 @@ namespace RM_BBTS
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            // Saves the display name as the object name.
+            if (displayName == "")
+                displayName = name;
+
             health = maxHealth;
             energy = maxEnergy;
         }

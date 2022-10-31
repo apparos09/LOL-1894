@@ -49,6 +49,9 @@ namespace RM_BBTS
         // The user interface.
         public GameObject ui;
 
+        // The turn text. Each entry is a different page.
+        public List<Page> turnText;
+
         [Header("UI/Player")]
 
         // Move 0 (index 0) button.
@@ -73,6 +76,9 @@ namespace RM_BBTS
 
         // Charge Button
         public Button chargeButton;
+
+        // Run Button
+        public Button runButton;
 
         [Header("UI/Other")]
         // TODO: this will not be shown n the final game.
@@ -109,6 +115,15 @@ namespace RM_BBTS
             enemyBase.gameObject.SetActive(false);
             treasureBase.gameObject.SetActive(false);
             bossBase.gameObject.SetActive(false);
+
+            // Initializes the list.
+            turnText = new List<Page>();
+
+            // Unlock player options when the textbox is done.
+            textBox.OnTextBoxFinishedAddCallback(EnablePlayerOptions);
+
+            // Close the textbox when the player is done.
+            textBox.closeOnEnd = true;
         }
 
         // This function is called when the object becomes enabled and active
@@ -206,6 +221,34 @@ namespace RM_BBTS
             throw new System.NotImplementedException();
         }
 
+        // Sets player controls to interactable or not. RefreshPlayerOptions is also called to disable buttons that do nothing. 
+        public void SetPlayerOptionsAvailable(bool interactable)
+        {
+            move0Button.interactable = interactable;
+            move1Button.interactable = interactable;
+            move2Button.interactable = interactable;
+            move3Button.interactable = interactable;
+            
+            chargeButton.interactable = interactable;
+            runButton.interactable = interactable;
+
+            // If all were turned on, check to see if some should stay off.
+            if(interactable)
+                RefreshPlayerOptions();
+        }
+
+        // Enables the player options.
+        public void EnablePlayerOptions()
+        {
+            SetPlayerOptionsAvailable(true);
+        }
+
+        // Disables the player options.
+        public void DisablePlayerOptions()
+        {
+            SetPlayerOptionsAvailable(false);
+        }
+
         public void RefreshPlayerOptions()
         {
             // Checks move activity to see if the player can use it or not.
@@ -252,6 +295,9 @@ namespace RM_BBTS
 
                 // TODO: account for status effects.
 
+                // Clears out the past text.
+                turnText.Clear();
+
                 // Determines who goes first.
                 if (player.Speed > opponent.Speed) // player first
                     playerFirst = true;
@@ -275,7 +321,13 @@ namespace RM_BBTS
                 player.selectedMove = null;
                 opponent.selectedMove = null;
 
-                RefreshPlayerOptions();
+                // Show the textbox.
+                // TODO: hide player move controls.
+                textBox.ReplacePages(turnText);
+                textBox.Open();
+
+                // Disable the player options if the textbox was set.
+                DisablePlayerOptions();
             }
             else
             {

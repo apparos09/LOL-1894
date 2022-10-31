@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3551c29f8b6724784131a273ddc594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -2903,7 +2904,7 @@ MonoBehaviour:
   initialized: 0
   gameManager: {fileID: 877465982}
   door: {fileID: 0}
-  textBox: {fileID: 0}
+  textBox: {fileID: 1178415351}
   player: {fileID: 1467642233}
   opponent: {fileID: 0}
   opponentSprite: {fileID: 154329596}
@@ -2920,6 +2921,7 @@ MonoBehaviour:
   move3Button: {fileID: 1333000849}
   move3Text: {fileID: 939839395}
   chargeButton: {fileID: 439972763}
+  runButton: {fileID: 1016463190}
   opponentHealthText: {fileID: 960459646}
 --- !u!1 &1178415349
 GameObject:
@@ -2937,7 +2939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1178415350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2974,7 +2976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxObject: {fileID: 1178415349}
-  pages: []
   boxText: {fileID: 1194298960}
   closeOnEnd: 1
   animator: {fileID: 0}
@@ -3790,6 +3791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6445044376a3fb94ab0b7a73ff113372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -4475,6 +4477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afac6456bf921d8449d337cb6e757579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -4969,6 +4972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74c0d8c12d024d4f8c533e1a541061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
