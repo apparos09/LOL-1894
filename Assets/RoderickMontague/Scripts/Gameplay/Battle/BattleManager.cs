@@ -395,18 +395,7 @@ namespace RM_BBTS
             }
         }
 
-        // Called when the turn is over.
-        private void OnTurnOver()
-        {
-            player.selectedMove = null;
-            opponent.selectedMove = null;
-
-            playerMovePage = null;
-            opponentMovePage = null;
-
-            EnablePlayerOptions();
-        }
-
+        
         // Called when the player attempts to run away. TODO: have the enemy's move still go off if the run fails.
         public void RunAway()
         {
@@ -433,6 +422,24 @@ namespace RM_BBTS
                 ToOverworld();
             else
                 Debug.Log("Run failed.");
+        }
+
+        // Called when the turn is over.
+        private void OnTurnOver()
+        {
+            player.selectedMove = null;
+            opponent.selectedMove = null;
+
+            playerMovePage = null;
+            opponentMovePage = null;
+
+            EnablePlayerOptions();
+        }
+
+        // Called when potentially learning a new move.
+        public void OnLearningNewMove()
+        {
+
         }
 
         // Goes to the overworld.
