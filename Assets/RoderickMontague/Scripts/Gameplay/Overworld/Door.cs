@@ -10,10 +10,10 @@ namespace RM_BBTS
         public SpriteRenderer sprite;
 
         // The sprite for the door being open.
-        public Sprite openSprite;
+        public Sprite unlockedSprite;
 
         // The sprite for the door being closed.
-        public Sprite closedSprite;
+        public Sprite lockedSprite;
 
         // Determines if this is a boss door or not.
         public bool isBossDoor = false;
@@ -24,10 +24,17 @@ namespace RM_BBTS
         // Says whether the door is locked or not.
         public bool locked = false;
 
+        // Awake is called when the script instance is loaded.
+        private void Awake()
+        {
+            // Switch out the sprite.
+            Locked = locked;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-
+            
         }
 
         // Called to lock/unlock the door.
@@ -41,9 +48,9 @@ namespace RM_BBTS
 
                 // Changes the sprite.
                 if (locked) // closed
-                    sprite.sprite = closedSprite;
+                    sprite.sprite = lockedSprite;
                 else // open
-                    sprite.sprite = openSprite;
+                    sprite.sprite = unlockedSprite;
             }
         }
 

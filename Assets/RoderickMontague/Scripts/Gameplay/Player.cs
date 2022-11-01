@@ -41,10 +41,11 @@ namespace RM_BBTS
             // LoadBattleData(baseData);
 
             // Starter moves.
-            Move0 = MoveList.Instance.GenerateMove(moveId.hit);
-            Move1 = MoveList.Instance.GenerateMove(moveId.bam);
-            Move2 = MoveList.Instance.GenerateMove(moveId.wham);
-            Move3 = MoveList.Instance.GenerateMove(moveId.kablam);
+            Move0 = MoveList.Instance.GenerateMove(moveId.bam);
+            Move1 = MoveList.Instance.GenerateMove(moveId.wham);
+            Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
+            Move3 = null;
+            // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
 
             // sprite = data.sprite;
         }

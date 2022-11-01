@@ -83,7 +83,7 @@ namespace RM_BBTS
                     data.maxEnergy = 10;
                     data.energy = 10;
 
-                    data.move0 = moveId.hit;
+                    data.move0 = moveId.poke;
 
                     break;
 
@@ -118,7 +118,7 @@ namespace RM_BBTS
                     data.maxEnergy = 1;
                     data.energy = 1;
 
-                    data.move0 = moveId.hit;
+                    data.move0 = moveId.poke;
                     break;
 
             }
@@ -136,15 +136,15 @@ namespace RM_BBTS
             switch(id)
             {
                 case battleEntityId.unknown:
-                    moveList = new List<moveId>() { moveId.hit };
+                    moveList = new List<moveId>() { moveId.poke };
                     break;
 
                 case battleEntityId.treasure:
-                    moveList = new List<moveId>() { moveId.hit };
+                    moveList = new List<moveId>() { moveId.poke };
                     break;
 
                 default:
-                    moveList = new List<moveId>() { moveId.hit };
+                    moveList = new List<moveId>() { moveId.poke };
                     break;
             }
 

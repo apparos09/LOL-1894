@@ -554,12 +554,12 @@ namespace RM_BBTS
 
                         // TODO: uncomment for learning a new move.
                         // Checks to see if the player will be learning a new move.
-                        // if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE)
-                        // {
-                        //     Page movePage = new Page("The player is trying to learn a new move!");
-                        //     movePage.OnPageClosedAddCallback(OnLearningNewMove);
-                        //     textBox.pages.Add(movePage);
-                        // }
+                        if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE)
+                        {
+                            Page movePage = new Page("The player is trying to learn a new move!");
+                            movePage.OnPageClosedAddCallback(OnLearningNewMove);
+                            textBox.pages.Add(movePage);
+                        }
 
                         // Set up the textbox.
                         textBox.SetPage(0);

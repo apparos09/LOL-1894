@@ -7,7 +7,7 @@ namespace RM_BBTS
 {
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
-    public enum moveId { run, charge, hit, bam, wham, kablam }
+    public enum moveId { run, charge, poke, slimeshot, lasershot, fireshot, screech, bam, wham, kablam }
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -102,6 +102,7 @@ namespace RM_BBTS
 
             switch (id)
             {
+                    // RANK 1
                 case moveId.run: // Run
                     move = new RunMove();
                     break;
@@ -110,20 +111,38 @@ namespace RM_BBTS
                     move = new ChargeMove();
                     break;
 
-                case moveId.hit: // Hit
-                    move = new Move(moveId.hit, "Hit", 1, 10.0F, 1.0F, 1.0F);
+                case moveId.poke: // Hit
+                    move = new Move(moveId.poke, "Poke", 1, 10.0F, 1.0F, 1.0F);
+                    break;
+
+                case moveId.slimeshot: // Slimeshot
+                    move = new Move(moveId.slimeshot, "Slimeshot", 1, 30.0F, 0.9F, 4.0F);
+                    break;
+
+                case moveId.lasershot: // Lasershot
+                    move = new Move(moveId.lasershot, "Lasershot", 1, 40.0F, 0.9F, 4.0F);
+                    break;
+
+                case moveId.fireshot: // Fireshot
+                    move = new Move(moveId.fireshot, "Fireshot", 1, 30.0F, 0.9F, 5.0F);
+                    break;
+
+                case moveId.screech: // Screech
+                    move = new Move(moveId.screech, "Screech", 1, 25.0F, 1.0F, 3.0F);
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.hit, "Bam", 1, 10.0F, 1.0F, 1.0F);
+                    move = new Move(moveId.poke, "Bam", 1, 10.0F, 1.0F, 1.0F);
                     break;
 
+
+                    // RANK 2
                 case moveId.wham: // Wham
-                    move = new Move(moveId.hit, "Wham", 2, 15.0F, 1.0F, 1.5F);
+                    move = new Move(moveId.poke, "Wham", 2, 15.0F, 1.0F, 1.5F);
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.hit, "Kablam", 3, 20.0F, 1.0F, 2.0F);
+                    move = new Move(moveId.poke, "Kablam", 3, 20.0F, 1.0F, 2.0F);
                     break;
             }
 
