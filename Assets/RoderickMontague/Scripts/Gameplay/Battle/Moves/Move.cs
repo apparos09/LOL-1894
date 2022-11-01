@@ -45,12 +45,22 @@ namespace RM_BBTS
             description = "No information available";
         }
 
-
+        // Returns the ID of the move.
+        public moveId Id
+        {
+            get { return id; }
+        }
 
         // Returns the name of the move.
         public string Name
         {
             get { return name; }
+        }
+
+        // Gets the rank of the move.
+        public int Rank
+        {
+            get { return rank; }
         }
 
         // Returns the power of the move.
