@@ -23,6 +23,12 @@ namespace RM_BBTS
         // The player for the game.
         public Player player;
 
+        // The total battles in the game.
+        public int totalBattles = 0;
+
+        // The total amount of completed battles.
+        public int completedBattles = 0;
+
         [Header("UI")]
 
         // The text box used for the game.
@@ -72,10 +78,13 @@ namespace RM_BBTS
 
             UpdateUI();
 
-            List<string> test = new List<string>() { "This is a test.", "This is only a test." };
-            // textBox.OnTextFinishedAddCallback(Test);
-            // textBox.OnTextFinishedRemoveCallback(Test);
-            textBox.ReplacePages(test);
+            // The total amount of battles in the game.
+            totalBattles = overworld.doors.Count;
+
+            // List<string> test = new List<string>() { "This is a test.", "This is only a test." };
+            // // textBox.OnTextFinishedAddCallback(Test);
+            // // textBox.OnTextFinishedRemoveCallback(Test);
+            // textBox.ReplacePages(test);
         }
 
         // public void Test()
@@ -173,6 +182,22 @@ namespace RM_BBTS
             throw new System.NotImplementedException();
         }
 
+        // Returns the phase of the game (1 = start, 2 = middle, 3 = end).
+        // Each section is evenly split.
+        public int GetGamePhase()
+        {
+            // The completion rate.
+            float completionRate = completedBattles / (float)totalBattles;
+
+            // Returns the game phase.
+            if (completionRate < 0.33F)
+                return 1;
+            else if (completionRate < 0.66F)
+                return 2;
+            else
+                return 3;
+
+        }
 
         // Call this function to enter the overworld.
         public void EnterOverworld()

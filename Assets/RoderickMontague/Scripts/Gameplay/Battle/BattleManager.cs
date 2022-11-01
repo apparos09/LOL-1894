@@ -45,6 +45,9 @@ namespace RM_BBTS
         // // The move the opponent has selected.
         // public Move opponentMove;
 
+        // The chance of learning a new move.
+        private float NEW_MOVE_CHANCE = 0.80F;
+
         [Header("UI")]
         // The user interface.
         public GameObject ui;
@@ -86,7 +89,7 @@ namespace RM_BBTS
         // Run Button
         public Button runButton;
 
-        [Header("UI/Other")]
+        [Header("UI/Opponent")]
 
         // The health bar for the opponent.
         public ProgressBar opponentHealthBar;
@@ -436,10 +439,71 @@ namespace RM_BBTS
             EnablePlayerOptions();
         }
 
+        // Called when the player has won the battle.
+        public void OnPlayerBattleWon()
+        {
+            textBox.OnTextBoxFinishedRemoveCallback(OnPlayerBattleWon);
+            player.LevelUp();
+
+            // Completed a Battle
+            gameManager.completedBattles++;
+
+            // The door is now locked since the room is cleared.
+            door.Locked = true;
+            ToOverworld();
+        }
+
+        // Called when the player has lost the battle.
+        public void OnPlayerBattleLost()
+        {
+            textBox.OnTextBoxFinishedRemoveCallback(OnPlayerBattleLost);
+            gameManager.OnGameOver();
+            ToOverworld();
+        }
+
         // Called when potentially learning a new move.
         public void OnLearningNewMove()
         {
+            // TODO: implement new move learning.
+            // The phase.
+            int phase = gameManager.GetGamePhase();
 
+            // The new move.
+            Move newMove;
+
+            switch (phase)
+            {
+                case 1: // beginning - 1
+                    newMove = MoveList.Instance.GetRandomRank1Move();
+                    break;
+                case 2: // middle - 2
+                    newMove = MoveList.Instance.GetRandomRank2Move();
+                    break;
+                case 3: // end - 3
+                default:
+                    newMove = MoveList.Instance.GetRandomRank3Move(); 
+                    break;
+            }
+
+            // If the player has less than 4 moves, automatically learn the move.
+            if(player.GetMoveCount() < 4)
+            {
+                for(int i = 0; i < player.moves.Length; i++)
+                {
+                    if (player.moves[i] == null)
+                    {
+                        player.moves[i] = newMove;
+                        break;
+                    }
+                }
+
+                // Inserts a new page.
+                textBox.pages.Insert(textBox.CurrentPageIndex + 1, new Page("The player learned " + newMove.Name));
+            }
+            else
+            {
+                // TODO: pull up new move panel.
+            }
         }
 
         // Goes to the overworld.
@@ -474,13 +538,35 @@ namespace RM_BBTS
                     // The player got a game over.
                     if (player.Health <= 0) // game over
                     {
-                        gameManager.OnGameOver();
-                        ToOverworld();
+                        textBox.pages.Clear();
+                        textBox.pages.Add(new Page("The player has lost the battle!"));
+                        textBox.SetPage(0);
+                        textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
+
+                        DisablePlayerOptions();
+                        textBox.Open();
                     }
                     else // The player won the fight.
                     {
-                        player.LevelUp();
-                        ToOverworld();
+                        textBox.pages.Clear();
+                        textBox.pages.Add(new Page("The player has won the battle!"));
+                        textBox.pages.Add(new Page("The player got a level up!"));
+
+                        // TODO: uncomment for learning a new move.
+                        // Checks to see if the player will be learning a new move.
+                        // if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE)
+                        // {
+                        //     Page movePage = new Page("The player is trying to learn a new move!");
+                        //     movePage.OnPageClosedAddCallback(OnLearningNewMove);
+                        //     textBox.pages.Add(movePage);
+                        // }
+
+                        // Set up the textbox.
+                        textBox.SetPage(0);
+                        textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleWon);
+
+                        DisablePlayerOptions();
+                        textBox.Open();
                     }
                 }
             }

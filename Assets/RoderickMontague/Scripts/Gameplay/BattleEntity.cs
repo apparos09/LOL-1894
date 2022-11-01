@@ -248,6 +248,29 @@ namespace RM_BBTS
         }
 
         // MOVES //
+        // The amount of moves the battle entity has.
+        public int GetMoveCount()
+        {
+            // The move count.
+            int count = 0;
+
+            // Increases count for saved move instances.
+            if (moves[0] != null) // m0
+                count++;
+
+            if (moves[1] != null) // m1
+                count++;
+
+            if (moves[2] != null) // m2
+                count++;
+
+            if (moves[3] != null) // m3
+                count++;
+
+            return count;
+
+        }
+
         // Move 0
         public Move Move0
         {

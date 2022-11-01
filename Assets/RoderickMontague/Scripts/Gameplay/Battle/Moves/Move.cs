@@ -93,7 +93,9 @@ namespace RM_BBTS
             if(Random.Range(0.0F, 1.0F) <= accuracy)
             {
                 // Does damage.
-                target.Health -= 1.0F; // power * user.Attack;
+                float damage = user.Attack * (power * 0.25F) - target.Defense * (power * 0.25F);
+                damage = damage < 0 ? 1.0F : damage;
+                target.Health -= damage; // power * user.Attack;
 
                 // Uses energy.
                 user.Energy -= energy;

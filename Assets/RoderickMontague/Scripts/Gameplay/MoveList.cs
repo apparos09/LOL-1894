@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
+    // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
+    // The list of move ids.
     public enum moveId { run, charge, hit, bam, wham, kablam }
 
     // The list of moves for the game.
@@ -19,6 +21,15 @@ namespace RM_BBTS
         // The charge move that entities use.
         // This is copied whenever someone performs a charge, and is never put into the 1-4 move slots.
         private static ChargeMove chargeMove;
+
+        // The last rank 1 move.
+        private moveId lastRank1 = moveId.bam;
+
+        // The last rank 2 move.
+        private moveId lastRank2 = moveId.wham;
+
+        // The last rank 3 move.
+        private moveId lastRank3 = moveId.kablam;
 
         // TODO: include list of move animations.
 
@@ -38,6 +49,12 @@ namespace RM_BBTS
                 instance = this;
             else
                 Destroy(this);
+        }
+
+        // Start is called just before any of the Update methods is called the first time.
+        private void Start()
+        {
+            
         }
 
         // Gets the instance.
@@ -94,22 +111,48 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hit: // Hit
-                    move = new Move(moveId.hit, "Hit", 1, 1.0F, 1.0F, 1.0F);
+                    move = new Move(moveId.hit, "Hit", 1, 10.0F, 1.0F, 1.0F);
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.hit, "Bam", 1, 1.0F, 1.0F, 1.0F);
+                    move = new Move(moveId.hit, "Bam", 1, 10.0F, 1.0F, 1.0F);
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.hit, "Wham", 2, 3.0F, 1.0F, 1.5F);
+                    move = new Move(moveId.hit, "Wham", 2, 15.0F, 1.0F, 1.5F);
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.hit, "Kablam", 3, 5.0F, 1.0F, 2.0F);
+                    move = new Move(moveId.hit, "Kablam", 3, 20.0F, 1.0F, 2.0F);
                     break;
             }
 
+            return move;
+        }
+
+        // Gets a random rank 1 move.
+        public Move GetRandomRank1Move()
+        {
+            // Grabs a random move. The first two are skipped since 'run' and 'charge' should not be used.
+            moveId id = (moveId)Random.Range(2, (int)lastRank1 + 1);
+            Move move = GenerateMove(id);
+            return move;
+        }
+
+        // Gets a random rank 2 move.
+        public Move GetRandomRank2Move()
+        {
+            moveId id = (moveId)Random.Range((int)lastRank1 + 1, (int)lastRank2 + 1);
+            Move move = GenerateMove(id);
+            return move;
+        }
+
+        // Gets a random rank 3 move.
+        public Move GetRandomRank3Move()
+        {
+            // Gets a random rank 3 move.
+            moveId id = (moveId)Random.Range((int)lastRank2 + 1, (int)lastRank3 + 1);
+            Move move = GenerateMove(id);
             return move;
         }
     }
