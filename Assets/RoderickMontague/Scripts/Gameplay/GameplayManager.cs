@@ -245,6 +245,13 @@ namespace RM_BBTS
 
         }
 
+        // Goes to the results screen.
+        public void ToResultsScreen()
+        {
+            // TODO: store battle data.
+
+        }
+
         // Updates the UI
         public void UpdateUI()
         {

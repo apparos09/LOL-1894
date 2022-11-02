@@ -663,10 +663,21 @@ namespace RM_BBTS
                         {
                             textBox.pages.Clear();
 
-                            // Checks if the opponent was a treasure chest.
+                            // Checks the opponent type.
                             if (opponent is Treasure) // Is Treasure
                             {
                                 textBox.pages.Add(new Page("The player has opened the treasure chest!"));
+                            }
+                            else if(opponent is Boss) // Final boss beaten.
+                            {
+                                // TODO: test this.
+                                // Boss page and callback.
+                                Page bossPage = new Page("The player has beaten the final boss!");
+                                bossPage.OnPageClosedAddCallback(gameManager.ToResultsScreen);
+
+                                // Adds the boss page. 
+                                textBox.pages.Add(bossPage);
+                                textBox.pages.Add(new Page("..."));
                             }
                             else // Not Treasure
                             {
