@@ -249,7 +249,7 @@ namespace RM_BBTS
         public void ToResultsScreen()
         {
             // TODO: store battle data.
-
+            SceneManager.LoadScene("ResultsScene");
         }
 
         // Updates the UI

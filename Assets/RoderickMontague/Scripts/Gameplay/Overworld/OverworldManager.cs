@@ -24,6 +24,9 @@ namespace RM_BBTS
         // The amount of the doors.
         public const int DOOR_COUNT = 18;
 
+        // The amount of treasures for the game.
+        public const int TREASURE_COUNT = 3;
+
         // // The door prefab to be instantiated.
         // public GameObject doorPrefab;
         // 
@@ -175,8 +178,9 @@ namespace RM_BBTS
             door.locked = false;
 
             // TODO: randomize the enemy being placed behind the door.
-            // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
-            door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);
+            door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);
+            // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.boss);
 
             // Make sure the battle entity is parented to the door.
             // TODO: have algorithm for generating enemies.

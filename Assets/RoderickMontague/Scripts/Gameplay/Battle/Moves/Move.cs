@@ -30,6 +30,16 @@ namespace RM_BBTS
         // The description of a move.
         public string description = "";
 
+        // STATUS EFFECTS/CHANCE EVENTS //
+        // The chance of performing critical damage.
+        protected float criticalChance = 0.3F;
+
+        // Chance of burning the opponent.
+        protected float burnChance = 0.0F;
+
+        // Chance of paralyzing the opponent.
+        protected float paralysisChance = 0.0F;
+
         // TODO: replace name with file citation for translation.
         // Move constructor
         public Move(moveId id, string name, int rank, float power, float accuracy, float energy)
@@ -87,6 +97,40 @@ namespace RM_BBTS
             // TODO: implement.
         }
 
+        // Critical
+        public float CriticalChance
+        {
+            get { return criticalChance; }
+
+            set
+            {
+                criticalChance = Mathf.Clamp01(criticalChance);
+            }
+        }
+
+        // Burn
+        public float BurnChance
+        {
+            get { return burnChance; }
+
+            set
+            {
+                burnChance = Mathf.Clamp01(burnChance);
+            }
+        }
+
+        // Paralysis
+        public float ParalysisChance
+        {
+            get { return paralysisChance; }
+
+            set
+            {
+                paralysisChance = Mathf.Clamp01(paralysisChance);
+            }
+        }
+
+
         // Called when the move is being performed.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
@@ -103,19 +147,33 @@ namespace RM_BBTS
             if(Random.Range(0.0F, 1.0F) <= accuracy)
             {
                 // Does damage.
-                float damage = user.Attack * (power * 0.25F) - target.Defense * (power * 0.25F);
-                damage = damage < 0 ? 1.0F : damage;
+                float damage = 0.0F;
+                float critBoost = 1.0F;
+
+                // Randomization chance for doing a critical (extra) damage.
+                if(Random.Range(0.0F, 1.0F) <= criticalChance) // extra damage
+                {
+                    critBoost = 1.125F;
+                }
+
+                // Calculation
+                damage = user.Attack * (power * 0.25F) * critBoost - target.Defense * (power * 0.25F);
+
+                damage = damage < 0 ? 1.0F : damage; // The attack should do at least 1 damage.
                 target.Health -= damage; // power * user.Attack;
 
                 // Uses energy.
                 user.Energy -= energy;
 
                 // Adds the new page.
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit!"));
+                if(critBoost == 1.0F) // No critical
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit!"));
+                else // Critical
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit, and it did critical damage!"));
 
                 // TODO: maybe move this to the battle script?
                 // Checks if the user is the player or not.
-                if(user is Player) // Is the player.
+                if (user is Player) // Is the player.
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
                     battle.UpdateUI(); // Updates enemy health bar.

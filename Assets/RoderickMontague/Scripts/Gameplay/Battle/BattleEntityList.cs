@@ -103,6 +103,24 @@ namespace RM_BBTS
                     data.energy = 1;
                     break;
 
+                case battleEntityId.boss: // boss
+                    data.id = battleEntityId.boss;
+                    data.displayName = "Boss";
+                    data.level = 1;
+
+                    data.maxHealth = 50;
+                    data.health = 50;
+
+                    data.attack = 20;
+                    data.defense = 30;
+                    data.speed = 45;
+
+                    data.maxEnergy = 100;
+                    data.energy = 100;
+
+                    break;
+
+
                 default:
                     data.id = battleEntityId.unknown;
                     data.displayName = "Unknown";
