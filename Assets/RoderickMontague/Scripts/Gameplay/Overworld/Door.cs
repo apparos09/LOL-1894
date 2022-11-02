@@ -18,11 +18,14 @@ namespace RM_BBTS
         // Determines if this is a boss door or not.
         public bool isBossDoor = false;
 
+        // Determines if this is a treasure door or not.
+        public bool isTreasureDoor = false;
+
         // The battle entity behind the door.
         public BattleEntityData battleEntity;
 
         // Says whether the door is locked or not.
-        public bool locked = false;
+        private bool locked = false;
 
         // Awake is called when the script instance is loaded.
         private void Awake()

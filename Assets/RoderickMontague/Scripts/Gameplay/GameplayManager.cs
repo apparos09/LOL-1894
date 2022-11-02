@@ -215,7 +215,7 @@ namespace RM_BBTS
         public void EnterBattle(Door door)
         {
             // TODO: comment this out in the final game.
-            if(door.locked)
+            if(door.Locked)
             {
                 Debug.Log("The door can't be opened.");
                 return;

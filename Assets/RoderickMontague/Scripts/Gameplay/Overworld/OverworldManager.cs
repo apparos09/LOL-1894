@@ -112,11 +112,55 @@ namespace RM_BBTS
             //     doors.AddRange(FindObjectsOfType<Door>(true));
             // }    
                 
+            // Initialize All Doors
             // Goes through each door and gives them an entity behind them.
-            foreach(Door door in doors)
+            // foreach(Door door in doors)
+            // {
+            //     // generates a room for the door.
+            //     GenerateRoom(door);
+            // }
+
+            // Initializes the doors (normal, treasure, and boss)
             {
-                // generates a room for the door.
-                GenerateRoom(door);
+                // Door initialization list.
+                List<Door> doorInitList = new List<Door>(doors);
+
+                // A random index.
+                int randIndex = 0;
+
+                // BOSS
+                // The boss door
+                Door bossDoor;
+
+                randIndex = Random.Range(0, doorInitList.Count); // Grabs the random index.
+                bossDoor = doorInitList[randIndex]; // Grab random door to make boss door.
+                doorInitList.RemoveAt(randIndex); // Remove boss door from list.
+                bossDoor.isBossDoor = true; // This is a boss door.
+                GenerateRoom(bossDoor); // Generates the room.
+
+                // TREASURES
+                // The treasure doors.
+                List<Door> treasureDoors = new List<Door>();
+
+                // While there are still treasure doors.
+                while(treasureDoors.Count < TREASURE_COUNT && treasureDoors.Count < doorInitList.Count)
+                {
+                    randIndex = Random.Range(0, doorInitList.Count); // random index
+                    
+                    Door treasureDoor = doorInitList[randIndex]; // Grab the door.
+                    treasureDoors.Add(treasureDoor); // Add to list.
+                    
+                    doorInitList.RemoveAt(randIndex); // Remove the door from the overall list.
+                    treasureDoor.isTreasureDoor = true; // This is a treasure door.
+                    GenerateRoom(treasureDoor); // Generates the room.
+                }
+
+                // Initialize the rest of the doors.
+                foreach(Door door in doorInitList)
+                {
+                    GenerateRoom(door);
+                }
+
             }
 
             initialized = true;
@@ -174,11 +218,26 @@ namespace RM_BBTS
         // Generates a room for the door.
         private void GenerateRoom(Door door)
         {
-            // ...
-            door.locked = false;
+            // Unlock the door.
+            door.Locked = false;
+
+            // Checks the door type.
+            if(door.isBossDoor) // Boss Door
+            {
+                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.boss);
+            }
+            else if(door.isTreasureDoor) // Treasure Door
+            {
+                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);
+            }
+            else // Normal Door
+            {
+                // TODO: generate normal enemy (need to RANDOMIZE)
+                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            }
 
             // TODO: randomize the enemy being placed behind the door.
-            door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
             // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);
             // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.boss);
 

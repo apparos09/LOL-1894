@@ -120,6 +120,22 @@ namespace RM_BBTS
 
                     break;
 
+                case battleEntityId.ufo: // UFO
+                    data.id = battleEntityId.boss;
+                    data.displayName = "U.F.O.";
+                    data.level = 1;
+
+                    data.maxHealth = 15;
+                    data.health = 15;
+
+                    data.attack = 2;
+                    data.defense = 5;
+                    data.speed = 10;
+
+                    data.maxEnergy = 15;
+                    data.energy = 15;
+
+                    break;
 
                 default:
                     data.id = battleEntityId.unknown;
