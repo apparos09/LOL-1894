@@ -21,6 +21,9 @@ namespace RM_BBTS
         // The textbox
         public TextBox textBox;
 
+        // The prompt for asking the player about the treasure.
+        public GameObject treasurePrompt;
+
         // The panel for learning a new move.
         public LearnMove learnMovePanel;
 
@@ -50,6 +53,9 @@ namespace RM_BBTS
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
+
+        // Becomes 'true' when the battle end state has been initialized.
+        private bool initBattleEnd = false;
 
         [Header("UI")]
         // The user interface.
@@ -141,6 +147,9 @@ namespace RM_BBTS
             // Close the textbox when the player is done.
             textBox.closeOnEnd = true;
 
+            // Hide prompt.
+            treasurePrompt.gameObject.SetActive(false);
+
             // Turns off the learn move panel.
             learnMovePanel.windowObject.SetActive(false);
         }
@@ -155,7 +164,7 @@ namespace RM_BBTS
         // This function is called when the behaviour becomes disabled or inactive
         private void OnDisable()
         {
-            if(ui != null)
+            if (ui != null)
                 ui.SetActive(false);
         }
 
@@ -166,9 +175,9 @@ namespace RM_BBTS
 
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
-            
+
             // Checks the type of entity.
-            switch(door.battleEntity.id)
+            switch (door.battleEntity.id)
             {
                 case battleEntityId.treasure: // treasure
                     opponent = treasureBase;
@@ -179,16 +188,16 @@ namespace RM_BBTS
                 default: // enemy
                     opponent = enemyBase;
                     break;
-                    
+
             }
 
             // Opponent has been set.
-            if(opponent != null)
+            if (opponent != null)
             {
                 opponent.LoadBattleData(door.battleEntity);
                 opponentSprite.sprite = opponent.sprite;
-            }    
-                
+            }
+
 
             // Checks move activity to see if the player can use it or not.
             // Also changes the move name on the display.
@@ -217,6 +226,24 @@ namespace RM_BBTS
 
             // Updates the interface.
             UpdateUI();
+
+            // If the opponent is a treasure box.
+            if (opponent is Treasure)
+            {
+                // The player has no battle options since this isn't a fight.
+                DisablePlayerOptions();
+
+                // Show treasure prompt.
+                treasurePrompt.gameObject.SetActive(true);
+            }
+            else
+            {
+                // Hide treasure prompt.
+                treasurePrompt.gameObject.SetActive(false);
+            }
+
+            // The battle has begun.
+            initBattleEnd = false;
         }
 
         // Called when the mouse hovers over an object.
@@ -250,12 +277,12 @@ namespace RM_BBTS
             move1Button.interactable = interactable;
             move2Button.interactable = interactable;
             move3Button.interactable = interactable;
-            
+
             chargeButton.interactable = interactable;
             runButton.interactable = interactable;
 
             // If all were turned on, check to see if some should stay off.
-            if(interactable)
+            if (interactable)
                 RefreshPlayerOptions();
         }
 
@@ -279,7 +306,7 @@ namespace RM_BBTS
             // Enables/disables various buttons.
 
             // Move 0 
-            if(player.Move0 != null)
+            if (player.Move0 != null)
                 move0Button.interactable = player.Move0.Energy <= player.Energy;
             else
                 move0Button.interactable = false;
@@ -312,9 +339,9 @@ namespace RM_BBTS
         private void AddVisualUpdateCallbacks(bool playerTurn)
         {
             // If there are pages to attach callbacks too.
-            if(turnText.Count > 0)
+            if (turnText.Count > 0)
             {
-                if(playerTurn) // Player turn
+                if (playerTurn) // Player turn
                 {
                     turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
                     turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
@@ -374,7 +401,7 @@ namespace RM_BBTS
                 opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
 
                 // Places the pages in order.
-                if(playerFirst)
+                if (playerFirst)
                 {
                     turnText.Add(playerMovePage);
                     turnText.Add(opponentMovePage);
@@ -384,7 +411,7 @@ namespace RM_BBTS
                     turnText.Add(opponentMovePage);
                     turnText.Add(playerMovePage);
                 }
-                
+
 
                 // Show the textbox.
                 // TODO: hide player move controls.
@@ -404,7 +431,7 @@ namespace RM_BBTS
             }
         }
 
-        
+
         // Called when the player attempts to run away. TODO: have the enemy's move still go off if the run fails.
         public void RunAway()
         {
@@ -467,9 +494,32 @@ namespace RM_BBTS
             ToOverworld();
         }
 
+        // Call this function to open the treasure.
+        public void OpenTreasure()
+        {
+            // Hide prompt.
+            treasurePrompt.gameObject.SetActive(false);
+
+            // The "battle" is over.
+            opponent.Health = 0;
+        }
+
+        // Call this function to leave the treasure.
+        public void LeaveTreasure()
+        {
+            // Hide prompt.
+            treasurePrompt.gameObject.SetActive(false);
+
+            // Return to the overworld.
+            ToOverworld();
+        }
+
         // Called when potentially learning a new move.
         public void OnLearningNewMove()
         {
+            // Hide the box gameobject.
+            textBox.Close();
+
             // TODO: implement new move learning.
             // The phase.
             int phase = gameManager.GetGamePhase();
@@ -488,12 +538,12 @@ namespace RM_BBTS
                     break;
                 case 3: // end - 3
                 default:
-                    newMove = MoveList.Instance.GetRandomRank3Move(); 
+                    newMove = MoveList.Instance.GetRandomRank3Move();
                     break;
             }
 
             // If the player already has this move.
-            if(player.HasMove(newMove))
+            if (player.HasMove(newMove))
             {
                 // Becomes 'true' when the new move is set.
                 bool newMoveFound = false;
@@ -502,7 +552,7 @@ namespace RM_BBTS
                 int attempts = 5;
 
                 // Tries to generate a new move that the player doesn't have 5 times.
-                for(int n = 0; n < attempts; n++)
+                for (int n = 0; n < attempts; n++)
                 {
                     // Grabs a new move.
                     newMove = MoveList.Instance.GetRandomMove();
@@ -515,13 +565,13 @@ namespace RM_BBTS
 
                 // If the new move was still the same, well then the player will have the chance to get multiples of the same move.
                 // This shouldn't happen, but it likely won't happen.
-                
+
             }
 
             // If the player has less than 4 moves, automatically learn the move.
-            if(player.GetMoveCount() < 4)
+            if (player.GetMoveCount() < 4)
             {
-                for(int i = 0; i < player.moves.Length; i++)
+                for (int i = 0; i < player.moves.Length; i++)
                 {
                     if (player.moves[i] == null)
                     {
@@ -548,6 +598,15 @@ namespace RM_BBTS
         // Goes to the overworld.
         public void ToOverworld()
         {
+            // Clear out the textbox.
+            if (textBox.IsVisible())
+            {
+                textBox.Close();
+                textBox.pages.Clear();
+            }
+
+
+            // Go to the overworld.
             gameManager.UpdateUI();
             gameManager.EnterOverworld();
         }
@@ -564,54 +623,78 @@ namespace RM_BBTS
         void Update()
         {
             // If the text box is not visible.
-            if(!textBox.IsVisible())
+            if (!textBox.IsVisible())
             {
                 // If both entities are alive do battle calculations.
                 if (player.Health > 0 && opponent.Health > 0)
                 {
-                    PerformMoves();
+                    // If the opponent isn't a treasure chest try to perform moves.
+                    if (!(opponent is Treasure))
+                        PerformMoves();
                 }
                 else
                 {
-                    // Returns to the overworld. TODO: account for game over.
-                    // The player got a game over.
-                    if (player.Health <= 0) // game over
+                    // Checks if the battle end has been initialized.
+                    if (!initBattleEnd)
                     {
-                        textBox.pages.Clear();
-                        textBox.pages.Add(new Page("The player has lost the battle!"));
-                        textBox.SetPage(0);
-                        textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
-
-                        DisablePlayerOptions();
-                        textBox.Open();
-                    }
-                    else // The player won the fight.
-                    {
-                        textBox.pages.Clear();
-                        textBox.pages.Add(new Page("The player has won the battle!"));
-                        textBox.pages.Add(new Page("The player got a level up!"));
-
-                        // TODO: uncomment for learning a new move.
-                        // Checks to see if the player will be learning a new move.
-                        if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE)
+                        // Returns to the overworld. TODO: account for game over.
+                        // The player got a game over.
+                        if (player.Health <= 0) // game over
                         {
-                            Page movePage = new Page("The player is trying to learn a new move!");
-                            movePage.OnPageClosedAddCallback(OnLearningNewMove);
-                            textBox.pages.Add(movePage);
+                            textBox.pages.Clear();
+                            textBox.pages.Add(new Page("The player has lost the battle!"));
+                            textBox.SetPage(0);
+                            textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
+
+                            DisablePlayerOptions();
+                            textBox.Open();
+                        }
+                        else // The player won the fight.
+                        {
+                            textBox.pages.Clear();
+
+                            // Checks if the opponent was a treasure chest.
+                            if (opponent is Treasure) // Is Treasure
+                            {
+                                textBox.pages.Add(new Page("The player has opened the treasure chest!"));
+                            }
+                            else // Not Treasure
+                            {
+                                textBox.pages.Add(new Page("The player has won the battle!"));
+                            }
+
+                            // Level up message.                        
+                            textBox.pages.Add(new Page("The player got a level up!"));
+
+                            // Checks to see if the player will be learning a new move.
+                            // If the opponet was a treasure box the player will always get the chance to learn a new move.
+                            if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure)
+                            {
+                                Page movePage = new Page("The player is trying to learn a new move!");
+                                movePage.OnPageClosedAddCallback(OnLearningNewMove);
+                                textBox.pages.Add(movePage);
+
+                                // Placeholder page.
+                                textBox.pages.Add(new Page("..."));
+                            }
+
+                            // Set up the textbox.
+                            textBox.SetPage(0);
+                            textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleWon);
+
+                            DisablePlayerOptions();
+                            textBox.Open();
                         }
 
-                        // Set up the textbox.
-                        textBox.SetPage(0);
-                        textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleWon);
-
-                        DisablePlayerOptions();
-                        textBox.Open();
+                        // The battle end has been initialized.
+                        initBattleEnd = true;
                     }
+
                 }
             }
-            
+
         }
 
-        
+
     }
 }

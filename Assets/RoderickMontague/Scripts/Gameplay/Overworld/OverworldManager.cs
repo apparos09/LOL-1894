@@ -175,7 +175,8 @@ namespace RM_BBTS
             door.locked = false;
 
             // TODO: randomize the enemy being placed behind the door.
-            door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(0);
+            // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);
 
             // Make sure the battle entity is parented to the door.
             // TODO: have algorithm for generating enemies.

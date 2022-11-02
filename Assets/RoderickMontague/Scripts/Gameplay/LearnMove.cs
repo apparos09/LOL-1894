@@ -16,6 +16,12 @@ namespace RM_BBTS
         // The new move.
         public Move newMove;
 
+        // The move being learned.
+        private Move learningMove;
+
+        // The battle object.
+        public BattleManager battle;
+
         // The existing moves.
         private Move move0;
         private Move move1;
@@ -47,6 +53,7 @@ namespace RM_BBTS
         {
             // NEW MOVE
             newMoveInfo.LoadMoveInfo(newMove);
+            learningMove = newMove;
 
             // MOVE 0
             move0 = player.Move0;
@@ -137,6 +144,27 @@ namespace RM_BBTS
         public void AcceptChanges()
         {
             windowObject.SetActive(false);
+
+            // Checks to see if a new move was learned or not.
+            if(newMove.Id == learningMove.Id) // new move was not learned.
+            {
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
+                    new Page("The player did not learn " + learningMove.Name + "."));
+            }
+            else // new move was learned.
+            {
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, 
+                    new Page("The player learned " + learningMove.Name + "."));
+            }
+
+            // Move onto the next pages (skip placeholder text).
+            battle.textBox.NextPage();
+
+            // Show the box again, and move onto the next page.
+            windowObject.SetActive(false);
+
+            battle.textBox.Open();
+            battle.textBox.NextPage();
         }
     }
 }
