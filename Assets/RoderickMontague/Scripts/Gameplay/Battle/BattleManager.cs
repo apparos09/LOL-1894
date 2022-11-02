@@ -21,6 +21,9 @@ namespace RM_BBTS
         // The textbox
         public TextBox textBox;
 
+        // The panel for learning a new move.
+        public LearnMove learnMovePanel;
+
         [Header("Battle")]
 
         // The player.
@@ -137,6 +140,9 @@ namespace RM_BBTS
 
             // Close the textbox when the player is done.
             textBox.closeOnEnd = true;
+
+            // Turns off the learn move panel.
+            learnMovePanel.windowObject.SetActive(false);
         }
 
         // This function is called when the object becomes enabled and active
@@ -471,6 +477,7 @@ namespace RM_BBTS
             // The new move.
             Move newMove;
 
+            // Checks the phase.
             switch (phase)
             {
                 case 1: // beginning - 1
@@ -483,6 +490,32 @@ namespace RM_BBTS
                 default:
                     newMove = MoveList.Instance.GetRandomRank3Move(); 
                     break;
+            }
+
+            // If the player already has this move.
+            if(player.HasMove(newMove))
+            {
+                // Becomes 'true' when the new move is set.
+                bool newMoveFound = false;
+
+                // Attempts at generating a new move.
+                int attempts = 5;
+
+                // Tries to generate a new move that the player doesn't have 5 times.
+                for(int n = 0; n < attempts; n++)
+                {
+                    // Grabs a new move.
+                    newMove = MoveList.Instance.GetRandomMove();
+                    newMoveFound = player.HasMove(newMove);
+
+                    // If a new move was found already, break early.
+                    if (newMoveFound)
+                        break;
+                }
+
+                // If the new move was still the same, well then the player will have the chance to get multiples of the same move.
+                // This shouldn't happen, but it likely won't happen.
+                
             }
 
             // If the player has less than 4 moves, automatically learn the move.
@@ -502,7 +535,13 @@ namespace RM_BBTS
             }
             else
             {
-                // TODO: pull up new move panel.
+
+                // Update the information.
+                learnMovePanel.newMove = newMove;
+                learnMovePanel.LoadMoveInformation(); // Happens on enable.
+
+                // Turn on the move panel, which also updates the move list.
+                learnMovePanel.windowObject.SetActive(true);
             }
         }
 

@@ -15,6 +15,9 @@ namespace RM_BBTS
         // The instance of the move list.
         private static MoveList instance;
 
+        // The move ID count.
+        public const int MOVE_ID_COUNT = 10;
+
         // The run move that is used to play through the turn.
         private static RunMove runMove;
 
@@ -146,6 +149,14 @@ namespace RM_BBTS
                     break;
             }
 
+            return move;
+        }
+
+        // Gets a random move.
+        public Move GetRandomMove()
+        {
+            moveId id = (moveId)Random.Range(2, MOVE_ID_COUNT);
+            Move move = GenerateMove(id);
             return move;
         }
 

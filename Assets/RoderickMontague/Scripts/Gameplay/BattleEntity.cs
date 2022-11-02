@@ -271,6 +271,28 @@ namespace RM_BBTS
 
         }
 
+        // Checks if the battle entity has a certain move.
+        public bool HasMove(Move move)
+        {
+            return HasMove(move.Id);
+        }
+
+        // Checks if the battle entity has a certain move.
+        public bool HasMove(moveId compId)
+        {
+            // Checks each index
+            for(int i = 0; i < moves.Length; i++)
+            {
+                // If the ids are the same, then the entity has the move.
+                if (moves[i].Id == compId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // Move 0
         public Move Move0
         {
