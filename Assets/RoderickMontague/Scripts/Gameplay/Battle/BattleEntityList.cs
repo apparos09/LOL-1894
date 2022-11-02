@@ -69,6 +69,7 @@ namespace RM_BBTS
             {
                 // An unknown battle entity.
                 case battleEntityId.unknown:
+                default:
                     data.id = battleEntityId.unknown;
                     data.displayName = "Unknown";
                     data.level = 1;
@@ -84,6 +85,9 @@ namespace RM_BBTS
                     data.energy = 10;
 
                     data.move0 = moveId.poke;
+
+                    // Saves the sprite.
+                    data.sprite = entitySprites[0];
 
                     break;
 
@@ -121,7 +125,7 @@ namespace RM_BBTS
                     break;
 
                 case battleEntityId.ufo: // UFO
-                    data.id = battleEntityId.boss;
+                    data.id = battleEntityId.ufo;
                     data.displayName = "U.F.O.";
                     data.level = 1;
 
@@ -135,24 +139,11 @@ namespace RM_BBTS
                     data.maxEnergy = 15;
                     data.energy = 15;
 
-                    break;
+                    // Saves the sprite.
+                    data.sprite = entitySprites[(int)battleEntityId.ufo];
 
-                default:
-                    data.id = battleEntityId.unknown;
-                    data.displayName = "Unknown";
-                    data.level = 1;
-
-                    data.maxHealth = 1;
-                    data.health = 1;
-
-                    data.attack = 1;
-                    data.defense = 1;
-                    data.speed = 1;
-
-                    data.maxEnergy = 1;
-                    data.energy = 1;
-
-                    data.move0 = moveId.poke;
+                    // Set random moves.
+                    SetRandomMovesFromList(ref data);
                     break;
 
             }
@@ -170,6 +161,7 @@ namespace RM_BBTS
             switch(id)
             {
                 case battleEntityId.unknown:
+                default:
                     moveList = new List<moveId>() { moveId.poke };
                     break;
 
@@ -177,12 +169,56 @@ namespace RM_BBTS
                     moveList = new List<moveId>() { moveId.poke };
                     break;
 
-                default:
+                case battleEntityId.boss:
                     moveList = new List<moveId>() { moveId.poke };
+                    break;
+
+                case battleEntityId.ufo:
+                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
                     break;
             }
 
             return moveList;
+        }
+
+        // Sets random moves for the UFO.
+        private void SetRandomMovesFromList(ref BattleEntityData data)
+        {
+            // Grabs the move list.
+            List<moveId> moveList = GenerateBattleEntityMoveList(data.id);
+
+            // List of moves added.
+            int count = 0;
+
+            // Grab the moves.
+            while(count < 4 && moveList.Count != 0)
+            {
+                // Grabs the random index.
+                int index = Random.Range(0, moveList.Count);
+
+                // Check current count to know what move slot to fill.
+                switch (count)
+                {
+                    case 0:
+                        data.move0 = moveList[index];
+                        break;
+                    case 1:
+                        data.move1 = moveList[index];
+                        break;
+                    case 2:
+                        data.move2 = moveList[index];
+                        break;
+                    case 3:
+                        data.move3 = moveList[index];
+                        break;
+                }
+
+                // Removes at the current index.
+                moveList.RemoveAt(index);
+
+                // Increase count.
+                count++;
+            }
         }
     }
 

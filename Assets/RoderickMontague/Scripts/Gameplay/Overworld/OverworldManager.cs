@@ -233,7 +233,7 @@ namespace RM_BBTS
             else // Normal Door
             {
                 // TODO: generate normal enemy (need to RANDOMIZE)
-                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
             }
 
             // TODO: randomize the enemy being placed behind the door.

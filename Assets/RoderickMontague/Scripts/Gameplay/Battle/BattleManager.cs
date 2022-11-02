@@ -196,6 +196,7 @@ namespace RM_BBTS
             {
                 opponent.LoadBattleData(door.battleEntity);
                 opponentSprite.sprite = opponent.sprite;
+                opponentSprite.gameObject.SetActive(true);
             }
 
 
@@ -615,6 +616,8 @@ namespace RM_BBTS
                 textBox.pages.Clear();
             }
 
+            // Hide opponent sprite.
+            opponentSprite.gameObject.SetActive(false);
 
             // Go to the overworld.
             gameManager.UpdateUI();
