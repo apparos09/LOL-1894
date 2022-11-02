@@ -283,6 +283,10 @@ namespace RM_BBTS
             // Checks each index
             for(int i = 0; i < moves.Length; i++)
             {
+                // No move in this slot.
+                if (moves[i] == null)
+                    continue;
+
                 // If the ids are the same, then the entity has the move.
                 if (moves[i].Id == compId)
                 {

@@ -580,8 +580,18 @@ namespace RM_BBTS
                     }
                 }
 
+                // Remove this callback.
+                textBox.CurrentPage.OnPageClosedRemoveCallback(OnLearningNewMove);
+
+                // Removes the placeholder page.
+                textBox.pages.RemoveAt(textBox.CurrentPageIndex + 1);
+
                 // Inserts a new page.
                 textBox.pages.Insert(textBox.CurrentPageIndex + 1, new Page("The player learned " + newMove.Name));
+
+                // Go onto the next page.
+                textBox.Open();
+                textBox.NextPage();
             }
             else
             {
