@@ -12,10 +12,14 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        
+
 
         // The object that was selected in the overworld.
         // public GameObject selectedObject;
+
+        // Gets set to 'true' when the game is in a game over state.
+        // If 'true', the game over function will be called when the player returns to the overworld.
+        public bool gameOver;
 
         [Header("Doors")]
         // The list of doors.
@@ -251,9 +255,46 @@ namespace RM_BBTS
 
         }
 
+        // Rearranges the doors.
+        public void OnOverworldReturnGameOver()
+        {
+            // The new positions
+            List<Vector3> doorLocs = new List<Vector3>();
+
+            // Geta all door positions.
+            foreach(Door door in doors)
+            {
+                // Restore health and energy to entity.
+                door.battleEntity.health = door.battleEntity.maxHealth;
+                door.battleEntity.energy = door.battleEntity.maxEnergy;
+
+                // Adds the position to the list.
+                doorLocs.Add(door.gameObject.transform.position);
+            }
+
+            // Goes through each door again.
+            for(int i = 0; i < doors.Count && doorLocs.Count != 0; i++)
+            {
+                // Grabs a random index.
+                int randIndex = Random.Range(0, doorLocs.Count);
+
+                // Re-positions the door.
+                doors[i].transform.position = doorLocs[randIndex];
+
+                // Removes position from list.
+                doorLocs.RemoveAt(randIndex);
+            }
+
+            gameOver = false;
+        }
+
         // Called when returning to the overworld.
         public void OnOverworldReturn()
         {
+            // Rearranges the doors.
+            if (gameOver)
+                OnOverworldReturnGameOver();
+
             // Evolves the entities.
             int phase = gameManager.GetGamePhase();
 

@@ -261,7 +261,7 @@ namespace RM_BBTS
             player.Energy = player.MaxEnergy;
 
             // TODO: restore enemy powers.
-
+            overworld.gameOver = true;
         }
 
         // Goes to the results screen.
