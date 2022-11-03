@@ -144,6 +144,7 @@ namespace RM_BBTS
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
+                    data.move0 = moveId.lasershot;
                     break;
 
             }

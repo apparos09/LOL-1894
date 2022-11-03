@@ -32,6 +32,9 @@ namespace RM_BBTS
         // The amount of battles completed for the enemies to level up.
         public int battlesPerLevelUp = 3;
 
+        // Shows how many times evolution waves have been done
+        public int evolveWaves = 0;
+
         [Header("UI")]
 
         // The text box used for the game.
@@ -211,7 +214,10 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(true);
 
             // The player has no move selected.
-            player.selectedMove = null; 
+            player.selectedMove = null;
+
+            // Called upon returning to the overworld.
+            overworld.OnOverworldReturn();
         }
 
         // Call to enter the battle world.

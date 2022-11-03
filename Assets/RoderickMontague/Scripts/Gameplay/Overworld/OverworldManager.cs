@@ -246,6 +246,29 @@ namespace RM_BBTS
 
         }
 
+        // Called when returning to the overworld.
+        public void OnOverworldReturn()
+        {
+            // Evolves the entities.
+            int phase = gameManager.GetGamePhase();
+
+            // If in the middle phase, and no evolutions have happened.
+            // If in the end phase, and the evolutions have not been run a second time.
+            if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
+            {
+                // Goes through each door.
+                foreach(Door door in doors)
+                {
+                    // Only evolve the entity if the door is unlocked.
+                    if (!door.Locked)
+                        door.battleEntity = BattleEntity.Evolve(door.battleEntity);
+                }
+
+                gameManager.evolveWaves++;
+            }
+
+        }
+
         // Update is called once per frame
         void Update()
         {

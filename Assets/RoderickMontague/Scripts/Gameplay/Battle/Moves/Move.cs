@@ -157,9 +157,9 @@ namespace RM_BBTS
                 }
 
                 // Calculation
-                damage = user.Attack * (power * 0.25F) * critBoost - target.Defense * (power * 0.25F);
+                damage = user.Attack * (power * 0.25F) * critBoost - target.Defense * (power * 0.20F);
 
-                damage = damage < 0 ? 1.0F : damage; // The attack should do at least 1 damage.
+                damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
                 target.Health -= damage; // power * user.Attack;
 
                 // Uses energy.

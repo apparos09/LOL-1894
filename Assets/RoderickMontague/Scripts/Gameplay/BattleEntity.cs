@@ -295,8 +295,35 @@ namespace RM_BBTS
                 LevelUp();
         }
 
-        public void Evolve()
+        // Evolves the battle entity.
+        public static BattleEntityData Evolve(BattleEntityData oldData)
         {
+            // Can't evolve.
+            if (oldData.evoId == oldData.id)
+                return oldData;
+
+            // Gets the base data.
+            BattleEntityData baseData = BattleEntityList.Instance.GenerateBattleEntityData(oldData.id);
+
+            // Gets the evolved data.
+            BattleEntityData evolved = BattleEntityList.Instance.GenerateBattleEntityData(oldData.evoId);
+
+            // Same Level
+            evolved.level = oldData.level;
+
+            // Give stats to evolved form.
+            evolved.maxHealth += oldData.maxHealth - baseData.maxHealth;
+            evolved.health = evolved.maxHealth;
+
+            evolved.attack += oldData.attack - baseData.attack;
+            evolved.defense += oldData.defense - baseData.defense;
+            evolved.speed += oldData.speed - baseData.speed;
+
+            evolved.maxEnergy += oldData.maxEnergy - baseData.maxEnergy;
+            evolved.energy = evolved.maxEnergy;
+
+            // Return the evolved form.
+            return evolved;
 
         }
 
