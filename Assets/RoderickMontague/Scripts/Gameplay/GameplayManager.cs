@@ -27,7 +27,10 @@ namespace RM_BBTS
         public int totalBattles = 0;
 
         // The total amount of completed battles.
-        public int completedBattles = 0;
+        public int battlesCompleted = 0;
+        
+        // The amount of battles completed for the enemies to level up.
+        public int battlesPerLevelUp = 3;
 
         [Header("UI")]
 
@@ -187,7 +190,7 @@ namespace RM_BBTS
         public int GetGamePhase()
         {
             // The completion rate.
-            float completionRate = completedBattles / (float)totalBattles;
+            float completionRate = battlesCompleted / (float)totalBattles;
 
             // Returns the game phase.
             if (completionRate < 0.33F)

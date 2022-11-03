@@ -106,6 +106,37 @@ namespace RM_BBTS
             energy = maxEnergy;
         }
 
+        // Generates the battle entity data for this entity.
+        public BattleEntityData GenerateBattleEntityData()
+        {
+            // Creates the data object.
+            BattleEntityData data = new BattleEntityData();
+
+            // Sets the values.
+            data.id = id;
+            data.displayName = displayName;
+            data.level = level;
+
+            data.maxHealth = maxHealth;
+            data.health = health;
+
+            data.attack = attack;
+            data.defense = defense;
+            data.speed = speed;
+
+            data.maxEnergy = maxEnergy;
+            data.energy = energy;
+
+            data.move0 = Move0.Id;
+            data.move1 = Move1.Id;
+            data.move2 = Move2.Id;
+            data.move3 = Move3.Id;
+
+            data.sprite = sprite;
+
+            return data;
+        }
+
         // Loads the battle data into this object.
         public void LoadBattleData(BattleEntityData data)
         {
@@ -130,6 +161,12 @@ namespace RM_BBTS
             Move3 = MoveList.Instance.GenerateMove(data.move3);
 
             sprite = data.sprite;
+        }
+
+        // Returns the level of the battle enttiy.
+        public uint Level
+        {
+            get { return level; }
         }
 
         // STATS //
@@ -209,6 +246,9 @@ namespace RM_BBTS
             // The restoration percentage.
             float restorePercent = 0.20F;
 
+            // Increase the level.
+            level++;
+
             // Increases the 5 stats.
             maxHealth += Random.Range(1, 3);
             attack += Random.Range(1, 3);
@@ -244,6 +284,19 @@ namespace RM_BBTS
             // Restores health and energy
             Health += maxHealth * restorePercent;
             Energy += maxEnergy * restorePercent;
+
+        }
+
+        // Levels up the battle enttiy multiple times.
+        public void LevelUp(int times)
+        {
+            // Levels up multiple times.
+            for (int n = 0; n < times; n++)
+                LevelUp();
+        }
+
+        public void Evolve()
+        {
 
         }
 

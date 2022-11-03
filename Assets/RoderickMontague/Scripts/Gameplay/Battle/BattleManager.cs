@@ -194,7 +194,24 @@ namespace RM_BBTS
             // Opponent has been set.
             if (opponent != null)
             {
+                // Loads the battle data
                 opponent.LoadBattleData(door.battleEntity);
+
+                // LEVELING UP
+                // The opponent should level up based on the battle the player is on.
+                // This number is the number of battles completed plus 1.
+                int lowestLevel = (gameManager.battlesCompleted + 1) - 
+                    ((gameManager.battlesCompleted + 1) % gameManager.battlesPerLevelUp);
+
+                // If the opponent is below the lowest level allowed, level them up.
+                if(opponent.Level <= lowestLevel)
+                {
+                    // Level up the opponent to pass the lowest level threshold.
+                    while(opponent.Level <= lowestLevel)
+                        opponent.LevelUp(gameManager.battlesPerLevelUp);
+                }
+
+                // SPRITE
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
             }
@@ -480,7 +497,7 @@ namespace RM_BBTS
             player.LevelUp();
 
             // Completed a Battle
-            gameManager.completedBattles++;
+            gameManager.battlesCompleted++;
 
             // The door is now locked since the room is cleared.
             door.Locked = true;
@@ -615,6 +632,9 @@ namespace RM_BBTS
                 textBox.Close();
                 textBox.pages.Clear();
             }
+
+            // Save battle entity data.
+            door.battleEntity = opponent.GenerateBattleEntityData();
 
             // Hide opponent sprite.
             opponentSprite.gameObject.SetActive(false);

@@ -125,7 +125,7 @@ namespace RM_BBTS
                     move = new Move(moveId.slimeshot, "Slimeshot", 1, 30.0F, 0.9F, 4.0F);
                     break;
 
-                case moveId.lasershot: // Lasershot
+                case moveId.lasershot: // Lasershot (TODO: not working for osme reason)
                     move = new Move(moveId.lasershot, "Lasershot", 1, 40.0F, 0.9F, 4.0F);
                     break;
 
