@@ -249,7 +249,8 @@ namespace RM_BBTS
         }
 
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
-        public void LevelUp()
+        // (times) refers to how many times the entity is leveled up.
+        public void LevelUp(uint times = 1)
         {
             // // Relative hp and energy.
             // float hpPercent = health / maxHealth;
@@ -303,7 +304,7 @@ namespace RM_BBTS
 
             // Generate and level up the data.
             BattleEntityData data = GenerateBattleEntityData();
-            data = LevelUpData(data);
+            data = LevelUpData(data, times);
 
             // Save level
             level = data.level;
@@ -323,49 +324,48 @@ namespace RM_BBTS
 
         }
 
-        // Levels up the battle enttiy multiple times.
-        public void LevelUp(int times)
-        {
-            // Levels up multiple times.
-            for (int n = 0; n < times; n++)
-                LevelUp();
-        }
-
         // Levels up the provided data and returns a copy.
-        public static BattleEntityData LevelUpData(BattleEntityData data)
+        // (times) refers to how many times the entity should be leveled up.
+        public static BattleEntityData LevelUpData(BattleEntityData data, uint times = 1)
         {
             BattleEntityData newData = data;
 
-            int rand = Random.Range(0, 5);
+            int rand;
             float hpPercent = data.health / data.maxHealth;
             float engPercent = data.energy / data.maxEnergy;
 
-            newData.level++;
+            newData.level += times;
 
-            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
+            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
+            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
+            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
+            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
 
-            // Random +3 factor
-            switch (rand)
+            // Adds a differet bonus per level.
+            for(int lvl = 0; lvl < times; lvl++)
             {
-                case 0: // HP
-                    newData.maxHealth += STAT_LEVEL_BONUS_INC;
-                    break;
-                case 1: // ATTACK
-                    newData.attack += STAT_LEVEL_BONUS_INC;
-                    break;
-                case 2: // DEFENSE
-                    newData.defense += STAT_LEVEL_BONUS_INC;
-                    break;
-                case 3: // SPEED
-                    newData.speed += STAT_LEVEL_BONUS_INC;
-                    break;
-                case 4: // ENERGY
-                    newData.maxEnergy += STAT_LEVEL_BONUS_INC;
-                    break;
+                rand = Random.Range(0, 5);
+
+                // Random +3 factor
+                switch (rand)
+                {
+                    case 0: // HP
+                        newData.maxHealth += STAT_LEVEL_BONUS_INC;
+                        break;
+                    case 1: // ATTACK
+                        newData.attack += STAT_LEVEL_BONUS_INC;
+                        break;
+                    case 2: // DEFENSE
+                        newData.defense += STAT_LEVEL_BONUS_INC;
+                        break;
+                    case 3: // SPEED
+                        newData.speed += STAT_LEVEL_BONUS_INC;
+                        break;
+                    case 4: // ENERGY
+                        newData.maxEnergy += STAT_LEVEL_BONUS_INC;
+                        break;
+                }
             }
 
             // Proportional changes.

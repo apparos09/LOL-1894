@@ -200,20 +200,20 @@ namespace RM_BBTS
                 // Loads the battle data
                 opponent.LoadBattleData(door.battleEntity);
 
-                // TODO: move.
-                // LEVELING UP
-                // The opponent should level up based on the battle the player is on.
-                // This number is the number of battles completed plus 1.
-                int lowestLevel = (gameManager.battlesCompleted + 1) - 
-                    ((gameManager.battlesCompleted + 1) % gameManager.battlesPerLevelUp);
-
-                // If the opponent is below the lowest level allowed, level them up.
-                if(opponent.Level <= lowestLevel)
-                {
-                    // Level up the opponent to pass the lowest level threshold.
-                    while(opponent.Level <= lowestLevel)
-                        opponent.LevelUp(gameManager.battlesPerLevelUp);
-                }
+                // NOTE: this is now put in the overworld manager when returning to the overworld.
+                // // LEVELING UP
+                // // The opponent should level up based on the battle the player is on.
+                // // This number is the number of battles completed plus 1.
+                // int lowestLevel = (gameManager.battlesCompleted + 1) - 
+                //     ((gameManager.battlesCompleted + 1) % gameManager.battlesPerLevelUp);
+                // 
+                // // If the opponent is below the lowest level allowed, level them up.
+                // if(opponent.Level <= lowestLevel)
+                // {
+                //     // Level up the opponent to pass the lowest level threshold.
+                //     while(opponent.Level <= lowestLevel)
+                //         opponent.LevelUp(gameManager.battlesPerLevelUp);
+                // }
 
                 // SPRITE
                 opponentSprite.sprite = opponent.sprite;

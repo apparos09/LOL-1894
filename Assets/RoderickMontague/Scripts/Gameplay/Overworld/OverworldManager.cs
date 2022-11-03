@@ -257,6 +257,28 @@ namespace RM_BBTS
             // Evolves the entities.
             int phase = gameManager.GetGamePhase();
 
+            // Time to level up enemies if 'true'
+            if(gameManager.battlesCompleted % gameManager.battlesPerLevelUp == 0)
+            {
+                // The enemies haven't been leveled up yet.
+                if(gameManager.lastEnemyLevelUps < gameManager.battlesCompleted)
+                {
+                    // Goes through each door.
+                    foreach(Door door in doors)
+                    {
+                        // Only level up unlocked doors.
+                        if(!door.Locked)
+                        {
+                            // Levels up the entity by the amount of battles per level up (the value is the same).
+                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.battlesPerLevelUp);
+                        }
+                    }
+
+                    // Save last time the entity got a level up.
+                    gameManager.lastEnemyLevelUps = gameManager.battlesCompleted;
+                }
+            }
+
             // If in the middle phase, and no evolutions have happened.
             // If in the end phase, and the evolutions have not been run a second time.
             if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))

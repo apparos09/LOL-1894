@@ -32,6 +32,9 @@ namespace RM_BBTS
         // The amount of battles completed for the enemies to level up.
         public int battlesPerLevelUp = 3;
 
+        // The last time the enemies were leveled up (is room the player is on).
+        public int lastEnemyLevelUps = -1;
+
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
