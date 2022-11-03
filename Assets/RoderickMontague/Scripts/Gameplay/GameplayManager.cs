@@ -24,7 +24,7 @@ namespace RM_BBTS
         public Player player;
 
         // The total battles in the game.
-        public int totalBattles = 0;
+        public int battlesTotal = 0;
 
         // The total amount of completed battles.
         public int battlesCompleted = 0;
@@ -39,6 +39,9 @@ namespace RM_BBTS
 
         // The text box used for the game.
         public TextBox textBox;
+
+        // The battle number text.
+        public TMPro.TMP_Text battleNumberText;
 
         // The health bar for the player.
         public ProgressBar playerHealthBar;
@@ -82,10 +85,14 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(true);
             state = gameState.overworld;
 
+            // Saves the batle total.
+            battlesTotal = OverworldManager.DOOR_COUNT;
+
+            // Update the UI.
             UpdateUI();
 
             // The total amount of battles in the game.
-            totalBattles = overworld.doors.Count;
+            battlesTotal = overworld.doors.Count;
 
             // List<string> test = new List<string>() { "This is a test.", "This is only a test." };
             // // textBox.OnTextFinishedAddCallback(Test);
@@ -193,7 +200,7 @@ namespace RM_BBTS
         public int GetGamePhase()
         {
             // The completion rate.
-            float completionRate = battlesCompleted / (float)totalBattles;
+            float completionRate = battlesCompleted / (float)battlesTotal;
 
             // Returns the game phase.
             if (completionRate < 0.33F)
@@ -266,6 +273,8 @@ namespace RM_BBTS
         {
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
+
+            battleNumberText.text = (battlesCompleted + 1).ToString() + " / " + battlesTotal.ToString();
         }
         
         // Updates the health bar UI.

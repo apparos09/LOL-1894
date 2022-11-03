@@ -3842,7 +3842,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1399017747}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4372,9 +4372,12 @@ MonoBehaviour:
   battle: {fileID: 1163903607}
   mouseTouchInput: {fileID: 203223313}
   player: {fileID: 1467642233}
-  totalBattles: 0
-  completedBattles: 0
+  battlesTotal: 0
+  battlesCompleted: 0
+  battlesPerLevelUp: 3
+  evolveWaves: 0
   textBox: {fileID: 1178415351}
+  battleNumberText: {fileID: 712597961}
   playerHealthBar: {fileID: 1372428803}
   playerHealthText: {fileID: 1426441088}
   playerEnergyBar: {fileID: 1409322604}
@@ -7787,10 +7790,10 @@ RectTransform:
   - {fileID: 1460657621}
   - {fileID: 1178415350}
   - {fileID: 493886308}
-  - {fileID: 954158252}
   - {fileID: 1426441087}
-  - {fileID: 191565342}
+  - {fileID: 954158252}
   - {fileID: 759902066}
+  - {fileID: 191565342}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7851,7 +7854,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1399017747}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
