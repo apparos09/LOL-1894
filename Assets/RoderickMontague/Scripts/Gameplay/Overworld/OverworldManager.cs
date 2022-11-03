@@ -274,7 +274,7 @@ namespace RM_BBTS
                         }
                     }
 
-                    // Save last time the entity got a level up.
+
                     gameManager.lastEnemyLevelUps = gameManager.battlesCompleted;
                 }
             }

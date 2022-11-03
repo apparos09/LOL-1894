@@ -24,7 +24,12 @@ namespace RM_BBTS
 
             // If the user isn't the player nothing will happen.
             // This should never be called for an entity.
-            if(!(user is Player))
+            if(user is Player) // Player
+            {
+                // If this message is shown then that means the player failed to run.
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
+            }
+            else // Not player.
             {
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("Nothing happened."));
             }

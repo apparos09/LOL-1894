@@ -594,9 +594,14 @@ namespace RM_BBTS
 
             // Returns to the overworld if the run was successful.
             if (success)
+            {
                 ToOverworld();
+            }
             else
-                Debug.Log("Run failed.");
+            {
+                // Debug.Log("Run failed.");
+            }
+                
         }
 
         // Called when the turn is over.
@@ -753,6 +758,9 @@ namespace RM_BBTS
                 textBox.Close();
                 textBox.pages.Clear();
             }
+
+            // Player options should be enabled before leaving so that they're ready for the next battle?
+            EnablePlayerOptions();
 
             // Remove status effects
             player.burned = false;
