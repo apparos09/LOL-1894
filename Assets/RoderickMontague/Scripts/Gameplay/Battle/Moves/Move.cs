@@ -104,7 +104,7 @@ namespace RM_BBTS
 
             set
             {
-                criticalChance = Mathf.Clamp01(criticalChance);
+                criticalChance = Mathf.Clamp01(value);
             }
         }
 
@@ -115,7 +115,7 @@ namespace RM_BBTS
 
             set
             {
-                burnChance = Mathf.Clamp01(burnChance);
+                burnChance = Mathf.Clamp01(value);
             }
         }
 
@@ -126,7 +126,7 @@ namespace RM_BBTS
 
             set
             {
-                paralysisChance = Mathf.Clamp01(paralysisChance);
+                paralysisChance = Mathf.Clamp01(value);
             }
         }
 
@@ -146,6 +146,9 @@ namespace RM_BBTS
             // If the move hit successfully.
             if(Random.Range(0.0F, 1.0F) <= accuracy)
             {
+                // The new pages.
+                List<Page> newPages = new List<Page>();
+
                 // Does damage.
                 float damage = 0.0F;
                 float critBoost = 1.0F;
@@ -167,9 +170,26 @@ namespace RM_BBTS
 
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical
-                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit!"));
+                    newPages.Add(new Page("The move hit!"));
                 else // Critical
-                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move hit, and it did critical damage!"));
+                    newPages.Add(new Page("The move hit, and it did critical damage!"));
+
+                // Burn Infliction
+                if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
+                {
+                    target.burned = true;
+                    newPages.Add(new Page("The target has been burned!"));
+                }
+
+                // Paralysis Infliction
+                if (!target.paralyzed && Random.Range(0.0F, 1.0F) < paralysisChance)
+                {
+                    target.paralyzed = true;
+                    newPages.Add(new Page("The target has been paralyzed!"));
+                }
+
+                // Inserts a range of pages.
+                battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, newPages);
 
                 // TODO: maybe move this to the battle script?
                 // Checks if the user is the player or not.

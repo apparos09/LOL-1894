@@ -89,6 +89,14 @@ namespace RM_BBTS
         // The selected move to be used.
         public Move selectedMove = null;
 
+        // Status effects appled to the entity.
+        [Header("Stauses")]
+        // Has burn status, which causes damage every turn.
+        public bool burned;
+
+        // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
+        public bool paralyzed;
+
         // Awake is called when the script instacne is being loaded.
         protected virtual void Awake()
         {
@@ -446,6 +454,40 @@ namespace RM_BBTS
         public void SelectCharge()
         {
             selectedMove = MoveList.Instance.ChargeMove;
+        }
+
+
+        // Returns '1' if BE1 is the fastest entity, '2' if BE2 is the fastest entity, and '0' if both are the same speed.
+        public static int GetFastestEntity(BattleEntity be1, BattleEntity be2, BattleManager battle)
+        {
+            // Gets the two speeds.
+            float speed1 = be1.speed * (be1.paralyzed ? 0.75F : 1.0F);
+            float speed2 = be1.speed * (be2.paralyzed ? 0.75F : 1.0F);
+
+            // Gets the result.
+            if (speed1 > speed2)
+                return 1;
+            else if (speed1 < speed2)
+                return 2;
+            else
+                return 0;
+        }
+
+        // Applies burn damage.
+        public void ApplyBurn(BattleManager battle)
+        {
+            // Does 1/16th damage.
+            Health -= MaxHealth * (1.0F / 16.0F);
+
+            // Checks the battle entity's type.
+            if (this is Player) // Is the player, so update health UI for them.
+            {
+                battle.gameManager.UpdatePlayerHealthUI();
+            }
+            else // Not the player, so update the battle UI.
+            {
+                battle.UpdateUI();
+            }
         }
 
         // Called when a turn happens during a battle.

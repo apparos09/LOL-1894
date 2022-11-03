@@ -51,6 +51,9 @@ namespace RM_BBTS
         // // The move the opponent has selected.
         // public Move opponentMove;
 
+        // The chance to skip a turn if paralyzed.
+        private float PARALAYSIS_SKIP_CHANCE = 0.1F;
+
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
 
@@ -214,6 +217,10 @@ namespace RM_BBTS
                 // SPRITE
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
+
+                // STATUS
+                opponent.burned = false;
+                opponent.paralyzed = false;
             }
 
 
@@ -372,6 +379,20 @@ namespace RM_BBTS
             }
         }
 
+        // Apply burn to the player.
+        private void ApplyPlayerBurn()
+        {
+            if (player.burned)
+                player.ApplyBurn(this);
+        }
+
+        // Apply burn to the opponent.
+        private void ApplyOpponentBurn()
+        {
+            if (opponent.burned)
+                opponent.ApplyBurn(this);
+        }
+
         // Called to perform the player's move.
         private void PerformPlayerMove()
         {
@@ -398,25 +419,79 @@ namespace RM_BBTS
                 // Clears out the past text.
                 turnText.Clear();
 
-                // Determines who goes first.
-                if (player.Speed > opponent.Speed) // player first
-                    playerFirst = true;
-                else if (player.Speed < opponent.Speed) // opponent first
-                    playerFirst = false;
-                else // random
-                    playerFirst = Random.Range(0, 2) == 1;
+                // Checks the fastest entity.
+                int fastest = BattleEntity.GetFastestEntity(player, opponent, this);
+                
+                // Checks the variable.
+                switch (fastest)
+                {
+                    case 1: // player 1st
+                        playerFirst = true;
+                        break;
+                    case 2: // player second
+                        playerFirst = false;
+                        break;
+                    default: // random
+                        playerFirst = Random.Range(0, 2) == 1;
+                        break;
+                }
 
+
+                // ADD TURN PAGES
 
                 // Loads the selected moves.
                 // The two pages for the player and the opponent.
+                bool turnSkip = false;
 
-                // Adds the player's move.
-                playerMovePage = new Page(player.displayName + " used " + player.selectedMove.Name + "!");
-                playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
+                // PLAYER
+                // Checks if the player is paralyzed.
+                if(player.paralyzed)
+                {
+                    // If turn should be skipped.
+                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                }
+                else
+                {
+                    turnSkip = false;
+                }
 
-                // Adds the opponent's move.
-                opponentMovePage = new Page(opponent.displayName + " used " + opponent.selectedMove.Name + "!");
-                opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
+                // Checks if the player's turn should be skipped.
+                if(turnSkip)
+                {
+                    // Skip
+                    playerMovePage = new Page("The player is immobalized, and can't move.");
+                }
+                else
+                {
+                    // Adds the player's move.
+                    playerMovePage = new Page(player.displayName + " used " + player.selectedMove.Name + "!");
+                    playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
+                }
+
+                // OPPONENT
+                if (opponent.paralyzed)
+                {
+                    // If turn should be skipped.
+                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                }
+                else
+                {
+                    turnSkip = false;
+                }
+
+                // Checks if the opponent's turn should be skipped.
+                if(turnSkip)
+                {
+                    // Skip
+                    opponentMovePage = new Page("The opponent is immobalized, and can't move.");
+                }
+                else // Don't skip.
+                {
+                    // Adds the opponent's move.
+                    opponentMovePage = new Page(opponent.displayName + " used " + opponent.selectedMove.Name + "!");
+                    opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
+                }
+                
 
                 // Places the pages in order.
                 if (playerFirst)
@@ -428,6 +503,51 @@ namespace RM_BBTS
                 {
                     turnText.Add(opponentMovePage);
                     turnText.Add(playerMovePage);
+                }
+
+
+                // Burn Pages
+                {
+                    // Burn pages.
+                    Page pBurnPage = null, oBurnPage = null;
+
+                    // If the player is burned.
+                    if (player.burned)
+                    {
+                        pBurnPage = new Page("The player took burn damage!");
+                        pBurnPage.OnPageOpenedAddCallback(ApplyPlayerBurn);
+                    }
+
+                    // If the opponent is burned.
+                    if(opponent.burned)
+                    {
+                        oBurnPage = new Page("The opponent took burn damage!");
+                        oBurnPage.OnPageOpenedAddCallback(ApplyOpponentBurn);
+                    }
+
+                    // Burns based on who moves first.
+                    if(pBurnPage != null && oBurnPage == null) // Only player is burned.
+                    {
+                        turnText.Add(pBurnPage);
+                    }
+                    else if (pBurnPage == null && oBurnPage != null) // Only opponent is burned.
+                    {
+                        turnText.Add(oBurnPage);
+                    }
+                    else if (pBurnPage != null && oBurnPage != null) // Both are burned.
+                    {
+                        if(playerFirst) // Player is fastest.
+                        {
+                            turnText.Add(pBurnPage);
+                            turnText.Add(oBurnPage);
+                        }
+                        else // Opponent is fastest.
+                        {
+                            turnText.Add(oBurnPage);
+                            turnText.Add(pBurnPage);
+                        }
+                        
+                    }
                 }
 
 
@@ -633,6 +753,10 @@ namespace RM_BBTS
                 textBox.pages.Clear();
             }
 
+            // Remove status effects
+            player.burned = false;
+            player.paralyzed = false;
+
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityData();
 
@@ -674,6 +798,9 @@ namespace RM_BBTS
                         // The player got a game over.
                         if (player.Health <= 0) // game over
                         {
+                            // Restores the opponent's health to max (stops both from dying on the same round.
+                            opponent.Health = opponent.MaxHealth;
+
                             textBox.pages.Clear();
                             textBox.pages.Add(new Page("The player has lost the battle!"));
                             textBox.SetPage(0);
