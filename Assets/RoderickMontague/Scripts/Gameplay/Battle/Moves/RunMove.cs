@@ -22,6 +22,13 @@ namespace RM_BBTS
 
             // Maybe only play a sound since the screen switches over before the textbox plays.
 
+            // If the user isn't the player nothing will happen.
+            // This should never be called for an entity.
+            if(!(user is Player))
+            {
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("Nothing happened."));
+            }
+
             return true;
         }
     }
