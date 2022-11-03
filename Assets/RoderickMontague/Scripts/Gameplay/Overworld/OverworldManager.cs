@@ -236,6 +236,11 @@ namespace RM_BBTS
                 door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
             }
 
+            // Sets the level.
+            door.battleEntity.level = (uint)Random.Range(1, gameManager.battlesPerLevelUp + 1);
+
+
+
             // TODO: randomize the enemy being placed behind the door.
             // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
             // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.treasure);

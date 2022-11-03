@@ -200,6 +200,7 @@ namespace RM_BBTS
                 // Loads the battle data
                 opponent.LoadBattleData(door.battleEntity);
 
+                // TODO: move.
                 // LEVELING UP
                 // The opponent should level up based on the battle the player is on.
                 // This number is the number of battles completed plus 1.

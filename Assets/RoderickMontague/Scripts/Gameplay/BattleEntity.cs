@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace RM_BBTS
 {
@@ -17,6 +18,7 @@ namespace RM_BBTS
         // The evolution id.
         public battleEntityId evoId;
 
+        // The entity name.
         public string displayName;
 
         // The level of the entity.
@@ -75,6 +77,12 @@ namespace RM_BBTS
 
         protected float maxEnergy = 10;
         protected float energy = 10;
+
+        // level ups incs (minimum and maximum).
+        public const int STAT_LEVEL_INC_MIN = 1;
+        public const int STAT_LEVEL_INC_MAX = 3;
+        public const int STAT_LEVEL_BONUS_INC = 3;
+        public const float LEVEL_UP_RESTORE_PERCENT = 0.2F;
 
         // float chargeRate = 1.0F; // the rate for charging - may not be used.
 
@@ -243,55 +251,75 @@ namespace RM_BBTS
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         public void LevelUp()
         {
-            // Relative hp and energy.
-            float hpPercent = health / maxHealth;
-            float engPercent = energy / maxEnergy;
+            // // Relative hp and energy.
+            // float hpPercent = health / maxHealth;
+            // float engPercent = energy / maxEnergy;
+            // 
+            // // Bonus increase.
+            // float bonus = STAT_LEVEL_BONUS_INC;
+            // int rand = Random.Range(0, 5);
+            // 
+            // // The restoration percentage.
+            // float restorePercent = LEVEL_UP_RESTORE_PERCENT;
+            // 
+            // // Increase the level.
+            // level++;
+            // 
+            // // Increases the 5 stats.
+            // maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            // attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            // defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            // speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            // maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            // 
+            // 
+            // // Random +3 factor
+            // switch(rand)
+            // {
+            //     case 0: // HP
+            //         maxHealth += bonus;
+            //         break;
+            //     case 1: // ATTACK
+            //         attack += bonus;
+            //         break;
+            //     case 2: // DEFENSE
+            //         defense += bonus;
+            //         break;
+            //     case 3: // SPEED
+            //         speed += bonus;
+            //         break;
+            //     case 4: // ENERGY
+            //         maxEnergy += bonus;
+            //         break;
+            // }
+            // 
+            // // Sets new health and energy proportional to new maxes.
+            // health = hpPercent * maxHealth;
+            // energy = engPercent * maxEnergy;
+            // 
+            // // Restores health and energy
+            // Health += maxHealth * restorePercent;
+            // Energy += maxEnergy * restorePercent;
 
-            // Bonus increase.
-            float bonus = 3;
-            int rand = Random.Range(0, 5);
+            // Generate and level up the data.
+            BattleEntityData data = GenerateBattleEntityData();
+            data = LevelUpData(data);
 
-            // The restoration percentage.
-            float restorePercent = 0.20F;
+            // Save level
+            level = data.level;
 
-            // Increase the level.
-            level++;
+            // Save health
+            maxHealth = data.maxHealth;
+            health = data.health;
 
-            // Increases the 5 stats.
-            maxHealth += Random.Range(1, 3);
-            attack += Random.Range(1, 3);
-            defense += Random.Range(1, 3);
-            speed += Random.Range(1, 3);
-            maxEnergy += Random.Range(1, 3);
+            // Save stats
+            attack = data.attack;
+            defense = data.defense;
+            speed = data.speed;
 
-
-            // Random +3 factor
-            switch(rand)
-            {
-                case 0: // HP
-                    health += bonus;
-                    break;
-                case 1: // ATTACK
-                    attack += bonus;
-                    break;
-                case 2: // DEFENSE
-                    defense += bonus;
-                    break;
-                case 3: // SPEED
-                    speed += bonus;
-                    break;
-                case 4: // ENERGY
-                    energy += bonus;
-                    break;
-            }
-
-            // Sets new health and energy proportional to new maxes.
-            health = hpPercent * maxHealth;
-            energy = engPercent * maxEnergy;
-
-            // Restores health and energy
-            Health += maxHealth * restorePercent;
-            Energy += maxEnergy * restorePercent;
+            // Save energy
+            maxEnergy = data.maxEnergy;
+            energy = data.energy;
 
         }
 
@@ -301,6 +329,55 @@ namespace RM_BBTS
             // Levels up multiple times.
             for (int n = 0; n < times; n++)
                 LevelUp();
+        }
+
+        // Levels up the provided data and returns a copy.
+        public static BattleEntityData LevelUpData(BattleEntityData data)
+        {
+            BattleEntityData newData = data;
+
+            int rand = Random.Range(0, 5);
+            float hpPercent = data.health / data.maxHealth;
+            float engPercent = data.energy / data.maxEnergy;
+
+            newData.level++;
+
+            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+
+            // Random +3 factor
+            switch (rand)
+            {
+                case 0: // HP
+                    newData.maxHealth += STAT_LEVEL_BONUS_INC;
+                    break;
+                case 1: // ATTACK
+                    newData.attack += STAT_LEVEL_BONUS_INC;
+                    break;
+                case 2: // DEFENSE
+                    newData.defense += STAT_LEVEL_BONUS_INC;
+                    break;
+                case 3: // SPEED
+                    newData.speed += STAT_LEVEL_BONUS_INC;
+                    break;
+                case 4: // ENERGY
+                    newData.maxEnergy += STAT_LEVEL_BONUS_INC;
+                    break;
+            }
+
+            // Proportional changes.
+            newData.health = hpPercent * newData.maxHealth;
+            newData.energy = engPercent * newData.maxEnergy;
+
+            // Restores health and energy
+            newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
+            newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;
+
+            // Returns the new data.
+            return newData;
         }
 
         // Evolves the battle entity.
