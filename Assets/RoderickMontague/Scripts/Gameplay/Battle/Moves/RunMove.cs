@@ -10,7 +10,7 @@ namespace RM_BBTS
     {
         // Constructor for the charge move.
         public RunMove() :
-            base(moveId.run, "Run", 1, 0, 1.0F, 0)
+            base(moveId.run, "Run", 1, 0, 0.5F, 0)
         {
         }
 
