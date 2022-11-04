@@ -103,10 +103,13 @@ namespace RM_BBTS
 
         [Header("UI/Opponent")]
 
+        // The opponent title text.
+        public TMP_Text opponentNameText;
+
         // The health bar for the opponent.
         public ProgressBar opponentHealthBar;
 
-        // TODO: this will not be shown n the final game.
+        // TODO: this will not be shown in the final game.
         public TMP_Text opponentHealthText;
 
         // Start is called before the first frame update
@@ -197,6 +200,9 @@ namespace RM_BBTS
             // Opponent has been set.
             if (opponent != null)
             {
+                // Saves the opponent's name.
+                opponentNameText.text = opponent.name;
+
                 // Loads the battle data
                 opponent.LoadBattleData(door.battleEntity);
 
@@ -222,6 +228,11 @@ namespace RM_BBTS
                 // STATUS
                 opponent.burned = false;
                 opponent.paralyzed = false;
+            }
+            else
+            {
+                // opponent name.
+                opponentNameText.text = "-";
             }
 
 
