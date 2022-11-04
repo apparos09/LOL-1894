@@ -8,6 +8,9 @@ namespace RM_BBTS
     // The class for the player.
     public class Player : BattleEntity
     {
+        // The run move for the player to select.
+        private RunMove runMove;
+
         // Setting the player's stats.
         protected new void Awake()
         {
@@ -49,6 +52,15 @@ namespace RM_BBTS
             // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
 
             // sprite = data.sprite;
+
+            // Generates and saves a run move.
+            runMove = new RunMove();
+        }
+
+        // Selects the run move. Only the player has the run move.
+        public void SelectRun()
+        {
+            selectedMove = runMove;
         }
 
         // Update is called once per frame

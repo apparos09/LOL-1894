@@ -105,7 +105,7 @@ namespace RM_BBTS
         // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
         public bool paralyzed;
 
-        // Awake is called when the script instacne is being loaded.
+        // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
         {
             

@@ -12,6 +12,8 @@ namespace RM_BBTS
         public RunMove() :
             base(moveId.run, "Run", 1, 0, 0.5F, 0)
         {
+            // This is arbitrary. It's just there for making the run failed message appear first.
+            priority = 10;
         }
 
         // Called when performing a move.
@@ -26,8 +28,18 @@ namespace RM_BBTS
             // This should never be called for an entity.
             if(user is Player) // Player
             {
-                // If this message is shown then that means the player failed to run.
+                // // Calls the run function.
+                // bool success = battle.RunAway();
+                // 
+                // // The player failed to run away.
+                // if(!success)
+                // {
+                //     // If this message is shown then that means the player failed to run.
+                //     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
+                // }
+
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
+
             }
             else // Not player.
             {

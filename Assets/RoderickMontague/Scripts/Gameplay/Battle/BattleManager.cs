@@ -431,23 +431,32 @@ namespace RM_BBTS
                 // Clears out the past text.
                 turnText.Clear();
 
-                // Checks the fastest entity.
-                int fastest = BattleEntity.GetFastestEntity(player, opponent, this);
-                
-                // Checks the variable.
-                switch (fastest)
-                {
-                    case 1: // player 1st
-                        playerFirst = true;
-                        break;
-                    case 2: // player second
-                        playerFirst = false;
-                        break;
-                    default: // random
-                        playerFirst = Random.Range(0, 2) == 1;
-                        break;
-                }
 
+                // If one of the moves have priority.
+                if (player.selectedMove.priority != opponent.selectedMove.priority)
+                {
+                    // Save priority result.
+                    playerFirst = player.selectedMove.priority > opponent.selectedMove.priority;
+                }
+                else // Player is not trying to run.
+                {
+                    // Checks the fastest entity.
+                    int fastest = BattleEntity.GetFastestEntity(player, opponent, this);
+
+                    // Checks the variable.
+                    switch (fastest)
+                    {
+                        case 1: // player 1st
+                            playerFirst = true;
+                            break;
+                        case 2: // player second
+                            playerFirst = false;
+                            break;
+                        default: // random
+                            playerFirst = Random.Range(0, 2) == 1;
+                            break;
+                    }
+                }
 
                 // ADD TURN PAGES
 
@@ -477,6 +486,7 @@ namespace RM_BBTS
                 {
                     // Adds the player's move.
                     playerMovePage = new Page(player.displayName + " used " + player.selectedMove.Name + "!");
+
                     playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
                 }
 
@@ -612,6 +622,9 @@ namespace RM_BBTS
             {
                 // Debug.Log("Run failed.");
             }
+
+            // Returns the success of the operation.
+            // return success;
                 
         }
 

@@ -30,6 +30,10 @@ namespace RM_BBTS
         // The description of a move.
         public string description = "";
 
+        // A move of priority '0' has no priority. Two moves with the same priority are based on speed.
+        // A move with a higher priority number goes first.
+        public int priority = 0;
+
         // STATUS EFFECTS/CHANCE EVENTS //
         // The chance of performing critical damage.
         protected float criticalChance = 0.3F;
