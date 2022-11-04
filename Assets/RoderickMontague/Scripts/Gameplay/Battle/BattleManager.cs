@@ -307,6 +307,18 @@ namespace RM_BBTS
             throw new System.NotImplementedException();
         }
 
+        // A function to call when a tutorial starts.
+        public override void OnTutorialStart()
+        {
+
+        }
+
+        // A function to call when a tutorial ends.
+        public override void OnTutorialEnd()
+        {
+
+        }
+
         // Sets player controls to interactable or not. RefreshPlayerOptions is also called to disable buttons that do nothing. 
         public void SetPlayerOptionsAvailable(bool interactable)
         {

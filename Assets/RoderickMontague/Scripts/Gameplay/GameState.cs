@@ -25,5 +25,11 @@ namespace RM_BBTS
 
         // Called wehn the game state receives the interaction object.
         protected abstract void OnInteractReceive(GameObject gameObject);
+
+        // A function to call when a tutorial starts.
+        public abstract void OnTutorialStart();
+
+        // A function to call when a tutorial ends.
+        public abstract void OnTutorialEnd();
     }
 }

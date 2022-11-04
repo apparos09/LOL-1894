@@ -219,6 +219,18 @@ namespace RM_BBTS
             }
         }
 
+        // A function to call when a tutorial starts.
+        public override void OnTutorialStart()
+        {
+
+        }
+
+        // A function to call when a tutorial ends.
+        public override void OnTutorialEnd()
+        {
+
+        }
+
         // Generates a room for the door.
         private void GenerateRoom(Door door)
         {

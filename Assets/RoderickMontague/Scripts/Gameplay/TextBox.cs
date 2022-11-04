@@ -300,6 +300,23 @@ namespace RM_BBTS
                 Close();
         }
 
+        // Clears out all pages.
+        public void ClearPages()
+        {
+            // Clears out the pages.
+            pages.Clear();
+            pages = new List<Page>();
+
+            // Now at index 0.
+            currPageIndex = 0;
+
+            // Clear out waiting
+            loadingChars = false;
+            boxText.text = "...";
+            charQueue.Clear();
+            charTimer = 0.0F;
+        }
+
         // Update is called once per frame
         void Update()
         {

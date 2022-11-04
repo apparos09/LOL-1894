@@ -126,6 +126,12 @@ namespace RM_BBTS
             // ...
         }
 
+        // Called with the object that was received with the interaction.
+        protected override void OnInteractReceive(GameObject gameObject)
+        {
+            throw new System.NotImplementedException();
+        }
+
         // // Called when a level has been loaded.
         // private void OnLevelWasLoaded(int level)
         // {
@@ -192,10 +198,16 @@ namespace RM_BBTS
 
         }
 
-        // Called with the object that was received with the interaction.
-        protected override void OnInteractReceive(GameObject gameObject)
+        // A function to call when a tutorial starts.
+        public override void OnTutorialStart()
         {
-            throw new System.NotImplementedException();
+
+        }
+
+        // A function to call when a tutorial ends.
+        public override void OnTutorialEnd()
+        {
+
         }
 
         // Returns the phase of the game (1 = start, 2 = middle, 3 = end).
