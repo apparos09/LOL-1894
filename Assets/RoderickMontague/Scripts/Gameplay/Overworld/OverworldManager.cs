@@ -285,7 +285,37 @@ namespace RM_BBTS
                 doorLocs.RemoveAt(randIndex);
             }
 
+            // Randomize player moves
+            Player player = gameManager.player;
+            
+            // Go through each move.
+            for(int i = 0; i < player.moves.Length; i++)
+            {
+                // Move has been set.
+                if (player.moves[i] != null)
+                {
+                    // Grabs the rank.
+                    int rank = player.moves[i].Rank;
+
+                    // Replaces the move.
+                    switch(rank)
+                    {
+                        case 1: // R1
+                            player.moves[i] = MoveList.Instance.GetRandomRank1Move();
+                            break;
+                        case 2: // R2
+                            player.moves[i] = MoveList.Instance.GetRandomRank2Move();
+                            break;
+                        case 3: // R3
+                            player.moves[i] = MoveList.Instance.GetRandomRank3Move();
+                            break;
+                    }
+                }
+            }
+
+
             gameOver = false;
+
         }
 
         // Called when returning to the overworld.
