@@ -8,6 +8,9 @@ namespace RM_BBTS
     // The tutorial script.
     public class Tutorial : MonoBehaviour
     {
+        // If set to 'true' then the tutorial is used.
+        public bool useTutorial = true;
+
         // The manager for the game.
         public GameplayManager gameManager;
 
@@ -26,26 +29,31 @@ namespace RM_BBTS
 
         }
 
+        // Loads the intro tutorial.
         public void LoadIntroTutorial()
         {
 
         }
 
+        // Loads the overworld tutorial.
         public void LoadOverworldTutorial()
         {
 
         }
 
+        // Loads the battle tutorial.
         public void LoadBattleTutorial()
         {
 
         }
 
+        // Loads for the boss tutorial.
         public void LoadBossTutorial()
         {
 
         }
 
+        // Loads the game over tutorial.
         public void LoadGameOverTutorial()
         {
 
