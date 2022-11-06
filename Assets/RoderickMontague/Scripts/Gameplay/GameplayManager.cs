@@ -216,13 +216,47 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
+            //// Checks the game state.
+            //switch (state)
+            //{
+            //    case gameState.overworld: // overworld
+            //        overworld.OnTutorialStart();
+            //        break;
 
+            //    case gameState.battle: // battle
+            //        battle.OnTutorialStart();
+            //        break;
+            //}
+
+            // Call both in case the state hasn't changed.
+            overworld.OnTutorialStart();
+            battle.OnTutorialStart();
+
+            // Turns off the mouse touch input. 
+            mouseTouchInput.gameObject.SetActive(false);
         }
 
         // A function to call when a tutorial ends.
         public override void OnTutorialEnd()
         {
+            // // Checks the game state.
+            // switch (state)
+            // {
+            //     case gameState.overworld: // overworld
+            //         overworld.OnTutorialEnd();
+            //         break;
+            // 
+            //     case gameState.battle: // battle
+            //         battle.OnTutorialEnd();
+            //         break;
+            // }
 
+            // Call both in case the state hasn't changed.
+            overworld.OnTutorialEnd();
+            battle.OnTutorialEnd();
+
+            // Turns off the mouse touch input. 
+            mouseTouchInput.gameObject.SetActive(true);
         }
 
         // Returns the phase of the game (1 = start, 2 = middle, 3 = end).

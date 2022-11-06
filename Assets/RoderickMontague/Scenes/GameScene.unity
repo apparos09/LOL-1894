@@ -9250,6 +9250,8 @@ MonoBehaviour:
   move3Text: {fileID: 939839395}
   chargeButton: {fileID: 439972763}
   runButton: {fileID: 1016463190}
+  treasureYesButton: {fileID: 933971979}
+  treasureNoButton: {fileID: 1331908729}
   opponentNameText: {fileID: 1204011799}
   opponentHealthBar: {fileID: 638855117}
   opponentHealthText: {fileID: 960459646}
@@ -12527,6 +12529,9 @@ MonoBehaviour:
   showTextboxOnLoad: 1
   clearedIntro: 0
   clearedBattle: 0
+  clearedTreasure: 0
+  clearedOverworld: 0
+  clearedBoss: 0
   clearedGameOver: 0
 --- !u!4 &1635305063
 Transform:

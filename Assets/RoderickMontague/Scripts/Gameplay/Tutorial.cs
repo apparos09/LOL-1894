@@ -135,7 +135,7 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("Now that you've cleared your first room the boss is open."));
+            pages.Add(new Page("Now that you've attempted a room, the final boss room is now open."));
             pages.Add(new Page("The game ends when you beat the boss, so clear as many rooms as you think you need."));
             pages.Add(new Page("The more rooms you clear the stronger you'll become."));
             pages.Add(new Page("Enemies will get stronger the longer the game goes on, so keep that in mind."));
@@ -183,13 +183,15 @@ namespace RM_BBTS
         // Called when the tutorial starts, which is when the textbox is opened.
         public void OnTutorialStart()
         {
-            gameManager.mouseTouchInput.gameObject.SetActive(false);
+            // gameManager.mouseTouchInput.gameObject.SetActive(false);
+            gameManager.OnTutorialStart();
         }
 
         // Called when the tutorial starts, which is when the textbox is closed.
         public void OnTutorialEnd()
         {
-            gameManager.mouseTouchInput.gameObject.SetActive(true);
+            // gameManager.mouseTouchInput.gameObject.SetActive(true);
+            gameManager.OnTutorialEnd();
         }
 
     }

@@ -101,6 +101,14 @@ namespace RM_BBTS
         // Run Button
         public Button runButton;
 
+        [Header("UI/Player/Treasure")]
+        
+        // The yes button for opening the treasure.
+        public Button treasureYesButton;
+
+        // THe no button for opening the treasure.
+        public Button treasureNoButton;
+
         [Header("UI/Opponent")]
 
         // The opponent title text.
@@ -259,7 +267,11 @@ namespace RM_BBTS
             // chargeButton.interactable = !player.HasFullCharge();
 
             // Changes the 'interactable' toggle for the buttons.
-            RefreshPlayerOptions();
+            // If the tutorial window is visible then don't refresh the player options.
+            if (gameManager.tutorial.textBox.IsVisible()) // Disable the options if the tutorial box is open.
+                DisablePlayerOptions();
+            else // Refresh the options of the tutorial box is not open.
+                RefreshPlayerOptions();
 
             // Updates the interface.
             UpdateUI();
@@ -270,11 +282,26 @@ namespace RM_BBTS
                 // The player has no battle options since this isn't a fight.
                 DisablePlayerOptions();
 
+                // If the tutorial box isn't visible, turn on the treasure buttons.
+                if (!gameManager.tutorial.textBox.IsVisible())
+                {
+                    treasureYesButton.interactable = true;
+                    treasureNoButton.interactable = true;
+                }
+
+                    // Hide health bar and health text
+                    opponentHealthBar.bar.gameObject.SetActive(false);
+                opponentHealthText.gameObject.SetActive(false);
+
                 // Show treasure prompt.
                 treasurePrompt.gameObject.SetActive(true);
             }
             else
             {
+                // Show health bar and health text
+                opponentHealthBar.bar.gameObject.SetActive(true);
+                opponentHealthText.gameObject.SetActive(true);
+
                 // Hide treasure prompt.
                 treasurePrompt.gameObject.SetActive(false);
             }
@@ -310,13 +337,13 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
-
+            DisablePlayerOptions();
         }
 
         // A function to call when a tutorial ends.
         public override void OnTutorialEnd()
         {
-
+            RefreshPlayerOptions();
         }
 
         // Sets player controls to interactable or not. RefreshPlayerOptions is also called to disable buttons that do nothing. 
@@ -329,6 +356,10 @@ namespace RM_BBTS
 
             chargeButton.interactable = interactable;
             runButton.interactable = interactable;
+
+            // Changes the interaction for the treasure buttons.
+            treasureYesButton.interactable = interactable;
+            treasureNoButton.interactable = interactable;
 
             // If all were turned on, check to see if some should stay off.
             if (interactable)
@@ -380,6 +411,13 @@ namespace RM_BBTS
 
             // Checks if the player has a full charge.
             chargeButton.interactable = !player.HasFullCharge();
+
+            // Enable the run.
+            runButton.interactable = true;
+
+            // The buttons are interactable, though they may not be visible.
+            treasureYesButton.interactable = true;
+            treasureNoButton.interactable = true;
         }
 
         // Updates the battle visuals.
