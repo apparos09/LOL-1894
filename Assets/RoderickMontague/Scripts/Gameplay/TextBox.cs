@@ -49,8 +49,16 @@ namespace RM_BBTS
 
         // CALLBACKS
         // a callback for when all the text has been gone through.
-        public delegate void TextBoxFinishedCallback();
-        private TextBoxFinishedCallback doneCallback;
+        public delegate void TextBoxCallback();
+
+        // Callback for the textbox being opened.
+        private TextBoxCallback openedCallback;
+
+        // Callback for the textbox being closed.
+        private TextBoxCallback closedCallback;
+
+        // Callback for the textbox finishing.
+        private TextBoxCallback doneCallback;
 
         // Start is called before the first frame update
         void Start()
@@ -89,11 +97,39 @@ namespace RM_BBTS
             }
         }
 
+        // Adds a callback for when the textbox opens.
+        public void OnTextBoxOpenedAddCallback(TextBoxCallback callback)
+        {
+            openedCallback += callback;
+        }
+
+        // Removes a callback for when the textbox opens.
+        public void OnTextBoxOpenedRemoveCallback(TextBoxCallback callback)
+        {
+            openedCallback -= callback;
+        }
+
         // Shows the textbox.
         public void Open()
         {
             // TODO: add animation.
             boxObject.SetActive(true);
+
+            // Calls the callbacks for opening the textbox.
+            if (openedCallback != null)
+                openedCallback();
+        }
+
+        // Adds a callback for when the textbox is closed.
+        public void OnTextBoxClosedAddCallback(TextBoxCallback callback)
+        {
+            closedCallback += callback;
+        }
+
+        // Removes a callback for when the textbox is closed.
+        public void OnTextBoxClosedRemoveCallback(TextBoxCallback callback)
+        {
+            closedCallback -= callback;
         }
 
         // Hides the textbox.
@@ -101,6 +137,10 @@ namespace RM_BBTS
         {
             // TODO: add animation.
             boxObject.SetActive(false);
+
+            // Calls the callbacks for closing the textbox.
+            if (closedCallback != null)
+                closedCallback();
         }
 
         // Checks if the textbox is visible.
@@ -277,13 +317,13 @@ namespace RM_BBTS
         // TODO: check callbacks.
         // A callback function for when all the text is finished.
         // This is only called if the user attempts to go onto the next page when there is none.
-        public void OnTextBoxFinishedAddCallback(TextBoxFinishedCallback callback)
+        public void OnTextBoxFinishedAddCallback(TextBoxCallback callback)
         {
             doneCallback += callback;
         }
 
         // Removes the callback.
-        public void OnTextBoxFinishedRemoveCallback(TextBoxFinishedCallback callback)
+        public void OnTextBoxFinishedRemoveCallback(TextBoxCallback callback)
         {
             doneCallback -= callback;
         }

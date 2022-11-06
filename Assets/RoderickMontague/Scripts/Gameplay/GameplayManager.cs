@@ -38,9 +38,17 @@ namespace RM_BBTS
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
+        // The tutorial object.
+        public Tutorial tutorial;
+
+        // If set to 'true' then the tutorial is used.
+        public bool useTutorial = true;
+
+
         [Header("UI")]
 
-        // The text box used for the game.
+        // The text box used for general messages.
+        // This is used for the tutorial, which also saves this object.
         public TextBox textBox;
 
         // The battle number text.
@@ -101,6 +109,13 @@ namespace RM_BBTS
             // // textBox.OnTextFinishedAddCallback(Test);
             // // textBox.OnTextFinishedRemoveCallback(Test);
             // textBox.ReplacePages(test);
+
+            // Show the textbox automatically when loading text.
+            tutorial.showTextboxOnLoad = true;
+
+            // Load the intro tutorial.
+            if (useTutorial)
+                tutorial.LoadIntroTutorial();
         }
 
         // public void Test()

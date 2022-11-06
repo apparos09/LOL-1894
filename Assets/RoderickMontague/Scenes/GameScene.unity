@@ -6257,6 +6257,8 @@ MonoBehaviour:
   battlesPerLevelUp: 3
   lastEnemyLevelUps: -1
   evolveWaves: 0
+  tutorial: {fileID: 1635305062}
+  useTutorial: 1
   textBox: {fileID: 1178415351}
   battleNumberText: {fileID: 712597961}
   playerHealthBar: {fileID: 1372428803}
@@ -9444,7 +9446,7 @@ MonoBehaviour:
   openClip: {fileID: 0}
   closeClip: {fileID: 0}
   instantText: 0
-  textSpeed: 10
+  textSpeed: 50
 --- !u!1001 &1179900075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12520,9 +12522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591a1dcc5c04ca749b63db279830ab7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useTutorial: 1
-  gameManager: {fileID: 0}
-  textBox: {fileID: 0}
+  gameManager: {fileID: 877465982}
+  textBox: {fileID: 1178415351}
+  showTextboxOnLoad: 1
+  clearedIntro: 0
 --- !u!4 &1635305063
 Transform:
   m_ObjectHideFlags: 0
