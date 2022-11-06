@@ -114,7 +114,7 @@ namespace RM_BBTS
             tutorial.showTextboxOnLoad = true;
 
             // Load the intro tutorial.
-            if (useTutorial)
+            if (useTutorial && !tutorial.clearedIntro)
                 tutorial.LoadIntroTutorial();
         }
 
@@ -255,6 +255,10 @@ namespace RM_BBTS
 
             // Called upon returning to the overworld.
             overworld.OnOverworldReturn();
+
+            // The intro text has already been shown, but not the overworld text.
+            if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
+                tutorial.LoadOverworldTutorial();
         }
 
         // Call to enter the battle world.
@@ -279,6 +283,39 @@ namespace RM_BBTS
             // Activates the battle object.
             battle.gameObject.SetActive(true);
 
+            // Loads tutorials.
+            if(useTutorial)
+            {
+                // Shows that a tutorial has been loaded.
+                bool loaded = false;
+
+                // If it's a treasure, load that tutorial.
+                if (door.isTreasureDoor)
+                {
+                    if (!tutorial.clearedTreasure)
+                        tutorial.LoadTreasureTutorial();
+
+                    loaded = true;
+                }
+                // If it's a boss door, load the boss tutorial.
+                else if (door.isBossDoor)
+                {
+                    if (!tutorial.clearedBoss)
+                        tutorial.LoadBossTutorial();
+
+                    loaded = true;
+                }
+                else // It's a regular door, so load that tutorial.
+                {
+                    if (!tutorial.clearedBattle)
+                        tutorial.LoadBattleTutorial();
+
+                    loaded = true;
+                }
+            }
+
+            
+
         }
 
         // Called when the player gets a game over.
@@ -289,6 +326,10 @@ namespace RM_BBTS
 
             // TODO: restore enemy powers.
             overworld.gameOver = true;
+
+            // Loads the game over tutorial.
+            if (useTutorial && !tutorial.clearedGameOver)
+                tutorial.LoadGameOverTutorial();
         }
 
         // Goes to the results screen.
