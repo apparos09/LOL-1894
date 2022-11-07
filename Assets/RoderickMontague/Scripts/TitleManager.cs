@@ -32,10 +32,6 @@ namespace RM_BBTS
         public GameObject settingsMenu;
         public TMP_Text settingsButtonText;
 
-        [Header("Buttons")]
-        public TMP_Text viewControlsButtonText;
-        public TMP_Text viewOptionsButtonText;
-
         // Awake is called when the script instance is loaded.
         private void Awake()
         {
@@ -50,8 +46,10 @@ namespace RM_BBTS
             {
                 JSONNode defs = SharedState.LanguageDefs;
 
-                viewControlsButtonText.text = defs["viewControls"];
-                viewOptionsButtonText.text = defs["viewOptions"];
+                startButtonText.text = defs["kwd_start"];
+                infoButtonText.text = defs["kwd_info"];
+                controlsButtonText.text = defs["kwd_controls"];
+                settingsButtonText.text = defs["kwd_settings"];
             }
             else
             {

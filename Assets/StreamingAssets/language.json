@@ -7,8 +7,14 @@
       "greatJob": 20,
       "onePlusOne": 30,
 
-      "viewControlsText": 10,
-      "viewOptionsText": 10
+      "kwd_start": 12,
+      "kwd_info": 12,
+      "kwd_controls": 12,
+      "kwd_settings": 12,
+      "kwd_stats": 12,
+
+      "mve_run_nme": 10,
+      "mve_run_dsc": 180
     }
   },
   "en": {
@@ -23,8 +29,15 @@
     "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
     "autoSave": "...Auto Saving Complete",
 
-    "viewControls": "Controls",
-    "viewOptions": "Options"
+    "kwd_start": "Start",
+    "kwd_info": "Info",
+    "kwd_controls": "Controls",
+    "kwd_settings": "Settings",
+    "kwd_stats": "Stats",
+
+    "mve_run_nme": "Run",
+    "mve_run_dsc": "The user runs away from battle. There is a 50% of success.'"
+
   },
   "es": {
     "welcome": "¡Bienvenido!",

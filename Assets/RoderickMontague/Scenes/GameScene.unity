@@ -779,7 +779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: '[Settings]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5387,7 +5387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stats
+  m_text: '[Stats]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6286,13 +6286,16 @@ MonoBehaviour:
   battle: {fileID: 1163903607}
   mouseTouchInput: {fileID: 203223313}
   player: {fileID: 1467642233}
+  tutorial: {fileID: 1635305062}
+  useTutorial: 0
   battlesTotal: 0
   battlesCompleted: 0
   battlesPerLevelUp: 3
   lastEnemyLevelUps: -1
   evolveWaves: 0
-  tutorial: {fileID: 1635305062}
-  useTutorial: 0
+  totalTurns: 0
+  gameTimer: 0
+  pausedTimer: 0
   textBox: {fileID: 1178415351}
   battleNumberText: {fileID: 712597961}
   playerHealthBar: {fileID: 1372428803}
@@ -7278,7 +7281,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1783378381}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9346,7 +9349,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Info
+  m_text: '[Info]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13352,8 +13355,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1204011798}
-  - {fileID: 638855116}
   - {fileID: 960459645}
+  - {fileID: 638855116}
   m_Father: {fileID: 788251608}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
