@@ -6258,7 +6258,7 @@ MonoBehaviour:
   lastEnemyLevelUps: -1
   evolveWaves: 0
   tutorial: {fileID: 1635305062}
-  useTutorial: 1
+  useTutorial: 0
   textBox: {fileID: 1178415351}
   battleNumberText: {fileID: 712597961}
   playerHealthBar: {fileID: 1372428803}
@@ -11804,6 +11804,8 @@ MonoBehaviour:
   - {fileID: 933859327}
   - {fileID: 379895573}
   - {fileID: 1242854128}
+  bossDoor: {fileID: 0}
+  treasureDoors: []
   ui: {fileID: 1666888079}
 --- !u!1 &1486936159
 GameObject:

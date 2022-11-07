@@ -257,8 +257,8 @@ namespace RM_BBTS
             }
 
             // Sets the level.
-            door.battleEntity.level = (uint)Random.Range(1, gameManager.battlesPerLevelUp + 1);
-
+            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, 
+                (uint)Random.Range(1, gameManager.battlesPerLevelUp + 1));
 
 
             // TODO: randomize the enemy being placed behind the door.
