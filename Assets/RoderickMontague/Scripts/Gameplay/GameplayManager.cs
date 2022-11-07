@@ -70,14 +70,20 @@ namespace RM_BBTS
         // The health bar for the player.
         public ProgressBar playerHealthBar;
 
-        // The text for the player's health (TODO: include a progress bar).
+        // The text for the player's health
         public TMPro.TMP_Text playerHealthText;
+
+        // Becomes set to 'true' when the player's health is transitioning.
+        private bool playerHealthTransitioning = false;
 
         // The health bar for the player.
         public ProgressBar playerEnergyBar;
 
-        // The text for the player's enegy (TODO: include a progress bar).
+        // The text for the player's enegy
         public TMPro.TMP_Text playerEnergyText;
+
+        // Becomes set to 'true' when the player's energy is transitioning.
+        private bool playerEnergyTransitioning = false;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -464,6 +470,8 @@ namespace RM_BBTS
         public void UpdatePlayerHealthUI()
         {
             playerHealthBar.SetValue(player.Health / player.MaxHealth);
+
+            // This technically causes the final number to flash for a frame, but I don't think it's an issue.
             playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
         }
 
@@ -471,6 +479,8 @@ namespace RM_BBTS
         public void UpdatePlayerEnergyUI()
         {
             playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
+
+            // This technically causes the final number to flash for a frame, but I don't think it's an issue.
             playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
         }
 
@@ -514,6 +524,40 @@ namespace RM_BBTS
             if(!pausedTimer)
             {
                 gameTimer += Time.deltaTime;
+            }
+
+            // Checks if the health bar is transitioning.
+            if(playerHealthBar.IsTransitioning())
+            {
+                playerHealthText.text = Mathf.Round(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" + 
+                    player.MaxHealth.ToString();
+
+                // The health is transitioning.
+                playerHealthTransitioning = true;
+            }
+            else if(playerHealthTransitioning) // Transition done.
+            {
+                // Set to exact value.
+                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+
+                playerHealthTransitioning = false;
+            }
+
+            // Checks if the energy bar is transitioning.
+            if (playerEnergyBar.IsTransitioning())
+            {
+                playerEnergyText.text = Mathf.Round(playerEnergyBar.GetSliderValueAsPercentage() * player.MaxEnergy).ToString() + "/" +
+                    player.MaxEnergy.ToString();
+
+                // The energy is transitioning.
+                playerEnergyTransitioning = true;
+            }
+            else if (playerEnergyTransitioning)  // Transition done.
+            {
+                // Set to exact value.
+                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+
+                playerEnergyTransitioning = false;
             }
         }
     }

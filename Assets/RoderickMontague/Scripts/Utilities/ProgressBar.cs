@@ -115,6 +115,30 @@ namespace RM_BBTS
             }
         }
 
+        // Returns the value in a 0.0 (0%) to 1.0 (100%) range.
+        public float GetValueAsPercentage()
+        {
+            return Mathf.InverseLerp(minValue, maxValue, value);
+        }
+
+        // Gets the value from the slider UI object.
+        public float GetSliderValue()
+        {
+            return bar.value;
+        }
+
+        // Gets the value from the slider UI object as a percentage.
+        public float GetSliderValueAsPercentage()
+        {
+            return Mathf.InverseLerp(bar.minValue, bar.maxValue, bar.value);
+        }
+
+        // Checks if the progress bar is transitioning to another vlaue.
+        public bool IsTransitioning()
+        {
+            return transitioning;
+        }
+
         // Update is called once per frame
         void Update()
         {

@@ -120,6 +120,9 @@ namespace RM_BBTS
         // TODO: this will not be shown in the final game.
         public TMP_Text opponentHealthText;
 
+        // Has the text scroll for the opponent health.
+        private bool opponentHealthTransitioning = false;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -997,6 +1000,24 @@ namespace RM_BBTS
                     }
 
                 }
+            }
+
+            // Opponent Health Scrolling Text
+            // Checks if the opponent health bar is transitioning.
+            if (opponentHealthBar.IsTransitioning())
+            {
+                opponentHealthText.text = Mathf.Round(opponentHealthBar.GetSliderValueAsPercentage() * opponent.MaxHealth).ToString() + "/" +
+                    opponent.MaxHealth.ToString();
+
+                // The health is transitioning.
+                opponentHealthTransitioning = true;
+            }
+            else if (opponentHealthTransitioning) // Transition done.
+            {
+                // Set to exact value.
+                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+
+                opponentHealthTransitioning = false;
             }
 
         }
