@@ -14,6 +14,9 @@ namespace RM_BBTS
         {
             // This is arbitrary. It's just there for making the run failed message appear first.
             priority = 10;
+
+            // Loads in the translation for the run name and description.
+            LoadTranslation("mve_run_nme", "mve_run_dsc");
         }
 
         // Called when performing a move.

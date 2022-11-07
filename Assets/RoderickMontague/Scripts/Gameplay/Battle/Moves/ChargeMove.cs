@@ -11,6 +11,8 @@ namespace RM_BBTS
         public ChargeMove() : 
             base(moveId.charge, "Charge", 1, 0, 1.0F, 0)
         {
+            // Loads in the translation for the run name and description.
+            LoadTranslation("mve_charge_nme", "mve_charge_dsc");
         }
 
         // Called when performing a move.

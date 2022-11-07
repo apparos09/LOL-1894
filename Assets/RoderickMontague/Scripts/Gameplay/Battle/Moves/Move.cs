@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LoLSDK;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -57,6 +59,22 @@ namespace RM_BBTS
 
             // Default message.
             description = "No information available";
+        }
+
+        // Loads the translated information for the move.
+        // Provided are the name key and the description key.
+        public void LoadTranslation(string nameKey, string descKey)
+        {
+            // If the SDK has been initialized.
+            if(GameSettings.Instance.InitializedLOLSDK)
+            {
+                JSONNode defs = SharedState.LanguageDefs;
+
+                // Loads in the name and description.
+                name = defs[nameKey];
+                description = defs[descKey];
+            }
+
         }
 
         // Returns the ID of the move.

@@ -36,7 +36,10 @@
     "kwd_stats": "Stats",
 
     "mve_run_nme": "Run",
-    "mve_run_dsc": "The user runs away from battle. There is a 50% of success.'"
+    "mve_run_dsc": "The user runs away from battle. There is a 50% chance of success.",
+
+    "mve_charge_nme": "Charge",
+    "mve_charge_dsc": "The user charges their energy, which is needed to perform moves. This will fail if the user is at their max."
 
   },
   "es": {
