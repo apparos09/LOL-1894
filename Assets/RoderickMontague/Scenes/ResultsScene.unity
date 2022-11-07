@@ -433,6 +433,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fef4eabbfa9376488e86c98c39d117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomsClearedText: {fileID: 1373871017}
+  totalTimeText: {fileID: 1037987035}
+  totalTurnsText: {fileID: 1174554758}
+  move0Text: {fileID: 1194831189}
+  move1Text: {fileID: 1100087993}
+  move2Text: {fileID: 1734702624}
+  move3Text: {fileID: 1033236632}
 --- !u!1 &396964956
 GameObject:
   m_ObjectHideFlags: 0

@@ -635,6 +635,9 @@ namespace RM_BBTS
 
                 // Disable the player options since the textbox is open.
                 DisablePlayerOptions();
+
+                // Add to the total turns counter.
+                gameManager.totalTurns++;
             }
             else
             {

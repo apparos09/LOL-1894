@@ -23,6 +23,14 @@ namespace RM_BBTS
         // The player for the game.
         public Player player;
 
+        // The tutorial object.
+        public Tutorial tutorial;
+
+        // If set to 'true' then the tutorial is used.
+        public bool useTutorial = true;
+
+        [Header("Game Stats")]
+
         // The total battles in the game.
         public int battlesTotal = 0;
 
@@ -38,12 +46,17 @@ namespace RM_BBTS
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
-        // The tutorial object.
-        public Tutorial tutorial;
+        [Header("Game Stats/Time")]
 
-        // If set to 'true' then the tutorial is used.
-        public bool useTutorial = true;
+        // The total amount of turns completed.
+        public int totalTurns = 0;
 
+        // The time the game has been going for.
+        // This uses deltaTime, which is in seconds.
+        public float gameTimer = 0.0F;
+
+        // If set to 'true' the game timer is paused.
+        public bool pausedTimer = false;
 
         [Header("UI")]
 
@@ -415,6 +428,25 @@ namespace RM_BBTS
         // Goes to the results screen.
         public void ToResultsScreen()
         {
+            // Set up the results object. It will be kept when transitioning to the next scene.
+            GameObject resultsObject = new GameObject();
+            ResultsData results = resultsObject.AddComponent<ResultsData>();
+            DontDestroyOnLoad(resultsObject);
+
+            // Rooms total.
+            results.roomsCleared = battlesCompleted;
+            results.totalRooms = battlesTotal;
+
+            // Time and turns.
+            results.totalTime = gameTimer;
+            results.totalTurns = totalTurns;
+
+            // Saves the final moves the player had.
+            results.move0 = (player.Move0 != null) ? player.Move0.Name : "-";
+            results.move1 = (player.Move1 != null) ? player.Move1.Name : "-";
+            results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";
+            results.move3 = (player.Move3 != null) ? player.Move3.Name : "-";
+
             // TODO: store battle data.
             SceneManager.LoadScene("ResultsScene");
         }
@@ -468,16 +500,21 @@ namespace RM_BBTS
             // Updates the player's UI.
             // UpdateUI();
 
-            // Checks the state variable to see what kind of scene the game is in.
-            switch (state)
+            // // Checks the state variable to see what kind of scene the game is in.
+            // switch (state)
+            // {
+            //     case gameState.overworld:
+            //         break;
+            // 
+            //     case gameState.battle:
+            //         break;
+            // }
+
+            // Increases the game timer.
+            if(!pausedTimer)
             {
-                case gameState.overworld:
-                    break;
-
-                case gameState.battle:
-                    break;
+                gameTimer += Time.deltaTime;
             }
-
         }
     }
 }
