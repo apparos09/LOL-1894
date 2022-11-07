@@ -79,13 +79,15 @@ namespace RM_BBTS
             pages.Add(new Page("To the left is your health, which causes a game over if it hits 0."));
             pages.Add(new Page("To the right is your energy, which is needed to perform moves."));
             pages.Add(new Page("That will be explained more when you get into battle."));
-            pages.Add(new Page("Speaking of which, click or touch a door to enter it."));
+            pages.Add(new Page("Speaking of which, click or touch an unlocked door to enter it."));
             pages.Add(new Page("The rest of the rooms will be unlocked once you clear a battle."));
 
             // Loads the pages.
             LoadTutorial(ref pages);
 
+            // Intro tutorial loaded.
             clearedIntro = true;
+
         }
 
         // Loads the battle tutorial.

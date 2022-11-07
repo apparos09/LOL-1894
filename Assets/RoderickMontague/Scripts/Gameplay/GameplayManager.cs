@@ -115,7 +115,41 @@ namespace RM_BBTS
 
             // Load the intro tutorial.
             if (useTutorial && !tutorial.clearedIntro)
+            {
                 tutorial.LoadIntroTutorial();
+
+                // If there are enough doors to lock some down.
+                if(overworld.treasureDoors.Count + 1 != overworld.doors.Count)
+                {
+                    // Copies the list.
+                    List<Door> battleDoors = new List<Door>(overworld.doors);
+
+                    // Locks and removes the special doors from the list.
+                    for (int i = battleDoors.Count - 1; i >= 0; i--)
+                    {
+                        battleDoors[i].Locked = true; // Locks the door.
+
+                        // Removes the special door from the list.
+                        if (battleDoors[i].isBossDoor || battleDoors[i].isTreasureDoor)
+                        {
+                            battleDoors.RemoveAt(i); // Remove from list.
+                        }
+                    }
+
+                    // Unlocks three random doors.
+                    for (int n = 0; n < 3 && battleDoors.Count > 0; n++)
+                    {
+                        // Grabs a random index.
+                        int randIndex = Random.Range(0, battleDoors.Count);
+
+                        // Unlocks the door, and removes it from the list.
+                        battleDoors[randIndex].Locked = false;
+                        battleDoors.RemoveAt(randIndex);
+                    }
+                }
+
+            }
+                
         }
 
         // public void Test()
@@ -320,32 +354,40 @@ namespace RM_BBTS
             // Loads tutorials.
             if(useTutorial)
             {
-                // Shows that a tutorial has been loaded.
-                bool loaded = false;
-
                 // If it's a treasure, load that tutorial.
                 if (door.isTreasureDoor)
                 {
                     if (!tutorial.clearedTreasure)
                         tutorial.LoadTreasureTutorial();
-
-                    loaded = true;
                 }
                 // If it's a boss door, load the boss tutorial.
                 else if (door.isBossDoor)
                 {
                     if (!tutorial.clearedBoss)
                         tutorial.LoadBossTutorial();
-
-                    loaded = true;
                 }
                 else // It's a regular door, so load that tutorial.
                 {
+                    // If it's the battle tutorial being loaded.
                     if (!tutorial.clearedBattle)
+                    {
                         tutorial.LoadBattleTutorial();
 
-                    loaded = true;
+                        // Unlocks all the doors since the first battle has started.
+                        // The treasure and boss doors are both locked until a battle room is attempted.
+                        foreach(Door lockedDoor in overworld.doors)
+                        {
+                            // Entity is alive, so unlock the door.
+                            if(lockedDoor.battleEntity.health != 0)
+                            {
+                                lockedDoor.Locked = false;
+                            }
+                            
+                        }
+                    }
+                        
                 }
+
             }
 
             

@@ -300,6 +300,11 @@ namespace RM_BBTS
             {
                 // Show health bar and health text
                 opponentHealthBar.bar.gameObject.SetActive(true);
+                
+                // Set value.
+                opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+
+                // Show game text.
                 opponentHealthText.gameObject.SetActive(true);
 
                 // Hide treasure prompt.

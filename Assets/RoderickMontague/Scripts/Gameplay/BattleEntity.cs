@@ -199,7 +199,7 @@ namespace RM_BBTS
         {
             get { return health; }
 
-            set { health = (value < 0) ? 0 : (value > maxHealth) ? maxHealth : value; }
+            set { health = Mathf.Clamp(value, 0, maxHealth); }
         }
 
         // The attack getter/setter.
@@ -239,7 +239,7 @@ namespace RM_BBTS
         {
             get { return energy; }
 
-            set { energy = (value < 0) ? 0 : (value > maxEnergy) ? maxEnergy : value; }
+            set { energy = Mathf.Clamp(value, 0, MaxEnergy); }
         }
 
         // Returns 'true' if the entity has the maximum amount of energy.

@@ -25,6 +25,12 @@ namespace RM_BBTS
         // The list of doors.
         public List<Door> doors = new List<Door>();
 
+        // The boss door.
+        public Door bossDoor = null;
+
+        // THe treasure doors.
+        public List<Door> treasureDoors = null; 
+
         // The amount of the doors.
         public const int DOOR_COUNT = 18;
 
@@ -134,8 +140,6 @@ namespace RM_BBTS
 
                 // BOSS
                 // The boss door
-                Door bossDoor;
-
                 randIndex = Random.Range(0, doorInitList.Count); // Grabs the random index.
                 bossDoor = doorInitList[randIndex]; // Grab random door to make boss door.
                 doorInitList.RemoveAt(randIndex); // Remove boss door from list.
@@ -144,7 +148,7 @@ namespace RM_BBTS
 
                 // TREASURES
                 // The treasure doors.
-                List<Door> treasureDoors = new List<Door>();
+                treasureDoors = new List<Door>();
 
                 // While there are still treasure doors.
                 while(treasureDoors.Count < TREASURE_COUNT && treasureDoors.Count < doorInitList.Count)
