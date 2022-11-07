@@ -191,7 +191,11 @@ namespace RM_BBTS
         {
             get { return maxHealth; }
 
-            // set { maxHealth = (value < 0) ? 1 : value; }
+            set 
+            { 
+                maxHealth = (value < 0) ? 1 : value;
+                health = Mathf.Clamp(value, 0, maxHealth);
+            }
         }
 
         // The health getter/setter.
@@ -231,7 +235,11 @@ namespace RM_BBTS
         {
             get { return maxEnergy; }
 
-            // set { maxEnergy = (value < 0) ? 1 : value; }
+            set 
+            { 
+                maxEnergy = (value < 0) ? 1 : value;
+                energy = Mathf.Clamp(value, 0, MaxEnergy);
+            }
         }
 
         // The energy getter/setter.
@@ -375,6 +383,10 @@ namespace RM_BBTS
             // Restores health and energy
             newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
             newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;
+
+            // Clamps the health and energy levels.
+            newData.health = Mathf.Clamp(newData.health, 0, newData.maxHealth);
+            newData.energy = Mathf.Clamp(newData.energy, 0, newData.maxEnergy);
 
             // Returns the new data.
             return newData;

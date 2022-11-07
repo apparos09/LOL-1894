@@ -76,6 +76,10 @@ namespace RM_BBTS
             // Turns off the battle object and its ui.
             battle.gameObject.SetActive(false);
             battle.ui.SetActive(false);
+
+            // Tutorial settings.
+            if(FindObjectOfType<GameSettings>() != null)
+                useTutorial = GameSettings.Instance.useTutorial;
         }
 
         // Start is called before the first frame update

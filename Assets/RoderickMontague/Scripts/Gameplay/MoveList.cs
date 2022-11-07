@@ -192,7 +192,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "Kablam", 3, 20.0F, 1.0F, 2.0F);
+                    move = new Move(moveId.kablam, "Kablam", 3, 30.0F, 1.0F, 2.0F);
                     break;
             }
 

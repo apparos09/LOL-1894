@@ -699,7 +699,9 @@ namespace RM_BBTS
         public void OnPlayerBattleWon()
         {
             textBox.OnTextBoxFinishedRemoveCallback(OnPlayerBattleWon);
-            player.LevelUp();
+            
+            // Moved so that an update message can be posted on screen.
+            // player.LevelUp();
 
             // Completed a Battle
             gameManager.battlesCompleted++;
@@ -922,8 +924,50 @@ namespace RM_BBTS
                                 textBox.pages.Add(new Page("The player has won the battle!"));
                             }
 
-                            // Level up message.                        
-                            textBox.pages.Add(new Page("The player got a level up!"));
+                            // Levels up the player.
+                            {
+                                // The temporary page object.
+                                Page tempPage;
+
+                                // Level up message.
+                                tempPage = new Page("The player got a level up!");
+
+                                // Add the page to the list.
+                                textBox.pages.Add(tempPage);
+
+                                // Update the UI when this page has been displayed.
+                                tempPage.OnPageOpenedAddCallback(gameManager.UpdateUI);
+
+                                // Saves the old stats.
+                                float oldMaxHp = player.MaxHealth;
+                                float oldAtk = player.Attack;
+                                float oldDef = player.Defense;
+                                float oldSpd = player.Speed;
+                                float oldMaxEng = player.MaxEnergy;
+
+                                // Levels up te player.
+                                player.LevelUp();
+
+                                // Adds page with the increases in stats.
+                                textBox.pages.Add(new Page(
+                                    "Health +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
+                                    "Attack +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "   |   " +
+                                    "Defense +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   \n" +
+                                    "Speed +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString() + "   |   " +
+                                    "Energy +" + Mathf.RoundToInt(player.MaxEnergy - oldMaxEng).ToString()
+                                    ));
+
+                                // Adds page with new stats.
+                                textBox.pages.Add(new Page(
+                                    "Health = " + Mathf.RoundToInt(player.MaxHealth).ToString() + "   |   " +
+                                    "Attack = " + Mathf.RoundToInt(player.Attack).ToString() + "   |   " +
+                                    "Defense = " + Mathf.RoundToInt(player.Defense).ToString() + "   |   \n" +
+                                    "Speed = " + Mathf.RoundToInt(player.Speed).ToString() + "   |   " +
+                                    "Energy = " + Mathf.RoundToInt(player.MaxEnergy).ToString()
+                                    ));
+
+                                
+                            }
 
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
