@@ -23,15 +23,15 @@ namespace RM_BBTS
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
-            maxHealth = 20;
-            health = 20;
+            maxHealth = 50;
+            health = maxHealth;
 
-            attack = 3;
-            defense = 2;
-            speed = 1;
+            attack = 10;
+            defense = 5;
+            speed = 4;
 
-            maxEnergy = 10;
-            energy = 10;
+            maxEnergy = 30;
+            energy = maxEnergy;
         }
 
         // Start is called before the first frame update
