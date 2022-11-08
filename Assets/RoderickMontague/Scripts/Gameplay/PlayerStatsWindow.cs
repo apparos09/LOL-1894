@@ -10,7 +10,7 @@ namespace RM_BBTS
     public class PlayerStatsWindow : MonoBehaviour
     {
         // The gameplay manager.
-        public GameplayManager gameManager;
+        // public GameplayManager gameManager;
 
         //  Player object.
         public Player player;
@@ -79,14 +79,14 @@ namespace RM_BBTS
             UpdatePlayerInfo();
         }
 
-        // Toggles the visibility of the player stat window.
-        public void ToggleVisibility()
-        {
-            gameObject.SetActive(!gameObject.activeSelf);
-
-            // Disables/Enables Certain Functions
-            gameManager.mouseTouchInput.gameObject.SetActive(!gameObject.activeSelf);
-        }
+        // // Toggles the visibility of the player stat window.
+        // public void ToggleVisibility()
+        // {
+        //     gameObject.SetActive(!gameObject.activeSelf);
+        // 
+        //     // Disables/Enables Certain Functions
+        //     gameManager.mouseTouchInput.gameObject.SetActive(!gameObject.activeSelf);
+        // }
 
         // Upates the UI for the stats window.
         public void UpdatePlayerInfo()

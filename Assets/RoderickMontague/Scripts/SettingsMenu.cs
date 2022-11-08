@@ -137,11 +137,5 @@ namespace RM_BBTS
         {
             gameSettings.SfxVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

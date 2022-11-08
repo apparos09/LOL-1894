@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -61,6 +62,20 @@ namespace RM_BBTS
 
         [Header("UI")]
 
+        // Title text for stats button.
+        public TMPro.TMP_Text statsButtonText;
+
+        // The player stats window.
+        public PlayerStatsWindow statsWindow;
+
+        // Title text for settings button.
+        public TMPro.TMP_Text settingsButtonText;
+
+        // The settings window.
+        public SettingsMenu settingsWindow;
+
+        [Header("UI/Game")]
+
         // The text box used for general messages.
         // This is used for the tutorial, which also saves this object.
         public TextBox textBox;
@@ -109,8 +124,20 @@ namespace RM_BBTS
             if (mouseTouchInput == null)
                 mouseTouchInput = FindObjectOfType<MouseTouchInput>();
 
-
+            // Initialize
             Initialize();
+
+            // Translation
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Translation object found.
+            if(defs != null)
+            {
+                statsButtonText.text = defs["kwd_stats"];
+                settingsButtonText.text = defs["kwd_settings"];
+            }
+
+
         }
 
         // Initializes the gameplay manager.
@@ -209,6 +236,34 @@ namespace RM_BBTS
         // private void OnLevelWasLoaded(int level)
         // {
         // }
+
+        // Opens the settings window.
+        public void ToggleSettingsWindow()
+        {
+            // Gets the change in activity.
+            bool active = !settingsWindow.gameObject.activeSelf;
+
+            // Change settings window.
+            settingsWindow.gameObject.SetActive(active);
+
+            // Turn off info window and mouse input.
+            statsWindow.gameObject.SetActive(false);
+            mouseTouchInput.gameObject.SetActive(!active);
+        }
+
+        // Opens the player stats window.
+        public void TogglePlayerStatsWindow()
+        {
+            // Gets the change in activity.
+            bool active = !statsWindow.gameObject.activeSelf;
+
+            // Change settings window.
+            statsWindow.gameObject.SetActive(active);
+
+            // Turn off info window and mouse input.
+            settingsWindow.gameObject.SetActive(false);
+            mouseTouchInput.gameObject.SetActive(!active);
+        }
 
         // Checks the mouse and touch to see if there's any object to use.
         public void MouseTouchCheck()
