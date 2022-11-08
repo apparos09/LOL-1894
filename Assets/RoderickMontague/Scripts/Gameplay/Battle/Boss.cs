@@ -11,6 +11,8 @@ namespace RM_BBTS
         new void Start()
         {
             base.Start();
+
+            LoadTranslation("bey_boss_nme");
         }
 
         // Update is called once per frame

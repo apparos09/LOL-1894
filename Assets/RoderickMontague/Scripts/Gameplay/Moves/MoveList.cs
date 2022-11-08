@@ -104,96 +104,183 @@ namespace RM_BBTS
         // Generates the move.
         public Move GenerateMove(moveId id)
         {
+            // The move object.
             Move move = null;
+
+            // The keys for the move name and description key.
+            string nameKey = "", descKey = "";
 
             switch (id)
             {
                     // RANK 1
                 case moveId.run: // Run
                     move = new RunMove();
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_run_nme";
+                    // descKey = "mve_run_dsc";
                     break;
 
                 case moveId.charge: // Charge
                     move = new ChargeMove();
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.poke: // Hit
                     move = new Move(moveId.poke, "Poke", 1, 10.0F, 1.0F, 1.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.slimeshot: // Slimeshot
                     move = new Move(moveId.slimeshot, "Slimeshot", 1, 30.0F, 0.9F, 4.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.lasershot: // Lasershot (TODO: not working for osme reason)
                     move = new Move(moveId.lasershot, "Lasershot", 1, 40.0F, 0.9F, 4.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.fireshot: // Fireshot
                     move = new Move(moveId.fireshot, "Fireshot", 1, 30.0F, 0.9F, 5.0F);
                     move.BurnChance = 0.2F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.elecshot: // Electroshot
                     move = new Move(moveId.elecshot, "Electro Shot", 1, 30.0F, 0.9F, 5.0F);
                     move.ParalysisChance = 0.2F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.screech: // Screech
                     move = new Move(moveId.screech, "Screech", 1, 25.0F, 1.0F, 3.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.bam: // Bam
                     move = new Move(moveId.bam, "Bam", 1, 10.0F, 1.0F, 1.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
 
                     // RANK 2
                 case moveId.laserburst: // Laser Burst
                     move = new Move(moveId.laserburst, "Laser Burst", 2, 70.0F, 1.0F, 1.5F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.fireburst: // Fire Burst
                     move = new Move(moveId.fireburst, "Fire Burst", 2, 65.0F, 1.0F, 1.5F);
                     move.BurnChance = 0.3F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.elecburst: // Electric Burst
                     move = new Move(moveId.elecburst, "Electric Burst", 2, 65.0F, 1.0F, 1.5F);
                     move.ParalysisChance = 0.3F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.soundwave: // Sound Wave
                     move = new Move(moveId.soundwave, "Sound Wave", 2, 65.0F, 1.0F, 1.5F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.wham: // Wham
                     move = new Move(moveId.wham, "Wham", 2, 15.0F, 1.0F, 1.5F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
 
                 // RANK 3
                 case moveId.laserblast: // Laser Blast
                     move = new Move(moveId.laserblast, "Laser Blast", 3, 100.0F, 1.0F, 1.5F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.fireblast: // Fire Blast
                     move = new Move(moveId.fireblast, "Fire Blast", 3, 90.0F, 1.0F, 1.5F);
                     move.BurnChance = 0.4F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.elecblast: // Electric Blast
                     move = new Move(moveId.elecblast, "Electric Blast", 3, 90.0F, 1.0F, 1.5F);
                     move.ParalysisChance = 0.4F;
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.sonicwave: // Sonic Wave
                     move = new Move(moveId.sonicwave, "Sonic Wave", 3, 90.0F, 1.0F, 1.5F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.kablam: // Kablam
                     move = new Move(moveId.kablam, "Kablam", 3, 30.0F, 1.0F, 2.0F);
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
+            }
+
+            // The move has been generated.
+            if(move != null && nameKey != "" && descKey != "")
+            {
+                // Loads the translation.
+                move.LoadTranslation(nameKey, descKey);
             }
 
             return move;

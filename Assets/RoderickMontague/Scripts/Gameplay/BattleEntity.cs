@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+using LoLSDK;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -120,6 +121,22 @@ namespace RM_BBTS
 
             health = maxHealth;
             energy = maxEnergy;
+        }
+
+        // Loads the translated information for the move.
+        // Provided are the name key and the description key.
+        public void LoadTranslation(string nameKey)
+        {
+            // Grabs the language definitions.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // If the SDK has been initialized.
+            if (defs != null)
+            {
+                // Loads in the name and description.
+                displayName = defs[nameKey];
+            }
+
         }
 
         // Generates the battle entity data for this entity.

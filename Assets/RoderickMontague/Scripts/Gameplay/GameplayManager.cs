@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace RM_BBTS
 {
+    // General manager for the gameplay.
     public class GameplayManager : GameState
     {
         // the state of the game.
@@ -447,7 +448,8 @@ namespace RM_BBTS
             results.totalTime = gameTimer;
             results.totalTurns = totalTurns;
 
-            // Saves the final moves the player had.
+            // Saves the level and final moves the player had.
+            results.finalLevel = player.Level;
             results.move0 = (player.Move0 != null) ? player.Move0.Name : "-";
             results.move1 = (player.Move1 != null) ? player.Move1.Name : "-";
             results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";

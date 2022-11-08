@@ -21,6 +21,7 @@ namespace RM_BBTS
 
         [Header("Text")]
         // Text windows.
+        public TMP_Text levelText;
         public TMP_Text healthText;
         public TMP_Text attackText;
         public TMP_Text defenseText;
@@ -91,15 +92,16 @@ namespace RM_BBTS
         public void UpdatePlayerInfo()
         {
             // TEXT
-            // health
-            healthText.text = "Health: " + Mathf.Ceil(player.Health).ToString() + "/" + Mathf.Ceil(player.MaxHealth).ToString();
+            // Level
+            levelText.text = "Level: " + player.Level.ToString();
 
-            // stats
+            // Stats
+            healthText.text = "Health: " + Mathf.Ceil(player.Health).ToString() + "/" + Mathf.Ceil(player.MaxHealth).ToString();
             attackText.text = "Attack: " + Mathf.Ceil(player.Attack).ToString();
             defenseText.text = "Defense: " + Mathf.Ceil(player.Defense).ToString();
             speedText.text = "Speed: " + Mathf.Ceil(player.Speed).ToString();
 
-            // energy
+            // Energy
             energyText.text = "Energy: " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
 
             // BUTTONS

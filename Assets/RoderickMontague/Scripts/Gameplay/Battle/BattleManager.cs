@@ -97,9 +97,11 @@ namespace RM_BBTS
 
         // Charge Button
         public Button chargeButton;
+        public TMP_Text chargeButtonText;
 
         // Run Button
         public Button runButton;
+        public TMP_Text runButtonText;
 
         [Header("UI/Player/Treasure")]
         
@@ -169,6 +171,12 @@ namespace RM_BBTS
 
             // Turns off the learn move panel.
             learnMovePanel.windowObject.SetActive(false);
+
+            // Charge (does it this way for translation)
+            chargeButtonText.text = MoveList.Instance.ChargeMove.Name;
+
+            // Run (does it this way for translation)
+            runButtonText.text = MoveList.Instance.RunMove.Name;
         }
 
         // This function is called when the object becomes enabled and active

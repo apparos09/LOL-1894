@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-// The results manager.
+using SimpleJSON;
 
 namespace RM_BBTS
 {
     // The results manager.
     public class ResultsManager : MonoBehaviour
     {
+        // The title text.
+        public TMPro.TMP_Text titleText;
+
+        [Header("Stats")]
         // The rooms cleared text.
         public TMPro.TMP_Text roomsClearedText;
 
@@ -18,6 +21,13 @@ namespace RM_BBTS
 
         // The total turns text.
         public TMPro.TMP_Text totalTurnsText;
+
+        // The text for the final level.
+        public TMPro.TMP_Text finalLevelText;
+
+        [Header("Stats/Move Text")]
+        // Text for the move title.
+        public TMPro.TMP_Text moveSubtitleText;
 
         // Move 0 display text.
         public TMPro.TMP_Text move0Text;
@@ -31,17 +41,58 @@ namespace RM_BBTS
         // Move 3 display text.
         public TMPro.TMP_Text move3Text;
 
+        [Header("Buttons")]
+        // Main menu button text.
+        public TMPro.TMP_Text mainMenuButtonText;
+
         // Start is called before the first frame update
         void Start()
         {
+            // The language defs.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Labels for translation.
+            string titleLabel = "<Results>";
+            string roomsClearedLabel = "<Rooms Cleared>";
+            string totalTimeLabel = "<Total Time>";
+            string totalTurnsLabel = "<Total Turns>";
+            string finalLevelLabel = "<Final Level>";
+            string finalMovesLabel = "<Final Moves>";
+
+            // The main menu title text.
+            string mainMenuLabel = "<Main Menu>";
+
+            // Translate title text.
+            if(defs != null)
+            {
+                titleLabel = defs["kwd_results"];
+                roomsClearedLabel = defs["kwd_roomsCleared"];
+                totalTimeLabel = defs["kwd_totalTime"];
+                totalTurnsLabel = defs["kwd_totalTurns"];
+                finalLevelLabel = defs["kwd_finalLevel"];
+                finalMovesLabel = defs["kwd_finalMoves"];
+
+                mainMenuLabel = defs["kwd_mainMenu"];
+            }
+
+            // Change out titles and buttons with translated label.
+            titleText.text = titleLabel;
+            moveSubtitleText.text = finalMovesLabel;
+            mainMenuButtonText.text = mainMenuLabel;
+
+            // Change out button text with translated.
+
             // Finds the results object.
             ResultsData rd = FindObjectOfType<ResultsData>();
 
             // Results object has been found.
             if(rd != null)
             {
+                // Final level
+                finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
+
                 // Rooms cleared.
-                roomsClearedText.text = "Rooms Cleared: " + rd.roomsCleared.ToString() + " / " + rd.totalRooms.ToString();
+                roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCleared.ToString() + " / " + rd.totalRooms.ToString();
 
                 // Total time.
                 {
@@ -57,12 +108,12 @@ namespace RM_BBTS
                     float minutes = Mathf.CeilToInt(rd.totalTime) - seconds; // minutes
 
                     // Sets the text.
-                    totalTimeText.text = "Total Time: " + minutes.ToString("00") + ":" + seconds.ToString("00");
+                    totalTimeText.text = totalTimeLabel + ": " + minutes.ToString("00") + ":" + seconds.ToString("00");
 
                 }
 
                 // Total turns.
-                totalTurnsText.text = "Total Turns: " + rd.totalTurns.ToString();
+                totalTurnsText.text = totalTurnsLabel + ": " + rd.totalTurns.ToString();
 
                 // Move text.
                 move0Text.text = rd.move0;

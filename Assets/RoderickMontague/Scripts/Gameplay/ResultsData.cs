@@ -19,6 +19,9 @@ namespace RM_BBTS
         // The total turns.
         public int totalTurns = 0;
 
+        // Final level
+        public uint finalLevel = 0;
+
         // The 4 moves.
         public string move0 = "-";
         public string move1 = "-";

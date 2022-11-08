@@ -7,6 +7,7 @@ using SimpleJSON;
 namespace RM_BBTS
 {
     // A class for a move.
+    // This inherits from monobehaviour so that related functions can be called.
     public class Move
     {
         // The number of the move.
@@ -65,11 +66,12 @@ namespace RM_BBTS
         // Provided are the name key and the description key.
         public void LoadTranslation(string nameKey, string descKey)
         {
-            // If the SDK has been initialized.
-            if(GameSettings.Instance.InitializedLOLSDK)
-            {
-                JSONNode defs = SharedState.LanguageDefs;
+            // Grabs the language definitions.
+            JSONNode defs = SharedState.LanguageDefs;
 
+            // If the SDK has been initialized.
+            if (defs != null)
+            {
                 // Loads in the name and description.
                 name = defs[nameKey];
                 description = defs[descKey];

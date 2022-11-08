@@ -55,6 +55,9 @@ namespace RM_BBTS
 
             // Generates and saves a run move.
             runMove = new RunMove();
+
+            // Translates the player's name.
+            LoadTranslation("bey_player_nme");
         }
 
         // Selects the run move. Only the player has the run move.

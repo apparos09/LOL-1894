@@ -12,6 +12,7 @@
       "kwd_controls": 12,
       "kwd_settings": 12,
       "kwd_stats": 12,
+      "kwd_mainMenu": 12,
 
       "mve_run_nme": 10,
       "mve_run_dsc": 180
@@ -29,11 +30,23 @@
     "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
     "autoSave": "...Auto Saving Complete",
 
+    "gameTitle": "Battle Bot Training Simulation",
+
     "kwd_start": "Start",
     "kwd_info": "Info",
     "kwd_controls": "Controls",
     "kwd_settings": "Settings",
     "kwd_stats": "Stats",
+
+    "kwd_results": "Results",
+    "kwd_roomsCleared": "Rooms Cleared",
+    "kwd_totalTime": "Total Time",
+    "kwd_totalTurns": "Total Turns",
+    "kwd_finalMoves": "Final Moves",
+    "kwd_mainMenu": "Main Menu",
+
+    "bey_player_nme": "Player",
+    "bey_boss_nme": "Boss",
 
     "mve_run_nme": "Run",
     "mve_run_dsc": "The user runs away from battle. There is a 50% chance of success.",
