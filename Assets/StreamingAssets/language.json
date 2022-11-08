@@ -38,6 +38,18 @@
     "kwd_settings": "Settings",
     "kwd_stats": "Stats",
 
+    "menu_controls_instruct": "Left Mouse/Touch: Interact",
+    "menu_controls_desc": "The entire game is controlled via the left mouse button/touch.",
+
+    "kwd_volume": "Volume",
+    "kwd_bgmVolume": "BGM Volume",
+    "kwd_sfxVolume": "SFX Volume",
+    "kwd_textToSpeech": "Text-to-Speech",
+    "kwd_tutorial": "Tutorial",
+    "kwd_back": "Back",
+
+
+
     "kwd_results": "Results",
     "kwd_roomsCleared": "Rooms Cleared",
     "kwd_totalTime": "Total Time",

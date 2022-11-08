@@ -10,10 +10,11 @@ using UnityEngine.SceneManagement;
 // the manager for the title scene.
 namespace RM_BBTS
 {
+    // The manager for the title scene.
     public class TitleManager : MonoBehaviour
     {
 
-        [Header("Menus")]
+        [Header("Main Menu")]
         // Menu
         public GameObject mainMenu;
 
@@ -32,6 +33,19 @@ namespace RM_BBTS
         public GameObject settingsMenu;
         public TMP_Text settingsButtonText;
 
+        [Header("Controls Submenu")]
+        // The controls title text.
+        public TMP_Text controlsTitleText;
+
+        // The text for the controls description.
+        public TMP_Text controlsInstructText;
+
+        // The text for the controls description.
+        public TMP_Text controlsDescText;
+
+        // The back button text for the controls sebmenu.
+        public TMP_Text controlsBackButtonText;
+
         // Awake is called when the script instance is loaded.
         private void Awake()
         {
@@ -46,10 +60,17 @@ namespace RM_BBTS
             {
                 JSONNode defs = SharedState.LanguageDefs;
 
+                // Main Menu
                 startButtonText.text = defs["kwd_start"];
                 infoButtonText.text = defs["kwd_info"];
                 controlsButtonText.text = defs["kwd_controls"];
                 settingsButtonText.text = defs["kwd_settings"];
+
+                // Controls Menu
+                controlsTitleText.text = defs["kwd_controls"];
+                controlsInstructText.text = defs["menu_controls_instruct"];
+                controlsDescText.text = defs["menu_controls_desc"];
+                controlsBackButtonText.text = defs["kwd_back"];
             }
             else
             {
