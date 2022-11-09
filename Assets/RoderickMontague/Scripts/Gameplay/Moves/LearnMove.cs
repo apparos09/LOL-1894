@@ -163,6 +163,12 @@ namespace RM_BBTS
             // Show the box again, and move onto the next page.
             windowObject.SetActive(false);
 
+            // This might not be needed.
+            // Set these values to null.
+            newMove = null;
+            learningMove = null;
+
+            // Open he textbox.
             battle.textBox.Open();
             battle.textBox.NextPage();
         }

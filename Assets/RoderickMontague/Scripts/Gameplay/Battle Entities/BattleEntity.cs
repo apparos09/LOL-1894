@@ -423,11 +423,29 @@ namespace RM_BBTS
             return newData;
         }
 
+        // Evolves the entity. It fails if the entity does not have an evolution.
+        public bool Evolve()
+        {
+            // If there is no evolution, it returns false.
+            if (evoId == battleEntityId.unknown)
+            {
+                return false;
+            }
+            else // Evolve.
+            {
+                BattleEntityData data = GenerateBattleEntityData();
+                data = EvolveData(data);
+                LoadBattleData(data);
+                return true;
+            }
+                
+        }
+
         // Evolves the battle entity.
-        public static BattleEntityData Evolve(BattleEntityData oldData)
+        public static BattleEntityData EvolveData(BattleEntityData oldData)
         {
             // Can't evolve.
-            if (oldData.evoId == oldData.id)
+            if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
                 return oldData;
 
             // Gets the base data.

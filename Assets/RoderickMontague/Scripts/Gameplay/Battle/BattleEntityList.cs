@@ -17,7 +17,13 @@ namespace RM_BBTS
         // TODO: include list of battle entity sprites
 
         // The amount of opponents in the list.
-        public const int BATTLE_ENTITY_ID_COUNT = 4;
+        public const int BATTLE_ENTITY_ID_COUNT = 6;
+
+        // The first enemy id (ignores the boss).
+        private battleEntityId firstEnemyId = battleEntityId.ufo;
+
+        // The last enemy id (ignores the boss).
+        private battleEntityId lastEnemyId = battleEntityId.ufo3;
 
         // The list of entities
         public List<Sprite> entitySprites;
@@ -70,6 +76,10 @@ namespace RM_BBTS
             // The namekey.
             string nameKey = "";
 
+            // All entities start at level 1, and by default the evo values are set to 'unknown' (i.e. not set).
+            data.level = 1;
+            data.preEvoId = battleEntityId.unknown;
+            data.evoId = battleEntityId.unknown;
 
             switch (id)
             {
@@ -78,8 +88,7 @@ namespace RM_BBTS
                 default:
                     data.id = battleEntityId.unknown;
                     data.displayName = "<Unknown>";
-                    data.level = 1;
-
+                    
                     data.maxHealth = 10;
                     data.health = 10;
 
@@ -103,7 +112,6 @@ namespace RM_BBTS
                 case battleEntityId.treasure: // treasure chest
                     data.id = battleEntityId.treasure;
                     data.displayName = "<Treasure>";
-                    data.level = 1;
 
                     data.maxHealth = 1;
                     data.health = 1;
@@ -122,7 +130,6 @@ namespace RM_BBTS
                 case battleEntityId.boss: // boss
                     data.id = battleEntityId.boss;
                     data.displayName = "<Boss>";
-                    data.level = 1;
 
                     data.maxHealth = 50;
                     data.health = 50;
@@ -141,9 +148,37 @@ namespace RM_BBTS
 
                 case battleEntityId.ufo: // UFO
                     data.id = battleEntityId.ufo;
+                    data.evoId = battleEntityId.ufo2;
                     data.displayName = "<UFO>";
-                    data.level = 1;
 
+                    data.maxHealth = 10;
+                    data.health = 10;
+
+                    data.attack = 1;
+                    data.defense = 1;
+                    data.speed = 3;
+
+                    data.maxEnergy = 10;
+                    data.energy = 10;
+
+                    // Saves the sprite.
+                    data.sprite = entitySprites[(int)battleEntityId.ufo];
+
+                    // Set random moves.
+                    SetRandomMovesFromList(ref data);
+                    // data.move0 = moveId.lasershot;
+
+                    // Loads the name key.
+                    nameKey = "bey_ufo_nme";
+                    break;
+
+                case battleEntityId.ufo2: // UFO MKII
+                    data.id = battleEntityId.ufo2;
+                    data.preEvoId = battleEntityId.ufo;
+                    data.evoId = battleEntityId.ufo3;
+
+
+                    data.displayName = "<UFO MKII>";
                     data.maxHealth = 15;
                     data.health = 15;
 
@@ -159,10 +194,35 @@ namespace RM_BBTS
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
-                    data.move0 = moveId.lasershot;
 
                     // Loads the name key.
-                    nameKey = "bey_ufo_nme";
+                    nameKey = "bey_ufo2_nme";
+                    break;
+
+                case battleEntityId.ufo3: // UFO MKIII
+                    data.id = battleEntityId.ufo3;
+                    data.preEvoId = battleEntityId.ufo2;
+
+                    data.displayName = "<UFO MKIII>";
+
+                    data.maxHealth = 30;
+                    data.health = 30;
+
+                    data.attack = 5;
+                    data.defense = 10;
+                    data.speed = 20;
+
+                    data.maxEnergy = 30;
+                    data.energy = 30;
+
+                    // Saves the sprite.
+                    data.sprite = entitySprites[(int)battleEntityId.ufo];
+
+                    // Set random moves.
+                    SetRandomMovesFromList(ref data);
+
+                    // Loads the name key.
+                    nameKey = "bey_ufo3_nme";
                     break;
 
             }
@@ -197,6 +257,14 @@ namespace RM_BBTS
                     break;
 
                 case battleEntityId.ufo:
+                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
+                    break;
+
+                case battleEntityId.ufo2:
+                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
+                    break;
+
+                case battleEntityId.ufo3:
                     moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
                     break;
             }
@@ -242,6 +310,47 @@ namespace RM_BBTS
                 // Increase count.
                 count++;
             }
+        }
+
+        // Generates a random battle entity enemy. If 'baseEvo' is true, then the base form is provided.
+        public BattleEntityData GenerateRandomEnemy(bool baseEvo = true)
+        {
+            // The data.
+            BattleEntityData data = new BattleEntityData();
+            
+            // Gets the random id.
+            battleEntityId randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
+
+            // Gets the random data.
+            data = GenerateBattleEntityData(randomId);
+            
+            // TODO: make this mroe efficient?
+
+            // If the base evo should be returned.
+            if(baseEvo)
+            {
+                // Counts the amount of changes.
+                int changes = 0;
+
+                // While the pre-evo is not set to unknown (base form).
+                // No enemy should have more than 3 forms, so only two changes should be needed.
+                while(data.preEvoId != battleEntityId.unknown && changes < 2)
+                {
+                    // Goes to the base form.
+                    data = GenerateBattleEntityData(data.preEvoId);
+
+                    // A change has been made.
+                    changes++;
+                }
+            }
+
+            return data;
+        }
+
+        // Generates the boss.
+        public BattleEntityData GenerateBoss()
+        {
+            return GenerateBattleEntityData(battleEntityId.boss);
         }
     }
 

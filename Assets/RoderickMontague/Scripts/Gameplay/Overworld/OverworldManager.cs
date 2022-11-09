@@ -252,8 +252,12 @@ namespace RM_BBTS
             }
             else // Normal Door
             {
-                // TODO: generate normal enemy (need to RANDOMIZE)
-                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
+                // Test
+                // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
+
+                // Generates a random enemy (base version).
+                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true);
+
             }
 
             // Sets the level.
@@ -375,7 +379,7 @@ namespace RM_BBTS
                 {
                     // Only evolve the entity if the door is unlocked.
                     if (!door.Locked)
-                        door.battleEntity = BattleEntity.Evolve(door.battleEntity);
+                        door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
                 }
 
                 gameManager.evolveWaves++;

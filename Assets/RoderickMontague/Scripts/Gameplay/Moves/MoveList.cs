@@ -19,7 +19,7 @@ namespace RM_BBTS
         private static MoveList instance;
 
         // The move ID count.
-        public const int MOVE_ID_COUNT = 10;
+        public const int MOVE_ID_COUNT = 18;
 
         // The run move that is used to play through the turn.
         private static RunMove runMove;

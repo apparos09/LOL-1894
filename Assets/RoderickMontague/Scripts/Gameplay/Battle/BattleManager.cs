@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// TODO: do status effects.
 namespace RM_BBTS
 {
     // Manages the battle operations for the game. This becomes active when the game enters a battle state.
