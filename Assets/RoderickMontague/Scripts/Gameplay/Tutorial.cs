@@ -1,3 +1,4 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace RM_BBTS
         public bool showTextboxOnLoad;
 
         [Header("Tutorial Steps")]
+
+        // The definitions from the json file.
+        JSONNode defs;
 
         // Set to 'true' when the intro text has been loaded up.
         public bool clearedIntro = false;
@@ -45,6 +49,9 @@ namespace RM_BBTS
             // Adds the callbacks.
             textBox.OnTextBoxOpenedAddCallback(OnTutorialStart);
             textBox.OnTextBoxClosedAddCallback(OnTutorialEnd);
+
+            // Loads the language definitions.
+            defs = SharedState.LanguageDefs;
         }
 
         // Start is called before the first frame update
@@ -73,14 +80,29 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("Welcome to the simulation game, Battle Bot!"));
-            pages.Add(new Page("Your job is to beat the boss of the simulation."));
-            pages.Add(new Page("But first, I'd recommend you do some smaller battles to level-up and get new moves."));
-            pages.Add(new Page("To the left is your health, which causes a game over if it hits 0."));
-            pages.Add(new Page("To the right is your energy, which is needed to perform moves."));
-            pages.Add(new Page("That will be explained more when you get into battle."));
-            pages.Add(new Page("Speaking of which, click or touch an unlocked door to enter it."));
-            pages.Add(new Page("The rest of the rooms will be unlocked once you clear a battle."));
+            if(defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_intro00"]));
+                pages.Add(new Page(defs["trl_intro01"]));
+                pages.Add(new Page(defs["trl_intro02"]));
+                pages.Add(new Page(defs["trl_intro03"]));
+                pages.Add(new Page(defs["trl_intro04"]));
+                pages.Add(new Page(defs["trl_intro05"]));
+                pages.Add(new Page(defs["trl_intro06"]));
+                pages.Add(new Page(defs["trl_intro07"]));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Welcome to the simulation game, Battle Bot!>"));
+                pages.Add(new Page("<Your job is to beat the boss of the simulation.>"));
+                pages.Add(new Page("<But first, I'd recommend you do some smaller battles to level-up and get new moves.>"));
+                pages.Add(new Page("<To the left is your health, which causes a game over if it hits 0.>"));
+                pages.Add(new Page("<To the right is your energy, which is needed to perform moves.>"));
+                pages.Add(new Page("<That will be explained more when you get into battle.>"));
+                pages.Add(new Page("<Speaking of which, click or touch an unlocked door to enter it.>"));
+                pages.Add(new Page("<The rest of the rooms will be unlocked once you clear a battle.>"));
+
+            }
 
             // Loads the pages.
             LoadTutorial(ref pages);
@@ -97,15 +119,30 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("Welcome to the battle phase of the game!"));
-            pages.Add(new Page("Your job is to make your opponent's health hit 0."));
-            pages.Add(new Page("If your health hits 0 then you will get a game over."));
-            pages.Add(new Page("To attack your opponent, select one of your moves."));
-            pages.Add(new Page("You can hold up to 4 moves at a time, and might be able to get a new move when you level-up."));
-            pages.Add(new Page("You can open the info panel to how what each of your moves does."));
-            pages.Add(new Page("If you don't have enough energy to perform a move it will be unavailable."));
-            pages.Add(new Page("You'll need to hit the charge option to gain energy, which takes a turn."));
-            pages.Add(new Page("You can also try your hand at running away if you wish to retreat, but it may fail."));
+            if(defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_battle00"]));
+                pages.Add(new Page(defs["trl_battle01"]));
+                pages.Add(new Page(defs["trl_battle02"]));
+                pages.Add(new Page(defs["trl_battle03"]));
+                pages.Add(new Page(defs["trl_battle04"]));
+                pages.Add(new Page(defs["trl_battle05"]));
+                pages.Add(new Page(defs["trl_battle06"]));
+                pages.Add(new Page(defs["trl_battle07"]));
+            }    
+            else // Default
+            {
+                pages.Add(new Page("<Welcome to the battle phase of the game!>"));
+                pages.Add(new Page("<Your job is to make your opponent's health hit 0.>"));
+                pages.Add(new Page("<If your health hits 0 then you will get a game over.>"));
+                pages.Add(new Page("<To attack your opponent, select one of your moves.>"));
+                pages.Add(new Page("<You can hold up to 4 moves at a time, and might be able to get a new move when you level-up.>"));
+                pages.Add(new Page("<You can open the info panel to how what each of your moves does.>"));
+                pages.Add(new Page("<If you don't have enough energy to perform a move it will be unavailable.>"));
+                pages.Add(new Page("<You'll need to hit the charge option to gain energy, which takes a turn.>"));
+                pages.Add(new Page("<You can also try your hand at running away if you wish to retreat, but it may fail.>"));
+
+            }
 
             // Loads the pages.
             LoadTutorial(ref pages);
@@ -120,9 +157,19 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("This is a treasure room!"));
-            pages.Add(new Page("You get a free level-up, health restore, and energy restore if you collect the treasure."));
-            pages.Add(new Page("If you leave the treasure you can come back and open it later."));
+            if(defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_treasure00"]));
+                pages.Add(new Page(defs["trl_treasure01"]));
+                pages.Add(new Page(defs["trl_treasure02"]));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<This is a treasure room!>"));
+                pages.Add(new Page("<You get a free level-up, health restore, and energy restore if you collect the treasure.>"));
+                pages.Add(new Page("<If you leave the treasure you can come back and open it later.>"));
+
+            }
 
             // Loads the pages.
             LoadTutorial(ref pages);
@@ -137,12 +184,23 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("Now that you've attempted a room, the final boss room is now open."));
-            pages.Add(new Page("The game ends when you beat the boss, so clear as many rooms as you think you need."));
-            pages.Add(new Page("The more rooms you clear the stronger you'll become."));
-            pages.Add(new Page("Enemies will get stronger the longer the game goes on, so keep that in mind."));
-            pages.Add(new Page("On with the game."));
-
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_overworld00"]));
+                pages.Add(new Page(defs["trl_overworld01"]));
+                pages.Add(new Page(defs["trl_overworld02"]));
+                pages.Add(new Page(defs["trl_overworld03"]));
+                pages.Add(new Page(defs["trl_overworld04"]));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Now that you've attempted a room, the final boss room is now open.>"));
+                pages.Add(new Page("<The game ends when you beat the boss, so clear as many rooms as you think you need.>"));
+                pages.Add(new Page("<The more rooms you clear the stronger you'll become.>"));
+                pages.Add(new Page("<Enemies will get stronger the longer the game goes on, so keep that in mind.>"));
+                pages.Add(new Page("<On with the game.>"));
+            }
+            
             // Loads the pages.
             LoadTutorial(ref pages);
 
@@ -156,8 +214,16 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("Welcome to the boss room!"));
-            pages.Add(new Page("All you need is to beat the boss to win the game!"));
+            if(defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_boss00"]));
+                pages.Add(new Page(defs["trl_boss01"]));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Welcome to the boss room!>"));
+                pages.Add(new Page("<All you need is to beat the boss to win the game!>"));
+            }
 
             // Loads the pages.
             LoadTutorial(ref pages);
@@ -172,9 +238,18 @@ namespace RM_BBTS
             List<Page> pages = new List<Page>();
 
             // Pages
-            pages.Add(new Page("You got a game over"));
-            pages.Add(new Page("All living enemies have had their health and energy restored."));
-            pages.Add(new Page("Your health and energy have also been restored, but your moves have been randomized."));
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_gameOver00"]));
+                pages.Add(new Page(defs["trl_gameOver01"]));
+                pages.Add(new Page(defs["trl_gameOver02"]));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You got a game over.>"));
+                pages.Add(new Page("<All living enemies have had their health and energy restored.>"));
+                pages.Add(new Page("<Your health and energy have also been restored, but your moves have been randomized.>"));
+            }
 
             // Loads the pages.
             LoadTutorial(ref pages);

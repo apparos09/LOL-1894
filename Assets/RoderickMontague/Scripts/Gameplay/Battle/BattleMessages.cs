@@ -7,6 +7,8 @@ using System.Security.Cryptography;
 
 namespace RM_BBTS
 {
+    // TODO: check to see if it'd be best to just save each message in its own string.
+
     // The battle messages for the game.
     public class BattleMessages : MonoBehaviour
     {

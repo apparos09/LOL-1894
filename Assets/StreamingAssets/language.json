@@ -110,7 +110,43 @@
     "mve_run_dsc": "The user runs away from battle. There is a 50% chance of success.",
 
     "mve_charge_nme": "Charge",
-    "mve_charge_dsc": "The user charges their energy, which is needed to perform moves. This will fail if the user is at their max."
+    "mve_charge_dsc": "The user charges their energy, which is needed to perform moves. This will fail if the user is at their max.",
+
+    "trl_intro00": "Welcome to the simulation game, Battle Bot!",
+    "trl_intro01": "Your job is to beat the boss of the simulation.",
+    "trl_intro02": "But first, I'd recommend you do some smaller battles to level-up and get new moves.",
+    "trl_intro03": "To the left is your health, which causes a game over if it hits 0.",
+    "trl_intro04": "To the right is your energy, which is needed to perform moves.",
+    "trl_intro05": "That will be explained more when you get into battle.",
+    "trl_intro06": "Speaking of which, click or touch an unlocked door to enter it.",
+    "trl_intro07": "The rest of the rooms will be unlocked once you clear a battle.",
+
+    "trl_battle00": "Welcome to the battle phase of the game!",
+    "trl_battle01": "Your job is to make your opponent's health hit 0.",
+    "trl_battle02": "If your health hits 0 then you will get a game over.",
+    "trl_battle03": "To attack your opponent, select one of your moves.",
+    "trl_battle04": "You can hold up to 4 moves at a time, and might be able to get a new move when you level-up.",
+    "trl_battle05": "If you don't have enough energy to perform a move it will be unavailable.",
+    "trl_battle06": "You'll need to hit the charge option to gain energy, which takes a turn.",
+    "trl_battle07": "You can also try your hand at running away if you wish to retreat, but it may fail.",
+
+    "trl_treasure00": "This is a treasure room!",
+    "trl_treasure01": "You get a free level-up, health restore, and energy restore if you collect the treasure.",
+    "trl_treasure02": "If you leave the treasure you can come back and open it later.",
+
+    "trl_overworld00": "Now that you've attempted a room, the final boss room is now open.",
+    "trl_overworld01": "The game ends when you beat the boss, so clear as many rooms as you think you need.",
+    "trl_overworld02": "The more rooms you clear the stronger you'll become.",
+    "trl_overworld03": "Enemies will get stronger the longer the game goes on, so keep that in mind.",
+    "trl_overworld04": "On with the game.",
+
+    "trl_boss00": "Welcome to the boss room!",
+    "trl_boss01": "All you need is to beat the boss to win the game!",
+
+    "trl_gameOver00": "You got a game over.",
+    "trl_gameOver01": "All living enemies have had their health and energy restored.",
+    "trl_gameOver02": "Your health and energy have also been restored, but your moves have been randomized."
+
 
   },
   "es": {

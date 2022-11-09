@@ -332,8 +332,8 @@ namespace RM_BBTS
             // Clamp modifier.
             speedMod = Mathf.Clamp(speedMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value.
-            return speed + speed * speedMod * 0.05F;
+            // Returns the value. This is affected by paralysis.
+            return speed + speed * speedMod * 0.05F * (paralyzed ? 0.75F : 1.0F);
         }
 
         // Resets the stat modifiers.
@@ -663,8 +663,8 @@ namespace RM_BBTS
         public static int GetFastestEntity(BattleEntity be1, BattleEntity be2, BattleManager battle)
         {
             // Gets the two speeds.
-            float speed1 = be1.speed * (be1.paralyzed ? 0.75F : 1.0F);
-            float speed2 = be1.speed * (be2.paralyzed ? 0.75F : 1.0F);
+            float speed1 = be1.GetSpeedModified();
+            float speed2 = be2.GetSpeedModified();
 
             // Gets the result.
             if (speed1 > speed2)
