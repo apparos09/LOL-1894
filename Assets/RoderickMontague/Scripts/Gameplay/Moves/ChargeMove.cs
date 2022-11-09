@@ -19,7 +19,7 @@ namespace RM_BBTS
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // Charging text.
-            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(user.displayName + " charged their energy!"));
+            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName)));
 
             float chargePlus = user.MaxEnergy * 0.4F;
             user.Energy += chargePlus;

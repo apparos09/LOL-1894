@@ -163,7 +163,7 @@ namespace RM_BBTS
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
             {
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(user.name + " does not have enough power!"));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName)));
                 return false;
             }
                 
@@ -194,22 +194,22 @@ namespace RM_BBTS
 
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical
-                    newPages.Add(new Page("The move hit!"));
+                    newPages.Add(new Page(BattleMessages.Instance.GetMoveHitMessage()));
                 else // Critical
-                    newPages.Add(new Page("The move hit, and it did critical damage!"));
+                    newPages.Add(new Page(BattleMessages.Instance.GetMoveHitCriticalMessage()));
 
                 // Burn Infliction
                 if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
                 {
                     target.burned = true;
-                    newPages.Add(new Page("The target has been burned!"));
+                    newPages.Add(new Page(BattleMessages.Instance.GetMoveBurnedMessage()));
                 }
 
                 // Paralysis Infliction
                 if (!target.paralyzed && Random.Range(0.0F, 1.0F) < paralysisChance)
                 {
                     target.paralyzed = true;
-                    newPages.Add(new Page("The target has been paralyzed!"));
+                    newPages.Add(new Page(BattleMessages.Instance.GetMoveParalyzedMessage()));
                 }
 
                 // Inserts a range of pages.
@@ -231,8 +231,8 @@ namespace RM_BBTS
             }
             else
             {
-                // Failure.
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The move failed."));
+                // The move missed.
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveMissedMessage()));
 
                 return false;
             }

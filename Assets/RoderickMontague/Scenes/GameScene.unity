@@ -6443,9 +6443,9 @@ MonoBehaviour:
   totalTurns: 0
   gameTimer: 0
   pausedTimer: 0
-  statsButtonText: {fileID: 0}
+  statsButtonText: {fileID: 748994560}
   statsWindow: {fileID: 1623822240}
-  settingsButtonText: {fileID: 0}
+  settingsButtonText: {fileID: 40146595}
   settingsWindow: {fileID: 929397842}
   textBox: {fileID: 1178415351}
   battleNumberText: {fileID: 712597961}
@@ -9547,6 +9547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163903606}
   - component: {fileID: 1163903607}
+  - component: {fileID: 1163903608}
   m_Layer: 0
   m_Name: Battle
   m_TagString: Manager
@@ -9614,6 +9615,18 @@ MonoBehaviour:
   opponentNameText: {fileID: 1204011799}
   opponentHealthBar: {fileID: 638855117}
   opponentHealthText: {fileID: 960459646}
+--- !u!114 &1163903608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163903605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c18def763a29746933de5d049ebf13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1176387412
 GameObject:
   m_ObjectHideFlags: 0
@@ -12700,6 +12713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5494f0e8baeb85e449ec670e41d9839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 877465982}
   player: {fileID: 1467642233}
   levelText: {fileID: 603051437}
   healthText: {fileID: 21623}

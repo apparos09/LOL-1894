@@ -87,8 +87,8 @@ namespace RM_BBTS
         //     }
         // 
         //     // Replaces the information.
-        //     msg.Replace("{0}", user);
-        //     msg.Replace("{1}", move);
+        //     msg = msg.Replace("{0}", user);
+        //     msg = msg.Replace("{1}", move);
         // 
         //     return msg;
         // }
@@ -114,14 +114,14 @@ namespace RM_BBTS
             }
 
             // Replaces the information.
-            msg.Replace("{0}", user);
-            msg.Replace("{1}", move);
+            msg = msg.Replace("{0}", user);
+            msg = msg.Replace("{1}", move);
 
             return msg;
         }
 
         // Gets the move hit message.
-        public string GetMoveHitMessage(string user, string move)
+        public string GetMoveHitMessage()
         {
             // The message string.
             string msg = "";
@@ -158,6 +158,30 @@ namespace RM_BBTS
                 // Grabs the default mesage.
                 msg = "<The move hit, and it did critical damage!>";
             }
+
+            return msg;
+        }
+
+        // Gets the move "not enough power" message.
+        public string GetMoveNoPowerMessage(string user)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveNoPower"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<{0} does not have enough power to use their move!>";
+            }
+
+            // Replaces the information.
+            msg = msg.Replace("{0}", user);
 
             return msg;
         }
@@ -265,7 +289,7 @@ namespace RM_BBTS
             }
 
             // Slotting in content.
-            msg.Replace("{0}", user);
+            msg = msg.Replace("{0}", user);
 
             return msg;
         }
@@ -289,7 +313,7 @@ namespace RM_BBTS
             }
 
             // Slotting in content.
-            msg.Replace("{0}", user);
+            msg = msg.Replace("{0}", user);
 
             return msg;
         }
@@ -330,11 +354,11 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The {0} took burn damage!>";
+                msg = "<{0} took burn damage!>";
             }
 
             // Slotting in content.
-            msg.Replace("{0}", infected);
+            msg = msg.Replace("{0}", infected);
 
             return msg;
         }
@@ -354,11 +378,11 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The {0} is immobilized, and can't move!>";
+                msg = "<{0} is immobilized, and can't move!>";
             }
 
             // Slotting in content.
-            msg.Replace("{0}", infected);
+            msg = msg.Replace("{0}", infected);
 
             return msg;
         }
@@ -470,7 +494,7 @@ namespace RM_BBTS
         }
 
         // The player is trying to learn a new move.
-        public string GetNewMoveMessage()
+        public string GetLearnMoveMessage()
         {
             // The message string.
             string msg = "";
@@ -479,7 +503,7 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_newMove"];
+                msg = defs["btl_msg_learnMove"];
             }
             else
             {
@@ -491,7 +515,7 @@ namespace RM_BBTS
         }
 
         // The player learned the new move.
-        public string GetNewMoveYesMessage(string newMove)
+        public string GetLearnMoveYesMessage(string newMove)
         {
             // The message string.
             string msg = "";
@@ -500,7 +524,7 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_newMoveYes"];
+                msg = defs["btl_msg_learnMoveYes"];
             }
             else
             {
@@ -509,13 +533,13 @@ namespace RM_BBTS
             }
 
             // Slotting in content.
-            msg.Replace("{0}", newMove);
+            msg = msg.Replace("{0}", newMove);
 
             return msg;
         }
 
         // The player did not learn the new move.
-        public string GetNewMoveMessage(string newMove)
+        public string GetLearnMoveNoMessage(string newMove)
         {
             // The message string.
             string msg = "";
@@ -524,7 +548,7 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_newMoveNo"];
+                msg = defs["btl_msg_learnMoveNo"];
             }
             else
             {
@@ -533,7 +557,7 @@ namespace RM_BBTS
             }
 
             // Slotting in content.
-            msg.Replace("{0}", newMove);
+            msg = msg.Replace("{0}", newMove);
 
             return msg;
         }

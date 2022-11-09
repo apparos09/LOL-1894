@@ -41,12 +41,12 @@ namespace RM_BBTS
                 //     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
                 // }
 
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveRunFailedMessage(user.displayName)));
 
             }
             else // Not player.
             {
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("Nothing happened."));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveNothingMessage()));
             }
 
             return true;

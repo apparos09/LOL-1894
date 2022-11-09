@@ -56,6 +56,7 @@
     "kwd_finalMoves": "Final Moves",
     "kwd_mainMenu": "Main Menu",
 
+    "kwd_level": "Level",
     "kwd_health": "Health",
     "kwd_attack": "Attack",
     "kwd_defense": "Defense",
@@ -70,6 +71,7 @@
     "btl_msg_mve_moveUsed": "{0} used {1}!",
     "btl_msg_mve_moveHit": "The move hit!",
     "btl_msg_mve_moveCritical": "The move hit, and it did critical damage!",
+    "btl_msg_mve_moveNoPower": "{0} does not have enough power to use their move!",
     "btl_msg_mve_moveMissed": "The move missed!",
     "btl_msg_mve_moveFailed": "The move failed!",
     "btl_msg_mve_moveBurned": "The target has been burned!",
@@ -79,8 +81,8 @@
     "btl_msg_mve_runFailed": "{0} failed to run away!",
     "btl_msg_mve_nothing": "Nothing happened.",
 
-    "btl_msg_burned": "The {0} took burn damage!",
-    "btl_msg_paralyzed": "The {0} is immobilized, and can't move!",
+    "btl_msg_burned": "{0} took burn damage!",
+    "btl_msg_paralyzed": "{0} is immobilized, and can't move!",
 
     "btl_msg_battleWon": "The player has won the battle!",
     "btl_msg_battleWonBoss": "The player has beaten the final boss!",
@@ -88,9 +90,9 @@
     "btl_msg_openTreasure": "The player has opened the treasure!",
 
     "btl_msg_levelUp": "The player got a level up!",
-    "btl_msg_newMove": "The player is trying to learn a new move!",
-    "btl_msg_newMoveYes": "The player learned {0}!",
-    "btl_msg_newMoveNo": "The player did not learn {0}.",
+    "btl_msg_learnMove": "The player is trying to learn a new move!",
+    "btl_msg_learnMoveYes": "The player learned {0}!",
+    "btl_msg_learnMoveNo": "The player did not learn {0}.",
 
     "bey_player_nme": "Player",
 

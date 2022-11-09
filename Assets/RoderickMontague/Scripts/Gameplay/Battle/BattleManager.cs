@@ -220,7 +220,7 @@ namespace RM_BBTS
             if (opponent != null)
             {
                 // Saves the opponent's name.
-                opponentNameText.text = opponent.name;
+                opponentNameText.text = opponent.displayName;
 
                 // Loads the battle data
                 opponent.LoadBattleData(door.battleEntity);
@@ -546,12 +546,12 @@ namespace RM_BBTS
                 if(turnSkip)
                 {
                     // Skip
-                    playerMovePage = new Page("The player is immobalized, and can't move.");
+                    playerMovePage = new Page(BattleMessages.Instance.GetParalyzedMessage(player.displayName));
                 }
                 else
                 {
                     // Adds the player's move.
-                    playerMovePage = new Page(player.displayName + " used " + player.selectedMove.Name + "!");
+                    playerMovePage = new Page(BattleMessages.Instance.GetMoveUsedMessage(player.displayName, player.selectedMove.Name));
 
                     playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
                 }
@@ -571,12 +571,12 @@ namespace RM_BBTS
                 if(turnSkip)
                 {
                     // Skip
-                    opponentMovePage = new Page("The opponent is immobalized, and can't move.");
+                    opponentMovePage = new Page(BattleMessages.Instance.GetParalyzedMessage(opponent.displayName));
                 }
                 else // Don't skip.
                 {
                     // Adds the opponent's move.
-                    opponentMovePage = new Page(opponent.displayName + " used " + opponent.selectedMove.Name + "!");
+                    opponentMovePage = new Page(BattleMessages.Instance.GetMoveUsedMessage(opponent.displayName, opponent.selectedMove.Name));
                     opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
                 }
                 
@@ -602,14 +602,14 @@ namespace RM_BBTS
                     // If the player is burned.
                     if (player.burned)
                     {
-                        pBurnPage = new Page("The player took burn damage!");
+                        pBurnPage = new Page(BattleMessages.Instance.GetBurnedMessage(player.displayName));
                         pBurnPage.OnPageOpenedAddCallback(ApplyPlayerBurn);
                     }
 
                     // If the opponent is burned.
                     if(opponent.burned)
                     {
-                        oBurnPage = new Page("The opponent took burn damage!");
+                        oBurnPage = new Page(BattleMessages.Instance.GetBurnedMessage(opponent.displayName));
                         oBurnPage.OnPageOpenedAddCallback(ApplyOpponentBurn);
                     }
 
@@ -826,7 +826,7 @@ namespace RM_BBTS
                 textBox.pages.RemoveAt(textBox.CurrentPageIndex + 1);
 
                 // Inserts a new page.
-                textBox.pages.Insert(textBox.CurrentPageIndex + 1, new Page("The player learned " + newMove.Name));
+                textBox.pages.Insert(textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name)));
 
                 // Go onto the next page.
                 textBox.Open();
@@ -906,7 +906,7 @@ namespace RM_BBTS
                             opponent.Health = opponent.MaxHealth;
 
                             textBox.pages.Clear();
-                            textBox.pages.Add(new Page("The player has lost the battle!"));
+                            textBox.pages.Add(new Page(BattleMessages.Instance.GetBattleLostMessage()));
                             textBox.SetPage(0);
                             textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
 
@@ -920,13 +920,13 @@ namespace RM_BBTS
                             // Checks the opponent type.
                             if (opponent is Treasure) // Is Treasure
                             {
-                                textBox.pages.Add(new Page("The player has opened the treasure chest!"));
+                                textBox.pages.Add(new Page(BattleMessages.Instance.GetOpenTreasureMessage()));
                             }
                             else if(opponent is Boss) // Final boss beaten.
                             {
                                 // TODO: test this.
                                 // Boss page and callback.
-                                Page bossPage = new Page("The player has beaten the final boss!");
+                                Page bossPage = new Page(BattleMessages.Instance.GetBattleWonBossMessage());
                                 bossPage.OnPageClosedAddCallback(gameManager.ToResultsScreen);
 
                                 // Adds the boss page. 
@@ -935,7 +935,7 @@ namespace RM_BBTS
                             }
                             else // Not Treasure
                             {
-                                textBox.pages.Add(new Page("The player has won the battle!"));
+                                textBox.pages.Add(new Page(BattleMessages.Instance.GetBattleWonMessage()));
                             }
 
                             // Levels up the player.
@@ -944,7 +944,7 @@ namespace RM_BBTS
                                 Page tempPage;
 
                                 // Level up message.
-                                tempPage = new Page("The player got a level up!");
+                                tempPage = new Page(BattleMessages.Instance.GetLevelUpMessage());
 
                                 // Add the page to the list.
                                 textBox.pages.Add(tempPage);
@@ -988,7 +988,7 @@ namespace RM_BBTS
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
                             if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure)
                             {
-                                Page movePage = new Page("The player is trying to learn a new move!");
+                                Page movePage = new Page(BattleMessages.Instance.GetLearnMoveMessage());
                                 movePage.OnPageClosedAddCallback(OnLearningNewMove);
                                 textBox.pages.Add(movePage);
 
