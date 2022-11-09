@@ -228,6 +228,58 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move stat increase message.
+        public string GetMoveStatIncreaseMessage(string target, string stat, string amount)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveStatInc"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The move increased {0}'s {1} by {2} stages!>";
+            }
+
+            // Slot in values.
+            msg = msg.Replace("{0}", target);
+            msg = msg.Replace("{1}", stat);
+            msg = msg.Replace("{2}", amount);
+
+            return msg;
+        }
+
+        // Gets the move stat decrease message.
+        public string GetMoveStatDecreaseMessage(string target, string stat, string amount)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveStatDec"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The move decreased {0}'s {1} by {2} stages!>";
+            }
+
+            // Slot in values.
+            msg = msg.Replace("{0}", target);
+            msg = msg.Replace("{1}", stat);
+            msg = msg.Replace("{2}", amount);
+
+            return msg;
+        }
+
         // Gets the move missed message.
         public string GetMoveBurnedMessage()
         {

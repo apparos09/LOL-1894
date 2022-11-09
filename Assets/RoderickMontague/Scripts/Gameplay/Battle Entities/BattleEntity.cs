@@ -67,7 +67,7 @@ namespace RM_BBTS
         // Level
         protected uint level = 1;
 
-        // Stats
+        // BASE STATS
         // The stats of the battle entity.
         protected float maxHealth = 1;
         protected float health = 1;
@@ -79,7 +79,25 @@ namespace RM_BBTS
         protected float maxEnergy = 10;
         protected float energy = 10;
 
-        // level ups incs (minimum and maximum).
+        // STAT MOFIDIERS (TEMP INC/DEC)
+        // Modifier for attack.
+        public int attackMod = 0;
+
+        // Modifier for defense.
+        public int defenseMod = 0;
+
+        // Modifier for speed.
+        public int speedMod = 0;
+
+        // The minimum for the stat modifiers.
+        public const int STAT_MOD_MIN = -3;
+
+        // The maximum for the stat modifiers.
+        public const int STAT_MOD_MAX = -3;
+
+        // LEVEL UP
+
+        // level ups increasess (minimum and maximum).
         public const int STAT_LEVEL_INC_MIN = 1;
         public const int STAT_LEVEL_INC_MAX = 3;
         public const int STAT_LEVEL_BONUS_INC = 3;
@@ -100,6 +118,7 @@ namespace RM_BBTS
 
         // Status effects appled to the entity.
         [Header("Stauses")]
+
         // Has burn status, which causes damage every turn.
         public bool burned;
 
@@ -285,6 +304,51 @@ namespace RM_BBTS
         public bool HasFullCharge()
         {
             return energy == maxEnergy;
+        }
+
+        // Gets the modified attack of the entity.
+        public float GetAttackModified()
+        {
+            // Clamp modifier.
+            attackMod = Mathf.Clamp(attackMod, STAT_MOD_MIN, STAT_MOD_MAX);
+
+            // Returns the value.
+            return attack + attack * attackMod * 0.05F;
+        }
+
+        // Gets the modified defense of the entity.
+        public float GetDefenseModified()
+        {
+            // Clamp modifier.
+            defenseMod = Mathf.Clamp(defenseMod, STAT_MOD_MIN, STAT_MOD_MAX);
+
+            // Returns the value.
+            return defense + defense * defenseMod * 0.05F;
+        }
+
+        // Gets the modified speed of the entity.
+        public float GetSpeedModified()
+        {
+            // Clamp modifier.
+            speedMod = Mathf.Clamp(speedMod, STAT_MOD_MIN, STAT_MOD_MAX);
+
+            // Returns the value.
+            return speed + speed * speedMod * 0.05F;
+        }
+
+        // Resets the stat modifiers.
+        public void ResetStatModifiers()
+        {
+            attackMod = 0;
+            defenseMod = 0;
+            speedMod = 0;
+        }
+
+        // Resets the status effects.
+        public void ResetStatuses()
+        {
+            burned = false;
+            paralyzed = false;
         }
 
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.

@@ -202,6 +202,10 @@ namespace RM_BBTS
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
 
+            // Reset the stat modifiers and statuses before the battle starts.
+            player.ResetStatModifiers();
+            player.ResetStatuses();
+
             // Checks the type of entity.
             switch (door.battleEntity.id)
             {
@@ -245,9 +249,9 @@ namespace RM_BBTS
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
 
-                // STATUS
-                opponent.burned = false;
-                opponent.paralyzed = false;
+                // Resets the stat modifiers and statuses.
+                opponent.ResetStatModifiers();
+                opponent.ResetStatuses();
             }
             else
             {
@@ -858,9 +862,11 @@ namespace RM_BBTS
             // Player options should be enabled before leaving so that they're ready for the next battle?
             EnablePlayerOptions();
 
-            // Remove status effects
-            player.burned = false;
-            player.paralyzed = false;
+            // Remove stat changes and status effects
+            // This already happens in the initialization phase, but it happens here just to be sure. 
+            // TODO: maybe take this out?
+            player.ResetStatModifiers();
+            player.ResetStatuses();
 
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityData();

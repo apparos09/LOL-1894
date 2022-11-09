@@ -903,6 +903,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 782c2d4f008187a4d815cdb865ea4ca6, type: 3}
   - {fileID: 21300000, guid: 782c2d4f008187a4d815cdb865ea4ca6, type: 3}
   - {fileID: 21300000, guid: 037371909e2c0264e9c93c2559065483, type: 3}
+  - {fileID: 21300000, guid: 89764e6dfcf6cf044ac3fbabf05ea651, type: 3}
+  - {fileID: 21300000, guid: 5eb4ae23bf79668419d6461a59389372, type: 3}
 --- !u!4 &40462806
 Transform:
   m_ObjectHideFlags: 0
@@ -1753,6 +1755,9 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  attackMod: 0
+  defenseMod: 0
+  speedMod: 0
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -12095,6 +12100,9 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  attackMod: 0
+  defenseMod: 0
+  speedMod: 0
   burned: 0
   paralyzed: 0
 --- !u!4 &1467642234
@@ -13185,6 +13193,9 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  attackMod: 0
+  defenseMod: 0
+  speedMod: 0
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -14520,6 +14531,9 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  attackMod: 0
+  defenseMod: 0
+  speedMod: 0
   burned: 0
   paralyzed: 0
 --- !u!4 &1932905572

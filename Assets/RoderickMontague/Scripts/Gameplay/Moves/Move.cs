@@ -184,7 +184,7 @@ namespace RM_BBTS
                 }
 
                 // Calculation
-                damage = user.Attack * (power * 0.15F) * critBoost - target.Defense * (power * 0.20F);
+                damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
                 damage = Mathf.Round(damage); // Round damage to whole number.
                 damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
                 target.Health -= damage; // power * user.Attack;
