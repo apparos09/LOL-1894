@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
+using System.Security.Cryptography;
 
 namespace RM_BBTS
 {
@@ -91,6 +92,8 @@ namespace RM_BBTS
         // 
         //     return msg;
         // }
+
+        // MOVE USE //
 
         // Gets the move used message.
         public string GetMoveUsedMessage(string user, string move)
@@ -221,5 +224,319 @@ namespace RM_BBTS
 
             return msg;
         }
+
+        // Gets the move missed message.
+        public string GetMoveParalyzedMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveParalyzed"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The target has been paralyzed!>";
+            }
+
+            return msg;
+        }
+
+        // MOVE EFFECT //
+        public string GetMoveChargeUsedMessage(string user)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_chargeUsed"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<{0} charged their energy!>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", user);
+
+            return msg;
+        }
+
+        // The move run failed.
+        public string GetMoveRunFailedMessage(string user)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_runFailed"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<{0} failed to run away!>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", user);
+
+            return msg;
+        }
+
+        // The move caused nothing to happen.
+        public string GetMoveNothingMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_nothing"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<Nothing happened.>";
+            }
+
+            return msg;
+        }
+
+        // The target was burned.
+        public string GetBurnedMessage(string infected)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_burned"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The {0} took burn damage!>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", infected);
+
+            return msg;
+        }
+
+        // The target was paralyzed.
+        public string GetParalyzedMessage(string infected)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_paralyzed"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The {0} is immobilized, and can't move!>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", infected);
+
+            return msg;
+        }
+
+        // BATTLE FINISH MESSAGES //
+        // The battle was won.
+        public string GetBattleWonMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_battleWon"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player has won the battle!>";
+            }
+
+            return msg;
+        }
+
+        // The battle was won against the boss.
+        public string GetBattleWonBossMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_battleWonBoss"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player has beaten the final boss!>";
+            }
+
+            return msg;
+        }
+
+        // The battle was lost the battle.
+        public string GetBattleLostMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_battleLost"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player has lost the battle!>";
+            }
+
+            return msg;
+        }
+
+        // The treasure was opened.
+        public string GetOpenTreasureMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_openTreasure"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player has opened the treasure!>";
+            }
+
+            return msg;
+        }
+
+        // The player got a level up.
+        public string GetLevelUpMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_levelUp"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player got a level up!>";
+            }
+
+            return msg;
+        }
+
+        // The player is trying to learn a new move.
+        public string GetNewMoveMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_newMove"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player is trying to learn a new move!>";
+            }
+
+            return msg;
+        }
+
+        // The player learned the new move.
+        public string GetNewMoveYesMessage(string newMove)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_newMoveYes"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player learned {0}!>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", newMove);
+
+            return msg;
+        }
+
+        // The player did not learn the new move.
+        public string GetNewMoveMessage(string newMove)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_newMoveNo"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player did not learn {0}.>";
+            }
+
+            // Slotting in content.
+            msg.Replace("{0}", newMove);
+
+            return msg;
+        }
     }
+
 }

@@ -77,15 +77,15 @@
 
     "btl_msg_mve_chargeUsed": "{0} charged their energy!",
     "btl_msg_mve_runFailed": "{0} failed to run away!",
-    "btl_msg_mve_nothing":  "Nothing happened.",
+    "btl_msg_mve_nothing": "Nothing happened.",
 
-    "btl_msg_paralyzed": "The {0} is immobilized, and can't move!",
     "btl_msg_burned": "The {0} took burn damage!",
+    "btl_msg_paralyzed": "The {0} is immobilized, and can't move!",
 
     "btl_msg_battleWon": "The player has won the battle!",
     "btl_msg_battleWonBoss": "The player has beaten the final boss!",
     "btl_msg_battleLost": "The player has lost the battle!",
-    "btl_msg_openTreasure": "The player has opened the treasure chest!",
+    "btl_msg_openTreasure": "The player has opened the treasure!",
 
     "btl_msg_levelUp": "The player got a level up!",
     "btl_msg_newMove": "The player is trying to learn a new move!",
