@@ -964,20 +964,21 @@ namespace RM_BBTS
 
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
-                                    "Health +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
-                                    "Attack +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "   |   " +
-                                    "Defense +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   \n" +
-                                    "Speed +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString() + "   |   " +
-                                    "Energy +" + Mathf.RoundToInt(player.MaxEnergy - oldMaxEng).ToString()
+                                    gameManager.HealthString + " +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
+                                    gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "   |   " +
+                                    gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   \n" +
+                                    gameManager.SpeedString + " +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString() + "   |   " +
+                                    gameManager.EnergyString + " +" + Mathf.RoundToInt(player.MaxEnergy - oldMaxEng).ToString()
                                     ));
 
                                 // Adds page with new stats.
                                 textBox.pages.Add(new Page(
-                                    "Health = " + Mathf.RoundToInt(player.MaxHealth).ToString() + "   |   " +
-                                    "Attack = " + Mathf.RoundToInt(player.Attack).ToString() + "   |   " +
-                                    "Defense = " + Mathf.RoundToInt(player.Defense).ToString() + "   |   \n" +
-                                    "Speed = " + Mathf.RoundToInt(player.Speed).ToString() + "   |   " +
-                                    "Energy = " + Mathf.RoundToInt(player.MaxEnergy).ToString()
+                                    gameManager.LevelString + " = " + player.Level.ToString() + " | " +
+                                    gameManager.HealthString + " = " + Mathf.RoundToInt(player.MaxHealth).ToString() + "   |   " +
+                                    gameManager.AttackString + " = " + Mathf.RoundToInt(player.Attack).ToString() + "   |   \n" +
+                                    gameManager.DefenseString + " = " + Mathf.RoundToInt(player.Defense).ToString() + "   |   " +
+                                    gameManager.SpeedString + " = " + Mathf.RoundToInt(player.Speed).ToString() + "   |   " +
+                                    gameManager.EnergyString + " = " + Mathf.RoundToInt(player.MaxEnergy).ToString()
                                     ));
 
                                 

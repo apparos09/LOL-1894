@@ -39,8 +39,8 @@
 
     "kwd_stats": "Stats",
 
-    "menu_controls_instruct": "Left Mouse/Touch: Interact",
-    "menu_controls_desc": "The entire game is controlled via the left mouse button/touch.",
+    "mnu_controls_instruct": "Left Mouse/Touch: Interact",
+    "mnu_controls_desc": "The entire game is controlled via the left mouse button/touch.",
 
     "kwd_volume": "Volume",
     "kwd_bgmVolume": "BGM Volume",
@@ -49,8 +49,6 @@
     "kwd_tutorial": "Tutorial",
     "kwd_back": "Back",
 
-
-
     "kwd_results": "Results",
     "kwd_roomsCleared": "Rooms Cleared",
     "kwd_totalTime": "Total Time",
@@ -58,8 +56,50 @@
     "kwd_finalMoves": "Final Moves",
     "kwd_mainMenu": "Main Menu",
 
+    "kwd_health": "Health",
+    "kwd_attack": "Attack",
+    "kwd_defense": "Defense",
+    "kwd_speed": "Speed",
+    "kwd_energy": "Energy",
+
+    "kwd_rank": "Rank",
+    "kwd_power": "Power",
+    "kwd_accuracy": "Accuracy",
+    "kwd_description": "Description",
+
+    "btl_msg_mve_moveUsed": "{0} used {1}!",
+    "btl_msg_mve_moveHit": "The move hit!",
+    "btl_msg_mve_moveCritical": "The move hit, and it did critical damage!",
+    "btl_msg_mve_moveMissed": "The move missed!",
+    "btl_msg_mve_moveFailed": "The move failed!",
+    "btl_msg_mve_moveBurned": "The target has been burned!",
+    "btl_msg_mve_moveParalyzed": "The target has been paralyzed!",
+
+    "btl_msg_mve_chargeUsed": "{0} charged their energy!",
+    "btl_msg_mve_runFailed": "{0} failed to run away!",
+    "btl_msg_mve_nothing":  "Nothing happened.",
+
+    "btl_msg_paralyzed": "The {0} is immobilized, and can't move!",
+    "btl_msg_burned": "The {0} took burn damage!",
+
+    "btl_msg_battleWon": "The player has won the battle!",
+    "btl_msg_battleWonBoss": "The player has beaten the final boss!",
+    "btl_msg_battleLost": "The player has lost the battle!",
+    "btl_msg_openTreasure": "The player has opened the treasure chest!",
+
+    "btl_msg_levelUp": "The player got a level up!",
+    "btl_msg_newMove": "The player is trying to learn a new move!",
+    "btl_msg_newMoveYes": "The player learned {0}!",
+    "btl_msg_newMoveNo": "The player did not learn {0}.",
+
     "bey_player_nme": "Player",
+
+    "bey_unknown_nme": "Unknown",
+    "bey_treasure_nme": "Treasure",
     "bey_boss_nme": "Boss",
+    "bey_ufo_nme": "UFO",
+    "bey_ufo2_nme": "UFO MKII",
+    "bey_ufo3_nme": "UFO MKIII",
 
     "mve_run_nme": "Run",
     "mve_run_dsc": "The user runs away from battle. There is a 50% chance of success.",

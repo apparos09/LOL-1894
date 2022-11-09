@@ -79,12 +79,12 @@ namespace RM_BBTS
         //     SceneManager.sceneLoaded -= OnSceneLoaded;
         // }
 
-        // returns the instance of the game settings.
+        // Returns the instance of the game settings.
         public static GameSettings Instance
         {
             get
             {
-                // checks to see if the instance exists. If it doesn't, generate an object.
+                // Checks to see if the instance exists. If it doesn't, generate an object.
                 if (instance == null)
                 {
                     instance = FindObjectOfType<GameSettings>(true);

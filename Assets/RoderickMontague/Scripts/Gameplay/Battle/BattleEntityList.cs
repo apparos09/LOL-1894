@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // The list of IDs.
-    public enum battleEntityId { unknown, treasure, boss, ufo }
+    public enum battleEntityId { unknown, treasure, boss, ufo, ufo2, ufo3 }
 
     // The list of entities for the game. There only needs to be one instance of this list.
     public class BattleEntityList : MonoBehaviour
@@ -64,14 +64,20 @@ namespace RM_BBTS
         // Generates and returns a battle entity with its base stats (stats it has at level 1).
         public BattleEntityData GenerateBattleEntityData(battleEntityId id)
         {
+            // The data.
             BattleEntityData data = new BattleEntityData();
+
+            // The namekey.
+            string nameKey = "";
+
+
             switch (id)
             {
                 // An unknown battle entity.
                 case battleEntityId.unknown:
                 default:
                     data.id = battleEntityId.unknown;
-                    data.displayName = "Unknown";
+                    data.displayName = "<Unknown>";
                     data.level = 1;
 
                     data.maxHealth = 10;
@@ -89,11 +95,14 @@ namespace RM_BBTS
                     // Saves the sprite.
                     data.sprite = entitySprites[0];
 
+                    // Loads the name key.
+                    nameKey = "bey_unknown_nme";
+
                     break;
 
                 case battleEntityId.treasure: // treasure chest
                     data.id = battleEntityId.treasure;
-                    data.displayName = "Treasure";
+                    data.displayName = "<Treasure>";
                     data.level = 1;
 
                     data.maxHealth = 1;
@@ -105,11 +114,14 @@ namespace RM_BBTS
 
                     data.maxEnergy = 1;
                     data.energy = 1;
+
+                    // Loads the name key.
+                    nameKey = "bey_treasure_nme";
                     break;
 
                 case battleEntityId.boss: // boss
                     data.id = battleEntityId.boss;
-                    data.displayName = "Boss";
+                    data.displayName = "<Boss>";
                     data.level = 1;
 
                     data.maxHealth = 50;
@@ -122,11 +134,14 @@ namespace RM_BBTS
                     data.maxEnergy = 100;
                     data.energy = 100;
 
+                    // Loads the name key.
+                    nameKey = "bey_boss_nme";
+
                     break;
 
                 case battleEntityId.ufo: // UFO
                     data.id = battleEntityId.ufo;
-                    data.displayName = "U.F.O.";
+                    data.displayName = "<UFO>";
                     data.level = 1;
 
                     data.maxHealth = 15;
@@ -145,9 +160,16 @@ namespace RM_BBTS
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
                     data.move0 = moveId.lasershot;
+
+                    // Loads the name key.
+                    nameKey = "bey_ufo_nme";
                     break;
 
             }
+
+            // Loads the translation for the data.
+            if(nameKey != "")
+                BattleEntity.LoadTranslationForData(ref data, nameKey);
 
             return data;
         }

@@ -139,6 +139,20 @@ namespace RM_BBTS
 
         }
 
+        // Loads translation information, changing the provided battle data.
+        public static void LoadTranslationForData(ref BattleEntityData data, string nameKey)
+        {
+            // Grabs the language definitions.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // If the SDK has been initialized.
+            if (defs != null)
+            {
+                // Loads in the name and description.
+                data.displayName = defs[nameKey];
+            }
+        }
+
         // Generates the battle entity data for this entity.
         public BattleEntityData GenerateBattleEntityData()
         {

@@ -48,6 +48,14 @@ namespace RM_BBTS
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
+        // String labels for each stat (used for translation).
+        private string levelString = "<Level>";
+        private string healthString = "<Health>";
+        private string attackString = "<Attack>";
+        private string defenseString = "<Defense>";
+        private string speedString = "<Speed>";
+        private string energyString = "<Energy>";
+
         [Header("Game Stats/Time")]
 
         // The total amount of turns completed.
@@ -115,6 +123,23 @@ namespace RM_BBTS
             // Tutorial settings.
             if(FindObjectOfType<GameSettings>() != null)
                 useTutorial = GameSettings.Instance.useTutorial;
+
+            // Translation
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Translate all of the string objects.
+            if (defs != null)
+            {
+                statsButtonText.text = defs["kwd_stats"];
+                settingsButtonText.text = defs["kwd_settings"];
+
+                levelString = defs["kwd_level"];
+                healthString = defs["kwd_health"];
+                attackString = defs["kwd_attack"];
+                defenseString = defs["kwd_defense"];
+                speedString = defs["kwd_speed"];
+                energyString = defs["kwd_energy"];
+            }
         }
 
         // Start is called before the first frame update
@@ -126,18 +151,6 @@ namespace RM_BBTS
 
             // Initialize
             Initialize();
-
-            // Translation
-            JSONNode defs = SharedState.LanguageDefs;
-
-            // Translation object found.
-            if(defs != null)
-            {
-                statsButtonText.text = defs["kwd_stats"];
-                settingsButtonText.text = defs["kwd_settings"];
-            }
-
-
         }
 
         // Initializes the gameplay manager.
@@ -230,6 +243,42 @@ namespace RM_BBTS
         protected override void OnInteractReceive(GameObject gameObject)
         {
             throw new System.NotImplementedException();
+        }
+
+        // Returns the level string.
+        public string LevelString
+        {
+            get { return levelString; }
+        }
+
+        // Returns the health string.
+        public string HealthString
+        {
+            get { return healthString; }
+        }
+
+        // Returns the attack string.
+        public string AttackString
+        {
+            get { return attackString; }
+        }
+
+        // Returns the defense string.
+        public string DefenseString
+        {
+            get { return defenseString; }
+        }
+
+        // Returns the speed string.
+        public string SpeedString
+        {
+            get { return speedString; }
+        }
+
+        // Returns the energy string.
+        public string EnergyString
+        {
+            get { return energyString; }
         }
 
         // // Called when a level has been loaded.

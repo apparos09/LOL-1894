@@ -49,17 +49,18 @@ namespace RM_BBTS
         // Awake is called when the script instance is loaded.
         private void Awake()
         {
-            // set to 30 FPS
+            // Set to 30 FPS
             Application.targetFrameRate = 30;
 
-            // checks if LOL SDK has been initialized.
+            // Checks if LOL SDK has been initialized.
             GameSettings settings = GameSettings.Instance;
 
-            // if the LOL SDK has been initialized...
-            if (settings.InitializedLOLSDK)
-            {
-                JSONNode defs = SharedState.LanguageDefs;
+            // Language
+            JSONNode defs = SharedState.LanguageDefs;
 
+            // Translate text.
+            if(defs != null)
+            {
                 // Main Menu
                 startButtonText.text = defs["kwd_start"];
                 infoButtonText.text = defs["kwd_info"];
@@ -68,11 +69,14 @@ namespace RM_BBTS
 
                 // Controls Menu
                 controlsTitleText.text = defs["kwd_controls"];
-                controlsInstructText.text = defs["menu_controls_instruct"];
-                controlsDescText.text = defs["menu_controls_desc"];
+                controlsInstructText.text = defs["mnu_controls_instruct"];
+                controlsDescText.text = defs["mnu_controls_desc"];
                 controlsBackButtonText.text = defs["kwd_back"];
             }
-            else
+
+
+            // Checks for initialization
+            if (!settings.InitializedLOLSDK)
             {
                 Debug.LogError("LOL SDK NOT INITIALIZED.");
                 settings.AdjustAllAudioLevels();

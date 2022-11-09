@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -10,7 +11,7 @@ namespace RM_BBTS
     public class PlayerStatsWindow : MonoBehaviour
     {
         // The gameplay manager.
-        // public GameplayManager gameManager;
+        public GameplayManager gameManager;
 
         //  Player object.
         public Player player;
@@ -27,6 +28,14 @@ namespace RM_BBTS
         public TMP_Text defenseText;
         public TMP_Text speedText;
         public TMP_Text energyText;
+
+        // // String labels for each piece of text.
+        // private string levelString = "<Level>";
+        // private string healthString = "<Health>";
+        // private string attackString = "<Attack>";
+        // private string defenseString = "<Defense>";
+        // private string speedString = "<Speed>";
+        // private string energyString = "<Energy>";
 
         [Header("Buttons")]
         // Moves
@@ -57,6 +66,12 @@ namespace RM_BBTS
 
         public TMP_Text moveDescriptionText;
 
+        // String labels
+        private string rankString = "<Rank>";
+        private string powerString = "<Power>";
+        private string accuracyString = "<Accuracy>";
+        private string descriptionString = "<Description>";
+
         // Awake is called when the script is being loaded.
         private void Awake()
         {
@@ -71,6 +86,25 @@ namespace RM_BBTS
 
             // Updates the window to start off.
             // UpdateWindow();
+
+            // Translation
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Language definitions set.
+            if(defs != null)
+            {
+                // levelString = defs["kwd_level"];
+                // healthString = defs["kwd_health"];
+                // attackString = defs["kwd_attack"];
+                // defenseString = defs["kwd_defense"];
+                // speedString = defs["kwd_speed"];
+                // energyString = defs["kwd_energy"];
+
+                rankString = defs["kwd_rank"];
+                powerString = defs["kwd_power"];
+                accuracyString = defs["kwd_accuracy"];
+                descriptionString = defs["kwd_description"];
+            }
         }
 
         // This function is called when the object becomes enabled and active.
@@ -93,16 +127,16 @@ namespace RM_BBTS
         {
             // TEXT
             // Level
-            levelText.text = "Level: " + player.Level.ToString();
+            levelText.text = gameManager.LevelString + ": " + player.Level.ToString();
 
             // Stats
-            healthText.text = "Health: " + Mathf.Ceil(player.Health).ToString() + "/" + Mathf.Ceil(player.MaxHealth).ToString();
-            attackText.text = "Attack: " + Mathf.Ceil(player.Attack).ToString();
-            defenseText.text = "Defense: " + Mathf.Ceil(player.Defense).ToString();
-            speedText.text = "Speed: " + Mathf.Ceil(player.Speed).ToString();
+            healthText.text = gameManager.HealthString + ": " + Mathf.Ceil(player.Health).ToString() + "/" + Mathf.Ceil(player.MaxHealth).ToString();
+            attackText.text = gameManager.AttackString + ": " + Mathf.Ceil(player.Attack).ToString();
+            defenseText.text = gameManager.DefenseString + ": " + Mathf.Ceil(player.Defense).ToString();
+            speedText.text = gameManager.SpeedString + ": " + Mathf.Ceil(player.Speed).ToString();
 
             // Energy
-            energyText.text = "Energy: " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
+            energyText.text = gameManager.EnergyString + ": " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
 
             // BUTTONS
             // M0
@@ -172,12 +206,12 @@ namespace RM_BBTS
             // Updates the visuals.
             moveNameText.text = move.Name;
 
-            moveRankText.text = "Rank: " + move.Rank.ToString();
-            movePowerText.text = "Power: " + move.Power.ToString();
-            moveAccuracyText.text = "Accuracy: " + Mathf.Round(move.Accuracy * 100.0F).ToString() + "%";
-            moveEnergyText.text = "Energy: " + move.Energy.ToString();
+            moveRankText.text = rankString + ": " + move.Rank.ToString();
+            movePowerText.text = powerString + ": " + move.Power.ToString();
+            moveAccuracyText.text = accuracyString + ": " + Mathf.Round(move.Accuracy * 100.0F).ToString() + "%";
+            moveEnergyText.text = gameManager.EnergyString + ": " + move.Energy.ToString();
 
-            moveDescriptionText.text = "Description: " + move.description.ToString();
+            moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
 
         }
 
