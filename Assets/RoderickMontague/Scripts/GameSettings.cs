@@ -13,9 +13,6 @@ namespace RM_BBTS
         // the instance of the game settings.
         private static GameSettings instance;
 
-        // the LOL SDK has been initialized.
-        private bool initializedLOLSDK = false;
-
         [Header("Settings")]
 
         // use the text-to-speech options.
@@ -64,7 +61,6 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            initializedLOLSDK = LOLSDK.Instance.IsInitialized;
         }
 
         // // This function is called when the object is enabled and active
@@ -111,10 +107,7 @@ namespace RM_BBTS
         {
             get
             {
-                // updates the variable.
-                initializedLOLSDK = LOLSDK.Instance.IsInitialized;
-
-                return initializedLOLSDK;
+                return LOLSDK.Instance.IsInitialized;
             }
         }
 

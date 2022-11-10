@@ -49,11 +49,6 @@ namespace RM_BBTS
         // Awake is called when the script instance is loaded.
         private void Awake()
         {
-            // Set to 30 FPS, and have the application not run in the background.
-            // This is already set in the Init scene, but I do it here as well for testing purposes.
-            Application.targetFrameRate = 30;
-            Application.runInBackground = false;
-
             // Checks if LOL SDK has been initialized.
             GameSettings settings = GameSettings.Instance;
 

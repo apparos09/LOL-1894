@@ -9,6 +9,9 @@ namespace RM_BBTS
         // The text for the page.
         public string text = "";
 
+        // The key for the text to be read with text-to-speech. This may differ from what the text actually says.
+        public string speakKey = "";
+
         // The callback for the page.
         public delegate void PageCallback();
 
@@ -18,7 +21,7 @@ namespace RM_BBTS
         // The callback for closing the page.
         private PageCallback pageCloseCallback;
 
-        // Empty page.
+        // Generates the empty page.
         public Page()
         {
             text = "";
@@ -28,6 +31,13 @@ namespace RM_BBTS
         public Page(string text)
         {
             this.text = text;
+        }
+
+        // Adds a page with text and a speak key.
+        public Page(string text, string speakKey)
+        {
+            this.text = text;
+            this.speakKey = speakKey;
         }
 
         // Add a callback for when the page is opened.
@@ -60,6 +70,12 @@ namespace RM_BBTS
             // Trigger the callbacks.
             if (pageOpenCallback != null)
                 pageOpenCallback();
+
+            // Uses the text-to-speech automatically.
+            if (GameSettings.Instance.useTTS && speakKey != "")
+            {
+                TextToSpeech.Instance.SpeakText(speakKey);
+            }
         }
 
         // Called when the page is closed.
@@ -68,6 +84,13 @@ namespace RM_BBTS
             // Trigger the callbacks.
             if (pageCloseCallback != null)
                 pageCloseCallback();
+
+            // Cancels the text-to-speech if the page is closed.
+            if (GameSettings.Instance.useTTS && speakKey != "" 
+                && TextToSpeech.Instance.GetTextKey() == speakKey)
+            {
+                TextToSpeech.Instance.CancelSpeakText();
+            }
         }
     }
 }

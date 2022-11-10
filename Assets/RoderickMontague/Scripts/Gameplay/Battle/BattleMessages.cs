@@ -56,16 +56,16 @@ namespace RM_BBTS
                     // Generate new instance if an existing instance was not found.
                     if (instance == null)
                     {
-                        // makes a new settings object.
+                        // Makes a new settings object.
                         GameObject go = new GameObject("Battle Messages");
 
-                        // adds the instance component to the new object.
+                        // Adds the instance component to the new object.
                         instance = go.AddComponent<BattleMessages>();
                     }
 
                 }
 
-                // returns the instance.
+                // Returns the instance.
                 return instance;
             }
         }
@@ -120,6 +120,18 @@ namespace RM_BBTS
             msg = msg.Replace("{1}", move);
 
             return msg;
+        }
+
+        // Gets the player speak key for move used.
+        public string GetMoveUsedSpeakKey0()
+        {
+            return "btl_msg_mve_moveUsed_alt00";
+        }
+
+        // Gets the opponent speak key for move used.
+        public string GetMoveUsedSpeakKey1()
+        {
+            return "btl_msg_mve_moveUsed_alt01";
         }
 
         // Gets the move hit message.
@@ -186,6 +198,18 @@ namespace RM_BBTS
             msg = msg.Replace("{0}", user);
 
             return msg;
+        }
+
+        // Gets the player speak key with "not enough power" message.
+        public string GetMoveNoPowerSpeakKey0()
+        {
+            return "btl_msg_mve_moveNoPower_alt00";
+        }
+
+        // Gets the opponent speak key with "not enough power" message.
+        public string GetMoveNoPowerSpeakKey1()
+        {
+            return "btl_msg_mve_moveNoPower_alt01";
         }
 
         // Gets the move missed message.
@@ -256,6 +280,18 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move stat increase speak key 0.
+        public string GetMoveStatIncreaseSpeakKey0()
+        {
+            return "btl_msg_mve_moveStatInc_alt00";
+        }
+
+        // Gets the move stat increase speak key 1.
+        public string GetMoveStatIncreaseSpeakKey1()
+        {
+            return "btl_msg_mve_moveStatInc_alt01";
+        }
+
         // Gets the move stat decrease message.
         public string GetMoveStatDecreaseMessage(string target, string stat, string amount)
         {
@@ -280,6 +316,18 @@ namespace RM_BBTS
             msg = msg.Replace("{2}", amount);
 
             return msg;
+        }
+
+        // Gets the move stat decrease speak key 0.
+        public string GetMoveStatDecreaseSpeakKey0()
+        {
+            return "btl_msg_mve_moveStatDec_alt00";
+        }
+
+        // Gets the move stat decrease speak key 1.
+        public string GetMoveStatDecreaseSpeakKey1()
+        {
+            return "btl_msg_mve_moveStatDec_alt01";
         }
 
         // Gets the move missed message.
@@ -325,6 +373,7 @@ namespace RM_BBTS
         }
 
         // MOVE EFFECT //
+        // Gets the move charged message.
         public string GetMoveChargeUsedMessage(string user)
         {
             // The message string.
@@ -346,6 +395,18 @@ namespace RM_BBTS
             msg = msg.Replace("{0}", user);
 
             return msg;
+        }
+
+        // Gets the move charge used player speak key.
+        public string GetMoveChargeUsedSpeakKey0()
+        {
+            return "btl_msg_mve_chargeUsed_alt00";
+        }
+
+        // Gets the move charge used opponent speak key.
+        public string GetMoveChargeUsedSpeakKey1()
+        {
+            return "btl_msg_mve_chargeUsed_alt01";
         }
 
         // The move run failed.
@@ -370,6 +431,18 @@ namespace RM_BBTS
             msg = msg.Replace("{0}", user);
 
             return msg;
+        }
+
+        // Gets the player run failed speak key.
+        public string GetMoveRunFailedSpeakKey0()
+        {
+            return "btl_msg_mve_runFailed_alt00";
+        }
+
+        // Gets the opponent run failed speak key.
+        public string GetMoveRunFailedSpeakKey1()
+        {
+            return "btl_msg_mve_runFailed_alt01";
         }
 
         // The move caused nothing to happen.
@@ -417,6 +490,18 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Get player burned.
+        public string GetBurnedSpeakKey0()
+        {
+            return "btl_msg_burned_alt00";
+        }
+
+        // Get opponent burned.
+        public string GetBurnedSpeakKey1()
+        {
+            return "btl_msg_burned_alt01";
+        }
+
         // The target was paralyzed.
         public string GetParalyzedMessage(string infected)
         {
@@ -440,6 +525,20 @@ namespace RM_BBTS
 
             return msg;
         }
+
+        // Gets the paralyzed player speak key.
+        public string GetParalyzedSpeakKey0()
+        {
+            return "btl_msg_paralyzed_alt00";
+        }
+
+        // Gets the paralyzed opponent speak key.
+        public string GetParalyzedSpeakKey1()
+        {
+            return "btl_msg_paralyzed_alt01";
+        }
+
+
 
         // BATTLE FINISH MESSAGES //
         // The battle was won.
@@ -592,6 +691,12 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the learn move yes speak key.
+        public string GetLearnMoveYesSpeakKey()
+        {
+            return "btl_msg_learnMoveYes_alt";
+        }
+
         // The player did not learn the new move.
         public string GetLearnMoveNoMessage(string newMove)
         {
@@ -614,6 +719,12 @@ namespace RM_BBTS
             msg = msg.Replace("{0}", newMove);
 
             return msg;
+        }
+
+        // Gets the learn move no speak key.
+        public string GetLearnMoveNoSpeakKey()
+        {
+            return "btl_msg_learnMoveNo_alt";
         }
     }
 
