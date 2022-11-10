@@ -163,7 +163,22 @@ namespace RM_BBTS
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energy)
             {
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName)));
+                // Checks object type.
+                if(user is Player) // Player
+                {
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                        BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName),
+                        BattleMessages.Instance.GetMoveNoPowerSpeakKey0()
+                        ));
+                }
+                else // Opponent
+                {
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                        BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName),
+                        BattleMessages.Instance.GetMoveNoPowerSpeakKey1()
+                        ));
+                }
+                
                 return false;
             }
                 
@@ -194,22 +209,35 @@ namespace RM_BBTS
 
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical
-                    newPages.Add(new Page(BattleMessages.Instance.GetMoveHitMessage()));
+                    newPages.Add(new Page(
+                        BattleMessages.Instance.GetMoveHitMessage(),
+                        BattleMessages.Instance.GetMoveHitSpeakKey()
+                        ));
+
                 else // Critical
-                    newPages.Add(new Page(BattleMessages.Instance.GetMoveHitCriticalMessage()));
+                    newPages.Add(new Page(
+                        BattleMessages.Instance.GetMoveHitCriticalMessage(),
+                        BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
+                        ));
 
                 // Burn Infliction
                 if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
                 {
                     target.burned = true;
-                    newPages.Add(new Page(BattleMessages.Instance.GetMoveBurnedMessage()));
+                    newPages.Add(new Page(
+                        BattleMessages.Instance.GetMoveBurnedMessage(),
+                        BattleMessages.Instance.GetMoveBurnedSpeakKey()
+                        ));
                 }
 
                 // Paralysis Infliction
                 if (!target.paralyzed && Random.Range(0.0F, 1.0F) < paralysisChance)
                 {
                     target.paralyzed = true;
-                    newPages.Add(new Page(BattleMessages.Instance.GetMoveParalyzedMessage()));
+                    newPages.Add(new Page(
+                        BattleMessages.Instance.GetMoveParalyzedMessage(),
+                        BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+                        ));
                 }
 
                 // Inserts a range of pages.
@@ -232,7 +260,9 @@ namespace RM_BBTS
             else
             {
                 // The move missed.
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveMissedMessage()));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                    BattleMessages.Instance.GetMoveMissedMessage(),
+                    BattleMessages.Instance.GetMoveMissedSpeakKey()));
 
                 return false;
             }

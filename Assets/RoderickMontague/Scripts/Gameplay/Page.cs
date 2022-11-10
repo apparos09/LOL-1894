@@ -25,12 +25,14 @@ namespace RM_BBTS
         public Page()
         {
             text = "";
+            speakKey = "";
         }
 
         // Adds a page with text.
         public Page(string text)
         {
             this.text = text;
+            speakKey = "";
         }
 
         // Adds a page with text and a speak key.
@@ -72,9 +74,11 @@ namespace RM_BBTS
                 pageOpenCallback();
 
             // Uses the text-to-speech automatically.
-            if (GameSettings.Instance.useTTS && speakKey != "")
+            if (GameSettings.Instance.useTTS)
             {
-                TextToSpeech.Instance.SpeakText(speakKey);
+                // Speak key not set.
+                if(speakKey != "")
+                    TextToSpeech.Instance.SpeakText(speakKey);
             }
         }
 
@@ -86,10 +90,11 @@ namespace RM_BBTS
                 pageCloseCallback();
 
             // Cancels the text-to-speech if the page is closed.
-            if (GameSettings.Instance.useTTS && speakKey != "" 
-                && TextToSpeech.Instance.GetTextKey() == speakKey)
+            if (GameSettings.Instance.useTTS)
             {
-                TextToSpeech.Instance.CancelSpeakText();
+                // Speak key set.
+                if(speakKey != "" && TextToSpeech.Instance.GetTextKey() == speakKey)
+                    TextToSpeech.Instance.CancelSpeakText();
             }
         }
     }

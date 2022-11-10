@@ -19,7 +19,20 @@ namespace RM_BBTS
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // Charging text.
-            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName)));
+            // Checks who is charging the energy to pass the correct speak key.
+            if(user is Player) // Player
+            {
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                                BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
+                                BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
+            }
+            else // Opponent
+            {
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                                BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
+                                BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
+            }
+
 
             float chargePlus = user.MaxEnergy * 0.4F;
             user.Energy += chargePlus;

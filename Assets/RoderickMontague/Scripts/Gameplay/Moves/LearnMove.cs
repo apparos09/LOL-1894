@@ -149,12 +149,18 @@ namespace RM_BBTS
             if(newMove.Id == learningMove.Id) // new move was not learned.
             {
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
-                    new Page(BattleMessages.Instance.GetLearnMoveNoMessage(learningMove.Name)));
+                    new Page(
+                        BattleMessages.Instance.GetLearnMoveNoMessage(learningMove.Name),
+                        BattleMessages.Instance.GetLearnMoveNoSpeakKey()
+                        ));
             }
             else // new move was learned.
             {
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, 
-                    new Page(BattleMessages.Instance.GetLearnMoveYesMessage(learningMove.Name)));
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
+                    new Page(
+                        BattleMessages.Instance.GetLearnMoveYesMessage(learningMove.Name),
+                        BattleMessages.Instance.GetLearnMoveYesSpeakKey()
+                    ));
             }
 
             // Move onto the next pages (skip placeholder text).

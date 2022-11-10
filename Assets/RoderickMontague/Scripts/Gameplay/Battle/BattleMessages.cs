@@ -95,8 +95,7 @@ namespace RM_BBTS
         //     return msg;
         // }
 
-        // MOVE USE //
-
+        // MOVE USED //
         // Gets the move used message.
         public string GetMoveUsedMessage(string user, string move)
         {
@@ -134,6 +133,9 @@ namespace RM_BBTS
             return "btl_msg_mve_moveUsed_alt01";
         }
 
+
+
+        // MOVE HIT //
         // Gets the move hit message.
         public string GetMoveHitMessage()
         {
@@ -155,6 +157,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move hit speak key.
+        public string GetMoveHitSpeakKey()
+        {
+            return "btl_msg_mve_moveHit";
+        }
+
+
+
+        // MOVE CRITICAL //
         // Gets the move hit critical message.
         public string GetMoveHitCriticalMessage()
         {
@@ -176,6 +187,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move hit critical speak key.
+        public string GetMoveHitCriticalSpeakKey()
+        {
+            return "btl_msg_mve_moveCritical";
+        }
+
+
+        
+        // MOVE NO POWER //
         // Gets the move "not enough power" message.
         public string GetMoveNoPowerMessage(string user)
         {
@@ -212,6 +232,9 @@ namespace RM_BBTS
             return "btl_msg_mve_moveNoPower_alt01";
         }
 
+
+
+        // MOVE MISSED //
         // Gets the move missed message.
         public string GetMoveMissedMessage()
         {
@@ -233,6 +256,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move missed speak key.
+        public string GetMoveMissedSpeakKey()
+        {
+            return "btl_msg_mve_moveMissed";
+        }
+
+
+
+        // MOVE FAILED //
         // Gets the move missed message.
         public string GetMoveFailedMessage()
         {
@@ -254,6 +286,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move failed speak key.
+        public string GetMoveFailedSpeakKey()
+        {
+            return "btl_msg_mve_moveFailed";
+        }
+
+
+
+        // MOVE STAT INCREASE //
         // Gets the move stat increase message.
         public string GetMoveStatIncreaseMessage(string target, string stat, string amount)
         {
@@ -292,6 +333,9 @@ namespace RM_BBTS
             return "btl_msg_mve_moveStatInc_alt01";
         }
 
+
+
+        // MOVE STAT DECREASE //
         // Gets the move stat decrease message.
         public string GetMoveStatDecreaseMessage(string target, string stat, string amount)
         {
@@ -330,6 +374,9 @@ namespace RM_BBTS
             return "btl_msg_mve_moveStatDec_alt01";
         }
 
+
+
+        // MOVE BURNED //
         // Gets the move missed message.
         public string GetMoveBurnedMessage()
         {
@@ -351,6 +398,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move missed speak key.
+        public string GetMoveBurnedSpeakKey()
+        {
+            return "btl_msg_mve_moveBurned";
+        }
+
+
+
+        // MOVE PARALYZED //
         // Gets the move missed message.
         public string GetMoveParalyzedMessage()
         {
@@ -372,7 +428,16 @@ namespace RM_BBTS
             return msg;
         }
 
-        // MOVE EFFECT //
+        // Gets the move paralyzed speak key.
+        public string GetMoveParalyzedSpeakKey()
+        {
+            return "btl_msg_mve_moveParalyzed";
+        }
+
+
+
+
+        // MOVE CHARGE //
         // Gets the move charged message.
         public string GetMoveChargeUsedMessage(string user)
         {
@@ -409,6 +474,9 @@ namespace RM_BBTS
             return "btl_msg_mve_chargeUsed_alt01";
         }
 
+
+
+        // MOVE RUN FAILED //
         // The move run failed.
         public string GetMoveRunFailedMessage(string user)
         {
@@ -445,6 +513,9 @@ namespace RM_BBTS
             return "btl_msg_mve_runFailed_alt01";
         }
 
+
+
+        // MOVE NOTHING //
         // The move caused nothing to happen.
         public string GetMoveNothingMessage()
         {
@@ -466,6 +537,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the move nothing speak key.
+        public string GetMoveNothingSpeakKey()
+        {
+            return "btl_msg_mve_nothing";
+        }
+
+
+
+        // MOVE BURNED //
         // The target was burned.
         public string GetBurnedMessage(string infected)
         {
@@ -502,6 +582,9 @@ namespace RM_BBTS
             return "btl_msg_burned_alt01";
         }
 
+
+
+        // MOVE PARALYZED //
         // The target was paralyzed.
         public string GetParalyzedMessage(string infected)
         {
@@ -540,7 +623,7 @@ namespace RM_BBTS
 
 
 
-        // BATTLE FINISH MESSAGES //
+        // BATTLE WON //
         // The battle was won.
         public string GetBattleWonMessage()
         {
@@ -562,6 +645,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the battle won speak key.
+        public string GetBattleWonSpeakKey()
+        {
+            return "btl_msg_battleWon";
+        }
+
+
+
+        // BATTLE WON BOSS //
         // The battle was won against the boss.
         public string GetBattleWonBossMessage()
         {
@@ -583,6 +675,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the battle won boss speak key.
+        public string GetBattleWonBossSpeakKey()
+        {
+            return "btl_msg_battleWonBoss";
+        }
+
+
+
+        // BATTLE LOST //
         // The battle was lost the battle.
         public string GetBattleLostMessage()
         {
@@ -604,6 +705,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the battle lost boss speak key.
+        public string GetBattleLostSpeakKey()
+        {
+            return "btl_msg_battleLost";
+        }
+
+
+
+        // OPEN TREASURE //
         // The treasure was opened.
         public string GetOpenTreasureMessage()
         {
@@ -625,6 +735,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the treasure opened speak key.
+        public string GetOpenTreasureSpeakKey()
+        {
+            return "btl_msg_openTreasure";
+        }
+
+
+
+        // LEVEL UP //
         // The player got a level up.
         public string GetLevelUpMessage()
         {
@@ -646,6 +765,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the level up speak key.
+        public string GetLevelUpSpeakKey()
+        {
+            return "btl_msg_levelUp";
+        }
+
+
+
+        // LEARN MOVE //
         // The player is trying to learn a new move.
         public string GetLearnMoveMessage()
         {
@@ -667,6 +795,15 @@ namespace RM_BBTS
             return msg;
         }
 
+        // Gets the learn move speak key.
+        public string GetLearnMoveSpeakKey()
+        {
+            return "btl_msg_learnMove";
+        }
+
+
+
+        // LEARN MOVE YES //
         // The player learned the new move.
         public string GetLearnMoveYesMessage(string newMove)
         {
@@ -697,6 +834,9 @@ namespace RM_BBTS
             return "btl_msg_learnMoveYes_alt";
         }
 
+
+
+        // LEARN MOVE NO //
         // The player did not learn the new move.
         public string GetLearnMoveNoMessage(string newMove)
         {
