@@ -193,10 +193,21 @@ namespace RM_BBTS
             data.maxEnergy = maxEnergy;
             data.energy = energy;
 
-            data.move0 = Move0.Id;
-            data.move1 = Move1.Id;
-            data.move2 = Move2.Id;
-            data.move3 = Move3.Id;
+            // Move 0 Set.
+            if(Move0 != null)
+                data.move0 = Move0.Id;
+
+            // Move 1 Set
+            if (Move1 != null)
+                data.move1 = Move1.Id;
+
+            // Move 2 Set
+            if (Move2 != null)
+                data.move2 = Move2.Id;
+
+            // Move 3 Set
+            if (Move3 != null)
+                data.move3 = Move3.Id;
 
             data.sprite = sprite;
 

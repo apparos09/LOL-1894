@@ -97,6 +97,12 @@ namespace RM_BBTS
             }
         }
 
+        // Checks to see if the current page index is in bounds.
+        public bool ValidCurrentPageIndex()
+        {
+            return currPageIndex >= 0 && currPageIndex < pages.Count;
+        }
+
         // Adds a callback for when the textbox opens.
         public void OnTextBoxOpenedAddCallback(TextBoxCallback callback)
         {
@@ -141,6 +147,11 @@ namespace RM_BBTS
             // Calls the callbacks for closing the textbox.
             if (closedCallback != null)
                 closedCallback();
+
+
+            // // Tells the page to stop reading the text if it's being read.
+            // 
+            // pages[currPageIndex].StopSpeakingPage();
         }
 
         // Checks if the textbox is visible.

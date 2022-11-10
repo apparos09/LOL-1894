@@ -42,6 +42,30 @@ namespace RM_BBTS
             this.speakKey = speakKey;
         }
 
+        // Reads the page.
+        public void SpeakPage()
+        {
+            // Uses the text-to-speech automatically.
+            if (GameSettings.Instance.useTTS)
+            {
+                // Speak key not set.
+                if (speakKey != "")
+                    TextToSpeech.Instance.SpeakText(speakKey);
+            }
+        }
+
+        // Stops reading the page.
+        public void StopSpeakingPage()
+        {
+            // Cancels the text-to-speech if the page is closed.
+            if (GameSettings.Instance.useTTS)
+            {
+                // Speak key set.
+                if (speakKey != "" && TextToSpeech.Instance.GetTextKey() == speakKey)
+                    TextToSpeech.Instance.CancelSpeakText();
+            }
+        }
+
         // Add a callback for when the page is opened.
         public void OnPageOpenedAddCallback(PageCallback callback)
         {
@@ -73,13 +97,8 @@ namespace RM_BBTS
             if (pageOpenCallback != null)
                 pageOpenCallback();
 
-            // Uses the text-to-speech automatically.
-            if (GameSettings.Instance.useTTS)
-            {
-                // Speak key not set.
-                if(speakKey != "")
-                    TextToSpeech.Instance.SpeakText(speakKey);
-            }
+            // Use text-to-speech to speak the page content.
+            SpeakPage();
         }
 
         // Called when the page is closed.
@@ -89,13 +108,8 @@ namespace RM_BBTS
             if (pageCloseCallback != null)
                 pageCloseCallback();
 
-            // Cancels the text-to-speech if the page is closed.
-            if (GameSettings.Instance.useTTS)
-            {
-                // Speak key set.
-                if(speakKey != "" && TextToSpeech.Instance.GetTextKey() == speakKey)
-                    TextToSpeech.Instance.CancelSpeakText();
-            }
+            // Use text-to-speech to speak the page content.
+            StopSpeakingPage();
         }
     }
 }
