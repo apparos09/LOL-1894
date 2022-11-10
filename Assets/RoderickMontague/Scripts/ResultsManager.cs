@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -42,7 +43,11 @@ namespace RM_BBTS
         public TMPro.TMP_Text move3Text;
 
         [Header("Buttons")]
+        // The finish button.
+        public TMPro.TMP_Text finishButtonText;
+
         // Main menu button text.
+        // TODO: hide this button when submitting the game.
         public TMPro.TMP_Text mainMenuButtonText;
 
         // Start is called before the first frame update
@@ -60,6 +65,7 @@ namespace RM_BBTS
             string finalMovesLabel = "<Final Moves>";
 
             // The main menu title text.
+            string finishLabel = "<Finish>";
             string mainMenuLabel = "<Main Menu>";
 
             // Translate title text.
@@ -72,12 +78,15 @@ namespace RM_BBTS
                 finalLevelLabel = defs["kwd_finalLevel"];
                 finalMovesLabel = defs["kwd_finalMoves"];
 
+                finishLabel = defs["kwd_finish"];
                 mainMenuLabel = defs["kwd_mainMenu"];
             }
 
             // Change out titles and buttons with translated label.
             titleText.text = titleLabel;
             moveSubtitleText.text = finalMovesLabel;
+
+            finishButtonText.text = finishLabel;
             mainMenuButtonText.text = mainMenuLabel;
 
             // Change out button text with translated.
@@ -132,10 +141,23 @@ namespace RM_BBTS
             SceneManager.LoadScene("TitleScene");
         }
 
-        // Update is called once per frame
-        void Update()
+        // Call this function to complete the game. This is called by the "finish" button.
+        public void CompleteGame()
         {
+            // The SDK has been initialized.
+            if(LOLSDK.Instance.IsInitialized)
+            {
+                // Complete the game.
+                LOLSDK.Instance.CompleteGame();
+            }
+            else
+            {
+                Debug.LogError("SDK NOT INITIALIZED");
 
+                // Return to the main menu scene.
+                ToMainMenu();
+            }
+            
         }
     }
 }

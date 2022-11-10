@@ -82,14 +82,14 @@ namespace RM_BBTS
             // Pages
             if(defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_intro00"]));
-                pages.Add(new Page(defs["trl_intro01"]));
-                pages.Add(new Page(defs["trl_intro02"]));
-                pages.Add(new Page(defs["trl_intro03"]));
-                pages.Add(new Page(defs["trl_intro04"]));
-                pages.Add(new Page(defs["trl_intro05"]));
-                pages.Add(new Page(defs["trl_intro06"]));
-                pages.Add(new Page(defs["trl_intro07"]));
+                pages.Add(new Page(defs["trl_intro_00"]));
+                pages.Add(new Page(defs["trl_intro_01"]));
+                pages.Add(new Page(defs["trl_intro_02"]));
+                pages.Add(new Page(defs["trl_intro_03"]));
+                pages.Add(new Page(defs["trl_intro_04"]));
+                pages.Add(new Page(defs["trl_intro_05"]));
+                pages.Add(new Page(defs["trl_intro_06"]));
+                pages.Add(new Page(defs["trl_intro_07"]));
             }
             else // Default
             {
@@ -121,14 +121,14 @@ namespace RM_BBTS
             // Pages
             if(defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_battle00"]));
-                pages.Add(new Page(defs["trl_battle01"]));
-                pages.Add(new Page(defs["trl_battle02"]));
-                pages.Add(new Page(defs["trl_battle03"]));
-                pages.Add(new Page(defs["trl_battle04"]));
-                pages.Add(new Page(defs["trl_battle05"]));
-                pages.Add(new Page(defs["trl_battle06"]));
-                pages.Add(new Page(defs["trl_battle07"]));
+                pages.Add(new Page(defs["trl_battle_00"]));
+                pages.Add(new Page(defs["trl_battle_01"]));
+                pages.Add(new Page(defs["trl_battle_02"]));
+                pages.Add(new Page(defs["trl_battle_03"]));
+                pages.Add(new Page(defs["trl_battle_04"]));
+                pages.Add(new Page(defs["trl_battle_05"]));
+                pages.Add(new Page(defs["trl_battle_06"]));
+                pages.Add(new Page(defs["trl_battle_07"]));
             }    
             else // Default
             {
@@ -159,9 +159,9 @@ namespace RM_BBTS
             // Pages
             if(defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_treasure00"]));
-                pages.Add(new Page(defs["trl_treasure01"]));
-                pages.Add(new Page(defs["trl_treasure02"]));
+                pages.Add(new Page(defs["trl_treasure_00"]));
+                pages.Add(new Page(defs["trl_treasure_01"]));
+                pages.Add(new Page(defs["trl_treasure_02"]));
             }
             else // Default
             {
@@ -186,11 +186,11 @@ namespace RM_BBTS
             // Pages
             if (defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_overworld00"]));
-                pages.Add(new Page(defs["trl_overworld01"]));
-                pages.Add(new Page(defs["trl_overworld02"]));
-                pages.Add(new Page(defs["trl_overworld03"]));
-                pages.Add(new Page(defs["trl_overworld04"]));
+                pages.Add(new Page(defs["trl_overworld_00"]));
+                pages.Add(new Page(defs["trl_overworld_01"]));
+                pages.Add(new Page(defs["trl_overworld_02"]));
+                pages.Add(new Page(defs["trl_overworld_03"]));
+                pages.Add(new Page(defs["trl_overworld_04"]));
             }
             else // Default
             {
@@ -216,8 +216,8 @@ namespace RM_BBTS
             // Pages
             if(defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_boss00"]));
-                pages.Add(new Page(defs["trl_boss01"]));
+                pages.Add(new Page(defs["trl_boss_00"]));
+                pages.Add(new Page(defs["trl_boss_01"]));
             }
             else // Default
             {
@@ -240,9 +240,9 @@ namespace RM_BBTS
             // Pages
             if (defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_gameOver00"]));
-                pages.Add(new Page(defs["trl_gameOver01"]));
-                pages.Add(new Page(defs["trl_gameOver02"]));
+                pages.Add(new Page(defs["trl_gameOver_00"]));
+                pages.Add(new Page(defs["trl_gameOver_01"]));
+                pages.Add(new Page(defs["trl_gameOver_02"]));
             }
             else // Default
             {
