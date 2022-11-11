@@ -5,7 +5,7 @@ using LoLSDK;
 
 
 // The namespace should be <YourCompany> <GameName>.
-// TODO: switch to instance.
+// NOTE: due to the play method changing for LOL versus the Unity Editor you cannot create a universal means of checking when the speak text is done.
 namespace RM_BBTS
 {
     public class TextToSpeech : MonoBehaviour
@@ -15,9 +15,6 @@ namespace RM_BBTS
 
         // The audio source for the text-to-speech.
         public AudioSource ttsAudioSource;
-
-        // The current key being read. It is set to "" if there isn't one.
-        private string currentKey = "";
 
         // Constructor
         private TextToSpeech()
@@ -82,21 +79,10 @@ namespace RM_BBTS
             }
         }
 
-        // Returns 'true' if the text-to-speech is reading something.
-        public bool IsTextBeingRead
-        {
-            get { return ttsAudioSource.isPlaying; }
-        }
-
-        // Gets the key of the text being read. If no text is being read then it will return (""). 
-        public string GetTextKey()
-        {
-            return currentKey;
-        }
-
         // Reads the text based on the provided key.
         public void SpeakText(string key)
         {
+
 #if UNITY_EDITOR
             // Gets the language code.
             string languageCode = SharedState.StartGameData["languageCode"];
@@ -110,9 +96,6 @@ namespace RM_BBTS
 
             // Stops any current text-to-speech audio.
             ttsAudioSource.Stop();
-
-            // Saves the text key.
-            currentKey = key;
 
             // Speaks the clip of text requested from using this MonoBehaviour as the coroutine owner.
             ((ILOLSDK_EDITOR)LOLSDK.Instance.PostMessage).SpeakText(
@@ -136,18 +119,6 @@ namespace RM_BBTS
             ttsAudioSource.Stop();
 #endif
             ((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
-        }
-
-        // Update is called every frame, if the MonoBehaviour is enabled
-        private void Update()
-        {
-            // If the current key has been set.
-            if(currentKey != "")
-            {
-                // If the text is not being read, set the current key to blank.
-                if (!IsTextBeingRead)
-                    currentKey = "";
-            }
         }
     }
 }

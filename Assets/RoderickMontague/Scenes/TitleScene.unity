@@ -3081,12 +3081,12 @@ GameObject:
   - component: {fileID: 2109569893}
   - component: {fileID: 2109569894}
   m_Layer: 0
-  m_Name: Text-to-Speech
+  m_Name: Text-to-Speech (DELETE THIS)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2109569893
 Transform:
   m_ObjectHideFlags: 0
@@ -3114,6 +3114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ttsAudioSource: {fileID: 0}
+  currentKey: 
 --- !u!1001 &6876103568283502350
 PrefabInstance:
   m_ObjectHideFlags: 0

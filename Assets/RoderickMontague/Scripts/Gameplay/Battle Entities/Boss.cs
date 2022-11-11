@@ -7,12 +7,11 @@ namespace RM_BBTS
     // A class for a boss.
     public class Boss : Enemy
     {
+        // Stats are set in BattleEntityList.
         // Start is called before the first frame update
         new void Start()
         {
             base.Start();
-
-            LoadTranslation("bey_boss_nme");
         }
 
         // Update is called once per frame

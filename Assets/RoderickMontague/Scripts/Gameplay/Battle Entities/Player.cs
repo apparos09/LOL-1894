@@ -19,7 +19,8 @@ namespace RM_BBTS
             preEvoId = 0;
             evoId = 0;
 
-            displayName = "Player";
+            displayName = "<Player>";
+            displayNameSpeakKey = "bey_player_nme";
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
@@ -32,6 +33,8 @@ namespace RM_BBTS
 
             maxEnergy = 30;
             energy = maxEnergy;
+
+            LoadTranslation("bey_player_nme");
         }
 
         // Start is called before the first frame update

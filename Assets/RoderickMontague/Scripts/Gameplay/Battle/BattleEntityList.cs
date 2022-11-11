@@ -88,7 +88,8 @@ namespace RM_BBTS
                 default:
                     data.id = battleEntityId.unknown;
                     data.displayName = "<Unknown>";
-                    
+                    data.displayNameSpeakKey = "bey_unknown_nme";
+
                     data.maxHealth = 10;
                     data.health = 10;
 
@@ -112,6 +113,7 @@ namespace RM_BBTS
                 case battleEntityId.treasure: // treasure chest
                     data.id = battleEntityId.treasure;
                     data.displayName = "<Treasure>";
+                    data.displayNameSpeakKey = "bey_treasure_nme";
 
                     data.maxHealth = 1;
                     data.health = 1;
@@ -128,8 +130,10 @@ namespace RM_BBTS
                     break;
 
                 case battleEntityId.boss: // boss
+
                     data.id = battleEntityId.boss;
                     data.displayName = "<Boss>";
+                    data.displayNameSpeakKey = "bey_boss_nme";
 
                     data.maxHealth = 50;
                     data.health = 50;
@@ -149,7 +153,9 @@ namespace RM_BBTS
                 case battleEntityId.ufo: // UFO
                     data.id = battleEntityId.ufo;
                     data.evoId = battleEntityId.ufo2;
+
                     data.displayName = "<UFO>";
+                    data.displayNameSpeakKey = "bey_ufo_nme";
 
                     data.maxHealth = 10;
                     data.health = 10;
@@ -179,6 +185,8 @@ namespace RM_BBTS
 
 
                     data.displayName = "<UFO MKII>";
+                    data.displayNameSpeakKey = "bey_ufo2_nme_alt";
+
                     data.maxHealth = 15;
                     data.health = 15;
 
@@ -204,6 +212,7 @@ namespace RM_BBTS
                     data.preEvoId = battleEntityId.ufo2;
 
                     data.displayName = "<UFO MKIII>";
+                    data.displayNameSpeakKey = "bey_ufo3_nme_alt";
 
                     data.maxHealth = 30;
                     data.health = 30;

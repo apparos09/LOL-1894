@@ -22,6 +22,9 @@ namespace RM_BBTS
         // The entity name.
         public string displayName;
 
+        // The speak key for the display name.
+        public string displayNameSpeakKey;
+
         // The level of the entity.
         public uint level;
 
@@ -49,6 +52,9 @@ namespace RM_BBTS
     {
         // The display name for the battle entity.
         public string displayName = "";
+
+        // The speak key for the display name.
+        public string displayNameSpeakKey = "";
 
         // The sprite that the battle entity uses.
         public Sprite sprite;
@@ -219,6 +225,7 @@ namespace RM_BBTS
         {
             id = data.id;
             displayName = data.displayName;
+            displayNameSpeakKey = data.displayNameSpeakKey;
             level = data.level;
 
             maxHealth = data.maxHealth;

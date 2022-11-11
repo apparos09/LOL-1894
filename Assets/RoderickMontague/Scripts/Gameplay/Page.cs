@@ -54,18 +54,6 @@ namespace RM_BBTS
             }
         }
 
-        // Stops reading the page.
-        public void StopSpeakingPage()
-        {
-            // Cancels the text-to-speech if the page is closed.
-            if (GameSettings.Instance.useTTS)
-            {
-                // Speak key set.
-                if (speakKey != "" && TextToSpeech.Instance.GetTextKey() == speakKey)
-                    TextToSpeech.Instance.CancelSpeakText();
-            }
-        }
-
         // Add a callback for when the page is opened.
         public void OnPageOpenedAddCallback(PageCallback callback)
         {
@@ -107,9 +95,6 @@ namespace RM_BBTS
             // Trigger the callbacks.
             if (pageCloseCallback != null)
                 pageCloseCallback();
-
-            // Use text-to-speech to speak the page content.
-            StopSpeakingPage();
         }
     }
 }
