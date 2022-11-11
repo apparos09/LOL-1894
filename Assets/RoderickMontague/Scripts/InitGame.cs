@@ -43,13 +43,15 @@ namespace RM_BBTS
 
             // Create the WebGL (or mock) object
 #if UNITY_EDITOR
-            ILOLSDK webGL = new LoLSDK.MockWebGL();
+            ILOLSDK sdk = new LoLSDK.MockWebGL();
 #elif UNITY_WEBGL
-        ILOLSDK webGL = new LoLSDK.WebGL();
+            ILOLSDK sdk = new LoLSDK.WebGL();
+#elif UNITY_IOS || UNITY_ANDROID
+            ILOLSDK sdk = null; 
 #endif
 
             // Initialize the object, passing in the WebGL
-            LOLSDK.Init(webGL, "com.legends-of-learning.battle-bot-training-sim");
+            LOLSDK.Init(sdk, "com.legends-of-learning.battle-bot-training-simulation");
 
             // Register event handlers
             LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(HandleStartGame);
