@@ -91,6 +91,10 @@ namespace RM_BBTS
         // The battle number text.
         public TMPro.TMP_Text battleNumberText;
 
+        // Determines if text transitions are being used so that they sync with the progress bars.
+        // If not, change the text instantly. If so, update the bars.
+        public bool syncTextToBars = true;
+
         // The health bar for the player.
         public ProgressBar playerHealthBar;
 
@@ -591,8 +595,10 @@ namespace RM_BBTS
         {
             playerHealthBar.SetValue(player.Health / player.MaxHealth);
 
-            // This technically causes the final number to flash for a frame, but I don't think it's an issue.
-            playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+            // If false, the text is changed instantly. If true, the text is not updated here.
+            // This prevents the final number from flashing for a frame.
+            if(!syncTextToBars)
+                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
         }
 
         // Updates the player energy UI.
@@ -600,8 +606,10 @@ namespace RM_BBTS
         {
             playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
 
-            // This technically causes the final number to flash for a frame, but I don't think it's an issue.
-            playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+            // If false, the text is changed instantly. If true, the text is not updated here.
+            // This prevents the final number from flashing for a frame.
+            if (!syncTextToBars)
+                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
         }
 
         // Update is called once per frame
@@ -646,39 +654,44 @@ namespace RM_BBTS
                 gameTimer += Time.deltaTime;
             }
 
-            // Checks if the health bar is transitioning.
-            if(playerHealthBar.IsTransitioning())
+            // If text transitions are being used.
+            if(syncTextToBars)
             {
-                playerHealthText.text = Mathf.Round(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" + 
-                    player.MaxHealth.ToString();
+                // Checks if the health bar is transitioning.
+                if (playerHealthBar.IsTransitioning())
+                {
+                    playerHealthText.text = Mathf.Round(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" +
+                        player.MaxHealth.ToString();
 
-                // The health is transitioning.
-                playerHealthTransitioning = true;
+                    // The health is transitioning.
+                    playerHealthTransitioning = true;
+                }
+                else if (playerHealthTransitioning) // Transition done.
+                {
+                    // Set to exact value.
+                    playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+
+                    playerHealthTransitioning = false;
+                }
+
+                // Checks if the energy bar is transitioning.
+                if (playerEnergyBar.IsTransitioning())
+                {
+                    playerEnergyText.text = Mathf.Round(playerEnergyBar.GetSliderValueAsPercentage() * player.MaxEnergy).ToString() + "/" +
+                        player.MaxEnergy.ToString();
+
+                    // The energy is transitioning.
+                    playerEnergyTransitioning = true;
+                }
+                else if (playerEnergyTransitioning)  // Transition done.
+                {
+                    // Set to exact value.
+                    playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+
+                    playerEnergyTransitioning = false;
+                }
             }
-            else if(playerHealthTransitioning) // Transition done.
-            {
-                // Set to exact value.
-                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
-
-                playerHealthTransitioning = false;
-            }
-
-            // Checks if the energy bar is transitioning.
-            if (playerEnergyBar.IsTransitioning())
-            {
-                playerEnergyText.text = Mathf.Round(playerEnergyBar.GetSliderValueAsPercentage() * player.MaxEnergy).ToString() + "/" +
-                    player.MaxEnergy.ToString();
-
-                // The energy is transitioning.
-                playerEnergyTransitioning = true;
-            }
-            else if (playerEnergyTransitioning)  // Transition done.
-            {
-                // Set to exact value.
-                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
-
-                playerEnergyTransitioning = false;
-            }
+            
         }
     }
 }

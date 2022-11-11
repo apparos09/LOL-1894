@@ -922,9 +922,12 @@ namespace RM_BBTS
         // Updates the user interface.
         public void UpdateUI()
         {
-            // TODO: remove the safety checK??
             opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth);
-            opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+
+            // If false, the text is changed instantly. If true, the text is not updated here.
+            // This prevents the final number from flashing for a frame.
+            if (!gameManager.syncTextToBars)
+                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
         }
 
         // Update is called once per frame
@@ -1076,23 +1079,28 @@ namespace RM_BBTS
                 }
             }
 
-            // Opponent Health Scrolling Text
-            // Checks if the opponent health bar is transitioning.
-            if (opponentHealthBar.IsTransitioning())
+            // If the text should match the bars.
+            if(gameManager.syncTextToBars)
             {
-                opponentHealthText.text = Mathf.Round(opponentHealthBar.GetSliderValueAsPercentage() * opponent.MaxHealth).ToString() + "/" +
-                    opponent.MaxHealth.ToString();
+                // Opponent Health Scrolling Text
+                // Checks if the opponent health bar is transitioning.
+                if (opponentHealthBar.IsTransitioning())
+                {
+                    opponentHealthText.text = Mathf.Round(opponentHealthBar.GetSliderValueAsPercentage() * opponent.MaxHealth).ToString() + "/" +
+                        opponent.MaxHealth.ToString();
 
-                // The health is transitioning.
-                opponentHealthTransitioning = true;
-            }
-            else if (opponentHealthTransitioning) // Transition done.
-            {
-                // Set to exact value.
-                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+                    // The health is transitioning.
+                    opponentHealthTransitioning = true;
+                }
+                else if (opponentHealthTransitioning) // Transition done.
+                {
+                    // Set to exact value.
+                    opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
 
-                opponentHealthTransitioning = false;
+                    opponentHealthTransitioning = false;
+                }
             }
+            
 
         }
 

@@ -96,6 +96,17 @@ namespace RM_BBTS
                 // Initialize the game.
                 if(newGameButton != null && continueButton != null)
                     lolManager.saveSystem.Initialize(newGameButton, continueButton);
+
+                // // TODO: if the continue button is made invisible, just turn it on and disable it instead?
+                // if(!continueButton.gameObject.activeSelf)
+                // {
+                //     continueButton.gameObject.SetActive(true);
+                //     continueButton.interactable = false;
+                // }
+                // else
+                // {
+                //     continueButton.interactable = true;
+                // }
             }
 
         }
