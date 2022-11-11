@@ -43,7 +43,7 @@ namespace RM_BBTS
             base.Start();
 
             // Gets the base data and loads the battle data.
-            BattleEntityData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            BattleEntityGameData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
             // LoadBattleData(baseData);
 
             // Starter moves.

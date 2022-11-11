@@ -7,8 +7,8 @@ using SimpleJSON;
 namespace RM_BBTS
 {
 
-    // The data for a battle entity.
-    public struct BattleEntityData
+    // The game data for a battle entity.
+    public struct BattleEntityGameData
     {
         // The battle entity id.
         public battleEntityId id;
@@ -45,6 +45,32 @@ namespace RM_BBTS
         // The sprite image of the entity.
         public Sprite sprite;
 
+    }
+
+    // Save data for a battle entity, which only holds the entity id, level, stats, and moves.
+    // This is the minimum information needed to construct the entity.
+    [System.Serializable]
+    public struct BattleEntitySaveData
+    {
+        // The battle entity id.
+        public battleEntityId id;
+
+        // The level of the entity.
+        public uint level;
+
+        // The stats
+        public float maxHealth;
+        public float health;
+
+        public float attack;
+        public float defense;
+        public float speed;
+
+        public float maxEnergy;
+        public float energy;
+
+        // The moves
+        public moveId move0, move1, move2, move3;
     }
 
     // A class inherited by entities that do battle.
@@ -165,7 +191,7 @@ namespace RM_BBTS
         }
 
         // Loads translation information, changing the provided battle data.
-        public static void LoadTranslationForData(ref BattleEntityData data, string nameKey)
+        public static void LoadTranslationForData(ref BattleEntityGameData data, string nameKey)
         {
             // Grabs the language definitions.
             JSONNode defs = SharedState.LanguageDefs;
@@ -179,10 +205,10 @@ namespace RM_BBTS
         }
 
         // Generates the battle entity data for this entity.
-        public BattleEntityData GenerateBattleEntityData()
+        public BattleEntityGameData GenerateBattleEntityData()
         {
             // Creates the data object.
-            BattleEntityData data = new BattleEntityData();
+            BattleEntityGameData data = new BattleEntityGameData();
 
             // Sets the values.
             data.id = id;
@@ -221,7 +247,7 @@ namespace RM_BBTS
         }
 
         // Loads the battle data into this object.
-        public void LoadBattleData(BattleEntityData data)
+        public void LoadBattleData(BattleEntityGameData data)
         {
             id = data.id;
             displayName = data.displayName;
@@ -424,7 +450,7 @@ namespace RM_BBTS
             // Energy += maxEnergy * restorePercent;
 
             // Generate and level up the data.
-            BattleEntityData data = GenerateBattleEntityData();
+            BattleEntityGameData data = GenerateBattleEntityData();
             data = LevelUpData(data, times);
 
             // Save level
@@ -447,9 +473,9 @@ namespace RM_BBTS
 
         // Levels up the provided data and returns a copy.
         // (times) refers to how many times the entity should be leveled up.
-        public static BattleEntityData LevelUpData(BattleEntityData data, uint times = 1)
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, uint times = 1)
         {
-            BattleEntityData newData = data;
+            BattleEntityGameData newData = data;
 
             int rand;
             float hpPercent = data.health / data.maxHealth;
@@ -515,7 +541,7 @@ namespace RM_BBTS
             }
             else // Evolve.
             {
-                BattleEntityData data = GenerateBattleEntityData();
+                BattleEntityGameData data = GenerateBattleEntityData();
                 data = EvolveData(data);
                 LoadBattleData(data);
                 return true;
@@ -524,17 +550,17 @@ namespace RM_BBTS
         }
 
         // Evolves the battle entity.
-        public static BattleEntityData EvolveData(BattleEntityData oldData)
+        public static BattleEntityGameData EvolveData(BattleEntityGameData oldData)
         {
             // Can't evolve.
             if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
                 return oldData;
 
             // Gets the base data.
-            BattleEntityData baseData = BattleEntityList.Instance.GenerateBattleEntityData(oldData.id);
+            BattleEntityGameData baseData = BattleEntityList.Instance.GenerateBattleEntityData(oldData.id);
 
             // Gets the evolved data.
-            BattleEntityData evolved = BattleEntityList.Instance.GenerateBattleEntityData(oldData.evoId);
+            BattleEntityGameData evolved = BattleEntityList.Instance.GenerateBattleEntityData(oldData.evoId);
 
             // Same Level
             evolved.level = oldData.level;

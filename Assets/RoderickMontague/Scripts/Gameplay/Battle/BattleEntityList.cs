@@ -68,10 +68,10 @@ namespace RM_BBTS
         }
 
         // Generates and returns a battle entity with its base stats (stats it has at level 1).
-        public BattleEntityData GenerateBattleEntityData(battleEntityId id)
+        public BattleEntityGameData GenerateBattleEntityData(battleEntityId id)
         {
             // The data.
-            BattleEntityData data = new BattleEntityData();
+            BattleEntityGameData data = new BattleEntityGameData();
 
             // The namekey.
             string nameKey = "";
@@ -282,7 +282,7 @@ namespace RM_BBTS
         }
 
         // Sets random moves for the UFO.
-        private void SetRandomMovesFromList(ref BattleEntityData data)
+        private void SetRandomMovesFromList(ref BattleEntityGameData data)
         {
             // Grabs the move list.
             List<moveId> moveList = GenerateBattleEntityMoveList(data.id);
@@ -322,10 +322,10 @@ namespace RM_BBTS
         }
 
         // Generates a random battle entity enemy. If 'baseEvo' is true, then the base form is provided.
-        public BattleEntityData GenerateRandomEnemy(bool baseEvo = true)
+        public BattleEntityGameData GenerateRandomEnemy(bool baseEvo = true)
         {
             // The data.
-            BattleEntityData data = new BattleEntityData();
+            BattleEntityGameData data = new BattleEntityGameData();
             
             // Gets the random id.
             battleEntityId randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
@@ -357,7 +357,7 @@ namespace RM_BBTS
         }
 
         // Generates the boss.
-        public BattleEntityData GenerateBoss()
+        public BattleEntityGameData GenerateBoss()
         {
             return GenerateBattleEntityData(battleEntityId.boss);
         }

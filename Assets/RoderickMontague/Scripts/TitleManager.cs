@@ -19,7 +19,8 @@ namespace RM_BBTS
         public GameObject mainMenu;
 
         // Start
-        public TMP_Text startButtonText;
+        public TMP_Text newGameButtonText;
+        public TMP_Text continueButtonText;
 
         // Info
         public GameObject infoMenu;
@@ -59,7 +60,10 @@ namespace RM_BBTS
             if(defs != null)
             {
                 // Main Menu
-                startButtonText.text = defs["kwd_start"];
+                // startButtonText.text = defs["kwd_start"];
+                newGameButtonText.text = defs["kwd_newGame"];
+                continueButtonText.text = defs["kwd_continue"];
+
                 infoButtonText.text = defs["kwd_info"];
                 controlsButtonText.text = defs["kwd_controls"];
                 settingsButtonText.text = defs["kwd_settings"];
@@ -84,13 +88,27 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-
+            // TODO: so it seems that you need to save the data for the game using the SDK.
+            // I say you load up the save data during the GameInit phase, but don't actually apply it unless 'Continue' is presed.
+            // You'll also need to setup an autosave async feature.
         }
 
         // Starts the game.
         public void StartGame()
         {
             SceneManager.LoadScene("GameScene");
+        }
+
+        // Starts a new game.
+        public void StartNewGame()
+        {
+
+        }
+
+        // Continues a saved game.
+        public void ContinueGame()
+        {
+
         }
 
         // Toggles the info menu.

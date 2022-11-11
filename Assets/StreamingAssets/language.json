@@ -33,11 +33,18 @@
     "gameTitle": "Battle Bot Training Simulation",
 
     "kwd_start": "Start",
+    "kwd_newGame": "New Game",
+    "kwd_continue": "Continue",
     "kwd_info": "Info",
     "kwd_controls": "Controls",
     "kwd_settings": "Settings",
 
     "kwd_stats": "Stats",
+
+    "kwd_save": "Save",
+    "kwd_saveQuit": "Save and Quit",
+    "kwd_saveContinue": "Save and Continue",
+    "sve_prmompt": "Would you like to save and continue the game, or save and quit the game?",
 
     "mnu_controls_instruct": "Left Mouse/Touch: Interact",
     "mnu_controls_desc": "The entire game is controlled via the left mouse button/touch.",
@@ -61,6 +68,8 @@
     "kwd_accuracy": "Accuracy",
     "kwd_description": "Description",
 
+    "owd_door": "Door",
+    "owd_bossDoor": "Boss Door",
 
     "btl_msg_mve_moveUsed": "{0} used {1}!",
     "btl_msg_mve_moveUsed_alt00": "The player used a move.",
@@ -90,6 +99,9 @@
     "btl_msg_mve_runFailed_alt01": "The opponent failed to run away!",
     "btl_msg_mve_nothing": "Nothing happened.",
 
+    "btl_msg_treasure": "There is a treasure chest in this room.\nDo you want to open it now?",
+    "kwd_yes": "Yes",
+    "kwd_no": "No",
 
     "btl_msg_burned": "{0} took burn damage!",
     "btl_msg_burned_alt00": "The player took burn damage!",

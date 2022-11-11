@@ -4,6 +4,25 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
+    // The save data for doors.
+    [System.Serializable]
+    public struct DoorSaveData
+    {
+        // TODO: include identifier for sprite.
+
+        // Determines if this is a boss door or not.
+        public bool isBossDoor;
+
+        // Determines if this is a treasure door or not.
+        public bool isTreasureDoor;
+
+        // The battle entity behind the door.
+        public BattleEntitySaveData battleEntity;
+
+        // Says whether the door is locked or not.
+        public bool locked;
+    }
+
     public class Door : MonoBehaviour
     {
         // The sprite that the door uses.
@@ -22,7 +41,7 @@ namespace RM_BBTS
         public bool isTreasureDoor = false;
 
         // The battle entity behind the door.
-        public BattleEntityData battleEntity;
+        public BattleEntityGameData battleEntity;
 
         // Says whether the door is locked or not.
         private bool locked = false;

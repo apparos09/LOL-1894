@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SimpleJSON;
 
 // TODO: do status effects.
 namespace RM_BBTS
@@ -105,12 +106,21 @@ namespace RM_BBTS
         public TMP_Text runButtonText;
 
         [Header("UI/Player/Treasure")]
-        
+
+        // The text for the treasure prompt.
+        public TMP_Text treasurePromptText;
+
         // The yes button for opening the treasure.
         public Button treasureYesButton;
 
+        // The treasure yes button text.
+        public TMP_Text treasureYesButtonText;
+
         // THe no button for opening the treasure.
         public Button treasureNoButton;
+
+        // The treasure no button text.
+        public TMP_Text treasureNoButtonText;
 
         [Header("UI/Opponent")]
 
@@ -153,6 +163,9 @@ namespace RM_BBTS
             //     go.transform.parent = gameObject.transform;
             // }
 
+            // The language definitions.
+            JSONNode defs = SharedState.LanguageDefs;
+
             // Turns off the bases.
             enemyBase.gameObject.SetActive(false);
             treasureBase.gameObject.SetActive(false);
@@ -178,6 +191,15 @@ namespace RM_BBTS
 
             // Run (does it this way for translation)
             runButtonText.text = MoveList.Instance.RunMove.Name;
+
+            // The defs are not set.
+            if(defs != null)
+            {
+                // Translate the treasure prompt.
+                treasurePromptText.text = defs["btl_msg_treasure"];
+                treasureYesButtonText.text = defs["kwd_yes"];
+                treasureNoButtonText.text = defs["kwd_no"];
+            }
         }
 
         // This function is called when the object becomes enabled and active
@@ -304,9 +326,9 @@ namespace RM_BBTS
                     treasureYesButton.interactable = true;
                     treasureNoButton.interactable = true;
                 }
-
-                    // Hide health bar and health text
-                    opponentHealthBar.bar.gameObject.SetActive(false);
+                
+                // Hide health bar and health text
+                opponentHealthBar.bar.gameObject.SetActive(false);
                 opponentHealthText.gameObject.SetActive(false);
 
                 // Show treasure prompt.

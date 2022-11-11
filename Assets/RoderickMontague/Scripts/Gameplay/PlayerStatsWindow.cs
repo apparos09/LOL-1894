@@ -70,6 +70,7 @@ namespace RM_BBTS
         private string rankString = "<Rank>";
         private string powerString = "<Power>";
         private string accuracyString = "<Accuracy>";
+        // The energy string is reused from the gameManager.
         private string descriptionString = "<Description>";
 
         // Awake is called when the script is being loaded.

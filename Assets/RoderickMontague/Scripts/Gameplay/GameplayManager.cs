@@ -230,13 +230,27 @@ namespace RM_BBTS
         // Called when the mouse interacts with an entity.
         public override void OnMouseInteract(GameObject heldObject)
         {
-            // ...
+            //// Collider for text-to-speech (contains a function for OnMouseDown).
+            //TextToSpeechCollider ttsCol;
+
+            //// Checks for the collider.
+            //if (heldObject.TryGetComponent<TextToSpeechCollider>(out ttsCol))
+            //{
+            //    ttsCol.SpeakText();
+            //}
         }
 
         // Called when the user's touch interacts with an entity.
         public override void OnTouchInteract(GameObject touchedObject, Touch touch)
         {
-            // ...
+            //// Collider for text-to-speech (contains a function for OnMouseDown).
+            //TextToSpeechCollider ttsCol; 
+            
+            //// Checks for the collider.
+            //if(touchedObject.TryGetComponent<TextToSpeechCollider>(out ttsCol))
+            //{
+            //    ttsCol.SpeakText();
+            //}
         }
 
         // Called with the object that was received with the interaction.

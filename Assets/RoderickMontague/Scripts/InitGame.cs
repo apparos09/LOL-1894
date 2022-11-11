@@ -1,17 +1,54 @@
 using LoLSDK;
 using SimpleJSON;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 // Initializes the LOL content and then enters the title screen.
 // This code was taken from Loader.cs (a file from the LOL template content) and then modified.
 namespace RM_BBTS
 {
+    // The battle bot training sim data.
+    [System.Serializable]
+    public class BBTS_Data
+    {
+        // The player's data.
+        public BattleEntitySaveData playerData;
+
+        // The save data for the doors in the game.
+        // This also holds the data for each entity.
+        public List<DoorSaveData> doorData; 
+
+        // Triggers for the tutorial for the game.
+        public bool clearedIntro; // Intro tutorial.
+        public bool clearedBattle; // Battle tutorial.
+        public bool clearedTreasure; // Treasure tutorial.
+        public bool clearedOverworld; // Overworld tutorial.
+        public bool clearedBoss; // Boss tutorial.
+        public bool clearedGameOver; // Game over tutorial.
+
+        // Results data at the time of the save.
+        public int roomsCleared; // Rooms cleared by the player.
+        public int totalRooms; // Total rooms cleared.
+        public float totalTime = 0.0F; // Total game time.
+        public int totalTurns = 0; // Total turns.
+
+    }
+
     public class InitGame : MonoBehaviour
     {
+        // GAME //
+        // Data for the game.
+        BBTS_Data gameData;
+
+        // Becomes 'true' when the game has been initialized.
+        public bool initGame = false;
+
+        // LOL //
         // Relative to Assets /StreamingAssets/
         private const string languageJSONFilePath = "language.json";
         private const string questionsJSONFilePath = "questions.json";
@@ -24,6 +61,12 @@ namespace RM_BBTS
         // This should represent the data you're expecting from the platform.
         // Most games are expecting 2 types of data, Start and Language.
         LoLDataType _expectedData = LoLDataType.START | LoLDataType.LANGUAGE;
+
+        // LOL - AutoSave //
+        // Added from the ExampleCookingGame. Used for feedback from autosaves.
+        WaitForSeconds feedbackTimer = new WaitForSeconds(2);
+        Coroutine feedbackMethod;
+        public TMP_Text feedbackText;
 
         [System.Flags]
         enum LoLDataType
@@ -59,16 +102,57 @@ namespace RM_BBTS
             LOLSDK.Instance.QuestionsReceived += new QuestionListReceivedHandler(HandleQuestions);
             LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(HandleGameStateChange);
 
+            // Used for player feedback. Not required by SDK.
+            LOLSDK.Instance.SaveResultReceived += OnSaveResult;
+
+
             // Mock the platform-to-game messages when in the Unity editor.
 #if UNITY_EDITOR
+            // UnityEditor.EditorGUIUtility.PingObject(this);
             LoadMockData();
 #endif
 
+            // Call GameIsReady before calling LoadState or using the helper method.
             // Then, tell the platform the game is ready.
             LOLSDK.Instance.GameIsReady();
             StartCoroutine(_WaitForData());
+
+            // Helper method to hide and show the state buttons as needed.
+            // Will call LoadState<T> for you.
+            // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
         }
 
+        private void OnDestroy()
+        {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+                return;
+#endif
+            LOLSDK.Instance.SaveResultReceived -= OnSaveResult;
+        }
+
+        // Saves the game. This isn't used in the InitGame file.
+        void Save()
+        {
+            LOLSDK.Instance.SaveState(gameData);
+        }
+
+        // On save result.
+        void OnSaveResult(bool success)
+        {
+            if (!success)
+            {
+                Debug.LogWarning("Saving not successful");
+                return;
+            }
+
+            if (feedbackMethod != null)
+                StopCoroutine(feedbackMethod);
+            // ...Auto Saving Complete
+            feedbackMethod = StartCoroutine(Feedback("autoSave"));
+        }
+
+        // Waits for the data and then loads the scene.
         IEnumerator _WaitForData()
         {
             yield return new WaitUntil(() => (_receivedData & _expectedData) != 0);
@@ -109,6 +193,48 @@ namespace RM_BBTS
         {
             // Either GameState.Paused or GameState.Resumed
             Debug.Log("HandleGameStateChange");
+        }
+
+        /// <summary>
+        /// This is the setting of your initial state when the scene loads.
+        /// The state can be set from your default editor settings or from the
+        /// users saved data after a valid save is called.
+        /// </summary>
+        /// <param name="loadedGameData"></param>
+        void OnLoad(BBTS_Data loadedGameData)
+        {
+            // Overrides serialized state data or continues with editor serialized values.
+            if (loadedGameData != null)
+                gameData = loadedGameData;
+            else
+                return;
+
+            // TODO: save data for game loading.
+
+            // Becomes set to 'true' when the game data has been loaded.
+            initGame = true;
+        }
+
+        // Gets translated text.
+        public string GetTranslatedText(string key)
+        {
+            // Gets the definitions.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Get content.
+            if (defs != null)
+                return defs[key];
+            else
+                return "";
+        }
+
+        // Not quite sure what this does.
+        IEnumerator Feedback(string text)
+        {
+            feedbackText.text = text;
+            yield return feedbackTimer;
+            feedbackText.text = string.Empty;
+            feedbackMethod = null;
         }
 
         private void LoadMockData()

@@ -1243,7 +1243,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "There is a treasure chest in this room. \nDo you want to open it now?"
+  m_text: '[There is a treasure chest in this room.]
+
+    [Do you want to open it
+    now?]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1751,6 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
+  displayNameSpeakKey: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -8868,7 +8872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yes
+  m_text: '[Yes]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9615,8 +9619,11 @@ MonoBehaviour:
   chargeButtonText: {fileID: 1654345095}
   runButton: {fileID: 1016463190}
   runButtonText: {fileID: 5537232}
+  treasurePromptText: {fileID: 83868080}
   treasureYesButton: {fileID: 933971979}
+  treasureYesButtonText: {fileID: 1062921108}
   treasureNoButton: {fileID: 1331908729}
+  treasureNoButtonText: {fileID: 1824519592}
   opponentNameText: {fileID: 1204011799}
   opponentHealthBar: {fileID: 638855117}
   opponentHealthText: {fileID: 960459646}
@@ -12096,6 +12103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
+  displayNameSpeakKey: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -13189,6 +13197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
+  displayNameSpeakKey: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
@@ -14018,7 +14027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No
+  m_text: '[No]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14527,6 +14536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
+  displayNameSpeakKey: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
