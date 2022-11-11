@@ -12,33 +12,6 @@ using System.Collections.Generic;
 // This code was taken from Loader.cs (a file from the LOL template content) and then modified.
 namespace RM_BBTS
 {
-    // The battle bot training sim data.
-    [System.Serializable]
-    public class BBTS_Data
-    {
-        // The player's data.
-        public BattleEntitySaveData playerData;
-
-        // The save data for the doors in the game.
-        // This also holds the data for each entity.
-        public List<DoorSaveData> doorData; 
-
-        // Triggers for the tutorial for the game.
-        public bool clearedIntro; // Intro tutorial.
-        public bool clearedBattle; // Battle tutorial.
-        public bool clearedTreasure; // Treasure tutorial.
-        public bool clearedOverworld; // Overworld tutorial.
-        public bool clearedBoss; // Boss tutorial.
-        public bool clearedGameOver; // Game over tutorial.
-
-        // Results data at the time of the save.
-        public int roomsCleared; // Rooms cleared by the player.
-        public int totalRooms; // Total rooms cleared.
-        public float totalTime = 0.0F; // Total game time.
-        public int totalTurns = 0; // Total turns.
-
-    }
-
     public class InitGame : MonoBehaviour
     {
         // GAME //
