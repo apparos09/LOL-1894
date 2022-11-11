@@ -19,7 +19,9 @@ namespace RM_BBTS
         public GameObject mainMenu;
 
         // Start
+        public Button newGameButton;
         public TMP_Text newGameButtonText;
+        public Button continueButton;
         public TMP_Text continueButtonText;
 
         // Info
@@ -53,6 +55,9 @@ namespace RM_BBTS
             // Checks if LOL SDK has been initialized.
             GameSettings settings = GameSettings.Instance;
 
+            // Gets an instance of the LOL manager.
+            LOL_Manager lolManager = LOL_Manager.Instance;
+
             // Language
             JSONNode defs = SharedState.LanguageDefs;
 
@@ -80,7 +85,17 @@ namespace RM_BBTS
             if (!settings.InitializedLOLSDK)
             {
                 Debug.LogError("LOL SDK NOT INITIALIZED.");
+
+                // Do not allow the button to be used.
+                continueButton.interactable = false;
+                
                 settings.AdjustAllAudioLevels();
+            }
+            else
+            {
+                // Initialize the game.
+                if(newGameButton != null && continueButton != null)
+                    lolManager.saveSystem.Initialize(newGameButton, continueButton);
             }
 
         }

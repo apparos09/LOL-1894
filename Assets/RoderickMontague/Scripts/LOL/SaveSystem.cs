@@ -11,7 +11,7 @@ namespace RM_BBTS
 {
     // The battle bot training sim data.
     [System.Serializable]
-    public class BBTS_Data
+    public class BBTS_GameData
     {
         // The player's data.
         public BattleEntitySaveData playerData;
@@ -40,7 +40,11 @@ namespace RM_BBTS
     public class SaveSystem : MonoBehaviour
     {
         // The game data.
-        BBTS_Data gameData;
+        // The data that was saved.
+        private BBTS_GameData savedData;
+
+        // The data that was loaded.
+        private BBTS_GameData loadedData;
 
         // The manager for the game.
         public GameplayManager gameManager;
@@ -57,43 +61,51 @@ namespace RM_BBTS
             LOLSDK.Instance.SaveResultReceived += OnSaveResult;
         }
 
-        // This function is called after a new level was loaded.
-        private void OnLevelWasLoaded(int level)
-        {
-            // Saves the game manager.
-            gameManager = FindObjectOfType<GameplayManager>(true);
-        }
-
         // Set save and load operations.
         public void Initialize(Button newGameButton, Button continueButton)
         {
-            Helper.StateButtonInitialize<BBTS_Data>(newGameButton, continueButton, OnLoadData);
+            // Makes the continue button disappear if there is no data to load. 
+            Helper.StateButtonInitialize<BBTS_GameData>(newGameButton, continueButton, OnLoadData);
         }
 
-        // Saves data.
-        private void SaveData()
+        // Checks if the game manager has been set.
+        private bool IsGameManagerSet()
         {
-            // The data to be saved does not exist if not in the GameScene.
-            if(SceneManager.GetActiveScene().name != "GameScene")
-            {
-                Debug.LogWarning("Data can only be saved in the GameScene.");
-                return;
-            }
-
-            // Tries to find the gameplay manager.
-            if(gameManager == null)
+            if (gameManager == null)
                 gameManager = FindObjectOfType<GameplayManager>(true);
 
             // Game manager does not exist.
-            if(gameManager == null)
+            if (gameManager == null)
             {
                 Debug.LogWarning("The Game Manager couldn't be found.");
-                return;
+                return false;
+            }
+
+            return true;
+        }
+
+        // Saves data.
+        public bool SaveGame()
+        {
+            // // The data to be saved does not exist if not in the GameScene.
+            // if(SceneManager.GetActiveScene().name != "GameScene")
+            // {
+            //     Debug.LogWarning("Data can only be saved in the GameScene.");
+            //     return false;
+            // }
+
+            // The game manager does not exist if false.
+            if(!IsGameManagerSet())
+            {
+                Debug.LogWarning("The Game Manager couldn't be found.");
+                return false;
             }
 
             // TODO: save the game data.
 
-            LOLSDK.Instance.SaveState(gameData);
+            LOLSDK.Instance.SaveState(savedData);
+
+            return true;
 
             // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
         }
@@ -110,7 +122,7 @@ namespace RM_BBTS
             if (feedbackMethod != null)
                 StopCoroutine(feedbackMethod);
             // ...Auto Saving Complete
-            feedbackMethod = StartCoroutine(Feedback("autoSave"));
+            feedbackMethod = StartCoroutine(Feedback("sve_msg_saveComplete"));
         }
 
         // Feedback while result is saving.
@@ -122,16 +134,45 @@ namespace RM_BBTS
             feedbackMethod = null;
         }
 
-        // Loads data.
-        private void OnLoadData(BBTS_Data loadedGameData)
+        // Loads a saved game. This returns 'false' if there was no data.
+        public bool LoadGame()
+        {
+            // No loaded data.
+            if(loadedData == null)
+            {
+                Debug.LogWarning("There is no saved game.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Called to load data from the server.
+        private void OnLoadData(BBTS_GameData loadedGameData)
         {
             // Overrides serialized state data or continues with editor serialized values.
             if (loadedGameData != null)
-                gameData = loadedGameData;
-            else
+            {
+                loadedData = loadedGameData;
+            }
+            else // No game data found.
+            {
+                Debug.LogError("No game data found.");
+
                 return;
+            }
 
             // TODO: save data for game loading.
+            if(!IsGameManagerSet())
+            {
+                Debug.LogError("Game manager not found.");
+                return;
+            }
+
+            // TODO: this automatically loads the game if the continue button is pressed.
+            // If there is no data to load, the button is gone. 
+            // You should move the buttons around to accomidate for this.
+            LoadGame();
         }
 
         

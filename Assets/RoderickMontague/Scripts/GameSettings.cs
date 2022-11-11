@@ -63,6 +63,7 @@ namespace RM_BBTS
         {
         }
 
+        // TODO: why did you take this out?
         // // This function is called when the object is enabled and active
         // private void OnEnable()
         // {

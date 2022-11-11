@@ -16,7 +16,7 @@ namespace RM_BBTS
     {
         // GAME //
         // Data for the game.
-        BBTS_Data gameData;
+        BBTS_GameData gameData;
 
         // Becomes 'true' when the game has been initialized.
         public bool initGame = false;
@@ -174,7 +174,7 @@ namespace RM_BBTS
         /// users saved data after a valid save is called.
         /// </summary>
         /// <param name="loadedGameData"></param>
-        void OnLoad(BBTS_Data loadedGameData)
+        void OnLoad(BBTS_GameData loadedGameData)
         {
             // Overrides serialized state data or continues with editor serialized values.
             if (loadedGameData != null)

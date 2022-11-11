@@ -1697,7 +1697,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1236623366}
   m_OnClick:
     m_PersistentCalls:
@@ -2199,7 +2199,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1033825039}
+  newGameButton: {fileID: 255729900}
   newGameButtonText: {fileID: 395064243}
+  continueButton: {fileID: 1236623365}
   continueButtonText: {fileID: 701280454}
   infoMenu: {fileID: 1895831588}
   infoButtonText: {fileID: 1259910472}
