@@ -27,9 +27,9 @@ namespace RM_BBTS
             maxHealth = 50;
             health = maxHealth;
 
-            attack = 10;
-            defense = 5;
-            speed = 4;
+            attack = 12;
+            defense = 8;
+            speed = 6;
 
             maxEnergy = 30;
             energy = maxEnergy;
@@ -61,6 +61,17 @@ namespace RM_BBTS
 
             // Translates the player's name.
             LoadTranslation("bey_player_nme");
+        }
+
+        // Levels up the player.
+        public override void LevelUp(uint times = 1)
+        {
+            // Levels up the player.
+            base.LevelUp(times);
+
+            // Restores the player's health and energy levels.
+            Health += MaxHealth * LEVEL_UP_RESTORE_PERCENT * times;
+            Energy += MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times;
         }
 
         // Selects the run move. Only the player has the run move.

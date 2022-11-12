@@ -882,6 +882,8 @@ namespace RM_BBTS
         // Called when potentially learning a new move.
         public void OnLearningNewMove()
         {
+            // TODO: the player gets recommended multiples of moves they already have. Fix that.
+
             // Hide the box gameobject.
             textBox.Close();
 
@@ -992,7 +994,7 @@ namespace RM_BBTS
             player.ResetStatuses();
 
             // Save battle entity data.
-            door.battleEntity = opponent.GenerateBattleEntityData();
+            door.battleEntity = opponent.GenerateBattleEntityGameData();
 
             // Hide opponent sprite.
             opponentSprite.gameObject.SetActive(false);

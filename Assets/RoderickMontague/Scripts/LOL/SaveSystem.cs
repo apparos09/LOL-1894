@@ -102,6 +102,8 @@ namespace RM_BBTS
             }
 
             // TODO: save the game data.
+            savedData = new BBTS_GameData();
+
 
             LOLSDK.Instance.SaveState(savedData);
 

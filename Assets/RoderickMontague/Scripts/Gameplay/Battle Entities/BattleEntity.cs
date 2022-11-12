@@ -205,7 +205,7 @@ namespace RM_BBTS
         }
 
         // Generates the battle entity data for this entity.
-        public BattleEntityGameData GenerateBattleEntityData()
+        public BattleEntityGameData GenerateBattleEntityGameData()
         {
             // Creates the data object.
             BattleEntityGameData data = new BattleEntityGameData();
@@ -244,6 +244,12 @@ namespace RM_BBTS
             data.sprite = sprite;
 
             return data;
+        }
+
+        // Generates save data for the battle entity.
+        public void GenerateBattleEntitySaveData()
+        {
+            // TODO: implement.
         }
 
         // Loads the battle data into this object.
@@ -397,7 +403,7 @@ namespace RM_BBTS
 
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         // (times) refers to how many times the entity is leveled up.
-        public void LevelUp(uint times = 1)
+        public virtual void LevelUp(uint times = 1)
         {
             // // Relative hp and energy.
             // float hpPercent = health / maxHealth;
@@ -450,7 +456,7 @@ namespace RM_BBTS
             // Energy += maxEnergy * restorePercent;
 
             // Generate and level up the data.
-            BattleEntityGameData data = GenerateBattleEntityData();
+            BattleEntityGameData data = GenerateBattleEntityGameData();
             data = LevelUpData(data, times);
 
             // Save level
@@ -519,10 +525,10 @@ namespace RM_BBTS
             newData.health = hpPercent * newData.maxHealth;
             newData.energy = engPercent * newData.maxEnergy;
 
-            // TODO: move this to the player class.
-            // Restores health and energy
-            newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
-            newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;
+            // // TODO: move this to the player class.
+            // // Restores health and energy
+            // newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
+            // newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;
 
             // Clamps the health and energy levels.
             newData.health = Mathf.Clamp(newData.health, 0, newData.maxHealth);
@@ -542,7 +548,7 @@ namespace RM_BBTS
             }
             else // Evolve.
             {
-                BattleEntityGameData data = GenerateBattleEntityData();
+                BattleEntityGameData data = GenerateBattleEntityGameData();
                 data = EvolveData(data);
                 LoadBattleData(data);
                 return true;
