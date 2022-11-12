@@ -18,7 +18,11 @@ namespace RM_BBTS
 
         // The save data for the doors in the game.
         // This also holds the data for each entity.
-        public List<DoorSaveData> doorData;
+        // public List<DoorSaveData> doorData;
+
+        // The door save data.
+        public DoorSaveData[] doorData = new DoorSaveData[18];
+
 
         // Triggers for the tutorial for the game.
         public bool clearedIntro; // Intro tutorial.
@@ -28,11 +32,14 @@ namespace RM_BBTS
         public bool clearedBoss; // Boss tutorial.
         public bool clearedGameOver; // Game over tutorial.
 
+        // TODO: saving rooms total may not be needed.
+
         // Results data at the time of the save.
-        public int roomsCleared; // Rooms cleared by the player.
-        public int totalRooms; // Total rooms cleared.
-        public float totalTime = 0.0F; // Total game time.
-        public int totalTurns = 0; // Total turns.
+        public int score = 0; // Score
+        public int roomsCompleted = 0; // Rooms cleared by the player.
+        public int roomsTotal = 0; // Total rooms cleared.
+        public float gameTime = 0.0F; // Total game time.
+        public int turnsPassed = 0; // Total turns.
 
     }
 
@@ -41,10 +48,10 @@ namespace RM_BBTS
     {
         // The game data.
         // The data that was saved.
-        private BBTS_GameData savedData;
+        // private BBTS_GameData savedData;
 
         // The data that was loaded.
-        private BBTS_GameData loadedData;
+        public BBTS_GameData loadedData;
 
         // The manager for the game.
         public GameplayManager gameManager;
@@ -101,10 +108,35 @@ namespace RM_BBTS
                 return false;
             }
 
-            // TODO: save the game data.
-            savedData = new BBTS_GameData();
+            // Generates the save data.
+            BBTS_GameData savedData = new BBTS_GameData();
 
+            // Gets the player save data.
+            savedData.playerData = gameManager.player.GenerateBattleEntitySaveData();
 
+            // Converts the door save data.
+            for(int i = 0; i < savedData.doorData.Length && i < gameManager.overworld.doors.Count; i++)
+            {
+                // Store the save data.
+                savedData.doorData[i] = gameManager.overworld.doors[i].GenerateSaveData();
+            }
+
+            // Saves the tutorial content.
+            savedData.clearedIntro = gameManager.tutorial.clearedIntro;
+            savedData.clearedBattle = gameManager.tutorial.clearedBattle;
+            savedData.clearedTreasure = gameManager.tutorial.clearedTreasure;
+            savedData.clearedOverworld = gameManager.tutorial.clearedOverworld;
+            savedData.clearedBoss = gameManager.tutorial.clearedBoss;
+            savedData.clearedGameOver = gameManager.tutorial.clearedGameOver;
+
+            // Save game results data.
+            savedData.score = gameManager.score;
+            savedData.roomsCompleted = gameManager.roomsCompleted;
+            savedData.roomsTotal = gameManager.roomsTotal;
+            savedData.gameTime = gameManager.gameTimer;
+            savedData.turnsPassed = gameManager.turnsPassed;
+
+            // Send the save state.
             LOLSDK.Instance.SaveState(savedData);
 
             return true;
@@ -136,18 +168,21 @@ namespace RM_BBTS
             feedbackMethod = null;
         }
 
-        // Loads a saved game. This returns 'false' if there was no data.
-        public bool LoadGame()
-        {
-            // No loaded data.
-            if(loadedData == null)
-            {
-                Debug.LogWarning("There is no saved game.");
-                return false;
-            }
-
-            return true;
-        }
+        // The gameplay manager now checks if there is loadedData. If so, then it will load in the data when the game starts.
+        // // Loads a saved game. This returns 'false' if there was no data.
+        // public bool LoadGame()
+        // {
+        //     // No loaded data.
+        //     if(loadedData == null)
+        //     {
+        //         Debug.LogWarning("There is no saved game.");
+        //         return false;
+        //     }
+        // 
+        //     // TODO: load the game data.
+        // 
+        //     return true;
+        // }
 
         // Called to load data from the server.
         private void OnLoadData(BBTS_GameData loadedGameData)
@@ -160,7 +195,7 @@ namespace RM_BBTS
             else // No game data found.
             {
                 Debug.LogError("No game data found.");
-
+                loadedData = null;
                 return;
             }
 
@@ -174,7 +209,7 @@ namespace RM_BBTS
             // TODO: this automatically loads the game if the continue button is pressed.
             // If there is no data to load, the button is gone. 
             // You should move the buttons around to accomidate for this.
-            LoadGame();
+            // LoadGame();
         }
 
         

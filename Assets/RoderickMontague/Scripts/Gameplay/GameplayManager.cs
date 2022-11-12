@@ -62,7 +62,7 @@ namespace RM_BBTS
         [Header("Game Stats/Time")]
 
         // The total amount of turns completed.
-        public int totalTurns = 0;
+        public int turnsPassed = 0;
 
         // The time the game has been going for.
         // This uses deltaTime, which is in seconds.
@@ -280,6 +280,17 @@ namespace RM_BBTS
             score = 0;
             roomsCompleted = 0;
             SubmitProgress();
+
+            // If there is save data, load the saved game.
+            if (LOLManager.Instance.saveSystem.loadedData != null)
+            {
+                // Load the data.
+                LoadGame(LOLManager.Instance.saveSystem.loadedData);
+                
+                // Clear data.
+                LOLManager.Instance.saveSystem.loadedData = null;
+            }
+                
         }
 
         // public void Test()
@@ -741,7 +752,7 @@ namespace RM_BBTS
 
             // Time and turns.
             results.totalTime = gameTimer;
-            results.totalTurns = totalTurns;
+            results.totalTurns = turnsPassed;
 
             // Saves the level and final moves the player had.
             results.finalLevel = player.Level;
@@ -807,6 +818,72 @@ namespace RM_BBTS
 
             // Save the game.
             SaveGame(false);
+        }
+
+        // Loads the game using the provided save data.
+        public bool LoadGame(BBTS_GameData saveData)
+        {
+            // Checks current game state.
+            if(state == gameState.battle) // Player is in the battle area.
+            {
+                // Return to the overoworld.
+                battle.ToOverworld();
+            }
+            else if(state == gameState.none) // Game not initialized.
+            {
+                Debug.LogWarning("The game hasn't been initialized yet, so the data can't be loaded.");
+                return false; 
+            }
+
+            // Load the player's save data.
+            player.LoadBattleSaveData(saveData.playerData);
+
+            // Load the door data.
+            for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+            {
+                overworld.doors[i].LoadSaveData(saveData.doorData[i]);
+            }
+
+            // Saves the tutorial values.
+            tutorial.clearedIntro = saveData.clearedIntro;
+            tutorial.clearedBattle = saveData.clearedBattle;
+            tutorial.clearedTreasure = saveData.clearedTreasure;
+            tutorial.clearedOverworld = saveData.clearedOverworld;
+            tutorial.clearedBoss = saveData.clearedBoss;
+            tutorial.clearedGameOver = saveData.clearedGameOver;
+
+            // If the tutorial is being used.
+            if(useTutorial)
+            {
+                // If the tutorial textbox is open, close it.
+                if (tutorial.textBox.IsVisible())
+                    tutorial.textBox.Close();
+
+                // The game shouldn't be saved without the intro being shown anyway, but just in case...
+
+                // If the tutorial intro was not cleared, start it up.
+                if (!tutorial.clearedIntro)
+                    tutorial.LoadIntroTutorial();
+
+                // If the textbox isn't visible, open it.
+                if(!tutorial.textBox.IsVisible())
+                {
+                    // Opens the textbox.
+                    tutorial.textBox.Open();
+                }
+            }
+
+            // Sets the game data values.
+            score = saveData.score;
+            roomsCompleted = saveData.roomsCompleted;
+            roomsTotal = saveData.roomsTotal;
+            gameTimer = saveData.gameTime;
+            turnsPassed = saveData.turnsPassed;
+
+            // Updates the UI.
+            UpdateUI();
+
+            return true;
         }
 
         // Goes to the main menu.

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 using LoLSDK;
+using TMPro;
 
 namespace RM_BBTS
 {
@@ -11,44 +12,48 @@ namespace RM_BBTS
     public class ResultsManager : MonoBehaviour
     {
         // The title text.
-        public TMPro.TMP_Text titleText;
+        public TMP_Text titleText;
 
         [Header("Stats")]
+
+        // The final score.
+        public TMP_Text scoreText;
+
         // The rooms cleared text.
-        public TMPro.TMP_Text roomsClearedText;
+        public TMP_Text roomsClearedText;
 
         // The total time text.
-        public TMPro.TMP_Text totalTimeText;
+        public TMP_Text totalTimeText;
 
         // The total turns text.
-        public TMPro.TMP_Text totalTurnsText;
+        public TMP_Text totalTurnsText;
 
         // The text for the final level.
-        public TMPro.TMP_Text finalLevelText;
+        public TMP_Text finalLevelText;
 
         [Header("Stats/Move Text")]
         // Text for the move title.
-        public TMPro.TMP_Text moveSubtitleText;
+        public TMP_Text moveSubtitleText;
 
         // Move 0 display text.
-        public TMPro.TMP_Text move0Text;
+        public TMP_Text move0Text;
 
         // Move 1 display text.
-        public TMPro.TMP_Text move1Text;
+        public TMP_Text move1Text;
 
         // Move 2 display text.
-        public TMPro.TMP_Text move2Text;
+        public TMP_Text move2Text;
 
         // Move 3 display text.
-        public TMPro.TMP_Text move3Text;
+        public TMP_Text move3Text;
 
         [Header("Buttons")]
         // The finish button.
-        public TMPro.TMP_Text finishButtonText;
+        public TMP_Text finishButtonText;
 
         // Main menu button text.
         // TODO: hide this button when submitting the game.
-        public TMPro.TMP_Text mainMenuButtonText;
+        public TMP_Text mainMenuButtonText;
 
         // Start is called before the first frame update
         void Start()
@@ -58,6 +63,7 @@ namespace RM_BBTS
 
             // Labels for translation.
             string titleLabel = "<Results>";
+            string scoreLabel = "<Score>";
             string roomsClearedLabel = "<Rooms Cleared>";
             string totalTimeLabel = "<Total Time>";
             string totalTurnsLabel = "<Total Turns>";
@@ -72,6 +78,8 @@ namespace RM_BBTS
             if(defs != null)
             {
                 titleLabel = defs["kwd_results"];
+
+                scoreLabel = defs["kwd_score"];
                 roomsClearedLabel = defs["kwd_roomsCleared"];
                 totalTimeLabel = defs["kwd_totalTime"];
                 totalTurnsLabel = defs["kwd_totalTurns"];
@@ -97,9 +105,9 @@ namespace RM_BBTS
             // Results object has been found.
             if(rd != null)
             {
-                // Final level
-                finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
-
+                // Final score
+                scoreText.text = scoreLabel + ": " + rd.finalScore;
+                
                 // Rooms cleared.
                 roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCompleted.ToString() + " / " + rd.roomsTotal.ToString();
 
@@ -123,6 +131,9 @@ namespace RM_BBTS
 
                 // Total turns.
                 totalTurnsText.text = totalTurnsLabel + ": " + rd.totalTurns.ToString();
+
+                // Final player level
+                finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
 
                 // Move text.
                 move0Text.text = rd.move0;

@@ -54,10 +54,28 @@ namespace RM_BBTS
             defs = SharedState.LanguageDefs;
         }
 
-        // Start is called before the first frame update
-        void Start()
+        // // Start is called before the first frame update
+        // void Start()
+        // {
+        //     
+        // }
+
+        // Opens the textbox.
+        public void OpenTextbox()
         {
-            
+            textBox.Open();
+        }
+
+        // Closes the textbox.
+        public void CloseTextbox()
+        {
+            textBox.Close();
+        }
+
+        // Returns 'true' if the textbox is visible.
+        public bool TextBoxIsVisible()
+        {
+            return textBox.IsVisible();
         }
 
         // Loads the tutorial

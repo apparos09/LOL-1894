@@ -263,7 +263,7 @@ namespace RM_BBTS
                 opponentNameText.text = opponent.displayName;
 
                 // Loads the battle data
-                opponent.LoadBattleData(door.battleEntity);
+                opponent.LoadBattleGameData(door.battleEntity);
 
                 // NOTE: this is now put in the overworld manager when returning to the overworld.
                 // // LEVELING UP
@@ -713,7 +713,7 @@ namespace RM_BBTS
                 turnsTaken++;
 
                 // Add to the total turns counter.
-                gameManager.totalTurns++;
+                gameManager.turnsPassed++;
             }
             else
             {

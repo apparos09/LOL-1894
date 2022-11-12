@@ -246,14 +246,80 @@ namespace RM_BBTS
             return data;
         }
 
-        // Generates save data for the battle entity.
-        public void GenerateBattleEntitySaveData()
+        // Generates save data for battle entity.
+        public BattleEntitySaveData GenerateBattleEntitySaveData()
         {
-            // TODO: implement.
+            return ConvertBattleEntityGameDataToSaveData(GenerateBattleEntityGameData());
+        }
+
+        // Converts save data to game data for the battle entity.
+        public static BattleEntitySaveData ConvertBattleEntityGameDataToSaveData(BattleEntityGameData gameData)
+        {
+            // Save data object.
+            BattleEntitySaveData saveData = new BattleEntitySaveData();
+
+            // Copy ID and Level
+            saveData.id = gameData.id;
+            saveData.level = gameData.level;
+
+            // Copy Health
+            saveData.maxHealth = gameData.maxHealth;
+            saveData.health = gameData.health;
+
+            // Copy Other Stats
+            saveData.attack = gameData.attack;
+            saveData.defense = gameData.defense;
+            saveData.speed = gameData.speed;
+
+            // Copy Energy
+            saveData.maxEnergy = gameData.maxEnergy;
+            saveData.energy = gameData.energy;
+
+            // Copy Moves
+            saveData.move0 = gameData.move0;
+            saveData.move1 = gameData.move1;
+            saveData.move2 = gameData.move2;
+            saveData.move3 = gameData.move3;
+
+            // returns the save data.
+            return saveData;
+        }
+
+        // Converts save data to game data.
+        public static BattleEntityGameData ConvertBattleEntitySaveDataToGameData(BattleEntitySaveData saveData)
+        {
+            // Generates the base data.
+            BattleEntityGameData gameData = BattleEntityList.Instance.GenerateBattleEntityData(saveData.id);
+
+            // Set ID and Level
+            gameData.id = saveData.id; // This should be the same anyway.
+            gameData.level = saveData.level;
+
+            // Set Health Values
+            gameData.maxHealth = saveData.maxHealth;
+            gameData.health = saveData.health;
+
+            // Set Other Stats
+            gameData.attack = saveData.attack;
+            gameData.defense = saveData.defense;
+            gameData.speed = saveData.speed;
+
+            // Copy Energy
+            gameData.maxEnergy = saveData.maxEnergy;
+            gameData.energy = saveData.energy;
+
+            // Copy Moves
+            gameData.move0 = saveData.move0;
+            gameData.move1 = saveData.move1;
+            gameData.move2 = saveData.move2;
+            gameData.move3 = saveData.move3;
+
+            // Returns the game data.
+            return gameData;
         }
 
         // Loads the battle data into this object.
-        public void LoadBattleData(BattleEntityGameData data)
+        public virtual void LoadBattleGameData(BattleEntityGameData data)
         {
             id = data.id;
             displayName = data.displayName;
@@ -276,7 +342,18 @@ namespace RM_BBTS
             Move2 = MoveList.Instance.GenerateMove(data.move2);
             Move3 = MoveList.Instance.GenerateMove(data.move3);
 
+            // Save sprite data.
             sprite = data.sprite;
+        }
+
+        // Loads the battle save data into the object.
+        public virtual void LoadBattleSaveData(BattleEntitySaveData saveData)
+        {
+            // Converts the data.
+            BattleEntityGameData gameData = ConvertBattleEntitySaveDataToGameData(saveData);
+
+            // Loads the game data.
+            LoadBattleGameData(gameData);
         }
 
         // Returns the level of the battle enttiy.
@@ -550,7 +627,7 @@ namespace RM_BBTS
             {
                 BattleEntityGameData data = GenerateBattleEntityGameData();
                 data = EvolveData(data);
-                LoadBattleData(data);
+                LoadBattleGameData(data);
                 return true;
             }
                 

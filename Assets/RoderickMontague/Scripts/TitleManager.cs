@@ -133,13 +133,24 @@ namespace RM_BBTS
         // Starts a new game.
         public void StartNewGame()
         {
-
+            // Clear out the loaded data.
+            LOLManager.Instance.saveSystem.loadedData = null;
+            StartGame();
         }
 
         // Continues a saved game.
         public void ContinueGame()
         {
-
+            // If there is no loaded data.
+            if(LOLManager.Instance.saveSystem.loadedData == null)
+            {
+                Debug.LogWarning("No save data found. New game to be loaded.");
+                StartNewGame();
+            }
+            else // Loaded data will be inplemented by the gameplay manager when entering the scene.
+            {
+                StartGame();
+            }            
         }
 
         // Toggles the info menu.

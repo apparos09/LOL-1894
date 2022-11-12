@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.UIElements;
 
 namespace RM_BBTS
 {
@@ -34,6 +35,8 @@ namespace RM_BBTS
             maxEnergy = 30;
             energy = maxEnergy;
 
+            // TODO: set unique sprite?
+
             LoadTranslation("bey_player_nme");
         }
 
@@ -61,6 +64,20 @@ namespace RM_BBTS
 
             // Translates the player's name.
             LoadTranslation("bey_player_nme");
+        }
+
+        // Loads the battle game data.
+        public override void LoadBattleGameData(BattleEntityGameData data)
+        {
+            // Saves the player's custom sprite since they don't have a dedicated number.
+            // This may be unnecessary.
+            Sprite temp = sprite;
+
+            // Loads the data.
+            base.LoadBattleGameData(data);
+
+            // Set sprite.
+            sprite = temp;
         }
 
         // Levels up the player.

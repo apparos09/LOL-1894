@@ -16,11 +16,12 @@ namespace RM_BBTS
         // Determines if this is a treasure door or not.
         public bool isTreasureDoor;
 
-        // The battle entity behind the door.
-        public BattleEntitySaveData battleEntity;
-
         // Says whether the door is locked or not.
         public bool locked;
+
+        // The battle entity behind the door.
+        public BattleEntitySaveData battleEntity;
+        
     }
 
     public class Door : MonoBehaviour
@@ -76,12 +77,43 @@ namespace RM_BBTS
             }
         }
 
+        // Generates the save data.
+        public DoorSaveData GenerateSaveData()
+        {
+            // The save data.
+            DoorSaveData saveData = new DoorSaveData();
+
+            // Save the values.
+            saveData.isBossDoor = isBossDoor;
+            saveData.isTreasureDoor = isTreasureDoor;
+            saveData.locked = locked;
+
+            // Battle Entity Save
+            saveData.battleEntity = BattleEntity.ConvertBattleEntityGameDataToSaveData(battleEntity);
+
+            // Returns the save data.
+            return saveData;
+        }
+
+
+        // Loads the save data to overwrite the door's cureent values.
+        public void LoadSaveData(DoorSaveData data)
+        {
+            // Implement the door settings.
+            isBossDoor = data.isBossDoor;
+            isTreasureDoor = data.isTreasureDoor;
+            locked = data.locked;
+
+            // Implement the battle entity.
+            battleEntity = BattleEntity.ConvertBattleEntitySaveDataToGameData(data.battleEntity);
+        }
+
         // The mouse_touch class will be used to send the door to the overworld manager.
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
     }
 }

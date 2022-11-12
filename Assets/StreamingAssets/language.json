@@ -184,11 +184,11 @@
     "trl_gameOver_02": "Your health and energy have also been restored, but your moves have been randomized.",
 
     "kwd_results": "Results",
+    "kwd_score": "Score",
     "kwd_roomsCleared": "Rooms Cleared",
     "kwd_totalTime": "Total Time",
     "kwd_totalTurns": "Total Turns",
     "kwd_finalMoves": "Final Moves",
-    "kwd_mainMenu": "Main Menu",
     "kwd_finish": "Finish"
   },
   "es": {
