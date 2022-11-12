@@ -82,6 +82,12 @@ namespace RM_BBTS
         // Reads the text based on the provided key.
         public void SpeakText(string key)
         {
+            // Instance not initialized.
+            if(!LOLSDK.Instance.IsInitialized)
+            {
+                Debug.LogWarning("The SDK was not initialized. Cannot use Text-to-Speech.");
+                return;
+            }
 
 #if UNITY_EDITOR
             // Gets the language code.

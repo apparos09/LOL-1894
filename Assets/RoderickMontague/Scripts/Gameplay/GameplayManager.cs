@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
+using TMPro;
 
 namespace RM_BBTS
 {
@@ -72,33 +72,55 @@ namespace RM_BBTS
         public bool pausedTimer = false;
 
         [Header("UI")]
+        // A back panel used to cover up gameplay UI.
+        public GameObject backPanel;
+
+        [Header("UI/Stats Window")]
 
         // Title text for stats button.
-        public TMPro.TMP_Text statsButtonText;
+        public TMP_Text statsButtonText;
 
         // The player stats window.
         public PlayerStatsWindow statsWindow;
 
-        //
+        [Header("UI/Save Prompt")]
         // The save button text.
-        public TMPro.TMP_Text saveButtonText;
+        public TMP_Text saveButtonText;
 
         // The save window.
         public GameObject savePrompt;
 
-        //
+        // The save prompt text.
+        public TMP_Text savePromptText;
+
+        // The save and continue text.
+        public TMP_Text saveAndContinueText;
+
+        // The save and quit text.
+        public TMP_Text saveAndQuitText;
+
+        [Header("UI/Settings Window")]
         // Title text for settings button.
-        public TMPro.TMP_Text settingsButtonText;
+        public TMP_Text settingsButtonText;
 
         // The settings window.
         public SettingsMenu settingsWindow;
 
-        //
+        [Header("UI/Main Menu Prompt")]
         // The quit button text.
-        public TMPro.TMP_Text mainMenuButtonText;
+        public TMP_Text mainMenuButtonText;
 
         // The quit window.
         public GameObject mainMenuPrompt;
+
+        // The prompt text for the main menu.
+        public TMP_Text mainMenuPromptText;
+
+        // The main menu (to title screen) confirmation text.
+        public TMP_Text mainMenuYesText;
+
+        // The continue game confirmation text.
+        public TMP_Text mainMenuNoText;
 
         [Header("UI/Game")]
 
@@ -152,9 +174,26 @@ namespace RM_BBTS
             // Translate all of the string objects.
             if (defs != null)
             {
+                // Windows/Prompts
+                // STATS WINDOW
                 statsButtonText.text = defs["kwd_stats"];
+
+                // SAVE PROMPT //
+                saveButtonText.text = defs["kwd_save"];
+                savePromptText.text = defs["sve_msg_prompt"];
+                saveAndContinueText.text = defs["kwd_saveContinue"];
+                saveAndQuitText.text = defs["kwd_saveQuit"];
+
+                // SETTINGS WINDOW //
                 settingsButtonText.text = defs["kwd_settings"];
 
+                // TITLE SCREEN PROMPT
+                mainMenuButtonText.text = defs["kwd_mainMenu"];
+                mainMenuPromptText.text = defs["mmu_msg_prompt"];
+                mainMenuYesText.text = defs["kwd_returnToTitle"];
+                mainMenuNoText.text = defs["kwd_back"];
+
+                // String
                 levelString = defs["kwd_level"];
                 healthString = defs["kwd_health"];
                 attackString = defs["kwd_attack"];
@@ -327,17 +366,28 @@ namespace RM_BBTS
         // {
         // }
 
-        // Opens the settings window.
-        public void ToggleSettingsWindow()
+        // Hides all the windows and prompts.
+        private void HideAllWindowsAndPrompts()
         {
-            // Gets the change in activity.
-            bool active = !settingsWindow.gameObject.activeSelf;
+            // Hide the back panel.
+            backPanel.gameObject.SetActive(false);
 
-            // Change settings window.
-            settingsWindow.gameObject.SetActive(active);
-
-            // Turn off info window and mouse input.
+            // Turn off all prompts.
             statsWindow.gameObject.SetActive(false);
+            savePrompt.gameObject.SetActive(false);
+            settingsWindow.gameObject.SetActive(false);
+            mainMenuPrompt.gameObject.SetActive(false);
+
+            // Enable mouse input.
+            mouseTouchInput.gameObject.SetActive(true);
+        }
+
+        // Called when toggling a window or prompt.
+        // 'Active' determines if the prompt is going to be active or not.
+        private void OnToggleWindowOrPrompt(bool active)
+        {
+            // Change the back panel and mouse touch settings.
+            backPanel.gameObject.SetActive(active);
             mouseTouchInput.gameObject.SetActive(!active);
         }
 
@@ -347,12 +397,64 @@ namespace RM_BBTS
             // Gets the change in activity.
             bool active = !statsWindow.gameObject.activeSelf;
 
-            // Change settings window.
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
             statsWindow.gameObject.SetActive(active);
 
-            // Turn off info window and mouse input.
-            settingsWindow.gameObject.SetActive(false);
-            mouseTouchInput.gameObject.SetActive(!active);
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
+        }
+
+
+        // Toggles the save prompt.
+        public void ToggleSavePrompt()
+        {
+            // Gets the change in activity.
+            bool active = !savePrompt.gameObject.activeSelf;
+
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
+            savePrompt.gameObject.SetActive(active);
+
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
+        }
+
+        // Opens the settings window.
+        public void ToggleSettingsWindow()
+        {
+            // Gets the change in activity.
+            bool active = !settingsWindow.gameObject.activeSelf;
+
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
+            settingsWindow.gameObject.SetActive(active);
+
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
+        }
+
+
+        // Toggles the main menu prompt.
+        public void ToggleMainMenuPrompt()
+        {
+            // Gets the change in activity.
+            bool active = !mainMenuPrompt.gameObject.activeSelf;
+
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
+            mainMenuPrompt.gameObject.SetActive(active);
+
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
         }
 
         // Checks the mouse and touch to see if there's any object to use.
@@ -564,7 +666,37 @@ namespace RM_BBTS
             
 
         }
+        
+        // Updates the UI
+        public void UpdateUI()
+        {
+            UpdatePlayerHealthUI();
+            UpdatePlayerEnergyUI();
 
+            battleNumberText.text = (roomsCompleted + 1).ToString() + "/" + roomsTotal.ToString();
+        }
+        
+        // Updates the health bar UI.
+        public void UpdatePlayerHealthUI()
+        {
+            playerHealthBar.SetValue(player.Health / player.MaxHealth);
+
+            // If false, the text is changed instantly. If true, the text is not updated here.
+            // This prevents the final number from flashing for a frame.
+            if(!syncTextToBars)
+                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+        }
+
+        // Updates the player energy UI.
+        public void UpdatePlayerEnergyUI()
+        {
+            playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
+
+            // If false, the text is changed instantly. If true, the text is not updated here.
+            // This prevents the final number from flashing for a frame.
+            if (!syncTextToBars)
+                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+        }
         // Submits the current game progress.
         public void SubmitProgress()
         {
@@ -625,35 +757,63 @@ namespace RM_BBTS
             SceneManager.LoadScene("ResultsScene");
         }
 
-        // Updates the UI
-        public void UpdateUI()
+        // Saves the game.
+        public bool SaveGame(bool continueGame)
         {
-            UpdatePlayerHealthUI();
-            UpdatePlayerEnergyUI();
+            // Saves the game.
+            bool success = LOLManager.Instance.saveSystem.SaveGame();
 
-            battleNumberText.text = (roomsCompleted + 1).ToString() + " / " + roomsTotal.ToString();
+            // Was the save successful?
+            if(success)
+            {
+                // If the game should be continued, or should be quit.
+                if (continueGame)
+                {
+                    // Turn off the save prompt object if it is visible.
+                    if (savePrompt.gameObject.activeSelf)
+                        ToggleSavePrompt();
+                }
+                else
+                {
+                    // Go to the title scene.
+                    ToTitleScene();
+                }
+
+            }
+
+            return success;
+            
         }
-        
-        // Updates the health bar UI.
-        public void UpdatePlayerHealthUI()
-        {
-            playerHealthBar.SetValue(player.Health / player.MaxHealth);
 
-            // If false, the text is changed instantly. If true, the text is not updated here.
-            // This prevents the final number from flashing for a frame.
-            if(!syncTextToBars)
-                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+        // Called when the game should be saved and continued.
+        public void SaveAndContinueGame()
+        {
+            // TODO: maybe post message instead of closing the window?
+            // Hide the save prompt.
+            if (savePrompt.gameObject.activeSelf)
+                ToggleSavePrompt();
+
+            // Save the game.
+            SaveGame(true);
         }
 
-        // Updates the player energy UI.
-        public void UpdatePlayerEnergyUI()
+        // Called when the game should be saved and quit.
+        public void SaveAndQuitGame()
         {
-            playerEnergyBar.SetValue(player.Energy / player.MaxEnergy);
+            // TODO: maybe post message instead of closing the window?
+            // Hide the save prompt.
+            if (savePrompt.gameObject.activeSelf)
+                ToggleSavePrompt();
 
-            // If false, the text is changed instantly. If true, the text is not updated here.
-            // This prevents the final number from flashing for a frame.
-            if (!syncTextToBars)
-                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+            // Save the game.
+            SaveGame(false);
+        }
+
+        // Goes to the main menu.
+        public void ToTitleScene()
+        {
+            // Goes to the title scene.
+            SceneManager.LoadScene("TitleScene");
         }
 
         // Update is called once per frame

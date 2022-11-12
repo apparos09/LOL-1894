@@ -29,6 +29,9 @@ namespace RM_BBTS
         // The panel for learning a new move.
         public LearnMove learnMovePanel;
 
+        // Auto save the game when exiting the battle scene.
+        public bool autoSaveOnExit = false;
+
         [Header("Battle")]
 
         // The player.
@@ -359,8 +362,14 @@ namespace RM_BBTS
                 treasurePrompt.gameObject.SetActive(false);
             }
 
+            // Set initial showing of health.
+            opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+
             // The battle has begun.
             initBattleEnd = false;
+
+            // Do not autosave unless the player actually wins.
+            autoSaveOnExit = false;
         }
 
         // Called when the mouse hovers over an object.
@@ -826,6 +835,19 @@ namespace RM_BBTS
 
             // The door is now locked since the room is cleared.
             door.Locked = true;
+
+            // Auto save before going to the overworld.
+            autoSaveOnExit = true;
+
+            // TODO: check and see if you need to move this.
+            // Auto save the game.
+            if(autoSaveOnExit)
+            {
+                // Save and continue the game.
+                gameManager.SaveAndContinueGame();
+            }
+
+            // Go to the overworld.
             ToOverworld();
         }
 

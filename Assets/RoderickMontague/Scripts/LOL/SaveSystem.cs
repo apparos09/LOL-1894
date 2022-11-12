@@ -87,12 +87,12 @@ namespace RM_BBTS
         // Saves data.
         public bool SaveGame()
         {
-            // // The data to be saved does not exist if not in the GameScene.
-            // if(SceneManager.GetActiveScene().name != "GameScene")
-            // {
-            //     Debug.LogWarning("Data can only be saved in the GameScene.");
-            //     return false;
-            // }
+            // If the instance has been initialized.
+            if(!LOLSDK.Instance.IsInitialized)
+            {
+                Debug.LogError("The SDK has not been initialized. Save failed.");
+                return false;
+            }
 
             // The game manager does not exist if false.
             if(!IsGameManagerSet())
