@@ -892,7 +892,24 @@ namespace RM_BBTS
         // Called when potentially learning a new move.
         public void OnLearningNewMove()
         {
-            // TODO: the player gets recommended multiples of moves they already have. Fix that.
+            /// <summary>
+            /// TODO: there are times where the player gets prompted to learn a move twice.
+            /// The first time is the accidental one, and appears over the 'player won' message.
+            /// I don't know why this is happening.
+            /// My assumption is that it's doing it either based on the last page closing...
+            /// Or the current page opening, but I don't know which.
+            /// Maybe try removing the OnLearningNewMove callback from both pages, but I don't know...
+            /// Why they would have these callbacks in the first place. As such, I don't know if that...
+            /// Would fix it. I don't think I've even tried to learn a new move twice...
+            /// Nor do I know if it's exactly the same message.
+            /// I'm going to leave it for now, but this is an error that NEEDS TO BE FIXED.
+            /// ---
+            /// From what I can gather, it seems to only happen on the second battle won.
+            /// I don't know if clearing a treasure room before it (thus making it not the second room)...
+            /// Fixes this.
+            /// I also think it might only happen in the tutorial, but I'm not sure, and I don't...
+            /// Know why that would be.
+            /// </summary>
 
             // Hide the box gameobject.
             textBox.Close();

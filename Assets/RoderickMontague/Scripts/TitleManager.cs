@@ -153,6 +153,7 @@ namespace RM_BBTS
             }            
         }
 
+
         // Toggles the info menu.
         public void ToggleInfoMenu()
         {
@@ -174,10 +175,19 @@ namespace RM_BBTS
             mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
         }
 
-        // Update is called once per frame
-        void Update()
+        // Clears out the save. This is only for testing, and the button for this should not be shown in the final game.
+        public void ClearSave()
         {
+            LOLManager.Instance.saveSystem.lastSave = null;
+            LOLManager.Instance.saveSystem.loadedData = null;
 
+            continueButton.interactable = false;
         }
+
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
     }
 }

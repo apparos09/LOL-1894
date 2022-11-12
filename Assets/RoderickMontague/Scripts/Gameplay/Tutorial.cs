@@ -94,6 +94,12 @@ namespace RM_BBTS
         // Loads the intro tutorial.
         public void LoadIntroTutorial()
         {
+            // If the intro tutorial is loaded from a saved game the doors will not be locked.
+            // This would make the message inaccruate; however, this scenario should never naturally happen.
+            // The user can only save after the portion where the tutorial intro has been registered as being cleared.
+            // As such, there shouldn't be a need to fix this inaccuracy. 
+            // If it comes down to it, you could lock down the other buttons so that the player can't save during the tutorial.
+
             // Page Object
             List<Page> pages = new List<Page>();
 
