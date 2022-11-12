@@ -33,14 +33,17 @@ namespace RM_BBTS
 
         [Header("Game Stats")]
 
-        // The total battles in the game.
-        public int battlesTotal = 0;
+        // The score for the game.
+        public int score = 0;
 
-        // The total amount of completed battles.
-        public int battlesCompleted = 0;
+        // The total rooms in the game.
+        public int roomsTotal = 0;
+
+        // The total amount of completed rooms.
+        public int roomsCompleted = 0;
         
-        // The amount of battles completed for the enemies to level up.
-        public int battlesPerLevelUp = 3;
+        // The amount of rooms completed for the enemies to level up.
+        public int roomsPerLevelUp = 3;
 
         // The last time the enemies were leveled up (is room the player is on).
         public int lastEnemyLevelUps = -1;
@@ -76,11 +79,26 @@ namespace RM_BBTS
         // The player stats window.
         public PlayerStatsWindow statsWindow;
 
+        //
+        // The save button text.
+        public TMPro.TMP_Text saveButtonText;
+
+        // The save window.
+        public GameObject savePrompt;
+
+        //
         // Title text for settings button.
         public TMPro.TMP_Text settingsButtonText;
 
         // The settings window.
         public SettingsMenu settingsWindow;
+
+        //
+        // The quit button text.
+        public TMPro.TMP_Text mainMenuButtonText;
+
+        // The quit window.
+        public GameObject mainMenuPrompt;
 
         [Header("UI/Game")]
 
@@ -165,13 +183,13 @@ namespace RM_BBTS
             state = gameState.overworld;
 
             // Saves the batle total.
-            battlesTotal = OverworldManager.DOOR_COUNT;
+            roomsTotal = OverworldManager.DOOR_COUNT;
 
             // Update the UI.
             UpdateUI();
 
             // The total amount of battles in the game.
-            battlesTotal = overworld.doors.Count;
+            roomsTotal = overworld.doors.Count;
 
             // List<string> test = new List<string>() { "This is a test.", "This is only a test." };
             // // textBox.OnTextFinishedAddCallback(Test);
@@ -217,7 +235,12 @@ namespace RM_BBTS
                 }
 
             }
-                
+
+
+            // Submits a base score of 0 with 0 battles completed.
+            score = 0;
+            roomsCompleted = 0;
+            SubmitProgress();
         }
 
         // public void Test()
@@ -444,7 +467,7 @@ namespace RM_BBTS
         public int GetGamePhase()
         {
             // The completion rate.
-            float completionRate = battlesCompleted / (float)battlesTotal;
+            float completionRate = roomsCompleted / (float)roomsTotal;
 
             // Returns the game phase.
             if (completionRate < 0.33F)
@@ -473,6 +496,8 @@ namespace RM_BBTS
             // The intro text has already been shown, but not the overworld text.
             if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
                 tutorial.LoadOverworldTutorial();
+
+
         }
 
         // Call to enter the battle world.
@@ -540,6 +565,18 @@ namespace RM_BBTS
 
         }
 
+        // Submits the current game progress.
+        public void SubmitProgress()
+        {
+            LOLManager.Instance.SubmitProgress(score, roomsCompleted);
+        }
+
+        // Submits the game progress complete.
+        public void SubmitProgressComplete()
+        {
+            LOLManager.Instance.SubmitProgressComplete(score);
+        }
+
         // Called when the player gets a game over.
         public void OnGameOver()
         {
@@ -554,17 +591,21 @@ namespace RM_BBTS
                 tutorial.LoadGameOverTutorial();
         }
 
-        // Goes to the results screen.
-        public void ToResultsScreen()
+        // Goes to the results scene.
+        public void ToResultsScene()
         {
             // Set up the results object. It will be kept when transitioning to the next scene.
             GameObject resultsObject = new GameObject();
             ResultsData results = resultsObject.AddComponent<ResultsData>();
             DontDestroyOnLoad(resultsObject);
 
+            // Score - extra 500 points for completing the game.
+            score += 1000;
+            results.finalScore = score;
+
             // Rooms total.
-            results.roomsCleared = battlesCompleted;
-            results.totalRooms = battlesTotal;
+            results.roomsCompleted = roomsCompleted;
+            results.roomsTotal = roomsTotal;
 
             // Time and turns.
             results.totalTime = gameTimer;
@@ -577,7 +618,10 @@ namespace RM_BBTS
             results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";
             results.move3 = (player.Move3 != null) ? player.Move3.Name : "-";
 
-            // TODO: store battle data.
+            // Submit progress to show that the game is complete.
+            SubmitProgressComplete();
+
+            // Go to the results scene.
             SceneManager.LoadScene("ResultsScene");
         }
 
@@ -587,7 +631,7 @@ namespace RM_BBTS
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
 
-            battleNumberText.text = (battlesCompleted + 1).ToString() + " / " + battlesTotal.ToString();
+            battleNumberText.text = (roomsCompleted + 1).ToString() + " / " + roomsTotal.ToString();
         }
         
         // Updates the health bar UI.

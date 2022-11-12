@@ -1,3 +1,4 @@
+using LoLSDK;
 using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,10 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // a class for the LOL
-    public class LOL_Manager : MonoBehaviour
+    public class LOLManager : MonoBehaviour
     {
         // the instance of the game settings.
-        private static LOL_Manager instance;
+        private static LOLManager instance;
 
         // Language definition for translation.
         private JSONNode defs;
@@ -20,8 +21,12 @@ namespace RM_BBTS
         // The text-to-speech object.
         public TextToSpeech textToSpeech;
 
+        // The maixmum progress points for the game.
+        // Currently, progress is based on the amount of doors cleared in the game.
+        const int MAX_PROGRESS = 18;
+
         // private constructor so that only one accessibility object exists.
-        private LOL_Manager()
+        private LOLManager()
         {
             // ...
         }
@@ -62,7 +67,7 @@ namespace RM_BBTS
         }
 
         // returns the instance of the accessibility.
-        public static LOL_Manager Instance
+        public static LOLManager Instance
         {
             get
             {
@@ -70,10 +75,10 @@ namespace RM_BBTS
                 if (instance == null)
                 {
                     // Makes a new settings object.
-                    GameObject go = new GameObject("Accessibility");
+                    GameObject go = new GameObject("LOL Manager");
 
                     // Adds the instance component to the new object.
-                    instance = go.AddComponent<LOL_Manager>();
+                    instance = go.AddComponent<LOLManager>();
                 }
 
                 // returns the instance.
@@ -93,6 +98,32 @@ namespace RM_BBTS
                 return defs[key];
             else
                 return "";
+        }
+
+        // Submits progress for the game.
+        // The value overrides the last progress value submitted, and must not go over the max.
+        // NOTE: the value will be REPLACED, not added to.
+        public void SubmitProgress(int score, int currentProgress)
+        {
+            // SDK not initialized.
+            if(!LOLSDK.Instance.IsInitialized)
+            {
+                Debug.LogWarning("The SDK is not initialized. No data was submitted.");
+                return;
+            }
+
+            // Clamps the current progress.
+            currentProgress = Mathf.Clamp(currentProgress, 0, MAX_PROGRESS);
+
+            // Submit the progress.
+            LOLSDK.Instance.SubmitProgress(score, currentProgress, MAX_PROGRESS);
+        }
+
+        // Submits progress to show that the game is complete.
+        public void SubmitProgressComplete(int score)
+        {
+            // Submits the final score.
+           SubmitProgress(score, MAX_PROGRESS);
         }
     }
 }

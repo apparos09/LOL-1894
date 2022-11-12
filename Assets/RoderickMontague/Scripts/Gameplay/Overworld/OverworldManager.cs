@@ -262,7 +262,7 @@ namespace RM_BBTS
 
             // Sets the level.
             door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, 
-                (uint)Random.Range(1, gameManager.battlesPerLevelUp + 1));
+                (uint)Random.Range(1, gameManager.roomsPerLevelUp + 1));
 
 
             // TODO: randomize the enemy being placed behind the door.
@@ -349,10 +349,10 @@ namespace RM_BBTS
             int phase = gameManager.GetGamePhase();
 
             // Time to level up enemies if 'true'
-            if(gameManager.battlesCompleted % gameManager.battlesPerLevelUp == 0)
+            if(gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0)
             {
                 // The enemies haven't been leveled up yet.
-                if(gameManager.lastEnemyLevelUps < gameManager.battlesCompleted)
+                if(gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
                 {
                     // Goes through each door.
                     foreach(Door door in doors)
@@ -361,12 +361,12 @@ namespace RM_BBTS
                         if(!door.Locked)
                         {
                             // Levels up the entity by the amount of battles per level up (the value is the same).
-                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.battlesPerLevelUp);
+                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.roomsPerLevelUp);
                         }
                     }
 
 
-                    gameManager.lastEnemyLevelUps = gameManager.battlesCompleted;
+                    gameManager.lastEnemyLevelUps = gameManager.roomsCompleted;
                 }
             }
 

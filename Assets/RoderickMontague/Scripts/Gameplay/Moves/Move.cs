@@ -202,7 +202,16 @@ namespace RM_BBTS
                 damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
                 damage = Mathf.Round(damage); // Round damage to whole number.
                 damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
-                target.Health -= damage; // power * user.Attack;
+
+                // If the target is the player.
+                if(target is Player)
+                {
+                    // If the damage is higher than the amount of health the player 
+                    battle.playerDamageTaken += (target.Health < damage) ? target.Health : damage;
+                }
+
+                // Damages the target.
+                target.Health -= damage;
 
                 // Uses energy.
                 user.Energy -= energy;

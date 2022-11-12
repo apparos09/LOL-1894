@@ -7,11 +7,14 @@ namespace RM_BBTS
     // Holds the results data for the game, which is read in during the results screen.
     public class ResultsData : MonoBehaviour
     {
+        // The final score for the game session.
+        public int finalScore = 0;
+
         // Rooms cleared by the player.
-        public int roomsCleared = 0;
+        public int roomsCompleted = 0;
 
         // Total rooms in the game.
-        public int totalRooms = 0;
+        public int roomsTotal = 0;
 
         // The total time in seconds.
         public float totalTime = 0.0F;

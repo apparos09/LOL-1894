@@ -35,11 +35,11 @@ namespace RM_BBTS
         // Most games are expecting 2 types of data, Start and Language.
         LoLDataType _expectedData = LoLDataType.START | LoLDataType.LANGUAGE;
 
-        // LOL - AutoSave //
-        // Added from the ExampleCookingGame. Used for feedback from autosaves.
-        WaitForSeconds feedbackTimer = new WaitForSeconds(2);
-        Coroutine feedbackMethod;
-        public TMP_Text feedbackText;
+        // // LOL - AutoSave //
+        // // Added from the ExampleCookingGame. Used for feedback from autosaves.
+        // WaitForSeconds feedbackTimer = new WaitForSeconds(2);
+        // Coroutine feedbackMethod;
+        // public TMP_Text feedbackText;
 
         [System.Flags]
         enum LoLDataType
@@ -76,7 +76,7 @@ namespace RM_BBTS
             LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(HandleGameStateChange);
 
             // Used for player feedback. Not required by SDK.
-            LOLSDK.Instance.SaveResultReceived += OnSaveResult;
+            // LOLSDK.Instance.SaveResultReceived += OnSaveResult;
 
 
             // Mock the platform-to-game messages when in the Unity editor.
@@ -101,7 +101,7 @@ namespace RM_BBTS
             if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
                 return;
 #endif
-            LOLSDK.Instance.SaveResultReceived -= OnSaveResult;
+            // LOLSDK.Instance.SaveResultReceived -= OnSaveResult;
         }
 
         // Saves the game. This isn't used in the InitGame file.
@@ -110,20 +110,20 @@ namespace RM_BBTS
             LOLSDK.Instance.SaveState(gameData);
         }
 
-        // On save result.
-        void OnSaveResult(bool success)
-        {
-            if (!success)
-            {
-                Debug.LogWarning("Saving not successful");
-                return;
-            }
-
-            if (feedbackMethod != null)
-                StopCoroutine(feedbackMethod);
-            // ...Auto Saving Complete
-            feedbackMethod = StartCoroutine(Feedback("autoSave"));
-        }
+        // // On save result.
+        // void OnSaveResult(bool success)
+        // {
+        //     if (!success)
+        //     {
+        //         Debug.LogWarning("Saving not successful");
+        //         return;
+        //     }
+        // 
+        //     if (feedbackMethod != null)
+        //         StopCoroutine(feedbackMethod);
+        //     // ...Auto Saving Complete
+        //     feedbackMethod = StartCoroutine(Feedback("autoSave"));
+        // }
 
         // Waits for the data and then loads the scene.
         IEnumerator _WaitForData()
@@ -201,14 +201,14 @@ namespace RM_BBTS
                 return "";
         }
 
-        // Not quite sure what this does.
-        IEnumerator Feedback(string text)
-        {
-            feedbackText.text = text;
-            yield return feedbackTimer;
-            feedbackText.text = string.Empty;
-            feedbackMethod = null;
-        }
+        // // Not quite sure what this does.
+        // IEnumerator Feedback(string text)
+        // {
+        //     feedbackText.text = text;
+        //     yield return feedbackTimer;
+        //     feedbackText.text = string.Empty;
+        //     feedbackMethod = null;
+        // }
 
         private void LoadMockData()
         {

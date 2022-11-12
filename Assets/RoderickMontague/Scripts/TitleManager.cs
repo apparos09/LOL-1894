@@ -56,7 +56,7 @@ namespace RM_BBTS
             GameSettings settings = GameSettings.Instance;
 
             // Gets an instance of the LOL manager.
-            LOL_Manager lolManager = LOL_Manager.Instance;
+            LOLManager lolManager = LOLManager.Instance;
 
             // Language
             JSONNode defs = SharedState.LanguageDefs;
@@ -93,20 +93,25 @@ namespace RM_BBTS
             }
             else
             {
+                // NOTE: the buttons disappear for a frame if there is no save state.
+                // It doesn't effect anything, but it's jarring visually.
                 // Initialize the game.
                 if(newGameButton != null && continueButton != null)
                     lolManager.saveSystem.Initialize(newGameButton, continueButton);
 
-                // // TODO: if the continue button is made invisible, just turn it on and disable it instead?
-                // if(!continueButton.gameObject.activeSelf)
-                // {
-                //     continueButton.gameObject.SetActive(true);
-                //     continueButton.interactable = false;
-                // }
-                // else
-                // {
-                //     continueButton.interactable = true;
-                // }
+                // TODO: if the continue button is made invisible, just turn it on and disable it instead?
+                // Maybe change this?
+                if(!continueButton.gameObject.activeSelf) // No save available.
+                {
+                    continueButton.gameObject.SetActive(true);
+                    continueButton.interactable = false;
+                }
+                else // Save available.
+                {
+                    continueButton.interactable = true;
+                }
+
+                // LOLSDK.Instance.SubmitProgress();
             }
 
         }

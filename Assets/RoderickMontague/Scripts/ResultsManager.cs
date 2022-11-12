@@ -101,7 +101,7 @@ namespace RM_BBTS
                 finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
 
                 // Rooms cleared.
-                roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCleared.ToString() + " / " + rd.totalRooms.ToString();
+                roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCompleted.ToString() + " / " + rd.roomsTotal.ToString();
 
                 // Total time.
                 {

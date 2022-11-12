@@ -519,6 +519,7 @@ namespace RM_BBTS
             newData.health = hpPercent * newData.maxHealth;
             newData.energy = engPercent * newData.maxEnergy;
 
+            // TODO: move this to the player class.
             // Restores health and energy
             newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
             newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;

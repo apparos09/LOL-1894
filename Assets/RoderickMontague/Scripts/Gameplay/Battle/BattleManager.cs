@@ -34,6 +34,12 @@ namespace RM_BBTS
         // The player.
         public Player player;
 
+        // Values used to calculate score.
+        private int turnsTaken = 0;  // The amount of turns the battle took.    
+
+        // The Move class handles the calculations for damage taken.
+        public float playerDamageTaken = 0; // The amount of damage the player took.
+
         // The opponent for the player.
         // TODO: should a new opponent be generated everytime? Should really just cycle through some pre-build objects.
         public BattleEntity opponent;
@@ -42,9 +48,9 @@ namespace RM_BBTS
         public SpriteRenderer opponentSprite;
 
         // Base objects that are activated for battle.
-        public Enemy enemyBase;
-        public Treasure treasureBase;
-        public Boss bossBase;
+        public Enemy enemyBase; // Enemy base.
+        public Treasure treasureBase; // Treasure base.
+        public Boss bossBase; // Boss base.
 
         // [Header("Battle/Mechanics")]
         // // The move the player has selected.
@@ -162,6 +168,10 @@ namespace RM_BBTS
             //     bossBase = go.AddComponent<Boss>();
             //     go.transform.parent = gameObject.transform;
             // }
+
+            // Gets the starting turns and health of the player for score calculation.
+            turnsTaken = 0;
+            playerDamageTaken = 0;
 
             // The language definitions.
             JSONNode defs = SharedState.LanguageDefs;
@@ -690,6 +700,9 @@ namespace RM_BBTS
                 // Disable the player options since the textbox is open.
                 DisablePlayerOptions();
 
+                // Adds to the amount of turns the battle has taken.
+                turnsTaken++;
+
                 // Add to the total turns counter.
                 gameManager.totalTurns++;
             }
@@ -752,6 +765,48 @@ namespace RM_BBTS
             EnablePlayerOptions();
         }
 
+        // Calculates the score for winning the battle.
+        public int CalculateBattleScore()
+        {
+            // Result variable.
+            int result = 0;
+
+            // The par for turns taken.
+            int turnsTakenPar = 5;
+
+            // The par for damage taken. This is 75% of the player's current max health.
+            int damageTakenPar = Mathf.RoundToInt(player.MaxHealth * 0.75F);
+
+            // Room Complete Plus
+            // Checks the type of the opponent for providing the base amount.
+            if(opponent is Boss) // Opponent was a boss.
+            {
+                result = 300; // High
+            }
+            else if(opponent is Treasure) // Opponent was treasure.
+            {
+                result = 50; // Low
+            }
+            else // The opponent was a regular enemy.
+            {
+                result = 100; // Mid
+            }
+
+            // Turns Taken Bonus
+            if(turnsTaken <= turnsTakenPar) // Took the expected amount of turns or less.
+            {
+                result += 100 * turnsTakenPar - turnsTaken;
+            }
+
+            // Damage Taken Bonus
+            if(playerDamageTaken <= damageTakenPar) // Took the expected amount of damage or less.
+            {
+                result += Mathf.RoundToInt(100 * (damageTakenPar - playerDamageTaken));
+            }
+
+            return result;
+        }
+
         // Called when the player has won the battle.
         public void OnPlayerBattleWon()
         {
@@ -761,7 +816,13 @@ namespace RM_BBTS
             // player.LevelUp();
 
             // Completed a Battle
-            gameManager.battlesCompleted++;
+            gameManager.roomsCompleted++;
+
+            // Calculates the score for completing the round, and adds it to the game score.
+            gameManager.score += CalculateBattleScore();
+
+            // Submit the player's current progress now that the roomsCompleted and score have been updated.
+            gameManager.SubmitProgress();
 
             // The door is now locked since the room is cleared.
             door.Locked = true;
@@ -986,7 +1047,7 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetBattleWonBossMessage(),
                                     BattleMessages.Instance.GetBattleWonBossSpeakKey()
                                     );
-                                bossPage.OnPageClosedAddCallback(gameManager.ToResultsScreen);
+                                bossPage.OnPageClosedAddCallback(gameManager.ToResultsScene);
 
                                 // Adds the boss page. 
                                 textBox.pages.Add(bossPage);
