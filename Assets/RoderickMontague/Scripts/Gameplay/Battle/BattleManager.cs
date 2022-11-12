@@ -1133,9 +1133,21 @@ namespace RM_BBTS
                                 
                             }
 
+                            // Checks to see if a new move should be learned.
+                            bool learnMove = (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure);
+
+                            // If this is the tutorial, and it's the first room cleared, always give the player a new move.
+                            if(learnMove == false)
+                            {
+                                // Learn a new move.
+                                if (gameManager.useTutorial && gameManager.roomsCompleted == 0)
+                                    learnMove = true;
+                            }
+                            
+
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
-                            if (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure)
+                            if (learnMove)
                             {
                                 Page movePage = new Page(
                                     BattleMessages.Instance.GetLearnMoveMessage(),
