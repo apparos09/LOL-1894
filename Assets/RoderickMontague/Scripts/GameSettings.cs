@@ -16,11 +16,11 @@ namespace RM_BBTS
         [Header("Settings")]
 
         // use the text-to-speech options.
-        public bool useTTS = true;
+        private bool useTTS = true;
 
         // use the tutorial for the game.
         // this is only relevant when starting up the game scene.
-        public bool useTutorial = true;
+        private bool useTutorial = true;
 
         // the tag for BGM objects.
         public const string BGM_TAG = "BGM";
@@ -111,9 +111,9 @@ namespace RM_BBTS
                 return LOLSDK.Instance.IsInitialized;
             }
         }
-
-        // is text-to-speech being used?
-        public bool TextToSpeech
+        
+        // Is text-to-speech being used?
+        public bool UseTextToSpeech
         {
             get
             {
@@ -123,6 +123,24 @@ namespace RM_BBTS
             set
             {
                 useTTS = value;
+            }
+        }
+
+        // If the tutorial should be used.
+        public bool UseTutorial
+        {
+            get { return useTutorial; }
+            
+            set
+            {
+                useTutorial = value;
+
+                // Searches for the gameplay manager.
+                GameplayManager gm = FindObjectOfType<GameplayManager>();
+
+                // If the gameplay manager exists, tell it to change its tutorial values.
+                if (gm != null)
+                    gm.useTutorial = useTutorial;
             }
         }
 

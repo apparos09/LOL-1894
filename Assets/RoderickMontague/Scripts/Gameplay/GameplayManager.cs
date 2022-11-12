@@ -170,7 +170,7 @@ namespace RM_BBTS
 
             // Tutorial settings.
             if(FindObjectOfType<GameSettings>() != null)
-                useTutorial = GameSettings.Instance.useTutorial;
+                useTutorial = GameSettings.Instance.UseTutorial;
 
             // Translation
             JSONNode defs = SharedState.LanguageDefs;

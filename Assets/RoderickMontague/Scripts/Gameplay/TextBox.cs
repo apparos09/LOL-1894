@@ -182,6 +182,23 @@ namespace RM_BBTS
             SetTextBoxText(currPageIndex - 1);
         }
 
+        // Adds a page to the end of the pages list.
+        public void AddPage(Page page)
+        {
+            pages.Add(page);
+        }
+
+        // Inserts a page at the provided index.
+        public void InsertPage(Page page, int index)
+        {
+            // If the current page index is greater than the provided index...
+            // Increase it by '1' so that it matches up with the current page.
+            if (currPageIndex >= index)
+                currPageIndex++;
+
+            pages.Insert(index, page);
+        }
+
         // Replaces the pages from the list with the new pages.
         public void ReplacePages(List<Page> newPages)
         {

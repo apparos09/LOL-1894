@@ -267,6 +267,15 @@ namespace RM_BBTS
                     battle.gameManager.UpdatePlayerHealthUI();
                 }
 
+
+                // TODO: the turn should end early if the user or the target dies. You should implement that.
+                // // The user or the target is dead.
+                // if(user.Health <= 0 || target.Health <= 0)
+                // {
+                //     // Ends the turn early.
+                //     battle.EndTurnEarly();
+                // }
+
                 return true;
             }
             else

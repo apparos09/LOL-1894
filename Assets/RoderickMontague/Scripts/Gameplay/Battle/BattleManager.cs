@@ -762,6 +762,16 @@ namespace RM_BBTS
                 
         }
 
+        // TODO: this doesn't work. You should fix this.
+        // // Ends the turn early.
+        // public void EndTurnEarly()
+        // {
+        //     // Removes the rest of the pages so that the turn ends early.
+        //     List<Page> savedPages = textBox.pages;
+        //     savedPages.RemoveRange(textBox.CurrentPageIndex + 1, savedPages.Count - textBox.CurrentPageIndex - 1);
+        //     textBox.pages = savedPages;
+        // }
+
         // Called when the turn is over.
         private void OnTurnOver()
         {

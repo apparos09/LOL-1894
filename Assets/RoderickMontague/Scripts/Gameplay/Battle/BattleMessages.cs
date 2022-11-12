@@ -151,7 +151,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move hit!>";
+                msg = "<The move hit!>";
             }
 
             return msg;

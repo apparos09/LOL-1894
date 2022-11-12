@@ -46,7 +46,7 @@ namespace RM_BBTS
         public void SpeakPage()
         {
             // Uses the text-to-speech automatically.
-            if (GameSettings.Instance.useTTS)
+            if (GameSettings.Instance.UseTextToSpeech)
             {
                 // Speak key not set.
                 if (speakKey != "")

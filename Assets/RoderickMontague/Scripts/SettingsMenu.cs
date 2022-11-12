@@ -69,7 +69,7 @@ namespace RM_BBTS
             // });
 
             // Current text-to-speech tutorial.
-            textToSpeechToggle.isOn = gameSettings.TextToSpeech;
+            textToSpeechToggle.isOn = gameSettings.UseTextToSpeech;
 
             // // Listener for the text-to-speech.
             // textToSpeechToggle.onValueChanged.AddListener(delegate
@@ -78,7 +78,7 @@ namespace RM_BBTS
             // });
 
             // Current tutorial toggle setting.
-            tutorialToggle.isOn = gameSettings.useTutorial;
+            tutorialToggle.isOn = gameSettings.UseTutorial;
 
             // // Listener for the tutorial toggle.
             // tutorialToggle.onValueChanged.AddListener(delegate
@@ -117,13 +117,13 @@ namespace RM_BBTS
         // On the text-to-speech changes.
         public void OnTextToSpeechChange(Toggle toggle)
         {
-            gameSettings.TextToSpeech = toggle.isOn;
+            gameSettings.UseTextToSpeech = toggle.isOn;
         }
 
         // On the tutorial changes.
         public void OnTutorialChange(Toggle toggle)
         {
-            gameSettings.useTutorial = toggle.isOn;
+            gameSettings.UseTutorial = toggle.isOn;
         }
 
         // on the bgm volume change.
