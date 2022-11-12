@@ -170,6 +170,9 @@ namespace RM_BBTS
             if (displayName == "")
                 displayName = name;
 
+            // TODO: this causes an error when loading game data.
+            // This overrides any existing data when loading in a game save.
+            // As such, the game save load was moved to a PostStart() function.
             health = maxHealth;
             energy = maxEnergy;
         }

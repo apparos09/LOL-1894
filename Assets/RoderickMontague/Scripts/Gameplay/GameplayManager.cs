@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 using TMPro;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -30,6 +31,9 @@ namespace RM_BBTS
 
         // If set to 'true' then the tutorial is used.
         public bool useTutorial = true;
+
+        // Becomes set to 'true' when postStart has been called.
+        private bool calledPostStart = false;
 
         [Header("Game Stats")]
 
@@ -211,7 +215,31 @@ namespace RM_BBTS
                 mouseTouchInput = FindObjectOfType<MouseTouchInput>();
 
             // Initialize
-            Initialize();
+            Initialize();           
+        }
+
+        // A function called after the all awake and start functions have been called.
+        // This is needed so that everything is initialized properly.
+        void PostStart()
+        {
+            // If there is save data, load the saved game.
+            if (LOLManager.Instance.saveSystem.loadedData != null)
+            {
+                // Load the data.
+                LoadGame(LOLManager.Instance.saveSystem.loadedData);
+
+                // Clear data.
+                LOLManager.Instance.saveSystem.loadedData = null;
+            }
+            else
+            {
+                // TODO: uncomment and remove when not testing the save feature.
+                // Loads the test data for the game.
+                // LoadGameTest();
+            }
+
+            // The post start function was called.
+            calledPostStart = true;
         }
 
         // Initializes the gameplay manager.
@@ -279,18 +307,7 @@ namespace RM_BBTS
             // Submits a base score of 0 with 0 battles completed.
             score = 0;
             roomsCompleted = 0;
-            SubmitProgress();
-
-            // If there is save data, load the saved game.
-            if (LOLManager.Instance.saveSystem.loadedData != null)
-            {
-                // Load the data.
-                LoadGame(LOLManager.Instance.saveSystem.loadedData);
-                
-                // Clear data.
-                LOLManager.Instance.saveSystem.loadedData = null;
-            }
-                
+            SubmitProgress();                
         }
 
         // public void Test()
@@ -768,6 +785,41 @@ namespace RM_BBTS
             SceneManager.LoadScene("ResultsScene");
         }
 
+        // Generates the save data.
+        public BBTS_GameData GenerateSaveData()
+        {
+            // Generates the save data.
+            BBTS_GameData saveData = new BBTS_GameData();
+
+            // Gets the player save data.
+            saveData.playerData = player.GenerateBattleEntitySaveData();
+
+            // Converts the door save data.
+            for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+            {
+                // Store the save data.
+                saveData.doorData[i] = overworld.doors[i].GenerateSaveData();
+            }
+
+            // Saves the tutorial content.
+            saveData.clearedIntro = tutorial.clearedIntro;
+            saveData.clearedBattle = tutorial.clearedBattle;
+            saveData.clearedTreasure = tutorial.clearedTreasure;
+            saveData.clearedOverworld = tutorial.clearedOverworld;
+            saveData.clearedBoss = tutorial.clearedBoss;
+            saveData.clearedGameOver = tutorial.clearedGameOver;
+
+            // Save game results data.
+            saveData.score = score;
+            saveData.roomsCompleted = roomsCompleted;
+            saveData.roomsTotal = roomsTotal;
+            saveData.gameTime = gameTimer;
+            saveData.turnsPassed = turnsPassed;
+
+            // Send the save state.
+            return saveData;
+        }
+
         // Saves the game.
         public bool SaveGame(bool continueGame)
         {
@@ -835,6 +887,8 @@ namespace RM_BBTS
                 return false; 
             }
 
+            // TODO: the player's health is loaded properly, but for some reason it gets reset to the max later.
+            // I don't know why this happens.
             // Load the player's save data.
             player.LoadBattleSaveData(saveData.playerData);
 
@@ -865,8 +919,8 @@ namespace RM_BBTS
                 if (!tutorial.clearedIntro)
                     tutorial.LoadIntroTutorial();
 
-                // If the textbox isn't visible, open it.
-                if(!tutorial.textBox.IsVisible())
+                // If the textbox isn't visible, and there are pages, open it.
+                if(!tutorial.textBox.IsVisible() && tutorial.textBox.pages.Count != 0)
                 {
                     // Opens the textbox.
                     tutorial.textBox.Open();
@@ -883,7 +937,50 @@ namespace RM_BBTS
             // Updates the UI.
             UpdateUI();
 
+            // UI isn't updating properly.
+            // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+            // playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+
             return true;
+        }
+
+        // Loads a saved game as a test.
+        private void LoadGameTest()
+        {
+            // Generates save data.
+            BBTS_GameData saveData = GenerateSaveData();
+
+            // Makes some changes.
+            saveData.playerData.maxHealth = 999;
+            saveData.playerData.health = 600;
+
+            saveData.playerData.maxEnergy = 999;
+            saveData.playerData.energy = 600;
+
+            // Goes through each door data.
+            for(int i = 0; i < saveData.doorData.Length; i++)
+            {
+                // Regular door.
+                if(!saveData.doorData[i].locked && 
+                    !saveData.doorData[i].isBossDoor && !saveData.doorData[i].isTreasureDoor)
+                {
+                    bool lockDoor = Random.Range(0, 2) == 0;
+                    saveData.doorData[i].locked = lockDoor;
+                    
+                }
+            }
+
+            // Change tutorial settings to test them.
+            saveData.clearedIntro = false;
+            saveData.clearedBattle = false;
+            saveData.clearedOverworld = true;
+            saveData.clearedTreasure = true;
+            saveData.clearedBoss = true;
+            saveData.clearedGameOver = true;
+            useTutorial = true;
+
+            // Loads the save data.
+            LoadGame(saveData);
         }
 
         // Goes to the main menu.
@@ -912,6 +1009,10 @@ namespace RM_BBTS
             // // Checks how many touches there are.
             // if (mouseTouchInput.currentTouches.Count > 0)
             //     Debug.Log("Touch Count: " + mouseTouchInput.currentTouches.Count);
+
+            // Call the post start game function.
+            if (!calledPostStart)
+                PostStart();
 
             // Checks for some mouse input.
             MouseTouchCheck();

@@ -135,8 +135,8 @@ namespace RM_BBTS
                     data.displayName = "<Boss>";
                     data.displayNameSpeakKey = "bey_boss_nme";
 
-                    data.maxHealth = 50;
-                    data.health = 50;
+                    data.maxHealth = 1; // 50
+                    data.health = 1; // 50
 
                     data.attack = 20;
                     data.defense = 30;

@@ -160,8 +160,11 @@ namespace RM_BBTS
         {
             // The move inserts a message after the current page in the text box.
 
+            // Rounds energy up to a whole number.
+            float energyUsed = Mathf.Ceil(energy);
+
             // If there isn't enough energy to use the move, nothing happens.
-            if (user.Energy < energy)
+            if (user.Energy < energyUsed)
             {
                 // Checks object type.
                 if(user is Player) // Player
@@ -214,7 +217,7 @@ namespace RM_BBTS
                 target.Health -= damage;
 
                 // Uses energy.
-                user.Energy -= energy;
+                user.Energy -= energyUsed; // energy
 
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical

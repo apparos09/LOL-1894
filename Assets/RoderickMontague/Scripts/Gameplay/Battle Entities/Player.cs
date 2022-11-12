@@ -71,13 +71,15 @@ namespace RM_BBTS
         {
             // Saves the player's custom sprite since they don't have a dedicated number.
             // This may be unnecessary.
-            Sprite temp = sprite;
+            string pName = displayName;
+            Sprite pSprite = sprite;
 
             // Loads the data.
             base.LoadBattleGameData(data);
 
-            // Set sprite.
-            sprite = temp;
+            // Set name and sprite.
+            displayName = pName;
+            sprite = pSprite;
         }
 
         // Levels up the player.
@@ -86,9 +88,9 @@ namespace RM_BBTS
             // Levels up the player.
             base.LevelUp(times);
 
-            // Restores the player's health and energy levels.
-            Health += MaxHealth * LEVEL_UP_RESTORE_PERCENT * times;
-            Energy += MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times;
+            // Restores the player's health and energy levels. This rounds up to a whole number.
+            Health += Mathf.Ceil(MaxHealth * LEVEL_UP_RESTORE_PERCENT * times);
+            Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times);
         }
 
         // Selects the run move. Only the player has the run move.

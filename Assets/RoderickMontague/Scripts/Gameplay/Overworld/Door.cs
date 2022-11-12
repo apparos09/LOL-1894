@@ -102,7 +102,7 @@ namespace RM_BBTS
             // Implement the door settings.
             isBossDoor = data.isBossDoor;
             isTreasureDoor = data.isTreasureDoor;
-            locked = data.locked;
+            Locked = data.locked;
 
             // Implement the battle entity.
             battleEntity = BattleEntity.ConvertBattleEntitySaveDataToGameData(data.battleEntity);

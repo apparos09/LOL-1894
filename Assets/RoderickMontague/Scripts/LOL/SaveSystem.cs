@@ -47,8 +47,8 @@ namespace RM_BBTS
     public class SaveSystem : MonoBehaviour
     {
         // The game data.
-        // The data that was saved.
-        // private BBTS_GameData savedData;
+        // The last game save. This is only for testing purposes.
+        public BBTS_GameData lastSave;
 
         // The data that was loaded.
         public BBTS_GameData loadedData;
@@ -94,10 +94,12 @@ namespace RM_BBTS
         // Saves data.
         public bool SaveGame()
         {
+            // TODO: maybe store a value in lastSave before you return false?
             // If the instance has been initialized.
             if(!LOLSDK.Instance.IsInitialized)
             {
                 Debug.LogError("The SDK has not been initialized. Save failed.");
+                lastSave = null;
                 return false;
             }
 
@@ -109,32 +111,10 @@ namespace RM_BBTS
             }
 
             // Generates the save data.
-            BBTS_GameData savedData = new BBTS_GameData();
+            BBTS_GameData savedData = gameManager.GenerateSaveData();
 
-            // Gets the player save data.
-            savedData.playerData = gameManager.player.GenerateBattleEntitySaveData();
-
-            // Converts the door save data.
-            for(int i = 0; i < savedData.doorData.Length && i < gameManager.overworld.doors.Count; i++)
-            {
-                // Store the save data.
-                savedData.doorData[i] = gameManager.overworld.doors[i].GenerateSaveData();
-            }
-
-            // Saves the tutorial content.
-            savedData.clearedIntro = gameManager.tutorial.clearedIntro;
-            savedData.clearedBattle = gameManager.tutorial.clearedBattle;
-            savedData.clearedTreasure = gameManager.tutorial.clearedTreasure;
-            savedData.clearedOverworld = gameManager.tutorial.clearedOverworld;
-            savedData.clearedBoss = gameManager.tutorial.clearedBoss;
-            savedData.clearedGameOver = gameManager.tutorial.clearedGameOver;
-
-            // Save game results data.
-            savedData.score = gameManager.score;
-            savedData.roomsCompleted = gameManager.roomsCompleted;
-            savedData.roomsTotal = gameManager.roomsTotal;
-            savedData.gameTime = gameManager.gameTimer;
-            savedData.turnsPassed = gameManager.turnsPassed;
+            // Stores the most recent save.
+            lastSave = savedData;
 
             // Send the save state.
             LOLSDK.Instance.SaveState(savedData);
