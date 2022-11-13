@@ -378,8 +378,17 @@ namespace RM_BBTS
                 foreach(Door door in doors)
                 {
                     // Only evolve the entity if the door is unlocked.
+                    // It helps save on evolution time.
                     if (!door.Locked)
+                    {
                         door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+
+                        // Restore health and energy levels to max even if the entity didn't evolve.
+                        door.battleEntity.health = door.battleEntity.maxHealth;
+                        door.battleEntity.energy = door.battleEntity.maxEnergy;
+
+                    }
+                        
                 }
 
                 gameManager.evolveWaves++;

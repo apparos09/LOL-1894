@@ -99,6 +99,9 @@ namespace RM_BBTS
                 if(newGameButton != null && continueButton != null)
                     lolManager.saveSystem.Initialize(newGameButton, continueButton);
 
+                // NOTE: you seem to be receiving save data from past runs.
+                // I don't know how to delete them, but closing and opening the project doesn't seem to make a difference.
+
                 // TODO: if the continue button is made invisible, just turn it on and disable it instead?
                 // Maybe change this?
                 if(!continueButton.gameObject.activeSelf) // No save available.
