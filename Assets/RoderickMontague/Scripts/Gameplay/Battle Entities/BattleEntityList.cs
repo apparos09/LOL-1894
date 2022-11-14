@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,16 @@ namespace RM_BBTS
         // The amount of opponents in the list.
         public const int BATTLE_ENTITY_ID_COUNT = 6;
 
+        // Weights should not be negative.
+        // The chance rates of the entities.
+        private List<int> baseWeights;
+
+        // The adjusted entity weights.
+        private List<int> adjustedWeights;
+
+        // Minimum and maximum adjustment values.
+        private const int MIN_ADJUST = 0, MAX_ADJUST = 10;
+
         // The first enemy id (ignores the boss).
         private battleEntityId firstEnemyId = battleEntityId.ufo;
 
@@ -28,18 +39,38 @@ namespace RM_BBTS
         // The list of entities
         public List<Sprite> entitySprites;
 
-        // Constructor.
+        // Constructor - called before the Awake and Start.
         private BattleEntityList()
         {
+            // Creates the entity weights, and lcamps them to the battle entity ID count.
+            // <unknown, treasure, and boss should always be 0>
+            baseWeights = new List<int> { 0, 0, 0, 30, 30, 30 };
+
+            // If it exceeds the ID count.
+            if(baseWeights.Count > BATTLE_ENTITY_ID_COUNT)
+            {
+                // Removes a range of values so that it's within the range.
+                baseWeights.RemoveRange(BATTLE_ENTITY_ID_COUNT, baseWeights.Count - BATTLE_ENTITY_ID_COUNT);
+            }
+
+            // Generates the adjusted weights.
+            // adjustedWeights = new List<int>(baseWeights);
+            RandomizeEntityWeights(MIN_ADJUST, MAX_ADJUST, false);
         }
 
         // Awake is called when the script is loaded.
         private void Awake()
         {
+            // Instance.
             if (instance == null)
+            {
                 instance = this;
+            }
             else
+            {
                 Destroy(this);
+                return;
+            }
         }
 
         // Gets the instance.
@@ -321,19 +352,119 @@ namespace RM_BBTS
             }
         }
 
+        // Randomizes the entity weights, adding to the base weights, and saving the new weights to 'ajdustedWeights'.
+        // Provided are minimum and maximum weight adjustments.
+        // Weights cannot go below 0. A '0' means the entity will never be chosen.
+        // The min is inclusive, and the max is exclusive since it uses the Random.Range(int, int) function.
+        // If 'changeZeroes' is 'true', then entities with a 0 weight will also be affected.
+        private void RandomizeEntityWeights(int minChange, int maxChange, bool changeZeroes)
+        {
+            // The new weights object.
+            List<int> newWeights = new List<int>(baseWeights);
+
+            // Goes through each weight.
+            for (int i = 0; i < newWeights.Count; i++)
+            {
+                // If the weight should be changed.
+                bool change = true;
+
+                // Weights should never be less than 0.
+                if (newWeights[i] < 0)
+                    newWeights[i] = 0;
+
+                // If zeroes shouldn't be changed, and the weight is equal to 0, dont' change it.
+                if (!changeZeroes && newWeights[i] == 0)
+                    change = false;
+                    
+
+                // If the values should be changed.
+                if(change)
+                    newWeights[i] += Random.Range(minChange, maxChange + 1);
+            }
+
+            // Saves the new weights.
+            adjustedWeights = newWeights;
+        }
+
         // Generates a random battle entity enemy. If 'baseEvo' is true, then the base form is provided.
-        public BattleEntityGameData GenerateRandomEnemy(bool baseEvo = true)
+        public BattleEntityGameData GenerateRandomEnemy(bool useWeights, bool randomWeights, bool baseEvo = true)
         {
             // The data.
             BattleEntityGameData data = new BattleEntityGameData();
-            
+
             // Gets the random id.
-            battleEntityId randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
+            battleEntityId randomId;
+
+            // Becomes 'true' when an id has been chosen.
+            // bool idChosen = false;
+
+            // Sets a random id.
+            // This will be overwritten if weights should be used.
+            // This was done so that this variable will be set to something.
+            randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
+
+
+            // Checks if enemy weights should be used.
+            if (useWeights && baseWeights.Count != 0 && adjustedWeights.Count != 0)
+            {
+                // Gets the weights.
+                List<int> weights = (randomWeights) ? adjustedWeights : baseWeights;
+
+                // Saves the sum of the weights.
+                int weightSum = 0;
+
+                // Adds to the weight sum.
+                foreach (int w in weights)
+                    weightSum += w;
+
+                // An entity can be found.
+                if(weightSum > 0)
+                {
+                    // Gets a random int.
+                    int randValue = Random.Range(1, weightSum + 1);
+
+                    // The index of the id to be chosen.
+                    int idNum = -1;
+
+                    // Reusing the variable.
+                    weightSum = 0;
+
+                    // Finds the entity.
+                    for(int i = 0; i < weights.Count; i++)
+                    {
+                        // Adds to the weight sum.
+                        weightSum += weights[i];
+
+                        // Battle Entity Found.
+                        if(randValue <= weightSum)
+                        {
+                            idNum = i;
+                            break;
+                        }
+                    }
+
+                    // The id is valid, so use it. Also show that an id has been chosen.
+                    if (idNum >= 0 && idNum <= (int)lastEnemyId)
+                    {
+                        randomId = (battleEntityId)idNum;
+                        // idChosen = true;
+                    }
+                }
+                
+            }
+
+            // // If the id hasn't been chosen already, just use a random vlue.
+            // if(!idChosen)
+            // {
+            //     randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
+            //     idChosen = true;
+            // }
+                
 
             // Gets the random data.
             data = GenerateBattleEntityData(randomId);
             
-            // TODO: make this mroe efficient?
+            // TODO: make this more efficient?
 
             // If the base evo should be returned.
             if(baseEvo)

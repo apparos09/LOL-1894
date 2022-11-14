@@ -256,7 +256,13 @@ namespace RM_BBTS
                 // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
 
                 // Generates a random enemy (base version).
-                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true);
+                
+                // TODO: switch to the final version after implementing more enemies.
+                // FINAL
+                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, true, true);
+
+                // TESTING 
+                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(false, false, true);
 
             }
 
