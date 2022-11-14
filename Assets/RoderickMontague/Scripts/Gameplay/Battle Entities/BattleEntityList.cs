@@ -42,20 +42,7 @@ namespace RM_BBTS
         // Constructor - called before the Awake and Start.
         private BattleEntityList()
         {
-            // Creates the entity weights, and lcamps them to the battle entity ID count.
-            // <unknown, treasure, and boss should always be 0>
-            baseWeights = new List<int> { 0, 0, 0, 30, 30, 30 };
-
-            // If it exceeds the ID count.
-            if(baseWeights.Count > BATTLE_ENTITY_ID_COUNT)
-            {
-                // Removes a range of values so that it's within the range.
-                baseWeights.RemoveRange(BATTLE_ENTITY_ID_COUNT, baseWeights.Count - BATTLE_ENTITY_ID_COUNT);
-            }
-
-            // Generates the adjusted weights.
-            // adjustedWeights = new List<int>(baseWeights);
-            RandomizeEntityWeights(MIN_ADJUST, MAX_ADJUST, false);
+            // ...
         }
 
         // Awake is called when the script is loaded.
@@ -71,6 +58,24 @@ namespace RM_BBTS
                 Destroy(this);
                 return;
             }
+
+            // Unity doesn't like the constructor being used when inherting from MonoBehaviour.
+            // So, this was all moved here.
+
+            // Creates the entity weights, and lcamps them to the battle entity ID count.
+            // <unknown, treasure, and boss should always be 0>
+            baseWeights = new List<int> { 0, 0, 0, 30, 30, 30 };
+
+            // If it exceeds the ID count.
+            if (baseWeights.Count > BATTLE_ENTITY_ID_COUNT)
+            {
+                // Removes a range of values so that it's within the range.
+                baseWeights.RemoveRange(BATTLE_ENTITY_ID_COUNT, baseWeights.Count - BATTLE_ENTITY_ID_COUNT);
+            }
+
+            // Generates the adjusted weights.
+            // adjustedWeights = new List<int>(baseWeights);
+            RandomizeEntityWeights(MIN_ADJUST, MAX_ADJUST, false);
         }
 
         // Gets the instance.
