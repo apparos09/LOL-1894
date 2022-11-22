@@ -19,19 +19,35 @@ namespace RM_BBTS
 
         [Header("Volume")]
 
-        // the bgm volume slider.
+        // BGM
+        // The bgm volume slider.
         public Slider bgmVolumeSlider;
 
-        // The title text for the bgm.
+        // The title text for the bgm slider.
         public TMPro.TMP_Text bgmLabelText;
 
+        // SFX
         // The sound effect slider.
         public Slider sfxVolumeSlider;
         
-        // The title for the SFX.
+        // The title for the sfx slider.
         public TMPro.TMP_Text sfxLabelText;
 
+        // TTS
+        // The tts volume slider.
+        public Slider ttsVolumeSlider;
+
+        // The title text for the tts slider.
+        public TMPro.TMP_Text ttsLabelText;
+
+
         [Header("Misc")]
+        // the toggle for the mute toggle.
+        public Toggle muteToggle;
+
+        // The text for the mute toggle.
+        public TMPro.TMP_Text muteLabel;
+
         // the toggle for the text-to-speech toggle.
         public Toggle textToSpeechToggle;
 
@@ -68,6 +84,12 @@ namespace RM_BBTS
             //     OnSfxVolumeChange(sfxVolumeSlider);
             // });
 
+            // Current tts volume setting.
+            ttsVolumeSlider.value = gameSettings.TtsVolume;
+
+            // Current muted setting.
+            muteToggle.isOn = gameSettings.Mute;
+
             // Current text-to-speech tutorial.
             textToSpeechToggle.isOn = gameSettings.UseTextToSpeech;
 
@@ -96,6 +118,9 @@ namespace RM_BBTS
                 titleText.text = defs["kwd_settings"];
                 bgmLabelText.text = defs["kwd_bgmVolume"];
                 sfxLabelText.text = defs["kwd_sfxVolume"];
+                ttsLabelText.text = defs["kwd_ttsVolume"];
+
+                muteLabel.text = defs["kwd_mute"];
                 textToSpeechLabel.text = defs["kwd_textToSpeech"];
                 tutorialLabel.text = defs["kwd_tutorial"];
                 backButtonText.text = defs["kwd_back"];
@@ -114,6 +139,12 @@ namespace RM_BBTS
             OnTextToSpeechChange(textToSpeechToggle);
         }
 
+        // On the mute changes.
+        public void OnMuteChange(Toggle toggle)
+        {
+            gameSettings.Mute = toggle.isOn;
+        }
+
         // On the text-to-speech changes.
         public void OnTextToSpeechChange(Toggle toggle)
         {
@@ -126,16 +157,22 @@ namespace RM_BBTS
             gameSettings.UseTutorial = toggle.isOn;
         }
 
-        // on the bgm volume change.
+        // On the bgm volume change.
         public void OnBgmVolumeChange(Slider slider)
         {
             gameSettings.BgmVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
         }
 
-        // on the sfx volume change.
+        // On the sfx volume change.
         public void OnSfxVolumeChange(Slider slider)
         {
             gameSettings.SfxVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
+        }
+
+        // On the tts volume change.
+        public void OnTtsVolumeChange(Slider slider)
+        {
+            gameSettings.TtsVolume = Mathf.InverseLerp(slider.minValue, slider.maxValue, slider.value);
         }
     }
 }

@@ -112,6 +112,7 @@ namespace RM_BBTS
         protected float energy = 10;
 
         // STAT MOFIDIERS (TEMP INC/DEC)
+
         // Modifier for attack.
         public int attackMod = 0;
 
@@ -120,6 +121,9 @@ namespace RM_BBTS
 
         // Modifier for speed.
         public int speedMod = 0;
+
+        // The base accuracy for the battle entity. This can get adjusted by moves in the game.
+        public float accuracyMod = 1.0F;
 
         // The minimum for the stat modifiers.
         public const int STAT_MOD_MIN = -3;

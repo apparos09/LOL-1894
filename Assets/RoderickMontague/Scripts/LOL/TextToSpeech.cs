@@ -16,6 +16,12 @@ namespace RM_BBTS
         // The audio source for the text-to-speech.
         public AudioSource ttsAudioSource;
 
+        // The speak key for stopping the Text-To-Speech
+        public const string STOP_SPEAK_KEY = "_stop_";
+
+        // The current key for the spoken text.
+        private string currentSpeakKey = "";
+
         // Constructor
         private TextToSpeech()
         {
@@ -48,7 +54,39 @@ namespace RM_BBTS
 
             // if the audio source has not been set, then add an audio source component.
             if (ttsAudioSource == null)
-                ttsAudioSource = gameObject.AddComponent<AudioSource>();
+            {
+                // Creates a new audio source object.
+                // This will be a child of the text-to-speech object so that it can have its own tag.
+
+                // Creates the object, and parents it to this script's object.
+                GameObject newObject = new GameObject("Audio Source");
+                newObject.transform.parent = gameObject.transform;
+
+                // Gives it the tag.
+                newObject.tag = GameSettings.TTS_TAG;
+
+                // Adds the audio source to the new object.
+                ttsAudioSource = newObject.AddComponent<AudioSource>();
+            }
+
+            // The audio soruce control.
+            AudioSourceControl asc = null;
+
+            // Tries to get the audio source control.
+            if(!ttsAudioSource.TryGetComponent<AudioSourceControl>(out asc))
+            {
+                // Adds the audio source control.
+                asc = ttsAudioSource.gameObject.AddComponent<AudioSourceControl>();
+            }
+
+            // Sets the audio source.
+            if (asc.audioSource == null)
+                asc.audioSource = ttsAudioSource;
+
+            // Checks for the proper tag on the audio source control object.
+            if (!asc.gameObject.CompareTag(GameSettings.TTS_TAG))
+                asc.gameObject.tag = GameSettings.TTS_TAG;
+            
 
         }
 
@@ -103,6 +141,9 @@ namespace RM_BBTS
             // Stops any current text-to-speech audio.
             ttsAudioSource.Stop();
 
+            // Saves the current key.
+            currentSpeakKey = key;
+
             // Speaks the clip of text requested from using this MonoBehaviour as the coroutine owner.
             ((ILOLSDK_EDITOR)LOLSDK.Instance.PostMessage).SpeakText(
                 text,
@@ -119,12 +160,44 @@ namespace RM_BBTS
         }
 
         // Cancels the text that's being read by the text-to-speech.
+        // This doesn't appear to work.
         public void CancelSpeakText()
         {
 #if UNITY_EDITOR
             ttsAudioSource.Stop();
 #endif
             ((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
+        }
+
+        // Uses the 'stop speak key' to stop the speka text.
+        public void StopSpeakText()
+        {
+            // Speaks the text.
+            SpeakText(STOP_SPEAK_KEY);
+        }
+
+        // Gets the current speak key. If no audio is playing, an empty string ("") is returned.
+        public string CurrentSpeakKey
+        {
+            get { return currentSpeakKey; }
+        }
+
+        // Checks if the speak text 
+        private void Update()
+        {
+            // TODO: this does NOT work for clearing the key only when the audio is done playing.
+            // The Application being paused in the background seems to mess with this.
+
+            // Checks to see if the audio is playing. If it isn't playing, then clear the current key.
+            // AudioSource.IsPlaying returns false if the audio is paused.
+            // The application does not run in the background.
+            // As such, when the window isn't in focus AudioSource.IsPlaying returns false.
+            // So this conditional statement checks if the TTS isn't playing, and if the application is.
+            if(currentSpeakKey != "" && !ttsAudioSource.isPlaying && Application.isPlaying)
+            {
+                currentSpeakKey = "";
+            }
+
         }
     }
 }

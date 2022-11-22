@@ -34,8 +34,12 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
+            // This is the instance.
+            if (instance == null)
+                instance = this;
+
             // This object should not be destroyed.
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this);            
 
             // If the text-to-speech component is not set, try to get it.
             if(textToSpeech == null)
@@ -43,7 +47,7 @@ namespace RM_BBTS
                 // Tries to get the component.
                 if(!TryGetComponent<TextToSpeech>(out textToSpeech))
                 {
-                    // Adds the component.
+                    // Adds the text-to-speech component.
                     textToSpeech = gameObject.AddComponent<TextToSpeech>();
                 }
             }

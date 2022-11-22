@@ -30,6 +30,8 @@
     "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
     "autoSave": "...Auto Saving Complete",
 
+    "_stop_": "",
+
     "gameTitle": "Battle Bot Training Simulation",
 
     "kwd_start": "Start",
@@ -58,9 +60,11 @@
     "mnu_controls_desc": "The entire game is controlled via the left mouse button/touch.",
 
     "kwd_volume": "Volume",
-    "kwd_bgmVolume": "BGM Volume",
-    "kwd_sfxVolume": "SFX Volume",
-    "kwd_textToSpeech": "Text-to-Speech",
+    "kwd_bgmVolume": "Background Music (BGM) Volume",
+    "kwd_sfxVolume": "Sound Effect (SFX) Volume",
+    "kwd_ttsVolume": "Text-To-Speech (TTS) Volume",
+    "kwd_mute": "Mute",
+    "kwd_textToSpeech": "Text-To-Speech",
     "kwd_tutorial": "Tutorial",
     "kwd_back": "Back",
 

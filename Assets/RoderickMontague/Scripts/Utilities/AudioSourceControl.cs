@@ -11,21 +11,25 @@ namespace RM_BBTS
         // The audio source this script applies to.
         public AudioSource audioSource;
 
-        // The maximum volume of the audio source, which is it's audio level at runtime.
-        // This is private so that the volume can't be set out of the range.
-        [Tooltip("The maximum volume for the audio source, which by default is the audio level at runtime unless it's preset.")]
+        // The maximum volume of the audio source, which is it's audio level. This can be public since it gets clamped anyway.
+        [Tooltip("The maximum volume for the audio source.")]
         [Range(0.0F, 1.0F)]
-        private float maxVolume = -1.0F;
+        public float maxVolume = 1.0F;
+
+        // If 'true', the max volume is set to the value of the audio source on start up.
+        [Tooltip("Sets the maixmum volume automatically to the audio source's default volume.")]
+        public bool autoSetMaxVolume = true;
 
         // Awake is called when the script instance is being loaded.
         private void Awake()
         {
+            // Added this to help with creating an audio source with source control through a script.
             // If the audio source wans't set then try to grab the component.
             if (audioSource == null)
                 audioSource = gameObject.GetComponent<AudioSource>();
 
             // The max volume has not been set.
-            if (maxVolume < 0.0F)
+            if (autoSetMaxVolume)
                 maxVolume = audioSource.volume;
         }
 
@@ -48,13 +52,14 @@ namespace RM_BBTS
         {
             get
             {
-                return maxVolume;
+                maxVolume = Mathf.Clamp01(maxVolume); // Clamps the vlaue.
+                return maxVolume; // Returns the value.
             }
 
             set
             {
-                maxVolume = Mathf.Clamp01(maxVolume);
-                AdjustToGameSettings();
+                maxVolume = Mathf.Clamp01(maxVolume); // Clamps the value.
+                AdjustToGameSettings(); // Adjusts the audio.
             }
         }
 

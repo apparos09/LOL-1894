@@ -45,13 +45,26 @@ namespace RM_BBTS
         // Reads the page.
         public void SpeakPage()
         {
-            // Uses the text-to-speech automatically.
+            // Checks for text-to-speech automatically.
             if (GameSettings.Instance.UseTextToSpeech)
             {
-                // Speak key not set.
+                // Checks if the speak key has been set.
                 if (speakKey != "")
                     TextToSpeech.Instance.SpeakText(speakKey);
             }
+        }
+
+        // Stops the page from being spoken.
+        public void StopSpeakingPage()
+        {
+            // Checks for text-to-speech automatically.
+            if (GameSettings.Instance.UseTextToSpeech)
+            {
+                // Checks if the speak key has been set, and if it's the one being spoken.
+                if (speakKey != "" && TextToSpeech.Instance.CurrentSpeakKey == speakKey)
+                    TextToSpeech.Instance.StopSpeakText();
+            }
+
         }
 
         // Add a callback for when the page is opened.

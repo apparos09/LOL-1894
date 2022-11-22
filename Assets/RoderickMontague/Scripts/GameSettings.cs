@@ -15,25 +15,31 @@ namespace RM_BBTS
 
         [Header("Settings")]
 
-        // use the text-to-speech options.
+        // Use the text-to-speech options.
         private bool useTTS = true;
 
-        // use the tutorial for the game.
-        // this is only relevant when starting up the game scene.
+        // Use the tutorial for the game.
+        // This is only relevant when starting up the game scene.
         private bool useTutorial = true;
 
-        // the tag for BGM objects.
+        // Audio Tags
+        // The tag for BGM objects.
         public const string BGM_TAG = "BGM";
 
-        // the volume for the background music.
+        // The volume for the background music.
         private float bgmVolume = 1.0F;
 
-        // the tag for the SFX objects.
+        // The tag for the SFX objects.
         public const string SFX_TAG = "SFX";
 
-        // the volume for the sound effects.
+        // The volume for the sound effects.
         private float sfxVolume = 1.0F;
 
+        // The audio for the TTS.
+        public const string TTS_TAG = "TTS";
+
+        // The volume for the TTS.
+        private float ttsVolume = 1.0F;
 
         // the constructor.
         private GameSettings()
@@ -160,7 +166,7 @@ namespace RM_BBTS
             }
         }
 
-        // setting the background volume.
+        // Setting the background volume.
         public float BgmVolume
         {
             get
@@ -170,11 +176,12 @@ namespace RM_BBTS
 
             set
             {
-                AdjustAllAudioLevels(Mathf.Clamp01(value), sfxVolume);
+                // Adjusts all audio levels (value is clamped in function).
+                AdjustAllAudioLevels(value, sfxVolume, ttsVolume);
             }
         }
 
-        // setting the sound effect volume.
+        // Setting the sound effect volume.
         public float SfxVolume
         {
             get
@@ -184,7 +191,23 @@ namespace RM_BBTS
 
             set
             {
-                AdjustAllAudioLevels(bgmVolume, Mathf.Clamp01(value));
+                // Adjusts all audio levels (value is clamped in function).
+                AdjustAllAudioLevels(bgmVolume, value, ttsVolume);
+            }
+        }
+
+        // Setting the text-to-speech volume.
+        public float TtsVolume
+        {
+            get
+            {
+                return ttsVolume;
+            }
+
+            set
+            {
+                // Adjusts all audio levels (value is clamped in function).
+                AdjustAllAudioLevels(bgmVolume, sfxVolume, value);
             }
         }
 
@@ -201,6 +224,10 @@ namespace RM_BBTS
             {
                 audio.audioSource.volume = audio.MaxVolume * sfxVolume;
             }
+            else if (audio.CompareTag(TTS_TAG)) // TTS (Text-To-Speech);
+            {
+                audio.audioSource.volume = audio.MaxVolume * ttsVolume;
+            }
             else // no recognizable tag.
             {
                 Debug.LogAssertion("No recognizable audio tag has been set, so the audio can't be adjusted.");
@@ -211,28 +238,33 @@ namespace RM_BBTS
         // applies the audio levels by using the saved audio settings.
         public void AdjustAllAudioLevels()
         {
-            AdjustAllAudioLevels(bgmVolume, sfxVolume);
+            AdjustAllAudioLevels(bgmVolume, sfxVolume, ttsVolume);
         }
 
-        // adjusts the audio levels.
-        public void AdjustAllAudioLevels(float newBgmVolume, float newSfxVolume)
+        // Adjusts all the audio levels.
+        // TODO: create a function for only adjusting one of the audio parameters, instead of all of them at once.
+        public void AdjustAllAudioLevels(float newBgmVolume, float newSfxVolume, float newTtsVolume)
         {
-            // finds all the audio source controls.
+            // Finds all the audio source controls.
             AudioSourceControl[] audios = FindObjectsOfType<AudioSourceControl>();
 
-            // saves the bgm and sfx volume objects.
+            // Saves the bgm, sfx, and tts volume objects.
             bgmVolume = Mathf.Clamp01(newBgmVolume);
             sfxVolume = Mathf.Clamp01(newSfxVolume);
+            ttsVolume = Mathf.Clamp01(newTtsVolume);
 
-            // goes through each source.
+            // Goes through each source.
             foreach (AudioSourceControl audio in audios)
             {
+                // Adjusts the audio.
                 AdjustAudio(audio);
             }
 
-            // changing the values.
-            bgmVolume = newBgmVolume;
-            sfxVolume = newSfxVolume;
+            // TODO: what's the point of this?
+            // // changing the values.
+            // bgmVolume = newBgmVolume;
+            // sfxVolume = newSfxVolume;
+            // ttsVolume = newTtsVolume;
 
         }
 

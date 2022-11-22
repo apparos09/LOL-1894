@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Door
   - Manager
+  - TTS
   layers:
   - Default
   - TransparentFX

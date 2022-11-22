@@ -186,7 +186,7 @@ namespace RM_BBTS
             }
                 
             // If the move hit successfully.
-            if(Random.Range(0.0F, 1.0F) <= accuracy)
+            if(Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod)
             {
                 // The new pages.
                 List<Page> newPages = new List<Page>();

@@ -1935,6 +1935,7 @@ MonoBehaviour:
   attackMod: 0
   defenseMod: 0
   speedMod: 0
+  accuracyMod: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -6950,7 +6951,7 @@ MonoBehaviour:
   roomsPerLevelUp: 3
   lastEnemyLevelUps: -1
   evolveWaves: 0
-  totalTurns: 0
+  turnsPassed: 0
   gameTimer: 0
   pausedTimer: 0
   backPanel: {fileID: 2017997830}
@@ -7438,14 +7439,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
@@ -7466,47 +7459,11 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876103569749369258, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
@@ -7965,10 +7922,6 @@ PrefabInstance:
     - target: {fileID: 4866852875785391320, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Direction
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
-      propertyPath: speed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391322, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Name
@@ -13085,6 +13038,7 @@ MonoBehaviour:
   attackMod: 0
   defenseMod: 0
   speedMod: 0
+  accuracyMod: 1
   burned: 0
   paralyzed: 0
 --- !u!4 &1467642234
@@ -14444,6 +14398,7 @@ MonoBehaviour:
   attackMod: 0
   defenseMod: 0
   speedMod: 0
+  accuracyMod: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -15917,6 +15872,7 @@ MonoBehaviour:
   attackMod: 0
   defenseMod: 0
   speedMod: 0
+  accuracyMod: 1
   burned: 0
   paralyzed: 0
 --- !u!4 &1932905572
