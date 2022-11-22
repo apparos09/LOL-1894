@@ -177,7 +177,11 @@ namespace RM_BBTS
             set
             {
                 // Adjusts all audio levels (value is clamped in function).
-                AdjustAllAudioLevels(value, sfxVolume, ttsVolume);
+                // AdjustAllAudioLevels(value, sfxVolume, ttsVolume);
+
+                // Adjusts the BGM volume and adjusts all the audio objects with the BGM tag.
+                bgmVolume = Mathf.Clamp01(value);
+                AdjustBgmAudioLevels();
             }
         }
 
@@ -192,7 +196,11 @@ namespace RM_BBTS
             set
             {
                 // Adjusts all audio levels (value is clamped in function).
-                AdjustAllAudioLevels(bgmVolume, value, ttsVolume);
+                // AdjustAllAudioLevels(bgmVolume, value, ttsVolume);
+
+                // Adjusts the SFX volume and adjusts all the audio objects with the SFX tag.
+                sfxVolume = Mathf.Clamp01(value);
+                AdjustSfxAudioLevels();
             }
         }
 
@@ -206,8 +214,12 @@ namespace RM_BBTS
 
             set
             {
-                // Adjusts all audio levels (value is clamped in function).
-                AdjustAllAudioLevels(bgmVolume, sfxVolume, value);
+                // Adjusts all audio levels 
+                // AdjustAllAudioLevels(bgmVolume, sfxVolume, value);
+
+                // Adjusts the TTS volume and adjusts all the audio objects with the TTS tag.
+                ttsVolume = Mathf.Clamp01(value);
+                AdjustTtsAudioLevels();
             }
         }
 
@@ -266,6 +278,69 @@ namespace RM_BBTS
             // sfxVolume = newSfxVolume;
             // ttsVolume = newTtsVolume;
 
+        }
+
+        // Adjust all audio levels with the provided tag.
+        private void AdjustAllAudioLevelsWithTag(string audioTag)
+        {
+            // Finds objects with the right tag.
+            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(audioTag);
+
+            // Goes through the tagged objects.
+            foreach(GameObject tagged in taggedObjects)
+            {
+                // The audio control object.
+                AudioSourceControl asc;
+
+                // Tries to get the audio control object.
+                if(tagged.TryGetComponent(out asc))
+                {
+                    // Adjusts the audio level.
+                    AdjustAudio(asc);
+                }
+            }
+        }
+
+        // Adjust all BGM audio levels.
+        public void AdjustBgmAudioLevels()
+        {
+            AdjustAllAudioLevelsWithTag(BGM_TAG);
+        }
+
+        // Adjusts all BGM audio levels with new volume level.
+        public void AdjustBgmAudioLevels(float newVolume)
+        {
+            // Don't use the shorthand since it calls a function to adjust the audio levels anyway.
+            bgmVolume = Mathf.Clamp01(newVolume);
+            AdjustBgmAudioLevels();
+        }
+
+        // Adjust all SFX audio levels.
+        public void AdjustSfxAudioLevels()
+        {
+            AdjustAllAudioLevelsWithTag(SFX_TAG);
+        }
+
+        // Adjusts all SFX audio levels with new volume level.
+        public void AdjustSfxAudioLevels(float newVolume)
+        {
+            // Don't use the shorthand since it calls a function to adjust the audio levels anyway.
+            sfxVolume = Mathf.Clamp01(newVolume);
+            AdjustSfxAudioLevels();
+        }
+
+        // Adjust all TTS audio levels.
+        public void AdjustTtsAudioLevels()
+        {
+            AdjustAllAudioLevelsWithTag(TTS_TAG);
+        }
+
+        // Adjusts all TTS audio levels with new volume level.
+        public void AdjustTtsAudioLevels(float newVolume)
+        {
+            // Don't use the shorthand since it calls a function to adjust the audio levels anyway.
+            ttsVolume = Mathf.Clamp01(newVolume);
+            AdjustTtsAudioLevels();
         }
 
         // // called when a scene is loaded.
