@@ -524,10 +524,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
+  displayNameSpeakKey: 
   sprite: {fileID: 0}
   id: 0
   preEvoId: 0
   evoId: 0
+  attackMod: 0
+  defenseMod: 0
+  speedMod: 0
+  accuracyMod: 1
+  burned: 0
+  paralyzed: 0
 --- !u!1 &828127846
 GameObject:
   m_ObjectHideFlags: 0
