@@ -152,7 +152,9 @@ namespace RM_BBTS
             // Tells the page to stop reading the text if it is being read.
             // Since the TTS is overwritten when a new page is opened...
             // This is only called when the textbox is being closed.
-            pages[currPageIndex].StopSpeakingPage();
+            // NOTE: for some reason the current page index was out of range sometimes, so this is a quick fix.
+            if(currPageIndex >= 0 && currPageIndex < pages.Count)
+                pages[currPageIndex].StopSpeakingPage();
         }
 
         // Checks if the textbox is visible.
