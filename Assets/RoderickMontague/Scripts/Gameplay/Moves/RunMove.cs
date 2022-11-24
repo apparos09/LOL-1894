@@ -10,7 +10,7 @@ namespace RM_BBTS
     {
         // Constructor for the charge move.
         public RunMove() :
-            base(moveId.run, "Run", 1, 0, 0.5F, 0)
+            base(moveId.run, "<Run>", 1, 0, 0.5F, 0)
         {
             // This is arbitrary. It's just there for making the run failed message appear first.
             priority = 10;
