@@ -37,6 +37,9 @@ namespace RM_BBTS
         // A move with a higher priority number goes first.
         public int priority = 0;
 
+        // If set to 'false', the move will always hit if there's enough energy.
+        public bool useAccuracy = true;
+
         // STATUS EFFECTS/CHANCE EVENTS //
         // The chance of performing critical damage.
         protected float criticalChance = 0.3F;
@@ -185,8 +188,8 @@ namespace RM_BBTS
                 return false;
             }
                 
-            // If the move hit successfully.
-            if(Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod)
+            // If the move hit successfully (or if 'useAccuracy' is set to false, meaning it always hits)
+            if(Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod || !useAccuracy)
             {
                 // The new pages.
                 List<Page> newPages = new List<Page>();
@@ -260,7 +263,7 @@ namespace RM_BBTS
                 if (user is Player) // Is the player.
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
-                    battle.UpdateUI(); // Updates enemy health bar.
+                    battle.UpdateOpponentUI(); // Updates enemy health bar.
                 }
                 else // Not the player.
                 {

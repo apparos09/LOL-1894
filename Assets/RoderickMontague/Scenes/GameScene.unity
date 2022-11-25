@@ -3871,6 +3871,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380741002}
   m_CullTransparentMesh: 1
+--- !u!114 &382687705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 663937952151822870, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+  m_PrefabInstance: {fileID: 658017587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &438717602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9832,6 +9843,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8247993992043946926, guid: 6ad1b64b977dbef43bce9bc5cdedbb44, type: 3}
   m_PrefabInstance: {fileID: 1097628476}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1135187533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 663937952151822870, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+  m_PrefabInstance: {fileID: 663937951241795626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1147545378
 GameObject:
   m_ObjectHideFlags: 0
@@ -10030,13 +10052,17 @@ MonoBehaviour:
   bossBase: {fileID: 1656379398}
   ui: {fileID: 788251607}
   move0Button: {fileID: 1794674507}
-  move0Text: {fileID: 1545837955}
+  move0NameText: {fileID: 1545837955}
+  move0AccuracyText: {fileID: 1135187533}
   move1Button: {fileID: 898368268}
-  move1Text: {fileID: 898368267}
+  move1NameText: {fileID: 898368267}
+  move1AccuracyText: {fileID: 1468273108}
   move2Button: {fileID: 252074885}
-  move2Text: {fileID: 252074884}
+  move2NameText: {fileID: 252074884}
+  move2AccuracyText: {fileID: 1679026480}
   move3Button: {fileID: 658017590}
-  move3Text: {fileID: 658017589}
+  move3NameText: {fileID: 658017589}
+  move3AccuracyText: {fileID: 382687705}
   chargeButton: {fileID: 439972763}
   chargeButtonText: {fileID: 1654345095}
   runButton: {fileID: 1016463190}
@@ -12738,6 +12764,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1468273108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 663937952151822870, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+  m_PrefabInstance: {fileID: 898368265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472320082
 GameObject:
   m_ObjectHideFlags: 0
@@ -13953,6 +13990,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669929847}
   m_CullTransparentMesh: 1
+--- !u!114 &1679026480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 663937952151822870, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+  m_PrefabInstance: {fileID: 252074882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704093720
 GameObject:
   m_ObjectHideFlags: 0

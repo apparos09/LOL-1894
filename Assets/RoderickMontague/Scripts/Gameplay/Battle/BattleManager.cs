@@ -85,27 +85,6 @@ namespace RM_BBTS
         public Page opponentMovePage;
 
         [Header("UI/Player")]
-
-        // Move 0 (index 0) button.
-        [Tooltip("The button for using Player Move 0, which is at index [0].")]
-        public Button move0Button;
-        public TMP_Text move0Text;
-
-        // Move 1 (index 1) button.
-        [Tooltip("The button for using Player Move 1, which is at index [1].")]
-        public Button move1Button;
-        public TMP_Text move1Text;
-
-        // Move 2 (index 2) button.
-        [Tooltip("The button for using Player Move 2, which is at index [2].")]
-        public Button move2Button;
-        public TMP_Text move2Text;
-
-        // Move 3 (index 3) button.
-        [Tooltip("The button for using Player Move 3, which is at index [3].")]
-        public Button move3Button;
-        public TMP_Text move3Text;
-
         // Charge Button
         public Button chargeButton;
         public TMP_Text chargeButtonText;
@@ -113,6 +92,37 @@ namespace RM_BBTS
         // Run Button
         public Button runButton;
         public TMP_Text runButtonText;
+
+
+        // Move 0 (index 0) button.
+        [Header("UI/Player/Move 0")]
+        [Tooltip("The button for using Player Move 0, which is at index [0].")]
+        public Button move0Button;
+        public TMP_Text move0NameText;
+        public TMP_Text move0AccuracyText;
+
+        // Move 1 (index 1) button.
+        [Header("UI/Player/Move 1")]
+        [Tooltip("The button for using Player Move 1, which is at index [1].")]
+        public Button move1Button;
+        public TMP_Text move1NameText;
+        public TMP_Text move1AccuracyText;
+
+        // Move 2 (index 2) button.
+        [Header("UI/Player/Move 2")]
+        [Tooltip("The button for using Player Move 2, which is at index [2].")]
+        public Button move2Button;
+        public TMP_Text move2NameText;
+        public TMP_Text move2AccuracyText;
+
+        // Move 3 (index 3) button.
+        [Header("UI/Player/Move 3")]
+        [Tooltip("The button for using Player Move 3, which is at index [3].")]
+        public Button move3Button;
+        public TMP_Text move3NameText;
+        public TMP_Text move3AccuracyText;
+
+        
 
         [Header("UI/Player/Treasure")]
 
@@ -285,19 +295,22 @@ namespace RM_BBTS
 
             // Move 0
             // move0Button.interactable = player.Move0 != null;
-            move0Text.text = (player.Move0 != null) ? player.Move0.Name : "-";
+            move0NameText.text = (player.Move0 != null) ? player.Move0.Name : "-";
 
             // Move 1
             // move1Button.interactable = player.Move1 != null;
-            move1Text.text = (player.Move1 != null) ? player.Move1.Name : "-";
+            move1NameText.text = (player.Move1 != null) ? player.Move1.Name : "-";
 
             // Move 2
             // move2Button.interactable = player.Move2 != null;
-            move2Text.text = (player.Move2 != null) ? player.Move2.Name : "-";
+            move2NameText.text = (player.Move2 != null) ? player.Move2.Name : "-";
 
             // Move 3
             // move3Button.interactable = player.Move3 != null;
-            move3Text.text = (player.Move3 != null) ? player.Move3.Name : "-";
+            move3NameText.text = (player.Move3 != null) ? player.Move3.Name : "-";
+
+            // Updates the UI so that the move accuracies show.
+            UpdatePlayerMoveAccuracies();
 
             // Checks if the player has a full charge.
             // chargeButton.interactable = !player.HasFullCharge();
@@ -310,7 +323,7 @@ namespace RM_BBTS
                 RefreshPlayerOptions();
 
             // Updates the interface.
-            UpdateUI();
+            UpdateOpponentUI();
 
             // If the opponent is a treasure box.
             if (opponent is Treasure)
@@ -456,15 +469,85 @@ namespace RM_BBTS
             else
                 move3Button.interactable = false;
 
+            // Updates the move accuracy displays.
+            UpdatePlayerMoveAccuracies();
+
             // Checks if the player has a full charge.
             chargeButton.interactable = !player.HasFullCharge();
 
             // Enable the run.
             runButton.interactable = true;
 
-            // The buttons are interactable, though they may not be visible.
+            // The buttons are interactable, though they are only visible in a treasure room.
             treasureYesButton.interactable = true;
             treasureNoButton.interactable = true;
+        }
+
+        // Updates the player move accuracies for the battle state.
+        public void UpdatePlayerMoveAccuracies()
+        {
+            // Moves won't show accuracy if they don't use the accuracy parameter.
+            // Saves the accuracy (0-1 range).
+            float accuracy = 0;
+
+            // This techincally calculates accuracy regardless of if it's used, but I don't think it's a big deal.
+            // Move 0
+            if (player.Move0 != null)
+            {
+                // Calculates the accuracy to display.
+                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move0.Accuracy * player.accuracyMod) * 100.0F);
+
+                // Slots in the text.
+                move0AccuracyText.text = (player.Move0.useAccuracy) ? accuracy.ToString() + "%" : "-";
+            }
+            else
+            {
+                move0AccuracyText.text = "-";
+            }
+
+            // Move 1
+            if (player.Move1 != null)
+            {
+                // Calculates the accuracy to display.
+                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move1.Accuracy * player.accuracyMod) * 100.0F);
+
+                // Slots in the text.
+                move1AccuracyText.text = (player.Move1.useAccuracy) ? accuracy.ToString() + "%" : "-";
+            }
+            else
+            {
+                move1AccuracyText.text = "-";
+            }
+
+            // Move 2
+            if (player.Move2 != null)
+            {
+                // Calculates the accuracy to display.
+                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move2.Accuracy * player.accuracyMod) * 100.0F);
+
+                // Slots in the text.
+                move2AccuracyText.text = (player.Move2.useAccuracy) ? accuracy.ToString() + "%" : "-";
+            }
+            else
+            {
+                move2AccuracyText.text = "-";
+            }
+
+            // Move 3
+            if (player.Move3 != null)
+            {
+                // Calculates the accuracy to display.
+                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move3.Accuracy * player.accuracyMod) * 100.0F);
+
+                // Slots in the text.
+                move3AccuracyText.text = (player.Move3.useAccuracy) ? accuracy.ToString() + "%" : "-";
+            }
+            else
+            {
+                move3AccuracyText.text = "-";
+            }
+
+
         }
 
         // Updates the battle visuals.
@@ -477,7 +560,7 @@ namespace RM_BBTS
             {
                 if (playerTurn) // Player turn
                 {
-                    turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateUI);
+                    turnText[turnText.Count - 1].OnPageClosedAddCallback(UpdateOpponentUI);
                     turnText[turnText.Count - 1].OnPageClosedAddCallback(gameManager.UpdateUI);
                 }
                 else
@@ -1016,8 +1099,15 @@ namespace RM_BBTS
             gameManager.EnterOverworld();
         }
 
-        // Updates the user interface.
+        // Updates all UI elements.
         public void UpdateUI()
+        {
+            RefreshPlayerOptions();
+            UpdateOpponentUI();
+        }
+
+        // Updates the opponent AI.
+        public void UpdateOpponentUI()
         {
             opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth);
 

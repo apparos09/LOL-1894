@@ -823,7 +823,7 @@ namespace RM_BBTS
             }
             else // Not the player, so update the battle UI.
             {
-                battle.UpdateUI();
+                battle.UpdateOpponentUI();
             }
         }
 
