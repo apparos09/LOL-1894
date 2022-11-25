@@ -1446,7 +1446,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4392239b3e8228f408fe58454bde7a50, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ff36bc7e4b12b5a47b1b9ac9a4718cec, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1545,6 +1545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1129568071}
+  maxVolume: 1
+  autoSetMaxVolume: 1
 --- !u!1 &1186079389
 GameObject:
   m_ObjectHideFlags: 0
