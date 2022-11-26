@@ -157,6 +157,16 @@ namespace RM_BBTS
         // Becomes set to 'true' when the player's energy is transitioning.
         private bool playerEnergyTransitioning = false;
 
+        // [Header("Audio")]
+        // // The source for the background music audio source.
+        // public AudioSource bgmSource;
+        // 
+        // // The source for the sound effect audio source.
+        // public AudioSource sfxSource;
+        // 
+        // // The source for the jingle audio source.
+        // public AudioSource jngSource;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {

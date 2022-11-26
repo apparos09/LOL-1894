@@ -27,13 +27,13 @@ namespace RM_BBTS
         public const string BGM_TAG = "BGM";
 
         // The volume for the background music.
-        private float bgmVolume = 1.0F;
+        private float bgmVolume = 0.3F;
 
         // The tag for the SFX objects.
         public const string SFX_TAG = "SFX";
 
         // The volume for the sound effects.
-        private float sfxVolume = 1.0F;
+        private float sfxVolume = 1.0F; // TODO: set volume for SFX
 
         // The audio for the TTS.
         public const string TTS_TAG = "TTS";
@@ -96,7 +96,7 @@ namespace RM_BBTS
                     if(instance == null)
                     {
                         // makes a new settings object.
-                        GameObject go = new GameObject("Settings");
+                        GameObject go = new GameObject("(Singleton) Settings");
 
                         // adds the instance component to the new object.
                         instance = go.AddComponent<GameSettings>();
