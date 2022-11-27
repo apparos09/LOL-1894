@@ -40,20 +40,23 @@ namespace RM_BBTS
         [Header("Buttons")]
         // Moves
         public Button move0Button;
-        public TMP_Text move0Text;
+        public TMP_Text move0ButtonText;
 
         public Button move1Button;
-        public TMP_Text move1Text;
+        public TMP_Text move1ButtonText;
 
         public Button move2Button;
-        public TMP_Text move2Text;
+        public TMP_Text move2ButtonText;
 
         public Button move3Button;
-        public TMP_Text move3Text;
+        public TMP_Text move3ButtonText;
 
         // Charge and Run
         public Button chargeButton;
         public Button runButton;
+
+        // Back Button Text
+        public TMP_Text backButtonText;
 
         [Header("Move Info")]
         // Move Info
@@ -101,6 +104,8 @@ namespace RM_BBTS
                 // speedString = defs["kwd_speed"];
                 // energyString = defs["kwd_energy"];
 
+                backButtonText.text = defs["kwd_back"];
+
                 rankString = defs["kwd_rank"];
                 powerString = defs["kwd_power"];
                 accuracyString = defs["kwd_accuracy"];
@@ -142,19 +147,19 @@ namespace RM_BBTS
             // BUTTONS
             // M0
             move0Button.interactable = player.Move0 != null;
-            move0Text.text = (player.Move0 != null) ? player.Move0.Name : "-";
+            move0ButtonText.text = (player.Move0 != null) ? player.Move0.Name : "-";
 
             // M1
             move1Button.interactable = player.Move1 != null;
-            move1Text.text = (player.Move1 != null) ? player.Move1.Name : "-";
+            move1ButtonText.text = (player.Move1 != null) ? player.Move1.Name : "-";
 
             // M2
             move2Button.interactable = player.Move2 != null;
-            move2Text.text = (player.Move2 != null) ? player.Move2.Name : "-";
+            move2ButtonText.text = (player.Move2 != null) ? player.Move2.Name : "-";
 
             // M3
             move3Button.interactable = player.Move3 != null;
-            move3Text.text = (player.Move3 != null) ? player.Move3.Name : "-";
+            move3ButtonText.text = (player.Move3 != null) ? player.Move3.Name : "-";
 
 
             // These moves can always be interacted with.

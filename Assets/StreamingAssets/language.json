@@ -55,6 +55,7 @@
     "kwd_titleScreen": "Title Screen",
     "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
     "kwd_returnToTitle": "Return to Title Screen",
+    "kwd_returnToGame": "Return to Game",
 
     "mnu_controls_instruct": "Left Mouse/Touch: Interact",
     "mnu_controls_desc": "The entire game is controlled via the left mouse button/touch.",

@@ -103,6 +103,9 @@ namespace RM_BBTS
         // The save and quit text.
         public TMP_Text saveAndQuitText;
 
+        // The back button text.
+        public TMP_Text savePromptBackText;
+
         [Header("UI/Settings Window")]
         // Title text for settings button.
         public TMP_Text settingsButtonText;
@@ -197,6 +200,7 @@ namespace RM_BBTS
                 savePromptText.text = defs["sve_msg_prompt"];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
+                savePromptBackText.text = defs["kwd_back"];
 
                 // SETTINGS WINDOW //
                 settingsButtonText.text = defs["kwd_settings"];
@@ -205,7 +209,7 @@ namespace RM_BBTS
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
                 mainMenuPromptText.text = defs["mmu_msg_prompt"];
                 mainMenuYesText.text = defs["kwd_returnToTitle"];
-                mainMenuNoText.text = defs["kwd_back"];
+                mainMenuNoText.text = defs["kwd_returnToGame"];
 
                 // String
                 levelString = defs["kwd_level"];
