@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.392}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3553547686640326891, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e637dbd671004dd4a8838781c0400428, type: 3}
     - target: {fileID: 7023950656491350712, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
       propertyPath: m_Name
       value: Accuracy Stat Panel
@@ -611,6 +615,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3553547686640326891, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc69eb1988f353242ae50495503292bc, type: 3}
     - target: {fileID: 7023950656491350712, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
       propertyPath: m_Name
       value: Energy Stat Panel
@@ -724,6 +732,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3553547686640326891, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8dc64a7c166a3e3489ccd28edc038b0b, type: 3}
     - target: {fileID: 7023950656491350712, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
       propertyPath: m_Name
       value: Power Stat Panel
@@ -837,6 +849,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3553547686640326891, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 83276a751d9cc8f4d82edc6409f47ced, type: 3}
     - target: {fileID: 7023950656491350712, guid: 32f2a18f1608cd74da2d0b7982ecb049, type: 3}
       propertyPath: m_Name
       value: Rank Stat Panel

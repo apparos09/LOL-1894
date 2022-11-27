@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using SimpleJSON;
 
 
 namespace RM_BBTS
@@ -28,18 +30,58 @@ namespace RM_BBTS
         private Move move2;
         private Move move3;
 
+        // The new move message text.
+        public TMP_Text switchMoveMessageText;
+
+        // The player moves header text.
+        public TMP_Text playerMovesHeaderText;
+
         // The move panels
         [Header("Panels")]
+        // New move info panel.
         public MoveInfoPanel newMoveInfo;
+
+        // Move info panels.
         public MoveInfoPanel move0Info;
         public MoveInfoPanel move1Info;
         public MoveInfoPanel move2Info;
         public MoveInfoPanel move3Info;
 
+        // The buttons components for translation.
+        [Header("Buttons")]
+        // Switch text for the confirm button.
+        public TMP_Text confirmButtonText;
+
+        // The switch button text for the four moves.
+        public TMP_Text switchMove0Text;
+        public TMP_Text switchMove1Text;
+        public TMP_Text switchMove2Text;
+        public TMP_Text switchMove3Text;
+
         // Start is called before the first frame update
         void Start()
         {
-            // ...
+            // Translation
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Language definitions set.
+            if (defs != null)
+            {
+                // The switch move message text.
+                switchMoveMessageText.text = defs["switchMoveMessage"];
+
+                // The player moves header text.
+                playerMovesHeaderText.text = defs["kwd_playerMoves"];
+
+                // Confirm button text.
+                confirmButtonText.text = defs["kwd_confirm"];
+
+                // Switch move text.
+                switchMove0Text.text = defs["kwd_switch"];
+                switchMove1Text.text = defs["kwd_switch"];
+                switchMove2Text.text = defs["kwd_switch"];
+                switchMove3Text.text = defs["kwd_switch"];
+            }
         }
 
         // This function is called when the object becomes enabled and visible.
@@ -141,7 +183,7 @@ namespace RM_BBTS
         }
 
         // Accepts the move changes.
-        public void AcceptChanges()
+        public void ConfirmChanges()
         {
             windowObject.SetActive(false);
 

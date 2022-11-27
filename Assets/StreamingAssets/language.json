@@ -141,17 +141,21 @@
     "bey_unknown_nme": "Unknown",
     "bey_treasure_nme": "Treasure",
     "bey_boss_nme": "Boss",
-    "bey_ufo_nme": "UFO",
-    "bey_ufo2_nme": "UFO MKII",
-    "bey_ufo2_nme_alt": "UFO Mark 2",
-    "bey_ufo3_nme": "UFO MKIII",
-    "bey_ufo3_nme_alt": "UFO Mark 3",
+    "bey_ufo1_nme": "UFO",
+    "bey_ufo2_nme": "UFO MK II",
+    "bey_ufo3_nme": "UFO MK III",
 
     "mve_run_nme": "Run",
     "mve_run_dsc": "The user runs away from battle. There is a 50% chance of success.",
 
     "mve_charge_nme": "Charge",
     "mve_charge_dsc": "The user charges their energy, which is needed to perform moves. This will fail if the user is at their max.",
+
+
+    "switchMoveMessage": "Switch out for a new move?",
+    "kwd_playerMoves": "Player Moves",
+    "kwd_confirm": "Confirm",
+    "kwd_switch": "Switch",
 
     "trl_intro_00": "Welcome to the simulation game, Battle Bot!",
     "trl_intro_01": "Your job is to beat the boss of the simulation.",

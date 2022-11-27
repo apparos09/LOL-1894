@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // The list of IDs.
-    public enum battleEntityId { unknown, treasure, boss, ufo, ufo2, ufo3 }
+    public enum battleEntityId { unknown, treasure, boss, ufo1, ufo2, ufo3 }
 
     // The list of entities for the game. There only needs to be one instance of this list.
     public class BattleEntityList : MonoBehaviour
@@ -31,7 +31,7 @@ namespace RM_BBTS
         private const int MIN_ADJUST = 0, MAX_ADJUST = 10;
 
         // The first enemy id (ignores the boss).
-        private battleEntityId firstEnemyId = battleEntityId.ufo;
+        private battleEntityId firstEnemyId = battleEntityId.ufo1;
 
         // The last enemy id (ignores the boss).
         private battleEntityId lastEnemyId = battleEntityId.ufo3;
@@ -186,12 +186,12 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.ufo: // UFO
-                    data.id = battleEntityId.ufo;
+                case battleEntityId.ufo1: // UFO
+                    data.id = battleEntityId.ufo1;
                     data.evoId = battleEntityId.ufo2;
 
                     data.displayName = "<UFO>";
-                    data.displayNameSpeakKey = "bey_ufo_nme";
+                    data.displayNameSpeakKey = "bey_ufo1_nme";
 
                     data.maxHealth = 10;
                     data.health = 10;
@@ -204,24 +204,24 @@ namespace RM_BBTS
                     data.energy = 10;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo];
+                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
                     // data.move0 = moveId.lasershot;
 
                     // Loads the name key.
-                    nameKey = "bey_ufo_nme";
+                    nameKey = "bey_ufo1_nme";
                     break;
 
                 case battleEntityId.ufo2: // UFO MKII
                     data.id = battleEntityId.ufo2;
-                    data.preEvoId = battleEntityId.ufo;
+                    data.preEvoId = battleEntityId.ufo1;
                     data.evoId = battleEntityId.ufo3;
 
 
-                    data.displayName = "<UFO MKII>";
-                    data.displayNameSpeakKey = "bey_ufo2_nme_alt";
+                    data.displayName = "<UFO MK II>";
+                    data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     data.maxHealth = 15;
                     data.health = 15;
@@ -234,7 +234,7 @@ namespace RM_BBTS
                     data.energy = 15;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo];
+                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
@@ -247,8 +247,8 @@ namespace RM_BBTS
                     data.id = battleEntityId.ufo3;
                     data.preEvoId = battleEntityId.ufo2;
 
-                    data.displayName = "<UFO MKIII>";
-                    data.displayNameSpeakKey = "bey_ufo3_nme_alt";
+                    data.displayName = "<UFO MK III>";
+                    data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     data.maxHealth = 30;
                     data.health = 30;
@@ -261,7 +261,7 @@ namespace RM_BBTS
                     data.energy = 30;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo];
+                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
@@ -301,7 +301,7 @@ namespace RM_BBTS
                     moveList = new List<moveId>() { moveId.poke };
                     break;
 
-                case battleEntityId.ufo:
+                case battleEntityId.ufo1:
                     moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
                     break;
 
