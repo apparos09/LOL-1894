@@ -243,8 +243,6 @@ namespace RM_BBTS
         // Initializes the overworld.
         public override void Initialize()
         {
-            initialized = true;
-
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
 
@@ -364,11 +362,31 @@ namespace RM_BBTS
             // Set initial showing of health.
             opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
 
+            // Plays the BGM based on the opponent.
+            if(opponent is Boss)
+            {
+                // Boss BGM.
+                gameManager.PlayBossBgm();
+            }
+            else if(opponent is Treasure)
+            {
+                // Treasure BGM
+                gameManager.PlayTreasureBgm();
+            }   
+            else
+            {
+                // Battle BGM.
+                gameManager.PlayBattleBgm();
+            }
+
             // The battle has begun.
             initBattleEnd = false;
 
             // Do not autosave unless the player actually wins.
             autoSaveOnExit = false;
+
+            // The battle has been initialized.
+            initialized = true;
         }
 
         // Called when the mouse hovers over an object.

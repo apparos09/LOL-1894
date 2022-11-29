@@ -163,15 +163,18 @@ namespace RM_BBTS
         // Becomes set to 'true' when the player's energy is transitioning.
         private bool playerEnergyTransitioning = false;
 
-        // [Header("Audio")]
-        // // The source for the background music audio source.
-        // public AudioSource bgmSource;
-        // 
-        // // The source for the sound effect audio source.
-        // public AudioSource sfxSource;
-        // 
-        // // The source for the jingle audio source.
-        // public AudioSource jngSource;
+        [Header("Audio")]
+        // The source for the background music audio source.
+        public AudioManager audio;
+
+        // The bgm for the overworld.
+        public AudioClip overworldBgm;
+
+        // Battle bgm.
+        public AudioClip battleBgm;
+
+        // The boss BGM.
+        public AudioClip bossBgm;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -748,16 +751,33 @@ namespace RM_BBTS
             }
                 
         }
-        // Submits the current game progress.
-        public void SubmitProgress()
+
+
+        // AUDIO //
+        // TODO: add pitch settings.
+
+        // Plays the overworld bgm.
+        public void PlayOverworldBgm()
         {
-            LOLManager.Instance.SubmitProgress(score, roomsCompleted);
+            audio.PlayBgm(overworldBgm);
         }
 
-        // Submits the game progress complete.
-        public void SubmitProgressComplete()
+        // Plays the battle bgm.
+        public void PlayBattleBgm()
         {
-            LOLManager.Instance.SubmitProgressComplete(score);
+            audio.PlayBgm(battleBgm);
+        }
+
+        // Plays the battle bgm.
+        public void PlayTreasureBgm()
+        {
+            audio.PlayBgm(battleBgm, true);
+        }
+
+        // Plays the battle - boss bgm.
+        public void PlayBossBgm()
+        {
+            audio.PlayBgm(bossBgm);
         }
 
         // Called when the player gets a game over.
@@ -772,6 +792,18 @@ namespace RM_BBTS
             // Loads the game over tutorial.
             if (useTutorial && !tutorial.clearedGameOver)
                 tutorial.LoadGameOverTutorial();
+        }
+
+        // Submits the current game progress.
+        public void SubmitProgress()
+        {
+            LOLManager.Instance.SubmitProgress(score, roomsCompleted);
+        }
+
+        // Submits the game progress complete.
+        public void SubmitProgressComplete()
+        {
+            LOLManager.Instance.SubmitProgressComplete(score);
         }
 
         // Goes to the results scene.

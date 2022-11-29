@@ -98,56 +98,6 @@ namespace RM_BBTS
         // Initializes the overworld.
         public override void Initialize()
         {
-            // This is used to generate doors for setting up the scene.
-            // This should be done commented out when doors are added manually.
-
-            // {
-            //     // Goes through every column.
-            //     for(int c = 0; c < COLUMNS && doors.Count < DOOR_COUNT; c++)
-            //     {
-            //         // Goes through every row.
-            //         for (int r = 0; r < ROWS && doors.Count < DOOR_COUNT; r++)
-            //         {
-            //             // Instantiates the door.
-            //             GameObject doorObject = Instantiate(doorPrefab);
-            // 
-            //             // Sets the parent as the door position reference. Set the local position back to 0 for repositioning.
-            //             doorObject.transform.parent = doorParent.transform;
-            //             doorObject.transform.localPosition = Vector3.zero;
-            // 
-            //             // Translation calculation.
-            //             Vector3 tlate = Vector3.Scale(doorPosOffset, doorObject.transform.localScale);
-            //             tlate.Scale(new Vector3(c, r, 1));
-            // 
-            //             // Translates the door.
-            //             doorObject.transform.Translate(tlate);
-            // 
-            //             // Adds the door to the list and renames it.
-            //             doors.Add(doorObject.GetComponent<Door>());
-            //             doorObject.name = "Door " + doors.Count.ToString("00");
-            // 
-            //             // TODO: add naming for boss door.
-            //             // TODO: add in enemy components.
-            //         }
-            //     }
-            //     
-            // }
-
-            // // Adds all the doors to the list.
-            // if (doors.Count == 0)
-            // {
-            //     // Includes inactive doors since they may not be visible right now.
-            //     doors.AddRange(FindObjectsOfType<Door>(true));
-            // }    
-                
-            // Initialize All Doors
-            // Goes through each door and gives them an entity behind them.
-            // foreach(Door door in doors)
-            // {
-            //     // generates a room for the door.
-            //     GenerateRoom(door);
-            // }
-
             // Initializes the doors (normal, treasure, and boss)
             {
                 // Door initialization list.
@@ -193,6 +143,9 @@ namespace RM_BBTS
 
             // Updates the UI.
             UpdateUI();
+
+            // Plays the overworld BGM.
+            gameManager.PlayOverworldBgm();
 
             initialized = true;
         }
@@ -385,6 +338,9 @@ namespace RM_BBTS
 
             // Update the UI for the overworld.
             UpdateUI();
+
+            // Plays the overworld BGM.
+            gameManager.PlayOverworldBgm();
 
         }
         

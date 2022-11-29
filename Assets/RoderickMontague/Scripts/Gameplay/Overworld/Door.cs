@@ -24,6 +24,7 @@ namespace RM_BBTS
         
     }
 
+    // The door for entering a battle class.
     public class Door : MonoBehaviour
     {
         // The sprite that the door uses.
