@@ -3705,7 +3705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -250}
+  m_AnchoredPosition: {x: -150, y: -250}
   m_SizeDelta: {x: 192, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439972763
@@ -6219,7 +6219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000/0000
+  m_text: 100.00%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8177,7 +8177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 425, y: -250}
+  m_AnchoredPosition: {x: 150, y: -250}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1016463190
@@ -8256,7 +8256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ae38540e0bfaa54da098e635a084af1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d39219ab7d288841ac54c9512a3a60f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12259,6 +12259,14 @@ MonoBehaviour:
   - {fileID: 1242854128}
   bossDoor: {fileID: 0}
   treasureDoors: []
+  doorUnlockedSprites:
+  - {fileID: -7341407202210888751, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: -8382612525795312103, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  doorLockedSprites:
+  - {fileID: 6623719234781301212, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: 6058075553308899857, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  bossDoorUnlockedSprite: {fileID: -8109040187468722232, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  bossDoorLockedSprite: {fileID: 1962524685468842795, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
 --- !u!1 &1486936159
@@ -13044,7 +13052,9 @@ MonoBehaviour:
   move3Button: {fileID: 1953913771}
   move3ButtonText: {fileID: 969778057}
   chargeButton: {fileID: 755376606}
+  chargeButtonText: {fileID: 1959522120}
   runButton: {fileID: 240816729}
+  runButtonText: {fileID: 739185267}
   backButtonText: {fileID: 1981535888}
   moveNameText: {fileID: 54797687}
   moveRankText: {fileID: 1019108255}

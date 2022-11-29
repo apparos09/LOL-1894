@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // The list of IDs.
-    public enum battleEntityId { unknown, treasure, boss, ufo1, ufo2, ufo3 }
+    public enum battleEntityId { unknown, treasure, combatbot, ufo1, ufo2, ufo3 }
 
     // The list of entities for the game. There only needs to be one instance of this list.
     public class BattleEntityList : MonoBehaviour
@@ -139,7 +139,7 @@ namespace RM_BBTS
                     data.move0 = moveId.poke;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[0];
+                    // data.sprite = entitySprites[0];
 
                     // Loads the name key.
                     nameKey = "bey_unknown_nme";
@@ -165,11 +165,11 @@ namespace RM_BBTS
                     nameKey = "bey_treasure_nme";
                     break;
 
-                case battleEntityId.boss: // boss
+                case battleEntityId.combatbot: // combatbot.
 
-                    data.id = battleEntityId.boss;
-                    data.displayName = "<Boss>";
-                    data.displayNameSpeakKey = "bey_boss_nme";
+                    data.id = battleEntityId.combatbot;
+                    data.displayName = "<Combat Bot>";
+                    data.displayNameSpeakKey = "bey_combatbot_nme";
 
                     data.maxHealth = 1; // 50
                     data.health = 1; // 50
@@ -204,7 +204,7 @@ namespace RM_BBTS
                     data.energy = 10;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
+                    // data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
@@ -234,7 +234,7 @@ namespace RM_BBTS
                     data.energy = 15;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
+                    // data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
@@ -261,7 +261,7 @@ namespace RM_BBTS
                     data.energy = 30;
 
                     // Saves the sprite.
-                    data.sprite = entitySprites[(int)battleEntityId.ufo1];
+                    // data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // Set random moves.
                     SetRandomMovesFromList(ref data);
@@ -272,8 +272,12 @@ namespace RM_BBTS
 
             }
 
+            // Sets the sprite if the entity's ID is a valid number for the list.
+            if((int)data.id < entitySprites.Count)
+                data.sprite = entitySprites[(int)data.id];
+
             // Loads the translation for the data.
-            if(nameKey != "")
+            if (nameKey != "")
                 BattleEntity.LoadTranslationForData(ref data, nameKey);
 
             return data;
@@ -297,7 +301,7 @@ namespace RM_BBTS
                     moveList = new List<moveId>() { moveId.poke };
                     break;
 
-                case battleEntityId.boss:
+                case battleEntityId.combatbot:
                     moveList = new List<moveId>() { moveId.poke };
                     break;
 
@@ -495,7 +499,7 @@ namespace RM_BBTS
         // Generates the boss.
         public BattleEntityGameData GenerateBoss()
         {
-            return GenerateBattleEntityData(battleEntityId.boss);
+            return GenerateBattleEntityData(battleEntityId.combatbot);
         }
     }
 

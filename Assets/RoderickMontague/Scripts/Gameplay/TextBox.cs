@@ -10,7 +10,7 @@ namespace RM_BBTS
         public GameObject boxObject;
 
         // The current page.
-        private int currPageIndex = 0;
+        private int currPageIndex = -1;
 
         // List of pages.
         public List<Page> pages = new List<Page>();
@@ -202,15 +202,40 @@ namespace RM_BBTS
             pages.Insert(index, page);
         }
 
+        // Inserts a page after the current page.
+        public void InsertAfterCurrentPage(Page page)
+        {
+            // Checks for validity. If this check fails, the page is added to the end of the list.
+            if(currPageIndex >= 0 && currPageIndex < pages.Count)
+            {
+                pages.Insert(currPageIndex + 1, page);
+            }
+            else
+            {
+                pages.Add(page);
+            }
+        }
+
         // Replaces the pages from the list with the new pages.
         public void ReplacePages(List<Page> newPages)
         {
             // Replaces the pages and sets the page.
             pages.Clear();
-            pages = new List<Page>(newPages);
 
-            // Sets the page.
-            SetPage(0);
+            // Pages to add.
+            if(newPages.Count > 0)
+            {
+                pages = new List<Page>(newPages);
+
+                // Sets the page.
+                SetPage(0);
+            }
+            else
+            {
+                // No current pages.
+                currPageIndex = -1;
+            }
+            
         }
 
         // Replaces the pages from the list with the new pages.

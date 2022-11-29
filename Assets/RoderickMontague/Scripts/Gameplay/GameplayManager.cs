@@ -155,7 +155,10 @@ namespace RM_BBTS
         public ProgressBar playerEnergyBar;
 
         // The text for the player's enegy
-        public TMPro.TMP_Text playerEnergyText;
+        public TMP_Text playerEnergyText;
+
+        // The amount of decimal places used for displaying energy levels.
+        public const int ENERGY_DECIMAL_PLACES = 2;
 
         // Becomes set to 'true' when the player's energy is transitioning.
         private bool playerEnergyTransitioning = false;
@@ -737,7 +740,13 @@ namespace RM_BBTS
             // If false, the text is changed instantly. If true, the text is not updated here.
             // This prevents the final number from flashing for a frame.
             if (!syncTextToBars)
-                playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+            {
+                // Now just shows the percentage.
+                // playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+                playerEnergyText.text = 
+                    (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
+            }
+                
         }
         // Submits the current game progress.
         public void SubmitProgress()
@@ -1056,7 +1065,7 @@ namespace RM_BBTS
                 // Checks if the health bar is transitioning.
                 if (playerHealthBar.IsTransitioning())
                 {
-                    playerHealthText.text = Mathf.Round(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" +
+                    playerHealthText.text = Mathf.Ceil(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" +
                         player.MaxHealth.ToString();
 
                     // The health is transitioning.
@@ -1073,8 +1082,15 @@ namespace RM_BBTS
                 // Checks if the energy bar is transitioning.
                 if (playerEnergyBar.IsTransitioning())
                 {
-                    playerEnergyText.text = Mathf.Round(playerEnergyBar.GetSliderValueAsPercentage() * player.MaxEnergy).ToString() + "/" +
-                        player.MaxEnergy.ToString();
+                    // Percentage value.
+                    // playerEnergyText.text = 
+                    //     Mathf.Round(playerEnergyBar.GetSliderValueAsPercentage() * player.MaxEnergy).ToString() + "/" +
+                    //     player.MaxEnergy.ToString();
+
+                    // Now displays as a percentage value.
+                    playerEnergyText.text = 
+                        (playerEnergyBar.GetSliderValueAsPercentage() * 100).ToString(
+                            "F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
 
                     // The energy is transitioning.
                     playerEnergyTransitioning = true;
@@ -1082,7 +1098,9 @@ namespace RM_BBTS
                 else if (playerEnergyTransitioning)  // Transition done.
                 {
                     // Set to exact value.
-                    playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+                    playerEnergyText.text =
+                    (player.Energy / player.MaxEnergy * 100.0F).ToString(
+                        "F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
 
                     playerEnergyTransitioning = false;
                 }

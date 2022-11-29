@@ -51,9 +51,13 @@ namespace RM_BBTS
         public Button move3Button;
         public TMP_Text move3ButtonText;
 
-        // Charge and Run
+        // Charge
         public Button chargeButton;
+        public TMP_Text chargeButtonText;
+
+        // Run
         public Button runButton;
+        public TMP_Text runButtonText;
 
         // Back Button Text
         public TMP_Text backButtonText;
@@ -142,7 +146,10 @@ namespace RM_BBTS
             speedText.text = gameManager.SpeedString + ": " + Mathf.Ceil(player.Speed).ToString();
 
             // Energy
-            energyText.text = gameManager.EnergyString + ": " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
+            // Now shows as a percentage.
+            // energyText.text = gameManager.EnergyString + ": " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
+            energyText.text = gameManager.EnergyString + ": " +
+                (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + GameplayManager.ENERGY_DECIMAL_PLACES.ToString()) + "%";
 
             // BUTTONS
             // M0
@@ -161,6 +168,9 @@ namespace RM_BBTS
             move3Button.interactable = player.Move3 != null;
             move3ButtonText.text = (player.Move3 != null) ? player.Move3.Name : "-";
 
+            // Charge and Run Buttons
+            chargeButtonText.text = MoveList.Instance.ChargeMove.Name;
+            runButtonText.text = MoveList.Instance.RunMove.Name;
 
             // These moves can always be interacted with.
             chargeButton.interactable = true;
@@ -215,7 +225,7 @@ namespace RM_BBTS
             moveRankText.text = rankString + ": " + move.Rank.ToString();
             movePowerText.text = powerString + ": " + move.Power.ToString();
             moveAccuracyText.text = accuracyString + ": " + Mathf.Round(move.Accuracy * 100.0F).ToString() + "%";
-            moveEnergyText.text = gameManager.EnergyString + ": " + move.Energy.ToString();
+            moveEnergyText.text = gameManager.EnergyString + ": " + (move.Energy * 100.0F).ToString() + "%";
 
             moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
 

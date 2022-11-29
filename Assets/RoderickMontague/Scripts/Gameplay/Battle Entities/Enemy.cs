@@ -8,7 +8,7 @@ namespace RM_BBTS
     public class Enemy : BattleEntity
     {
         // The speciality of the enemy.
-        public enum specialty { none, health, attack, defense, speed, energy}
+        public enum specialty { none, health, attack, defense, speed}
 
         // private struct MoveOption
         // {

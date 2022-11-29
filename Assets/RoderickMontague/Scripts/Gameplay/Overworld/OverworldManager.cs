@@ -53,6 +53,16 @@ namespace RM_BBTS
         // // the position offset for placing doors.
         // public Vector3 doorPosOffset = new Vector3(2.0F, -2.0F, 0);
 
+        [Header("Doors/Sprites")]
+
+        // The list of unlocked and locked door sprites (does NOT include the boss door).
+        public List<Sprite> doorUnlockedSprites;
+        public List<Sprite> doorLockedSprites;
+
+        // The unlocked and locked boss door sprites.
+        public Sprite bossDoorUnlockedSprite;
+        public Sprite bossDoorLockedSprite;
+
         [Header("UI")]
         
         // The user interface.
@@ -151,6 +161,8 @@ namespace RM_BBTS
                 randIndex = Random.Range(0, doorInitList.Count); // Grabs the random index.
                 bossDoor = doorInitList[randIndex]; // Grab random door to make boss door.
                 doorInitList.RemoveAt(randIndex); // Remove boss door from list.
+                
+                // Replaces the sprite in the 'GenerateRoom' function for consistency.
                 bossDoor.isBossDoor = true; // This is a boss door.
                 GenerateRoom(bossDoor); // Generates the room.
 
@@ -255,7 +267,12 @@ namespace RM_BBTS
             // Checks the door type.
             if(door.isBossDoor) // Boss Door
             {
-                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.boss);
+                // TODO: randomize between the three bosses.
+                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.combatbot);
+
+                // Replaces the sprites.
+                bossDoor.unlockedSprite = bossDoorUnlockedSprite;
+                bossDoor.lockedSprite = bossDoorLockedSprite;
             }
             else if(door.isTreasureDoor) // Treasure Door
             {
@@ -275,6 +292,17 @@ namespace RM_BBTS
                 // TESTING 
                 door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(false, false, true);
 
+            }
+
+            // Randomizes the door image if it's not a boss door.
+            if (!door.isBossDoor && doorLockedSprites.Count != 0 && doorLockedSprites.Count == doorUnlockedSprites.Count)
+            {
+                // Generates a random door image.
+                int index = Random.Range(0, doorLockedSprites.Count);
+
+                // Replaces the sprites.
+                door.unlockedSprite = doorUnlockedSprites[index];
+                door.lockedSprite = doorLockedSprites[index];
             }
 
             // Sets the level.

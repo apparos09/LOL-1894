@@ -26,7 +26,7 @@ namespace RM_BBTS
         protected float accuracy;
 
         // The amount of energy a move uses.
-        protected float energy;
+        protected float energyUsage;
 
         // TODO: add space for animation.
 
@@ -52,14 +52,14 @@ namespace RM_BBTS
 
         // TODO: replace name with file citation for translation.
         // Move constructor
-        public Move(moveId id, string name, int rank, float power, float accuracy, float energy)
+        public Move(moveId id, string name, int rank, float power, float accuracy, float energyUsage)
         {
             this.id = id;
             this.name = name;
             this.rank = rank;
             this.power = power;
             this.accuracy = accuracy;
-            this.energy = energy;
+            this.energyUsage = energyUsage;
 
             // Default message.
             description = "No information available";
@@ -115,7 +115,7 @@ namespace RM_BBTS
         // Returns the energy the move uses.
         public float Energy
         {
-            get { return energy; }
+            get { return energyUsage; }
         }
 
         // Called to play the move animation.
@@ -157,14 +157,30 @@ namespace RM_BBTS
             }
         }
 
+        // Tries to end the turn early if one of the entities is dead.
+        public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
+        {
+            // The user or the target is dead.
+            if (user.Health <= 0 || target.Health <= 0)
+            {
+                // Ends the turn early.
+                battle.EndTurnEarly();
+                return true;
+            }
+            else // Don't end the battle early.
+            {
+                return false;
+            }
+        }
+
 
         // Called when the move is being performed.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // The move inserts a message after the current page in the text box.
 
-            // Rounds energy up to a whole number.
-            float energyUsed = Mathf.Ceil(energy);
+            // Takes a percentage of the user's max energy.
+            float energyUsed = user.MaxEnergy * energyUsage;
 
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energyUsed)
@@ -270,14 +286,8 @@ namespace RM_BBTS
                     battle.gameManager.UpdatePlayerHealthUI();
                 }
 
-
-                // TODO: the turn should end early if the user or the target dies. You should implement that.
-                // // The user or the target is dead.
-                // if(user.Health <= 0 || target.Health <= 0)
-                // {
-                //     // Ends the turn early.
-                //     battle.EndTurnEarly();
-                // }
+                // Tries ending the turn early.
+                TryEndTurnEarly(user, target, battle);
 
                 return true;
             }

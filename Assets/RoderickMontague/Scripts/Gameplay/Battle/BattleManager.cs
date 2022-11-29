@@ -144,6 +144,7 @@ namespace RM_BBTS
         [Header("UI/Opponent")]
 
         // The opponent title text.
+        // TODO: during a boss fight this sometimes does not show up. Fix that.
         public TMP_Text opponentNameText;
 
         // The health bar for the opponent.
@@ -257,7 +258,7 @@ namespace RM_BBTS
                 case battleEntityId.treasure: // treasure
                     opponent = treasureBase;
                     break;
-                case battleEntityId.boss: // boss
+                case battleEntityId.combatbot: // boss
                     opponent = bossBase;
                     break;
                 default: // enemy
@@ -830,15 +831,14 @@ namespace RM_BBTS
                 
         }
 
-        // TODO: this doesn't work. You should fix this.
-        // // Ends the turn early.
-        // public void EndTurnEarly()
-        // {
-        //     // Removes the rest of the pages so that the turn ends early.
-        //     List<Page> savedPages = textBox.pages;
-        //     savedPages.RemoveRange(textBox.CurrentPageIndex + 1, savedPages.Count - textBox.CurrentPageIndex - 1);
-        //     textBox.pages = savedPages;
-        // }
+        // Ends the turn early.
+        public void EndTurnEarly()
+        {
+            // Adds an end page so that the battle can end early.
+            Page endPage = new Page(" ");
+            endPage.OnPageOpenedAddCallback(textBox.Close);
+            textBox.InsertAfterCurrentPage(endPage);
+        }
 
         // Called when the turn is over.
         private void OnTurnOver()
@@ -1177,11 +1177,14 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetBattleWonBossMessage(),
                                     BattleMessages.Instance.GetBattleWonBossSpeakKey()
                                     );
+
+                                // Close the textbox and go onto the results screen.
+                                bossPage.OnPageClosedAddCallback(textBox.Close);
                                 bossPage.OnPageClosedAddCallback(gameManager.ToResultsScene);
 
                                 // Adds the boss page. 
                                 textBox.pages.Add(bossPage);
-                                textBox.pages.Add(new Page("..."));
+                                // textBox.pages.Add(new Page("..."));
                             }
                             else // Not Treasure
                             {
@@ -1217,13 +1220,13 @@ namespace RM_BBTS
                                 // Levels up te player.
                                 player.LevelUp();
 
+                                // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
                                     gameManager.HealthString + " +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
                                     gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "   |   " +
                                     gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   \n" +
-                                    gameManager.SpeedString + " +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString() + "   |   " +
-                                    gameManager.EnergyString + " +" + Mathf.RoundToInt(player.MaxEnergy - oldMaxEng).ToString()
+                                    gameManager.SpeedString + " +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString()
                                     ));
 
                                 // Adds page with new stats.
@@ -1232,8 +1235,7 @@ namespace RM_BBTS
                                     gameManager.HealthString + " = " + Mathf.RoundToInt(player.MaxHealth).ToString() + "   |   " +
                                     gameManager.AttackString + " = " + Mathf.RoundToInt(player.Attack).ToString() + "   |   \n" +
                                     gameManager.DefenseString + " = " + Mathf.RoundToInt(player.Defense).ToString() + "   |   " +
-                                    gameManager.SpeedString + " = " + Mathf.RoundToInt(player.Speed).ToString() + "   |   " +
-                                    gameManager.EnergyString + " = " + Mathf.RoundToInt(player.MaxEnergy).ToString()
+                                    gameManager.SpeedString + " = " + Mathf.RoundToInt(player.Speed).ToString()
                                     ));
 
                                 
@@ -1255,15 +1257,15 @@ namespace RM_BBTS
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
                             if (learnMove)
                             {
-                                Page movePage = new Page(
+                                Page newMovePage = new Page(
                                     BattleMessages.Instance.GetLearnMoveMessage(),
                                     BattleMessages.Instance.GetLearnMoveSpeakKey()
                                     );
 
-                                movePage.OnPageClosedAddCallback(OnLearningNewMove);
-                                textBox.pages.Add(movePage);
+                                newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
+                                textBox.pages.Add(newMovePage);
 
-                                // Placeholder page.
+                                // Placeholder page (TODO: not needed?)
                                 textBox.pages.Add(new Page("..."));
                             }
 
