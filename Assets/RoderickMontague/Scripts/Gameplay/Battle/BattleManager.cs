@@ -979,6 +979,10 @@ namespace RM_BBTS
             /// Know why that would be.
             /// </summary>
 
+            // NEW
+            // It appears to happen before and after the player levels up.
+            // It also generates a new move for the player to learn.
+
             // Hide the box gameobject.
             textBox.Close();
 
@@ -1042,8 +1046,8 @@ namespace RM_BBTS
                     }
                 }
 
-                // Remove this callback.
-                textBox.CurrentPage.OnPageClosedRemoveCallback(OnLearningNewMove);
+                // Remove this callback (DOESN'T WORK)
+                // textBox.CurrentPage.OnPageClosedRemoveCallback(OnLearningNewMove);
 
                 // Removes the placeholder page.
                 textBox.pages.RemoveAt(textBox.CurrentPageIndex + 1);

@@ -93,6 +93,14 @@ namespace RM_BBTS
             Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times);
         }
 
+        // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
+        public void LevelUp(Enemy.specialty enemySpecial, uint times = 1)
+        {
+            LevelUp(times);
+
+            // TODO: implement enemy specialities for level up.
+        }
+
         // Selects the run move. Only the player has the run move.
         public void SelectRun()
         {

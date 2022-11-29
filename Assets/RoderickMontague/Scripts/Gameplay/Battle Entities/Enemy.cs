@@ -7,12 +7,18 @@ namespace RM_BBTS
     // A class for the enemeies.
     public class Enemy : BattleEntity
     {
+        // The speciality of the enemy.
+        public enum specialty { none, health, attack, defense, speed, energy}
+
         // private struct MoveOption
         // {
         //     public Move move;
         // 
         // 
         // }
+
+        // The enemy's stat speciality.
+        public specialty statSpecial = specialty.none;
 
         // Holds a reference to the player.
         public Player player;

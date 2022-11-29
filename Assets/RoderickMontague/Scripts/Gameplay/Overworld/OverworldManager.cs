@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace RM_BBTS
 {
@@ -56,6 +57,13 @@ namespace RM_BBTS
         
         // The user interface.
         public GameObject ui;
+
+        // The score text for the overworld.
+        public TMP_Text scoreText;
+
+        // The amount of digits the score has. If it surpasses this amount it will add more digits.
+        // It can probably just be 5 digits.
+        public const int SCORE_DIGITS = 10;
 
         // Start is called before the first frame update
         void Start()
@@ -171,6 +179,9 @@ namespace RM_BBTS
 
             }
 
+            // Updates the UI.
+            UpdateUI();
+
             initialized = true;
         }
 
@@ -281,6 +292,75 @@ namespace RM_BBTS
 
         }
 
+        // Updates the UI for the overworld.
+        public void UpdateUI()
+        {
+            // Set the base score.
+            scoreText.text = gameManager.score.ToString("D" + SCORE_DIGITS.ToString());
+        }
+
+        // Called when returning to the overworld.
+        public void OnOverworldReturn()
+        {
+            // Rearranges the doors.
+            if (gameOver)
+                OnOverworldReturnGameOver();
+
+            // Evolves the entities.
+            int phase = gameManager.GetGamePhase();
+
+            // Time to level up enemies if 'true'
+            if(gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0)
+            {
+                // The enemies haven't been leveled up yet.
+                if(gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
+                {
+                    // Goes through each door.
+                    foreach(Door door in doors)
+                    {
+                        // Only level up unlocked doors.
+                        if(!door.Locked)
+                        {
+                            // Levels up the entity by the amount of battles per level up (the value is the same).
+                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.roomsPerLevelUp);
+                        }
+                    }
+
+
+                    gameManager.lastEnemyLevelUps = gameManager.roomsCompleted;
+                }
+            }
+
+            // If in the middle phase, and no evolutions have happened.
+            // If in the end phase, and the evolutions have not been run a second time.
+            if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
+            {
+                // Goes through each door.
+                foreach(Door door in doors)
+                {
+                    // Only evolve the entity if the door is unlocked.
+                    // It helps save on evolution time.
+                    if (!door.Locked)
+                    {
+                        door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+
+                        // Restore health and energy levels to max even if the entity didn't evolve.
+                        door.battleEntity.health = door.battleEntity.maxHealth;
+                        door.battleEntity.energy = door.battleEntity.maxEnergy;
+
+                    }
+                        
+                }
+
+                gameManager.evolveWaves++;
+            }
+
+            // Update the UI for the overworld.
+            UpdateUI();
+
+        }
+        
+        
         // Rearranges the doors.
         public void OnOverworldReturnGameOver()
         {
@@ -344,63 +424,6 @@ namespace RM_BBTS
 
         }
 
-        // Called when returning to the overworld.
-        public void OnOverworldReturn()
-        {
-            // Rearranges the doors.
-            if (gameOver)
-                OnOverworldReturnGameOver();
-
-            // Evolves the entities.
-            int phase = gameManager.GetGamePhase();
-
-            // Time to level up enemies if 'true'
-            if(gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0)
-            {
-                // The enemies haven't been leveled up yet.
-                if(gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
-                {
-                    // Goes through each door.
-                    foreach(Door door in doors)
-                    {
-                        // Only level up unlocked doors.
-                        if(!door.Locked)
-                        {
-                            // Levels up the entity by the amount of battles per level up (the value is the same).
-                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.roomsPerLevelUp);
-                        }
-                    }
-
-
-                    gameManager.lastEnemyLevelUps = gameManager.roomsCompleted;
-                }
-            }
-
-            // If in the middle phase, and no evolutions have happened.
-            // If in the end phase, and the evolutions have not been run a second time.
-            if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
-            {
-                // Goes through each door.
-                foreach(Door door in doors)
-                {
-                    // Only evolve the entity if the door is unlocked.
-                    // It helps save on evolution time.
-                    if (!door.Locked)
-                    {
-                        door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
-
-                        // Restore health and energy levels to max even if the entity didn't evolve.
-                        door.battleEntity.health = door.battleEntity.maxHealth;
-                        door.battleEntity.energy = door.battleEntity.maxEnergy;
-
-                    }
-                        
-                }
-
-                gameManager.evolveWaves++;
-            }
-
-        }
 
         // Update is called once per frame
         void Update()
