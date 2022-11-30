@@ -129,6 +129,8 @@ namespace RM_BBTS
                 
                 // Replaces the sprite in the 'GenerateRoom' function for consistency.
                 bossDoor.isBossDoor = true; // This is a boss door.
+
+                // TODO: check specialties of enemies to see what boss fight to spawn.
                 GenerateRoom(bossDoor); // Generates the room.
 
                 // TREASURES
