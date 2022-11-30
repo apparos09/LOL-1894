@@ -157,6 +157,12 @@ namespace RM_BBTS
             }
         }
 
+        // Checks if a move is available for the battle entity to perform.
+        public bool Usable(BattleEntity entity)
+        {
+            return (energyUsage * entity.MaxEnergy <= entity.Energy);
+        }
+
         // Tries to end the turn early if one of the entities is dead.
         public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
         {

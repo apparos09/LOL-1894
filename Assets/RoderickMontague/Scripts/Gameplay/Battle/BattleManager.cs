@@ -496,25 +496,25 @@ namespace RM_BBTS
 
             // Move 0 
             if (player.Move0 != null)
-                move0Button.interactable = (player.Move0.EnergyUsage * player.MaxEnergy) <= player.Energy;
+                move0Button.interactable = player.Move0.Usable(player);
             else
                 move0Button.interactable = false;
 
             // Move 1
             if (player.Move1 != null)
-                move1Button.interactable = (player.Move1.EnergyUsage * player.MaxEnergy) <= player.Energy;
+                move1Button.interactable = player.Move1.Usable(player);
             else
                 move1Button.interactable = false;
 
             // Move 2 
             if (player.Move2 != null)
-                move2Button.interactable = (player.Move2.EnergyUsage * player.MaxEnergy) <= player.Energy;
+                move2Button.interactable = player.Move2.Usable(player);
             else
                 move2Button.interactable = false;
 
             // Move 3
             if (player.Move3 != null)
-                move3Button.interactable = (player.Move3.EnergyUsage * player.MaxEnergy) <= player.Energy;
+                move3Button.interactable = player.Move3.Usable(player);
             else
                 move3Button.interactable = false;
 
@@ -1366,7 +1366,18 @@ namespace RM_BBTS
                                 float oldMaxEng = player.MaxEnergy;
 
                                 // Levels up te player.
-                                player.LevelUp();
+                                // Checks if the opponent has a level-up specialty or not.
+                                if(opponent is Enemy)
+                                {
+                                    // Special level up.
+                                    player.LevelUp(((Enemy)opponent).statSpecial);
+                                }
+                                else
+                                {
+                                    // Standard level up.
+                                    player.LevelUp();
+                                }
+
 
                                 // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.

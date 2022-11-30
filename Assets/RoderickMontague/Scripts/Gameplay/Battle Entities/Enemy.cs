@@ -52,13 +52,13 @@ namespace RM_BBTS
             // Not using the AI.
             if(!useAI)
             {
-                // // Selects move0, or otherwise it selected charge.
-                // if (Move0.Energy <= energy)
-                //     selectedMove = Move0;
-                // else
-                //     SelectCharge();
+                // Selects move0, or otherwise it selected charge.
+                if (Move0.Usable(this))
+                    selectedMove = Move0;
+                else
+                    SelectCharge();
 
-                selectedMove = Move0;
+                // selectedMove = Move0;
 
                 return;
             }
@@ -109,7 +109,7 @@ namespace RM_BBTS
                 if(move != null)
                 {
                     // If the move can be performed.
-                    if(move.EnergyUsage <= energy)
+                    if(move.Usable(this))
                         moveOptions.Add(move);
                 }
             }
