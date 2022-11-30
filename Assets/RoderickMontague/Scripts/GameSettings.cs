@@ -33,7 +33,7 @@ namespace RM_BBTS
         public const string SFX_TAG = "SFX";
 
         // The volume for the sound effects.
-        private float sfxVolume = 1.0F; // TODO: set volume for SFX
+        private float sfxVolume = 0.6F; // TODO: set volume for SFX
 
         // The audio for the TTS.
         public const string TTS_TAG = "TTS";

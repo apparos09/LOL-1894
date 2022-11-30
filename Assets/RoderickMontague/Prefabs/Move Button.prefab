@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 663937952745944935}
   - component: {fileID: 663937952745944934}
   - component: {fileID: 663937952745944929}
+  - component: {fileID: 1450462974571232475}
   m_Layer: 5
   m_Name: Move Button
   m_TagString: Untagged
@@ -402,3 +403,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1450462974571232475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663937952745944931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cff0a985f6ce1468bf838abbc5e16a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 663937952745944929}
+  audioSource: {fileID: 0}
+  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
