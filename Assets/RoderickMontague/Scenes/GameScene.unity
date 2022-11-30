@@ -600,8 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &40146593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,8 +1374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &117813610
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,8 +3130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &250082226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Move 2 (Index 2) Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: audioSource
       value: 
@@ -3868,8 +3869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &449253622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4352,8 +4352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &571417731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5158,6 +5157,10 @@ PrefabInstance:
       value: Move 3 (Index 3) Button
       objectReference: {fileID: 0}
     - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
+    - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1845567639}
@@ -5471,8 +5474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &712597959
 GameObject:
   m_ObjectHideFlags: 0
@@ -6280,8 +6282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &759902065
 GameObject:
   m_ObjectHideFlags: 0
@@ -6590,6 +6591,7 @@ GameObject:
   - component: {fileID: 877465979}
   - component: {fileID: 877465982}
   - component: {fileID: 877465980}
+  - component: {fileID: 877465981}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -6627,6 +6629,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1915852227}
   sfxSource: {fileID: 1845567639}
+--- !u!114 &877465981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877465978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8991a566e7060c541a345979b877fc3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1845567639}
+  buttonClickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
 --- !u!114 &877465982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6912,6 +6928,10 @@ PrefabInstance:
       value: Move 1 (Index 1) Button
       objectReference: {fileID: 0}
     - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
+    - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1845567639}
@@ -7091,8 +7111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &929397840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7108,6 +7127,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3400960260230173093, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3400960260230173093, guid: 7d6f7562208c54745863804a65a0b07e, type: 3}
       propertyPath: audioSource
       value: 
@@ -7388,8 +7411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &951002638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8465,8 +8487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1019108253
 GameObject:
   m_ObjectHideFlags: 0
@@ -8861,8 +8882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &1059201620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9206,8 +9226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1083774687
 GameObject:
   m_ObjectHideFlags: 0
@@ -9551,8 +9570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!114 &1135187533 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 663937952151822870, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
@@ -10224,8 +10242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1198482268
 GameObject:
   m_ObjectHideFlags: 0
@@ -10816,8 +10833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!114 &1276821163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8247993992043946924, guid: 6ad1b64b977dbef43bce9bc5cdedbb44, type: 3}
@@ -11287,8 +11303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1338886195
 GameObject:
   m_ObjectHideFlags: 0
@@ -11436,8 +11451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1343687341
 GameObject:
   m_ObjectHideFlags: 0
@@ -11624,8 +11638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &1349157016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12889,8 +12902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1518231149
 GameObject:
   m_ObjectHideFlags: 0
@@ -13129,8 +13141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!114 &1545837955 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 663937952514663849, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
@@ -13289,8 +13300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1619473782
 GameObject:
   m_ObjectHideFlags: 0
@@ -14904,6 +14914,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 788251608}
     m_Modifications:
     - target: {fileID: 3711633655916467014, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
+    - target: {fileID: 3711633655916467014, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1845567639}
@@ -15007,6 +15021,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: audioSource
       value: 
@@ -15808,8 +15826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &1959522118
 GameObject:
   m_ObjectHideFlags: 0
@@ -16459,8 +16476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &2073736666
 GameObject:
   m_ObjectHideFlags: 0
@@ -16650,8 +16666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1 &2121925363
 GameObject:
   m_ObjectHideFlags: 0
@@ -16799,8 +16814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1845567639}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 877465981}
 --- !u!1001 &663937951241795626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16897,6 +16911,10 @@ PrefabInstance:
       value: Move 0 (Index 0) Button
       objectReference: {fileID: 0}
     - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
+    - target: {fileID: 1450462974571232475, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1845567639}
@@ -16909,6 +16927,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1399017747}
     m_Modifications:
+    - target: {fileID: 3711633655916467014, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3711633655916467014, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: audioSource
       value: 
@@ -17005,6 +17027,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: audioSource
       value: 

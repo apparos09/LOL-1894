@@ -404,8 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1485898495}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 334993776}
 --- !u!1 &278871931
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334993774}
   - component: {fileID: 334993775}
+  - component: {fileID: 334993776}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -598,6 +598,20 @@ MonoBehaviour:
   move3Text: {fileID: 1033236632}
   finishButtonText: {fileID: 593811395}
   mainMenuButtonText: {fileID: 396964958}
+--- !u!114 &334993776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334993773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8991a566e7060c541a345979b877fc3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1485898495}
+  buttonClickClip: {fileID: 0}
 --- !u!1 &396964956
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,8 +2540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  audioSource: {fileID: 1485898495}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 334993776}
 --- !u!1 &1803143424
 GameObject:
   m_ObjectHideFlags: 0
