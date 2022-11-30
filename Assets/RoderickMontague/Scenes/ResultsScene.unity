@@ -2704,7 +2704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1911268885}
-  maxVolume: 1
+  maxVolume: 0.75
   autoSetMaxVolume: 1
 --- !u!82 &1911268885
 AudioSource:
@@ -2718,7 +2718,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0

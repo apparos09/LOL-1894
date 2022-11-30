@@ -113,7 +113,7 @@ namespace RM_BBTS
         }
 
         // Returns the energy the move uses.
-        public float Energy
+        public float EnergyUsage
         {
             get { return energyUsage; }
         }
@@ -240,17 +240,20 @@ namespace RM_BBTS
 
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical
+                {
                     newPages.Add(new Page(
-                        BattleMessages.Instance.GetMoveHitMessage(),
-                        BattleMessages.Instance.GetMoveHitSpeakKey()
-                        ));
-
+                                            BattleMessages.Instance.GetMoveHitMessage(),
+                                            BattleMessages.Instance.GetMoveHitSpeakKey()
+                                            ));
+                }
                 else // Critical
+                {
                     newPages.Add(new Page(
-                        BattleMessages.Instance.GetMoveHitCriticalMessage(),
-                        BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
-                        ));
-
+                                            BattleMessages.Instance.GetMoveHitCriticalMessage(),
+                                            BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
+                                            ));
+                }
+                    
                 // Burn Infliction
                 if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
                 {
@@ -280,10 +283,16 @@ namespace RM_BBTS
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
                     battle.UpdateOpponentUI(); // Updates enemy health bar.
+
+                    // Play sound effect.
+                    battle.PlayDamageTaken();
                 }
                 else // Not the player.
                 {
                     battle.gameManager.UpdatePlayerHealthUI();
+
+                    // Play sound effect.
+                    battle.PlayDamageGiven();
                 }
 
                 // Tries ending the turn early.

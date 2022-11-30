@@ -33,7 +33,7 @@ namespace RM_BBTS
             rankText.text = move.Rank.ToString();
             powerText.text = move.Power.ToString();
             accuracyText.text = (move.Accuracy * 100.0F).ToString();
-            energyText.text = (move.Energy * 100.0F).ToString();
+            energyText.text = (move.EnergyUsage * 100.0F).ToString();
 
             description.text = move.description;
 

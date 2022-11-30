@@ -145,6 +145,7 @@ namespace RM_BBTS
 
         // The opponent title text.
         // TODO: during a boss fight this sometimes does not show up. Fix that.
+        // TODO: I think some enemies just don't have names yet, so this field is visible, but blank.
         public TMP_Text opponentNameText;
 
         // The health bar for the opponent.
@@ -155,6 +156,25 @@ namespace RM_BBTS
 
         // Has the text scroll for the opponent health.
         private bool opponentHealthTransitioning = false;
+
+        [Header("Audio")]
+        // Battle bgm.
+        public AudioClip battleBgm;
+
+        // The boss BGM.
+        public AudioClip bossBgm;
+
+        // The jingle for winning a battle.
+        public AudioClip battleWonJng;
+
+        // The jingle for losing a battle.
+        public AudioClip battleLostJng;
+
+        // The sound effect for the player taking damage.
+        public AudioClip damageGivenSfx;
+
+        // The sound effect for the opponent taking damage.
+        public AudioClip damageTakenSfx;
 
         // Start is called before the first frame update
         void Start()
@@ -243,6 +263,16 @@ namespace RM_BBTS
         // Initializes the overworld.
         public override void Initialize()
         {
+            // TODO: this variable isn't being reset like it should, and I don't know why.
+            // It works fine without this check though, so I'm taking it out.
+
+            // // The battle has already been initialized.
+            // if(initialized)
+            // {
+            //     Debug.LogAssertion("The battle has already been initialized.");
+            //     return;
+            // }
+
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
 
@@ -366,17 +396,17 @@ namespace RM_BBTS
             if(opponent is Boss)
             {
                 // Boss BGM.
-                gameManager.PlayBossBgm();
+                PlayBossBgm();
             }
             else if(opponent is Treasure)
             {
                 // Treasure BGM
-                gameManager.PlayTreasureBgm();
+                PlayTreasureBgm();
             }   
             else
             {
                 // Battle BGM.
-                gameManager.PlayBattleBgm();
+                PlayBattleBgm();
             }
 
             // The battle has begun.
@@ -466,25 +496,25 @@ namespace RM_BBTS
 
             // Move 0 
             if (player.Move0 != null)
-                move0Button.interactable = player.Move0.Energy <= player.Energy;
+                move0Button.interactable = (player.Move0.EnergyUsage * player.MaxEnergy) <= player.Energy;
             else
                 move0Button.interactable = false;
 
             // Move 1
             if (player.Move1 != null)
-                move1Button.interactable = player.Move1.Energy <= player.Energy;
+                move1Button.interactable = (player.Move1.EnergyUsage * player.MaxEnergy) <= player.Energy;
             else
                 move1Button.interactable = false;
 
             // Move 2 
             if (player.Move2 != null)
-                move2Button.interactable = player.Move2.Energy <= player.Energy;
+                move2Button.interactable = (player.Move2.EnergyUsage * player.MaxEnergy) <= player.Energy;
             else
                 move2Button.interactable = false;
 
             // Move 3
             if (player.Move3 != null)
-                move3Button.interactable = player.Move3.Energy <= player.Energy;
+                move3Button.interactable = (player.Move3.EnergyUsage * player.MaxEnergy) <= player.Energy;
             else
                 move3Button.interactable = false;
 
@@ -1119,6 +1149,9 @@ namespace RM_BBTS
             // Go to the overworld.
             gameManager.UpdateUI();
             gameManager.EnterOverworld();
+
+            // The battle gets initialized everytime one starts.
+            initialized = false;
         }
 
         // Updates all UI elements.
@@ -1138,6 +1171,89 @@ namespace RM_BBTS
             if (!gameManager.syncTextToBars)
                 opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
         }
+
+        // AUDIO //
+        // Plays the battle bgm.
+        public void PlayBattleBgm()
+        {
+            // Gets the phase of the game.
+            int phase = gameManager.GetGamePhase();
+
+            // Gets the audio manager.
+            AudioManager audioManager = gameManager.audioManager;
+
+            // Checks the phase for playing the BGM.
+            switch (phase)
+            {
+                default:
+                case 1: // Normal Speed
+                    audioManager.PlayBgm(battleBgm, 1.0F);
+                    break;
+
+                case 2: // Faster
+                    audioManager.PlayBgm(battleBgm, 1.2F);
+                    break;
+
+                case 3: // Faster
+                    audioManager.PlayBgm(battleBgm, 1.4F);
+                    break;
+            }
+        }
+
+        // Plays the battle bgm.
+        public void PlayTreasureBgm()
+        {
+            // Reuses the overworld BGM.
+            gameManager.audioManager.PlayBgm(
+                gameManager.overworld.overworldBgm, 
+                0.85F);
+        }
+
+        // Plays the battle - boss bgm.
+        public void PlayBossBgm()
+        {
+            gameManager.audioManager.PlayBackgroundMusic(bossBgm);
+        }
+
+        // Plays the battle results BGM.
+        public void PlayBattleResultsBgm()
+        {
+            // Shame as the treasure BGM.
+            PlayTreasureBgm();
+        }
+
+        // SFX //
+        // Play sound effect for the player did damage to the opponent.
+        public void PlayDamageGiven()
+        {
+            gameManager.audioManager.PlaySoundEffect(damageGivenSfx);
+        }
+
+        // Play sound effect for the opponent did damage to the player.
+        public void PlayDamageTaken()
+        {
+            gameManager.audioManager.PlaySoundEffect(damageTakenSfx);
+        }
+
+        // JNG //
+        // Plays the battle won jingle.
+        public void PlayBattleWonJingle()
+        {
+            // This will play when the jingle is done.
+            PlayBattleResultsBgm();
+
+            gameManager.audioManager.PlayJingle(battleWonJng, false);
+        }
+
+        // Plays the battle lost jingle.
+        public void PlayBattleLostJingle()
+        {
+            // This will play when the jingle is done.
+            PlayBattleResultsBgm();
+
+            gameManager.audioManager.PlayJingle(battleLostJng, false);
+        }
+
 
         // Update is called once per frame
         void Update()
@@ -1165,10 +1281,17 @@ namespace RM_BBTS
                             opponent.Health = opponent.MaxHealth;
 
                             textBox.pages.Clear();
-                            textBox.pages.Add(new Page(
+
+                            // Page for losing the game.
+                            Page losePage = new Page(
                                 BattleMessages.Instance.GetBattleLostMessage(),
                                 BattleMessages.Instance.GetBattleLostSpeakKey()
-                                ));
+                                );
+
+                            // Play the battle lost jingle.
+                            losePage.OnPageOpenedAddCallback(PlayBattleLostJingle);
+
+                            textBox.pages.Add(losePage);
                             textBox.SetPage(0);
                             textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
 
@@ -1196,7 +1319,8 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetBattleWonBossSpeakKey()
                                     );
 
-                                // Close the textbox and go onto the results screen.
+                                // Play jingle, close the textbox, and go onto the results screen.
+                                bossPage.OnPageOpenedAddCallback(PlayBattleWonJingle);
                                 bossPage.OnPageClosedAddCallback(textBox.Close);
                                 bossPage.OnPageClosedAddCallback(gameManager.ToResultsScene);
 
@@ -1206,9 +1330,15 @@ namespace RM_BBTS
                             }
                             else // Not Treasure
                             {
-                                textBox.pages.Add(new Page(
+                                // The winning page.
+                                Page winPage = new Page(
                                     BattleMessages.Instance.GetBattleWonMessage(),
-                                    BattleMessages.Instance.GetBattleWonSpeakKey()));
+                                    BattleMessages.Instance.GetBattleWonSpeakKey());
+
+                                // Play the battle won jingle when the page is opened.
+                                winPage.OnPageOpenedAddCallback(PlayBattleWonJingle);
+
+                                textBox.pages.Add(winPage);
                             }
 
                             // Levels up the player.

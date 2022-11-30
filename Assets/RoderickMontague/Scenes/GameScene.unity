@@ -6527,7 +6527,6 @@ MonoBehaviour:
   tutorial: {fileID: 1635305062}
   useTutorial: 0
   score: 0
-  roomsTotal: 0
   roomsCompleted: 0
   roomsPerLevelUp: 3
   lastEnemyLevelUps: -1
@@ -6558,10 +6557,7 @@ MonoBehaviour:
   playerHealthText: {fileID: 1426441088}
   playerEnergyBar: {fileID: 1409322604}
   playerEnergyText: {fileID: 759902067}
-  audio: {fileID: 877465980}
-  overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
-  battleBgm: {fileID: 8300000, guid: 305833c401aae2c45b1b431e8af9dfd9, type: 3}
-  bossBgm: {fileID: 8300000, guid: ca3dc6b8519cfac4fb668fea22b85529, type: 3}
+  audioManager: {fileID: 877465980}
 --- !u!1 &878444595
 GameObject:
   m_ObjectHideFlags: 0
@@ -9565,6 +9561,12 @@ MonoBehaviour:
   opponentNameText: {fileID: 1204011799}
   opponentHealthBar: {fileID: 638855117}
   opponentHealthText: {fileID: 960459646}
+  battleBgm: {fileID: 8300000, guid: 305833c401aae2c45b1b431e8af9dfd9, type: 3}
+  bossBgm: {fileID: 8300000, guid: ca3dc6b8519cfac4fb668fea22b85529, type: 3}
+  battleWonJng: {fileID: 8300000, guid: 21f83d9414e63aa46895ce0159a8b95e, type: 3}
+  battleLostJng: {fileID: 8300000, guid: ecd88211fbd53084997d66b1f5644b97, type: 3}
+  damageGivenSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
+  damageTakenSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
 --- !u!114 &1163903608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12290,6 +12292,7 @@ MonoBehaviour:
   bossDoorLockedSprite: {fileID: 1962524685468842795, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
+  overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
 --- !u!1 &1486936159
 GameObject:
   m_ObjectHideFlags: 0
@@ -14410,7 +14413,7 @@ GameObject:
   - component: {fileID: 1845567639}
   - component: {fileID: 1845567640}
   m_Layer: 0
-  m_Name: SFX/JNG Audio Source
+  m_Name: SFX Audio Source
   m_TagString: SFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14442,7 +14445,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14533,13 +14536,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845567637}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f27dec99b05473c4c943dd2e26183566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1845567639}
-  maxVolume: 1
+  maxVolume: 0.75
   autoSetMaxVolume: 1
 --- !u!1001 &1869830899
 PrefabInstance:
@@ -14967,7 +14970,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15058,7 +15061,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915852225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f27dec99b05473c4c943dd2e26183566, type: 3}
   m_Name: 

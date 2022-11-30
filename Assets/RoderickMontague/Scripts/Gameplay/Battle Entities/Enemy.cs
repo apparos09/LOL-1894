@@ -78,7 +78,7 @@ namespace RM_BBTS
                     if (moves[i] != null)
                     {
                         // Checks if the move can be used.
-                        needCharge = !(moves[i].Energy <= energy);
+                        needCharge = !(moves[i].EnergyUsage <= energy);
                     }
 
                     // A move can be used without charging.
@@ -109,7 +109,7 @@ namespace RM_BBTS
                 if(move != null)
                 {
                     // If the move can be performed.
-                    if(move.Energy <= energy)
+                    if(move.EnergyUsage <= energy)
                         moveOptions.Add(move);
                 }
             }

@@ -80,6 +80,8 @@ namespace RM_BBTS
                 controlsBackButtonText.text = defs["kwd_back"];
             }
 
+            // Use the tutorial for the game.
+            settings.UseTutorial = true;
 
             // Checks for initialization
             if (!settings.InitializedLOLSDK)

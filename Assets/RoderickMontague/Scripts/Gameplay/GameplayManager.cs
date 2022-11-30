@@ -41,7 +41,8 @@ namespace RM_BBTS
         public int score = 0;
 
         // The total rooms in the game.
-        public int roomsTotal = 0;
+        // I just made a function for this since it's equal to the total amount of doors.
+        // public int roomsTotal = 0;
 
         // The total amount of completed rooms.
         public int roomsCompleted = 0;
@@ -146,7 +147,7 @@ namespace RM_BBTS
         public ProgressBar playerHealthBar;
 
         // The text for the player's health
-        public TMPro.TMP_Text playerHealthText;
+        public TMP_Text playerHealthText;
 
         // Becomes set to 'true' when the player's health is transitioning.
         private bool playerHealthTransitioning = false;
@@ -165,16 +166,22 @@ namespace RM_BBTS
 
         [Header("Audio")]
         // The source for the background music audio source.
-        public AudioManager audio;
+        public AudioManager audioManager;
 
-        // The bgm for the overworld.
-        public AudioClip overworldBgm;
-
-        // Battle bgm.
-        public AudioClip battleBgm;
-
-        // The boss BGM.
-        public AudioClip bossBgm;
+        // // The bgm for the overworld.
+        // public AudioClip overworldBgm;
+        // 
+        // // Battle bgm.
+        // public AudioClip battleBgm;
+        // 
+        // // The boss BGM.
+        // public AudioClip bossBgm;
+        // 
+        // // The jingle for winning a battle.
+        // public AudioClip battleWonJng;
+        // 
+        // // The jingle for losing a battle.
+        // public AudioClip battleLostJng;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -269,14 +276,8 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(true);
             state = gameState.overworld;
 
-            // Saves the batle total.
-            roomsTotal = OverworldManager.DOOR_COUNT;
-
             // Update the UI.
             UpdateUI();
-
-            // The total amount of battles in the game.
-            roomsTotal = overworld.doors.Count;
 
             // List<string> test = new List<string>() { "This is a test.", "This is only a test." };
             // // textBox.OnTextFinishedAddCallback(Test);
@@ -612,12 +613,27 @@ namespace RM_BBTS
             mouseTouchInput.gameObject.SetActive(true);
         }
 
+        // Returns the total amount of rooms.
+        public int GetRoomsTotal()
+        {
+            // Total amount of rooms.
+            int roomsTotal = OverworldManager.DOOR_COUNT;
+
+            // Grabs for the door count to make sure it's consistent with what's acutally there.
+            // TODO: this shouldn't be needed, so maybe take this out?
+            if (overworld.doors.Count != 0 && overworld.doors.Count != roomsTotal)
+                roomsTotal = overworld.doors.Count;
+
+            return roomsTotal;
+
+        }
+
         // Returns the phase of the game (1 = start, 2 = middle, 3 = end).
         // Each section is evenly split.
         public int GetGamePhase()
         {
             // The completion rate.
-            float completionRate = roomsCompleted / (float)roomsTotal;
+            float completionRate = roomsCompleted / (float)GetRoomsTotal();
 
             // Returns the game phase.
             if (completionRate < 0.33F)
@@ -721,7 +737,7 @@ namespace RM_BBTS
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
 
-            battleNumberText.text = (roomsCompleted + 1).ToString() + "/" + roomsTotal.ToString();
+            battleNumberText.text = (roomsCompleted + 1).ToString() + "/" + GetRoomsTotal().ToString();
         }
         
         // Updates the health bar UI.
@@ -752,33 +768,7 @@ namespace RM_BBTS
                 
         }
 
-
-        // AUDIO //
-        // TODO: add pitch settings.
-
-        // Plays the overworld bgm.
-        public void PlayOverworldBgm()
-        {
-            audio.PlayBgm(overworldBgm);
-        }
-
-        // Plays the battle bgm.
-        public void PlayBattleBgm()
-        {
-            audio.PlayBgm(battleBgm);
-        }
-
-        // Plays the battle bgm.
-        public void PlayTreasureBgm()
-        {
-            audio.PlayBgm(battleBgm, true);
-        }
-
-        // Plays the battle - boss bgm.
-        public void PlayBossBgm()
-        {
-            audio.PlayBgm(bossBgm);
-        }
+        // OTHER //
 
         // Called when the player gets a game over.
         public void OnGameOver()
@@ -793,6 +783,7 @@ namespace RM_BBTS
             if (useTutorial && !tutorial.clearedGameOver)
                 tutorial.LoadGameOverTutorial();
         }
+
 
         // Submits the current game progress.
         public void SubmitProgress()
@@ -820,7 +811,7 @@ namespace RM_BBTS
 
             // Rooms total.
             results.roomsCompleted = roomsCompleted;
-            results.roomsTotal = roomsTotal;
+            results.roomsTotal = GetRoomsTotal();
 
             // Time and turns.
             results.totalTime = gameTimer;
@@ -867,7 +858,7 @@ namespace RM_BBTS
             // Save game results data.
             saveData.score = score;
             saveData.roomsCompleted = roomsCompleted;
-            saveData.roomsTotal = roomsTotal;
+            saveData.roomsTotal = GetRoomsTotal();
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
 
@@ -985,7 +976,13 @@ namespace RM_BBTS
             // Sets the game data values.
             score = saveData.score;
             roomsCompleted = saveData.roomsCompleted;
-            roomsTotal = saveData.roomsTotal;
+            
+            if(GetRoomsTotal() != saveData.roomsTotal)
+            {
+                // TODO: do something to address this.
+                // This should never happen though.
+            }
+            
             gameTimer = saveData.gameTime;
             turnsPassed = saveData.turnsPassed;
 

@@ -75,6 +75,10 @@ namespace RM_BBTS
         // It can probably just be 5 digits.
         public const int SCORE_DIGITS = 10;
 
+        [Header("Audio")]
+        // The bgm for the overworld.
+        public AudioClip overworldBgm;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -98,6 +102,17 @@ namespace RM_BBTS
         // Initializes the overworld.
         public override void Initialize()
         {
+            // TODO: for SOME reason this is being set to true before the game gets here.
+            // This is only called once anyway, so it's not a big deal, but I'm still puzzled.
+            // As such, I took out this conditional statement.
+
+            // The overworld is only initialized once, so this should NOT be needed to be called more than once.
+            // if(initialized)
+            // {
+            //     Debug.LogAssertion("The overworld has already been initialized.");
+            //     return;
+            // }
+
             // Initializes the doors (normal, treasure, and boss)
             {
                 // Door initialization list.
@@ -145,7 +160,7 @@ namespace RM_BBTS
             UpdateUI();
 
             // Plays the overworld BGM.
-            gameManager.PlayOverworldBgm();
+            PlayOverworldBgm();
 
             initialized = true;
         }
@@ -280,6 +295,35 @@ namespace RM_BBTS
             scoreText.text = gameManager.score.ToString("D" + SCORE_DIGITS.ToString());
         }
 
+        // Plays the overworld bgm.
+        public void PlayOverworldBgm()
+        {
+            // Gets the phase of the game.
+            int phase = gameManager.GetGamePhase();
+
+            // Grabs the audio manager.
+            AudioManager audioManager = gameManager.audioManager;
+
+            // Checks the phase for playing the BGM.
+            switch (phase)
+            {
+                default:
+                case 1: // Normal Speed
+                    audioManager.PlayBgm(overworldBgm, 1.0F);
+                    break;
+
+                case 2: // Faster
+                    audioManager.PlayBgm(overworldBgm, 1.2F);
+                    break;
+
+                case 3: // Faster
+                    audioManager.PlayBgm(overworldBgm, 1.4F);
+                    break;
+            }
+
+
+        }
+
         // Called when returning to the overworld.
         public void OnOverworldReturn()
         {
@@ -340,7 +384,7 @@ namespace RM_BBTS
             UpdateUI();
 
             // Plays the overworld BGM.
-            gameManager.PlayOverworldBgm();
+            PlayOverworldBgm();
 
         }
         
@@ -409,11 +453,11 @@ namespace RM_BBTS
         }
 
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
 
         
     }

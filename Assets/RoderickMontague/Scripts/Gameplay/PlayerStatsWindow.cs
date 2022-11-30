@@ -225,7 +225,7 @@ namespace RM_BBTS
             moveRankText.text = rankString + ": " + move.Rank.ToString();
             movePowerText.text = powerString + ": " + move.Power.ToString();
             moveAccuracyText.text = accuracyString + ": " + Mathf.Round(move.Accuracy * 100.0F).ToString() + "%";
-            moveEnergyText.text = gameManager.EnergyString + ": " + (move.Energy * 100.0F).ToString() + "%";
+            moveEnergyText.text = gameManager.EnergyString + ": " + (move.EnergyUsage * 100.0F).ToString() + "%";
 
             moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
 
