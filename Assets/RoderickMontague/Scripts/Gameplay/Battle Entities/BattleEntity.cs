@@ -464,6 +464,12 @@ namespace RM_BBTS
             health = maxHealth;
         }
 
+        // Checks if the entity is at full health.
+        public bool HasFullHealth()
+        {
+            return health == maxHealth;
+        }
+
         // Sets the energy to its maximum value.
         public void SetEnergyToMax()
         {

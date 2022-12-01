@@ -46,7 +46,7 @@ namespace RM_BBTS
             statSpecial = specialty.none;
 
             // The player levels up faster than the enemies.
-            levelRate = 1.1F;
+            levelRate = 1.5F;
 
             // TODO: set unique sprite?
 

@@ -14,7 +14,7 @@
       "kwd_stats": 12,
       "kwd_mainMenu": 12,
 
-      "mve_run_nme": 10,
+      "mve_run_nme": 18,
       "mve_run_dsc": 180
     }
   },
@@ -88,10 +88,11 @@
     "btl_msg_mve_moveUsed_alt00": "The player used a move.",
     "btl_msg_mve_moveUsed_alt01": "The opponent used a move.",
     "btl_msg_mve_moveHit": "The move hit!",
+    "btl_msg_mve_moveSuccess": "The move was successful!",
     "btl_msg_mve_moveCritical": "The move hit, and it did critical damage!",
-    "btl_msg_mve_moveNoPower": "{0} does not have enough power to use their move!",
-    "btl_msg_mve_moveNoPower_alt00": "The player does not have enough power to use their move!",
-    "btl_msg_mve_moveNoPower_alt01": "The opponent does not have enough power to use their move!",
+    "btl_msg_mve_moveNoEnergy": "{0} does not have enough energy to use their move!",
+    "btl_msg_mve_moveNoEnergy_alt00": "The player does not have enough energy to use their move!",
+    "btl_msg_mve_moveNoEnergy_alt01": "The opponent does not have enough energy to use their move!",
     "btl_msg_mve_moveMissed": "The move missed!",
     "btl_msg_mve_moveFailed": "The move failed!",
 
@@ -178,6 +179,8 @@
     "mve_charge_nme": "Charge",
     "mve_charge_dsc": "The user charges their energy, which is needed to perform moves. This will fail if the user is at their max.",
 
+    "mve_heal_nme": "Heal",
+    "mve_heal_dsc": "The user heals 12.5% of their health.",
 
     "switchMoveMessage": "Switch out for a new move?",
     "kwd_playerMoves": "Player Moves",

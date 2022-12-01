@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: remove this?
 // An event for a move.
 namespace RM_BBTS
 {

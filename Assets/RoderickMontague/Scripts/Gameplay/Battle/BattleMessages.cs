@@ -163,6 +163,33 @@ namespace RM_BBTS
             return "btl_msg_mve_moveHit";
         }
 
+        // Gets the move successful message.
+        public string GetMoveSuccessfulMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs existed.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveSuccess"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The move was successful!>";
+            }
+
+            return msg;
+        }
+
+        // Gets the move successful speak key.
+        public string GetMoveSuccessfulSpeakKey()
+        {
+            return "btl_msg_mve_moveSuccess";
+        }
+
 
 
         // MOVE CRITICAL //
@@ -197,7 +224,7 @@ namespace RM_BBTS
         
         // MOVE NO POWER //
         // Gets the move "not enough power" message.
-        public string GetMoveNoPowerMessage(string user)
+        public string GetMoveNoEnergyMessage(string user)
         {
             // The message string.
             string msg = "";
@@ -206,12 +233,12 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_mve_moveNoPower"];
+                msg = defs["btl_msg_mve_moveNoEnergy"];
             }
             else
             {
                 // Grabs the default mesage.
-                msg = "<{0} does not have enough power to use their move!>";
+                msg = "<{0} does not have enough energy to use their move!>";
             }
 
             // Replaces the information.
@@ -221,15 +248,15 @@ namespace RM_BBTS
         }
 
         // Gets the player speak key with "not enough power" message.
-        public string GetMoveNoPowerSpeakKey0()
+        public string GetMoveNoEnergySpeakKey0()
         {
-            return "btl_msg_mve_moveNoPower_alt00";
+            return "btl_msg_mve_moveNoEnergy_alt00";
         }
 
         // Gets the opponent speak key with "not enough power" message.
-        public string GetMoveNoPowerSpeakKey1()
+        public string GetMoveNoEnergySpeakKey1()
         {
-            return "btl_msg_mve_moveNoPower_alt01";
+            return "btl_msg_mve_moveNoEnergy_alt01";
         }
 
 

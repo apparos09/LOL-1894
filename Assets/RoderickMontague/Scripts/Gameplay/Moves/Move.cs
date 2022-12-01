@@ -53,6 +53,25 @@ namespace RM_BBTS
         // Chance of paralyzing the opponent.
         protected float paralysisChance = 0.0F;
 
+        // STAT CHANGES //
+        // Stat increases/decreases
+        // Change the attack.
+        public int attackChangeUser = 0; // stages
+        public int attackChangeTarget = 0; // stages
+        public float attackChangeChanceUser = 0.0F; // chance
+        public float attackChangeChanceTarget = 0.0F; // chance
+
+        // Change the defense.
+        public int defenseChangeUser = 0; // stages
+        public int defenseChangeTarget = 0; // stages
+        public float defenseChangeChanceUser = 0.0F; // chance
+        public float defenseChangeChanceTarget = 0.0F; // chacne
+
+        // Change the speed.
+        public int speedChangeUser = 0; // stages
+        public int speedChangeTarget = 0; // stages
+        public float speedChangeChanceUser = 0.0F; // chance
+        public float speedChangeChanceTarget = 0.0F; // chance
 
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -173,9 +192,9 @@ namespace RM_BBTS
         }
 
         // Checks if a move is available for the battle entity to perform.
-        public bool Usable(BattleEntity entity)
+        public bool Usable(BattleEntity user)
         {
-            return (energyUsage * entity.MaxEnergy <= entity.Energy);
+            return (energyUsage * user.MaxEnergy <= user.Energy);
         }
 
         // Checks if a move accuracy returns a success.
@@ -186,6 +205,139 @@ namespace RM_BBTS
             return Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod || !useAccuracy;
         }
 
+        // The move has the ability to change stats (not counting health and energy).
+        public bool HasStatChanges()
+        {
+            return !(
+                attackChangeUser == 0 && attackChangeTarget == 0 && 
+                defenseChangeUser == 0 && defenseChangeTarget == 0 &&
+                speedChangeUser == 0 && speedChangeTarget == 0);
+        }
+
+        // Reduces the energy from using the move.
+        public void ReduceEnergy(BattleEntity user)
+        {
+            // Reduce energy amount.
+            user.Energy -= user.MaxEnergy * energyUsage;
+        }
+
+        // Change the stats attached to the moves.
+        public void ChangeStats()
+        {
+            // Don't change the stats.
+            if (!HasStatChanges())
+                return;
+        }
+
+        // MESSAGES //
+        // Gets the move no power message.
+        public Page GetMoveNoEnergyMessage(BattleEntity entity)
+        {
+            Page page;
+
+            // The user is a player.
+            if(entity is Player)
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveNoEnergyMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveNoEnergySpeakKey0()
+                );
+            }
+            else // The user is the opponent.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveNoEnergyMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveNoEnergySpeakKey1()
+                    );
+            }
+
+            // Returns the page.
+            return page;
+        }
+        // Get move hit page.
+        public Page GetMoveHitPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveHitMessage(),
+                BattleMessages.Instance.GetMoveHitSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Gets the mvoe successful page.
+        public Page GetMoveSuccessfulPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveSuccessfulMessage(),
+                BattleMessages.Instance.GetMoveSuccessfulSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Get move critical page.
+        public Page GetMoveHitCriticalPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveHitCriticalMessage(),
+                BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Get move burned page.
+        public Page GetMoveBurnedPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveBurnedMessage(),
+                BattleMessages.Instance.GetMoveBurnedSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Get move paralyzed page.
+        public Page GetMoveParalyzedPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveParalyzedMessage(),
+                BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Gets the move missed page.
+        public Page GetMoveMissedPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveMissedMessage(),
+                BattleMessages.Instance.GetMoveMissedSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Gets the move failed page.
+        public Page GetMoveFailedPage()
+        {
+            Page page = new Page(
+                BattleMessages.Instance.GetMoveFailedMessage(),
+                BattleMessages.Instance.GetMoveFailedSpeakKey()
+                );
+
+            return page;
+        }
+
+        // Inserts a page after the current page.
+        public void InsertPageAfterCurrentPage(BattleManager battle, Page page)
+        {
+            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, page);
+        }
+
+        // TURN OTHER //
         // Tries to end the turn early if one of the entities is dead.
         public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
         {
@@ -214,22 +366,27 @@ namespace RM_BBTS
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energyUsed)
             {
-                // Checks object type.
-                if(user is Player) // Player
-                {
-                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                        BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName),
-                        BattleMessages.Instance.GetMoveNoPowerSpeakKey0()
-                        ));
-                }
-                else // Opponent
-                {
-                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                        BattleMessages.Instance.GetMoveNoPowerMessage(user.displayName),
-                        BattleMessages.Instance.GetMoveNoPowerSpeakKey1()
-                        ));
-                }
-                
+
+                // The user doesn't have enough energy.
+                InsertPageAfterCurrentPage(battle, GetMoveNoEnergyMessage(user));
+
+
+                // // Checks object type.
+                // if(user is Player) // Player
+                // {
+                //     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                //         BattleMessages.Instance.GetMoveNoEnergyMessage(user.displayName),
+                //         BattleMessages.Instance.GetMoveNoEnergySpeakKey0()
+                //         ));
+                // }
+                // else // Opponent
+                // {
+                //     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                //         BattleMessages.Instance.GetMoveNoEnergyMessage(user.displayName),
+                //         BattleMessages.Instance.GetMoveNoEnergySpeakKey1()
+                //         ));
+                // }
+
                 return false;
             }
                 
@@ -273,37 +430,47 @@ namespace RM_BBTS
                 // Adds the new page.
                 if(critBoost == 1.0F) // No critical
                 {
-                    newPages.Add(new Page(
-                                            BattleMessages.Instance.GetMoveHitMessage(),
-                                            BattleMessages.Instance.GetMoveHitSpeakKey()
-                                            ));
+                    newPages.Add(GetMoveHitPage());
+
+                    // newPages.Add(new Page(
+                    //                         BattleMessages.Instance.GetMoveHitMessage(),
+                    //                         BattleMessages.Instance.GetMoveHitSpeakKey()
+                    //                         ));
                 }
                 else // Critical
                 {
-                    newPages.Add(new Page(
-                                            BattleMessages.Instance.GetMoveHitCriticalMessage(),
-                                            BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
-                                            ));
+                    newPages.Add(GetMoveHitCriticalPage());
+
+                    // newPages.Add(new Page(
+                    //                         BattleMessages.Instance.GetMoveHitCriticalMessage(),
+                    //                         BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
+                    //                         ));
                 }
                     
                 // Burn Infliction
                 if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
                 {
                     target.burned = true;
-                    newPages.Add(new Page(
-                        BattleMessages.Instance.GetMoveBurnedMessage(),
-                        BattleMessages.Instance.GetMoveBurnedSpeakKey()
-                        ));
+
+                    newPages.Add(GetMoveBurnedPage());
+
+                    // newPages.Add(new Page(
+                    //     BattleMessages.Instance.GetMoveBurnedMessage(),
+                    //     BattleMessages.Instance.GetMoveBurnedSpeakKey()
+                    //     ));
                 }
 
                 // Paralysis Infliction
                 if (!target.paralyzed && Random.Range(0.0F, 1.0F) < paralysisChance)
                 {
                     target.paralyzed = true;
-                    newPages.Add(new Page(
-                        BattleMessages.Instance.GetMoveParalyzedMessage(),
-                        BattleMessages.Instance.GetMoveParalyzedSpeakKey()
-                        ));
+
+                    newPages.Add(GetMoveParalyzedPage());
+
+                    // newPages.Add(new Page(
+                    //     BattleMessages.Instance.GetMoveParalyzedMessage(),
+                    //     BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+                    //     ));
                 }
 
                 // Inserts a range of pages.
@@ -335,9 +502,11 @@ namespace RM_BBTS
             else
             {
                 // The move missed.
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                    BattleMessages.Instance.GetMoveMissedMessage(),
-                    BattleMessages.Instance.GetMoveMissedSpeakKey()));
+                InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+
+                // battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                //     BattleMessages.Instance.GetMoveMissedMessage(),
+                //     BattleMessages.Instance.GetMoveMissedSpeakKey()));
 
                 return false;
             }

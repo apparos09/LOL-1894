@@ -201,8 +201,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.heal: // Heal
-                    move = new Move(moveId.heal, "<Heal>", 1, 0.0F, 0.0F, 0.4F);
-                    // TODO: implement functionality.
+                    move = new HealMove(moveId.heal);
                     break;
 
                 case moveId.hpdrain1: // Health Drain 1
