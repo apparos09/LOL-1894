@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LoLSDK;
 using SimpleJSON;
+using static UnityEngine.GraphicsBuffer;
 
 namespace RM_BBTS
 {
@@ -78,6 +79,9 @@ namespace RM_BBTS
         public int accuracyChangeTarget = 0; // stages
         public float accuracyChangeChanceUser = 0.0F; // chance
         public float accuracyChangeChanceTarget = 0.0F; // chance
+
+        // The boost for critical damage.
+        private float CRITICAL_BOOST = 1.125F;
 
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -239,6 +243,24 @@ namespace RM_BBTS
         {
             // Reduce energy amount.
             user.Energy -= user.MaxEnergy * energyUsage;
+        }
+
+        // Calculates the damage the user it.
+        public virtual float CalculateDamage(BattleEntity user, BattleEntity target, bool useCritBoost)
+        {
+            // The critical boost.
+            float critBoost = (useCritBoost) ? CRITICAL_BOOST : 1.0F;
+            
+            // The damage amount.
+            float damage;
+
+            // Calculation
+            damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
+            damage = Mathf.Round(damage); // Round damage to whole number.
+            damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
+
+            // Returns the damage amount.
+            return damage;
         }
 
         // The move has the ability to change stats (not counting health and energy).
@@ -672,30 +694,49 @@ namespace RM_BBTS
 
                 return false;
             }
-                
+
+            // Uses energy.
+            user.Energy -= energyUsed; // energy
+
+            // Updates the player's energy UI.
+            if(user is Player)
+                battle.gameManager.UpdatePlayerEnergyUI();
+
             // If the move hit successfully (or if 'useAccuracy' is set to false, meaning it always hits)
-            if(AccuracySuccessful(user))
+            if (AccuracySuccessful(user))
             {
                 // The new pages.
                 List<Page> newPages = new List<Page>();
 
+                // NEW
+                // The variable.
+                bool useCritBoost = false;
+                
+                // If there is a critical chance, run the randomizer.
+                if(criticalChance > 0.0F)
+                    useCritBoost = GenerateRandomFloat01() <= criticalChance;
+
+                // Calculates the damage.
+                float damage = CalculateDamage(user, target, useCritBoost);
+
+                // OLD
                 // Does damage.
-                float damage = 0.0F;
-                float critBoost = 1.0F;
+                // float damage = 0.0F;
+                // float critBoost = 1.0F;
 
-                // Randomization chance for doing a critical (extra) damage.
-                if(Random.Range(0.0F, 1.0F) <= criticalChance) // extra damage
-                {
-                    critBoost = 1.125F;
-                }
-
-                // Calculation
-                damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
-                damage = Mathf.Round(damage); // Round damage to whole number.
-                damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
+                // // Randomization chance for doing a critical (extra) damage.
+                // if(Random.Range(0.0F, 1.0F) <= criticalChance) // extra damage
+                // {
+                //     critBoost = 1.125F;
+                // }
+                // 
+                // // Calculation
+                // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
+                // damage = Mathf.Round(damage); // Round damage to whole number.
+                // damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
 
                 // If the target is the player.
-                if(target is Player)
+                if (target is Player)
                 {
                     // If the damage is higher than the amount of health the player 
                     battle.playerDamageTaken += (target.Health < damage) ? target.Health : damage;
@@ -707,11 +748,22 @@ namespace RM_BBTS
                 // Damages the user with recoil.
                 user.Health -= damage * recoilPercent;
 
+                // Moved so that the user uses energy regardless of if the move goes off or not.
                 // Uses energy.
-                user.Energy -= energyUsed; // energy
+                // user.Energy -= energyUsed; // energy
 
                 // Adds the new page.
-                if(critBoost == 1.0F) // No critical
+                if(useCritBoost) // Critical
+                {
+                    newPages.Add(GetMoveHitCriticalPage());
+
+                    // newPages.Add(new Page(
+                    //                         BattleMessages.Instance.GetMoveHitCriticalMessage(),
+                    //                         BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
+                    //                         ));
+
+                }
+                else // No Critical
                 {
                     newPages.Add(GetMoveHitPage());
 
@@ -720,18 +772,9 @@ namespace RM_BBTS
                     //                         BattleMessages.Instance.GetMoveHitSpeakKey()
                     //                         ));
                 }
-                else // Critical
-                {
-                    newPages.Add(GetMoveHitCriticalPage());
 
-                    // newPages.Add(new Page(
-                    //                         BattleMessages.Instance.GetMoveHitCriticalMessage(),
-                    //                         BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
-                    //                         ));
-                }
-                    
                 // Burn Infliction
-                if(!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
+                if (!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
                 {
                     target.burned = true;
 
@@ -782,7 +825,8 @@ namespace RM_BBTS
                 // Checks if the user is the player or not.
                 if (user is Player) // Is the player.
                 {
-                    battle.gameManager.UpdatePlayerEnergyUI();
+                    // Moved.
+                    // battle.gameManager.UpdatePlayerEnergyUI();
                     battle.UpdateOpponentUI(); // Updates enemy health bar.
 
                     // Play sound effect.

@@ -1491,7 +1491,7 @@ namespace RM_BBTS
                 // Checks if the opponent health bar is transitioning.
                 if (opponentHealthBar.IsTransitioning())
                 {
-                    opponentHealthText.text = Mathf.Round(opponentHealthBar.GetSliderValueAsPercentage() * opponent.MaxHealth).ToString() + "/" +
+                    opponentHealthText.text = Mathf.Ceil(opponentHealthBar.GetSliderValueAsPercentage() * opponent.MaxHealth).ToString() + "/" +
                         opponent.MaxHealth.ToString();
 
                     // The health is transitioning.
@@ -1500,7 +1500,7 @@ namespace RM_BBTS
                 else if (opponentHealthTransitioning) // Transition done.
                 {
                     // Set to exact value.
-                    opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+                    opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + opponent.MaxHealth.ToString();
 
                     opponentHealthTransitioning = false;
                 }

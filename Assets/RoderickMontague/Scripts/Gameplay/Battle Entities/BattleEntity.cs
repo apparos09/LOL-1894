@@ -708,11 +708,11 @@ namespace RM_BBTS
 
             newData.level += times;
 
-            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
-            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
-            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
-            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
-            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
+            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
+            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
+            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
+            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
+            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
 
             // Adds a differet bonus per level.
             for(int lvl = 0; lvl < times; lvl++)
