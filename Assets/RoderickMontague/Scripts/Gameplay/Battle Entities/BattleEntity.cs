@@ -25,8 +25,9 @@ namespace RM_BBTS
         // The speak key for the display name.
         public string displayNameSpeakKey;
 
-        // The level of the entity.
+        // The level of the entity, and the rate that it levels up at.
         public uint level;
+        public float levelRate;
 
         // The stats
         public float maxHealth;
@@ -38,6 +39,9 @@ namespace RM_BBTS
 
         public float maxEnergy;
         public float energy;
+
+        // The stat specialty
+        public BattleEntity.specialty statSpecial;
 
         // The moves
         public moveId move0, move1, move2, move3;
@@ -76,6 +80,10 @@ namespace RM_BBTS
     // A class inherited by entities that do battle.
     public class BattleEntity : MonoBehaviour
     {
+        // The speciality of the enemy.
+        public enum specialty { none, health, attack, defense, speed }
+
+
         // The display name for the battle entity.
         public string displayName = "";
 
@@ -94,10 +102,18 @@ namespace RM_BBTS
         // the id number of the evolution. If this is 0, or if it is set to the same as 'id', then the entity has no evolution.
         public battleEntityId evoId = 0;
 
+        // Level
+        // Entity rate.
+        protected uint level = 1;
+
+        // The rate that the entity levels up at. The player levels up at a faster rate than the enemies.
+        // TODO: implement the level rate.
+        public float levelRate = 1.0F;
+
         [Header("Stats")]
 
-        // Level
-        protected uint level = 1;
+        // The entity's stat speciality.
+        public specialty statSpecial = specialty.none;
 
         // BASE STATS
         // The stats of the battle entity.
@@ -221,6 +237,7 @@ namespace RM_BBTS
             data.id = id;
             data.displayName = displayName;
             data.level = level;
+            data.levelRate = levelRate;
 
             data.maxHealth = maxHealth;
             data.health = health;
@@ -231,6 +248,8 @@ namespace RM_BBTS
 
             data.maxEnergy = maxEnergy;
             data.energy = energy;
+
+            data.statSpecial = statSpecial;
 
             // Move 0 Set.
             if(Move0 != null)
@@ -331,7 +350,9 @@ namespace RM_BBTS
             id = data.id;
             displayName = data.displayName;
             displayNameSpeakKey = data.displayNameSpeakKey;
+
             level = data.level;
+            levelRate = data.levelRate;
 
             maxHealth = data.maxHealth;
             health = data.health;
@@ -339,6 +360,8 @@ namespace RM_BBTS
             attack = data.attack;
             defense = data.defense;
             speed = data.speed;
+
+            statSpecial = data.statSpecial;
 
             maxEnergy = data.maxEnergy;
             energy = data.energy;
@@ -440,6 +463,13 @@ namespace RM_BBTS
             return energy == maxEnergy;
         }
 
+        // Gets the stat total (health, attack, defense, speed).
+        // Energy isn't included since the actual amount isn't relevant.
+        public float GetStatTotal()
+        {
+            return maxHealth + attack + defense + speed;
+        }
+
         // Gets the modified attack of the entity.
         public float GetAttackModified()
         {
@@ -485,10 +515,18 @@ namespace RM_BBTS
             paralyzed = false;
         }
 
+        // Basic level up.
+        public virtual void LevelUp()
+        {
+            LevelUp(specialty.none, 1);
+        }
+
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         // (times) refers to how many times the entity is leveled up.
-        public virtual void LevelUp(uint times = 1)
+        public virtual void LevelUp(specialty special, uint times = 1)
         {
+            // TODO: implement level up and level rate.
+
             // // Relative hp and energy.
             // float hpPercent = health / maxHealth;
             // float engPercent = energy / maxEnergy;
@@ -541,10 +579,13 @@ namespace RM_BBTS
 
             // Generate and level up the data.
             BattleEntityGameData data = GenerateBattleEntityGameData();
-            data = LevelUpData(data, times);
+            data = LevelUpData(data, special, levelRate, times);
 
             // Save level
             level = data.level;
+            
+            // Doesn't change this since it would overwrite the player's level rate.
+            // levelRate = data.levelRate;
 
             // Save health
             maxHealth = data.maxHealth;
@@ -563,8 +604,12 @@ namespace RM_BBTS
 
         // Levels up the provided data and returns a copy.
         // (times) refers to how many times the entity should be leveled up.
-        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, uint times = 1)
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, specialty special, float levelRate, uint times = 1)
         {
+            // No level up.
+            if (times == 0)
+                return data;
+
             BattleEntityGameData newData = data;
 
             int rand;
@@ -573,11 +618,11 @@ namespace RM_BBTS
 
             newData.level += times;
 
-            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
-            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
-            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
-            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
-            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * times;
+            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
+            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
+            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
+            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
+            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX) * levelRate * times;
 
             // Adds a differet bonus per level.
             for(int lvl = 0; lvl < times; lvl++)
@@ -588,22 +633,24 @@ namespace RM_BBTS
                 switch (rand)
                 {
                     case 0: // HP
-                        newData.maxHealth += STAT_LEVEL_BONUS_INC;
+                        newData.maxHealth += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                     case 1: // ATTACK
-                        newData.attack += STAT_LEVEL_BONUS_INC;
+                        newData.attack += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                     case 2: // DEFENSE
-                        newData.defense += STAT_LEVEL_BONUS_INC;
+                        newData.defense += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                     case 3: // SPEED
-                        newData.speed += STAT_LEVEL_BONUS_INC;
+                        newData.speed += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                     case 4: // ENERGY
-                        newData.maxEnergy += STAT_LEVEL_BONUS_INC;
+                        newData.maxEnergy += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                 }
             }
+
+            // TODO: do speciality bonus.
 
             // Proportional changes.
             newData.health = hpPercent * newData.maxHealth;
@@ -653,8 +700,9 @@ namespace RM_BBTS
             // Gets the evolved data.
             BattleEntityGameData evolved = BattleEntityList.Instance.GenerateBattleEntityData(oldData.evoId);
 
-            // Same Level
+            // Same Level and Rate
             evolved.level = oldData.level;
+            evolved.levelRate = oldData.levelRate;
 
             // Give stats to evolved form.
             evolved.maxHealth += oldData.maxHealth - baseData.maxHealth;

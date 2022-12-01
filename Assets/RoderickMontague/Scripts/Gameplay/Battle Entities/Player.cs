@@ -25,15 +25,17 @@ namespace RM_BBTS
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
-            maxHealth = 50;
+            maxHealth = 40;
             health = maxHealth;
 
-            attack = 12;
-            defense = 8;
-            speed = 6;
+            attack = 20;
+            defense = 20;
+            speed = 20;
 
-            maxEnergy = 30;
+            maxEnergy = 100;
             energy = maxEnergy;
+
+            statSpecial = specialty.none;
 
             // TODO: set unique sprite?
 
@@ -83,23 +85,23 @@ namespace RM_BBTS
         }
 
         // Levels up the player.
-        public override void LevelUp(uint times = 1)
+        public override void LevelUp(specialty special, uint times = 1)
         {
             // Levels up the player.
-            base.LevelUp(times);
+            base.LevelUp(special, times);
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
             Health += Mathf.Ceil(MaxHealth * LEVEL_UP_RESTORE_PERCENT * times);
             Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times);
         }
 
-        // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
-        public void LevelUp(Enemy.specialty enemySpecial, uint times = 1)
-        {
-            LevelUp(times);
-
-            // TODO: implement enemy specialities for level up.
-        }
+        // // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
+        // public void LevelUp(specialty special, uint times = 1)
+        // {
+        //     LevelUp(special, times);
+        // 
+        //     // TODO: implement enemy specialities for level up.
+        // }
 
         // Selects the run move. Only the player has the run move.
         public void SelectRun()

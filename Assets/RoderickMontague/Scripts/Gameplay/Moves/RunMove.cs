@@ -25,6 +25,7 @@ namespace RM_BBTS
             // Running away text.
             // battle.turnText.Add(new Page(user.displayName + " is trying to run away!"));
 
+            // TODO: try to move the run call here?
             // Maybe only play a sound since the screen switches over before the textbox plays.
 
             // If the user isn't the player nothing will happen.

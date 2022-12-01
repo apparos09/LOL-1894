@@ -276,7 +276,9 @@ namespace RM_BBTS
             }
 
             // Sets the level.
-            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, 
+            door.battleEntity = BattleEntity.LevelUpData(
+                door.battleEntity, 
+                door.battleEntity.statSpecial, 
                 (uint)Random.Range(1, gameManager.roomsPerLevelUp + 1));
 
 
@@ -349,7 +351,11 @@ namespace RM_BBTS
                         if(!door.Locked)
                         {
                             // Levels up the entity by the amount of battles per level up (the value is the same).
-                            door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, (uint)gameManager.roomsPerLevelUp);
+                            door.battleEntity = BattleEntity.LevelUpData(
+                                door.battleEntity, 
+                                door.battleEntity.statSpecial,
+                                (uint)gameManager.roomsPerLevelUp
+                                );
                         }
                     }
 

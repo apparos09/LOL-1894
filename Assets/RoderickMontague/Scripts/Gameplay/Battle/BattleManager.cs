@@ -1370,7 +1370,7 @@ namespace RM_BBTS
                                 if(opponent is Enemy)
                                 {
                                     // Special level up.
-                                    player.LevelUp(((Enemy)opponent).statSpecial);
+                                    player.LevelUp(opponent.statSpecial);
                                 }
                                 else
                                 {
