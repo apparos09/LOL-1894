@@ -145,7 +145,7 @@ namespace RM_BBTS
         public const int STAT_MOD_MIN = -3;
 
         // The maximum for the stat modifiers.
-        public const int STAT_MOD_MAX = -3;
+        public const int STAT_MOD_MAX = 3;
 
         // LEVEL UP
 
@@ -153,6 +153,7 @@ namespace RM_BBTS
         public const int STAT_LEVEL_INC_MIN = 1;
         public const int STAT_LEVEL_INC_MAX = 3;
         public const int STAT_LEVEL_BONUS_INC = 3;
+        public const int STAT_LEVEL_SPECIALITY_INC = 5;
         public const float LEVEL_UP_RESTORE_PERCENT = 0.2F;
 
         // float chargeRate = 1.0F; // the rate for charging - may not be used.
@@ -518,12 +519,12 @@ namespace RM_BBTS
         // Basic level up.
         public virtual void LevelUp()
         {
-            LevelUp(specialty.none, 1);
+            LevelUp(1.0F, specialty.none, 1);
         }
 
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         // (times) refers to how many times the entity is leveled up.
-        public virtual void LevelUp(specialty special, uint times = 1)
+        public virtual void LevelUp(float levelRate, specialty special, uint times = 1)
         {
             // TODO: implement level up and level rate.
 
@@ -577,9 +578,18 @@ namespace RM_BBTS
             // Health += maxHealth * restorePercent;
             // Energy += maxEnergy * restorePercent;
 
-            // Generate and level up the data.
+            // Generate and level up the data (data for level 1).
             BattleEntityGameData data = GenerateBattleEntityGameData();
-            data = LevelUpData(data, special, levelRate, times);
+
+            // The player is the one leveling up.
+            if(this is Player)
+            {
+                // Sets the data with the player's base stats for leveling up.
+                ((Player)this).SetDataWithBaseStats(ref data);
+            }
+
+            // Levels up the data.
+            data = LevelUpData(data, levelRate, special, times);
 
             // Save level
             level = data.level;
@@ -604,7 +614,7 @@ namespace RM_BBTS
 
         // Levels up the provided data and returns a copy.
         // (times) refers to how many times the entity should be leveled up.
-        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, specialty special, float levelRate, uint times = 1)
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, float levelRate, specialty special, uint times = 1)
         {
             // No level up.
             if (times == 0)
@@ -648,6 +658,31 @@ namespace RM_BBTS
                         newData.maxEnergy += STAT_LEVEL_BONUS_INC * levelRate;
                         break;
                 }
+            }
+
+            // Checks for the special bonus.
+            switch(special)
+            {
+                case specialty.none:
+                    // Increases each stat by 1.
+                    newData.maxHealth += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
+                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
+                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
+                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
+                    break;
+                case specialty.health:
+                    newData.maxEnergy += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    break;
+                case specialty.attack:
+                    newData.attack += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    break;
+                case specialty.defense:
+                    newData.defense += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    break;
+                case specialty.speed:
+                    newData.speed += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    break;
+                
             }
 
             // TODO: do speciality bonus.

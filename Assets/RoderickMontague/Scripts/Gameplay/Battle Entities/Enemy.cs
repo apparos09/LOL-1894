@@ -14,6 +14,8 @@ namespace RM_BBTS
         // 
         // }
 
+        [Header("Other")]
+
         // Holds a reference to the player.
         public Player player;
 

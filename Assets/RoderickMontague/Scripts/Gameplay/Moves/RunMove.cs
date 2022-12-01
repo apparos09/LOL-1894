@@ -32,20 +32,30 @@ namespace RM_BBTS
             // This should never be called for an entity.
             if(user is Player) // Player
             {
-                // // Calls the run function.
-                // bool success = battle.RunAway();
-                // 
-                // // The player failed to run away.
-                // if(!success)
-                // {
-                //     // If this message is shown then that means the player failed to run.
-                //     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page("The player failed to run."));
-                // }
+                // Calls the run function.
+                bool success = false;
+                
+                // Checks if the player was able to run away successfully.
+                if(success)
+                {
+                    // Ends the turn early.
+                    battle.EndTurnEarly();
 
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                    // Grabs the 'end turn early' page.
+                    Page page = battle.textBox.pages[battle.textBox.CurrentPageIndex + 1];
+
+                    // Call run away when the page closes.
+                    page.OnPageOpenedAddCallback(battle.RunAway);
+
+                }
+                else
+                {
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
                     BattleMessages.Instance.GetMoveRunFailedMessage(user.displayName),
                     BattleMessages.Instance.GetMoveRunFailedSpeakKey0()
                     ));
+                }
+         
 
             }
             else // Not player.

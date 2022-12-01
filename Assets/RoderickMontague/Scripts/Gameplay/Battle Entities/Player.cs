@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UIElements;
@@ -11,6 +12,13 @@ namespace RM_BBTS
     {
         // The run move for the player to select.
         private RunMove runMove;
+
+        // The base stats for the player.
+        private float baseMaxHealth = 40;
+        private float baseAttack = 20;
+        private float baseDefense = 20;
+        private float baseSpeed = 20;
+        private float baseMaxEnergy = 100;
 
         // Setting the player's stats.
         protected new void Awake()
@@ -25,14 +33,14 @@ namespace RM_BBTS
             level = 1;
 
             // Saves the default stats (maybe you should hardcode this).
-            maxHealth = 40;
+            maxHealth = baseMaxHealth;
             health = maxHealth;
 
-            attack = 20;
-            defense = 20;
-            speed = 20;
+            attack = baseAttack;
+            defense = baseDefense;
+            speed = baseSpeed;
 
-            maxEnergy = 100;
+            maxEnergy = baseMaxEnergy;
             energy = maxEnergy;
 
             statSpecial = specialty.none;
@@ -84,24 +92,47 @@ namespace RM_BBTS
             sprite = pSprite;
         }
 
+        // Sets the data using the player's base stats.
+        public void SetDataWithBaseStats(ref BattleEntityGameData data)
+        {
+            // Sets the base 
+            data.maxHealth = baseMaxHealth;
+            data.attack = baseAttack;
+            data.defense = baseDefense;
+            data.speed = baseSpeed;
+            data.maxEnergy = baseMaxEnergy;
+
+            // This is unneeded.
+            data.levelRate = levelRate;
+
+        }
+
         // Levels up the player.
-        public override void LevelUp(specialty special, uint times = 1)
+        public override void LevelUp()
+        {
+            // base.LevelUp();
+            LevelUp(levelRate, specialty.none, 1);
+
+        }
+
+        // Levels up the player.
+        public override void LevelUp(float levelRate, specialty special, uint times = 1)
         {
             // Levels up the player.
-            base.LevelUp(special, times);
+            base.LevelUp(levelRate, special, times);
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
             Health += Mathf.Ceil(MaxHealth * LEVEL_UP_RESTORE_PERCENT * times);
             Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times);
         }
 
-        // // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
-        // public void LevelUp(specialty special, uint times = 1)
-        // {
-        //     LevelUp(special, times);
-        // 
-        //     // TODO: implement enemy specialities for level up.
-        // }
+        // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
+        public void LevelUp(specialty special, uint times = 1)
+        {
+            LevelUp(levelRate, special, times);
+        
+            // TODO: implement enemy specialities for level up.
+        }
 
         // Selects the run move. Only the player has the run move.
         public void SelectRun()

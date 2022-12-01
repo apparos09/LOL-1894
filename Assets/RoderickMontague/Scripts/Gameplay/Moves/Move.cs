@@ -163,6 +163,14 @@ namespace RM_BBTS
             return (energyUsage * entity.MaxEnergy <= entity.Energy);
         }
 
+        // Checks if a move accuracy returns a success.
+        // This does not factor in anything else that would make the move fail.
+        public bool AccuracySuccessful(BattleEntity user)
+        {
+            // Returns 'true' if the move would hit its target.
+            return Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod || !useAccuracy;
+        }
+
         // Tries to end the turn early if one of the entities is dead.
         public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
         {
@@ -211,7 +219,7 @@ namespace RM_BBTS
             }
                 
             // If the move hit successfully (or if 'useAccuracy' is set to false, meaning it always hits)
-            if(Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod || !useAccuracy)
+            if(AccuracySuccessful(user))
             {
                 // The new pages.
                 List<Page> newPages = new List<Page>();

@@ -1810,14 +1810,15 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  levelRate: 1
+  statSpecial: 0
   attackMod: 0
   defenseMod: 0
   speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0
-  statSpecial: 0
-  player: {fileID: 0}
+  player: {fileID: 1467642233}
 --- !u!4 &140528597
 Transform:
   m_ObjectHideFlags: 0
@@ -12500,6 +12501,8 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  levelRate: 1
+  statSpecial: 0
   attackMod: 0
   defenseMod: 0
   speedMod: 0
@@ -13897,13 +13900,14 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  levelRate: 1
+  statSpecial: 0
   attackMod: 0
   defenseMod: 0
   speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0
-  statSpecial: 0
   player: {fileID: 0}
 --- !u!4 &1656379399
 Transform:
@@ -15493,6 +15497,8 @@ MonoBehaviour:
   id: 0
   preEvoId: 0
   evoId: 0
+  levelRate: 1
+  statSpecial: 0
   attackMod: 0
   defenseMod: 0
   speedMod: 0

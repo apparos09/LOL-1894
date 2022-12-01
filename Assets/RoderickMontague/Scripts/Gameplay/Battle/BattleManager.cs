@@ -298,11 +298,11 @@ namespace RM_BBTS
             // Opponent has been set.
             if (opponent != null)
             {
-                // Saves the opponent's name.
-                opponentNameText.text = opponent.displayName;
-
                 // Loads the battle data
                 opponent.LoadBattleGameData(door.battleEntity);
+
+                // Saves the opponent's name.
+                opponentNameText.text = opponent.displayName;
 
                 // SPRITE
                 opponentSprite.sprite = opponent.sprite;

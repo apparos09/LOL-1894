@@ -38,6 +38,24 @@ namespace RM_BBTS
         // The amount of treasures for the game.
         public const int TREASURE_COUNT = 3;
 
+        /*
+         * Determines the game boss. Any number other than 0 is only used for testing.
+         * 0 = Varies
+         * 1 = Combat Bot (ATTACK/DEFAULT)
+         *  - Default option.
+         * 2 = Comet (SPEED)
+         * 3 = Vortex (DEFENSE)
+         */
+        private const int GAME_BOSS = 0;
+
+        // These are used for choosing the final boss.        
+        private int noneSpecials = 0;
+        private int healthSpecials = 0;
+        private int attackSpecials = 0;
+        private int defenseSpecials = 0;
+        private int speedSpecials = 0;
+        private int energySpecials = 0;
+
         // // The door prefab to be instantiated.
         // public GameObject doorPrefab;
         // 
@@ -121,7 +139,7 @@ namespace RM_BBTS
                 // A random index.
                 int randIndex = 0;
 
-                // BOSS
+                // BOSS (PART 1)
                 // The boss door
                 randIndex = Random.Range(0, doorInitList.Count); // Grabs the random index.
                 bossDoor = doorInitList[randIndex]; // Grab random door to make boss door.
@@ -130,8 +148,8 @@ namespace RM_BBTS
                 // Replaces the sprite in the 'GenerateRoom' function for consistency.
                 bossDoor.isBossDoor = true; // This is a boss door.
 
-                // TODO: check specialties of enemies to see what boss fight to spawn.
-                GenerateRoom(bossDoor); // Generates the room.
+                // MOVED to the end so that the enemy can vary.
+                // GenerateRoom(bossDoor); // Generates the room.
 
                 // TREASURES
                 // The treasure doors.
@@ -150,12 +168,37 @@ namespace RM_BBTS
                     GenerateRoom(treasureDoor); // Generates the room.
                 }
 
-                // Initialize the rest of the doors.
+
+                // Initialize the basic doors.
                 foreach(Door door in doorInitList)
                 {
                     GenerateRoom(door);
+
+                    // Checks the stat specialty of the generated enemy.
+                    switch (door.battleEntity.statSpecial)
+                    {
+                        case BattleEntity.specialty.none: // No special.
+                            noneSpecials++;
+                            break;
+                        case BattleEntity.specialty.health: // Health special.
+                            healthSpecials++;
+                            break;
+                        case BattleEntity.specialty.attack: // Attack special.
+                            attackSpecials++;
+                            break;
+                        case BattleEntity.specialty.defense: // Defense special.
+                            defenseSpecials++;
+                            break;
+                        case BattleEntity.specialty.speed: // Speed special.
+                            speedSpecials++;
+                            break;
+
+                    }
                 }
 
+
+                // BOSS (PART 2)
+                GenerateRoom(bossDoor);
             }
 
             // Updates the UI.
@@ -237,12 +280,56 @@ namespace RM_BBTS
             // Checks the door type.
             if(door.isBossDoor) // Boss Door
             {
-                // TODO: randomize between the three bosses.
-                door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.combatbot);
+                // The boss to be generated.
+                int boss = GAME_BOSS;
+
+                // The maximum special value.
+                int specialMax = Mathf.Max(noneSpecials, healthSpecials, attackSpecials, defenseSpecials, speedSpecials, energySpecials);
+
+                // Checks if the boss choice should vary.
+                if(boss == 0)
+                {
+                    if (specialMax == noneSpecials || specialMax == healthSpecials || specialMax == attackSpecials) // Attack Boss
+                    {
+                        boss = 1;
+                    }
+                    else if (specialMax == defenseSpecials) // Defense Boss
+                    {
+                        boss = 3;
+                    }
+                    else if (specialMax == speedSpecials) // Speed Boss
+                    {
+                        boss = 2;
+                    }
+                    else
+                    {
+                        boss = 1; // Default boss.
+                    }
+                }
+               
+                // Checks what game boss to use.
+                switch(boss)
+                {
+                    case 1: // Combatbot (combatbot) - Attack/Health/Default
+                    default:
+                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.combatbot);
+                        break;
+                    case 2: // Comet (comet) - Speed
+                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.comet);
+                        break;
+                    case 3: // Vortex (blackhole) - Defense
+                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.blackhole);
+                        break;
+                }
 
                 // Replaces the sprites.
-                bossDoor.unlockedSprite = bossDoorUnlockedSprite;
-                bossDoor.lockedSprite = bossDoorLockedSprite;
+                door.unlockedSprite = bossDoorUnlockedSprite;
+                door.lockedSprite = bossDoorLockedSprite;
+
+                // NOTE: for some reason the door sprite wasn't consistently setting, so hopefully this fixes it.
+                bossDoor = door;
+                // bossDoor.unlockedSprite = bossDoorUnlockedSprite;
+                // bossDoor.lockedSprite = bossDoorLockedSprite;
             }
             else if(door.isTreasureDoor) // Treasure Door
             {
@@ -254,13 +341,14 @@ namespace RM_BBTS
                 // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
 
                 // Generates a random enemy (base version).
-                
+
                 // TODO: switch to the final version after implementing more enemies.
-                // FINAL
-                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, true, true);
+                // FINAL - I don't think I'll use random weights.
+                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, false, true); // Random rates.
+                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, true, true); // No random rates.
 
                 // TESTING 
-                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(false, false, true);
+                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(false, false, true);
 
             }
 
@@ -278,6 +366,7 @@ namespace RM_BBTS
             // Sets the level.
             door.battleEntity = BattleEntity.LevelUpData(
                 door.battleEntity, 
+                door.battleEntity.levelRate,
                 door.battleEntity.statSpecial, 
                 (uint)Random.Range(1, gameManager.roomsPerLevelUp + 1));
 
@@ -352,7 +441,8 @@ namespace RM_BBTS
                         {
                             // Levels up the entity by the amount of battles per level up (the value is the same).
                             door.battleEntity = BattleEntity.LevelUpData(
-                                door.battleEntity, 
+                                door.battleEntity,
+                                door.battleEntity.levelRate,
                                 door.battleEntity.statSpecial,
                                 (uint)gameManager.roomsPerLevelUp
                                 );
@@ -400,6 +490,7 @@ namespace RM_BBTS
         // Rearranges the doors.
         public void OnOverworldReturnGameOver()
         {
+            // TODO: don't move the boss door.
             // The new positions
             List<Vector3> doorLocs = new List<Vector3>();
 
