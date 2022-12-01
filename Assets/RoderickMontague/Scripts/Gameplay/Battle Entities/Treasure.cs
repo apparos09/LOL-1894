@@ -14,6 +14,22 @@ namespace RM_BBTS
 
             // The treasure is 'id' 0.
             id = battleEntityId.treasure;
+
+            // Setting the stats shouldn't be needed, but just in case...
+            level = 1;
+
+            maxHealth = 1;
+            health = maxHealth;
+
+            attack = 1;
+            defense = 1;
+            speed = 1;
+
+            maxEnergy = 100;
+            energy = maxEnergy;
+
+            // If the treasure is called to use a move it will always use charge, which won't do anything for it.
+            selectedMove = MoveList.Instance.ChargeMove;
         }
 
         // Update is called once per frame

@@ -40,6 +40,9 @@ namespace RM_BBTS
         // If set to 'false', the move will always hit if there's enough energy.
         public bool useAccuracy = true;
 
+        // The recoil applied when using the move. This is a percentage of the damage done to the target.
+        protected float recoilPercent = 0.0F;
+
         // STATUS EFFECTS/CHANCE EVENTS //
         // The chance of performing critical damage.
         protected float criticalChance = 0.3F;
@@ -49,6 +52,7 @@ namespace RM_BBTS
 
         // Chance of paralyzing the opponent.
         protected float paralysisChance = 0.0F;
+
 
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -124,6 +128,17 @@ namespace RM_BBTS
             // TODO: implement.
         }
 
+        // Sets the percentage of recoil received from the attack, based on the damage to the target (0.0-1.0 range).
+        public float RecoilPercent
+        {
+            get { return recoilPercent; }
+
+            set
+            {
+                recoilPercent = Mathf.Clamp01(recoilPercent);
+            }
+        }
+
         // Critical
         public float CriticalChance
         {
@@ -175,7 +190,7 @@ namespace RM_BBTS
         public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // The user or the target is dead.
-            if (user.Health <= 0 || target.Health <= 0)
+            if (user.IsDead() || target.IsDead())
             {
                 // Ends the turn early.
                 battle.EndTurnEarly();
@@ -248,6 +263,9 @@ namespace RM_BBTS
 
                 // Damages the target.
                 target.Health -= damage;
+
+                // Damages the user with recoil.
+                user.Health -= damage * recoilPercent;
 
                 // Uses energy.
                 user.Energy -= energyUsed; // energy

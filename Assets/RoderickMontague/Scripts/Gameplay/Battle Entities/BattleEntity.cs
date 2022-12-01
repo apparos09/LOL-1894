@@ -124,8 +124,8 @@ namespace RM_BBTS
         protected float defense = 1;
         protected float speed = 1;
 
-        protected float maxEnergy = 10;
-        protected float energy = 10;
+        protected float maxEnergy = 100;
+        protected float energy = 100;
 
         // STAT MOFIDIERS (TEMP INC/DEC)
 
@@ -458,6 +458,18 @@ namespace RM_BBTS
             set { energy = Mathf.Clamp(value, 0, MaxEnergy); }
         }
 
+        // Sets the energy to its maximum value.
+        public void SetHealthToMax()
+        {
+            health = maxHealth;
+        }
+
+        // Sets the energy to its maximum value.
+        public void SetEnergyToMax()
+        {
+            energy = maxEnergy;
+        }
+
         // Returns 'true' if the entity has the maximum amount of energy.
         public bool HasFullCharge()
         {
@@ -514,6 +526,16 @@ namespace RM_BBTS
         {
             burned = false;
             paralyzed = false;
+        }
+        
+        // Checks if the battle entity is dead.
+        public bool IsDead()
+        {
+            // If the health is less than 0, set it to 0.
+            if (health < 0)
+                health = 0;
+
+            return health <= 0;
         }
 
         // Basic level up.

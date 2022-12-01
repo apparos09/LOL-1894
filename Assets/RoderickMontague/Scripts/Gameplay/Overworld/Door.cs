@@ -78,6 +78,12 @@ namespace RM_BBTS
             }
         }
 
+        // Updates the sprite.
+        public void UpdateSprite()
+        {
+            sprite.sprite = (locked) ? lockedSprite : unlockedSprite;
+        }
+
         // Generates the save data.
         public DoorSaveData GenerateSaveData()
         {

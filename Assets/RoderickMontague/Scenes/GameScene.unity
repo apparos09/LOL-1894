@@ -8425,9 +8425,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1163903607}
-        m_TargetAssemblyTypeName: RM_BBTS.BattleManager, Assembly-CSharp
-        m_MethodName: RunAway
+      - m_Target: {fileID: 1467642233}
+        m_TargetAssemblyTypeName: RM_BBTS.Player, Assembly-CSharp
+        m_MethodName: SelectRun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

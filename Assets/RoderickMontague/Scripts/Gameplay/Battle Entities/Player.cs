@@ -14,10 +14,10 @@ namespace RM_BBTS
         private RunMove runMove;
 
         // The base stats for the player.
-        private float baseMaxHealth = 40;
-        private float baseAttack = 20;
-        private float baseDefense = 20;
-        private float baseSpeed = 20;
+        private float baseMaxHealth = 45;
+        private float baseAttack = 45;
+        private float baseDefense = 45;
+        private float baseSpeed = 45;
         private float baseMaxEnergy = 100;
 
         // Setting the player's stats.
@@ -44,6 +44,9 @@ namespace RM_BBTS
             energy = maxEnergy;
 
             statSpecial = specialty.none;
+
+            // The player levels up faster than the enemies.
+            levelRate = 1.1F;
 
             // TODO: set unique sprite?
 

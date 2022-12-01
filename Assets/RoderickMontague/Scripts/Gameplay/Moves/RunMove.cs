@@ -33,7 +33,7 @@ namespace RM_BBTS
             if(user is Player) // Player
             {
                 // Calls the run function.
-                bool success = false;
+                bool success = AccuracySuccessful(user);
                 
                 // Checks if the player was able to run away successfully.
                 if(success)

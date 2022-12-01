@@ -748,7 +748,18 @@ namespace RM_BBTS
             // If false, the text is changed instantly. If true, the text is not updated here.
             // This prevents the final number from flashing for a frame.
             if(!syncTextToBars)
-                playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+            {
+                SetPlayerHealthText();
+            }
+                
+        }
+
+        // Sets the player's health text.
+        public void SetPlayerHealthText()
+        {
+            // This is always shown as a whole number, rounded up.
+            playerHealthText.text =
+                    Mathf.Ceil(player.Health).ToString() + "/" + Mathf.Ceil(player.MaxHealth).ToString();
         }
 
         // Updates the player energy UI.
@@ -762,10 +773,16 @@ namespace RM_BBTS
             {
                 // Now just shows the percentage.
                 // playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
-                playerEnergyText.text = 
-                    (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
+                SetPlayerEnergyText();
             }
                 
+        }
+
+        // Sets the player's health text.
+        public void SetPlayerEnergyText()
+        {
+            playerEnergyText.text =
+                    (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
         }
 
         // OTHER //
@@ -1095,7 +1112,7 @@ namespace RM_BBTS
                 if (playerHealthBar.IsTransitioning())
                 {
                     playerHealthText.text = Mathf.Ceil(playerHealthBar.GetSliderValueAsPercentage() * player.MaxHealth).ToString() + "/" +
-                        player.MaxHealth.ToString();
+                        Mathf.Ceil(player.MaxHealth).ToString();
 
                     // The health is transitioning.
                     playerHealthTransitioning = true;
@@ -1103,7 +1120,7 @@ namespace RM_BBTS
                 else if (playerHealthTransitioning) // Transition done.
                 {
                     // Set to exact value.
-                    playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
+                    SetPlayerHealthText();
 
                     playerHealthTransitioning = false;
                 }
@@ -1127,9 +1144,7 @@ namespace RM_BBTS
                 else if (playerEnergyTransitioning)  // Transition done.
                 {
                     // Set to exact value.
-                    playerEnergyText.text =
-                    (player.Energy / player.MaxEnergy * 100.0F).ToString(
-                        "F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
+                    SetPlayerEnergyText();
 
                     playerEnergyTransitioning = false;
                 }

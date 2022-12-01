@@ -286,10 +286,37 @@ namespace RM_BBTS
             return move;
         }
 
-        // Gets a random move.
+        // Gets a random move of a random rank.
         public Move GetRandomMove()
         {
-            moveId id = (moveId)Random.Range(2, MOVE_ID_COUNT);
+            return GetRandomMove(0);
+        }
+
+        // Gets a random move. If the rank is invalid, it picks from the whole list.
+        public Move GetRandomMove(int rank)
+        {
+            moveId id;
+
+            switch(rank)
+            {
+                case 1: // rank 1
+                    id = (moveId)Random.Range(2, (int)lastRank1 + 1);
+                    break;
+
+                case 2: // rank 2
+                    id = (moveId)Random.Range((int)lastRank1 + 1, (int)lastRank2 + 1);
+                    break;
+
+                case 3: // rank 3
+                    id = (moveId)Random.Range((int)lastRank2 + 1, (int)lastRank3 + 1);
+                    break;
+
+                default: // Selects from the whole list.
+                    id = (moveId)Random.Range(2, MOVE_ID_COUNT + 1);
+                    break;
+            }
+
+            // Generates the move from the id.
             Move move = GenerateMove(id);
             return move;
         }
@@ -297,27 +324,19 @@ namespace RM_BBTS
         // Gets a random rank 1 move.
         public Move GetRandomRank1Move()
         {
-            // Grabs a random move. The first two are skipped since 'run' and 'charge' should not be used.
-            moveId id = (moveId)Random.Range(2, (int)lastRank1 + 1);
-            Move move = GenerateMove(id);
-            return move;
+            return GetRandomMove(1);
         }
 
         // Gets a random rank 2 move.
         public Move GetRandomRank2Move()
         {
-            moveId id = (moveId)Random.Range((int)lastRank1 + 1, (int)lastRank2 + 1);
-            Move move = GenerateMove(id);
-            return move;
+            return GetRandomMove(2);
         }
 
         // Gets a random rank 3 move.
         public Move GetRandomRank3Move()
         {
-            // Gets a random rank 3 move.
-            moveId id = (moveId)Random.Range((int)lastRank2 + 1, (int)lastRank3 + 1);
-            Move move = GenerateMove(id);
-            return move;
+            return GetRandomMove(3);
         }
     }
 }

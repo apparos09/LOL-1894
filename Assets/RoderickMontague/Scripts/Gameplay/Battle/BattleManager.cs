@@ -68,6 +68,9 @@ namespace RM_BBTS
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
 
+        // The chance of the randomly learned move being a random rank.
+        private float RANDOM_RANK_MOVE_CHANCE = 0.05F;
+
         // Becomes 'true' when the battle end state has been initialized.
         private bool initBattleEnd = false;
 
@@ -280,19 +283,18 @@ namespace RM_BBTS
             player.ResetStatModifiers();
             player.ResetStatuses();
 
-            // Checks the type of entity.
-            switch (door.battleEntity.id)
+            // Checks to see what type of entity is being faced.
+            if(door.isBossDoor) // Boss
             {
-                case battleEntityId.treasure: // treasure
-                    opponent = treasureBase;
-                    break;
-                case battleEntityId.combatbot: // boss
-                    opponent = bossBase;
-                    break;
-                default: // enemy
-                    opponent = enemyBase;
-                    break;
-
+                opponent = bossBase;
+            }
+            else if(door.isTreasureDoor) // Treasure
+            {
+                opponent = treasureBase;
+            }
+            else // Enemy
+            {
+                opponent = enemyBase;
             }
 
             // Opponent has been set.
@@ -852,17 +854,23 @@ namespace RM_BBTS
             // Overrides the selected move.
             player.selectedMove = MoveList.Instance.RunMove;
 
-            // If there's no opponent then the player can always run away.
-            if (opponent == null)
-            {
-                success = true;
-            }
-            // If there is an opponent there the player may be unable to leave.
-            else
-            {
-                // There's a 1/2 chance of running away.
-                success = (Random.Range(0, 2) == 1);
-            }
+            // Run has now been fixed so that it's tied to the actual move.
+            // If this function is called it will always be a success.
+
+            // // If there's no opponent then the player can always run away.
+            // if (opponent == null)
+            // {
+            //     success = true;
+            // }
+            // // If there is an opponent there the player may be unable to leave.
+            // else
+            // {
+            //     // There's a 1/2 chance of running away.
+            //     // success = (Random.Range(0, 2) == 1);
+            //     success = true;
+            // }
+
+            success = true;
 
             // Returns to the overworld if the run was successful.
             if (success)
@@ -1038,50 +1046,62 @@ namespace RM_BBTS
             // The phase.
             int phase = gameManager.GetGamePhase();
 
+            // Runs a randomizer to see if a move of a random rank will be chosen.
+            // The random rank being chosen.
+            int randRank = (Random.Range(0.0F, 1.0F) <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
+
             // The new move.
             Move newMove;
 
-            // Checks the phase.
-            switch (phase)
+            // Becomes 'true' if the move was found.
+            bool moveFound = false;
+
+            // The attempts to get a new move.
+            int attempts = 0;
+
+            do
             {
-                case 1: // beginning - 1
-                    newMove = MoveList.Instance.GetRandomRank1Move();
-                    break;
-                case 2: // middle - 2
-                    newMove = MoveList.Instance.GetRandomRank2Move();
-                    break;
-                case 3: // end - 3
-                default:
-                    newMove = MoveList.Instance.GetRandomRank3Move();
-                    break;
-            }
-
-            // If the player already has this move.
-            if (player.HasMove(newMove))
-            {
-                // Becomes 'true' when the new move is set.
-                bool newMoveFound = false;
-
-                // Attempts at generating a new move.
-                int attempts = 5;
-
-                // Tries to generate a new move that the player doesn't have 5 times.
-                for (int n = 0; n < attempts; n++)
+                // Checks the phase.
+                switch (randRank)
                 {
-                    // Grabs a new move.
-                    newMove = MoveList.Instance.GetRandomMove();
-                    newMoveFound = player.HasMove(newMove);
-
-                    // If a new move was found already, break early.
-                    if (newMoveFound)
+                    case 1: // beginning - 1
+                        newMove = MoveList.Instance.GetRandomRank1Move();
+                        break;
+                    case 2: // middle - 2
+                        newMove = MoveList.Instance.GetRandomRank2Move();
+                        break;
+                    case 3: // end - 3
+                        newMove = MoveList.Instance.GetRandomRank3Move();
+                        break;
+                    default: // random
+                        newMove = MoveList.Instance.GetRandomMove();
                         break;
                 }
 
-                // If the new move was still the same, well then the player will have the chance to get multiples of the same move.
-                // This shouldn't happen, but it likely won't happen.
+                // Checks if the player has the move already.
+                if(player.HasMove(newMove)) // Move is not valid.
+                {
+                    // Pick from all moves.
+                    randRank = 0;
 
-            }
+                    // Move has not been found.
+                    moveFound = false;
+                }
+                else // Move is valid.
+                {
+                    moveFound = true;
+                }
 
+                // Increases the amount of attempts made.
+                attempts++;
+
+                // Max amount of attempts were made, so just stick with whatever move the game gave.
+                if (attempts >= 5)
+                    moveFound = true;
+
+            } while (!moveFound);
+
+           
             // If the player has less than 4 moves, automatically learn the move.
             if (player.GetMoveCount() < 4)
             {
@@ -1169,7 +1189,7 @@ namespace RM_BBTS
             // If false, the text is changed instantly. If true, the text is not updated here.
             // This prevents the final number from flashing for a frame.
             if (!gameManager.syncTextToBars)
-                opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+                opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString();
         }
 
         // AUDIO //
@@ -1266,7 +1286,18 @@ namespace RM_BBTS
                 {
                     // If the opponent isn't a treasure chest try to perform moves.
                     if (!(opponent is Treasure))
+                    {
                         PerformMoves();
+                    }
+                    else // Checks to see if the prompt is visible.
+                    {
+                        // This is to fix a glitch where the treasure prompt would sometimes not appear.
+                        // I don't know why that happens, but this should address it.
+                        // TODO: don't show the prompt if the tutorial textbox is open?
+                        if (!treasurePrompt.activeSelf)
+                            treasurePrompt.SetActive(true);
+                    }
+                        
                 }
                 else
                 {
@@ -1275,7 +1306,7 @@ namespace RM_BBTS
                     {
                         // Returns to the overworld. TODO: account for game over.
                         // The player got a game over.
-                        if (player.Health <= 0) // game over
+                        if (player.IsDead()) // game over
                         {
                             // Restores the opponent's health to max (stops both from dying on the same round.
                             opponent.Health = opponent.MaxHealth;
@@ -1312,7 +1343,6 @@ namespace RM_BBTS
                             }
                             else if(opponent is Boss) // Final boss beaten.
                             {
-                                // TODO: test this.
                                 // Boss page and callback.
                                 Page bossPage = new Page(
                                     BattleMessages.Instance.GetBattleWonBossMessage(),
@@ -1326,7 +1356,9 @@ namespace RM_BBTS
 
                                 // Adds the boss page. 
                                 textBox.pages.Add(bossPage);
-                                // textBox.pages.Add(new Page("..."));
+
+                                // Room has been compelted.
+                                gameManager.roomsCompleted++;
                             }
                             else // Not Treasure
                             {
@@ -1410,6 +1442,10 @@ namespace RM_BBTS
                                 if (gameManager.useTutorial && gameManager.roomsCompleted == 0)
                                     learnMove = true;
                             }
+
+                            // If the boss was beaten the game will end, so the player won't learn a new move.
+                            if (opponent is Boss)
+                                learnMove = false;
                             
 
                             // Checks to see if the player will be learning a new move.

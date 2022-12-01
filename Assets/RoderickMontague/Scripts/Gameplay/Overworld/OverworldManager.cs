@@ -198,7 +198,13 @@ namespace RM_BBTS
 
 
                 // BOSS (PART 2)
+                // This will choose the boss based on the other enemies.
                 GenerateRoom(bossDoor);
+
+                // Note: this was probably caused just by an error from a missing object.
+                // // For some reason the doors sometimes don't get replaced. This should fix it.
+                // bossDoor.unlockedSprite = bossDoorUnlockedSprite;
+                // bossDoor.lockedSprite = bossDoorLockedSprite;
             }
 
             // Updates the UI.
@@ -326,10 +332,8 @@ namespace RM_BBTS
                 door.unlockedSprite = bossDoorUnlockedSprite;
                 door.lockedSprite = bossDoorLockedSprite;
 
-                // NOTE: for some reason the door sprite wasn't consistently setting, so hopefully this fixes it.
+                // Saves boss door. The most recent door is considered the boss door.
                 bossDoor = door;
-                // bossDoor.unlockedSprite = bossDoorUnlockedSprite;
-                // bossDoor.lockedSprite = bossDoorLockedSprite;
             }
             else if(door.isTreasureDoor) // Treasure Door
             {
@@ -378,6 +382,9 @@ namespace RM_BBTS
 
             // Make sure the battle entity is parented to the door.
             // TODO: have algorithm for generating enemies.
+
+            // Makes sure the door sprite is updated to match the provided images.
+            door.UpdateSprite();
 
         }
 

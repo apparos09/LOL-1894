@@ -19,9 +19,11 @@ namespace RM_BBTS
         // // The clip for the button audio.
         // public AudioClip clickClip;
 
-        // Start is called before the first frame update
-        void Start()
+        // Awake is called when the script instance is being loaded.
+        private void Awake()
         {
+            // Moved here in case the button has not been set enabled before the game was closed.
+
             // Button not set.
             if (button == null)
             {
@@ -34,6 +36,12 @@ namespace RM_BBTS
             {
                 OnClick();
             });
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // ...
         }
 
 
