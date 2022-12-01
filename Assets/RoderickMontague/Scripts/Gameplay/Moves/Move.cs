@@ -211,11 +211,27 @@ namespace RM_BBTS
 
         // Checks if a move accuracy returns a success.
         // This does not factor in anything else that would make the move fail.
-        public bool AccuracySuccessful(BattleEntity user)
+        public bool AccuracySuccessful(BattleEntity user, bool useModified = true)
         {
             // Returns 'true' if the move would hit its target.
             // If the move always hits, 'useAccuracy' is set to true.
-            return Random.Range(0.0F, 1.0F) <= user.GetModifiedAccuracy(accuracy) || !useAccuracy;
+            bool success = false;
+
+            if(useAccuracy) // May Not Succeed
+            {
+                float randFloat = GenerateRandomFloat01();
+
+                // Checks if the modified accuracy should be used.
+                success = randFloat <= ((useModified) ? user.GetModifiedAccuracy(accuracy) : accuracy);
+
+            }
+            else // Always Succeeds
+            {
+                success = true;
+            }
+
+            // Successful.
+            return success;
         }
 
         // Reduces the energy from using the move.

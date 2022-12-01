@@ -141,6 +141,9 @@ namespace RM_BBTS
                 case moveId.slimeshot: // Slimeshot
                     move = new Move(moveId.slimeshot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.05F);
 
+                    move.speedChangeTarget = -1;
+                    move.speedChangeChanceTarget = 0.15F;
+
                     // Sets the keys for translating the data.
                     // nameKey = "mve_charge_nme";
                     // descKey = "mve_charge_dsc";
@@ -174,6 +177,9 @@ namespace RM_BBTS
 
                 case moveId.screech: // Screech
                     move = new Move(moveId.screech, "<Screech>", 1, 25.0F, 1.0F, 0.05F);
+
+                    move.accuracyChangeTarget = -1;
+                    move.accuracyChangeChanceTarget = 0.2F;
 
                     // Sets the keys for translating the data.
                     // nameKey = "mve_charge_nme";

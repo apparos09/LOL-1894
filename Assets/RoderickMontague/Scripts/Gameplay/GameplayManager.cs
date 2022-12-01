@@ -158,8 +158,8 @@ namespace RM_BBTS
         // The text for the player's enegy
         public TMP_Text playerEnergyText;
 
-        // The amount of decimal places used for displaying energy levels.
-        public const int ENERGY_DECIMAL_PLACES = 2;
+        // The amount of decimal places used for displaying percentages.
+        public const int DISPLAY_DECIMAL_PLACES = 2;
 
         // Becomes set to 'true' when the player's energy is transitioning.
         private bool playerEnergyTransitioning = false;
@@ -782,7 +782,7 @@ namespace RM_BBTS
         public void SetPlayerEnergyText()
         {
             playerEnergyText.text =
-                    (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
+                    (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + DISPLAY_DECIMAL_PLACES.ToString()) + "%";
         }
 
         // OTHER //
@@ -1136,7 +1136,7 @@ namespace RM_BBTS
                     // Now displays as a percentage value.
                     playerEnergyText.text = 
                         (playerEnergyBar.GetSliderValueAsPercentage() * 100).ToString(
-                            "F" + ENERGY_DECIMAL_PLACES.ToString()) + "%";
+                            "F" + DISPLAY_DECIMAL_PLACES.ToString()) + "%";
 
                     // The energy is transitioning.
                     playerEnergyTransitioning = true;

@@ -149,7 +149,7 @@ namespace RM_BBTS
             // Now shows as a percentage.
             // energyText.text = gameManager.EnergyString + ": " + Mathf.Ceil(player.Energy).ToString() + "/" + Mathf.Ceil(player.MaxEnergy).ToString();
             energyText.text = gameManager.EnergyString + ": " +
-                (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + GameplayManager.ENERGY_DECIMAL_PLACES.ToString()) + "%";
+                (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
 
             // BUTTONS
             // M0
@@ -188,7 +188,7 @@ namespace RM_BBTS
             Move move = null;
 
             // Checks move number
-            switch(moveNumber)
+            switch (moveNumber)
             {
                 case 0: // Move 0
                     move = player.Move0;
@@ -220,13 +220,39 @@ namespace RM_BBTS
             }
 
             // Updates the visuals.
+            // Name
             moveNameText.text = move.Name;
 
+            // Rank
             moveRankText.text = rankString + ": " + move.Rank.ToString();
+            
+            // Power
             movePowerText.text = powerString + ": " + move.Power.ToString();
-            moveAccuracyText.text = accuracyString + ": " + Mathf.Round(move.Accuracy * 100.0F).ToString() + "%";
-            moveEnergyText.text = gameManager.EnergyString + ": " + (move.EnergyUsage * 100.0F).ToString() + "%";
 
+            // Accuracy
+            if (move.useAccuracy)
+            {
+                moveAccuracyText.text = accuracyString + ": " +
+                    Mathf.Round(move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            }
+            else
+            {
+                moveAccuracyText.text = accuracyString + ": " + "-";
+            }
+           
+            // Energy
+            if(move.EnergyUsage != 0.0F)
+            {
+                moveEnergyText.text =
+                    gameManager.EnergyString + ": " +
+                    (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            }
+            else
+            {
+                moveEnergyText.text = gameManager.EnergyString + ": " + "-";
+            }
+
+            // Description
             moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
 
         }

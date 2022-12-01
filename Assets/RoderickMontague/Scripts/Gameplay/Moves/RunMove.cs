@@ -8,10 +8,18 @@ namespace RM_BBTS
     // This move has no functionality. This just allows the turn to go through if the player's run fails.
     public class RunMove : Move
     {
+        // The success chance of running away.
+        const float SUCCESS_CHANCE = 0.5F;
+
         // Constructor for the charge move.
         public RunMove() :
-            base(moveId.run, "<Run>", 1, 0, 0.5F, 0)
+            base(moveId.run, "<Run>", 1, 0, SUCCESS_CHANCE, 0)
         {
+            description = "<The user runs away. There's a 50% chance of success.>";
+
+            // Don't use the accuracy parameter.
+            useAccuracy = false;
+
             // This is arbitrary. It's just there for making the run failed message appear first.
             priority = 10;
 
@@ -33,10 +41,11 @@ namespace RM_BBTS
             if(user is Player) // Player
             {
                 // Calls the run function.
-                bool success = AccuracySuccessful(user);
-                
+                // bool success = AccuracySuccessful(user, false);
+                bool success = GenerateRandomFloat01() <= SUCCESS_CHANCE;
+
                 // Checks if the player was able to run away successfully.
-                if(success)
+                if (success)
                 {
                     // Ends the turn early.
                     battle.EndTurnEarly();

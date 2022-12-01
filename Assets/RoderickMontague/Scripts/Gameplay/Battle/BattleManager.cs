@@ -539,6 +539,7 @@ namespace RM_BBTS
         {
             // Moves won't show accuracy if they don't use the accuracy parameter.
             // Saves the accuracy (0-1 range).
+            // The accuracy can be outside of the [0, 1] bounds, but the display won't do that.
             float accuracy = 0;
 
             // This techincally calculates accuracy regardless of if it's used, but I don't think it's a big deal.
@@ -546,10 +547,11 @@ namespace RM_BBTS
             if (player.Move0 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move0.Accuracy * player.accuracyMod) * 100.0F);
+                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move0.Accuracy)) * 100.0F;
 
                 // Slots in the text.
-                move0AccuracyText.text = (player.Move0.useAccuracy) ? accuracy.ToString() + "%" : "-";
+                move0AccuracyText.text = (player.Move0.useAccuracy) ? 
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
             }
             else
             {
@@ -560,10 +562,11 @@ namespace RM_BBTS
             if (player.Move1 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move1.Accuracy * player.accuracyMod) * 100.0F);
+                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move1.Accuracy)) * 100.0F;
 
                 // Slots in the text.
-                move1AccuracyText.text = (player.Move1.useAccuracy) ? accuracy.ToString() + "%" : "-";
+                move1AccuracyText.text = (player.Move1.useAccuracy) ? 
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
             }
             else
             {
@@ -574,10 +577,11 @@ namespace RM_BBTS
             if (player.Move2 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move2.Accuracy * player.accuracyMod) * 100.0F);
+                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move2.Accuracy)) * 100.0F;
 
                 // Slots in the text.
-                move2AccuracyText.text = (player.Move2.useAccuracy) ? accuracy.ToString() + "%" : "-";
+                move2AccuracyText.text = (player.Move2.useAccuracy) ? 
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
             }
             else
             {
@@ -588,10 +592,11 @@ namespace RM_BBTS
             if (player.Move3 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Ceil(Mathf.Clamp01(player.Move3.Accuracy * player.accuracyMod) * 100.0F);
+                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move3.Accuracy)) * 100.0F;
 
                 // Slots in the text.
-                move3AccuracyText.text = (player.Move3.useAccuracy) ? accuracy.ToString() + "%" : "-";
+                move3AccuracyText.text = (player.Move3.useAccuracy) ? 
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
             }
             else
             {
