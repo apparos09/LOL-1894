@@ -1,6 +1,7 @@
 using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -8,9 +9,9 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeshot, lasershot, fireshot, elecshot, screech, bam, 
-        laserburst, fireburst, elecburst, soundwave, wham, 
-        laserblast, fireblast, elecblast, sonicwave, kablam }
+        poke, slimeshot, lasershot, fireshot, elecshot, screech, slam, chip, toss, block, heal, hpdrain1, empathy, bam, 
+        laserburst, fireburst, elecburst, soundwave, magnet, scorch, electrify, motivate, quickburst, hpdrain2, tripleshot, cure, energyattacka, wave, wham, 
+        laserblast, fireblast, elecblast, sonicwave, hpdrain3, twister, waterblast, rockblast, airblast, quake, chargesun, chargemoon, energyattackb, airstrike, kablam}
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -179,6 +180,41 @@ namespace RM_BBTS
                     // descKey = "mve_charge_dsc";
                     break;
 
+                case moveId.slam: // Slam
+                    move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.05F);
+                    move.CriticalChance = 0.6F;
+                    break;
+
+                case moveId.chip: // Chip Damage
+                    move = new Move(moveId.chip, "<Chip Damage>", 1, 10, 0.95F, 0.1F);
+                    move.priority = 1;
+                    break;
+
+                case moveId.toss: // Toss
+                    move = new Move(moveId.toss, "<Toss>", 1, 25, 0.95F, 0.1F);
+                    // TODO: implement stat changes. 
+                    break;
+
+                case moveId.block: // Block
+                    move = new Move(moveId.block, "<Block>", 1, 0.0F, 0.0F, 0.4F);
+                    // TODO: implement functionality.
+                    break;
+
+                case moveId.heal: // Heal
+                    move = new Move(moveId.heal, "<Heal>", 1, 0.0F, 0.0F, 0.4F);
+                    // TODO: implement functionality.
+                    break;
+
+                case moveId.hpdrain1: // Health Drain 1
+                    move = new Move(moveId.hpdrain1, "Health Drain", 1, 0.0F, 0.0F, 0.4F);
+                    // TODO: implement mechanics.
+                    break;
+
+                case moveId.empathy: // Empathize
+                    move = new Move(moveId.empathy, "<Empathy>", 1, 0.0F, 0.9F, 0.05F);
+                    // TODO: implement functionality.
+                    break;
+
                 case moveId.bam: // Bam
                     move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.05F);
 
@@ -186,6 +222,8 @@ namespace RM_BBTS
                     // nameKey = "mve_charge_nme";
                     // descKey = "mve_charge_dsc";
                     break;
+
+
 
 
                     // RANK 2
@@ -231,6 +269,56 @@ namespace RM_BBTS
                     // descKey = "mve_charge_dsc";
                     break;
 
+                case moveId.magnet: // Magnetize
+                    move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.05F, 0.15F);
+                    // TODO: implement the mechanics.
+                    break;
+
+                case moveId.scorch: // Scorch
+                    move = new Move(moveId.scorch, "<Scorch>", 2, 30, 0.85F, 0.20F);
+                    move.BurnChance = 1.0F;
+                    break;
+
+                case moveId.electrify: // Electrify
+                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.16F);
+                    move.ParalysisChance = 1.0F;
+                    break;
+
+                case moveId.motivate: // Motivate
+                    move = new Move(moveId.motivate, "<Motivate>", 2, 0.0F, 0.0F, 0.5F);
+                    // TODO: set up mechanics.
+                    break;
+
+                case moveId.quickburst: // Quick Burst
+                    move = new Move(moveId.quickburst, "<Quick Burst>", 2, 80, 0.95F, 0.5F);
+                    move.RecoilPercent = 0.1F;
+                    break;
+
+                case moveId.hpdrain2: // Health Drain 2
+                    move = new Move(moveId.hpdrain2, "<Health Drain 2>", 2, 60, 0.9F, 0.2F);
+                    // TODO: implement mechanics.
+                    break;
+
+                case moveId.tripleshot: // Triple Shot
+                    move = new Move(moveId.tripleshot, "<Triple Shot>", 2, 40, 0.6F, 0.15F);
+                    // TODO: mechanics
+                    break;
+
+                case moveId.cure: // Cure
+                    move = new Move(moveId.cure, "<Cure>", 2, 0.0F, 0.0F, 0.35F);
+                    // TODO: mechanics.
+                    break;
+
+                case moveId.energyattacka: // Overboard
+                    move = new Move(moveId.energyattacka, "<Overboard>", 2, 40, 0.9F, 0.15F);
+                    // TODO: mechanics.
+                    break;
+
+                case moveId.wave: // Tidal Wave
+                    move = new Move(moveId.wave, "<Tidal Wave>", 2, 70, 1.0F, 0.15F);
+                    move.useAccuracy = false;
+                    break;
+
 
                 // RANK 3
                 case moveId.laserblast: // Laser Blast
@@ -265,6 +353,57 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     // nameKey = "mve_charge_nme";
                     // descKey = "mve_charge_dsc";
+                    break;
+
+
+                case moveId.hpdrain3: // HP Drain 3
+                    move = new Move(moveId.hpdrain3, "<Health Drain 3>", 3, 80, 0.9F, 0.3F);
+                    // TODO: need mechanics.
+                    break;
+
+                case moveId.twister: // Twister
+                    move = new Move(moveId.twister, "<Twister>", 1, 70, 1.0F, 0.2F);
+                    // TODO: need mechanics.
+                    break;
+
+                case moveId.waterblast: // Water Blast
+                    move = new Move(moveId.waterblast, "<Water Blast>", 3, 90, 0.8F, 0.15F);
+                    // TODO: need mechanics.
+                    break;
+
+                case moveId.rockblast: // Rock Blast
+                    move = new Move(moveId.rockblast, "<Rock Blast>", 3, 90, 0.8F, 0.15F);
+                    // TODO: implement mechanics.
+                    break;
+
+                case moveId.airblast: // Air Blast
+                    move = new Move(moveId.airblast, "<Air Blast>", 3, 90, 0.8F, 0.15F);
+                    // TODO: implement mechanics.
+                    break;
+
+                case moveId.quake: // Quake
+                    move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.25F);
+                    // TODO: implement mechanics.
+                    break;
+
+                case moveId.chargesun: // Charge Sun
+                    move = new Move(moveId.chargesun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
+                    // TODO: mechanics.
+                    break;
+
+                case moveId.chargemoon: // Charge Moon
+                    move = new Move(moveId.chargemoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
+                    // TODO: mechanics.
+                    break;
+
+                case moveId.energyattackb: // Conserve
+                    move = new Move(moveId.energyattackb, "<Conserve>", 3, 90, 0.9F, 0.15F);
+                    // TODO: mechanics.
+                    break;
+
+                case moveId.airstrike: // Airstrike
+                    move = new Move(moveId.airstrike, "<Airstrike>", 3, 100, 0.2F, 0.4F);
+                    // TODO: mechanics.
                     break;
 
                 case moveId.kablam: // Kablam
