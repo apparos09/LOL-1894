@@ -73,6 +73,12 @@ namespace RM_BBTS
         public float speedChangeChanceUser = 0.0F; // chance
         public float speedChangeChanceTarget = 0.0F; // chance
 
+        // Change the accuracy.
+        public int accuracyChangeUser = 0; // stages
+        public int accuracyChangeTarget = 0; // stages
+        public float accuracyChangeChanceUser = 0.0F; // chance
+        public float accuracyChangeChanceTarget = 0.0F; // chance
+
         // TODO: replace name with file citation for translation.
         // Move constructor
         public Move(moveId id, string name, int rank, float power, float accuracy, float energyUsage)
@@ -197,21 +203,19 @@ namespace RM_BBTS
             return (energyUsage * user.MaxEnergy <= user.Energy);
         }
 
+        // Generates a random float in the 0-1 range.
+        public static float GenerateRandomFloat01()
+        {
+            return Random.Range(0.0F, 1.0F);
+        }
+
         // Checks if a move accuracy returns a success.
         // This does not factor in anything else that would make the move fail.
         public bool AccuracySuccessful(BattleEntity user)
         {
             // Returns 'true' if the move would hit its target.
-            return Random.Range(0.0F, 1.0F) <= accuracy * user.accuracyMod || !useAccuracy;
-        }
-
-        // The move has the ability to change stats (not counting health and energy).
-        public bool HasStatChanges()
-        {
-            return !(
-                attackChangeUser == 0 && attackChangeTarget == 0 && 
-                defenseChangeUser == 0 && defenseChangeTarget == 0 &&
-                speedChangeUser == 0 && speedChangeTarget == 0);
+            // If the move always hits, 'useAccuracy' is set to true.
+            return Random.Range(0.0F, 1.0F) <= user.GetModifiedAccuracy(accuracy) || !useAccuracy;
         }
 
         // Reduces the energy from using the move.
@@ -221,12 +225,178 @@ namespace RM_BBTS
             user.Energy -= user.MaxEnergy * energyUsage;
         }
 
-        // Change the stats attached to the moves.
-        public void ChangeStats()
+        // The move has the ability to change stats (not counting health and energy).
+        public bool HasStatChanges()
         {
-            // Don't change the stats.
-            if (!HasStatChanges())
-                return;
+            // Checks if the stats can change.
+            bool canChange = false;
+
+            // Changes available.
+            canChange = (
+                (attackChangeUser != 0 && attackChangeChanceUser > 0.0F) ||
+                (attackChangeTarget != 0 && attackChangeChanceTarget > 0.0F) ||
+
+                (defenseChangeUser != 0 && defenseChangeChanceUser > 0.0F) ||
+                (defenseChangeTarget != 0 && defenseChangeChanceTarget > 0.0F) ||
+
+                (speedChangeUser != 0 && speedChangeChanceUser > 0.0F) ||
+                (speedChangeTarget != 0 && speedChangeChanceTarget > 0.0F) ||
+
+                (accuracyChangeUser != 0 && accuracyChangeChanceUser > 0.0F) ||
+                (accuracyChangeTarget != 0 && accuracyChangeChanceTarget > 0.0F)
+                );
+
+            return canChange;
+        }
+
+        // Change the stats attached to the moves.
+        public List<Page> ApplyStatChanges(BattleEntity user, BattleEntity target)
+        {
+            // THe list of pages.
+            List<Page> pages = new List<Page>();
+
+            // The list of entities.
+            List<BattleEntity> entities = new List<BattleEntity>();
+            entities.Add(user);
+            entities.Add(target);
+            
+            // Applies the stat changes.
+            foreach(BattleEntity entity in entities)
+            {
+                // A random float.
+                float randFloat = 0.0F;
+
+                // Used for getting the right chance factor.
+                float chance = 0.0F;
+
+                // ATTACK
+                // Checks which chance value to use.
+                chance = (entity == user) ? attackChangeChanceUser : attackChangeChanceTarget;
+
+                // Non-0 chance of success.
+                if (chance > 0.0F)
+                {
+                    // Float for chance generation.
+                    randFloat = GenerateRandomFloat01();
+
+                    // The change in the stat's value.
+                    int statChange = (entity == user) ? attackChangeUser : attackChangeTarget;
+
+                    // The stat should change.
+                    if (randFloat <= chance)
+                    {
+                        int diff = entity.AttackMod;
+                        entity.AttackMod += statChange;
+                        diff = entity.AttackMod - diff;
+
+                        // If a change occurred.
+                        if (diff != 0)
+                        {
+                            pages.Add((diff > 0) ?
+                                GetAttackChangePage(user, Mathf.Abs(diff), true) :
+                                GetAttackChangePage(user, Mathf.Abs(diff), false)
+                                );
+                        }
+                    }
+                }
+
+
+                // DEFENSE
+                // Checks which chance value to use.
+                chance = (entity == user) ? defenseChangeChanceUser : defenseChangeChanceTarget;
+
+                // Non-0 chance of success.
+                if (chance > 0.0F)
+                {
+                    // Float for chance generation.
+                    randFloat = GenerateRandomFloat01();
+
+                    // The change in the stat's value.
+                    int statChange = (entity == user) ? defenseChangeUser : defenseChangeTarget;
+
+                    // The stat should change.
+                    if (randFloat <= chance)
+                    {
+                        int diff = entity.DefenseMod;
+                        entity.DefenseMod += statChange;
+                        diff = entity.DefenseMod - diff;
+
+                        // If a change occurred.
+                        if (diff != 0)
+                        {
+                            pages.Add((diff > 0) ?
+                                GetDefenseChangePage(user, Mathf.Abs(diff), true) :
+                                GetDefenseChangePage(user, Mathf.Abs(diff), false)
+                                );
+                        }
+                    }
+                }
+
+                // SPEED
+                // Checks which value to use.
+                chance = (entity == user) ? speedChangeChanceUser : speedChangeChanceTarget;
+
+                // Non-0 chance of success.
+                if (chance > 0.0F)
+                {
+                    // Float for chance generation.
+                    randFloat = GenerateRandomFloat01();
+
+                    // The change in the stat's value.
+                    int statChange = (entity == user) ? speedChangeUser : speedChangeTarget;
+
+                    // The stat should change.
+                    if (randFloat <= chance)
+                    {
+                        int diff = entity.SpeedMod;
+                        entity.SpeedMod += statChange;
+                        diff = entity.SpeedMod - diff;
+
+                        // If a change occurred.
+                        if (diff != 0)
+                        {
+                            pages.Add((diff > 0) ?
+                                GetSpeedChangePage(user, Mathf.Abs(diff), true) :
+                                GetSpeedChangePage(user, Mathf.Abs(diff), false)
+                                );
+                        }
+                    }
+                }
+
+                // ACCURACY
+                // Checks if a change should occur.
+                chance = (entity == user) ? accuracyChangeChanceUser : accuracyChangeChanceTarget;
+
+                // Non-0 chance of success.
+                if (chance > 0.0F)
+                {
+                    // Float for chance generation.
+                    randFloat = GenerateRandomFloat01();
+
+                    // The change in the stat's value.
+                    int statChange = (entity == user) ? accuracyChangeUser : accuracyChangeTarget;
+
+                    // The stat should change.
+                    if (randFloat <= chance)
+                    {
+                        int diff = entity.AccuracyMod;
+                        entity.AccuracyMod += statChange;
+                        diff = entity.AccuracyMod - diff;
+
+                        // If a change occurred.
+                        if (diff != 0)
+                        {
+                            pages.Add((diff > 0) ?
+                                GetAccuracyChangePage(user, Mathf.Abs(diff), true) :
+                                GetAccuracyChangePage(user, Mathf.Abs(diff), false)
+                                );
+                        }
+                    }
+                }
+            }
+
+            // Returns all the pages.
+            return pages;
         }
 
         // MESSAGES //
@@ -309,6 +479,96 @@ namespace RM_BBTS
             return page;
         }
 
+        // Get the stat increased page.
+        // 'Stages' should always be positive.
+        public Page GetStatIncreasePage(BattleEntity entity, string stat, int stages)
+        {
+            Page page; 
+            
+            if(entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages.ToString()),
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey0()
+                );
+            }
+            else // The entity is an enemy.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages.ToString()),
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey1()
+                );
+            }
+            
+            
+            return page;
+        }
+
+        // Get the stat decreased page.
+        // 'Stages' should always be positive.
+        public Page GetStatDecreasePage(BattleEntity entity, string stat, int stages)
+        {
+            Page page;
+
+            if (entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages.ToString()),
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey0()
+                );
+            }
+            else // The entity is an enemy.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages.ToString()),
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey1()
+                );
+            }
+
+
+            return page;
+        }
+
+        // Get attack change page ('increase' determines if it's an increase or a decrease).
+        // 'Stages' should always be positive.
+        public Page GetAttackChangePage(BattleEntity entity, int stages, bool increase)
+        {
+            if(increase)
+                return GetStatIncreasePage(entity, "Attack", stages);
+            else
+                return GetStatDecreasePage(entity, "Attack", stages);
+        }
+
+        // Get defense change page ('increase' determines if it's an increase or a decrease).
+        // 'Stages' should always be positive.
+        public Page GetDefenseChangePage(BattleEntity entity, int stages, bool increase)
+        {
+            if (increase)
+                return GetStatIncreasePage(entity, "Defense", stages);
+            else
+                return GetStatDecreasePage(entity, "Defense", stages);
+        }
+
+        // Get speed change page ('increase' determines if it's an increase or a decrease).
+        // 'Stages' should always be positive.
+        public Page GetSpeedChangePage(BattleEntity entity, int stages, bool increase)
+        {
+            if (increase)
+                return GetStatIncreasePage(entity, "Speed", stages);
+            else
+                return GetStatDecreasePage(entity, "Speed", stages);
+        }
+
+        // Get accuracy change page ('increase' determines if it's an increase or a decrease).
+        // 'Stages' should always be positive.
+        public Page GetAccuracyChangePage(BattleEntity entity, int stages, bool increase)
+        {
+            if (increase)
+                return GetStatIncreasePage(entity, "Accuracy", stages);
+            else
+                return GetStatDecreasePage(entity, "Accuracy", stages);
+        }
+
         // Gets the move missed page.
         public Page GetMoveMissedPage()
         {
@@ -335,6 +595,13 @@ namespace RM_BBTS
         public void InsertPageAfterCurrentPage(BattleManager battle, Page page)
         {
             battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, page);
+        }
+
+        // Inserts multiple pages after the current page.
+        public void InsertPagesAfterCurrentPage(BattleManager battle, List<Page> pages)
+        {
+            if(pages.Count != 0)
+                battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, pages);
         }
 
         // TURN OTHER //
@@ -473,8 +740,27 @@ namespace RM_BBTS
                     //     ));
                 }
 
+                // STAT CHANGES
+                if(HasStatChanges()) // There are stat changes to apply.
+                {
+                    // Gets the pages for applying stat changes.
+                    List<Page> statPages = ApplyStatChanges(user, target);
+
+                    // The list was made.
+                    if(statPages != null)
+                    {
+                        // Changes were made, so add the pages to the end of the list.
+                        if(statPages.Count != 0)
+                        {
+                            newPages.AddRange(statPages);
+                        }
+                    }
+                }
+
                 // Inserts a range of pages.
-                battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, newPages);
+                InsertPagesAfterCurrentPage(battle, newPages);
+                // battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, newPages);
+
 
                 // TODO: maybe move this to the battle script?
                 // Checks if the user is the player or not.

@@ -1812,9 +1812,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  attackMod: 0
-  defenseMod: 0
-  speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0
@@ -12503,9 +12500,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  attackMod: 0
-  defenseMod: 0
-  speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0
@@ -12581,6 +12575,11 @@ MonoBehaviour:
   initialized: 1
   gameManager: {fileID: 877465982}
   gameOver: 0
+  background: {fileID: 1762553397}
+  phase1Color: {r: 0.4, g: 0.4627451, b: 0.6784314, a: 1}
+  phase2Color: {r: 0.6431373, g: 0.15294118, b: 0.67058825, a: 1}
+  phase3Color: {r: 0.59607846, g: 0.12156863, b: 0.12156863, a: 1}
+  usePhaseColors: 1
   doors:
   - {fileID: 1635727016}
   - {fileID: 1187826822}
@@ -13902,9 +13901,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  attackMod: 0
-  defenseMod: 0
-  speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0
@@ -15499,9 +15495,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  attackMod: 0
-  defenseMod: 0
-  speedMod: 0
   accuracyMod: 1
   burned: 0
   paralyzed: 0

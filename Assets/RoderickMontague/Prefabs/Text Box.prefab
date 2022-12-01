@@ -268,7 +268,7 @@ MonoBehaviour:
   openClip: {fileID: 0}
   closeClip: {fileID: 0}
   instantText: 0
-  textSpeed: 50
+  textSpeed: 70
 --- !u!1 &6215028496522477458
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,8 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6215028496522477456}
-  audioSource: {fileID: 0}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 0}
 --- !u!1 &6215028496809752551
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,8 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6215028496963668155}
-  audioSource: {fileID: 0}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 0}
 --- !u!1 &8154007114410922950
 GameObject:
   m_ObjectHideFlags: 0

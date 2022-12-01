@@ -13,14 +13,25 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-
-
         // The object that was selected in the overworld.
         // public GameObject selectedObject;
 
         // Gets set to 'true' when the game is in a game over state.
         // If 'true', the game over function will be called when the player returns to the overworld.
         public bool gameOver;
+
+        // The background.
+        [Header("Background")]
+        // The background for the game.
+        public SpriteRenderer background;
+
+        // The three phase colours.
+        public Color phase1Color = Color.white;
+        public Color phase2Color = Color.white;
+        public Color phase3Color = Color.white;
+
+        // Uses the phase colors, changing the background when the phase changes.
+        public bool usePhaseColors = true;
 
         [Header("Doors")]
         // The list of doors.
@@ -206,6 +217,10 @@ namespace RM_BBTS
                 // bossDoor.unlockedSprite = bossDoorUnlockedSprite;
                 // bossDoor.lockedSprite = bossDoorLockedSprite;
             }
+
+            // Switches to the phase 1 color.
+            if (usePhaseColors)
+                background.color = phase1Color;
 
             // Updates the UI.
             UpdateUI();
@@ -484,6 +499,27 @@ namespace RM_BBTS
 
                 gameManager.evolveWaves++;
             }
+
+            // Change the background image colours.
+            if(usePhaseColors)
+            {
+                // Check the phase.
+                switch (phase)
+                {
+                    case 1: // Phase 1 (Start)
+                        background.color = phase1Color;
+                        break;
+                    case 2: // Phase 2 (Middle)
+                        background.color = phase2Color;
+                        break;
+                    case 3: // Phase 3 (End)
+                        background.color = phase3Color;
+                        break;
+                    default: // White
+                        background.color = Color.white;
+                        break;
+                }
+            }      
 
             // Update the UI for the overworld.
             UpdateUI();

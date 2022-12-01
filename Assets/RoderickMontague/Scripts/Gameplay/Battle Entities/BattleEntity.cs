@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LoLSDK;
 using SimpleJSON;
+using JetBrains.Annotations;
 
 namespace RM_BBTS
 {
@@ -129,17 +130,11 @@ namespace RM_BBTS
 
         // STAT MOFIDIERS (TEMP INC/DEC)
 
-        // Modifier for attack.
-        public int attackMod = 0;
-
-        // Modifier for defense.
-        public int defenseMod = 0;
-
-        // Modifier for speed.
-        public int speedMod = 0;
-
-        // The base accuracy for the battle entity. This can get adjusted by moves in the game.
-        public float accuracyMod = 1.0F;
+        // Modifier for attack, defense, speed, and accuracy.
+        protected int attackMod = 0;
+        protected int defenseMod = 0;
+        protected int speedMod = 0;
+        public int accuracyMod = 0;
 
         // The minimum for the stat modifiers.
         public const int STAT_MOD_MIN = -3;
@@ -458,11 +453,6 @@ namespace RM_BBTS
             set { energy = Mathf.Clamp(value, 0, MaxEnergy); }
         }
 
-        // Sets the energy to its maximum value.
-        public void SetHealthToMax()
-        {
-            health = maxHealth;
-        }
 
         // Checks if the entity is at full health.
         public bool HasFullHealth()
@@ -471,15 +461,67 @@ namespace RM_BBTS
         }
 
         // Sets the energy to its maximum value.
-        public void SetEnergyToMax()
+        public void SetHealthToMax()
         {
-            energy = maxEnergy;
+            health = maxHealth;
         }
 
         // Returns 'true' if the entity has the maximum amount of energy.
         public bool HasFullCharge()
         {
             return energy == maxEnergy;
+        }
+
+        // Sets the energy to its maximum value.
+        public void SetEnergyToMax()
+        {
+            energy = maxEnergy;
+        }
+
+        
+        // GET MODIFIED STATS
+        // Attack  Mod
+        public int AttackMod
+        {
+            get { return attackMod; }
+
+            set
+            {
+                attackMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            }
+        }
+
+        // Defense Mod
+        public int DefenseMod
+        {
+            get { return defenseMod; }
+
+            set
+            {
+                defenseMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            }
+        }
+
+        // Speed Mod
+        public int SpeedMod
+        {
+            get { return speedMod; }
+
+            set
+            {
+                speedMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            }
+        }
+
+        // Accuracy Mod
+        public int AccuracyMod
+        {
+            get { return accuracyMod; }
+
+            set
+            {
+                accuracyMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+            }
         }
 
         // Gets the stat total (health, attack, defense, speed).
@@ -517,6 +559,16 @@ namespace RM_BBTS
 
             // Returns the value. This is affected by paralysis.
             return speed + speed * speedMod * 0.05F * (paralyzed ? 0.75F : 1.0F);
+        }
+
+        // Gets the accuracy modified.
+        public float GetModifiedAccuracy(float baseAccuracy)
+        {
+            // Clamp modifier.
+            accuracyMod = Mathf.Clamp(accuracyMod, STAT_MOD_MIN, STAT_MOD_MAX);
+
+            // Returns the value. Each stage is 0.05F in inc/dec.
+            return baseAccuracy + (accuracyMod * 0.05F);
         }
 
         // Resets the stat modifiers.
@@ -783,6 +835,7 @@ namespace RM_BBTS
 
         }
 
+
         // MOVES //
         // The amount of moves the battle entity has.
         public int GetMoveCount()
@@ -903,7 +956,6 @@ namespace RM_BBTS
         {
             selectedMove = MoveList.Instance.ChargeMove;
         }
-
 
         // Returns '1' if BE1 is the fastest entity, '2' if BE2 is the fastest entity, and '0' if both are the same speed.
         public static int GetFastestEntity(BattleEntity be1, BattleEntity be2, BattleManager battle)
