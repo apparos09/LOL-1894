@@ -437,7 +437,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 90.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 1.0F, 0.05F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
@@ -456,7 +456,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "<Twister>", 1, 70, 1.0F, 0.2F);
+                    move = new Move(moveId.twister, "<Twister>", 1, 60, 1.0F, 0.2F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 100.0F;
@@ -499,8 +499,8 @@ namespace RM_BBTS
                 case moveId.quake: // Quake
                     move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.25F);
 
-                    move.CriticalChance = 0.6F;
-                    move.RecoilPercent = 0.2F;
+                    move.CriticalChance = 0.3F;
+                    move.RecoilPercent = 0.4F;
 
                     nameKey = "mve_quake_nme";
                     descKey = "mve_quake_dsc";
@@ -508,8 +508,8 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
-                    move.BurnChance = 0.4F;
+                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 130, 0.85F, 0.2F);
+                    move.BurnChance = 0.35F;
 
                     nameKey = "mve_chargeSun_nme";
                     descKey = "mve_chargeSun_dsc";
@@ -517,8 +517,8 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
-                    move.ParalysisChance = 0.4F;
+                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 130, 0.85F, 0.2F);
+                    move.ParalysisChance = 0.35F;
 
                     nameKey = "mve_chargeMoon_nme";
                     descKey = "mve_chargeMoon_dsc";
