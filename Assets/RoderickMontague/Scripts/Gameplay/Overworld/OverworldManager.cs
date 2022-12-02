@@ -567,7 +567,7 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
-            
+
             // Go through each move.
             for(int i = 0; i < player.moves.Length; i++)
             {
@@ -591,6 +591,27 @@ namespace RM_BBTS
                             break;
                     }
                 }
+            }
+
+            // Checks to see if the player has an attacking move.
+            bool playerHasAttack = false;
+
+            // Checks each move.
+            foreach(Move move in player.moves)
+            {
+                // The player has an attacking move.
+                if(move.Power != 0)
+                {
+                    playerHasAttack = true;
+                    break;
+                }
+            }
+
+            // The player does not have an attacking move, so give them one.
+            if(!playerHasAttack)
+            {
+                // Gives the player a basic attack move.
+                player.Move0 = MoveList.Instance.GenerateMove(moveId.kablam);
             }
 
 

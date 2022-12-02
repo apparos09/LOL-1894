@@ -163,9 +163,6 @@ namespace RM_BBTS
                     data.move3 = moveId.kablam;
                     randomMoves = false;
 
-                    // Loads the name key.
-                    nameKey = "bey_unknown_nme";
-
                     break;
 
                 case battleEntityId.treasure: // 1. Treasure Chest
@@ -188,15 +185,13 @@ namespace RM_BBTS
                     data.move0 = moveId.bam;
                     randomMoves = false;
 
-                    // Loads the name key.
-                    nameKey = "bey_treasure_nme";
                     break;
 
                 case battleEntityId.combatBot: // Combat Bot
 
                     data.id = battleEntityId.combatBot;
                     data.displayName = "<Combat Bot>";
-                    data.displayNameSpeakKey = "bey_combatbot_nme";
+                    data.displayNameSpeakKey = "bey_combatBot_nme";
 
                     data.maxHealth = 120;
                     data.health = data.maxHealth;
@@ -209,9 +204,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Loads the name key.
-                    nameKey = "bey_boss_nme";
 
                     break;
 
@@ -238,9 +230,6 @@ namespace RM_BBTS
                     // data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
                     // data.move0 = moveId.lasershot;
-
-                    // Loads the name key.
-                    nameKey = "bey_ufo1_nme";
                     break;
 
                 case battleEntityId.ufo2: // UFO MKII
@@ -264,9 +253,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-
-                    // Loads the name key.
-                    nameKey = "bey_ufo2_nme";
                     break;
 
                 case battleEntityId.ufo3: // UFO MKIII
@@ -288,9 +274,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.none;
-
-                    // Loads the name key.
-                    nameKey = "bey_ufo3_nme";
                     break;
 
                 case battleEntityId.insect1: // Starfly
@@ -314,9 +297,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-
-                    // Loads the name key.
-                    nameKey = "bey_insect1_nme";
                     break;
 
                 case battleEntityId.insect2: // Spacectoid
@@ -339,9 +319,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-
-                    // Loads the name key.
-                    nameKey = "bey_insect2_nme";
                     break;
 
                 case battleEntityId.ghost1: // Techno Ghost
@@ -364,9 +341,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Loads the name key.
-                    nameKey = "bey_ghost1_nme";
                     break;
 
                 case battleEntityId.ghost2: // Techno Phantom
@@ -389,9 +363,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Loads the name key.
-                    nameKey = "bey_ghost2_nme";
                     break;
 
                 case battleEntityId.comet: // Comet (BOSS)
@@ -414,9 +385,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-
-                    // Loads the name key.
-                    nameKey = "bey_comet_nme";
                     break;
 
                 case battleEntityId.sunRock1: // Stellosis
@@ -426,7 +394,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Stellosis>";
-                    data.displayNameSpeakKey = "bey_sunrock1_nme";
+                    data.displayNameSpeakKey = "bey_sunRock1_nme";
 
                     data.maxHealth = 27;
                     data.health = data.maxHealth;
@@ -439,9 +407,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Loads the name key.
-                    nameKey = "bey_sunrock1_nme";
                     break;
 
                 case battleEntityId.sunRock2: // Sunoliss
@@ -451,7 +416,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Sunoliss>";
-                    data.displayNameSpeakKey = "bey_sunrock2_nme";
+                    data.displayNameSpeakKey = "bey_sunRock2_nme";
 
                     data.maxHealth = 40;
                     data.health = data.maxHealth;
@@ -464,9 +429,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Loads the name key.
-                    nameKey = "bey_sunrock2_nme";
                     break;
 
                 case battleEntityId.moonRock1: // Stelluna
@@ -476,7 +438,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Stelluna>";
-                    data.displayNameSpeakKey = "bey_moonrock1_nme";
+                    data.displayNameSpeakKey = "bey_moonRock1_nme";
 
                     data.maxHealth = 27;
                     data.health = data.maxHealth;
@@ -489,9 +451,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-
-                    // Loads the name key.
-                    nameKey = "bey_moonrock1_nme";
                     break;
 
                 case battleEntityId.moonRock2: // Lunooma
@@ -501,7 +460,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Lunooma>";
-                    data.displayNameSpeakKey = "bey_moonrock2_nme";
+                    data.displayNameSpeakKey = "bey_moonRock2_nme";
 
                     data.maxHealth = 40;
                     data.health = data.maxHealth;
@@ -515,9 +474,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Loads the name key.
-                    nameKey = "bey_moonrock2_nme";
-
                     break;
 
                 case battleEntityId.fireBot: // Pyrobot
@@ -527,7 +483,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Pyrobot>";
-                    data.displayNameSpeakKey = "bey_firebot_nme";
+                    data.displayNameSpeakKey = "bey_fireBot_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -541,8 +497,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Loads the name key.
-                    nameKey = "bey_firebot_nme";
                     break;
 
                 case battleEntityId.waterBot: // Aquadroid
@@ -552,7 +506,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Aquadroid>";
-                    data.displayNameSpeakKey = "bey_waterbot_nme";
+                    data.displayNameSpeakKey = "bey_waterBot_nme";
 
                     data.maxHealth = 50;
                     data.health = data.maxHealth;
@@ -566,8 +520,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.health;
 
-                    // Loads the name key.
-                    nameKey = "bey_waterbot_nme";
                     break;
 
                 case battleEntityId.earthBot: // Terrachine
@@ -577,7 +529,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Terrachine>";
-                    data.displayNameSpeakKey = "bey_earthbot_nme";
+                    data.displayNameSpeakKey = "bey_earthBot_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -591,8 +543,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Loads the name key.
-                    nameKey = "bey_earthbot_nme";
                     break;
 
                 case battleEntityId.airBot: // Airtomaton
@@ -602,7 +552,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "Airtomaton";
-                    data.displayNameSpeakKey = "bey_airbot_nme";
+                    data.displayNameSpeakKey = "bey_airBot_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -616,8 +566,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Loads the name key.
-                    nameKey = "bey_airbot_nme";
                     break;
 
                 case battleEntityId.sharp1: // Inkarp
@@ -641,8 +589,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Loads the name key.
-                    nameKey = "bey_sharp1_nme";
                     break;
 
                 case battleEntityId.sharp2: // Poily
@@ -666,8 +612,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Loads the name key.
-                    nameKey = "bey_sharp2_nme";
                     break;
 
                 case battleEntityId.cBugRed1: // Red
@@ -677,7 +621,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Red>";
-                    data.displayNameSpeakKey = "bey_bugred1_nme";
+                    data.displayNameSpeakKey = "bey_cBugRed1_nme";
 
                     data.maxHealth = 10;
                     data.health = data.maxHealth;
@@ -691,8 +635,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Loads the name key.
-                    nameKey = "bey_red1_nme";
                     break;
 
                 case battleEntityId.cBugRed2: // Red X
@@ -702,7 +644,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Red X>";
-                    data.displayNameSpeakKey = "bey_cbugred2_nme";
+                    data.displayNameSpeakKey = "bey_cBugRed2_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -716,8 +658,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Loads the name key.
-                    nameKey = "bey_cbugred2_nme";
                     break;
 
                 case battleEntityId.cBugBlue1: // Blue
@@ -727,7 +667,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Blue>";
-                    data.displayNameSpeakKey = "bey_cbugblue1_nme";
+                    data.displayNameSpeakKey = "bey_cBugBlue1_nme";
 
                     data.maxHealth = 10;
                     data.health = data.maxHealth;
@@ -741,8 +681,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Loads the name key.
-                    nameKey = "bey_cbugblue1_nme";
                     break;
 
                 case battleEntityId.cBugBlue2: // Blue X
@@ -752,7 +690,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Blue X>";
-                    data.displayNameSpeakKey = "bey_cbugblue2_nme";
+                    data.displayNameSpeakKey = "bey_cBugBlue2_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -766,8 +704,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Loads the name key.
-                    nameKey = "bey_cbugblue2_nme";
                     break;
 
                 case battleEntityId.cBugYellow1: // Yellow
@@ -777,7 +713,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Yellow>";
-                    data.displayNameSpeakKey = "bey_cbugyellow1_nme";
+                    data.displayNameSpeakKey = "bey_cBugYellow1_nme";
 
                     data.maxHealth = 10;
                     data.health = data.maxHealth;
@@ -791,8 +727,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Loads the name key.
-                    nameKey = "bey_cbugyellow1_nme";
                     break;
 
                 case battleEntityId.cBugYellow2: // Yellow X
@@ -802,7 +736,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Yellow X>";
-                    data.displayNameSpeakKey = "bey_cbugyellow2_nme";
+                    data.displayNameSpeakKey = "bey_cBugYellow2_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -816,8 +750,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Loads the name key.
-                    nameKey = "bey_cbugyellow2_nme";
                     break;
 
                 case battleEntityId.blackHole: // Vortex (BOSS)
@@ -827,7 +759,7 @@ namespace RM_BBTS
 
                     // Stats
                     data.displayName = "<Vortex>";
-                    data.displayNameSpeakKey = "bey_blackhole_nme";
+                    data.displayNameSpeakKey = "bey_blackHole_nme";
 
                     data.maxHealth = 60;
                     data.health = data.maxHealth;
@@ -841,8 +773,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Loads the name key.
-                    nameKey = "bey_blackhole_nme";
                     break;
 
                 case battleEntityId.planet1: // Strange Island
@@ -866,9 +796,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.health;
 
-                    // Loads the name key.
-                    nameKey = "bey_planet1_nme";
-
                     break;
 
                 case battleEntityId.planet2: // Strange Planet
@@ -891,9 +818,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-
-                    // Loads the name key.
-                    nameKey = "bey_planet2_nme";
                     break;
 
 
@@ -906,6 +830,10 @@ namespace RM_BBTS
             // Sets the sprite if the entity's ID is a valid number for the list.
             if ((int)data.id < entitySprites.Count)
                 data.sprite = entitySprites[(int)data.id];
+
+            // Sets the name key to the speak key text (this should be the same as the name key).
+            if(nameKey == "")
+                nameKey = data.displayNameSpeakKey;
 
             // Loads the translation for the data.
             if (nameKey != "")

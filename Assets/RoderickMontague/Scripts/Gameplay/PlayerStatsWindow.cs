@@ -115,6 +115,9 @@ namespace RM_BBTS
                 accuracyString = defs["kwd_accuracy"];
                 descriptionString = defs["kwd_description"];
             }
+
+            UpdatePlayerInfo();
+            SwitchToChargeMove();
         }
 
         // This function is called when the object becomes enabled and active.
@@ -295,10 +298,5 @@ namespace RM_BBTS
             UpdateMoveInfo(5);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

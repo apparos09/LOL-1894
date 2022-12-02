@@ -12,8 +12,10 @@ namespace RM_BBTS
         public HealthSplitMove()
             : base(moveId.healthSplit, "<Health Split>", 1, 0, 100.0F, 0.1F)
         {
+            description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
+
             // Loads the translation for the health.
-            LoadTranslation("mve_healthShare_nme", "mve_healthShare_dsc");
+            LoadTranslation("mve_healthSplit_nme", "mve_healthSplit_dsc");
         }
 
         // Called when performing a move.

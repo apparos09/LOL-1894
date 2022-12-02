@@ -15,7 +15,7 @@ namespace RM_BBTS
         public RunMove() :
             base(moveId.run, "<Run>", 1, 0, SUCCESS_CHANCE, 0)
         {
-            description = "<The user runs away. There's a 50% chance of success.>";
+            description = "<The user attempts to run away. There is a 50% chance of success.>";
 
             // Don't use the accuracy parameter.
             useAccuracy = false;

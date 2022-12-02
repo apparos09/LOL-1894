@@ -654,7 +654,7 @@ namespace RM_BBTS
             overworld.gameObject.SetActive(true);
 
             // The player has no move selected.
-            player.selectedMove = null;
+            player.selectedMove = null; // TODO: may not be needed.
 
             // Called upon returning to the overworld.
             overworld.OnOverworldReturn();
@@ -662,8 +662,6 @@ namespace RM_BBTS
             // The intro text has already been shown, but not the overworld text.
             if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
                 tutorial.LoadOverworldTutorial();
-
-
         }
 
         // Call to enter the battle world.

@@ -12,7 +12,7 @@ namespace RM_BBTS
             base(moveId.charge, "<Charge>", 1, 0, 1.0F, 0)
         {
 
-            description = "<The user changes their energy by 40%.>";
+            description = "<The user charges their energy by 40%.>";
             useAccuracy = false;
 
             // Loads in the translation for the run name and description.

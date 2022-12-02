@@ -226,8 +226,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -416,5 +416,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 663937952745944929}
-  audioSource: {fileID: 0}
-  clickClip: {fileID: 8300000, guid: 3a59598b70990c74ea80497dd5d9843d, type: 3}
+  menuAudio: {fileID: 0}

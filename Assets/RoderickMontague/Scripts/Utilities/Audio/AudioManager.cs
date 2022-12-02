@@ -49,6 +49,9 @@ namespace RM_BBTS
             bgmSource.Stop();
             bgmSource.clip = clip;
             bgmSource.Play();
+
+            // The pitch shouldn't transition since the song has changed.
+            pitchTimer = 0.0F;
         }
 
         // Plays the BGM and changes the pitch.
