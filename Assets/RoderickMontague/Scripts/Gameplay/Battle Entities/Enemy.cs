@@ -63,6 +63,7 @@ namespace RM_BBTS
             // StartCoroutine(DecideNextMove());
 
             // Check if any move can be performed without charging to start off.
+            // This will always make the entity select charge if they don't have any other usable moves.
             {
                 // Checks if a charge is needed.
                 bool needCharge = true;
@@ -74,7 +75,7 @@ namespace RM_BBTS
                     if (moves[i] != null)
                     {
                         // Checks if the move can be used.
-                        needCharge = !(moves[i].EnergyUsage <= energy);
+                        needCharge = !(moves[i].Usable(this));
                     }
 
                     // A move can be used without charging.
@@ -105,7 +106,8 @@ namespace RM_BBTS
                 if(move != null)
                 {
                     // If the move can be performed.
-                    if(move.Usable(this))
+                    // If it's a run move (default move), then it is not included since it does nothing for enemies.
+                    if(move.Usable(this) && move.Id != moveId.run)
                         moveOptions.Add(move);
                 }
             }
@@ -155,7 +157,6 @@ namespace RM_BBTS
         // 
         //     selectedMove = Move0;
         // }
-
 
 
         // Update is called once per frame

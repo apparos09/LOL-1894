@@ -327,21 +327,25 @@ namespace RM_BBTS
                         boss = 1; // Default boss.
                     }
                 }
-               
+
                 // Checks what game boss to use.
-                switch(boss)
-                {
-                    case 1: // Combatbot (combatbot) - Attack/Health/Default
-                    default:
-                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.combatbot);
-                        break;
-                    case 2: // Comet (comet) - Speed
-                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.comet);
-                        break;
-                    case 3: // Vortex (blackhole) - Defense
-                        door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.blackhole);
-                        break;
-                }
+                // Uses this function.
+                // 1 = Combat Bot (Default), 2 = Comet, 3 = Blackhole
+                door.battleEntity = BattleEntityList.Instance.GenerateBoss(boss);
+
+                // switch(boss)
+                // {
+                //     case 1: // Combatbot (combatbot) - Attack/Health/Default
+                //     default:
+                //         door.battleEntity = BattleEntityList.Instance.GenerateBoss(1);
+                //         break;
+                //     case 2: // Comet (comet) - Speed
+                //         door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.comet);
+                //         break;
+                //     case 3: // Vortex (blackhole) - Defense
+                //         door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.blackHole);
+                //         break;
+                // }
 
                 // Replaces the sprites.
                 door.unlockedSprite = bossDoorUnlockedSprite;

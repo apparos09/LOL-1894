@@ -264,11 +264,13 @@ MonoBehaviour:
   boxObject: {fileID: 6215028496071798211}
   boxText: {fileID: 6215028496055964518}
   closeOnEnd: 1
+  prevPageButton: {fileID: 6215028496963668155}
+  nextPageButton: {fileID: 6215028496522477456}
   animator: {fileID: 0}
   openClip: {fileID: 0}
   closeClip: {fileID: 0}
   instantText: 0
-  textSpeed: 70
+  textSpeed: 0
 --- !u!1 &6215028496522477458
 GameObject:
   m_ObjectHideFlags: 0

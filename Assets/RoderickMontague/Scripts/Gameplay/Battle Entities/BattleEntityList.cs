@@ -8,9 +8,9 @@ namespace RM_BBTS
 {
     // The list of IDs.
     public enum battleEntityId { 
-        unknown, treasure, combatbot, ufo1, ufo2, ufo3, insect1, insect2, ghost1, ghost2, comet,
-        sunrock1, sunrock2, moonrock1, moonrock2, firebot, waterbot, earthbot, airbot, sharp1, sharp2, 
-        cbugred1, cbugred2, cbugblue1, cbugblue2, cbugyellow1, cbugyellow2, blackhole, planet1, planet2
+        unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, ghost1, ghost2, comet,
+        sunRock1, sunRock2, moonRock1, moonRock2, fireBot, waterBot, earthBot, airBot, sharp1, sharp2, 
+        cBugRed1, cBugRed2, cBugBlue1, cBugBlue2, cBugYellow1, cBugYellow2, blackHole, planet1, planet2
     }
 
     // The list of entities for the game. There only needs to be one instance of this list.
@@ -35,7 +35,7 @@ namespace RM_BBTS
         private const int MIN_ADJUST = 0, MAX_ADJUST = 10;
 
         // The first enemy id (ignores the boss).
-        private battleEntityId firstEnemyId = battleEntityId.combatbot;
+        private battleEntityId firstEnemyId = battleEntityId.combatBot;
 
         // The last enemy id (ignores the boss).
         private battleEntityId lastEnemyId = battleEntityId.planet2;
@@ -121,6 +121,9 @@ namespace RM_BBTS
             // The namekey.
             string nameKey = "";
 
+            // If set to 'true', the entity is given random moves.
+            bool randomMoves = true;
+
             // All entities start at level 1, and by default the evo values are set to 'unknown' (i.e. not set).
             // The player is the only entity that doesn't have a 1.0F level rate.
             data.level = 1;
@@ -153,10 +156,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.none;
 
+                    // Sets the default moves.
                     data.move0 = moveId.poke;
-
-                    // Saves the sprite.
-                    // data.sprite = entitySprites[0];
+                    data.move1 = moveId.bam;
+                    data.move2 = moveId.wham;
+                    data.move3 = moveId.kablam;
+                    randomMoves = false;
 
                     // Loads the name key.
                     nameKey = "bey_unknown_nme";
@@ -180,13 +185,16 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.none;
 
+                    data.move0 = moveId.bam;
+                    randomMoves = false;
+
                     // Loads the name key.
                     nameKey = "bey_treasure_nme";
                     break;
 
-                case battleEntityId.combatbot: // Combat Bot
+                case battleEntityId.combatBot: // Combat Bot
 
-                    data.id = battleEntityId.combatbot;
+                    data.id = battleEntityId.combatBot;
                     data.displayName = "<Combat Bot>";
                     data.displayNameSpeakKey = "bey_combatbot_nme";
 
@@ -229,8 +237,6 @@ namespace RM_BBTS
                     // Saves the sprite.
                     // data.sprite = entitySprites[(int)battleEntityId.ufo1];
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
                     // data.move0 = moveId.lasershot;
 
                     // Loads the name key.
@@ -259,9 +265,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_ufo2_nme";
                     break;
@@ -285,9 +288,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.none;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_ufo3_nme";
@@ -315,9 +315,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_insect1_nme";
                     break;
@@ -342,9 +339,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_insect2_nme";
@@ -371,9 +365,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_ghost1_nme";
                     break;
@@ -398,9 +389,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_ghost2_nme";
@@ -427,18 +415,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_comet_nme";
                     break;
 
-                case battleEntityId.sunrock1: // Stellosis
-                    data.id = battleEntityId.sunrock1;
+                case battleEntityId.sunRock1: // Stellosis
+                    data.id = battleEntityId.sunRock1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.sunrock2;
+                    data.evoId = battleEntityId.sunRock2;
 
                     // Stats
                     data.displayName = "<Stellosis>";
@@ -456,16 +440,13 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_sunrock1_nme";
                     break;
 
-                case battleEntityId.sunrock2: // Sunoliss
-                    data.id = battleEntityId.sunrock2;
-                    data.preEvoId = battleEntityId.sunrock1;
+                case battleEntityId.sunRock2: // Sunoliss
+                    data.id = battleEntityId.sunRock2;
+                    data.preEvoId = battleEntityId.sunRock1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -484,17 +465,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_sunrock2_nme";
                     break;
 
-                case battleEntityId.moonrock1: // Stelluna
-                    data.id = battleEntityId.moonrock1;
+                case battleEntityId.moonRock1: // Stelluna
+                    data.id = battleEntityId.moonRock1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.moonrock2;
+                    data.evoId = battleEntityId.moonRock2;
 
                     // Stats
                     data.displayName = "<Stelluna>";
@@ -512,17 +490,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_moonrock1_nme";
                     break;
 
-                case battleEntityId.moonrock2: // Lunooma
-                    data.id = battleEntityId.moonrock2;
+                case battleEntityId.moonRock2: // Lunooma
+                    data.id = battleEntityId.moonRock2;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.moonrock1;
+                    data.evoId = battleEntityId.moonRock1;
 
                     // Stats
                     data.displayName = "<Lunooma>";
@@ -540,16 +515,13 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_moonrock2_nme";
 
                     break;
 
-                case battleEntityId.firebot: // Pyrobot
-                    data.id = battleEntityId.firebot;
+                case battleEntityId.fireBot: // Pyrobot
+                    data.id = battleEntityId.fireBot;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -569,15 +541,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_firebot_nme";
                     break;
 
-                case battleEntityId.waterbot: // Aquadroid
-                    data.id = battleEntityId.waterbot;
+                case battleEntityId.waterBot: // Aquadroid
+                    data.id = battleEntityId.waterBot;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -597,15 +566,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.health;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_waterbot_nme";
                     break;
 
-                case battleEntityId.earthbot: // Terrachine
-                    data.id = battleEntityId.earthbot;
+                case battleEntityId.earthBot: // Terrachine
+                    data.id = battleEntityId.earthBot;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -625,15 +591,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_earthbot_nme";
                     break;
 
-                case battleEntityId.airbot: // Airtomaton
-                    data.id = battleEntityId.airbot;
+                case battleEntityId.airBot: // Airtomaton
+                    data.id = battleEntityId.airBot;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -652,9 +615,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_airbot_nme";
@@ -681,9 +641,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_sharp1_nme";
                     break;
@@ -709,17 +666,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_sharp2_nme";
                     break;
 
-                case battleEntityId.cbugred1: // Red
-                    data.id = battleEntityId.cbugred1;
+                case battleEntityId.cBugRed1: // Red
+                    data.id = battleEntityId.cBugRed1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cbugred2;
+                    data.evoId = battleEntityId.cBugRed2;
 
                     // Stats
                     data.displayName = "<Red>";
@@ -737,16 +691,13 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_red1_nme";
                     break;
 
-                case battleEntityId.cbugred2: // Red X
-                    data.id = battleEntityId.cbugred2;
-                    data.preEvoId = battleEntityId.cbugred1;
+                case battleEntityId.cBugRed2: // Red X
+                    data.id = battleEntityId.cBugRed2;
+                    data.preEvoId = battleEntityId.cBugRed1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -765,17 +716,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.attack;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_cbugred2_nme";
                     break;
 
-                case battleEntityId.cbugblue1: // Blue
-                    data.id = battleEntityId.cbugblue1;
+                case battleEntityId.cBugBlue1: // Blue
+                    data.id = battleEntityId.cBugBlue1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cbugblue2;
+                    data.evoId = battleEntityId.cBugBlue2;
 
                     // Stats
                     data.displayName = "<Blue>";
@@ -793,16 +741,13 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_cbugblue1_nme";
                     break;
 
-                case battleEntityId.cbugblue2: // Blue X
-                    data.id = battleEntityId.cbugblue2;
-                    data.preEvoId = battleEntityId.cbugblue1;
+                case battleEntityId.cBugBlue2: // Blue X
+                    data.id = battleEntityId.cBugBlue2;
+                    data.preEvoId = battleEntityId.cBugBlue1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -821,17 +766,14 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_cbugblue2_nme";
                     break;
 
-                case battleEntityId.cbugyellow1: // Yellow
-                    data.id = battleEntityId.cbugyellow1;
+                case battleEntityId.cBugYellow1: // Yellow
+                    data.id = battleEntityId.cBugYellow1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cbugyellow2;
+                    data.evoId = battleEntityId.cBugYellow2;
 
                     // Stats
                     data.displayName = "<Yellow>";
@@ -849,15 +791,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_cbugyellow1_nme";
                     break;
 
-                case battleEntityId.cbugyellow2: // Yellow X
-                    data.id = battleEntityId.cbugyellow2;
+                case battleEntityId.cBugYellow2: // Yellow X
+                    data.id = battleEntityId.cBugYellow2;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -877,15 +816,12 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.defense;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_cbugyellow2_nme";
                     break;
 
-                case battleEntityId.blackhole: // Vortex (BOSS)
-                    data.id = battleEntityId.blackhole;
+                case battleEntityId.blackHole: // Vortex (BOSS)
+                    data.id = battleEntityId.blackHole;
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.unknown;
 
@@ -904,9 +840,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_blackhole_nme";
@@ -932,9 +865,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
 
                     // Loads the name key.
                     nameKey = "bey_planet1_nme";
@@ -962,9 +892,6 @@ namespace RM_BBTS
 
                     data.statSpecial = BattleEntity.specialty.health;
 
-                    // Set random moves.
-                    SetRandomMovesFromList(ref data);
-
                     // Loads the name key.
                     nameKey = "bey_planet2_nme";
                     break;
@@ -972,8 +899,12 @@ namespace RM_BBTS
 
             }
 
+            // Randomize the moves.
+            if(randomMoves)
+                SetRandomMovesFromList(ref data);
+
             // Sets the sprite if the entity's ID is a valid number for the list.
-            if((int)data.id < entitySprites.Count)
+            if ((int)data.id < entitySprites.Count)
                 data.sprite = entitySprites[(int)data.id];
 
             // Loads the translation for the data.
@@ -994,124 +925,257 @@ namespace RM_BBTS
             {
                 case battleEntityId.unknown:
                 default:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() { moveId.poke, moveId.bam, moveId.wham, moveId.kablam };
                     break;
 
                 case battleEntityId.treasure:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() { moveId.bam };
                     break;
 
-                case battleEntityId.combatbot: // BOSS 1
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.combatBot: // BOSS 1
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot, 
+                        moveId.screech, moveId.laserBurst, moveId.fireBurst, moveId.elecBurst, 
+                        moveId.soundWave, moveId.quickBurst, moveId.statClear, moveId.laserBlast, 
+                        moveId.fireBlast, moveId.elecBlast, moveId.sonicWave, moveId.waterBlast, 
+                        moveId.rockBlast, moveId.airBlast, moveId.allOut 
+                    };
                     break;
 
                 case battleEntityId.ufo1:
-                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
+                    moveList = new List<moveId>() { 
+                        moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot, 
+                        moveId.magnify, moveId.bam 
+                    };
                     break;
 
                 case battleEntityId.ufo2:
-                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot,
+                        moveId.magnify, moveId.bam, moveId.laserBurst, moveId.fireBurst, 
+                        moveId.elecBurst, moveId.quickBurst, moveId.electrify, moveId.wham
+                    };
                     break;
 
                 case battleEntityId.ufo3:
-                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.slimeShot, moveId.magnify, moveId.bam, moveId.laserBurst, 
+                        moveId.fireBurst, moveId.elecBurst, moveId.quickBurst, 
+                        moveId.electrify, moveId.fireBurst, moveId.elecBurst, 
+                        moveId.wham, moveId.laserBlast, moveId.fireBlast, 
+                        moveId.fireBlast, moveId.elecBlast, moveId.earlyBurst, moveId.kablam
+
+                    };
                     break;
 
-                    // TODO: IMPLEMENT
                 case battleEntityId.insect1:
-                    moveList = new List<moveId>() { moveId.poke};
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.poke, moveId.slimeShot, moveId.screech, moveId.chip, moveId.hpDrain1, 
+                        moveId.healthSplit, moveId.bam, moveId.soundWave, moveId.wham
+                    };
                     break;
 
                 case battleEntityId.insect2:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.poke, moveId.slimeShot, moveId.screech, moveId.chip, moveId.hpDrain1,
+                        moveId.healthSplit, moveId.bam, moveId.soundWave, moveId.quickBurst, moveId.torch, moveId.hpDrain2,
+                        moveId.wham, moveId.hpDrain3, moveId.kablam, moveId.allOut
+                    };
                     break;
 
                 case battleEntityId.ghost1:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
+                        moveId.laserBurst, moveId.electrify, moveId.risk 
+                    };
                     break;
 
                 case battleEntityId.ghost2:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
+                        moveId.laserBurst, moveId.electrify, moveId.risk, moveId.elecBlast, 
+                        moveId.laserBlast
+                    };
                     break;
 
                 case battleEntityId.comet: // BOSS 2
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.slam, moveId.chip, moveId.quickBurst, moveId.bam, 
+                        moveId.tidalWave, moveId.wham, moveId.quake, moveId.waterBlast, 
+                        moveId.airBlast, moveId.chargeSun, moveId.chargeMoon, 
+                        moveId.earlyBurst, moveId.allOut, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.sunrock1:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.sunRock1:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.sunrock2:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.sunRock2:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.slam, moveId.chip, moveId.heal, moveId.bam, 
+                        moveId.magnet, moveId.wham, moveId.chargeSun, 
+                        moveId.quake, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.moonrock1:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.moonRock1:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.moonrock2:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.moonRock2:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.slam, moveId.chip, moveId.heal, moveId.bam,
+                        moveId.magnet, moveId.wham, moveId.chargeMoon,
+                        moveId.quake, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.firebot:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.fireBot:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst, 
+                        moveId.fireBurst, moveId.torch, moveId.laserBlast, moveId.fireBlast
+                    };
                     break;
 
-                case battleEntityId.waterbot:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.waterBot:
+                    moveList = new List<moveId>() 
+                    {
+                         moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
+                        moveId.laserBlast, moveId.waterBlast
+                    };
                     break;
 
-                case battleEntityId.earthbot:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.earthBot:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, moveId.toss, moveId.bam, moveId.magnify, moveId.magnet,
+                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, moveId.kablam
+                    };
                     break;
 
-                case battleEntityId.airbot:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.airBot:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
+                        moveId.elecBurst, moveId.laserBlast, moveId.elecBlast, 
+                        moveId.twister, moveId.airBlast
+                    };
                     break;
 
                 case battleEntityId.sharp1:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.poke, moveId.slam, moveId.chip, moveId.bam, 
+                        moveId.motivate, moveId.risk, moveId.wham
+                    };
                     break;
 
                 case battleEntityId.sharp2:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.poke, moveId.slam, moveId.chip, moveId.toss,
+                        moveId.bam, moveId.motivate, moveId.risk, moveId.wham,
+                        moveId.kablam, moveId.allOut
+                    };
                     break;
 
-                case battleEntityId.cbugred1:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugRed1:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
+                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.cbugred2:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugRed2:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.screech,moveId.elecShot, 
+                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst, 
+                        moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.cbugblue1:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugBlue1:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
+                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.cbugblue2:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugBlue2:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.laserShot, moveId.screech,moveId.elecShot,
+                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.cbugyellow1:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugYellow1:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
+                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.cbugyellow2:
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.cBugYellow2:
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.laserShot, moveId.screech,moveId.elecShot,
+                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
+                    };
                     break;
 
-                case battleEntityId.blackhole: // BOSS 3
-                    moveList = new List<moveId>() { moveId.poke };
+                case battleEntityId.blackHole: // BOSS 3
+                    moveList = new List<moveId>() 
+                    {
+                        moveId.bam, moveId.hpDrain1, moveId.hpDrain2, moveId.hpDrain3, 
+                        moveId.twister, moveId.wham, moveId.quickBurst, moveId.waterBlast, 
+                        moveId.rockBlast, moveId.quake, moveId.earlyBurst, moveId.kablam
+                    };
                     break;
 
                 case battleEntityId.planet1:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.bam, 
+                        moveId.magnet, moveId.hpDrain2, moveId.statClear, moveId.cure, 
+                        moveId.wham, moveId.quake
+                    };
                     break;
 
                 case battleEntityId.planet2:
-                    moveList = new List<moveId>() { moveId.poke };
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.bam, 
+                        moveId.magnet, moveId.hpDrain2, moveId.statClear, moveId.cure,
+                        moveId.tidalWave, moveId.wham, moveId.hpDrain3, moveId.waterBlast, 
+                        moveId.airBlast, moveId.quake, moveId.chargeSun, moveId.chargeMoon, moveId.kablam
+                    };
                     break;
             }
 
@@ -1271,7 +1335,7 @@ namespace RM_BBTS
             // Gets the random data.
             data = GenerateBattleEntityData(randomId);
             
-            // TODO: make this more efficient?
+            // The evolved forms all have a spawn rate of 0, so the opitmization shouldn't be a problem.
 
             // If the base evo should be returned.
             if(baseEvo)
@@ -1295,9 +1359,25 @@ namespace RM_BBTS
         }
 
         // Generates the boss.
-        public BattleEntityGameData GenerateBoss()
+        public BattleEntityGameData GenerateBoss(int bossNum)
         {
-            return GenerateBattleEntityData(battleEntityId.combatbot);
+            BattleEntityGameData data;
+
+            switch(bossNum)
+            {
+                default:
+                case 1:
+                    data = GenerateBattleEntityData(battleEntityId.combatBot);
+                    break;
+                case 2:
+                    data = GenerateBattleEntityData(battleEntityId.comet);
+                    break;
+                case 3:
+                    data = GenerateBattleEntityData(battleEntityId.blackHole);
+                    break;
+            }
+
+            return data;
         }
     }
 

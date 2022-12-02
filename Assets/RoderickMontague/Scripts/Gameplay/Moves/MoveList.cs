@@ -9,7 +9,7 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, bam, 
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, bam, 
         laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, wham, 
         laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, kablam}
 
@@ -126,8 +126,13 @@ namespace RM_BBTS
                     // Translated in constructor.
                     break;
 
-                case moveId.poke: // Hit
+                case moveId.poke: // Poke
                     move = new Move(moveId.poke, "<Poke>", 1, 10.0F, 1.0F, 0.05F);
+
+                    move.CriticalChance = 0.4F;
+
+                    move.defenseChangeUser = 1;
+                    move.defenseChangeChanceUser = 0.05F;
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_poke_nme";
@@ -237,6 +242,17 @@ namespace RM_BBTS
                     move = new HealthSplitMove();
                     
                     // Translation is done in function.
+                    break;
+
+                case moveId.pushBack: // Push Back
+                    move = new Move(moveId.pushBack, "<Push Back>", 1, 25.0F, 0.9F, 0.15F);
+
+                    move.defenseChangeUser = 1;
+                    move.defenseChangeChanceUser = 0.2F;
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_pushBack_nme";
+                    descKey = "mve_pushBack_dsc";
                     break;
 
                 case moveId.bam: // Bam
@@ -367,8 +383,11 @@ namespace RM_BBTS
                 case moveId.risk: // Risk
                     move = new StatChangeMove(moveId.risk, "Risk", 2, 0.1F);
 
-                    move.attackChangeUser = 1;
+                    move.attackChangeUser = 2;
                     move.attackChangeChanceUser = 1.0F;
+
+                    move.defenseChangeUser = -1;
+                    move.defenseChangeChanceUser = 1.0F;
 
                     move.accuracyChangeUser = -1;
                     move.accuracyChangeChanceUser = 1.0F;

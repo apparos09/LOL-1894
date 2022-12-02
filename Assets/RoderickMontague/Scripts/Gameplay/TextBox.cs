@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_BBTS
 {
@@ -20,6 +21,14 @@ namespace RM_BBTS
 
         // Closes the text box when all the end has been reached.
         public bool closeOnEnd = true;
+
+        [Header("UI")]
+
+        // The previous page button.
+        public Button prevPageButton;
+
+        // The next page button.
+        public Button nextPageButton;
 
         [Header("Animation")]
         // The animator.
@@ -351,8 +360,9 @@ namespace RM_BBTS
                     boxText.text = temp;
 
                     // If the text speed is set to 0 the new char will load on the next frame.
+                    // NOTE: past a certain point, the char gets put every frame, which means there's a limit to the text speed.
                     if (textSpeed > 0)
-                        charTimer = 1 / textSpeed;
+                        charTimer = 1.0F / textSpeed;
                     else
                         charTimer = 0.0F;
 
