@@ -1006,15 +1006,15 @@ namespace RM_BBTS
                     break;
 
                 case battleEntityId.ufo1:
-                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
+                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
                     break;
 
                 case battleEntityId.ufo2:
-                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
+                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
                     break;
 
                 case battleEntityId.ufo3:
-                    moveList = new List<moveId>() { moveId.slimeshot, moveId.lasershot, moveId.fireshot, moveId.elecshot };
+                    moveList = new List<moveId>() { moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot };
                     break;
 
                     // TODO: IMPLEMENT

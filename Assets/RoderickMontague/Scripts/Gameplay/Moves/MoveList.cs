@@ -9,9 +9,9 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeshot, lasershot, fireshot, elecshot, screech, slam, chip, toss, block, heal, hpdrain1, empathy, bam, 
-        laserburst, fireburst, elecburst, soundwave, magnet, scorch, electrify, motivate, quickburst, hpdrain2, tripleshot, cure, energyattacka, wave, wham, 
-        laserblast, fireblast, elecblast, sonicwave, hpdrain3, twister, waterblast, rockblast, airblast, quake, chargesun, chargemoon, energyattackb, airstrike, kablam}
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, block, heal, hpDrain1, empathy, bam, 
+        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, tripleShot, cure, energyAttackA, tidalWave, wham, 
+        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, energyAttackB, airstrike, kablam}
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -117,88 +117,93 @@ namespace RM_BBTS
                 case moveId.run: // Run
                     move = new RunMove();
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_run_nme";
-                    // descKey = "mve_run_dsc";
+                    // Translated in constructor.
                     break;
 
                 case moveId.charge: // Charge
                     move = new ChargeMove();
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    // Translated in constructor.
                     break;
 
                 case moveId.poke: // Hit
                     move = new Move(moveId.poke, "<Poke>", 1, 10.0F, 1.0F, 0.05F);
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_poke_nme";
+                    descKey = "mve_poke_dsc";
                     break;
 
-                case moveId.slimeshot: // Slimeshot
-                    move = new Move(moveId.slimeshot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.05F);
+                case moveId.slimeShot: // Slimeshot
+                    move = new Move(moveId.slimeShot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.05F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_slimeShot_nme";
+                    descKey = "mve_slimeShot_dsc";
                     break;
 
-                case moveId.lasershot: // Lasershot (TODO: not working for osme reason)
-                    move = new Move(moveId.lasershot, "<Lasershot>", 1, 40.0F, 0.9F, 0.05F);
+                case moveId.laserShot: // Lasershot (TODO: not working for osme reason)
+                    move = new Move(moveId.laserShot, "<Lasershot>", 1, 40.0F, 0.9F, 0.05F);
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_laserShot_nme";
+                    descKey = "mve_laserShot_dsc";
                     break;
 
-                case moveId.fireshot: // Fireshot
-                    move = new Move(moveId.fireshot, "<Fireshot>", 1, 30.0F, 0.9F, 0.05F);
+                case moveId.fireShot: // Fireshot
+                    move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.05F);
                     move.BurnChance = 0.2F;
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_fireShot_nme";
+                    descKey = "mve_fireShot_dsc";
                     break;
 
-                case moveId.elecshot: // Electroshot
-                    move = new Move(moveId.elecshot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.05F);
+                case moveId.elecShot: // Electroshot
+                    move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.05F);
                     move.ParalysisChance = 0.2F;
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_elecShot_nme";
+                    descKey = "mve_elecShot_dsc";
                     break;
 
                 case moveId.screech: // Screech
                     move = new Move(moveId.screech, "<Screech>", 1, 25.0F, 1.0F, 0.05F);
 
                     move.accuracyChangeTarget = -1;
-                    move.accuracyChangeChanceTarget = 0.2F;
+                    move.accuracyChangeChanceTarget = 0.15F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_screech_nme";
+                    descKey = "mve_screech_dsc";
                     break;
 
                 case moveId.slam: // Slam
                     move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.05F);
                     move.CriticalChance = 0.6F;
+
+                    nameKey = "mve_slam_nme";
+                    descKey = "mve_slam_dsc";
                     break;
 
                 case moveId.chip: // Chip Damage
                     move = new Move(moveId.chip, "<Chip Damage>", 1, 10, 0.95F, 0.1F);
                     move.priority = 1;
+
+                    nameKey = "mve_chip_nme";
+                    descKey = "mve_chip_dsc";
                     break;
 
                 case moveId.toss: // Toss
                     move = new Move(moveId.toss, "<Toss>", 1, 25, 0.95F, 0.1F);
-                    // TODO: implement stat changes. 
+                    
+                    move.attackChangeTarget = -1;
+                    move.attackChangeChanceTarget = 0.1F;
+
+                    nameKey = "mve_toss_nme";
+                    descKey = "mve_toss_dsc";
                     break;
 
                 case moveId.block: // Block
@@ -208,15 +213,21 @@ namespace RM_BBTS
 
                 case moveId.heal: // Heal
                     move = new HealMove(moveId.heal);
+                    (move as HealMove).healPercent = 0.15F;
+
+                    nameKey = "mve_heal_nme";
+                    descKey = "mve_heal_dsc";
                     break;
 
-                case moveId.hpdrain1: // Health Drain 1
-                    move = new Move(moveId.hpdrain1, "Health Drain", 1, 0.0F, 0.0F, 0.4F);
+                case moveId.hpDrain1: // Health Drain 1
+                    move = new Move(moveId.hpDrain1, "Health Drain", 1, 0.0F, 0.0F, 0.4F);
+                    
                     // TODO: implement mechanics.
                     break;
 
                 case moveId.empathy: // Empathize
                     move = new Move(moveId.empathy, "<Empathy>", 1, 0.0F, 0.9F, 0.05F);
+                    
                     // TODO: implement functionality.
                     break;
 
@@ -224,199 +235,264 @@ namespace RM_BBTS
                     move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.05F);
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_bam_nme";
+                    descKey = "mve_bam_dsc";
                     break;
 
 
 
 
                     // RANK 2
-                case moveId.laserburst: // Laser Burst
-                    move = new Move(moveId.laserburst, "<Laser Burst>", 2, 70.0F, 1.0F, 0.05F);
+                case moveId.laserBurst: // Laser Burst
+                    move = new Move(moveId.laserBurst, "<Laser Burst>", 2, 70.0F, 1.0F, 0.1F);
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_laserBurst_nme";
+                    descKey = "mve_laserBurst_dsc";
                     break;
 
-                case moveId.fireburst: // Fire Burst
-                    move = new Move(moveId.fireburst, "<Fire Burst>", 2, 65.0F, 1.0F, 0.05F);
-                    move.BurnChance = 0.3F;
+                case moveId.fireBurst: // Fire Burst
+                    move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 65.0F, 0.85F, 0.11F);
+                    move.BurnChance = 0.35F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_fireBurst_nme";
+                    descKey = "mve_fireBurst_dsc";
                     break;
 
-                case moveId.elecburst: // Electric Burst
-                    move = new Move(moveId.elecburst, "<Electric Burst>", 2, 65.0F, 1.0F, 0.05F);
-                    move.ParalysisChance = 0.3F;
+                case moveId.elecBurst: // Electric Burst
+                    move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 65.0F, 0.85F, 0.12F);
+                    move.ParalysisChance = 0.35F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_elecBurst_nme";
+                    descKey = "mve_elecBurst_dsc";
                     break;
 
-                case moveId.soundwave: // Sound Wave
-                    move = new Move(moveId.soundwave, "<Sound Wave>", 2, 65.0F, 1.0F, 0.05F);
+                case moveId.soundWave: // Sound Wave
+                    move = new Move(moveId.soundWave, "<Sound Wave>", 2, 65.0F, 1.0F, 0.1F);
+                    
+                    move.accuracyChangeTarget = 1;
+                    move.accuracyChangeChanceTarget = 0.2F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
-                    break;
-
-                case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.05F);
-
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_soundWave_nme";
+                    descKey = "mve_soundWave_dsc";
                     break;
 
                 case moveId.magnet: // Magnetize
-                    move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.05F, 0.15F);
-                    // TODO: implement the mechanics.
+                    move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.9F, 0.15F);
+
+                    move.accuracyChangeUser = 2;
+                    move.accuracyChangeChanceUser = 1.0F;
+
+                    nameKey = "mve_magnet_nme";
+                    descKey = "mve_magnet_dsc";
                     break;
 
-                case moveId.scorch: // Scorch
-                    move = new Move(moveId.scorch, "<Scorch>", 2, 30, 0.85F, 0.20F);
+                case moveId.torch: // Torch
+                    move = new Move(moveId.torch, "<Scorch>", 2, 30, 0.9F, 0.20F);
                     move.BurnChance = 1.0F;
+
+                    nameKey = "mve_torch_nme";
+                    descKey = "mve_torch_dsc";
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.16F);
+                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.2F);
                     move.ParalysisChance = 1.0F;
+
+                    nameKey = "mve_electrify_nme";
+                    descKey = "mve_electrify_dsc";
                     break;
 
                 case moveId.motivate: // Motivate
-                    move = new Move(moveId.motivate, "<Motivate>", 2, 0.0F, 0.0F, 0.5F);
-                    // TODO: set up mechanics.
+                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.5F);
+                    
+                    move.useAccuracy = false;
+                    move.priority = -1;
+
+                    move.attackChangeUser = 1;
+                    move.attackChangeChanceUser = 1.0F;
+
+                    move.defenseChangeUser = 1;
+                    move.defenseChangeChanceUser = 1.0F;
+
+                    move.speedChangeUser = 1;
+                    move.speedChangeChanceUser = 1.0F;
+
+                    nameKey = "mve_motivate_nme";
+                    descKey = "mve_motivate_dsc";
+
                     break;
 
-                case moveId.quickburst: // Quick Burst
-                    move = new Move(moveId.quickburst, "<Quick Burst>", 2, 80, 0.95F, 0.5F);
-                    move.RecoilPercent = 0.1F;
+                case moveId.quickBurst: // Quick Burst
+                    move = new Move(moveId.quickBurst, "<Quick Burst>", 2, 70, 0.95F, 0.3F);
+                    move.RecoilPercent = 0.15F;
+                    move.priority = 1;
+
+                    nameKey = "mve_quickBurst_nme";
+                    descKey = "mve_quickBurst_dsc";
                     break;
 
-                case moveId.hpdrain2: // Health Drain 2
-                    move = new Move(moveId.hpdrain2, "<Health Drain 2>", 2, 60, 0.9F, 0.2F);
+                case moveId.hpDrain2: // Health Drain 2
+                    move = new Move(moveId.hpDrain2, "<Health Drain 2>", 2, 60, 0.9F, 0.2F);
                     // TODO: implement mechanics.
                     break;
 
-                case moveId.tripleshot: // Triple Shot
-                    move = new Move(moveId.tripleshot, "<Triple Shot>", 2, 40, 0.6F, 0.15F);
+                case moveId.tripleShot: // Triple Shot
+                    move = new Move(moveId.tripleShot, "<Triple Shot>", 2, 40, 0.6F, 0.15F);
                     // TODO: mechanics
                     break;
 
                 case moveId.cure: // Cure
-                    move = new Move(moveId.cure, "<Cure>", 2, 0.0F, 0.0F, 0.35F);
+                    move = new CureMove();
+                    
+                    // Translation in constructor.
+                    break;
+
+                case moveId.energyAttackA: // Overboard
+                    move = new Move(moveId.energyAttackA, "<Overboard>", 2, 40, 0.9F, 0.15F);
                     // TODO: mechanics.
                     break;
 
-                case moveId.energyattacka: // Overboard
-                    move = new Move(moveId.energyattacka, "<Overboard>", 2, 40, 0.9F, 0.15F);
-                    // TODO: mechanics.
-                    break;
-
-                case moveId.wave: // Tidal Wave
-                    move = new Move(moveId.wave, "<Tidal Wave>", 2, 70, 1.0F, 0.15F);
+                case moveId.tidalWave: // Tidal Wave
+                    move = new Move(moveId.tidalWave, "<Tidal Wave>", 2, 70, 1.0F, 0.20F);
                     move.useAccuracy = false;
+
+                    nameKey = "mve_tidalWave_nme";
+                    descKey = "mve_tidalWave_dsc";
+                    break;
+
+                case moveId.wham: // Wham
+                    move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.1F);
+
+                    nameKey = "mve_wham_nme";
+                    descKey = "mve_wham_dsc";
                     break;
 
 
                 // RANK 3
-                case moveId.laserblast: // Laser Blast
-                    move = new Move(moveId.laserblast, "<Laser Blast>", 3, 100.0F, 1.0F, 0.05F);
+                case moveId.laserBlast: // Laser Blast
+                    move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 100.0F, 0.8F, 0.15F);
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_laserBlast_nme";
+                    descKey = "mve_laserBlast_dsc";
                     break;
 
-                case moveId.fireblast: // Fire Blast
-                    move = new Move(moveId.fireblast, "<Fire Blast>", 3, 90.0F, 1.0F, 0.05F);
-                    move.BurnChance = 0.4F;
+                case moveId.fireBlast: // Fire Blast
+                    move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 90.0F, 0.8F, 0.15F);
+                    move.BurnChance = 0.5F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_fireBlast_nme";
+                    descKey = "mve_fireBlast_dsc";
                     break;
 
-                case moveId.elecblast: // Electric Blast
-                    move = new Move(moveId.elecblast, "<Electric Blast>", 3, 90.0F, 1.0F, 0.05F);
-                    move.ParalysisChance = 0.4F;
+                case moveId.elecBlast: // Electric Blast
+                    move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 90.0F, 0.8F, 0.15F);
+                    move.ParalysisChance = 0.5F;
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_elecBlast_nme";
+                    descKey = "mve_elecBlast_dsc";
                     break;
 
-                case moveId.sonicwave: // Sonic Wave
-                    move = new Move(moveId.sonicwave, "<Sonic Wave>", 3, 90.0F, 1.0F, 0.05F);
+                case moveId.sonicWave: // Sonic Wave
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 90.0F, 1.0F, 0.05F);
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    move.accuracyChangeTarget = -1;
+                    move.accuracyChangeChanceTarget = 0.25F;
+
+                    nameKey = "mve_sonicWave_nme";
+                    descKey = "mve_sonicWave_dsc";
                     break;
 
-
-                case moveId.hpdrain3: // HP Drain 3
-                    move = new Move(moveId.hpdrain3, "<Health Drain 3>", 3, 80, 0.9F, 0.3F);
+                case moveId.hpDrain3: // HP Drain 3
+                    move = new Move(moveId.hpDrain3, "<Health Drain 3>", 3, 80, 0.9F, 0.3F);
                     // TODO: need mechanics.
                     break;
 
                 case moveId.twister: // Twister
                     move = new Move(moveId.twister, "<Twister>", 1, 70, 1.0F, 0.2F);
-                    // TODO: need mechanics.
+
+                    move.defenseChangeTarget = -1;
+                    move.defenseChangeChanceTarget = 100.0F;
+
+                    nameKey = "mve_twister_nme";
+                    descKey = "mve_twister_dsc";
                     break;
 
-                case moveId.waterblast: // Water Blast
-                    move = new Move(moveId.waterblast, "<Water Blast>", 3, 90, 0.8F, 0.15F);
-                    // TODO: need mechanics.
+                case moveId.waterBlast: // Water Blast
+                    move = new Move(moveId.waterBlast, "<Water Blast>", 3, 90, 0.8F, 0.15F);
+
+                    move.attackChangeTarget = -1;
+                    move.attackChangeChanceTarget = 30.0F;
+
+                    nameKey = "mve_waterBlast_nme";
+                    descKey = "mve_waterBlast_dsc";
                     break;
 
-                case moveId.rockblast: // Rock Blast
-                    move = new Move(moveId.rockblast, "<Rock Blast>", 3, 90, 0.8F, 0.15F);
-                    // TODO: implement mechanics.
+                case moveId.rockBlast: // Rock Blast
+                    move = new Move(moveId.rockBlast, "<Rock Blast>", 3, 90, 0.8F, 0.15F);
+
+                    move.defenseChangeTarget = -1;
+                    move.defenseChangeChanceTarget = 30.0F;
+
+                    nameKey = "mve_rockBlast_nme";
+                    descKey = "mve_rockBlast_dsc";
                     break;
 
-                case moveId.airblast: // Air Blast
-                    move = new Move(moveId.airblast, "<Air Blast>", 3, 90, 0.8F, 0.15F);
-                    // TODO: implement mechanics.
+                case moveId.airBlast: // Air Blast
+                    move = new Move(moveId.airBlast, "<Air Blast>", 3, 90, 0.8F, 0.15F);
+
+                    move.speedChangeTarget = -1;
+                    move.speedChangeChanceTarget = 30.0F;
+
+                    nameKey = "mve_airBlast_nme";
+                    descKey = "mve_airBlast_dsc";
+
                     break;
 
                 case moveId.quake: // Quake
                     move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.25F);
-                    // TODO: implement mechanics.
+
+                    move.CriticalChance = 0.6F;
+                    move.RecoilPercent = 0.2F;
+
+                    nameKey = "mve_quake_nme";
+                    descKey = "mve_quake_dsc";
+
                     break;
 
-                case moveId.chargesun: // Charge Sun
-                    move = new Move(moveId.chargesun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
+                case moveId.chargeSun: // Charge Sun
+                    move = new Move(moveId.chargeSun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
                     // TODO: mechanics.
                     break;
 
-                case moveId.chargemoon: // Charge Moon
-                    move = new Move(moveId.chargemoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
+                case moveId.chargeMoon: // Charge Moon
+                    move = new Move(moveId.chargeMoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
                     // TODO: mechanics.
                     break;
 
-                case moveId.energyattackb: // Conserve
-                    move = new Move(moveId.energyattackb, "<Conserve>", 3, 90, 0.9F, 0.15F);
+                case moveId.energyAttackB: // Conserve
+                    move = new Move(moveId.energyAttackB, "<Conserve>", 3, 90, 0.9F, 0.15F);
                     // TODO: mechanics.
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.airstrike: // Airstrike
                     move = new Move(moveId.airstrike, "<Airstrike>", 3, 100, 0.2F, 0.4F);
                     // TODO: mechanics.
+
+                    // Sets the keys for translating the data.
+                    // nameKey = "mve_charge_nme";
+                    // descKey = "mve_charge_dsc";
                     break;
 
                 case moveId.kablam: // Kablam
                     move = new Move(moveId.kablam, "<Kablam>", 3, 30.0F, 1.0F, 0.05F);
 
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_kablam_nme";
+                    descKey = "mve_kablam_dsc";
                     break;
             }
 

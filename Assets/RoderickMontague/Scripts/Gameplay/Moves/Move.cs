@@ -204,7 +204,7 @@ namespace RM_BBTS
         // Checks if a move is available for the battle entity to perform.
         public bool Usable(BattleEntity user)
         {
-            return (energyUsage * user.MaxEnergy <= user.Energy);
+            return (CalculateEnergyUsed(user) <= user.Energy);
         }
 
         // Generates a random float in the 0-1 range.
@@ -238,11 +238,17 @@ namespace RM_BBTS
             return success;
         }
 
+        // Gets the amount of used energy. This does NOT actually apply it.
+        public float CalculateEnergyUsed(BattleEntity user)
+        {
+            return user.MaxEnergy * energyUsage;
+        }
+
         // Reduces the energy from using the move.
         public void ReduceEnergy(BattleEntity user)
         {
             // Reduce energy amount.
-            user.Energy -= user.MaxEnergy * energyUsage;
+            user.Energy -= CalculateEnergyUsed(user);
         }
 
         // Calculates the damage the user it.
@@ -666,7 +672,8 @@ namespace RM_BBTS
             // The move inserts a message after the current page in the text box.
 
             // Takes a percentage of the user's max energy.
-            float energyUsed = user.MaxEnergy * energyUsage;
+            // float energyUsed = user.MaxEnergy * energyUsage;
+            float energyUsed = CalculateEnergyUsed(user);
 
             // If there isn't enough energy to use the move, nothing happens.
             if (user.Energy < energyUsed)
@@ -696,7 +703,9 @@ namespace RM_BBTS
             }
 
             // Uses energy.
-            user.Energy -= energyUsed; // energy
+            ReduceEnergy(user);
+            // user.Energy -= energyUsed; // energy
+
 
             // Updates the player's energy UI.
             if(user is Player)
@@ -774,7 +783,7 @@ namespace RM_BBTS
                 }
 
                 // Burn Infliction
-                if (!target.burned && Random.Range(0.0F, 1.0F) < burnChance)
+                if (!target.burned && GenerateRandomFloat01() < burnChance)
                 {
                     target.burned = true;
 
@@ -787,7 +796,7 @@ namespace RM_BBTS
                 }
 
                 // Paralysis Infliction
-                if (!target.paralyzed && Random.Range(0.0F, 1.0F) < paralysisChance)
+                if (!target.paralyzed && GenerateRandomFloat01() < paralysisChance)
                 {
                     target.paralyzed = true;
 

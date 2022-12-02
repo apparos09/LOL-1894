@@ -30,7 +30,7 @@ namespace RM_BBTS
                     power = 0.0F;
                     accuracy = 100.0F;
                     useAccuracy = false; // Move always succeeds.
-                    energyUsage = 0.85F;
+                    energyUsage = 0.4F;
 
                     // Heal Amount
                     healPercent = 0.125F;
@@ -43,7 +43,7 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // If the user's move was enabled.
+            // If the user's move is usable.
             if (Usable(user) && !user.HasFullHealth())
             {
                 user.Health += user.MaxHealth * healPercent; // Heal

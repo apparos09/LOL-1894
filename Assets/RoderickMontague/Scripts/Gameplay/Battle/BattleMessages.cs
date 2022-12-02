@@ -337,7 +337,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The move increased {0}'s {1} by {2} stages!>";
+                msg = "<The move increased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.
@@ -378,7 +378,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The move decreased {0}'s {1} by {2} stages!>";
+                msg = "<The move decreased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.

@@ -137,10 +137,10 @@ namespace RM_BBTS
         public int accuracyMod = 0;
 
         // The minimum for the stat modifiers.
-        public const int STAT_MOD_MIN = -3;
+        public const int STAT_MOD_MIN = -4;
 
         // The maximum for the stat modifiers.
-        public const int STAT_MOD_MAX = 3;
+        public const int STAT_MOD_MAX = 4;
 
         // LEVEL UP
 
