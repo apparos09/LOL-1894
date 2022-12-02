@@ -1119,16 +1119,17 @@ namespace RM_BBTS
         }
 
         // Sets random moves for the UFO.
-        private void SetRandomMovesFromList(ref BattleEntityGameData data)
+        private void SetRandomMovesFromList(ref BattleEntityGameData data, int totalMoves = 4)
         {
             // Grabs the move list.
             List<moveId> moveList = GenerateBattleEntityMoveList(data.id);
 
             // List of moves added.
+            int totalCount = Mathf.Clamp(totalMoves, 1, 4);
             int count = 0;
 
             // Grab the moves.
-            while(count < 4 && moveList.Count != 0)
+            while(count < totalCount && moveList.Count != 0)
             {
                 // Grabs the random index.
                 int index = Random.Range(0, moveList.Count);

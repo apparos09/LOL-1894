@@ -8,36 +8,14 @@ namespace RM_BBTS
     public class HealMove : Move
     {
         // The heal percentage.
-        public float healPercent = 0.0F;
+        public float healPercent = 1.0F;
 
         // Heals the user.
-        public HealMove(moveId id) : 
-            base(id, "<Heal>", 1, 0.0F, 100.0F, 0.1F)
+        public HealMove(moveId id, string name, int rank, float energyUsage) : 
+            base(id, name, rank, 0.0F, 100.0F, energyUsage)
         {
             // Heal moves don't have power or accuracy.
-
-            // Checks the ID of the move.
-            switch(id)
-            {
-                case moveId.heal: // Heal Move
-                    rank = 1;
-
-                    // Name and Desc
-                    name = "<Heal>";
-                    description = "The user heals themself by 12.5% of their max health.";
-
-                    // Stats
-                    power = 0.0F;
-                    accuracy = 100.0F;
-                    useAccuracy = false; // Move always succeeds.
-                    energyUsage = 0.4F;
-
-                    // Heal Amount
-                    healPercent = 0.125F;
-
-                    LoadTranslation("mve_heal_nme", "mve_heal_dsc");
-                    break;                
-            }
+            useAccuracy = false;
         }
 
         // Called when performing a move.

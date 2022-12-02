@@ -90,9 +90,9 @@ namespace RM_BBTS
             this.id = id;
             this.name = name;
             this.rank = rank;
-            this.power = power;
-            this.accuracy = accuracy;
-            this.energyUsage = energyUsage;
+            this.power = (power >= 0.0F) ? power : 0.0F;
+            this.accuracy = Mathf.Clamp01(accuracy);
+            this.energyUsage = Mathf.Clamp01(energyUsage);
 
             // Default message.
             description = "No information available";
@@ -252,7 +252,7 @@ namespace RM_BBTS
         }
 
         // Calculates the damage the user it.
-        public virtual float CalculateDamage(BattleEntity user, BattleEntity target, bool useCritBoost)
+        public virtual float CalculateDamage(BattleEntity user, BattleEntity target, BattleManager battle, bool useCritBoost)
         {
             // The critical boost.
             float critBoost = (useCritBoost) ? CRITICAL_BOOST : 1.0F;
@@ -726,7 +726,7 @@ namespace RM_BBTS
                     useCritBoost = GenerateRandomFloat01() <= criticalChance;
 
                 // Calculates the damage.
-                float damage = CalculateDamage(user, target, useCritBoost);
+                float damage = CalculateDamage(user, target, battle, useCritBoost);
 
                 // OLD
                 // Does damage.

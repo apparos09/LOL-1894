@@ -457,6 +457,12 @@ namespace RM_BBTS
             RefreshPlayerOptions();
         }
 
+        // Gets the amount of turns the battle has taken.
+        public float TurnsTaken
+        {
+            get { return turnsTaken; }
+        }
+
         // Sets player controls to interactable or not. RefreshPlayerOptions is also called to disable buttons that do nothing. 
         public void SetPlayerOptionsAvailable(bool interactable)
         {
@@ -1184,6 +1190,22 @@ namespace RM_BBTS
         {
             RefreshPlayerOptions();
             UpdateOpponentUI();
+
+            // Calls functions in the GameplayManager.
+            UpdatePlayerHealthUI();
+            UpdatePlayerEnergyUI();
+        }
+
+        // Updates the player health UI.
+        public void UpdatePlayerHealthUI()
+        {
+            gameManager.UpdatePlayerHealthUI();
+        }
+
+        // Updates the player energy UI.
+        public void UpdatePlayerEnergyUI()
+        {
+            gameManager.UpdatePlayerEnergyUI();
         }
 
         // Updates the opponent AI.

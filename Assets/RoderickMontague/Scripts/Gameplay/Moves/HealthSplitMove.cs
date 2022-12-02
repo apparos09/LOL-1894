@@ -1,0 +1,73 @@
+using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RM_BBTS
+{
+    // Combines the current health (percentage wise) and splits between the two.
+    public class HealthSplitMove : Move
+    {
+        // The stat change move.
+        public HealthSplitMove()
+            : base(moveId.healthSplit, "<Health Split>", 1, 0, 100.0F, 0.1F)
+        {
+            // Loads the translation for the health.
+            LoadTranslation("mve_healthShare_nme", "mve_healthShare_dsc");
+        }
+
+        // Called when performing a move.
+        public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
+        {
+            // Checks if the move is usable.
+            bool success = false;
+
+            // Checks if the move is usable (enough energy).
+            if (Usable(user))
+            {
+                // Reduce the user's energy.
+                ReduceEnergy(user);
+
+                // Calculates the percentages.
+                float userHealthPercent = user.Health / user.MaxHealth;
+                float targetHealthPercent = target.Health / target.MaxHealth;
+
+                // Checks if the percentages are equal. If so, then nothing will change, so the move fails.
+                if (userHealthPercent == targetHealthPercent) // Fail.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    success = false;
+                }
+                else // Success
+                {
+                    // The percentage of health for each entity.
+                    float split = (userHealthPercent + targetHealthPercent) / 2.0F;
+
+                    // Set the health values.
+                    user.Health = user.MaxHealth * split;
+                    target.Health = target.MaxHealth * split;
+
+                    // Update the health for both the player and the opponent.
+                    battle.UpdatePlayerHealthUI();
+                    battle.UpdateOpponentUI();
+
+                    InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
+                    success = true;
+                }
+
+                // Updates the player's energy UI if the user is a player.
+                if (user is Player)
+                    battle.gameManager.UpdatePlayerEnergyUI();
+            }
+            else // Not usable.
+            {
+                // The move failed.
+                InsertPageAfterCurrentPage(battle, GetMoveNoEnergyMessage(user));
+                success = false;
+            }
+
+            return success;
+
+        }
+    }
+}

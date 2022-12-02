@@ -571,6 +571,12 @@ namespace RM_BBTS
             return baseAccuracy + (accuracyMod * 0.05F);
         }
 
+        // Returns 'true' has the stat modifiers.
+        public bool HasStatModifiers()
+        {
+            return (attackMod != 0 || defenseMod != 0 || speedMod != 0 || accuracyMod != 0);
+        }
+
         // Resets the stat modifiers.
         public void ResetStatModifiers()
         {

@@ -5,14 +5,16 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    // Apply the state changes.
-    public class StatChangeMove : Move
+    // Return all stats to zero.
+    public class StatClearMove : Move
     {
-        // The stat change move.
-        public StatChangeMove(moveId id, string name, int rank, float energyUsage)
-            : base(id, name, rank, 0.0F, 100.0F, energyUsage)
+        // The stat clear move.
+        public StatClearMove()
+            : base(moveId.statClear, "<Zero Out>", 2, 0.0F, 100.0F, 0.35F)
         {
-            // LoadTranslation(nameKey, descKey);
+            useAccuracy = false;
+
+            LoadTranslation("mve_statClear_nme", "mve_statClear_dsc");
         }
 
         // Called when performing a move.
@@ -22,24 +24,25 @@ namespace RM_BBTS
             bool success = false;
 
             // Checks if the move is usable (enough energy).
-            if(Usable(user))
+            if (Usable(user))
             {
                 // Reduce the user's energy.
                 ReduceEnergy(user);
 
-                // Applies the stat changes.
-                List<Page> statPages = ApplyStatChanges(user, target);
+                // There are stat changes to be reset.
+                if(user.HasStatModifiers() || target.HasStatModifiers())
+                {
+                    // Reset the modifiers.
+                    user.ResetStatModifiers();
+                    target.ResetStatModifiers();
 
-                // If there are no pages, then the stats could not be changed, meaning that the move failed.
-                if(statPages.Count == 0)
+                    InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
+                    success = true;
+                }
+                else // No changes to be made.
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
                     success = false;
-                }
-                else // Implement stage pages.
-                {
-                    InsertPagesAfterCurrentPage(battle, statPages);
-                    success = true;
                 }
 
                 // Updates the player's energy UI if the user is a player.

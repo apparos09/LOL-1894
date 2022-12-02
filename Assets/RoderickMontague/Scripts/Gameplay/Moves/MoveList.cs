@@ -9,9 +9,9 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, block, heal, hpDrain1, empathy, bam, 
-        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, tripleShot, cure, energyAttackA, tidalWave, wham, 
-        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, energyAttackB, airstrike, kablam}
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, bam, 
+        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, wham, 
+        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, kablam}
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -206,29 +206,37 @@ namespace RM_BBTS
                     descKey = "mve_toss_dsc";
                     break;
 
-                case moveId.block: // Block
-                    move = new Move(moveId.block, "<Block>", 1, 0.0F, 0.0F, 0.4F);
-                    // TODO: implement functionality.
+                case moveId.magnify: // Magnify
+                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.05F);
+
+                    move.accuracyChangeUser = 1;
+                    move.accuracyChangeChanceUser = 1.0F;
+
                     break;
 
                 case moveId.heal: // Heal
-                    move = new HealMove(moveId.heal);
-                    (move as HealMove).healPercent = 0.15F;
+                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.4F);
+                    (move as HealMove).healPercent = 0.125F;
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
                     break;
 
-                case moveId.hpDrain1: // Health Drain 1
-                    move = new Move(moveId.hpDrain1, "Health Drain", 1, 0.0F, 0.0F, 0.4F);
-                    
-                    // TODO: implement mechanics.
+                case moveId.hpDrain1: // Heal Drain 1
+                    move = new HealthDrainMove(moveId.hpDrain1, "Heal Drain 1", 1, 25, 0.95F, 0.3F);
+
+                    (move as HealthDrainMove).damageHealPercent = 0.125F;
+
+                    nameKey = "mve_hpDrain1_nme";
+                    descKey = "mve_hpDrain1_dsc";
+
+                    // Translation in constructor.
                     break;
 
-                case moveId.empathy: // Empathize
-                    move = new Move(moveId.empathy, "<Empathy>", 1, 0.0F, 0.9F, 0.05F);
+                case moveId.healthSplit: // Health Split
+                    move = new HealthSplitMove();
                     
-                    // TODO: implement functionality.
+                    // Translation is done in function.
                     break;
 
                 case moveId.bam: // Bam
@@ -283,6 +291,9 @@ namespace RM_BBTS
                     move.accuracyChangeUser = 2;
                     move.accuracyChangeChanceUser = 1.0F;
 
+                    move.accuracyChangeTarget = 1;
+                    move.accuracyChangeChanceTarget = 1.0F;
+
                     nameKey = "mve_magnet_nme";
                     descKey = "mve_magnet_dsc";
                     break;
@@ -332,14 +343,19 @@ namespace RM_BBTS
                     descKey = "mve_quickBurst_dsc";
                     break;
 
-                case moveId.hpDrain2: // Health Drain 2
-                    move = new Move(moveId.hpDrain2, "<Health Drain 2>", 2, 60, 0.9F, 0.2F);
-                    // TODO: implement mechanics.
+                case moveId.hpDrain2: // Heal Drain 2
+                    move = new HealthDrainMove(moveId.hpDrain2, "<Heal Drain 2>", 2, 60, 0.9F, 0.3F);
+
+                    (move as HealthDrainMove).damageHealPercent = 0.25F;
+
+                    nameKey = "mve_hpDrain2_nme";
+                    descKey = "mve_hpDrain2_dsc";
                     break;
 
-                case moveId.tripleShot: // Triple Shot
-                    move = new Move(moveId.tripleShot, "<Triple Shot>", 2, 40, 0.6F, 0.15F);
-                    // TODO: mechanics
+                case moveId.statClear: // Stat Clear
+                    move = new StatClearMove();
+                    
+                    // Translated in constructor.
                     break;
 
                 case moveId.cure: // Cure
@@ -348,9 +364,17 @@ namespace RM_BBTS
                     // Translation in constructor.
                     break;
 
-                case moveId.energyAttackA: // Overboard
-                    move = new Move(moveId.energyAttackA, "<Overboard>", 2, 40, 0.9F, 0.15F);
-                    // TODO: mechanics.
+                case moveId.risk: // Risk
+                    move = new StatChangeMove(moveId.risk, "Risk", 2, 0.1F);
+
+                    move.attackChangeUser = 1;
+                    move.attackChangeChanceUser = 1.0F;
+
+                    move.accuracyChangeUser = -1;
+                    move.accuracyChangeChanceUser = 1.0F;
+
+                    nameKey = "mve_risk_nme";
+                    descKey = "mve_risk_dsc";
                     break;
 
                 case moveId.tidalWave: // Tidal Wave
@@ -403,9 +427,13 @@ namespace RM_BBTS
                     descKey = "mve_sonicWave_dsc";
                     break;
 
-                case moveId.hpDrain3: // HP Drain 3
-                    move = new Move(moveId.hpDrain3, "<Health Drain 3>", 3, 80, 0.9F, 0.3F);
-                    // TODO: need mechanics.
+                case moveId.hpDrain3: // Heal Drain 3
+                    move = new HealthDrainMove(moveId.hpDrain3, "<Heal Drain 3>", 3, 80, 0.75F, 0.4F);
+
+                    (move as HealthDrainMove).damageHealPercent = 0.50F;
+
+                    nameKey = "mve_hpDrain3_nme";
+                    descKey = "mve_hpDrain3_dsc";
                     break;
 
                 case moveId.twister: // Twister
@@ -460,32 +488,39 @@ namespace RM_BBTS
 
                     break;
 
-                case moveId.chargeSun: // Charge Sun
-                    move = new Move(moveId.chargeSun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
-                    // TODO: mechanics.
+                case moveId.chargeSun: // Charging Sun
+                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 120, 0.85F, 0.2F);
+                    move.BurnChance = 0.4F;
+
+                    nameKey = "mve_chargeSun_nme";
+                    descKey = "mve_chargeSun_dsc";
+
                     break;
 
-                case moveId.chargeMoon: // Charge Moon
-                    move = new Move(moveId.chargeMoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
-                    // TODO: mechanics.
+                case moveId.chargeMoon: // Charging Moon
+                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 120, 0.85F, 0.2F);
+                    move.ParalysisChance = 0.4F;
+
+                    nameKey = "mve_chargeMoon_nme";
+                    descKey = "mve_chargeMoon_dsc";
                     break;
 
-                case moveId.energyAttackB: // Conserve
-                    move = new Move(moveId.energyAttackB, "<Conserve>", 3, 90, 0.9F, 0.15F);
-                    // TODO: mechanics.
+                case moveId.earlyBurst: // Early Burst
+                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 120, 0.9F, 0.10F);
+
+                    nameKey = "mve_earlyBurst_nme";
+                    descKey = "mve_earlyBurst_dsc";
+                    break;
+
+                case moveId.allOut: // All-Out Attack
+                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 105, 0.95F, 0.4F);
+
+                    move.attackChangeUser = -1;
+                    move.attackChangeChanceUser = 1.0F;
 
                     // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
-                    break;
-
-                case moveId.airstrike: // Airstrike
-                    move = new Move(moveId.airstrike, "<Airstrike>", 3, 100, 0.2F, 0.4F);
-                    // TODO: mechanics.
-
-                    // Sets the keys for translating the data.
-                    // nameKey = "mve_charge_nme";
-                    // descKey = "mve_charge_dsc";
+                    nameKey = "mve_allOut_nme";
+                    descKey = "mve_allOut_dsc";
                     break;
 
                 case moveId.kablam: // Kablam
