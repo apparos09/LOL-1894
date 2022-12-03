@@ -134,6 +134,8 @@
     "autoSave": "...Auto Saving Complete",
 
     "_stop_": "",
+    "initGame_msg": "Initializing Game...",
+    "kwd_loading": "Loading",
 
     "gameTitle": "Battle Bot Training Simulation",
 

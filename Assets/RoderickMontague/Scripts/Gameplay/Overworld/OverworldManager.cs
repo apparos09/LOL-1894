@@ -8,7 +8,7 @@ namespace RM_BBTS
     public class OverworldManager : GameState
     {
         // Becomes 'true' when the overworld is initialized.
-        public bool initialized = false;
+        private bool initialized = false;
 
         // The gameplay manager.
         public GameplayManager gameManager;
@@ -131,16 +131,12 @@ namespace RM_BBTS
         // Initializes the overworld.
         public override void Initialize()
         {
-            // TODO: for SOME reason this is being set to true before the game gets here.
-            // This is only called once anyway, so it's not a big deal, but I'm still puzzled.
-            // As such, I took out this conditional statement.
-
-            // The overworld is only initialized once, so this should NOT be needed to be called more than once.
-            // if(initialized)
-            // {
-            //     Debug.LogAssertion("The overworld has already been initialized.");
-            //     return;
-            // }
+            // The overworld is only initialized once, so this function should NOT be called more than once.
+            // Either way, this function stops it from being called twice.
+            if(initialized)
+            {
+                return;
+            }
 
             // Initializes the doors (normal, treasure, and boss)
             {
@@ -290,6 +286,12 @@ namespace RM_BBTS
         public override void OnTutorialEnd()
         {
 
+        }
+
+        // Retunrs 'true' if the overworld is initialized.
+        public bool Initialized
+        {
+            get { return initialized; }
         }
 
         // Generates a room for the door.

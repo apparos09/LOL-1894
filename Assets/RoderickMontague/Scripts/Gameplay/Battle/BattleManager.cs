@@ -12,7 +12,7 @@ namespace RM_BBTS
     public class BattleManager : GameState
     {
         // Becomes 'true' when the overworld is initialized.
-        public bool initialized = false;
+        private bool initialized = false;
 
         // the manager for the game.
         public GameplayManager gameManager;
@@ -269,12 +269,13 @@ namespace RM_BBTS
             // TODO: this variable isn't being reset like it should, and I don't know why.
             // It works fine without this check though, so I'm taking it out.
 
-            // // The battle has already been initialized.
-            // if(initialized)
-            // {
-            //     Debug.LogAssertion("The battle has already been initialized.");
-            //     return;
-            // }
+            // The battle has already been initialized.
+            // The tutorial box causes this function to be called over and over again. This should stop things from resetting.
+            if(initialized)
+            {
+                // Debug.LogAssertion("The battle has already been initialized.");
+                return;
+            }
 
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
@@ -455,6 +456,12 @@ namespace RM_BBTS
         public override void OnTutorialEnd()
         {
             RefreshPlayerOptions();
+        }
+
+        // Retunrs 'true' if the overworld is initialized.
+        public bool Initialized
+        {
+            get { return initialized; }
         }
 
         // Gets the amount of turns the battle has taken.

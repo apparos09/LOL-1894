@@ -21,6 +21,9 @@ namespace RM_BBTS
         // Becomes 'true' when the game has been initialized.
         public bool initGame = false;
 
+        // The text for the game initialization.
+        public TMP_Text initText;
+
         // LOL //
         // Relative to Assets /StreamingAssets/
         private const string languageJSONFilePath = "language.json";
@@ -93,6 +96,18 @@ namespace RM_BBTS
             // Helper method to hide and show the state buttons as needed.
             // Will call LoadState<T> for you.
             // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
+        }
+
+        // Start is called just before any of the Update methods is called the first time.
+        public void Start()
+        {
+            // Translate the text in case it's shown on screen from the game taking a while to initialize.
+            if(initText != null)
+            {
+                JSONNode defs = SharedState.LanguageDefs;
+                // initText.text = defs["initGame_msg"]; // Initializing Game...
+                initText.text = defs["kwd_loading"]; // Loading
+            }
         }
 
         private void OnDestroy()
