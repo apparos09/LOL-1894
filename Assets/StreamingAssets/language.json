@@ -202,12 +202,16 @@
     "btl_msg_mve_moveMissed": "The move missed!",
     "btl_msg_mve_moveFailed": "The move failed!",
 
-    "btl_msg_mve_moveStatInc": "The move increased {0}'s {1} by {2} stage(s)!",
-    "btl_msg_mve_moveStatInc_alt00": "The move increased the player's stats!",
-    "btl_msg_mve_moveStatInc_alt01": "The move increased the opponent's stats!",
-    "btl_msg_mve_moveStatDec": "The move decreased {0}'s {1} by {2} stage(s)!",
-    "btl_msg_mve_moveStatDec_alt00": "The move decreased the player's stats!",
-    "btl_msg_mve_moveStatDec_alt01": "The move decreased the opponent's stats!",
+    "btl_msg_mve_moveStatIncSgl": "The move increased {0}'s {1} by 1 stage!",
+    "btl_msg_mve_moveStatIncMlt": "The move increased {0}'s {1} by {2} stages!",
+    "btl_msg_mve_moveStatInc_alt00": "The move increased one of the player's stats!",
+    "btl_msg_mve_moveStatInc_alt01": "The move increased one of the opponent's stats!",
+
+    "btl_msg_mve_moveStatDecSgl": "The move decreased {0}'s {1} by 1 stage!",
+    "btl_msg_mve_moveStatDecMlt": "The move decreased {0}'s {1} by {2} stages!",
+    "btl_msg_mve_moveStatDec_alt00": "The move decreased one of the player's stats!",
+    "btl_msg_mve_moveStatDec_alt01": "The move decreased one of the opponent's stats!",
+
     "btl_msg_mve_moveBurned": "The target has been burned!",
     "btl_msg_mve_moveParalyzed": "The target has been paralyzed!",
 

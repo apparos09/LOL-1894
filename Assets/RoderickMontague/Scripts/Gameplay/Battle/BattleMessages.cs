@@ -323,7 +323,7 @@ namespace RM_BBTS
 
         // MOVE STAT INCREASE //
         // Gets the move stat increase message.
-        public string GetMoveStatIncreaseMessage(string target, string stat, string amount)
+        public string GetMoveStatIncreaseMessage(string target, string stat, int amount)
         {
             // The message string.
             string msg = "";
@@ -332,30 +332,39 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_mve_moveStatInc"];
+                // A difference message is used based on the amount (singular vs. plural).
+                if(amount == 1)
+                    msg = defs["btl_msg_mve_moveStatIncSgl"];
+                else
+                    msg = defs["btl_msg_mve_moveStatIncMlt"];
             }
             else
             {
-                // Grabs the default mesage.
-                msg = "<The move increased {0}'s {1} by {2} stage(s)!>";
+                // Grabs the default mesage (singular vs. pural).
+                if (amount == 1)
+                    msg = "<The move increased {0}'s {1} by 1 stage!>";
+                else
+                    msg = "<The move increased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.
             msg = msg.Replace("{0}", target);
             msg = msg.Replace("{1}", stat);
-            msg = msg.Replace("{2}", amount);
+
+            // Nothing will be replaced if it's a single stat raise.
+            msg = msg.Replace("{2}", amount.ToString());
 
             return msg;
         }
 
         // Gets the move stat increase speak key 0.
-        public string GetMoveStatIncreaseSpeakKey0()
+        public string GetMoveStatIncreaseSpeakKey0(int amount)
         {
             return "btl_msg_mve_moveStatInc_alt00";
         }
 
         // Gets the move stat increase speak key 1.
-        public string GetMoveStatIncreaseSpeakKey1()
+        public string GetMoveStatIncreaseSpeakKey1(int amount)
         {
             return "btl_msg_mve_moveStatInc_alt01";
         }
@@ -364,7 +373,7 @@ namespace RM_BBTS
 
         // MOVE STAT DECREASE //
         // Gets the move stat decrease message.
-        public string GetMoveStatDecreaseMessage(string target, string stat, string amount)
+        public string GetMoveStatDecreaseMessage(string target, string stat, int amount)
         {
             // The message string.
             string msg = "";
@@ -373,30 +382,39 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_mve_moveStatDec"];
+                // A difference message is used based on the amount (singular vs. plural).
+                if (amount == 1)
+                    msg = defs["btl_msg_mve_moveStatDecSgl"];
+                else
+                    msg = defs["btl_msg_mve_moveStatDecMlt"];
             }
             else
             {
-                // Grabs the default mesage.
-                msg = "<The move decreased {0}'s {1} by {2} stage(s)!>";
+                // Grabs the default mesage (singular vs. pural).
+                if (amount == 1)
+                    msg = "<The move decreased {0}'s {1} by 1 stage!>";
+                else
+                    msg = "<The move decreased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.
             msg = msg.Replace("{0}", target);
             msg = msg.Replace("{1}", stat);
-            msg = msg.Replace("{2}", amount);
+
+            // Nothing will be replaced if it's a single stat raise.
+            msg = msg.Replace("{2}", amount.ToString());
 
             return msg;
         }
 
         // Gets the move stat decrease speak key 0.
-        public string GetMoveStatDecreaseSpeakKey0()
+        public string GetMoveStatDecreaseSpeakKey0(int amount)
         {
             return "btl_msg_mve_moveStatDec_alt00";
         }
 
         // Gets the move stat decrease speak key 1.
-        public string GetMoveStatDecreaseSpeakKey1()
+        public string GetMoveStatDecreaseSpeakKey1(int amount)
         {
             return "btl_msg_mve_moveStatDec_alt01";
         }

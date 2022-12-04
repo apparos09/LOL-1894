@@ -531,15 +531,15 @@ namespace RM_BBTS
             if(entity is Player) // The entity is a player.
             {
                 page = new Page(
-                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages.ToString()),
-                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey0()
+                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages),
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey0(stages)
                 );
             }
             else // The entity is an enemy.
             {
                 page = new Page(
-                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages.ToString()),
-                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey1()
+                    BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages),
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey1(stages)
                 );
             }
             
@@ -556,15 +556,15 @@ namespace RM_BBTS
             if (entity is Player) // The entity is a player.
             {
                 page = new Page(
-                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages.ToString()),
-                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey0()
+                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages),
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey0(stages)
                 );
             }
             else // The entity is an enemy.
             {
                 page = new Page(
-                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages.ToString()),
-                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey1()
+                    BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages),
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey1(stages)
                 );
             }
 
