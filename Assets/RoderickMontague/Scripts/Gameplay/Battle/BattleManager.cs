@@ -277,6 +277,10 @@ namespace RM_BBTS
                 return;
             }
 
+            // In the battle state.
+            gameManager.SetStateToBattle();
+
+
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
 

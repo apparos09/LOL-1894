@@ -138,6 +138,9 @@ namespace RM_BBTS
                 return;
             }
 
+            // In the overworld state.
+            gameManager.SetStateToOverworld();
+
             // Initializes the doors (normal, treasure, and boss)
             {
                 // Door initialization list.
@@ -448,6 +451,9 @@ namespace RM_BBTS
         // Called when returning to the overworld.
         public void OnOverworldReturn()
         {
+            // Currently in the overworld.
+            gameManager.SetStateToOverworld();
+
             // Rearranges the doors.
             if (gameOver)
                 OnOverworldReturnGameOver();
@@ -525,7 +531,7 @@ namespace RM_BBTS
                         background.color = Color.white;
                         break;
                 }
-            }      
+            }
 
             // Update the UI for the overworld.
             UpdateUI();

@@ -59,7 +59,7 @@ namespace RM_BBTS
             Application.runInBackground = false; // Don't run in the background.
 
             // LOL Initialization
-
+            Debug.Log("This is a test."); // This comment was printed after the "The SDK has not been initialized." comment.
             // Create the WebGL (or mock) object
 #if UNITY_EDITOR
             ILOLSDK sdk = new LoLSDK.MockWebGL();
@@ -96,15 +96,21 @@ namespace RM_BBTS
             // Helper method to hide and show the state buttons as needed.
             // Will call LoadState<T> for you.
             // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
+
+            // TODO: take this out?
+            // Shows that the game has been initialized?
+            initGame = true;
         }
 
         // Start is called just before any of the Update methods is called the first time.
         public void Start()
         {
+            // Grabs the language defs.
+            JSONNode defs = SharedState.LanguageDefs;
+
             // Translate the text in case it's shown on screen from the game taking a while to initialize.
-            if(initText != null)
+            if (initText != null && defs != null)
             {
-                JSONNode defs = SharedState.LanguageDefs;
                 // initText.text = defs["initGame_msg"]; // Initializing Game...
                 initText.text = defs["kwd_loading"]; // Loading
             }
@@ -193,12 +199,15 @@ namespace RM_BBTS
         {
             // Overrides serialized state data or continues with editor serialized values.
             if (loadedGameData != null)
+            {
                 gameData = loadedGameData;
+                LOLManager.Instance.saveSystem.loadedData = loadedGameData;
+            }
             else
+            {
                 return;
-
-            // TODO: save data for game loading.
-
+            }
+               
             // Becomes set to 'true' when the game data has been loaded.
             initGame = true;
         }

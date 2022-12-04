@@ -1,4 +1,5 @@
 using LoLSDK;
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -62,10 +63,21 @@ namespace RM_BBTS
         Coroutine feedbackMethod;
         public TMP_Text feedbackText;
 
+        // The string shown when having feedback.
+        private string feedbackString = "<Saving Data>";
+
         // Start is called before the first frame update
         void Start()
         {
+            // Sets the save result to the instance.
             LOLSDK.Instance.SaveResultReceived += OnSaveResult;
+
+            // Gets the language definition.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Sets the save complete text.
+            if (defs != null)
+                feedbackString = defs["sve_msg_savingGame"];
         }
 
         // Set save and load operations.
@@ -135,16 +147,27 @@ namespace RM_BBTS
 
             if (feedbackMethod != null)
                 StopCoroutine(feedbackMethod);
+
+
+
             // ...Auto Saving Complete
-            feedbackMethod = StartCoroutine(Feedback("sve_msg_saveComplete"));
+            feedbackMethod = StartCoroutine(Feedback(feedbackString));
         }
 
         // Feedback while result is saving.
         IEnumerator Feedback(string text)
         {
-            feedbackText.text = text;
+            // Only updates the text that the feedback text was set.
+            if(feedbackText != null)
+                feedbackText.text = text;
+
             yield return feedbackTimer;
-            feedbackText.text = string.Empty;
+            
+            // Only updates the content if the feedback text has been set.
+            if(feedbackText != null)
+                feedbackText.text = string.Empty;
+            
+            // nullifies the feedback method.
             feedbackMethod = null;
         }
 

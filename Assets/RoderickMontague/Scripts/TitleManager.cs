@@ -13,6 +13,10 @@ namespace RM_BBTS
     // The manager for the title scene.
     public class TitleManager : MonoBehaviour
     {
+        // The save text for the title manager.
+        // If the user presses "save and quit", this text will be disabled on the title screen when the scene switches over.
+        // This is because saving won't be done by the time the scene switches, so make sure this text is set.
+        public TMP_Text saveFeedbackText;
 
         [Header("Main Menu")]
         // Menu
@@ -119,6 +123,12 @@ namespace RM_BBTS
                 // LOLSDK.Instance.SubmitProgress();
             }
 
+            // Sets the save text.
+            if(saveFeedbackText != null)
+            {
+                saveFeedbackText.text = string.Empty;
+                LOLManager.Instance.saveSystem.feedbackText = saveFeedbackText;
+            }
         }
 
         // Start is called before the first frame update
@@ -180,7 +190,8 @@ namespace RM_BBTS
             mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
         }
 
-        // Clears out the save. This is only for testing, and the button for this should not be shown in the final game.
+        // Clears out the save.
+        // TODO: This is only for testing, and the button for this should not be shown in the final game.
         public void ClearSave()
         {
             LOLManager.Instance.saveSystem.lastSave = null;

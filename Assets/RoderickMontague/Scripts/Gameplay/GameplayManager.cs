@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using SimpleJSON;
 using TMPro;
 using LoLSDK;
+using UnityEngine.UI;
 
 namespace RM_BBTS
 {
@@ -12,7 +13,7 @@ namespace RM_BBTS
     public class GameplayManager : GameState
     {
         // the state of the game.
-        public gameState state;
+        private gameState state = gameState.none;
 
         // the manager for the overworld.
         public OverworldManager overworld;
@@ -80,6 +81,9 @@ namespace RM_BBTS
         // A back panel used to cover up gameplay UI.
         public GameObject backPanel;
 
+        // The text that's displayed during saving.
+        public TMP_Text saveFeedbackText;
+
         [Header("UI/Stats Window")]
 
         // Title text for stats button.
@@ -89,6 +93,9 @@ namespace RM_BBTS
         public PlayerStatsWindow statsWindow;
 
         [Header("UI/Save Prompt")]
+        // The save button.
+        public Button saveButton;
+
         // The save button text.
         public TMP_Text saveButtonText;
 
@@ -237,9 +244,16 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            // Finds the mouse touch input object.
-            if (mouseTouchInput == null)
-                mouseTouchInput = FindObjectOfType<MouseTouchInput>();
+            // // Finds the mouse touch input object.
+            // if (mouseTouchInput == null)
+            //     mouseTouchInput = FindObjectOfType<MouseTouchInput>();
+
+            // Provides the save feedback text.
+            if (saveFeedbackText != null)
+            {
+                saveFeedbackText.text = string.Empty;
+                LOLManager.Instance.saveSystem.feedbackText = saveFeedbackText;
+            }
 
             // Initialize
             Initialize();           
@@ -274,6 +288,8 @@ namespace RM_BBTS
         {
             overworld.Initialize();
             overworld.gameObject.SetActive(true);
+
+            // Starting in the overworld state.
             state = gameState.overworld;
 
             // Update the UI.
@@ -410,10 +426,46 @@ namespace RM_BBTS
             get { return energyString; }
         }
 
-        // // Called when a level has been loaded.
-        // private void OnLevelWasLoaded(int level)
-        // {
-        // }
+
+        // Sets the game stat.
+        public void SetState(gameState newState)
+        {
+            // Sets the new state.
+            state = newState;
+
+            // State parameters.
+            switch (state)
+            {
+                default:
+                case gameState.none:
+                    // Turn this on just in case, though this shouldn't be a problem.
+                    saveButton.interactable = true;
+                    break;
+
+                case gameState.overworld: // Overworld
+                    
+                    // If tutorial text isn't being shown, enable the save button.
+                    if(!tutorial.TextBoxIsVisible())
+                        saveButton.interactable = true;
+                    break;
+                case gameState.battle: // Battle
+                    // Can't save during battle.
+                    saveButton.interactable = false;
+                    break;
+            }
+        }
+
+        // Sets to the overworld state.
+        public void SetStateToOverworld()
+        {
+            SetState(gameState.overworld);
+        }
+
+        // Sets to the battle state.
+        public void SetStateToBattle()
+        {
+            SetState(gameState.battle);
+        }
 
         // Hides all the windows and prompts.
         private void HideAllWindowsAndPrompts()
@@ -588,6 +640,9 @@ namespace RM_BBTS
 
             // Turns off the mouse touch input. 
             mouseTouchInput.gameObject.SetActive(false);
+
+            // Disables the save button.
+            saveButton.interactable = false;
         }
 
         // A function to call when a tutorial ends.
@@ -611,6 +666,10 @@ namespace RM_BBTS
 
             // Turns off the mouse touch input. 
             mouseTouchInput.gameObject.SetActive(true);
+
+            // If in the overworld, enable the save button.
+            if (state == gameState.overworld)
+                saveButton.interactable = true;
         }
 
         // Returns the total amount of rooms.
@@ -1147,6 +1206,8 @@ namespace RM_BBTS
                     playerEnergyTransitioning = false;
                 }
             }
+
+
             
         }
     }
