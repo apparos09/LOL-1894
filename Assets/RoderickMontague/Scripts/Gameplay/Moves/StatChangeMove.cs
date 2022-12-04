@@ -22,7 +22,7 @@ namespace RM_BBTS
             bool success = false;
 
             // Checks if the move is usable (enough energy).
-            if(Usable(user))
+            if(Usable(user) && AccuracySuccessful(user))
             {
                 // Reduce the user's energy.
                 ReduceEnergy(user);

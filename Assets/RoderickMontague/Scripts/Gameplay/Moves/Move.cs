@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using LoLSDK;
 using SimpleJSON;
-using static UnityEngine.GraphicsBuffer;
 
 namespace RM_BBTS
 {

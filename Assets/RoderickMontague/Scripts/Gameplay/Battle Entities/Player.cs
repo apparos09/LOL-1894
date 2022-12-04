@@ -14,10 +14,10 @@ namespace RM_BBTS
         private RunMove runMove;
 
         // The base stats for the player.
-        private float baseMaxHealth = 45;
-        private float baseAttack = 45;
-        private float baseDefense = 45;
-        private float baseSpeed = 45;
+        private float baseMaxHealth = 30;
+        private float baseAttack = 30;
+        private float baseDefense = 30;
+        private float baseSpeed = 30;
         private float baseMaxEnergy = 100;
 
         // Setting the player's stats.
@@ -63,10 +63,11 @@ namespace RM_BBTS
             // LoadBattleData(baseData);
 
             // Starter moves.
-            Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
+            // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
+            Move0 = MoveList.Instance.GenerateMove(moveId.risk);
             Move1 = MoveList.Instance.GenerateMove(moveId.wham);
             Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
-            Move3 = MoveList.Instance.GenerateMove(moveId.sonicWave);
+            Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
             // Move3 = null;
             // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
 
@@ -135,6 +136,21 @@ namespace RM_BBTS
             LevelUp(levelRate, special, times);
         
             // TODO: implement enemy specialities for level up.
+        }
+
+        // Applies the new phase bonus for the player.
+        // This gives them a 100+ stat increase.
+        public void ApplyNewPhaseBonus()
+        {
+            // Since each enemy stage has a 100 point difference, this increases the player's stats by 100.
+
+            float total = 100.0F;
+            float amount = Mathf.Ceil(total / 4.0F);
+
+            SetHealthRelativeToMaxHealth(MaxHealth + amount);
+            Attack += amount;
+            Defense += amount;
+            Speed += amount;
         }
 
         // Selects the run move. Only the player has the run move.

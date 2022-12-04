@@ -39,6 +39,7 @@ namespace RM_BBTS
         public int score = 0; // Score
         public int roomsCompleted = 0; // Rooms cleared by the player.
         public int roomsTotal = 0; // Total rooms cleared.
+        public int evolveWaves = 0; // Evolution waves.
         public float gameTime = 0.0F; // Total game time.
         public int turnsPassed = 0; // Total turns.
 

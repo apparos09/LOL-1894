@@ -4908,7 +4908,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875582632115, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875582632115, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.020019531
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391320, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Value
@@ -6554,7 +6558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &788251608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6653,7 +6657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd51cea4da91ea4faff7528abc87c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   overworld: {fileID: 1472320084}
   battle: {fileID: 1163903607}
   mouseTouchInput: {fileID: 203223313}

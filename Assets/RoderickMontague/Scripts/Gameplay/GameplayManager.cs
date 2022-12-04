@@ -279,6 +279,9 @@ namespace RM_BBTS
                 // LoadGameTest();
             }
 
+            // Called so that game phase contnet gets updated.
+            overworld.OnGamePhaseChange();
+
             // The post start function was called.
             calledPostStart = true;
         }
@@ -933,6 +936,7 @@ namespace RM_BBTS
             saveData.score = score;
             saveData.roomsCompleted = roomsCompleted;
             saveData.roomsTotal = GetRoomsTotal();
+            saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
 
@@ -996,7 +1000,7 @@ namespace RM_BBTS
         public bool LoadGame(BBTS_GameData saveData)
         {
             // Checks current game state.
-            if(state == gameState.battle) // Player is in the battle area.
+            if(state == gameState.battle) // Player is in the battle area, so go to the overworld.
             {
                 // Return to the overoworld.
                 battle.ToOverworld();
@@ -1051,11 +1055,15 @@ namespace RM_BBTS
             score = saveData.score;
             roomsCompleted = saveData.roomsCompleted;
             
+            // Room toal mismatch.
             if(GetRoomsTotal() != saveData.roomsTotal)
             {
                 // TODO: do something to address this.
                 // This should never happen though.
             }
+
+            // Sets the evolve waves.
+            evolveWaves = saveData.evolveWaves;
             
             gameTimer = saveData.gameTime;
             turnsPassed = saveData.turnsPassed;
@@ -1077,6 +1085,7 @@ namespace RM_BBTS
             BBTS_GameData saveData = GenerateSaveData();
 
             // Makes some changes.
+            saveData.playerData.level = 5;
             saveData.playerData.maxHealth = 999;
             saveData.playerData.health = 600;
 
@@ -1091,7 +1100,14 @@ namespace RM_BBTS
                     !saveData.doorData[i].isBossDoor && !saveData.doorData[i].isTreasureDoor)
                 {
                     bool lockDoor = Random.Range(0, 2) == 0;
-                    saveData.doorData[i].locked = lockDoor;
+                    
+                    // If the door should be locked.
+                    if(lockDoor)
+                    {
+                        saveData.doorData[i].locked = lockDoor;
+                        saveData.roomsCompleted++;
+                        saveData.score += 200;
+                    }
                     
                 }
             }
@@ -1104,6 +1120,12 @@ namespace RM_BBTS
             saveData.clearedBoss = true;
             saveData.clearedGameOver = true;
             useTutorial = true;
+
+            saveData.score += 100;
+            saveData.roomsTotal = GetRoomsTotal();
+            // saveData.evolveWaves = 1;
+            saveData.gameTime = 120;
+            saveData.turnsPassed = saveData.roomsCompleted;
 
             // Loads the save data.
             LoadGame(saveData);

@@ -392,6 +392,8 @@ namespace RM_BBTS
                     move.accuracyChangeUser = -1;
                     move.accuracyChangeChanceUser = 1.0F;
 
+                    move.useAccuracy = false;
+
                     nameKey = "mve_risk_nme";
                     descKey = "mve_risk_dsc";
                     break;
@@ -447,7 +449,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain3: // Heal Drain 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "<Heal Drain 3>", 3, 80, 0.75F, 0.4F);
+                    move = new HealthDrainMove(moveId.hpDrain3, "<Heal Drain 3>", 3, 80, 0.70F, 0.4F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 

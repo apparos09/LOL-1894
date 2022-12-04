@@ -458,20 +458,35 @@ namespace RM_BBTS
             if (gameOver)
                 OnOverworldReturnGameOver();
 
+            // Calls the function for OnGamePhaseChange().
+            OnGamePhaseChange();
+
+            // Update the UI for the overworld.
+            UpdateUI();
+
+            // Plays the overworld BGM.
+            PlayOverworldBgm();
+
+        }
+
+        // Called when the game phase changes.
+        public void OnGamePhaseChange()
+        {
             // Evolves the entities.
             int phase = gameManager.GetGamePhase();
 
-            // Time to level up enemies if 'true'
-            if(gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0)
+            // Time to level up enemies if 'true'.
+            // If no rooms have been completed, then nothing happens.
+            if (gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0 && gameManager.roomsCompleted != 0)
             {
                 // The enemies haven't been leveled up yet.
-                if(gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
+                if (gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
                 {
                     // Goes through each door.
-                    foreach(Door door in doors)
+                    foreach (Door door in doors)
                     {
                         // Only level up unlocked doors.
-                        if(!door.Locked)
+                        if (!door.Locked)
                         {
                             // Levels up the entity by the amount of battles per level up (the value is the same).
                             door.battleEntity = BattleEntity.LevelUpData(
@@ -493,7 +508,7 @@ namespace RM_BBTS
             if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
             {
                 // Goes through each door.
-                foreach(Door door in doors)
+                foreach (Door door in doors)
                 {
                     // Only evolve the entity if the door is unlocked.
                     // It helps save on evolution time.
@@ -506,14 +521,18 @@ namespace RM_BBTS
                         door.battleEntity.energy = door.battleEntity.maxEnergy;
 
                     }
-                        
+
                 }
 
+                // Entities evolved.
                 gameManager.evolveWaves++;
+
+                // Gives the new phase bonus.
+                gameManager.player.ApplyNewPhaseBonus();
             }
 
             // Change the background image colours.
-            if(usePhaseColors)
+            if (usePhaseColors)
             {
                 // Check the phase.
                 switch (phase)
@@ -532,15 +551,7 @@ namespace RM_BBTS
                         break;
                 }
             }
-
-            // Update the UI for the overworld.
-            UpdateUI();
-
-            // Plays the overworld BGM.
-            PlayOverworldBgm();
-
         }
-        
         
         // Rearranges the doors.
         public void OnOverworldReturnGameOver()

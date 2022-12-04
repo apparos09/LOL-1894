@@ -41,6 +41,10 @@ namespace RM_BBTS
         // Plays the provided BGM and resets the pitch.
         public void PlayBackgroundMusic(AudioClip clip, bool resetPitch = true)
         {
+            // TODO: there still appears to be an issue where the background music isn't reset properly.
+            // This runs into conflict when you play a jingle and end up changing the background music.
+            // You need to fix that.
+
             // Return the pitch to normal.
             if (resetPitch)
                 bgmSource.pitch = 1.0F;
@@ -57,8 +61,12 @@ namespace RM_BBTS
         // Plays the BGM and changes the pitch.
         public void PlayBgm(AudioClip clip, float pitch)
         {
-            // Change the pitch.
+            // Changes the pitch.
             bgmSource.pitch = pitch;
+
+            // Turn off the pitch timer since the audio has been replaced.
+            // This may not be needed?
+            pitchTimer = 0.0F;
 
             // Play the BGM.
             PlayBackgroundMusic(clip, false);

@@ -466,6 +466,20 @@ namespace RM_BBTS
             health = maxHealth;
         }
 
+        // Sets the health relative to the entity's new max health.
+        public void SetHealthRelativeToMaxHealth(float newMaxHealth)
+        {
+            // Gets the percentage of the health from the old maxHealth.
+            float percent = (Health / MaxHealth);
+
+            // Sets the max health.
+            MaxHealth = newMaxHealth;
+
+            // Sets the regular health based on the new max health.
+            Health = percent * MaxHealth;
+
+        }
+
         // Returns 'true' if the entity has the maximum amount of energy.
         public bool HasFullCharge()
         {
@@ -487,7 +501,7 @@ namespace RM_BBTS
 
             set
             {
-                attackMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+                attackMod = Mathf.Clamp(value, STAT_MOD_MIN, STAT_MOD_MAX);
             }
         }
 
@@ -498,7 +512,7 @@ namespace RM_BBTS
 
             set
             {
-                defenseMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+                defenseMod = Mathf.Clamp(value, STAT_MOD_MIN, STAT_MOD_MAX);
             }
         }
 
@@ -509,7 +523,7 @@ namespace RM_BBTS
 
             set
             {
-                speedMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+                speedMod = Mathf.Clamp(value, STAT_MOD_MIN, STAT_MOD_MAX);
             }
         }
 
@@ -520,7 +534,7 @@ namespace RM_BBTS
 
             set
             {
-                accuracyMod = Mathf.Clamp(value, STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
+                accuracyMod = Mathf.Clamp(value, STAT_MOD_MIN, STAT_MOD_MAX);
             }
         }
 
@@ -712,6 +726,10 @@ namespace RM_BBTS
             float hpPercent = data.health / data.maxHealth;
             float engPercent = data.energy / data.maxEnergy;
 
+            // If the level rate is negative, set it to 1.0 (default).
+            if (levelRate < 0.0F)
+                levelRate = 1.0F;
+
             newData.level += times;
 
             newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
@@ -726,22 +744,23 @@ namespace RM_BBTS
                 rand = Random.Range(0, 5);
 
                 // Random +3 factor
+                // I'm not applying a levle rate change.
                 switch (rand)
                 {
                     case 0: // HP
-                        newData.maxHealth += STAT_LEVEL_BONUS_INC * levelRate;
+                        newData.maxHealth += STAT_LEVEL_BONUS_INC;
                         break;
                     case 1: // ATTACK
-                        newData.attack += STAT_LEVEL_BONUS_INC * levelRate;
+                        newData.attack += STAT_LEVEL_BONUS_INC;
                         break;
                     case 2: // DEFENSE
-                        newData.defense += STAT_LEVEL_BONUS_INC * levelRate;
+                        newData.defense += STAT_LEVEL_BONUS_INC;
                         break;
                     case 3: // SPEED
-                        newData.speed += STAT_LEVEL_BONUS_INC * levelRate;
+                        newData.speed += STAT_LEVEL_BONUS_INC;
                         break;
                     case 4: // ENERGY
-                        newData.maxEnergy += STAT_LEVEL_BONUS_INC * levelRate;
+                        newData.maxEnergy += STAT_LEVEL_BONUS_INC;
                         break;
                 }
             }
