@@ -152,7 +152,7 @@
     "kwd_saveContinue": "Save and Continue",
     "kwd_saveQuit": "Save and Quit",
     "sve_msg_prompt": "Would you like to save and continue the game, or save and quit the game?",
-    "sve_msg_saving": "Saving game...",
+    "sve_msg_savingGame": "Saving game...",
     "sve_msg_saveComplete": "Saving data complete.",
     "sve_msg_loadComplete": "Loading data complete",
     "sve_msg_noData": "No save data was found",
