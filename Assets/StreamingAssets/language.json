@@ -422,8 +422,8 @@
     "trl_overworld_03": "Enemies will get stronger the longer the game goes on, so keep that in mind.",
     "trl_overworld_04": "On with the game.",
 
-    "trl_boss00": "Welcome to the boss room!",
-    "trl_boss01": "All you need is to beat the boss to win the game!",
+    "trl_boss_00": "Welcome to the boss room!",
+    "trl_boss_01": "All you need is to beat the boss to win the game!",
 
     "trl_gameOver_00": "You got a game over.",
     "trl_gameOver_01": "All living enemies have had their health and energy restored.",

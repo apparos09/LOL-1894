@@ -81,6 +81,7 @@ namespace RM_BBTS
         // Loads the tutorial
         private void LoadTutorial(ref List<Page> pages)
         {
+            // Clears out the textbox and adds in the new pages.
             textBox.ClearPages();
             textBox.pages = pages;
             textBox.SetPage(0);
