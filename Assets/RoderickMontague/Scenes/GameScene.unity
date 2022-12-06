@@ -2662,8 +2662,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3017,8 +3017,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 225, y: -30}
-  m_SizeDelta: {x: 180, y: 25}
+  m_AnchoredPosition: {x: 242, y: -30}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240816729
 MonoBehaviour:
@@ -4239,8 +4239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 5}
-  m_SizeDelta: {x: 180, y: 25}
+  m_AnchoredPosition: {x: -242, y: 5}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564459899
 MonoBehaviour:
@@ -5228,8 +5228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: -173}
-  m_SizeDelta: {x: 460, y: 150}
+  m_AnchoredPosition: {x: 130, y: -175}
+  m_SizeDelta: {x: 450, y: 152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685922269
 MonoBehaviour:
@@ -5278,8 +5278,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5756,8 +5756,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6174,7 +6174,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 180, y: 25}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755376606
 MonoBehaviour:
@@ -7003,8 +7003,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 225, y: 5}
-  m_SizeDelta: {x: 180, y: 25}
+  m_AnchoredPosition: {x: 242, y: 5}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &922497377
 MonoBehaviour:
@@ -7900,8 +7900,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8034,8 +8034,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9119,7 +9119,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 180, y: 25}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081543100
 MonoBehaviour:
@@ -13561,6 +13561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 877465982}
   player: {fileID: 1467642233}
+  baseButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  selectButtonColor: {r: 0.37254903, g: 1, b: 0.49803922, a: 1}
   levelText: {fileID: 603051437}
   healthText: {fileID: 21623}
   attackText: {fileID: 1765595017}
@@ -13568,16 +13570,22 @@ MonoBehaviour:
   speedText: {fileID: 1486936161}
   energyText: {fileID: 250082228}
   move0Button: {fileID: 564459899}
+  move0ButtonImage: {fileID: 564459900}
   move0ButtonText: {fileID: 976990523}
   move1Button: {fileID: 1081543100}
+  move1ButtonImage: {fileID: 1081543101}
   move1ButtonText: {fileID: 1900594243}
   move2Button: {fileID: 922497377}
+  move2ButtonImage: {fileID: 922497378}
   move2ButtonText: {fileID: 217237008}
   move3Button: {fileID: 1953913771}
+  move3ButtonImage: {fileID: 1953913772}
   move3ButtonText: {fileID: 969778057}
   chargeButton: {fileID: 755376606}
+  chargeButtonImage: {fileID: 755376607}
   chargeButtonText: {fileID: 1959522120}
   runButton: {fileID: 240816729}
+  runButtonImage: {fileID: 240816730}
   runButtonText: {fileID: 739185267}
   backButtonText: {fileID: 1981535888}
   moveNameText: {fileID: 54797687}
@@ -15272,8 +15280,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15855,8 +15863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: -30}
-  m_SizeDelta: {x: 180, y: 25}
+  m_AnchoredPosition: {x: -242, y: -30}
+  m_SizeDelta: {x: 225, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953913771
 MonoBehaviour:
@@ -16050,8 +16058,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16110,7 +16118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1960786812}
   m_Layer: 5
-  m_Name: Move Description
+  m_Name: Move Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,6 +16,12 @@ namespace RM_BBTS
         //  Player object.
         public Player player;
 
+        // The base colour for the move buttons.
+        public Color baseButtonColor = Color.white;
+        
+        // The selection colour for the move button.
+        public Color selectButtonColor = new Color(0.372F, 1.0F, 0.498F); // Color.Green
+
         // The charge and run moves for showing descriptions.
         private ChargeMove chargeMove;
         private RunMove runMove;
@@ -39,24 +45,34 @@ namespace RM_BBTS
 
         [Header("Buttons")]
         // Moves
+        // M0
         public Button move0Button;
+        public Image move0ButtonImage;
         public TMP_Text move0ButtonText;
 
+        // M1
         public Button move1Button;
+        public Image move1ButtonImage;
         public TMP_Text move1ButtonText;
 
+        // M2
         public Button move2Button;
+        public Image move2ButtonImage;
         public TMP_Text move2ButtonText;
 
+        // M3
         public Button move3Button;
+        public Image move3ButtonImage;
         public TMP_Text move3ButtonText;
 
         // Charge
         public Button chargeButton;
+        public Image chargeButtonImage;
         public TMP_Text chargeButtonText;
 
         // Run
         public Button runButton;
+        public Image runButtonImage;
         public TMP_Text runButtonText;
 
         // Back Button Text
@@ -260,10 +276,23 @@ namespace RM_BBTS
 
         }
 
-        
+        // Resets the move button colours to the defailt.
+        private void ResetMoveButtonColors()
+        {
+            // TODO: optimize this.
+            move0ButtonImage.color = baseButtonColor;
+            move1ButtonImage.color = baseButtonColor;
+            move2ButtonImage.color = baseButtonColor;
+            move3ButtonImage.color = baseButtonColor;
+            chargeButtonImage.color = baseButtonColor;
+            runButtonImage.color = baseButtonColor;
+        }
+
         // Switch selected move to move 0.
         public void SwitchToMove0()
         {
+            ResetMoveButtonColors();
+            move0ButtonImage.color = selectButtonColor;
             UpdateMoveInfo(0);
 
         }
@@ -271,30 +300,40 @@ namespace RM_BBTS
         // Switch selected move to move 1.
         public void SwitchToMove1()
         {
+            ResetMoveButtonColors();
+            move1ButtonImage.color = selectButtonColor;
             UpdateMoveInfo(1);
         }
 
         // Switch selected move to move 2.
         public void SwitchToMove2()
         {
+            ResetMoveButtonColors();
+            move2ButtonImage.color = selectButtonColor;
             UpdateMoveInfo(2);
         }
 
         // Switch selected move to move 3.
         public void SwitchToMove3()
         {
+            ResetMoveButtonColors();
+            move3ButtonImage.color = selectButtonColor;
             UpdateMoveInfo(3);
         }
 
         // Switch selected move to charge move.
         public void SwitchToChargeMove()
         {
+            ResetMoveButtonColors();
+            chargeButtonImage.color = selectButtonColor;
             UpdateMoveInfo(4);
         }
 
         // Switch selected move to run move.
         public void SwitchToRunMove()
         {
+            ResetMoveButtonColors();
+            runButtonImage.color = selectButtonColor;
             UpdateMoveInfo(5);
         }
 
