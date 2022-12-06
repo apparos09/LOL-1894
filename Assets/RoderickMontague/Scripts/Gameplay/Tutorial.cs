@@ -29,6 +29,13 @@ namespace RM_BBTS
         // Cleared the battle tutorial.
         public bool clearedBattle = false;
 
+        // Sub-battle tutorials.
+        public bool clearedFirstMove = false;
+        public bool clearedCritical = false;
+        public bool clearedStatChange = false;
+        public bool clearedBurn = false;
+        public bool clearedParalysis = false;
+
         // Cleared the treasure tutorial.
         public bool clearedTreasure = false;
 
@@ -118,14 +125,14 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("<Welcome to the simulation game, Battle Bot!>"));
-                pages.Add(new Page("<Your job is to beat the boss of the simulation.>"));
-                pages.Add(new Page("<But first, I'd recommend you do some smaller battles to level-up and get new moves.>"));
-                pages.Add(new Page("<To the left is your health, which causes a game over if it hits 0.>"));
-                pages.Add(new Page("<To the right is your energy, which is needed to perform moves.>"));
-                pages.Add(new Page("<That will be explained more when you get into battle.>"));
-                pages.Add(new Page("<Speaking of which, click or touch an unlocked door to enter it.>"));
-                pages.Add(new Page("<The rest of the rooms will be unlocked once you clear a battle.>"));
+                pages.Add(new Page("<Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.>"));
+                pages.Add(new Page("<Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…>"));
+                pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, which is behind the red door. But first, there are some things you should know about the simulation.>"));
+                pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you attempt your first battle, all the other doors will be unlocked.>"));
+                pages.Add(new Page("<To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.>"));
+                pages.Add(new Page("<At the bottom is your current score, which increases by a variable amount for every room that you clear.>"));
+                pages.Add(new Page("<And at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
+                pages.Add(new Page("<With all that explained, please select one of the open doors to attempt your first battle!>"));
 
             }
 
@@ -157,15 +164,14 @@ namespace RM_BBTS
             }    
             else // Default
             {
-                pages.Add(new Page("<Welcome to the battle phase of the game!>"));
-                pages.Add(new Page("<Your job is to make your opponent's health hit 0.>"));
-                pages.Add(new Page("<If your health hits 0 then you will get a game over.>"));
-                pages.Add(new Page("<To attack your opponent, select one of your moves.>"));
-                pages.Add(new Page("<You can hold up to 4 moves at a time, and might be able to get a new move when you level-up.>"));
-                pages.Add(new Page("<You can open the info panel to how what each of your moves does.>"));
-                pages.Add(new Page("<If you don't have enough energy to perform a move it will be unavailable.>"));
-                pages.Add(new Page("<You'll need to hit the charge option to gain energy, which takes a turn.>"));
-                pages.Add(new Page("<You can also try your hand at running away if you wish to retreat, but it may fail.>"));
+                pages.Add(new Page("<Welcome to your first battle, Battle Bot!>"));
+                pages.Add(new Page("<To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.>"));
+                pages.Add(new Page("<You can hold up to 4 regular moves at a time, which together with the charge and run moves makes for a total of 6 battle options max.>"));
+                pages.Add(new Page("<Selecting the run move has you attempt to flee from the battle, which has a 50% chance of success. If you succeed, you will return to the overworld.>"));
+                pages.Add(new Page("<The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.>"));
+                pages.Add(new Page("<Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.>"));
+                pages.Add(new Page("<As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.>"));
+                pages.Add(new Page("<That’s all for now, so on with the battle!>"));
 
             }
 
@@ -173,6 +179,146 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedBattle = true;
+        }
+
+        // Loads the first move performed tutorial.
+        public void LoadFirstMoveTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_firstMove_00"], "trl_firstMove_00"));
+                pages.Add(new Page(defs["trl_firstMove_01"], "trl_firstMove_01"));
+                pages.Add(new Page(defs["trl_firstMove_02"], "trl_firstMove_02"));
+                pages.Add(new Page(defs["trl_firstMove_03"], "trl_firstMove_03"));
+                pages.Add(new Page(defs["trl_firstMove_04"], "trl_firstMove_04"));
+                pages.Add(new Page(defs["trl_firstMove_05"], "trl_firstMove_05"));
+                pages.Add(new Page(defs["trl_firstMove_06"], "trl_firstMove_06"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.>"));
+                pages.Add(new Page("<A move’s rank determines how advanced said move is, which ranges from 1 to 3. The higher the number, the higher the rank. The rank has no effect in battle.>"));
+                pages.Add(new Page("<A move’s power determines how strong said move is. If a move doesn’t have a power amount listed, then it either does no damage, or determines damage in a different way than usual.>"));
+                pages.Add(new Page("<A move’s accuracy determines how likely it is to hit its target. A move with no accuracy listed either always succeeds or has its success rate determined by a different factor than usual.>"));
+                pages.Add(new Page("<A move’s energy level determines what percentage of the battler’s energy is used to perform said move. If a move’s energy usage isn’t listed, then it either uses no energy, or its energy usage varies.>"));
+                pages.Add(new Page("<Make sure to open the stats window if you ever want to see any of the information mentioned for one of your moves.>"));
+                pages.Add(new Page("<That’s all for the move explanations, so on with the battle!>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedFirstMove = true;
+        }
+
+        // Loads the critical damage tutorial.
+        public void LoadCriticalDamageTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_critical_00"], "trl_critical_00"));
+                pages.Add(new Page(defs["trl_critical_01"], "trl_critical_01"));
+                pages.Add(new Page(defs["trl_critical_02"], "trl_critical_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You just encountered critical damage!>"));
+                pages.Add(new Page("<Critical damage is a damage bonus that has a chance of being applied for every directly damaging move.>"));
+                pages.Add(new Page("<Unless the move description states otherwise, every directly damaging move has the same chance of getting the critical bonus.>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedCritical = true;
+        }
+
+        // Loads the stat change tutorial.
+        public void LoadStatChangeTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_statChange_00"], "trl_statChange_00"));
+                pages.Add(new Page(defs["trl_statChange_01"], "trl_statChange_01"));
+                pages.Add(new Page(defs["trl_statChange_02"], "trl_statChange_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You have encountered a stat change!>"));
+                pages.Add(new Page("<Some moves can increase or decrease a battler’s stats, with said changes being in effect for the rest of the battle unless stated otherwise.>"));
+                pages.Add(new Page("<Completing or fleeing from a battle will remove all stat changes for both you and your opponent.>"));
+            }
+
+            // TODO: STAT CHANGE
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedStatChange = true;
+        }
+
+        // Loads the burn status tutorial.
+        public void LoadBurnTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_burn_00"], "trl_burn_00"));
+                pages.Add(new Page(defs["trl_burn_01"], "trl_burn_01"));
+                pages.Add(new Page(defs["trl_burn_02"], "trl_burn_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You have encountered burn status!>"));
+                pages.Add(new Page("<Damage will be taken each turn when inflicted with burn status.>"));
+                pages.Add(new Page("<Burn status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedBurn = true;
+        }
+
+        // Loads the paralysis status tutorial.
+        public void LoadParalysisTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_paralysis_00"], "trl_paralysis_00"));
+                pages.Add(new Page(defs["trl_paralysis_01"], "trl_paralysis_01"));
+                pages.Add(new Page(defs["trl_paralysis_02"], "trl_paralysis_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You have encountered the paralysis status!>"));
+                pages.Add(new Page("<When inflicted with paralysis, a battler will move slower and has a chance of skipping a turn.>"));
+                pages.Add(new Page("<Paralysis status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedParalysis = true;
         }
 
         // Loads the treasure tutorial.
@@ -191,8 +337,8 @@ namespace RM_BBTS
             else // Default
             {
                 pages.Add(new Page("<This is a treasure room!>"));
-                pages.Add(new Page("<You get a free level-up, health restore, and energy restore if you collect the treasure.>"));
-                pages.Add(new Page("<If you leave the treasure you can come back and open it later.>"));
+                pages.Add(new Page("<If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.>"));
+                pages.Add(new Page("<If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.>"));
 
             }
 
@@ -216,14 +362,18 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_overworld_02"], "trl_overworld_02"));
                 pages.Add(new Page(defs["trl_overworld_03"], "trl_overworld_03"));
                 pages.Add(new Page(defs["trl_overworld_04"], "trl_overworld_04"));
+                pages.Add(new Page(defs["trl_overworld_05"], "trl_overworld_05"));
+                pages.Add(new Page(defs["trl_overworld_06"], "trl_overworld_06"));
             }
             else // Default
             {
-                pages.Add(new Page("<Now that you've attempted a room, the final boss room is now open.>"));
-                pages.Add(new Page("<The game ends when you beat the boss, so clear as many rooms as you think you need.>"));
-                pages.Add(new Page("<The more rooms you clear the stronger you'll become.>"));
-                pages.Add(new Page("<Enemies will get stronger the longer the game goes on, so keep that in mind.>"));
-                pages.Add(new Page("<On with the game.>"));
+                pages.Add(new Page("<Now that you’ve tried out a battle, all the rooms are open, including the boss room.>"));
+                pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, who you can challenge at any time.>"));
+                pages.Add(new Page("<You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.>"));
+                pages.Add(new Page("<Just so you know, enemies will get stronger as the game progresses, and some might even evolve into different forms. So, choose your fights carefully.>"));
+                pages.Add(new Page("<Remember that running away from battle is always an option, even against the final boss.>"));
+                pages.Add(new Page("<Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.>"));
+                pages.Add(new Page("<That’s all for now, so on with the game.>"));
             }
             
             // Loads the pages.
@@ -247,7 +397,7 @@ namespace RM_BBTS
             else // Default
             {
                 pages.Add(new Page("<Welcome to the boss room!>"));
-                pages.Add(new Page("<All you need is to beat the boss to win the game!>"));
+                pages.Add(new Page("<All you need to do is beat the boss to win the game! Good luck!>"));
             }
 
             // Loads the pages.
@@ -268,12 +418,16 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_gameOver_00"], "trl_gameOver_00"));
                 pages.Add(new Page(defs["trl_gameOver_01"], "trl_gameOver_01"));
                 pages.Add(new Page(defs["trl_gameOver_02"], "trl_gameOver_02"));
+                pages.Add(new Page(defs["trl_gameOver_03"], "trl_gameOver_03"));
+                pages.Add(new Page(defs["trl_gameOver_04"], "trl_gameOver_04"));
             }
             else // Default
             {
-                pages.Add(new Page("<You got a game over.>"));
-                pages.Add(new Page("<All living enemies have had their health and energy restored.>"));
-                pages.Add(new Page("<Your health and energy have also been restored, but your moves have been randomized.>"));
+                pages.Add(new Page("<You lost the battle and got a game over, so there’s some things that you should know.>"));
+                pages.Add(new Page("<Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.>"));
+                pages.Add(new Page("<As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.>"));
+                pages.Add(new Page("<And as for you, your health and energy have been completed restored, but your moves have been randomized. Make sure to check the stats window to see your new moves.>"));
+                pages.Add(new Page("<That’s all for now, so good luck!>"));
             }
 
             // Loads the pages.

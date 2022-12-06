@@ -255,7 +255,9 @@ namespace RM_BBTS
         {
             // The critical boost.
             float critBoost = (useCritBoost) ? CRITICAL_BOOST : 1.0F;
-            
+            // Tells the battle someone got a critical.
+            battle.gotCritical = true;
+
             // The damage amount.
             float damage;
 

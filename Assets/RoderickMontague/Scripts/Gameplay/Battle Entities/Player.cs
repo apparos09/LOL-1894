@@ -59,13 +59,14 @@ namespace RM_BBTS
             base.Start();
 
             // Gets the base data and loads the battle data.
-            BattleEntityGameData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
+            // BattleEntityGameData baseData = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.unknown);
             // LoadBattleData(baseData);
 
             // Starter moves.
             // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
             Move0 = MoveList.Instance.GenerateMove(moveId.risk);
-            Move1 = MoveList.Instance.GenerateMove(moveId.wham);
+            // Move1 = MoveList.Instance.GenerateMove(moveId.wham);
+            Move1 = MoveList.Instance.GenerateMove(moveId.torch);
             Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
             Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
             // Move3 = null;

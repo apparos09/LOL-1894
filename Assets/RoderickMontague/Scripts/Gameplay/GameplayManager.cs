@@ -625,19 +625,8 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
-            //// Checks the game state.
-            //switch (state)
-            //{
-            //    case gameState.overworld: // overworld
-            //        overworld.OnTutorialStart();
-            //        break;
-
-            //    case gameState.battle: // battle
-            //        battle.OnTutorialStart();
-            //        break;
-            //}
-
             // Call both in case the state hasn't changed.
+            // TODO: maybe call only one.
             overworld.OnTutorialStart();
             battle.OnTutorialStart();
 
@@ -646,6 +635,9 @@ namespace RM_BBTS
 
             // Disables the save button.
             saveButton.interactable = false;
+
+            // TODO: Don't count tutorial reading to game time.
+            // pausedTimer = true;
         }
 
         // A function to call when a tutorial ends.
@@ -673,6 +665,9 @@ namespace RM_BBTS
             // If in the overworld, enable the save button.
             if (state == gameState.overworld)
                 saveButton.interactable = true;
+
+            // TODO: Don't count tutorial reading to game time?
+            // pausedTimer = false;
         }
 
         // Returns the total amount of rooms.

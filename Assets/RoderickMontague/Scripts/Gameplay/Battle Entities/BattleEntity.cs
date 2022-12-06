@@ -134,7 +134,7 @@ namespace RM_BBTS
         protected int attackMod = 0;
         protected int defenseMod = 0;
         protected int speedMod = 0;
-        public int accuracyMod = 0;
+        protected int accuracyMod = 0;
 
         // The minimum for the stat modifiers.
         public const int STAT_MOD_MIN = -4;

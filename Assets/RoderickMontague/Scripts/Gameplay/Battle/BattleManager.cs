@@ -74,6 +74,11 @@ namespace RM_BBTS
         // Becomes 'true' when the battle end state has been initialized.
         private bool initBattleEnd = false;
 
+        [HideInInspector]
+        // Gets set to 'true' when a move gets a critical hit during a battle.
+        // This is used to trigger the critical tutorial.
+        public bool gotCritical = false;
+
         [Header("UI")]
         // The user interface.
         public GameObject ui;
@@ -673,8 +678,9 @@ namespace RM_BBTS
         // Performs the two moves.
         public void PerformMoves()
         {
-            // Both sides have selected a move.
-            if (player.selectedMove != null && opponent.selectedMove != null)
+            // Both sides have selected a move, and the tutorial isn't active.
+            if (player.selectedMove != null && opponent.selectedMove != null &&
+                !gameManager.tutorial.TextBoxIsVisible())
             {
                 // Checks who goes first.
                 bool playerFirst = false;
@@ -1322,6 +1328,43 @@ namespace RM_BBTS
                 // If both entities are alive do battle calculations.
                 if (player.Health > 0 && opponent.Health > 0)
                 {
+                    // TUTORIAL CONTENT
+                    // If using the tutorial, and a tutorial textbox isn't currently active.
+                    if(gameManager.useTutorial && !gameManager.tutorial.TextBoxIsVisible())
+                    {
+                        // Grabs the tutorial object.
+                        Tutorial trl = gameManager.tutorial;
+
+                        // Loads tutorials.
+                        // Loads the first move tutorial.
+                        if (!trl.clearedFirstMove && turnsTaken != 0)
+                        {
+                            trl.LoadFirstMoveTutorial();
+                        }
+                        // Loads the cleared stat tutorial.
+                        else if (!trl.clearedCritical && gotCritical)
+                        {
+                            trl.LoadStatChangeTutorial();
+                        }
+                        // Loads the stat change tutorial.
+                        else if (!trl.clearedStatChange && (player.HasStatModifiers() || opponent.HasStatModifiers()))
+                        {
+                            trl.LoadStatChangeTutorial();
+                        }
+                        // Loads the burn tutorial.
+                        else if(!trl.clearedBurn && (player.burned || opponent.burned))
+                        {
+                            trl.LoadBurnTutorial();
+                        }
+                        // Loads the paralysis tutorial.
+                        else if(!trl.clearedParalysis && (player.paralyzed || opponent.paralyzed))
+                        {
+                            trl.LoadParalysisTutorial();
+                        }
+
+                    }
+
+                    // BATTLE CONTENT
                     // If the opponent isn't a treasure chest try to perform moves.
                     if (!(opponent is Treasure))
                     {
@@ -1515,6 +1558,9 @@ namespace RM_BBTS
                     }
 
                 }
+
+                // Turns this variable to false to reset it.
+                gotCritical = false;
             }
 
             // If the text should match the bars.

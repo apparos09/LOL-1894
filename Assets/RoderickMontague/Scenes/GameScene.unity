@@ -1812,7 +1812,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  accuracyMod: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 1467642233}
@@ -3336,7 +3335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3757,7 +3756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -180, y: -250}
+  m_AnchoredPosition: {x: -200, y: -225}
   m_SizeDelta: {x: 256, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439972763
@@ -5132,7 +5131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6904,7 +6903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8380,7 +8379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: -250}
+  m_AnchoredPosition: {x: 200, y: -225}
   m_SizeDelta: {x: 256, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1016463190
@@ -9780,6 +9779,7 @@ MonoBehaviour:
   enemyBase: {fileID: 140528596}
   treasureBase: {fileID: 1932905571}
   bossBase: {fileID: 1656379398}
+  gotCritical: 0
   ui: {fileID: 788251607}
   chargeButton: {fileID: 439972763}
   chargeButtonText: {fileID: 1654345095}
@@ -12638,7 +12638,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  accuracyMod: 1
   burned: 0
   paralyzed: 0
 --- !u!4 &1467642234
@@ -13755,6 +13754,11 @@ MonoBehaviour:
   showTextboxOnLoad: 1
   clearedIntro: 0
   clearedBattle: 0
+  clearedFirstMove: 0
+  clearedCritical: 0
+  clearedStatChange: 0
+  clearedBurn: 0
+  clearedParalysis: 0
   clearedTreasure: 0
   clearedOverworld: 0
   clearedBoss: 0
@@ -14038,7 +14042,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  accuracyMod: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -15129,7 +15132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798208, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798208, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15633,7 +15636,6 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
-  accuracyMod: 1
   burned: 0
   paralyzed: 0
 --- !u!4 &1932905572
@@ -17025,7 +17027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17142,7 +17144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798208, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798208, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17163,6 +17165,18 @@ PrefabInstance:
     - target: {fileID: 6215028496071798211, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496809752549, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9510387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496809752549, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496809752549, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9019608
       objectReference: {fileID: 0}
     - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: menuAudio
