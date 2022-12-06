@@ -28,7 +28,10 @@ namespace RM_BBTS
                 ReduceEnergy(user); // Reduce energy
 
                 // Update the health and the energy.
-                battle.gameManager.UpdateUI();
+                if (user is Player) // User is player.
+                    battle.gameManager.UpdateUI();
+                else // User is opponent.
+                    battle.UpdateOpponentUI();
 
                 // The move success message.
                 InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());

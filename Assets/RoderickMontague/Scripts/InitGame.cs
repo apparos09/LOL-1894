@@ -59,7 +59,6 @@ namespace RM_BBTS
             Application.runInBackground = false; // Don't run in the background.
 
             // LOL Initialization
-            Debug.Log("This is a test."); // This comment was printed after the "The SDK has not been initialized." comment.
             // Create the WebGL (or mock) object
 #if UNITY_EDITOR
             ILOLSDK sdk = new LoLSDK.MockWebGL();

@@ -31,7 +31,7 @@ namespace RM_BBTS
             nameText.text = move.Name;
 
             rankText.text = move.Rank.ToString();
-            powerText.text = move.Power.ToString();
+            powerText.text = (move.Power == 0.0F) ? "-" : move.Power.ToString();
             accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
             energyText.text = (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
 

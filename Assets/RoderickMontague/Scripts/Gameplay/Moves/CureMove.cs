@@ -15,8 +15,9 @@ namespace RM_BBTS
 
             // Name and Desc
             name = "<Cure>";
-            description = "The user cures their status ailments.";
 
+            description = "<The user removes all their status ailments.>";
+    
             LoadTranslation("mve_cure_nme", "mve_cure_dsc");
         }
 

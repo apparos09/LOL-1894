@@ -246,7 +246,7 @@ namespace RM_BBTS
             moveRankText.text = rankString + ": " + move.Rank.ToString();
             
             // Power
-            movePowerText.text = powerString + ": " + move.Power.ToString();
+            movePowerText.text = powerString + ": " + ((move.Power == 0.0F) ? "-" : move.Power.ToString());
 
             // Accuracy
             if (move.useAccuracy)

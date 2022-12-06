@@ -134,6 +134,8 @@ namespace RM_BBTS
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.05F;
 
+                    move.description = "<An attack that has a 40% critical hit chance, and a 5% chance of raising the user's defense by 1 stage.>";
+                    
                     // Sets the keys for translating the data.
                     nameKey = "mve_poke_nme";
                     descKey = "mve_poke_dsc";
@@ -145,12 +147,16 @@ namespace RM_BBTS
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
 
+                    move.description = "<An attack that has a 15% chance of lowering the target's speed by 1 stage.>";
+
                     nameKey = "mve_slimeShot_nme";
                     descKey = "mve_slimeShot_dsc";
                     break;
 
                 case moveId.laserShot: // Lasershot (TODO: not working for osme reason)
                     move = new Move(moveId.laserShot, "<Lasershot>", 1, 40.0F, 0.9F, 0.05F);
+
+                    move.description = "<A weak laser attack.>";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_laserShot_nme";
@@ -161,6 +167,8 @@ namespace RM_BBTS
                     move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.05F);
                     move.BurnChance = 0.2F;
 
+                    move.description = "<A weak fire attack with a burn chance of 20%.>";
+                    
                     // Sets the keys for translating the data.
                     nameKey = "mve_fireShot_nme";
                     descKey = "mve_fireShot_dsc";
@@ -170,6 +178,8 @@ namespace RM_BBTS
                     move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.05F);
                     move.ParalysisChance = 0.2F;
 
+                    move.description = "<A weak electric attack with a paralysis chance of 20%.>";
+                    
                     // Sets the keys for translating the data.
                     nameKey = "mve_elecShot_nme";
                     descKey = "mve_elecShot_dsc";
@@ -181,6 +191,8 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.15F;
 
+                    move.description = "<A weak attack that has a 15% chance of lowering the target's accuracy by 1 stage.>";
+
                     nameKey = "mve_screech_nme";
                     descKey = "mve_screech_dsc";
                     break;
@@ -189,6 +201,8 @@ namespace RM_BBTS
                     move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.05F);
                     move.CriticalChance = 0.6F;
 
+                    move.description = "<An attack that has a critical hit chance of 60%.>";
+
                     nameKey = "mve_slam_nme";
                     descKey = "mve_slam_dsc";
                     break;
@@ -196,6 +210,8 @@ namespace RM_BBTS
                 case moveId.chip: // Chip Damage
                     move = new Move(moveId.chip, "<Chip Damage>", 1, 10, 0.95F, 0.1F);
                     move.priority = 1;
+
+                    move.description = "<A weak attack that always goes first.>";
 
                     nameKey = "mve_chip_nme";
                     descKey = "mve_chip_dsc";
@@ -207,6 +223,8 @@ namespace RM_BBTS
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.1F;
 
+                    move.description = "<The user raises their accuracy by 1.>";
+                    
                     nameKey = "mve_toss_nme";
                     descKey = "mve_toss_dsc";
                     break;
@@ -217,11 +235,15 @@ namespace RM_BBTS
                     move.accuracyChangeUser = 1;
                     move.accuracyChangeChanceUser = 1.0F;
 
+                    move.description = "<The user raises their accuracy by 1.>";
+
                     break;
 
                 case moveId.heal: // Heal
                     move = new HealMove(moveId.heal, "<Heal>", 1, 0.4F);
                     (move as HealMove).healPercent = 0.125F;
+
+                    move.description = "<The user heals 15% of their health.>";
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
@@ -232,6 +254,8 @@ namespace RM_BBTS
 
                     (move as HealthDrainMove).damageHealPercent = 0.125F;
 
+                    move.description = "<The user attacks the target, and restores their health by 12.5% of the damage given.>";
+
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
 
@@ -241,6 +265,8 @@ namespace RM_BBTS
                 case moveId.healthSplit: // Health Split
                     move = new HealthSplitMove();
                     
+                    move.description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
+
                     // Translation is done in function.
                     break;
 
@@ -250,6 +276,8 @@ namespace RM_BBTS
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.2F;
 
+                    move.description = "<The user pushes the target back, which has a 20% chance of increasing the user's defense.>";
+
                     // Sets the keys for translating the data.
                     nameKey = "mve_pushBack_nme";
                     descKey = "mve_pushBack_dsc";
@@ -257,6 +285,8 @@ namespace RM_BBTS
 
                 case moveId.bam: // Bam
                     move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.05F);
+
+                    move.description = "<A weak, basic attack.>";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_bam_nme";
@@ -270,6 +300,8 @@ namespace RM_BBTS
                 case moveId.laserBurst: // Laser Burst
                     move = new Move(moveId.laserBurst, "<Laser Burst>", 2, 70.0F, 1.0F, 0.1F);
 
+                    move.description = "<A decent laser attack.>";
+
                     // Sets the keys for translating the data.
                     nameKey = "mve_laserBurst_nme";
                     descKey = "mve_laserBurst_dsc";
@@ -279,6 +311,8 @@ namespace RM_BBTS
                     move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 65.0F, 0.85F, 0.11F);
                     move.BurnChance = 0.35F;
 
+                    move.description = "<A decent fire attack that has a 35% chance of burning the target.>";
+
                     nameKey = "mve_fireBurst_nme";
                     descKey = "mve_fireBurst_dsc";
                     break;
@@ -286,6 +320,8 @@ namespace RM_BBTS
                 case moveId.elecBurst: // Electric Burst
                     move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 65.0F, 0.85F, 0.12F);
                     move.ParalysisChance = 0.35F;
+
+                    move.description = "<A decent electric attack that has a 35% chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBurst_nme";
                     descKey = "mve_elecBurst_dsc";
@@ -296,6 +332,8 @@ namespace RM_BBTS
                     
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 0.2F;
+
+                    move.description = "<A decent attack that has a 20% chance of lowering the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_soundWave_nme";
                     descKey = "mve_soundWave_dsc";
@@ -310,6 +348,8 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 1.0F;
 
+                    move.description = "<The user increases their accuracy by 1 stage, and the target's accuracy by 1 stage.>";
+
                     nameKey = "mve_magnet_nme";
                     descKey = "mve_magnet_dsc";
                     break;
@@ -318,6 +358,8 @@ namespace RM_BBTS
                     move = new Move(moveId.torch, "<Scorch>", 2, 30, 0.9F, 0.20F);
                     move.BurnChance = 1.0F;
 
+                    move.description = "<A weak attack that always burns the target.>";
+
                     nameKey = "mve_torch_nme";
                     descKey = "mve_torch_dsc";
                     break;
@@ -325,6 +367,8 @@ namespace RM_BBTS
                 case moveId.electrify: // Electrify
                     move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.2F);
                     move.ParalysisChance = 1.0F;
+
+                    move.description = "<A weak attack that always paralyzes the target.>";
 
                     nameKey = "mve_electrify_nme";
                     descKey = "mve_electrify_dsc";
@@ -345,6 +389,8 @@ namespace RM_BBTS
                     move.speedChangeUser = 1;
                     move.speedChangeChanceUser = 1.0F;
 
+                    move.description = "<The user increases their attack, defense, and speed by 1 stage. This move will always go last.>";
+
                     nameKey = "mve_motivate_nme";
                     descKey = "mve_motivate_dsc";
 
@@ -355,6 +401,8 @@ namespace RM_BBTS
                     move.RecoilPercent = 0.15F;
                     move.priority = 1;
 
+                    move.description = "<The user does a quick move that always goes first. This move will deal 15% of its damage dealt back to the user.>";
+
                     nameKey = "mve_quickBurst_nme";
                     descKey = "mve_quickBurst_dsc";
                     break;
@@ -364,13 +412,15 @@ namespace RM_BBTS
 
                     (move as HealthDrainMove).damageHealPercent = 0.25F;
 
+                    move.description = "<The user attacks the target, gaining 25% of the damage dealt as health.>";
+
                     nameKey = "mve_hpDrain2_nme";
                     descKey = "mve_hpDrain2_dsc";
                     break;
 
                 case moveId.statClear: // Stat Clear
                     move = new StatClearMove();
-                    
+
                     // Translated in constructor.
                     break;
 
@@ -394,6 +444,8 @@ namespace RM_BBTS
 
                     move.useAccuracy = false;
 
+                    move.description = "<The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.>";   
+
                     nameKey = "mve_risk_nme";
                     descKey = "mve_risk_dsc";
                     break;
@@ -402,12 +454,16 @@ namespace RM_BBTS
                     move = new Move(moveId.tidalWave, "<Tidal Wave>", 2, 70, 1.0F, 0.20F);
                     move.useAccuracy = false;
 
+                    move.description = "<The user hits the target with a strong attack that never misses.>";
+
                     nameKey = "mve_tidalWave_nme";
                     descKey = "mve_tidalWave_dsc";
                     break;
 
                 case moveId.wham: // Wham
                     move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.1F);
+
+                    move.description = "<The user hits the target with a decent, basic attack.>";
 
                     nameKey = "mve_wham_nme";
                     descKey = "mve_wham_dsc";
@@ -418,6 +474,8 @@ namespace RM_BBTS
                 case moveId.laserBlast: // Laser Blast
                     move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 100.0F, 0.8F, 0.15F);
 
+                    move.description = "<A strong laser blast.>";
+
                     nameKey = "mve_laserBlast_nme";
                     descKey = "mve_laserBlast_dsc";
                     break;
@@ -426,6 +484,8 @@ namespace RM_BBTS
                     move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 90.0F, 0.8F, 0.15F);
                     move.BurnChance = 0.5F;
 
+                    move.description = "<A strong fire blast with a 50% chance of burning the target.>";
+
                     nameKey = "mve_fireBlast_nme";
                     descKey = "mve_fireBlast_dsc";
                     break;
@@ -433,6 +493,8 @@ namespace RM_BBTS
                 case moveId.elecBlast: // Electric Blast
                     move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 90.0F, 0.8F, 0.15F);
                     move.ParalysisChance = 0.5F;
+
+                    move.description = "<A strong electric blast with a 50% chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBlast_nme";
                     descKey = "mve_elecBlast_dsc";
@@ -444,6 +506,8 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
 
+                    move.description = "<A strong attack that has a 25% chance of lowering the target's accuracy by 1 stage.>";
+
                     nameKey = "mve_sonicWave_nme";
                     descKey = "mve_sonicWave_dsc";
                     break;
@@ -452,6 +516,8 @@ namespace RM_BBTS
                     move = new HealthDrainMove(moveId.hpDrain3, "<Heal Drain 3>", 3, 80, 0.70F, 0.4F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
+
+                    move.description = "<The user attacks the target, gaining 40% of the damage dealt as health.>";
 
                     nameKey = "mve_hpDrain3_nme";
                     descKey = "mve_hpDrain3_dsc";
@@ -463,6 +529,8 @@ namespace RM_BBTS
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 100.0F;
 
+                    move.description = "<The user attacks the target, lowering the target's defense by 1 stage.>";
+
                     nameKey = "mve_twister_nme";
                     descKey = "mve_twister_dsc";
                     break;
@@ -472,6 +540,8 @@ namespace RM_BBTS
 
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 30.0F;
+
+                    move.description = "<The user attacks the target. This move has a 30% chance of lowering the target's attack by 1 stage.>";
 
                     nameKey = "mve_waterBlast_nme";
                     descKey = "mve_waterBlast_dsc";
@@ -483,6 +553,8 @@ namespace RM_BBTS
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 30.0F;
 
+                    move.description = "<The user attacks the target. This move has a 30% chance of lowering the target's defense by 1 stage.>";
+
                     nameKey = "mve_rockBlast_nme";
                     descKey = "mve_rockBlast_dsc";
                     break;
@@ -492,6 +564,8 @@ namespace RM_BBTS
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 30.0F;
+
+                    move.description = "<The user attacks the target. This move has a 30% of lowering the target's speed by 1 stage.>";
 
                     nameKey = "mve_airBlast_nme";
                     descKey = "mve_airBlast_dsc";
@@ -504,6 +578,8 @@ namespace RM_BBTS
                     move.CriticalChance = 0.3F;
                     move.RecoilPercent = 0.4F;
 
+                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 30%, and deals 40% in damage back to the user.>";
+
                     nameKey = "mve_quake_nme";
                     descKey = "mve_quake_dsc";
 
@@ -512,6 +588,8 @@ namespace RM_BBTS
                 case moveId.chargeSun: // Charging Sun
                     move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 130, 0.85F, 0.2F);
                     move.BurnChance = 0.35F;
+
+                    move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a burn chance of 35%.>";
 
                     nameKey = "mve_chargeSun_nme";
                     descKey = "mve_chargeSun_dsc";
@@ -522,12 +600,16 @@ namespace RM_BBTS
                     move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 130, 0.85F, 0.2F);
                     move.ParalysisChance = 0.35F;
 
+                    move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a paralysis chance of 35%.>";
+
                     nameKey = "mve_chargeMoon_nme";
                     descKey = "mve_chargeMoon_dsc";
                     break;
 
                 case moveId.earlyBurst: // Early Burst
                     move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 120, 0.9F, 0.10F);
+
+                    move.description = "<A move that gets weaker the longer the battle goes on.>";
 
                     nameKey = "mve_earlyBurst_nme";
                     descKey = "mve_earlyBurst_dsc";
@@ -539,6 +621,8 @@ namespace RM_BBTS
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
 
+                    move.description = "<A move that lowers the user's attack stat everytime it's used.>";
+
                     // Sets the keys for translating the data.
                     nameKey = "mve_allOut_nme";
                     descKey = "mve_allOut_dsc";
@@ -546,6 +630,8 @@ namespace RM_BBTS
 
                 case moveId.kablam: // Kablam
                     move = new Move(moveId.kablam, "<Kablam>", 3, 30.0F, 1.0F, 0.05F);
+
+                    move.description = "<A strong, but basic attack.>";
 
                     nameKey = "mve_kablam_nme";
                     descKey = "mve_kablam_dsc";

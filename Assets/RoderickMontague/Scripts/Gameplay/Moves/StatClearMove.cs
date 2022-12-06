@@ -14,6 +14,8 @@ namespace RM_BBTS
         {
             useAccuracy = false;
 
+            description = "<The user resets all stat changes for themselves and their opponent.>";
+
             LoadTranslation("mve_statClear_nme", "mve_statClear_dsc");
         }
 
