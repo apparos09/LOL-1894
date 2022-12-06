@@ -2741,7 +2741,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -125}
-  m_SizeDelta: {x: 600, y: 100}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648780967
 MonoBehaviour:
@@ -2763,7 +2763,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[The entire game is controlled via the left mouse button/touch.]'
+  m_text: '[To interact with elements of the game world, use the left mouse button,
+    or the touch screen if applicable. The entire game is controlled through left
+    mouse click/touch interaction.]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3040,7 +3042,7 @@ GameObject:
   - component: {fileID: 1796333799}
   - component: {fileID: 1796333798}
   m_Layer: 5
-  m_Name: Controls Instruc Text (TMP)
+  m_Name: Controls Instruct Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
