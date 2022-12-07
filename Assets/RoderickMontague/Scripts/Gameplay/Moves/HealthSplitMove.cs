@@ -30,6 +30,14 @@ namespace RM_BBTS
                 // Reduce the user's energy.
                 ReduceEnergy(user);
 
+                // Checks if the move successfully hit its target.
+                if (!AccuracySuccessful(user)) // Move missed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                    return false;
+
+                }
+
                 // Calculates the percentages.
                 float userHealthPercent = user.Health / user.MaxHealth;
                 float targetHealthPercent = target.Health / target.MaxHealth;

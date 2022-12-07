@@ -22,10 +22,18 @@ namespace RM_BBTS
             bool success = false;
 
             // Checks if the move is usable (enough energy).
-            if(Usable(user) && AccuracySuccessful(user))
+            if(Usable(user))
             {
                 // Reduce the user's energy.
                 ReduceEnergy(user);
+
+                // Checks if the move successfully hit its target.
+                if (!AccuracySuccessful(user)) // Move missed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                    return false;
+
+                }
 
                 // Applies the stat changes.
                 List<Page> statPages = ApplyStatChanges(user, target);
@@ -50,9 +58,9 @@ namespace RM_BBTS
                 // Play the move effect sfx.
                 // battle.PlayMoveEffectSfx();
             }
-            else // Not usable.
+            else // Not usable - not enough energy.
             {
-                // The move failed.
+                // The move failed - no energy.
                 InsertPageAfterCurrentPage(battle, GetMoveNoEnergyMessage(user));
                 success = false;
             }

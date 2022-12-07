@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -57,13 +58,15 @@ namespace RM_BBTS
                     page.OnPageOpenedAddCallback(battle.RunAway);
 
                 }
-                else
+                else // Failed to run away.
                 {
                     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
                     BattleMessages.Instance.GetMoveRunFailedMessage(user.displayName),
                     BattleMessages.Instance.GetMoveRunFailedSpeakKey0()
                     ));
                 }
+
+                return success;
          
 
             }
@@ -75,7 +78,7 @@ namespace RM_BBTS
                     ));
             }
 
-            return true;
+            return false;
         }
     }
 }

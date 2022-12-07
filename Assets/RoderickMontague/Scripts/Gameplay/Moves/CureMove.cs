@@ -24,30 +24,50 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // If the user's move is usable, and has an ailment to heal.
-            if (Usable(user) || (!user.burned && !user.paralyzed))
+            // Checks if the move is usable.
+            if (Usable(user))
             {
+                // Checks if the user had a status to begin with.
+                // If they didn't, then the move will use energy, but it will fail.
+                bool hadStatus = user.burned || user.paralyzed;
+
                 // Reduces the energy.
                 ReduceEnergy(user);
+
+                // This really shouldn't be needed since it would make no sense, but it's here anyway.
+                // Checks if the move successfully hit its target.
+                if (!AccuracySuccessful(user)) // Move missed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                    return false;
+
+                }
 
                 // Status.
                 user.burned = false;
                 user.paralyzed = false;
 
-                // The move success message.
-                InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
-
                 // TODO: overlaps with the button SFX.
                 // Play the move effect sfx.
                 // battle.PlayMoveEffectSfx();
 
-                return true;
+                // Prints a different message based on if the move actually did anything.
+                if (hadStatus) // A status was cured.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
+                    return true;
+                } 
+                else // The entity never had a status, so the move failed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }     
 
             }
-            else // Move failed.
+            else // Not enough power.
             {
-                // The move failed message.
-                InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                // The battler does not have enough energy to perform the move.
+                InsertPageAfterCurrentPage(battle, GetMoveNoEnergyMessage(user));
 
                 return false;
             }

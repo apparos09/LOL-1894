@@ -22,29 +22,51 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // Charging text.
-            // Checks who is charging the energy to pass the correct speak key.
-            if(user is Player) // Player
+            // Checks if the user has a full charge.
+            if(user.HasFullCharge()) // User already has a full charge.
             {
+                // Move failed page.
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                                BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
-                                BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
+                                    BattleMessages.Instance.GetMoveFailedMessage(),
+                                    BattleMessages.Instance.GetMoveFailedSpeakKey()));
+
+                return false;
             }
-            else // Opponent
+            else // The user does not have a full amount of energy.
             {
-                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                                BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
-                                BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
-            }
+                // This really shouldn't be needed since it would make no sense, but it's here anyway.
+                // Checks if the move successfully hit its target.
+                if (!AccuracySuccessful(user)) // Move missed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                    return false;
+
+                }
+
+                // Charging text.
+                // Checks who is charging the energy to pass the correct speak key.
+                if (user is Player) // Player
+                {
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                                    BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
+                                    BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
+                }
+                else // Opponent
+                {
+                    battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                                    BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
+                                    BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
+                }
 
 
-            float chargePlus = user.MaxEnergy * 0.4F;
-            user.Energy += chargePlus;
+                float chargePlus = user.MaxEnergy * 0.4F;
+                user.Energy += chargePlus;
 
-            // Updates the player's energy level.
-            battle.gameManager.UpdatePlayerEnergyUI();
+                // Updates the player's energy level.
+                battle.gameManager.UpdatePlayerEnergyUI();
 
-            return true;
+                return true;
+            } 
         }
     }
 }

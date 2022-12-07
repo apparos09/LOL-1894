@@ -31,8 +31,16 @@ namespace RM_BBTS
                 // Reduce the user's energy.
                 ReduceEnergy(user);
 
+                // Checks if the move successfully hit its target.
+                if (!AccuracySuccessful(user)) // Move missed.
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                    return false;
+
+                }
+
                 // There are stat changes to be reset.
-                if(user.HasStatModifiers() || target.HasStatModifiers())
+                if (user.HasStatModifiers() || target.HasStatModifiers())
                 {
                     // Reset the modifiers.
                     user.ResetStatModifiers();
