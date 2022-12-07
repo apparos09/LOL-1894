@@ -39,6 +39,7 @@ namespace RM_BBTS
             // Attack was success.
             if(success)
             {
+                // The health of the target has already updated, so the other one needs to be called.
                 // Checks if the user is a Player or an Enemy.
                 if (user is Player)
                 {
