@@ -87,7 +87,21 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and visible.
         private void OnEnable()
         {
+            // Hides the battle textbox.
+            battle.textBox.Hide();
             LoadMoveInformation();
+        }
+        
+        // Activates the panel.
+        public void Activate()
+        {
+            windowObject.SetActive(true);
+        }
+
+        // Deactivates the panel.
+        public void Deactivate()
+        {
+            windowObject.SetActive(false);
         }
 
         // Loads the player moves.
@@ -209,6 +223,7 @@ namespace RM_BBTS
             battle.textBox.NextPage();
 
             // Show the box again, and move onto the next page.
+            // May not be needed.
             windowObject.SetActive(false);
 
             // This might not be needed.
@@ -216,8 +231,8 @@ namespace RM_BBTS
             newMove = null;
             learningMove = null;
 
-            // Open he textbox.
-            battle.textBox.Open();
+            // Show the textbox and go onto the move learned page.
+            battle.textBox.Show();
             battle.textBox.NextPage();
         }
     }

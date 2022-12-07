@@ -79,6 +79,9 @@ namespace RM_BBTS
         // This is used to trigger the critical tutorial.
         public bool gotCritical = false;
 
+        // Gets set to 'true' when the player has learned a move at the end of the battle.
+        private bool learnedMove = false;
+
         [Header("UI")]
         // The user interface.
         public GameObject ui;
@@ -429,6 +432,9 @@ namespace RM_BBTS
 
             // Do not autosave unless the player actually wins.
             autoSaveOnExit = false;
+
+            // No move has neen learned for this battle.
+            learnedMove = false;
 
             // The battle has been initialized.
             initialized = true;
@@ -1066,12 +1072,18 @@ namespace RM_BBTS
             /// Know why that would be.
             /// </summary>
 
+
+            // A move has already been learned, so don't go through this function again.
+            if (learnedMove)
+                return;
+
             // NEW
             // It appears to happen before and after the player levels up.
             // It also generates a new move for the player to learn.
 
             // Hide the box gameobject.
-            textBox.Close();
+            // textBox.Close();
+            textBox.Hide();
 
             // TODO: implement new move learning.
             // The phase.
@@ -1136,6 +1148,7 @@ namespace RM_BBTS
             // If the player has less than 4 moves, automatically learn the move.
             if (player.GetMoveCount() < 4)
             {
+                // Adds the new move to the list.
                 for (int i = 0; i < player.moves.Length; i++)
                 {
                     if (player.moves[i] == null)
@@ -1149,27 +1162,36 @@ namespace RM_BBTS
                 // textBox.CurrentPage.OnPageClosedRemoveCallback(OnLearningNewMove);
 
                 // Removes the placeholder page.
-                textBox.pages.RemoveAt(textBox.CurrentPageIndex + 1);
+                // textBox.pages.RemoveAt(textBox.CurrentPageIndex + 1);
 
                 // Inserts a new page.
-                textBox.pages.Insert(textBox.CurrentPageIndex + 1, new Page(
+                textBox.InsertAfterCurrentPage(new Page(
                     BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name),
                     BattleMessages.Instance.GetLearnMoveYesSpeakKey()));
 
+                // NOT NEEDED.
                 // Go onto the next page.
-                textBox.Open();
+                // textBox.Open();
+                textBox.Show();
                 textBox.NextPage();
             }
             else
             {
+                // Hide the textbox so that the learn move panel is shown.
+                textBox.Hide(); // This already gets called in the learn move panel OnEnable(). (TODO: remove?)
 
                 // Update the information.
                 learnMovePanel.newMove = newMove;
-                learnMovePanel.LoadMoveInformation(); // Happens on enable.
+                learnMovePanel.LoadMoveInformation(); // Happens on enable (TODO: remove?)
 
                 // Turn on the move panel, which also updates the move list.
-                learnMovePanel.windowObject.SetActive(true);
+                learnMovePanel.Activate(); // Turns on the object.
+
+                
             }
+
+            // Opportunity to learn move has now happened.
+            learnedMove = true;
         }
 
         // Goes to the overworld.
@@ -1200,6 +1222,9 @@ namespace RM_BBTS
             // Go to the overworld.
             gameManager.UpdateUI();
             gameManager.EnterOverworld();
+
+            // Prepare for next battle.
+            learnedMove = false;
 
             // The battle gets initialized everytime one starts.
             initialized = false;
@@ -1524,24 +1549,24 @@ namespace RM_BBTS
                             }
 
                             // Checks to see if a new move should be learned.
-                            bool learnMove = (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure);
+                            bool learningMove = (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure);
 
                             // If this is the tutorial, and it's the first room cleared, always give the player a new move.
-                            if(learnMove == false)
+                            if(learningMove == false)
                             {
                                 // Learn a new move.
                                 if (gameManager.useTutorial && gameManager.roomsCompleted == 0)
-                                    learnMove = true;
+                                    learningMove = true;
                             }
 
                             // If the boss was beaten the game will end, so the player won't learn a new move.
                             if (opponent is Boss)
-                                learnMove = false;
+                                learningMove = false;
                             
 
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
-                            if (learnMove)
+                            if (learningMove)
                             {
                                 Page newMovePage = new Page(
                                     BattleMessages.Instance.GetLearnMoveMessage(),
@@ -1551,7 +1576,8 @@ namespace RM_BBTS
                                 newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
                                 textBox.pages.Add(newMovePage);
 
-                                // Placeholder page (TODO: not needed?)
+                                // Needed for the learn move panel to skip through.
+                                // This page is active when learning the move.
                                 textBox.pages.Add(new Page("..."));
                             }
 

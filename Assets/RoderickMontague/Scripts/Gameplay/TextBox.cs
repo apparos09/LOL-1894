@@ -166,6 +166,18 @@ namespace RM_BBTS
                 pages[currPageIndex].StopSpeakingPage();
         }
 
+        // Shows the textbox. This does NOT call the Open callbacks.
+        public void Show()
+        {
+            boxObject.SetActive(true);
+        }
+
+        // Hides the textbox. This does Not call the Close callbacks.
+        public void Hide()
+        {
+            boxObject.SetActive(false);
+        }
+
         // Checks if the textbox is visible.
         public bool IsVisible()
         {
