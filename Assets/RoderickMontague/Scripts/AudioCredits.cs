@@ -48,11 +48,12 @@ namespace RM_BBTS
             credit.song = "Ascension";
             credit.artist = "Ross Bugden";
             credit.collection = "Music - Ross Bugden";
-            credit.source = "GameSounds.xyz";
+            credit.source = "GameSounds.xyz, YouTube";
             credit.link1 = "https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden";
+            credit.link2 = "https://youtu.be/MzlEX7v0Qz0";
 
             credit.copyright =
-                "\"Ascension\" (https://youtu.be/MzlEX7v0Qz0)" + "\n" +
+                "\"Ascension\"" + "\n" +
                 "Ross Bugden (https://soundcloud.com/rossbugden)" + "\n" +
                 "Licensed under Creative Commons: By Attribution 4.0 International" + "\n" +
                 "https://creativecommons.org/licenses/by/4.0/";
@@ -68,6 +69,7 @@ namespace RM_BBTS
             credit.collection = "Electronic";
             credit.source = "FreePD";
             credit.link1 = "https://freepd.com/electronic.php";
+            credit.link2 = "";
 
             credit.copyright = 
                 "\"Goodnightmare\"" + "\n" +
@@ -83,11 +85,12 @@ namespace RM_BBTS
             credit.song = "Welcome to Chaos";
             credit.artist = "Ross Bugden";
             credit.collection = "Music - Ross Bugden";
-            credit.source = "GameSounds.xyz";
+            credit.source = "GameSounds.xyz, YouTube";
             credit.link1 = "https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden";
+            credit.link2 = "https://youtu.be/q5w5VX4tAD4";
 
             credit.copyright =
-                "\"Welcome to Chaos\" (https://youtu.be/q5w5VX4tAD4)" + "\n" +
+                "\"Welcome to Chaos\"" + "\n" +
                 "Ross Bugden (https://soundcloud.com/rossbugden)" + "\n" +
                 "Licensed under Creative Commons: By Attribution 4.0 International" + "\n" +
                 "https://creativecommons.org/licenses/by/4.0/";
@@ -104,6 +107,7 @@ namespace RM_BBTS
             credit.collection = "Epic";
             credit.source = "FreePD, Orchestralis.net";
             credit.link1 = "https://freepd.com/epic.php";
+            credit.link2 = "https://music.orchestralis.net/track/28919690";
 
             credit.copyright = 
                 "\"HEROIC ADVENTURE\"" + "\n" +
@@ -121,6 +125,7 @@ namespace RM_BBTS
             credit.collection = "Public Domain/Cinematic";
             credit.source = "GameSounds.xyz, FreePD";
             credit.link1 = "https://gamesounds.xyz/?dir=Public%20Domain/Cinematic";
+            credit.link2 = "https://freepd.com/Page2/";
 
             credit.copyright =
                 "\"Stratosphere\"" + "\n" +
@@ -140,6 +145,7 @@ namespace RM_BBTS
             credit.collection = "Sound Effects/Buttons";
             credit.source = "GameSounds.xyz";
             credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
 
             credit.copyright = copyrightGameSounds;
             credit.copyright += "\n" + modification;
@@ -153,6 +159,7 @@ namespace RM_BBTS
             credit.collection = "Sound Effects/Doors and Floors";
             credit.source = "GameSounds.xyz";
             credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Doors%20and%20Floors";
+            credit.link2 = string.Empty;
 
             credit.copyright = copyrightGameSounds;
             credit.copyright += "\n" + modification;
@@ -166,6 +173,7 @@ namespace RM_BBTS
             credit.collection = "Sound Effects/Buttons";
             credit.source = "GameSounds.xyz";
             credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
 
             credit.copyright = copyrightGameSounds;
             credit.copyright += "\n" + modification;
@@ -179,6 +187,7 @@ namespace RM_BBTS
             credit.collection = "Sound Effects/Buttons";
             credit.source = "GameSounds.xyz";
             credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
 
             credit.copyright = copyrightGameSounds;
             credit.copyright += "\n" + modification;

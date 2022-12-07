@@ -34,8 +34,11 @@ namespace RM_BBTS
 
         // The source of the song, which will be a website most likely.
         public TMP_Text sourceText;
-        // The link to the the song (website, website page, etc.).
-        public TMP_Text linkText;
+        
+        // The link to the the song (website, website page, etc.). This is a link to the source you used.
+        public TMP_Text link1Text;
+        // The link to the the song (website, website page, etc.). This second link is for the orgination of the audio.
+        public TMP_Text link2Text;
 
         // The text for the copyright information.
         public TMP_Text copyrightText;
@@ -123,7 +126,8 @@ namespace RM_BBTS
             artistNameText.text = credit.artist;
             collectionNameText.text = credit.collection;
             sourceText.text = credit.source;
-            linkText.text = credit.link1;
+            link1Text.text = credit.link1;
+            link2Text.text = credit.link2;
             copyrightText.text = credit.copyright;
 
             // Updates the page number.
