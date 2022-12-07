@@ -37,6 +37,10 @@ namespace RM_BBTS
                 // The move success message.
                 InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
 
+                // TODO: overlaps with the button SFX.
+                // Play the move effect sfx.
+                // battle.PlayMoveEffectSfx();
+
                 return true;
 
             }

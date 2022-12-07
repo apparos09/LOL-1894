@@ -840,14 +840,14 @@ namespace RM_BBTS
                     battle.UpdateOpponentUI(); // Updates enemy health bar.
 
                     // Play sound effect.
-                    battle.PlayDamageTaken();
+                    battle.PlayDamageTakenSfx();
                 }
                 else // Not the player.
                 {
                     battle.gameManager.UpdatePlayerHealthUI();
 
                     // Play sound effect.
-                    battle.PlayDamageGiven();
+                    battle.PlayDamageGivenSfx();
                 }
 
                 // Tries ending the turn early.

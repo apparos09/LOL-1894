@@ -4,34 +4,32 @@ The repository for a contracted project.
 = AUDIO CREDITS =
 The audio credits for the game are as follows. Uncredited audio are original compositions.
 All audio provided is public domain/copyright free.
+All BGM audio has been shortened for size and practicality.
 
 The audio has been sourced from the following websites. Some songs were taken from one website, but originate from another website.
 * GameSound.xyz (https://gamesounds.xyz/)
 * FreePD (https://freepd.com/)
-* Newgrounds (https://www.newgrounds.com/)
 
 == Title / Overworld / Results (BGM) ==
-Song Title: Stupid Space Opera
-Artist(s): Anttis Instrumentals
+Song Title: Ascension
+Artist(s): Ross Bugden
 Source(s): GameSounds.xyz
-Link (Page): https://gamesounds.xyz/?dir=Anttis%20instrumentals/Songs
-Link (Direct): https://gamesounds.xyz/Anttis%20instrumentals/Songs/Anttis%20instrumentals%20-%20Stupid%20Space%20Opera.mp3
+Link (Page): https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden
+Link (Direct): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ross%20Bugden%20-%20Ascension.mp3
 
 == Battle / Treasure (BGM) ==
-Song Title: Vanguard Bouncy (Loop)
-Artist: Stratcat (Daydream-Anatomy)
-Source(s): GameSounds.xyz, Newgrounds
-Link (GameSounds.xyz Page): https://gamesounds.xyz/?dir=OpenBundle/Background%20Music%20and%20Loops
-Link (GameSounds.xyz Audio): https://gamesounds.xyz/OpenBundle/Background%20Music%20and%20Loops/Vanguard%20Bouncy%20%28loop%29.mp3
-Link (Newgrounds): http://www.newgrounds.com/audio/listen/346656
+Song Title: Goodnightmare
+Artist: Kevin MacLeod
+Source(s): GameSounds.xyz
+Link (GameSounds.xyz Page): https://freepd.com/electronic.php
+Link (GameSounds.xyz Audio): https://freepd.com/electronic.php
 
 == Boss (BGM) ==
-Song Title: Vanguard Bouncy (Loop)
-Artist(s): Stratcat (Daydream-Anatomy)
-Source(s): GameSounds.xyz, Newgrounds
-Link (GameSounds.xyz Page): https://gamesounds.xyz/?dir=OpenBundle/Background%20Music%20and%20Loops
-Link (GameSounds.xyz Audio): https://gamesounds.xyz/OpenBundle/Background%20Music%20and%20Loops/King%20Boss%20%28loop%29.mp3
-Link (Newgrounds): http://www.newgrounds.com/audio/listen/327571
+Song Title: Welcome to Chaos
+Artist(s): Ross Bugden
+Source(s): GameSounds.xyz
+Link (GameSounds.xyz Page): https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden
+Link (GameSounds.xyz Audio): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ross%20Bugden%20-%20Welcome%20to%20Chaos.mp3
 
 == Battle Won (Jingle) ==
 Song Title: Heroic Adventure / Cubase
@@ -48,22 +46,36 @@ Link (GameSounds.xyz Audio): https://gamesounds.xyz/Public%20Domain/Cinematic/St
 Link (FreePD): https://freepd.com/Page2/
 
 == Button Press (SFX) ==
-Song Title: Button-3
+Song Title: Button 3
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note: edited to change the sound.
 
+== Door Locked (SFX) ==
+Song Title: Door Knock 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Doors%20and%20Floors
+Note: shortened.
+
 == Damage Given (SFX) ==
-Song Title: Button-4
+Song Title: Button 4
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note: edited to be a higher pitch.
 
 == Damage Taken (SFX) ==
-Song Title: Button-4
+Song Title: Button 4
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note: edited to be a lower pitch.
+
+== Move Effect (SFX) ==
+Song Title: Button 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
+Note: edited to change the tempo, and shortened.

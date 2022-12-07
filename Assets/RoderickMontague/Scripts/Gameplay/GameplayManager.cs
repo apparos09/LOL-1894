@@ -372,6 +372,17 @@ namespace RM_BBTS
             //{
             //    ttsCol.SpeakText();
             //}
+
+            switch (state)
+            {
+                case gameState.overworld:
+                    overworld.OnMouseInteract(heldObject);
+                    break;
+
+                case gameState.battle:
+                    battle.OnMouseInteract(heldObject);
+                    break;
+            }
         }
 
         // Called when the user's touch interacts with an entity.
@@ -379,12 +390,24 @@ namespace RM_BBTS
         {
             //// Collider for text-to-speech (contains a function for OnMouseDown).
             //TextToSpeechCollider ttsCol; 
-            
+
             //// Checks for the collider.
             //if(touchedObject.TryGetComponent<TextToSpeechCollider>(out ttsCol))
             //{
             //    ttsCol.SpeakText();
             //}
+
+            // Calls the touch interacts for the proper object.
+            switch (state)
+            {
+                case gameState.overworld:
+                    overworld.OnTouchInteract(touchedObject, touch);
+                    break;
+
+                case gameState.battle:
+                    battle.OnTouchInteract(touchedObject, touch);
+                    break;
+            }
         }
 
         // Called with the object that was received with the interaction.
@@ -588,32 +611,36 @@ namespace RM_BBTS
 
                     // Checks the state variable to see what kind of scene the game is in.
                     // Calls the appropriate touch interaction.
-                    switch (state)
-                    {
-                        case gameState.overworld:
-                            overworld.OnTouchInteract(hitObject, touch);
-                            break;
+                    OnTouchInteract(hitObject, touch);
 
-                        case gameState.battle:
-                            battle.OnTouchInteract(hitObject, touch);
-                            break;
-                    }
+                    // switch (state)
+                    // {
+                    //     case gameState.overworld:
+                    //         overworld.OnTouchInteract(hitObject, touch);
+                    //         break;
+                    // 
+                    //     case gameState.battle:
+                    //         battle.OnTouchInteract(hitObject, touch);
+                    //         break;
+                    // }
                 }
                 
             }
             else
             {
                 // Checks the state variable to see what kind of scene the game is in.
-                switch (state)
-                {
-                    case gameState.overworld:
-                        overworld.OnMouseInteract(hitObject);
-                        break;
+                OnMouseInteract(hitObject);
 
-                    case gameState.battle:
-                        battle.OnMouseInteract(hitObject);
-                        break;
-                }
+                // switch (state)
+                // {
+                //     case gameState.overworld:
+                //         overworld.OnMouseInteract(hitObject);
+                //         break;
+                // 
+                //     case gameState.battle:
+                //         battle.OnMouseInteract(hitObject);
+                //         break;
+                // }
             }
 
             // Print message for testing.

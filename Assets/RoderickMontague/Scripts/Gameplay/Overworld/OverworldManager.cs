@@ -108,6 +108,9 @@ namespace RM_BBTS
         // The bgm for the overworld.
         public AudioClip overworldBgm;
 
+        // The sound effect for a locked door.
+        public AudioClip doorLockedSfx;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -275,7 +278,16 @@ namespace RM_BBTS
             if(gameObject.TryGetComponent<Door>(out door))
             {
                 // Enters the battle.
-                gameManager.EnterBattle(door);
+                if(door.Locked)
+                {
+                    // Plays the door SFX.
+                    PlayDoorLockedSfx();
+                }
+                else
+                {
+                    // Enters the battle.
+                    gameManager.EnterBattle(door);
+                }
             }
         }
 
@@ -446,6 +458,16 @@ namespace RM_BBTS
             }
 
 
+        }
+
+        // Play the door locked SFX.
+        public void PlayDoorLockedSfx()
+        {
+            // Grabs the audio manager.
+            AudioManager audioManager = gameManager.audioManager;
+
+            // Plays the door locked SFX.
+            audioManager.PlaySoundEffect(doorLockedSfx);
         }
 
         // Called when returning to the overworld.

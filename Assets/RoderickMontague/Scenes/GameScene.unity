@@ -9811,6 +9811,7 @@ MonoBehaviour:
   battleLostJng: {fileID: 8300000, guid: ecd88211fbd53084997d66b1f5644b97, type: 3}
   damageGivenSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
   damageTakenSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
+  moveEffectSfx: {fileID: 8300000, guid: d221b6f7fec06c444b19c23f5a71ad0a, type: 3}
 --- !u!114 &1163903608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12748,6 +12749,7 @@ MonoBehaviour:
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
+  doorLockedSfx: {fileID: 8300000, guid: 67dd6860510dc1147a1c0a0e00e9aaa3, type: 3}
 --- !u!1 &1486936159
 GameObject:
   m_ObjectHideFlags: 0

@@ -184,6 +184,9 @@ namespace RM_BBTS
         // The sound effect for the opponent taking damage.
         public AudioClip damageTakenSfx;
 
+        // THe sound efect for a non-damaging move.
+        public AudioClip moveEffectSfx;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -1288,20 +1291,26 @@ namespace RM_BBTS
 
         // SFX //
         // Play sound effect for the player did damage to the opponent.
-        public void PlayDamageGiven()
+        public void PlayDamageGivenSfx()
         {
             gameManager.audioManager.PlaySoundEffect(damageGivenSfx);
         }
 
         // Play sound effect for the opponent did damage to the player.
-        public void PlayDamageTaken()
+        public void PlayDamageTakenSfx()
         {
             gameManager.audioManager.PlaySoundEffect(damageTakenSfx);
         }
 
+        // Play sound effect for non-damaging moves.
+        public void PlayMoveEffectSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(moveEffectSfx);
+        }
+
         // JNG //
         // Plays the battle won jingle.
-        public void PlayBattleWonJingle()
+        public void PlayBattleWonJng()
         {
             // This will play when the jingle is done.
             PlayBattleResultsBgm();
@@ -1310,7 +1319,7 @@ namespace RM_BBTS
         }
 
         // Plays the battle lost jingle.
-        public void PlayBattleLostJingle()
+        public void PlayBattleLostJng()
         {
             // This will play when the jingle is done.
             PlayBattleResultsBgm();
@@ -1349,6 +1358,7 @@ namespace RM_BBTS
                         // Loads the stat change tutorial.
                         else if (!trl.clearedStatChange && (player.HasStatModifiers() || opponent.HasStatModifiers()))
                         {
+                            // TODO: this keeps getting called more than once. Fix it!
                             trl.LoadStatChangeTutorial();
                         }
                         // Loads the burn tutorial.
@@ -1401,7 +1411,7 @@ namespace RM_BBTS
                                 );
 
                             // Play the battle lost jingle.
-                            losePage.OnPageOpenedAddCallback(PlayBattleLostJingle);
+                            losePage.OnPageOpenedAddCallback(PlayBattleLostJng);
 
                             textBox.pages.Add(losePage);
                             textBox.SetPage(0);
@@ -1431,7 +1441,7 @@ namespace RM_BBTS
                                     );
 
                                 // Play jingle, close the textbox, and go onto the results screen.
-                                bossPage.OnPageOpenedAddCallback(PlayBattleWonJingle);
+                                bossPage.OnPageOpenedAddCallback(PlayBattleWonJng);
                                 bossPage.OnPageClosedAddCallback(textBox.Close);
                                 bossPage.OnPageClosedAddCallback(gameManager.ToResultsScene);
 
@@ -1449,7 +1459,7 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetBattleWonSpeakKey());
 
                                 // Play the battle won jingle when the page is opened.
-                                winPage.OnPageOpenedAddCallback(PlayBattleWonJingle);
+                                winPage.OnPageOpenedAddCallback(PlayBattleWonJng);
 
                                 textBox.pages.Add(winPage);
                             }
