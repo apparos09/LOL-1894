@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -17,6 +18,13 @@ namespace RM_BBTS
         // The user interface for the credits menu.
         [Header("UI")]
 
+        // The title text.
+        public TMP_Text titleText;
+
+        // The text for the back button.
+        public TMP_Text backButtonText;
+
+        [Header("UI/Credit")]
         // The name of the song.
         public TMP_Text songNameText;
         // The name of the artist(s).
@@ -35,9 +43,21 @@ namespace RM_BBTS
         // The page number text, which is a fraction (000/000)
         public TMP_Text pageNumberText;
 
+        
+
         // Start is called before the first frame update
         void Start()
         {
+            // Translation.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Defs set.
+            if(defs != null)
+            {
+                titleText.text = defs["kwd_credits"];
+                backButtonText.text = defs["kwd_back"];
+            }
+
             // Loads credit and sets page number.
             UpdateCredit();
         }

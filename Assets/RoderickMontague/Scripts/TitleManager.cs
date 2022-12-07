@@ -40,6 +40,10 @@ namespace RM_BBTS
         public GameObject settingsMenu;
         public TMP_Text settingsButtonText;
 
+        // Copyright
+        public GameObject creditsMenu;
+        public TMP_Text creditsButtonText;
+
         [Header("Controls Submenu")]
         // The controls title text.
         public TMP_Text controlsTitleText;
@@ -76,12 +80,14 @@ namespace RM_BBTS
                 infoButtonText.text = defs["kwd_info"];
                 controlsButtonText.text = defs["kwd_controls"];
                 settingsButtonText.text = defs["kwd_settings"];
+                creditsButtonText.text = defs["kwd_credits"];
 
                 // Controls Menu
                 controlsTitleText.text = defs["kwd_controls"];
                 controlsInstructText.text = defs["mnu_controls_instruct"];
                 controlsDescText.text = defs["mnu_controls_desc"];
                 controlsBackButtonText.text = defs["kwd_back"];
+
             }
 
             // Use the tutorial for the game.
@@ -187,6 +193,13 @@ namespace RM_BBTS
         public void ToggleSettingsMenu()
         {
             settingsMenu.gameObject.SetActive(!settingsMenu.gameObject.activeSelf);
+            mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
+        }
+
+        // Toggles the credits menu.
+        public void ToggleCreditsMenu()
+        {
+            creditsMenu.gameObject.SetActive(!creditsMenu.gameObject.activeSelf);
             mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
         }
 
