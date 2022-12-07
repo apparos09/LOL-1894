@@ -1353,7 +1353,7 @@ namespace RM_BBTS
                         // Loads the cleared stat tutorial.
                         else if (!trl.clearedCritical && gotCritical)
                         {
-                            trl.LoadStatChangeTutorial();
+                            trl.LoadCriticalDamageTutorial();
                         }
                         // Loads the stat change tutorial.
                         else if (!trl.clearedStatChange && (player.HasStatModifiers() || opponent.HasStatModifiers()))
