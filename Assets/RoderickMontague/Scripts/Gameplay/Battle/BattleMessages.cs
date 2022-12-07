@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 using System.Security.Cryptography;
+using static UnityEngine.GraphicsBuffer;
 
 namespace RM_BBTS
 {
@@ -220,8 +221,45 @@ namespace RM_BBTS
             return "btl_msg_mve_moveCritical";
         }
 
+        // MOVE RECOIL //
+        // Gets the move hit with recoil message.
+        public string GetMoveHitRecoilMessage(string user)
+        {
+            // The message string.
+            string msg = "";
 
-        
+            // Checks if defs exists.
+            if (defs != null)
+            {
+                // Pull translated messages.
+                msg = defs["btl_msg_mve_moveRecoil"];
+            }
+            else
+            {
+                // Grabs the default message.
+                msg = "<The {0} took recoil damage!>";
+            }
+
+            // Slot in the message text.
+            msg = msg.Replace("{0}", user);
+
+            return msg;
+        }
+
+        // Gets the player move hit recoil speak key.
+        public string GetMoveHitRecoilSpeakKey0()
+        {
+            return "btl_msg_mve_moveRecoil_alt00";
+        }
+
+        // Gets the opponent move hit recoil speak key.
+        public string GetMoveHitRecoilSpeakKey1()
+        {
+            return "btl_msg_mve_moveRecoil_alt01";
+        }
+
+
+
         // MOVE NO POWER //
         // Gets the move "not enough power" message.
         public string GetMoveNoEnergyMessage(string user)
@@ -229,7 +267,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -268,7 +306,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -298,7 +336,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -328,7 +366,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -378,7 +416,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -428,7 +466,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -458,7 +496,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -489,7 +527,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -528,7 +566,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -567,7 +605,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -597,7 +635,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -636,7 +674,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -675,7 +713,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -705,7 +743,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -735,7 +773,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -765,7 +803,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -795,7 +833,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -825,7 +863,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -855,7 +893,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.
@@ -888,7 +926,7 @@ namespace RM_BBTS
             // The message string.
             string msg = "";
 
-            // Checks if defs existed.
+            // Checks if defs exists.
             if (defs != null)
             {
                 // Grabs the translated message.

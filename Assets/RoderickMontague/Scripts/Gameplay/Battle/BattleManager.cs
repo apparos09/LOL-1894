@@ -79,6 +79,10 @@ namespace RM_BBTS
         // This is used to trigger the critical tutorial.
         public bool gotCritical = false;
 
+        // Gets set to 'true' when a move gets recoil during a battle.
+        // This is used to trigger the recoil tutorial.
+        public bool gotRecoil = false;
+
         // Gets set to 'true' when the player has learned a move at the end of the battle.
         private bool learnedMove = false;
 
@@ -927,6 +931,8 @@ namespace RM_BBTS
         // Ends the turn early.
         public void EndTurnEarly()
         {
+            // TODO: this skips the extra move messages (crit, recoil), so fix that.
+
             // Adds an end page so that the battle can end early.
             Page endPage = new Page(" ");
             endPage.OnPageOpenedAddCallback(textBox.Close);
@@ -1210,6 +1216,8 @@ namespace RM_BBTS
             gameManager.EnterOverworld();
 
             // Prepare for next battle.
+            gotCritical = false;
+            gotRecoil = false;
             learnedMove = false;
 
             // The battle gets initialized everytime one starts.
@@ -1361,10 +1369,15 @@ namespace RM_BBTS
                         {
                             trl.LoadFirstMoveTutorial();
                         }
-                        // Loads the cleared stat tutorial.
+                        // Loads the critical damage tutorial.
                         else if (!trl.clearedCritical && gotCritical)
                         {
                             trl.LoadCriticalDamageTutorial();
+                        }
+                        // Loads the recoil damage tutorial.
+                        else if (!trl.clearedRecoil && gotRecoil)
+                        {
+                            trl.LoadRecoilDamageTutorial();
                         }
                         // Loads the stat change tutorial.
                         else if (!trl.clearedStatChange && (player.HasStatModifiers() || opponent.HasStatModifiers()))
@@ -1581,8 +1594,9 @@ namespace RM_BBTS
 
                 }
 
-                // Turns this variable to false to reset it.
+                // Turns these tutorial variables to false so that they are reset.
                 gotCritical = false;
+                gotRecoil = false;
             }
 
             // If the text should match the bars.

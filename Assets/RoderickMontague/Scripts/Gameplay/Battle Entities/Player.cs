@@ -69,7 +69,8 @@ namespace RM_BBTS
             Move1 = MoveList.Instance.GenerateMove(moveId.torch);
             Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
             // Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
-            Move3 = null;
+            // Move3 = null;
+            Move3 = MoveList.Instance.GenerateMove(moveId.quickBurst);
             // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
 
             // sprite = data.sprite;

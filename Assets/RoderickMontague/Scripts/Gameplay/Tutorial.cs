@@ -32,6 +32,7 @@ namespace RM_BBTS
         // Sub-battle tutorials.
         public bool clearedFirstMove = false;
         public bool clearedCritical = false;
+        public bool clearedRecoil = false;
         public bool clearedStatChange = false;
         public bool clearedBurn = false;
         public bool clearedParalysis = false;
@@ -239,6 +240,32 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedCritical = true;
+        }
+
+        // Loads the recoil damage tutorial.
+        public void LoadRecoilDamageTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_recoil_01"], "trl_recoil_01"));
+                pages.Add(new Page(defs["trl_recoil_00"], "trl_recoil_00"));
+                pages.Add(new Page(defs["trl_recoil_02"], "trl_recoil_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<You just encountered recoil damage!>"));
+                pages.Add(new Page("<Recoil damage is damage done to the user for successfully performing their move.>"));
+                pages.Add(new Page("<A move’s description will state if it does recoil damage.>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedRecoil = true;
         }
 
         // Loads the stat change tutorial.

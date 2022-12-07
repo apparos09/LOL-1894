@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LoLSDK;
 using SimpleJSON;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace RM_BBTS
 {
@@ -163,7 +164,7 @@ namespace RM_BBTS
 
             set
             {
-                recoilPercent = Mathf.Clamp01(recoilPercent);
+                recoilPercent = Mathf.Clamp01(value);
             }
         }
 
@@ -502,6 +503,30 @@ namespace RM_BBTS
             return page;
         }
 
+        // Get move recoil page.
+        public Page GetMoveHitRecoilPage(BattleEntity entity)
+        {
+            Page page;
+
+            if (entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveHitRecoilMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveHitRecoilSpeakKey0()
+                );
+            }
+            else // The entity is an enemy.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveHitRecoilMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveHitRecoilSpeakKey1()
+                );
+            }
+
+
+            return page;
+        }
+
         // Get move burned page.
         public Page GetMoveBurnedPage()
         {
@@ -756,7 +781,14 @@ namespace RM_BBTS
                 target.Health -= damage;
 
                 // Damages the user with recoil.
-                user.Health -= damage * recoilPercent;
+                // Calculates recoil damage (always does at least 1 damage).
+                float recoilDamage = damage * recoilPercent;
+                if (recoilDamage < 1.0F)
+                    recoilDamage = 1.0F;
+
+                // Reduces the user's health.
+                // If it would kill the user, then they are left with 1 health.
+                user.Health = (user.Health - recoilDamage < 0.0F) ? 1.0F : user.Health - recoilDamage;
 
                 // Moved so that the user uses energy regardless of if the move goes off or not.
                 // Uses energy.
@@ -781,6 +813,20 @@ namespace RM_BBTS
                     //                         BattleMessages.Instance.GetMoveHitMessage(),
                     //                         BattleMessages.Instance.GetMoveHitSpeakKey()
                     //                         ));
+                }
+
+                // Adds the recoil message, and triggers the recoil tutorial if applicable.
+                if (recoilPercent != 0.0F)
+                {
+                    // Updates the user's HP for recoil damage.
+                    if (user is Player) // Player
+                        battle.UpdatePlayerHealthUI();
+                    else // Opponent
+                        battle.UpdateOpponentUI();
+
+                    // Add the recoil page.
+                    newPages.Add(GetMoveHitRecoilPage(user));
+                    battle.gotRecoil = true;
                 }
 
                 // Burn Infliction

@@ -197,6 +197,9 @@
     "btl_msg_mve_moveHit": "The move hit!",
     "btl_msg_mve_moveSuccess": "The move was successful!",
     "btl_msg_mve_moveCritical": "The move hit, and it did critical damage!",
+    "btl_msg_mve_moveRecoil": "The {0} took recoil damage!",
+    "btl_msg_mve_moveRecoil_alt00": "The player took recoil damage!",
+    "btl_msg_mve_moveRecoil_alt01": "The opponent took recoil damage!",
     "btl_msg_mve_moveNoEnergy": "{0} does not have enough energy to use their move!",
     "btl_msg_mve_moveNoEnergy_alt00": "The player does not have enough energy to use their move!",
     "btl_msg_mve_moveNoEnergy_alt01": "The opponent does not have enough energy to use their move!",
@@ -425,6 +428,10 @@
     "trl_critical_00": "You just encountered critical damage!",
     "trl_critical_01": "Critical damage is a damage bonus that has a chance of being applied for every directly damaging move.",
     "trl_critical_02": "Unless the move description states otherwise, every directly damaging move has the same chance of getting the critical bonus.",
+
+    "trl_recoil_00": "You just encountered recoil damage!",
+    "trl_recoil_01": "Recoil damage is damage done to the user for successfully performing their move.",
+    "trl_recoil_02": "A move’s description will state if it does recoil damage.",
 
     "trl_statChange_00": "You have encountered a stat change!",
     "trl_statChange_01": "Some moves can increase or decrease a battler’s stats, with said changes being in effect for the rest of the battle unless stated otherwise.",
