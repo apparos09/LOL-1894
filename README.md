@@ -16,13 +16,34 @@ Artist(s): Ross Bugden
 Source(s): GameSounds.xyz
 Link (Page): https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden
 Link (Direct): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ross%20Bugden%20-%20Ascension.mp3
+Link (Artist): https://soundcloud.com/rossbugden
+Notes: Copyright free for monetization, but artist must be credited, and a link must be provided if possible.
+* No specific credit format required as long as the artist is named and if possible, linked.
+* https://soundcloud.com/rossbugden
+
+=== Copyright ===
+"Ascension" (https://youtu.be/MzlEX7v0Qz0)
+Ross Bugden (https://soundcloud.com/rossbugden)
+Licensed under Creative Commons: By Attribution 4.0 International
+Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
 
 == Battle / Treasure (BGM) ==
 Song Title: Goodnightmare
 Artist: Kevin MacLeod
-Source(s): GameSounds.xyz
+Source(s): FreePD
 Link (GameSounds.xyz Page): https://freepd.com/electronic.php
 Link (GameSounds.xyz Audio): https://freepd.com/electronic.php
+Link (Website): https://incompetech.com/music/royalty-free/music.html
+Note(s): Artist must be credited for copyright free liscence use. Credits and related links shown below.
+* https://incompetech.com/music/royalty-free/faq.html
+* https://incompetech.com/music/royalty-free/licenses/
+
+=== Copyright ===
+"Goodnightmare"
+Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/
 
 == Boss (BGM) ==
 Song Title: Welcome to Chaos
@@ -30,12 +51,31 @@ Artist(s): Ross Bugden
 Source(s): GameSounds.xyz
 Link (GameSounds.xyz Page): https://gamesounds.xyz/?dir=Music%20-%20Ross%20Bugden
 Link (GameSounds.xyz Audio): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ross%20Bugden%20-%20Welcome%20to%20Chaos.mp3
+Link (Artist): https://soundcloud.com/rossbugden
+Notes: Copyright free for monetization, but artist must be credited, and a link must be provided if possible.
+* No specific credit format required as long as the artist is named and if possible, linked.
+* https://soundcloud.com/rossbugden
+
+=== Copyright ===
+"Welcome to Chaos" (https://youtu.be/q5w5VX4tAD4)
+Ross Bugden (https://soundcloud.com/rossbugden)
+Licensed under Creative Commons: By Attribution 4.0 International
+Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
 
 == Battle Won (Jingle) ==
-Song Title: Heroic Adventure / Cubase
+Song Title: Heroic Adventure
 Artist(s): Rafael Krux
 Source(s): FreePD
 Link: https://freepd.com/epic.php
+Note(s): edited to be a fanfare.
+	- Liscencing format: https://www.orchestralis.net/licensing-info.html
+
+=== Copyright ===
+"HEROIC ADVENTURE"
+Composed by Rafael Krux, Orchestralis.net
+Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
 
 == Battle Lost (Jingle) ==
 Song Title: Stratosphere
@@ -44,6 +84,12 @@ Source(s): GameSounds.xyz, FreePD
 Link (GameSounds.xyz Page): https://gamesounds.xyz/?dir=Public%20Domain/Cinematic
 Link (GameSounds.xyz Audio): https://gamesounds.xyz/Public%20Domain/Cinematic/Stratosphere.mp3
 Link (FreePD): https://freepd.com/Page2/
+
+=== Copyright ===
+"Stratosphere"
+Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/
 
 == Button Press (SFX) ==
 Song Title: Button 3

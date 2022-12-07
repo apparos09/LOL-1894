@@ -123,7 +123,7 @@ namespace RM_BBTS
             artistNameText.text = credit.artist;
             collectionNameText.text = credit.collection;
             sourceText.text = credit.source;
-            linkText.text = credit.link;
+            linkText.text = credit.link1;
             copyrightText.text = credit.copyright;
 
             // Updates the page number.
