@@ -13,11 +13,11 @@ namespace RM_BBTS
         // The run move for the player to select.
         private RunMove runMove;
 
-        // The base stats for the player.
-        private float baseMaxHealth = 30;
-        private float baseAttack = 30;
-        private float baseDefense = 30;
-        private float baseSpeed = 30;
+        // The base stats for the player. (30)
+        private float baseMaxHealth = 999;
+        private float baseAttack = 999;
+        private float baseDefense = 999;
+        private float baseSpeed = 999;
         private float baseMaxEnergy = 100;
 
         // Setting the player's stats.

@@ -22,7 +22,8 @@ namespace RM_BBTS
         // public List<DoorSaveData> doorData;
 
         // The door save data.
-        public DoorSaveData[] doorData = new DoorSaveData[18];
+        public DoorSaveData[] doorData = new DoorSaveData[OverworldManager.ROOM_COUNT];
+
 
 
         // Triggers for the tutorial for the game.

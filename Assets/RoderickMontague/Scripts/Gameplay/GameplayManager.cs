@@ -701,7 +701,7 @@ namespace RM_BBTS
         public int GetRoomsTotal()
         {
             // Total amount of rooms.
-            int roomsTotal = OverworldManager.DOOR_COUNT;
+            int roomsTotal = overworld.GetDoorCount();
 
             // Grabs for the door count to make sure it's consistent with what's acutally there.
             // TODO: this shouldn't be needed, so maybe take this out?

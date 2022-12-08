@@ -37,14 +37,14 @@ namespace RM_BBTS
         // The list of doors.
         public List<Door> doors = new List<Door>();
 
+        // The total amount of rooms in the game.
+        public const int ROOM_COUNT = 15;
+
         // The boss door.
         public Door bossDoor = null;
 
         // THe treasure doors.
         public List<Door> treasureDoors = null; 
-
-        // The amount of the doors.
-        public const int DOOR_COUNT = 18;
 
         // The amount of treasures for the game.
         public const int TREASURE_COUNT = 3;
@@ -307,6 +307,12 @@ namespace RM_BBTS
         public bool Initialized
         {
             get { return initialized; }
+        }
+        
+        // Returns the amount of doors.
+        public int GetDoorCount()
+        {
+            return doors.Count;
         }
 
         // Generates a room for the door.

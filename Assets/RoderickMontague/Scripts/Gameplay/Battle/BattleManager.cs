@@ -1535,6 +1535,7 @@ namespace RM_BBTS
                                 textBox.pages.Add(tempPage);
 
                                 // Update the UI when this page has been displayed.
+                                // This updates the health and energy levels.
                                 tempPage.OnPageOpenedAddCallback(gameManager.UpdateUI);
 
                                 // Saves the old stats.
