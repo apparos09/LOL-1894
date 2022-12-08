@@ -22,8 +22,11 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
+            // Increase battle order for move being performed.
+            battle.order++;
+
             // Checks if the user has a full charge.
-            if(user.HasFullCharge()) // User already has a full charge.
+            if (user.HasFullCharge()) // User already has a full charge.
             {
                 // Move failed page.
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(

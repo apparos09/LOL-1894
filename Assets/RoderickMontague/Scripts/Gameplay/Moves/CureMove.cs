@@ -24,6 +24,10 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
+            // Increase battle order for move being performed.
+            battle.order++;
+
+
             // Checks if the move is usable.
             if (Usable(user))
             {

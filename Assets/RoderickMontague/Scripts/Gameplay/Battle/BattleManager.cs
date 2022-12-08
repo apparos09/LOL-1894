@@ -62,8 +62,11 @@ namespace RM_BBTS
         // // The move the opponent has selected.
         // public Move opponentMove;
 
+        // The burn damage amount (1/16 damage).
+        public const float BURN_DAMAGE = 0.0625F;
+
         // The chance to skip a turn if paralyzed.
-        private float PARALAYSIS_SKIP_CHANCE = 0.1F;
+        public const float PARALAYSIS_SKIP_CHANCE = 0.1F;
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
@@ -74,16 +77,22 @@ namespace RM_BBTS
         // Becomes 'true' when the battle end state has been initialized.
         private bool initBattleEnd = false;
 
-        [HideInInspector]
         // Gets set to 'true' when a move gets a critical hit during a battle.
         // This is used to trigger the critical tutorial.
+        [HideInInspector]
         public bool gotCritical = false;
 
         // Gets set to 'true' when a move gets recoil during a battle.
         // This is used to trigger the recoil tutorial.
+        [HideInInspector]
         public bool gotRecoil = false;
 
+        // The order of the move, which refers to what place the current move is in.
+        [HideInInspector]
+        public int order = 0;
+
         // Gets set to 'true' when the player has learned a move at the end of the battle.
+        [HideInInspector]
         private bool learnedMove = false;
 
         [Header("UI")]
@@ -437,6 +446,9 @@ namespace RM_BBTS
             // Do not autosave unless the player actually wins.
             autoSaveOnExit = false;
 
+            // No moves have been performed.
+            order = 0;
+
             // No move has neen learned for this battle.
             learnedMove = false;
 
@@ -695,6 +707,9 @@ namespace RM_BBTS
             if (player.selectedMove != null && opponent.selectedMove != null &&
                 !gameManager.tutorial.TextBoxIsVisible())
             {
+                // Going to perform moves now.
+                order = 0;
+
                 // Checks who goes first.
                 bool playerFirst = false;
 
@@ -877,6 +892,9 @@ namespace RM_BBTS
             }
             else
             {
+                // No moves have been performed yet, so the order is 0.
+                order = 0;
+
                 // Gets the moves from the player and the opponent.
                 player.OnBattleTurn(); // does nothing right now.
 
@@ -936,7 +954,14 @@ namespace RM_BBTS
             // Adds an end page so that the battle can end early.
             Page endPage = new Page(" ");
             endPage.OnPageOpenedAddCallback(textBox.Close);
-            textBox.InsertAfterCurrentPage(endPage);
+
+            // Original - ended things early and inserted the page right after the current one.
+            // textBox.InsertAfterCurrentPage(endPage);
+
+            // New - inserts page at second to last index.
+            // This puts it before the other battler's move.
+            textBox.InsertPage(endPage, textBox.GetPageCount() - 1);
+
         }
 
         // Called when the turn is over.
@@ -1218,6 +1243,7 @@ namespace RM_BBTS
             // Prepare for next battle.
             gotCritical = false;
             gotRecoil = false;
+            order = 0;
             learnedMove = false;
 
             // The battle gets initialized everytime one starts.
@@ -1419,6 +1445,12 @@ namespace RM_BBTS
                     // Checks if the battle end has been initialized.
                     if (!initBattleEnd)
                     {
+                        // If the player is dead and the opponent is dead, the player is given 1 HP point.
+                        // This means that if both of them die at the same time, the player always wins.
+                        // This should make the game easier.
+                        if (player.IsDead() && opponent.IsDead())
+                            player.Health = 1;
+
                         // Returns to the overworld. TODO: account for game over.
                         // The player got a game over.
                         if (player.IsDead()) // game over

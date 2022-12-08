@@ -1002,7 +1002,7 @@ namespace RM_BBTS
         public void ApplyBurn(BattleManager battle)
         {
             // Does 1/16th damage.
-            Health -= MaxHealth * (1.0F / 16.0F);
+            Health -= MaxHealth * BattleManager.BURN_DAMAGE;
 
             // Checks the battle entity's type.
             if (this is Player) // Is the player, so update health UI for them.

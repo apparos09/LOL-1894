@@ -31,6 +31,9 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
+            // Increase battle order for move being performed.
+            battle.order++;
+
             // Running away text.
             // battle.turnText.Add(new Page(user.displayName + " is trying to run away!"));
 
@@ -39,7 +42,7 @@ namespace RM_BBTS
 
             // If the user isn't the player nothing will happen.
             // This should never be called for an entity.
-            if(user is Player) // Player
+            if (user is Player) // Player
             {
                 // Calls the run function.
                 // bool success = AccuracySuccessful(user, false);

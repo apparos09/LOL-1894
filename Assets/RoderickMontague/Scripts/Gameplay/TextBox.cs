@@ -184,6 +184,12 @@ namespace RM_BBTS
             return boxObject.activeSelf;
         }
 
+        // Gets the page count.
+        public int GetPageCount()
+        {
+            return pages.Count;
+        }
+
 
         // TODO: is this necessary?
         // Changes the page index.

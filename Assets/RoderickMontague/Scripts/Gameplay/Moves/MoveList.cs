@@ -20,7 +20,7 @@ namespace RM_BBTS
         private static MoveList instance;
 
         // The move ID count.
-        public const int MOVE_ID_COUNT = 18;
+        public const int MOVE_ID_COUNT = (int)moveId. kablam + 1;
 
         // The run move that is used to play through the turn.
         private static RunMove runMove;
@@ -524,12 +524,14 @@ namespace RM_BBTS
                     break;
 
                 case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "<Twister>", 1, 60, 1.0F, 0.2F);
+                    move = new Move(moveId.twister, "<Twister>", 1, 70, 1.0F, 0.3F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 100.0F;
 
-                    move.description = "<The user attacks the target, lowering the target's defense by 1 stage.>";
+                    move.CriticalChance = 0.0F;
+
+                    move.description = "<The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.>";
 
                     nameKey = "mve_twister_nme";
                     descKey = "mve_twister_dsc";

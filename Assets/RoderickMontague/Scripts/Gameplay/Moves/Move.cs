@@ -81,8 +81,8 @@ namespace RM_BBTS
         public float accuracyChangeChanceTarget = 0.0F; // chance
 
         // The boost for critical damage.
-        private float CRITICAL_BOOST = 1.125F;
-
+        public const float CRITICAL_BOOST = 1.125F;
+        
         // TODO: replace name with file citation for translation.
         // Move constructor
         public Move(moveId id, string name, int rank, float power, float accuracy, float energyUsage)
@@ -693,8 +693,12 @@ namespace RM_BBTS
 
 
         // Called when the move is being performed.
+        // order: the order number for the move. 1 = first move of the turn, 2 = second move of the turn.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
+            // Order number for this turn.
+            battle.order++;
+
             // The move inserts a message after the current page in the text box.
 
             // Takes a percentage of the user's max energy.
@@ -897,7 +901,9 @@ namespace RM_BBTS
                 }
 
                 // Tries ending the turn early.
-                TryEndTurnEarly(user, target, battle);
+                // This only happens if this isn't the second move being performed in the turn.
+                if(battle.order != 2)
+                    TryEndTurnEarly(user, target, battle);
 
                 return true;
             }

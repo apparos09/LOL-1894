@@ -371,7 +371,7 @@
     "mve_hpDrain3_nme": "Health Drain 3",
     "mve_hpDrain3_dsc": "The user attacks the target, gaining 40% of the damage dealt as health.",
     "mve_twister_nme": "Twister",
-    "mve_twister_dsc": "The user attacks the target, lowering the target's defense by 1 stage.",
+    "mve_twister_dsc": "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.",
     "mve_waterBlast_nme": "Water Blast",
     "mve_waterBlast_dsc": "The user attacks the target. This move has a 30% chance of lowering the target's attack by 1 stage.",
     "mve_rockBlast_nme": "Rock Blast",
