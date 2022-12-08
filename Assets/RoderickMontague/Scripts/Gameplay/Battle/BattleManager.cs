@@ -1312,13 +1312,11 @@ namespace RM_BBTS
             }
         }
 
-        // Plays the battle bgm.
+        // Plays the treasure bgm.
         public void PlayTreasureBgm()
         {
-            // Reuses the overworld BGM.
-            gameManager.audioManager.PlayBgm(
-                gameManager.overworld.overworldBgm, 
-                0.85F);
+            // Slower version of the battle theme.
+            gameManager.audioManager.PlayBgm(battleBgm, 0.8F);
         }
 
         // Plays the battle - boss bgm.
@@ -1330,8 +1328,10 @@ namespace RM_BBTS
         // Plays the battle results BGM.
         public void PlayBattleResultsBgm()
         {
-            // Shame as the treasure BGM.
-            PlayTreasureBgm();
+            // Reuses the overworld BGM at plays it at a lower pitch.
+            gameManager.audioManager.PlayBgm(
+                gameManager.overworld.overworldBgm,
+                0.8F);
         }
 
         // SFX //

@@ -114,7 +114,11 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            // ...
+            // The room count and door count don't match.
+            if (doors.Count != ROOM_COUNT)
+            {
+                Debug.LogWarning("The door count does not match the room count! Will cause save issues.");
+            }
         }
 
         // This function is called when the object becomes enabled and active

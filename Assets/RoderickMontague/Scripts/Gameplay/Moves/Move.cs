@@ -781,12 +781,18 @@ namespace RM_BBTS
                     battle.playerDamageTaken += (target.Health < damage) ? target.Health : damage;
                 }
 
+                // Saves the old target health.
+                float oldTargetHealth = target.Health;
+
                 // Damages the target.
                 target.Health -= damage;
 
                 // Damages the user with recoil.
                 // Calculates recoil damage (always does at least 1 damage).
-                float recoilDamage = damage * recoilPercent;
+
+                // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
+                float recoilDamage = damage * recoilPercent; // Old
+                // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New
                 if (recoilDamage < 1.0F)
                     recoilDamage = 1.0F;
 
