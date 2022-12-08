@@ -63,15 +63,22 @@ namespace RM_BBTS
             // LoadBattleData(baseData);
 
             // Starter moves.
-            // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
-            Move0 = MoveList.Instance.GenerateMove(moveId.risk);
-            // Move1 = MoveList.Instance.GenerateMove(moveId.wham);
-            Move1 = MoveList.Instance.GenerateMove(moveId.torch);
-            Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
-            // Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
-            // Move3 = null;
-            Move3 = MoveList.Instance.GenerateMove(moveId.quickBurst);
-            // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
+            // TEST
+            // // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
+            // Move0 = MoveList.Instance.GenerateMove(moveId.risk);
+            // // Move1 = MoveList.Instance.GenerateMove(moveId.wham);
+            // Move1 = MoveList.Instance.GenerateMove(moveId.torch);
+            // Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
+            // // Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
+            // // Move3 = null;
+            // Move3 = MoveList.Instance.GenerateMove(moveId.quickBurst);
+            // // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
+
+            // ACTUAL
+            Move0 = MoveList.Instance.GenerateMove(moveId.bam);
+            Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
+            Move2 = MoveList.Instance.GenerateMove(moveId.heal);
+            Move3 = null;
 
             // sprite = data.sprite;
 
@@ -134,8 +141,8 @@ namespace RM_BBTS
             base.LevelUp(levelRate, special, times);
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
-            Health += Mathf.Ceil(MaxHealth * LEVEL_UP_RESTORE_PERCENT * times);
-            Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_RESTORE_PERCENT * times);
+            Health += Mathf.Ceil(MaxHealth * LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
+            Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_ENERGY_RESTORE_PERCENT * times);
         }
 
         // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.

@@ -149,7 +149,8 @@ namespace RM_BBTS
         public const int STAT_LEVEL_INC_MAX = 3;
         public const int STAT_LEVEL_BONUS_INC = 3;
         public const int STAT_LEVEL_SPECIALITY_INC = 5;
-        public const float LEVEL_UP_RESTORE_PERCENT = 0.2F;
+        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.45F;
+        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.2F;
 
         // float chargeRate = 1.0F; // the rate for charging - may not be used.
 

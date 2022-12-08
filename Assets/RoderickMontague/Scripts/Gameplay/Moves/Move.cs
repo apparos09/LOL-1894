@@ -81,7 +81,7 @@ namespace RM_BBTS
         public float accuracyChangeChanceTarget = 0.0F; // chance
 
         // The boost for critical damage.
-        public const float CRITICAL_BOOST = 1.125F;
+        public const float CRITICAL_BOOST = 1.2F;
         
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -257,13 +257,20 @@ namespace RM_BBTS
             // The critical boost.
             float critBoost = (useCritBoost) ? CRITICAL_BOOST : 1.0F;
             // Tells the battle someone got a critical.
-            battle.gotCritical = true;
+            // This was put here so that it applies to all the moves.
+            battle.gotCritical = useCritBoost;
 
             // The damage amount.
             float damage;
 
             // Calculation
-            damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
+            // Original
+            // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
+
+            // New
+            // power * 0.75 * ((attack *1.125)/(2.75 * defense)) * critical
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (2.75F * target.GetDefenseModified())) * critBoost;
+
             damage = Mathf.Round(damage); // Round damage to whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
 
