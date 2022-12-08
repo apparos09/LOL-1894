@@ -957,7 +957,7 @@ namespace RM_BBTS
             // Save game results data.
             saveData.score = score;
             saveData.roomsCompleted = roomsCompleted;
-            saveData.roomsTotal = GetRoomsTotal();
+            // saveData.roomsTotal = GetRoomsTotal();
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
@@ -1077,12 +1077,7 @@ namespace RM_BBTS
             score = saveData.score;
             roomsCompleted = saveData.roomsCompleted;
             
-            // Room toal mismatch.
-            if(GetRoomsTotal() != saveData.roomsTotal)
-            {
-                // TODO: do something to address this.
-                // This should never happen though.
-            }
+            // Rooms total isn't sent over since that value shouldn't changed.
 
             // Sets the evolve waves.
             evolveWaves = saveData.evolveWaves;
@@ -1144,7 +1139,7 @@ namespace RM_BBTS
             useTutorial = true;
 
             saveData.score += 100;
-            saveData.roomsTotal = GetRoomsTotal();
+            // saveData.roomsTotal = GetRoomsTotal();
             // saveData.evolveWaves = 1;
             saveData.gameTime = 120;
             saveData.turnsPassed = saveData.roomsCompleted;

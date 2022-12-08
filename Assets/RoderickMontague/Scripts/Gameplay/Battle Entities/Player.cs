@@ -90,12 +90,18 @@ namespace RM_BBTS
             string pName = displayName;
             Sprite pSprite = sprite;
 
-            // Loads the data.
+            // Loads the data based on the unknown character.
             base.LoadBattleGameData(data);
 
-            // Set name and sprite.
+            // Set name and sprite since those are kept by the player.
             displayName = pName;
             sprite = pSprite;
+
+            // Set these values again to make sure they weren't changed.
+            id = 0;
+            preEvoId = 0;
+            evoId = 0;
+            statSpecial = specialty.none;
         }
 
         // Sets the data using the player's base stats.
