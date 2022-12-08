@@ -445,6 +445,9 @@
     "trl_paralysis_01": "When inflicted with paralysis, a battler will move slower and has a chance of skipping a turn.",
     "trl_paralysis_02": "Paralysis status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.",
 
+    "trl_firstBattleDeath_00": "Since this is your first battle, the simulation has completely restored your health and energy.",
+    "trl_firstBattleDeath_01": "Keep in mind that this is a one-time thing. If you lose all your health after this battle is over, you will get a game over.",
+
     "trl_treasure_00": "This is a treasure room!",
     "trl_treasure_01": "If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.",
     "trl_treasure_02": "If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.",

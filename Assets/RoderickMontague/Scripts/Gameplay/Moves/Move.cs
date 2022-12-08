@@ -271,7 +271,7 @@ namespace RM_BBTS
             // power * 0.75 * ((attack *1.125)/(2.75 * defense)) * critical
             damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (2.75F * target.GetDefenseModified())) * critBoost;
 
-            damage = Mathf.Round(damage); // Round damage to whole number.
+            damage = Mathf.Ceil(damage); // Round Up to Nearest Whole Number
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
 
             // Returns the damage amount.
@@ -804,15 +804,21 @@ namespace RM_BBTS
                     recoilDamage = 1.0F;
 
                 // Reduces the user's health.
-                // If it would kill the user, then they are left with 1 health.
-                user.Health = (user.Health - recoilDamage < 0.0F) ? 1.0F : user.Health - recoilDamage;
+                // OLD
+                // // If it would kill the user, then they are left with 1 health.
+                // user.Health = (user.Health - recoilDamage < 0.0F) ? 1.0F : user.Health - recoilDamage;
+                
+                // NEW
+                // Recoil can kill the user.
+                // If both the player and the opponent die, the player wins.
+                user.Health -= recoilDamage;
 
                 // Moved so that the user uses energy regardless of if the move goes off or not.
                 // Uses energy.
                 // user.Energy -= energyUsed; // energy
 
                 // Adds the new page.
-                if(useCritBoost) // Critical
+                if (useCritBoost) // Critical
                 {
                     newPages.Add(GetMoveHitCriticalPage());
 

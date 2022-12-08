@@ -36,6 +36,7 @@ namespace RM_BBTS
         public bool clearedStatChange = false;
         public bool clearedBurn = false;
         public bool clearedParalysis = false;
+        public bool clearedFirstBattleDeath = false;
 
         // Cleared the treasure tutorial.
         public bool clearedTreasure = false;
@@ -346,6 +347,30 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedParalysis = true;
+        }
+
+        // Loads the first battle death tutorial.
+        public void LoadFirstBattleDeathTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_firstBattleDeath_00"], "trl_firstBattleDeath_00"));
+                pages.Add(new Page(defs["trl_firstBattleDeath_01"], "trl_firstBattleDeath_01"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Since this is your first battle, the simulation has completely restored your health and energy.>"));
+                pages.Add(new Page("<Keep in mind that this is a one-time thing. If you lose all your health after this battle is over, you will get a game over.>"));
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedFirstBattleDeath = true;
         }
 
         // Loads the treasure tutorial.

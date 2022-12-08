@@ -82,8 +82,8 @@ namespace RM_BBTS
 
             // sprite = data.sprite;
 
-            // Generates and saves a run move.
-            runMove = new RunMove();
+            // For testing purposes.
+            // Health = 1;
 
             // Translates the player's name.
             LoadTranslation("bey_player_nme");
@@ -171,7 +171,7 @@ namespace RM_BBTS
         // Selects the run move. Only the player has the run move.
         public void SelectRun()
         {
-            selectedMove = runMove;
+            selectedMove = MoveList.Instance.RunMove;
         }
 
         // Update is called once per frame

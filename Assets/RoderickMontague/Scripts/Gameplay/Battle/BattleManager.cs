@@ -1379,6 +1379,40 @@ namespace RM_BBTS
             // If the text box is not visible.
             if (!textBox.IsVisible())
             {
+                // Prevents the user from dying if this is the first battle they're doing.
+                if(gameManager.useTutorial && !gameManager.tutorial.TextBoxIsVisible())
+                {
+                    // Loads first death tutorial.
+                    // If the opponent is dead then the player will win the battle anyway.
+                    if(gameManager.roomsCompleted == 0 && player.IsDead() && !opponent.IsDead())
+                    {
+                        // Need to reset these to finish the turn.
+                        player.selectedMove = null;
+                        opponent.selectedMove = null;
+
+                        // Prevents the player from dying during the first battle.
+                        player.SetHealthToMax();
+                        UpdatePlayerHealthUI();
+
+                        player.SetEnergyToMax();
+                        UpdatePlayerEnergyUI();
+
+                        // Tutorial.
+                        gameManager.tutorial.LoadFirstBattleDeathTutorial();
+                    }
+
+                    // TODO: if this is used, the HP hits 0, then goes to 1.
+                    // In practice this case should never be encountered.
+
+                    // If it's the first turn and the opponent is dead, give them 1 HP back.
+                    // The other tutorials won't happen if the enemy dies in one turn.
+                    if (opponent.IsDead() && turnsTaken <= 1)
+                    {
+                        opponent.Health = 1;
+                        UpdateOpponentUI();
+                    }
+                }
+
                 // If both entities are alive do battle calculations.
                 if (player.Health > 0 && opponent.Health > 0)
                 {
