@@ -28,10 +28,6 @@ namespace RM_BBTS
         public Button continueButton;
         public TMP_Text continueButtonText;
 
-        // Info
-        public GameObject infoMenu;
-        public TMP_Text infoButtonText;
-
         // Controls
         public GameObject controlsMenu;
         public TMP_Text controlsButtonText;
@@ -77,7 +73,6 @@ namespace RM_BBTS
                 newGameButtonText.text = defs["kwd_newGame"];
                 continueButtonText.text = defs["kwd_continue"];
 
-                infoButtonText.text = defs["kwd_info"];
                 controlsButtonText.text = defs["kwd_controls"];
                 settingsButtonText.text = defs["kwd_settings"];
                 creditsButtonText.text = defs["kwd_credits"];
@@ -172,14 +167,6 @@ namespace RM_BBTS
             {
                 StartGame();
             }            
-        }
-
-
-        // Toggles the info menu.
-        public void ToggleInfoMenu()
-        {
-            infoMenu.gameObject.SetActive(!infoMenu.gameObject.activeSelf);
-            mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
         }
 
         // Toggles the controls menu.

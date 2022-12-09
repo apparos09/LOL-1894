@@ -7,12 +7,15 @@
       "greatJob": 20,
       "onePlusOne": 30,
 
+      "initGame_msg": 24,
+      "kwd_loading": 12,
+
       "kwd_start": 12,
-      "kwd_info": 12,
       "kwd_controls": 12,
       "kwd_settings": 12,
       "kwd_stats": 12,
       "kwd_mainMenu": 12,
+
 
       "mve_run_nme": 16,
       "mve_run_dsc": 180,
@@ -142,7 +145,6 @@
     "kwd_start": "Start",
     "kwd_newGame": "New Game",
     "kwd_continue": "Continue",
-    "kwd_info": "Info",
     "kwd_controls": "Controls",
     "kwd_settings": "Settings",
     "kwd_credits": "Credits",

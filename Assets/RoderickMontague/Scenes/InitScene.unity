@@ -952,7 +952,7 @@ MonoBehaviour:
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
-    roomsTotal: 0
+    evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
   loadedData:
@@ -1285,7 +1285,7 @@ MonoBehaviour:
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
-    roomsTotal: 0
+    evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
   gameManager: {fileID: 0}
@@ -1374,8 +1374,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
