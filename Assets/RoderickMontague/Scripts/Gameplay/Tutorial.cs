@@ -38,11 +38,11 @@ namespace RM_BBTS
         public bool clearedParalysis = false;
         public bool clearedFirstBattleDeath = false;
 
-        // Cleared the treasure tutorial.
-        public bool clearedTreasure = false;
-
         // Cleared the overworld tutorial.
         public bool clearedOverworld = false;
+
+        // Cleared the treasure tutorial.
+        public bool clearedTreasure = false;
 
         // Cleared the boss tutorial.
         public bool clearedBoss = false;
@@ -373,33 +373,6 @@ namespace RM_BBTS
             clearedFirstBattleDeath = true;
         }
 
-        // Loads the treasure tutorial.
-        public void LoadTreasureTutorial()
-        {
-            // Page Object
-            List<Page> pages = new List<Page>();
-
-            // Pages
-            if(defs != null) // Translation
-            {
-                pages.Add(new Page(defs["trl_treasure_00"], "trl_treasure_00"));
-                pages.Add(new Page(defs["trl_treasure_01"], "trl_treasure_01"));
-                pages.Add(new Page(defs["trl_treasure_02"], "trl_treasure_02"));
-            }
-            else // Default
-            {
-                pages.Add(new Page("<This is a treasure room!>"));
-                pages.Add(new Page("<If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.>"));
-                pages.Add(new Page("<If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.>"));
-
-            }
-
-            // Loads the pages.
-            LoadTutorial(ref pages);
-
-            clearedTreasure = true;
-        }
-
         // Loads the overworld tutorial, whichs hows after you clear a room.
         public void LoadOverworldTutorial()
         {
@@ -432,6 +405,33 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedOverworld = true;
+        }
+
+        // Loads the treasure tutorial.
+        public void LoadTreasureTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if(defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_treasure_00"], "trl_treasure_00"));
+                pages.Add(new Page(defs["trl_treasure_01"], "trl_treasure_01"));
+                pages.Add(new Page(defs["trl_treasure_02"], "trl_treasure_02"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<This is a treasure room!>"));
+                pages.Add(new Page("<If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.>"));
+                pages.Add(new Page("<If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.>"));
+
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedTreasure = true;
         }
 
         // Loads for the boss tutorial.

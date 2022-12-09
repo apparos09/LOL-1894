@@ -11,11 +11,26 @@
       "kwd_loading": 12,
 
       "kwd_start": 12,
+      "kwd_newGame": 12,
+      "kwd_continue": 12,
       "kwd_controls": 12,
       "kwd_settings": 12,
+      "kwd_credits": 12,
+
+      "mnu_controls_instruct": 38,
+      "mnu_controls_desc": 240,
+
       "kwd_stats": 12,
       "kwd_mainMenu": 12,
 
+      "kwd_volume": 12,
+      "kwd_bgmVolume": 40,
+      "kwd_sfxVolume": 40,
+      "kwd_ttsVolume": 40,
+      "kwd_mute": 24,
+      "kwd_textToSpeech": 24,
+      "kwd_tutorial": 24,
+      "kwd_back": 12,
 
       "mve_run_nme": 16,
       "mve_run_dsc": 180,
@@ -121,7 +136,80 @@
       "mve_allOut_nme": 16,
       "mve_allOut_dsc": 180,
       "mve_kablam_dsc": 16,
-      "mve_kablam_nme": 180
+      "mve_kablam_nme": 180,
+
+
+
+      "trl_intro_00": 260,
+      "trl_intro_01": 260,
+      "trl_intro_02": 260,
+      "trl_intro_03": 260,
+      "trl_intro_04": 260,
+      "trl_intro_05": 260,
+      "trl_intro_06": 260,
+      "trl_intro_07": 260,
+
+      "trl_battle_00": 260,
+      "trl_battle_01": 260,
+      "trl_battle_02": 260,
+      "trl_battle_03": 260,
+      "trl_battle_04": 260,
+      "trl_battle_05": 260,
+      "trl_battle_06": 260,
+      "trl_battle_07": 260,
+
+      "trl_firstMove_00": 260,
+      "trl_firstMove_01": 260,
+      "trl_firstMove_02": 260,
+      "trl_firstMove_03": 260,
+      "trl_firstMove_04": 260,
+      "trl_firstMove_05": 260,
+      "trl_firstMove_06": 260,
+
+      "trl_critical_00": 260,
+      "trl_critical_01": 260,
+      "trl_critical_02": 260,
+
+      "trl_recoil_00": 260,
+      "trl_recoil_01": 260,
+      "trl_recoil_02": 260,
+
+      "trl_statChange_00": 260,
+      "trl_statChange_01": 260,
+      "trl_statChange_02": 260,
+
+      "trl_burn_00": 260,
+      "trl_burn_01": 260,
+      "trl_burn_02": 260,
+
+      "trl_paralysis_00": 260,
+      "trl_paralysis_01": 260,
+      "trl_paralysis_02": 260,
+
+      "trl_firstBattleDeath_00": 260,
+      "trl_firstBattleDeath_01": 260,
+
+      "trl_overworld_00": 260,
+      "trl_overworld_01": 260,
+      "trl_overworld_02": 260,
+      "trl_overworld_03": 260,
+      "trl_overworld_04": 260,
+      "trl_overworld_05": 260,
+      "trl_overworld_06": 260,
+
+      "trl_treasure_00": 260,
+      "trl_treasure_01": 260,
+      "trl_treasure_02": 260,
+
+      "trl_boss_00": 260,
+      "trl_boss_01": 260,
+
+      "trl_gameOver_00": 260,
+      "trl_gameOver_01": 260,
+      "trl_gameOver_02": 260,
+      "trl_gameOver_03": 260,
+      "trl_gameOver_04": 260
+
     }
   },
   "en": {
@@ -450,10 +538,6 @@
     "trl_firstBattleDeath_00": "Since this is your first battle, the simulation has completely restored your health and energy.",
     "trl_firstBattleDeath_01": "Keep in mind that this is a one-time thing. If you lose all your health after this battle is over, you will get a game over.",
 
-    "trl_treasure_00": "This is a treasure room!",
-    "trl_treasure_01": "If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.",
-    "trl_treasure_02": "If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.",
-
     "trl_overworld_00": "Now that you’ve tried out a battle, all the rooms are open, including the boss room.",
     "trl_overworld_01": "As mentioned before, the game ends when you beat the boss, who you can challenge at any time.",
     "trl_overworld_02": "You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.",
@@ -461,6 +545,10 @@
     "trl_overworld_04": "Remember that running away from battle is always an option, even against the final boss.",
     "trl_overworld_05": "Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.",
     "trl_overworld_06": "That’s all for now, so on with the game.",
+
+    "trl_treasure_00": "This is a treasure room!",
+    "trl_treasure_01": "If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.",
+    "trl_treasure_02": "If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.",
 
     "trl_boss_00": "Welcome to the boss room!",
     "trl_boss_01": "All you need to do is beat the boss to win the game! Good luck!",

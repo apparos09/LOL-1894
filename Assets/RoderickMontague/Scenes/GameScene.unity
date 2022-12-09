@@ -9255,7 +9255,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -290}
-  m_SizeDelta: {x: 192, y: 30}
+  m_SizeDelta: {x: 215, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1099455325
 MonoBehaviour:
@@ -12952,7 +12952,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 192, y: 40}
+  m_SizeDelta: {x: 215, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535945624
 MonoBehaviour:
@@ -13550,8 +13550,9 @@ MonoBehaviour:
   clearedStatChange: 0
   clearedBurn: 0
   clearedParalysis: 0
-  clearedTreasure: 0
+  clearedFirstBattleDeath: 0
   clearedOverworld: 0
+  clearedTreasure: 0
   clearedBoss: 0
   clearedGameOver: 0
 --- !u!4 &1635305063
