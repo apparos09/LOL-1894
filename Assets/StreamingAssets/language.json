@@ -26,9 +26,29 @@
       "kwd_tutorial": 24,
       "kwd_back": 12,
 
-      "kwd_mainMenu": 12,
-
       "kwd_stats": 12,
+      "kwd_level": 12,
+      "kwd_health": 12,
+      "kwd_attack": 12,
+      "kwd_defense": 12,
+      "kwd_speed": 12,
+      "kwd_energy": 12,
+
+      "kwd_rank": 12,
+      "kwd_power": 12,
+      "kwd_accuracy": 12,
+      "kwd_description": 20,
+
+
+      "kwd_mainMenu": 12,
+      "mmu_msg_prompt": 95,
+      "kwd_returnToMainMenu": 26,
+      "kwd_returnToGame": 26,
+
+      "kwd_save": 12,
+      "kwd_saveContinue": 24,
+      "kwd_saveQuit": 24,
+      "sve_msg_prompt": 95,
 
       "mve_run_nme": 16,
       "mve_run_dsc": 180,
@@ -245,22 +265,8 @@
     "kwd_tutorial": "Tutorial",
     "kwd_back": "Back",
 
-    "kwd_mainMenu": "Main Menu",
-    "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
-    "kwd_returnToMainMenu": "Return to Main Menu",
-    "kwd_returnToGame": "Return to Game",
 
     "kwd_stats": "Stats",
-
-    "kwd_save": "Save",
-    "kwd_saveContinue": "Save and Continue",
-    "kwd_saveQuit": "Save and Quit",
-    "sve_msg_prompt": "Would you like to save and continue the game, or save and quit the game?",
-    "sve_msg_savingGame": "Saving game...",
-    "sve_msg_saveComplete": "Saving data complete.",
-    "sve_msg_loadComplete": "Loading data complete",
-    "sve_msg_noData": "No save data was found",
-
     "kwd_level": "Level",
     "kwd_health": "Health",
     "kwd_attack": "Attack",
@@ -272,6 +278,23 @@
     "kwd_power": "Power",
     "kwd_accuracy": "Accuracy",
     "kwd_description": "Description",
+
+
+    "kwd_mainMenu": "Main Menu",
+    "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
+    "kwd_returnToMainMenu": "Return to Main Menu",
+    "kwd_returnToGame": "Return to Game",
+
+
+    "kwd_save": "Save",
+    "kwd_saveContinue": "Save and Continue",
+    "kwd_saveQuit": "Save and Quit",
+    "sve_msg_prompt": "Would you like to save and continue the game, or save and quit the game?",
+    "sve_msg_savingGame": "Saving game...",
+    "sve_msg_saveComplete": "Saving data complete.",
+    "sve_msg_loadComplete": "Loading data complete",
+    "sve_msg_noData": "No save data was found",
+
 
     "owd_door": "Door",
     "owd_bossDoor": "Boss Door",

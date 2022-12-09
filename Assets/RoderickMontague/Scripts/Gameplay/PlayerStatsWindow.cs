@@ -27,6 +27,9 @@ namespace RM_BBTS
         private RunMove runMove;
 
         [Header("Text")]
+        // Title Text
+        public TMP_Text titleText;
+
         // Text windows.
         public TMP_Text levelText;
         public TMP_Text healthText;
@@ -117,6 +120,7 @@ namespace RM_BBTS
             // Language definitions set.
             if(defs != null)
             {
+                // Now consults strings in the gameplay manager.
                 // levelString = defs["kwd_level"];
                 // healthString = defs["kwd_health"];
                 // attackString = defs["kwd_attack"];
@@ -124,6 +128,7 @@ namespace RM_BBTS
                 // speedString = defs["kwd_speed"];
                 // energyString = defs["kwd_energy"];
 
+                titleText.text = defs["kwd_stats"];
                 backButtonText.text = defs["kwd_back"];
 
                 rankString = defs["kwd_rank"];
