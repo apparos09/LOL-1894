@@ -17,9 +17,6 @@
       "mnu_controls_instruct": 38,
       "mnu_controls_desc": 240,
 
-      "kwd_stats": 12,
-      "kwd_mainMenu": 12,
-
       "kwd_volume": 12,
       "kwd_bgmVolume": 40,
       "kwd_sfxVolume": 40,
@@ -28,6 +25,10 @@
       "kwd_textToSpeech": 24,
       "kwd_tutorial": 24,
       "kwd_back": 12,
+
+      "kwd_mainMenu": 12,
+
+      "kwd_stats": 12,
 
       "mve_run_nme": 16,
       "mve_run_dsc": 180,
@@ -245,9 +246,8 @@
     "kwd_back": "Back",
 
     "kwd_mainMenu": "Main Menu",
-    "kwd_titleScreen": "Title Screen",
     "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
-    "kwd_returnToTitle": "Return to Title Screen",
+    "kwd_returnToMainMenu": "Return to Main Menu",
     "kwd_returnToGame": "Return to Game",
 
     "kwd_stats": "Stats",

@@ -228,7 +228,7 @@ namespace RM_BBTS
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
                 mainMenuPromptText.text = defs["mmu_msg_prompt"];
-                mainMenuYesText.text = defs["kwd_returnToTitle"];
+                mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
                 // String
