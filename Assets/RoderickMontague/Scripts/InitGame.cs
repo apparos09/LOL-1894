@@ -104,15 +104,16 @@ namespace RM_BBTS
         // Start is called just before any of the Update methods is called the first time.
         public void Start()
         {
-            // Grabs the language defs.
-            JSONNode defs = SharedState.LanguageDefs;
-
-            // Translate the text in case it's shown on screen from the game taking a while to initialize.
-            if (initText != null && defs != null)
-            {
-                // initText.text = defs["initGame_msg"]; // Initializing Game...
-                initText.text = defs["kwd_loading"]; // Loading
-            }
+            // Taken out since this probably doesn't need to be translated.
+            // // Grabs the language defs.
+            // JSONNode defs = SharedState.LanguageDefs;
+            // 
+            // // Translate the text in case it's shown on screen from the game taking a while to initialize.
+            // if (initText != null && defs != null)
+            // {
+            //     // Do this just in case 
+            //     // initText.text = defs["kwd_loading"]; // Loading
+            // }
         }
 
         private void OnDestroy()

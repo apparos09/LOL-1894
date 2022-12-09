@@ -7,9 +7,6 @@
       "greatJob": 20,
       "onePlusOne": 30,
 
-      "initGame_msg": 24,
-      "kwd_loading": 12,
-
       "kwd_start": 12,
       "kwd_newGame": 12,
       "kwd_continue": 12,
@@ -225,8 +222,6 @@
     "autoSave": "...Auto Saving Complete",
 
     "_stop_": "",
-    "initGame_msg": "Initializing Game...",
-    "kwd_loading": "Loading",
 
     "gameTitle": "Battle Bot Training Simulation",
 
