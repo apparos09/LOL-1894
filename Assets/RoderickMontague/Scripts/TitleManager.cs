@@ -18,6 +18,9 @@ namespace RM_BBTS
         // This is because saving won't be done by the time the scene switches, so make sure this text is set.
         public TMP_Text saveFeedbackText;
 
+        // The name of the game scene.
+        public const string GAME_SCENE_NAME = "GameScene";
+
         [Header("Main Menu")]
         // Menu
         public GameObject mainMenu;
@@ -52,6 +55,13 @@ namespace RM_BBTS
 
         // The back button text for the controls sebmenu.
         public TMP_Text controlsBackButtonText;
+
+        [Header("Animations")]
+        // If 'true', transition animations are used.
+        public bool useTransitions = true;
+
+        // The transition object.
+        public SceneTransition sceneTransition;
 
         // Awake is called when the script instance is loaded.
         private void Awake()
@@ -132,18 +142,22 @@ namespace RM_BBTS
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            // TODO: so it seems that you need to save the data for the game using the SDK.
-            // I say you load up the save data during the GameInit phase, but don't actually apply it unless 'Continue' is presed.
-            // You'll also need to setup an autosave async feature.
-        }
+        // // Start is called before the first frame update
+        // void Start()
+        // {
+        //     // TODO: so it seems that you need to save the data for the game using the SDK.
+        //     // I say you load up the save data during the GameInit phase, but don't actually apply it unless 'Continue' is presed.
+        //     // You'll also need to setup an autosave async feature.
+        // }
 
-        // Starts the game.
+        // Starts the game (general function for moving to the GameScene).
         public void StartGame()
         {
-            SceneManager.LoadScene("GameScene");
+            // If transitions should be used, do a delayed game start.
+            if (useTransitions)
+                sceneTransition.LoadScene(GAME_SCENE_NAME);
+            else
+                SceneManager.LoadScene(GAME_SCENE_NAME);
         }
 
         // Starts a new game.

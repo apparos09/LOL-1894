@@ -58,7 +58,7 @@ namespace RM_BBTS
                     if (instance == null)
                     {
                         // Makes a new settings object.
-                        GameObject go = new GameObject("Battle Messages");
+                        GameObject go = new GameObject("(singleton) Battle Messages");
 
                         // Adds the instance component to the new object.
                         instance = go.AddComponent<BattleMessages>();

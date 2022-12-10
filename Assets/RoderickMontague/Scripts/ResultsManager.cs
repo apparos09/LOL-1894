@@ -55,6 +55,20 @@ namespace RM_BBTS
         // TODO: hide this button when submitting the game.
         public TMP_Text mainMenuButtonText;
 
+        [Header("Animations")]
+        // If transitions should be used.
+        public bool useTransitions = true;
+
+        // The scene transition.
+        public SceneTransition sceneTransition;
+
+        // Awake is caleld when a script instance is being loaded.
+        private void Awake()
+        {
+            // Turns off the entrance animation if scene transitions shouldn't be used.
+            sceneTransition.useSceneEnterAnim = useTransitions;
+        }
+
         // Start is called before the first frame update
         void Start()
         {

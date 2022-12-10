@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
+using System.Data.Common;
 
 // TODO: do status effects.
 namespace RM_BBTS
@@ -1238,8 +1239,9 @@ namespace RM_BBTS
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityGameData();
 
-            // Hide opponent sprite.
+            // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
+            StopOpponentDeathAnimation();
 
             // Go to the overworld.
             gameManager.UpdateUI();
@@ -1401,6 +1403,20 @@ namespace RM_BBTS
             // Turn off the animation.
             StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));
 
+        }
+
+        // Plays the death animation for the opponent.
+        public void PlayOpponentDeathAnimation()
+        {
+            // Play animation by changing the value.
+            opponentAnimator.SetBool("isDead", true);
+        }
+
+        // Called to stop the death animation, which stays on until the player leaves the battle (animation doesn't loop).
+        public void StopOpponentDeathAnimation()
+        {
+            // Play animation by changing the value.
+            opponentAnimator.SetBool("isDead", false);
         }
 
         // A function called to turn off the damage animator once it has played.
@@ -1583,6 +1599,8 @@ namespace RM_BBTS
 
                                 // Play jingle, close the textbox, and go onto the results screen.
                                 bossPage.OnPageOpenedAddCallback(PlayBattleWonJng);
+                                bossPage.OnPageOpenedAddCallback(PlayOpponentDeathAnimation);
+
                                 bossPage.OnPageClosedAddCallback(textBox.Close);
                                 bossPage.OnPageClosedAddCallback(gameManager.ToResultsScene);
 
@@ -1601,6 +1619,7 @@ namespace RM_BBTS
 
                                 // Play the battle won jingle when the page is opened.
                                 winPage.OnPageOpenedAddCallback(PlayBattleWonJng);
+                                winPage.OnPageOpenedAddCallback(PlayOpponentDeathAnimation);
 
                                 textBox.pages.Add(winPage);
                             }

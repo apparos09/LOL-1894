@@ -36,6 +36,9 @@ namespace RM_BBTS
         // Becomes set to 'true' when postStart has been called.
         private bool calledPostStart = false;
 
+        // The name of the results scene.
+        public const string RESULTS_SCENE_NAME = "ResultsScene";
+
         [Header("Game Stats")]
 
         // The score for the game.
@@ -190,6 +193,13 @@ namespace RM_BBTS
         // // The jingle for losing a battle.
         // public AudioClip battleLostJng;
 
+        [Header("Animations")]
+        // Transitions should be used.
+        public bool useTransitions = true;
+
+        // The scene transition object.
+        public SceneTransition sceneTransition;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
@@ -239,6 +249,9 @@ namespace RM_BBTS
                 speedString = defs["kwd_speed"];
                 energyString = defs["kwd_energy"];
             }
+
+            // Turns off the entrance animation if scene transitions shouldn't be used.
+            sceneTransition.useSceneEnterAnim = useTransitions;
         }
 
         // Start is called before the first frame update
@@ -928,7 +941,10 @@ namespace RM_BBTS
             SubmitProgressComplete();
 
             // Go to the results scene.
-            SceneManager.LoadScene("ResultsScene");
+            if (useTransitions) // Transition
+                sceneTransition.LoadScene(RESULTS_SCENE_NAME);
+            else // Direct
+                SceneManager.LoadScene(RESULTS_SCENE_NAME);
         }
 
         // Generates the save data.
