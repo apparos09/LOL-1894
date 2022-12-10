@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SimpleJSON;
+using UnityEngine.SceneManagement;
 
 // TODO: do status effects.
 namespace RM_BBTS
@@ -202,6 +203,10 @@ namespace RM_BBTS
 
         // THe sound efect for a non-damaging move.
         public AudioClip moveEffectSfx;
+
+        [Header("Animations")]
+        // The opponent's animator.
+        public Animator opponentAnimator;
 
         // Start is called before the first frame update
         void Start()
@@ -1370,6 +1375,52 @@ namespace RM_BBTS
             PlayBattleResultsBgm();
 
             gameManager.audioManager.PlayJingle(battleLostJng, false);
+        }
+
+
+        // ANIMATIONS //
+        // Plays the oppon
+        public void PlayOpponentDamageAnimation()
+        {
+            // The parameter.
+            string parameter = "tookDamage";
+
+            // TODO: maybe add in the UI update for the health here too?
+
+            // TODO: tie the sound effect to the animation itself.
+            // Play sound effect.
+            PlayDamageTakenSfx();
+
+            // Play animation by changing the value, then change it again so that it only plays once.
+            opponentAnimator.SetBool(parameter, true);
+            
+            // Get the length of the animation.
+            // Added extra time to be safe - may be unneeded.
+            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length;
+
+            // Turn off the animation.
+            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));
+
+        }
+
+        // A function called to turn off the damage animator once it has played.
+        private IEnumerator AnimationTransitionTriggerBool(Animator animator, string parameter, float animTime, bool offValue)
+        {
+            // The wait time for the animation.
+            float waitTime = animTime;
+
+            // While the operation is going.
+            while (waitTime > 0.0F)
+            {
+                // Reduce by delta time.
+                waitTime -= Time.deltaTime;
+
+                // Tells the program to stall.
+                yield return null;
+            }
+
+            // Changes the animator so that the animation goes back.
+            animator.SetBool(parameter, offValue);
         }
 
 

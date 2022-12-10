@@ -329,6 +329,7 @@ namespace RM_BBTS
                         }
                     }
 
+                    // TODO: make it so that the enemy isn't too strong (use bugs, insects, and ufos).
                     // Unlocks three random doors.
                     for (int n = 0; n < 3 && battleDoors.Count > 0; n++)
                     {

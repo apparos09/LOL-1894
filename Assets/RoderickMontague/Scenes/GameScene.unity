@@ -1774,6 +1774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154329595}
   - component: {fileID: 154329596}
+  - component: {fileID: 154329597}
   m_Layer: 0
   m_Name: Opponent Sprite
   m_TagString: Untagged
@@ -1846,6 +1847,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &154329597
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154329594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b79d0ec88ab5dc42b07395898b33765, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &189590060
 GameObject:
   m_ObjectHideFlags: 0
@@ -9603,6 +9623,7 @@ MonoBehaviour:
   damageGivenSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
   damageTakenSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
   moveEffectSfx: {fileID: 8300000, guid: d221b6f7fec06c444b19c23f5a71ad0a, type: 3}
+  opponentAnimator: {fileID: 154329597}
 --- !u!114 &1163903608
 MonoBehaviour:
   m_ObjectHideFlags: 0

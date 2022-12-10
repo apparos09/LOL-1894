@@ -127,7 +127,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.poke: // Poke
-                    move = new Move(moveId.poke, "<Poke>", 1, 10.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.poke, "<Poke>", 1, 10.0F, 1.0F, 0.10F);
 
                     move.CriticalChance = 0.4F;
 
@@ -142,7 +142,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.slimeShot: // Slimeshot
-                    move = new Move(moveId.slimeShot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.05F);
+                    move = new Move(moveId.slimeShot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.14F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
@@ -154,7 +154,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.laserShot: // Lasershot (TODO: not working for osme reason)
-                    move = new Move(moveId.laserShot, "<Lasershot>", 1, 40.0F, 0.9F, 0.05F);
+                    move = new Move(moveId.laserShot, "<Lasershot>", 1, 40.0F, 0.9F, 0.12F);
 
                     move.description = "<A weak laser attack.>";
 
@@ -164,7 +164,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireShot: // Fireshot
-                    move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.05F);
+                    move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.14F);
                     move.BurnChance = 0.2F;
 
                     move.description = "<A weak fire attack with a burn chance of 20%.>";
@@ -175,7 +175,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecShot: // Electroshot
-                    move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.05F);
+                    move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.14F);
                     move.ParalysisChance = 0.2F;
 
                     move.description = "<A weak electric attack with a paralysis chance of 20%.>";
@@ -186,7 +186,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.screech: // Screech
-                    move = new Move(moveId.screech, "<Screech>", 1, 25.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.screech, "<Screech>", 1, 25.0F, 1.0F, 0.12F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.15F;
@@ -198,7 +198,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.slam: // Slam
-                    move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.05F);
+                    move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.10F);
                     move.CriticalChance = 0.6F;
 
                     move.description = "<An attack that has a critical hit chance of 60%.>";
@@ -230,7 +230,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnify: // Magnify
-                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.05F);
+                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.15F);
 
                     move.accuracyChangeUser = 1;
                     move.accuracyChangeChanceUser = 1.0F;
@@ -240,7 +240,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.heal: // Heal
-                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.4F);
+                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.40F);
                     (move as HealMove).healPercent = 0.125F;
 
                     move.description = "<The user heals 15% of their health.>";
@@ -284,7 +284,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.10F);
 
                     move.description = "<A weak, basic attack.>";
 
@@ -298,7 +298,7 @@ namespace RM_BBTS
 
                     // RANK 2
                 case moveId.laserBurst: // Laser Burst
-                    move = new Move(moveId.laserBurst, "<Laser Burst>", 2, 70.0F, 1.0F, 0.1F);
+                    move = new Move(moveId.laserBurst, "<Laser Burst>", 2, 70.0F, 1.0F, 0.18F);
 
                     move.description = "<A decent laser attack.>";
 
@@ -308,7 +308,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireBurst: // Fire Burst
-                    move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 65.0F, 0.85F, 0.11F);
+                    move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 65.0F, 0.85F, 0.20F);
                     move.BurnChance = 0.35F;
 
                     move.description = "<A decent fire attack that has a 35% chance of burning the target.>";
@@ -318,7 +318,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecBurst: // Electric Burst
-                    move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 65.0F, 0.85F, 0.12F);
+                    move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 65.0F, 0.85F, 0.20F);
                     move.ParalysisChance = 0.35F;
 
                     move.description = "<A decent electric attack that has a 35% chance of paralyzing the target.>";
@@ -328,7 +328,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.soundWave: // Sound Wave
-                    move = new Move(moveId.soundWave, "<Sound Wave>", 2, 65.0F, 1.0F, 0.1F);
+                    move = new Move(moveId.soundWave, "<Sound Wave>", 2, 65.0F, 1.0F, 0.18F);
                     
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 0.2F;
@@ -355,7 +355,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "<Scorch>", 2, 30, 0.9F, 0.20F);
+                    move = new Move(moveId.torch, "<Scorch>", 2, 30, 0.9F, 0.40F);
                     move.BurnChance = 1.0F;
 
                     move.description = "<A weak attack that always burns the target.>";
@@ -365,7 +365,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.2F);
+                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.4F);
                     move.ParalysisChance = 1.0F;
 
                     move.description = "<A weak attack that always paralyzes the target.>";
@@ -375,7 +375,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.motivate: // Motivate
-                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.5F);
+                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.4F);
                     
                     move.useAccuracy = false;
                     move.priority = -1;
@@ -431,7 +431,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.risk: // Risk
-                    move = new StatChangeMove(moveId.risk, "Risk", 2, 0.1F);
+                    move = new StatChangeMove(moveId.risk, "Risk", 2, 0.20F);
 
                     move.attackChangeUser = 2;
                     move.attackChangeChanceUser = 1.0F;
@@ -461,7 +461,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.1F);
+                    move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.15F);
 
                     move.description = "<The user hits the target with a decent, basic attack.>";
 
@@ -472,7 +472,7 @@ namespace RM_BBTS
 
                 // RANK 3
                 case moveId.laserBlast: // Laser Blast
-                    move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 100.0F, 0.8F, 0.15F);
+                    move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 100.0F, 0.8F, 0.27F);
 
                     move.description = "<A strong laser blast.>";
 
@@ -481,7 +481,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireBlast: // Fire Blast
-                    move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 90.0F, 0.8F, 0.15F);
+                    move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 90.0F, 0.8F, 0.30F);
                     move.BurnChance = 0.5F;
 
                     move.description = "<A strong fire blast with a 50% chance of burning the target.>";
@@ -491,7 +491,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecBlast: // Electric Blast
-                    move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 90.0F, 0.8F, 0.15F);
+                    move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 90.0F, 0.8F, 0.30F);
                     move.ParalysisChance = 0.5F;
 
                     move.description = "<A strong electric blast with a 50% chance of paralyzing the target.>";
@@ -501,7 +501,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 1.0F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
@@ -538,7 +538,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.waterBlast: // Water Blast
-                    move = new Move(moveId.waterBlast, "<Water Blast>", 3, 90, 0.8F, 0.15F);
+                    move = new Move(moveId.waterBlast, "<Water Blast>", 3, 90, 0.8F, 0.20F);
 
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 30.0F;
@@ -550,7 +550,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.rockBlast: // Rock Blast
-                    move = new Move(moveId.rockBlast, "<Rock Blast>", 3, 90, 0.8F, 0.15F);
+                    move = new Move(moveId.rockBlast, "<Rock Blast>", 3, 90, 0.8F, 0.20F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 30.0F;
@@ -562,7 +562,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.airBlast: // Air Blast
-                    move = new Move(moveId.airBlast, "<Air Blast>", 3, 90, 0.8F, 0.15F);
+                    move = new Move(moveId.airBlast, "<Air Blast>", 3, 90, 0.8F, 0.20F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 30.0F;
@@ -575,7 +575,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.quake: // Quake
-                    move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.25F);
+                    move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.20F);
 
                     move.CriticalChance = 0.3F;
                     move.RecoilPercent = 0.4F;
@@ -609,7 +609,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 120, 0.9F, 0.10F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 120, 0.9F, 0.18F);
 
                     move.description = "<A move that gets weaker the longer the battle goes on.>";
 
@@ -631,7 +631,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "<Kablam>", 3, 30.0F, 1.0F, 0.05F);
+                    move = new Move(moveId.kablam, "<Kablam>", 3, 30.0F, 1.0F, 0.20F);
 
                     move.description = "<A strong, but basic attack.>";
 

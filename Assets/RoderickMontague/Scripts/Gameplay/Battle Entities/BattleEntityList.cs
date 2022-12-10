@@ -374,12 +374,12 @@ namespace RM_BBTS
                     data.displayName = "<Comet>";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
-                    data.maxHealth = 90;
+                    data.maxHealth = 100;
                     data.health = data.maxHealth;
 
-                    data.attack = 30;
-                    data.defense = 25;
-                    data.speed = 105;
+                    data.attack = 25;
+                    data.defense = 45;
+                    data.speed = 80;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -581,7 +581,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 28;
-                    data.defense = 4;
+                    data.defense = 12;
                     data.speed = 28;
 
                     data.maxEnergy = 100;
@@ -604,7 +604,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 58;
-                    data.defense = 8;
+                    data.defense = 16;
                     data.speed = 58;
 
                     data.maxEnergy = 100;
@@ -761,12 +761,12 @@ namespace RM_BBTS
                     data.displayName = "<Vortex>";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
-                    data.maxHealth = 60;
+                    data.maxHealth = 80;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 130;
-                    data.speed = 20;
+                    data.attack = 45;
+                    data.defense = 100;
+                    data.speed = 25;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;

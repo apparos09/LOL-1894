@@ -908,8 +908,8 @@ namespace RM_BBTS
                     // battle.gameManager.UpdatePlayerEnergyUI();
                     battle.UpdateOpponentUI(); // Updates enemy health bar.
 
-                    // Play sound effect.
-                    battle.PlayDamageTakenSfx();
+                    // Play opponent's damage animation.
+                    battle.PlayOpponentDamageAnimation();
                 }
                 else // Not the player.
                 {
