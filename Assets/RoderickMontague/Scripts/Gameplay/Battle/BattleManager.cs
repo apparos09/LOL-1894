@@ -1062,7 +1062,7 @@ namespace RM_BBTS
         }
 
         // Call this function to open the treasure.
-        public void OpenTreasure()
+        public void TakeTreasure()
         {
             // Hide prompt.
             treasurePrompt.gameObject.SetActive(false);
@@ -1518,8 +1518,8 @@ namespace RM_BBTS
                             if (opponent is Treasure) // Is Treasure
                             {
                                 textBox.pages.Add(new Page(
-                                    BattleMessages.Instance.GetOpenTreasureMessage(),
-                                    BattleMessages.Instance.GetOpenTreasureSpeakKey()
+                                    BattleMessages.Instance.GetTakeTreasureMessage(),
+                                    BattleMessages.Instance.GetTakeTreasureSpeakKey()
                                     ));
                             }
                             else if(opponent is Boss) // Final boss beaten.

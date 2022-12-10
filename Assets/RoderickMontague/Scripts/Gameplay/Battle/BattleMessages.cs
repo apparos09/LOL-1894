@@ -798,7 +798,7 @@ namespace RM_BBTS
 
         // OPEN TREASURE //
         // The treasure was opened.
-        public string GetOpenTreasureMessage()
+        public string GetTakeTreasureMessage()
         {
             // The message string.
             string msg = "";
@@ -807,21 +807,21 @@ namespace RM_BBTS
             if (defs != null)
             {
                 // Grabs the translated message.
-                msg = defs["btl_msg_openTreasure"];
+                msg = defs["btl_msg_takeTreasure"];
             }
             else
             {
                 // Grabs the default mesage.
-                msg = "<The player has opened the treasure!>";
+                msg = "<The player has taken the treasure!>";
             }
 
             return msg;
         }
 
         // Gets the treasure opened speak key.
-        public string GetOpenTreasureSpeakKey()
+        public string GetTakeTreasureSpeakKey()
         {
-            return "btl_msg_openTreasure";
+            return "btl_msg_takeTreasure";
         }
 
 
