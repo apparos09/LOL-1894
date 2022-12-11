@@ -8,6 +8,15 @@ TextureImporter:
   - first:
       213: 1962524685468842795
     second: door_boss_1
+  - first:
+      213: 338395125187173781
+    second: door_boss_2
+  - first:
+      213: 4875518173636282051
+    second: door_boss_3
+  - first:
+      213: 4620667733755939123
+    second: door_boss_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -157,8 +166,8 @@ TextureImporter:
       name: door_boss_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -170,6 +179,69 @@ TextureImporter:
       bones: []
       spriteID: b2b3e44bdc94c3b10800000000000000
       internalID: 1962524685468842795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door_boss_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d518ec29832b400800000000000000
+      internalID: 338395125187173781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door_boss_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c64d8382f159a340800000000000000
+      internalID: 4875518173636282051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door_boss_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339c1af82d8ef1040800000000000000
+      internalID: 4620667733755939123
       vertices: []
       indices: 
       edges: []

@@ -12653,11 +12653,15 @@ MonoBehaviour:
   bossDoor: {fileID: 0}
   treasureDoors: []
   doorUnlockedSprites:
-  - {fileID: -7341407202210888751, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
   - {fileID: -8382612525795312103, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 7838470453065261056, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: -5002754140070859814, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: 1615313635275909200, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
   doorLockedSprites:
-  - {fileID: 6623719234781301212, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
-  - {fileID: 6058075553308899857, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 5320238743089952348, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 5592308634772503844, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: -9197095005046274868, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: 8824299224265570810, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
   bossDoorUnlockedSprite: {fileID: -8109040187468722232, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   bossDoorLockedSprite: {fileID: 1962524685468842795, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   ui: {fileID: 1666888079}
