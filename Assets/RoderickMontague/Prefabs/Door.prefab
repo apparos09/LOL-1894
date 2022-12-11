@@ -76,6 +76,8 @@ MonoBehaviour:
   lockedSprite: {fileID: 6623719234781301212, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
   isBossDoor: 0
   isTreasureDoor: 0
+  animate: 1
+  animator: {fileID: 2947256539247354551}
 --- !u!1 &8247993994040814615
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8247993994040814612}
   - component: {fileID: 8247993994040814613}
+  - component: {fileID: 2947256539247354551}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -158,3 +161,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2947256539247354551
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247993994040814615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1b56b5ec9156b247b31fc5b47f0abf9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

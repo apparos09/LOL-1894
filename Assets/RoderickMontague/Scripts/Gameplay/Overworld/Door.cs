@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -48,9 +49,23 @@ namespace RM_BBTS
         // Says whether the door is locked or not.
         private bool locked = false;
 
+        [Header("Animations")]
+        // If set to 'true', the door gets animated.
+        public bool animate = true;
+
+        // The animator for the door.
+        public Animator animator;
+
+        // This is used to set the animation for the door.
+        // For some reason setting it when generating the room didn't work.
+        public int doorType = 0;
+
         // Awake is called when the script instance is loaded.
         private void Awake()
         {
+            // Animator enabled set.
+            animator.enabled = !animate;
+
             // Switch out the sprite.
             Locked = locked;
         }
@@ -58,7 +73,9 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            
+            // Blue (Test)
+            // animator.SetInteger("doorType", 2);
+            // SetDoorOpenAnimation(2);
         }
 
         // Called to lock/unlock the door.
@@ -70,18 +87,89 @@ namespace RM_BBTS
             {
                 locked = value;
 
-                // Changes the sprite.
-                if (locked) // closed
-                    sprite.sprite = lockedSprite;
-                else // open
-                    sprite.sprite = unlockedSprite;
+                // Updates the sprite for the door.
+                UpdateSprite();
+
+                // // Changes the sprite.
+                // if (locked) // closed
+                // {
+                //     sprite.sprite = lockedSprite;
+                // }
+                // else // open
+                // {
+                //     sprite.sprite = unlockedSprite;
+                // }
             }
         }
+
+        // Sets the door animation.
+        public void SetDoorOpenAnimation(int doorType)
+        {
+            // This won't show unless the door is open.
+
+            // Sets the integer for the door type.
+            animator.SetInteger("doorType", doorType);
+        }
+
+        // // Sets the door animation to the white door (default).
+        // public void SetDoorOpenAnimationDefault()
+        // {
+        //     SetDoorOpenAnimation(0);
+        // }
+        // 
+        // // Sets the door animation to the boss door.
+        // public void SetDoorOpenAnimationBoss()
+        // {
+        //     SetDoorOpenAnimation(1);
+        // }
+        // 
+        // // Sets the door animation to the blue door.
+        // public void SetDoorOpenAnimationBlue()
+        // {
+        //     SetDoorOpenAnimation(2);
+        // }
+        // 
+        // // Sets the door animation to the yellow door.
+        // public void SetDoorOpenAnimationYellow()
+        // {
+        //     SetDoorOpenAnimation(3);
+        // }
+        // 
+        // // Sets the door animation to the green door.
+        // public void SetDoorOpenAnimationGreen()
+        // {
+        //     SetDoorOpenAnimation(4);
+        // }
+        // 
+        // // Sets the door animation to the purple door.
+        // public void SetDoorOpenAnimationPurple()
+        // {
+        //     SetDoorOpenAnimation(5);
+        // }
 
         // Updates the sprite.
         public void UpdateSprite()
         {
             sprite.sprite = (locked) ? lockedSprite : unlockedSprite;
+
+            // Checks to see if the door should be animated.
+            if(animate)
+            {
+                // Checks to see if the door is locked.
+                if (locked) // Turn off animation.
+                {
+                    animator.enabled = false;
+                }
+                else // Turn on the animation.
+                {
+                    animator.enabled = true;
+                }
+            }
+            else
+            {
+                animator.enabled = false;
+            }
+            
         }
 
         // Generates the save data.
@@ -117,10 +205,16 @@ namespace RM_BBTS
 
         // The mouse_touch class will be used to send the door to the overworld manager.
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Update is called once per frame
+        void Update()
+        {
+            // If animating the door, and it is enabled.
+            if(animate && animator.enabled)
+            {
+                // Sets the right animation.
+                if (doorType != animator.GetInteger("doorType"))
+                    animator.SetInteger("doorType", doorType);
+            }
+        }
     }
 }

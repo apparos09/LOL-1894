@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Reflection;
 
 namespace RM_BBTS
 {
@@ -91,6 +92,12 @@ namespace RM_BBTS
         // The unlocked and locked boss door sprites.
         public Sprite bossDoorUnlockedSprite;
         public Sprite bossDoorLockedSprite;
+
+        // The door type integers for setting the animations.
+        public List<int> doorTypes = new List<int>();
+
+        // The boss door type integer.
+        public int bossDoorType = 0;
 
         [Header("UI")]
         
@@ -377,6 +384,7 @@ namespace RM_BBTS
                 // Replaces the sprites.
                 door.unlockedSprite = bossDoorUnlockedSprite;
                 door.lockedSprite = bossDoorLockedSprite;
+                door.doorType = bossDoorType;
 
                 // Saves boss door. The most recent door is considered the boss door.
                 bossDoor = door;
@@ -411,6 +419,9 @@ namespace RM_BBTS
                 // Replaces the sprites.
                 door.unlockedSprite = doorUnlockedSprites[index];
                 door.lockedSprite = doorLockedSprites[index];
+                // door.SetDoorOpenAnimation(doorTypes[index]);
+                door.doorType = doorTypes[index];
+
             }
 
             // Sets the level.

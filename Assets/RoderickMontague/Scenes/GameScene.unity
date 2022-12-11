@@ -12664,6 +12664,8 @@ MonoBehaviour:
   - {fileID: 8824299224265570810, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
   bossDoorUnlockedSprite: {fileID: -8109040187468722232, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   bossDoorLockedSprite: {fileID: 1962524685468842795, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  doorTypes: 02000000030000000400000005000000
+  bossDoorType: 1
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
