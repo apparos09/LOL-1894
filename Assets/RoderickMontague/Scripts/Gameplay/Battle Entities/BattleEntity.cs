@@ -626,6 +626,7 @@ namespace RM_BBTS
             attackMod = 0;
             defenseMod = 0;
             speedMod = 0;
+            accuracyMod = 0;
         }
 
         // Resets the status effects.

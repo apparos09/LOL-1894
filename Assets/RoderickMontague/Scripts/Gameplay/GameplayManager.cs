@@ -324,7 +324,7 @@ namespace RM_BBTS
             {
                 tutorial.LoadIntroTutorial();
 
-                // If there are enough doors to lock some down.
+                // If there are enough doors to lock, lock down some.
                 // I did a +1 so that the boss room is also ignored.
                 if(overworld.treasureDoors.Count + 1 != overworld.doors.Count)
                 {
@@ -507,10 +507,14 @@ namespace RM_BBTS
                     break;
 
                 case gameState.overworld: // Overworld
-                    
+
                     // If tutorial text isn't being shown, enable the save button.
-                    if(!tutorial.TextBoxIsVisible())
+                    // This may still be disabled elsewhere depending on where the tutorial is placed.
+                    if (!tutorial.TextBoxIsVisible())
                         saveButton.interactable = true;
+                    else
+                        saveButton.interactable = false;
+
                     break;
                 case gameState.battle: // Battle
                     // Can't save during battle.
@@ -728,8 +732,20 @@ namespace RM_BBTS
             mouseTouchInput.gameObject.SetActive(true);
 
             // If in the overworld, enable the save button.
-            if (state == gameState.overworld)
-                saveButton.interactable = true;
+            // The player can't save if they haven't completed the tutorial battle (while in the tutorial).
+            if (state == gameState.overworld) // Might be able to save during overworld.
+            {
+                // The save button won't be activated if the first tutorial battle hasn't been cleared.
+                if(useTutorial && roomsCompleted == 0)
+                    saveButton.interactable = false;
+                else
+                    saveButton.interactable = true;
+            }
+            else if (state == gameState.battle) // Can't save during battle.
+            {
+                saveButton.interactable = false;
+            }
+                
 
             // TODO: Don't count tutorial reading to game time?
             // pausedTimer = false;
@@ -783,7 +799,10 @@ namespace RM_BBTS
 
             // The intro text has already been shown, but not the overworld text.
             if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
+            {
                 tutorial.LoadOverworldTutorial();
+            }
+                
         }
 
         // Call to enter the battle world.
@@ -828,6 +847,7 @@ namespace RM_BBTS
                     // If it's the battle tutorial being loaded.
                     if (!tutorial.clearedBattle)
                     {
+                        // Load the battle tutorial.
                         tutorial.LoadBattleTutorial();
 
                         // Unlocks all the doors since the first battle has started.
@@ -1084,6 +1104,12 @@ namespace RM_BBTS
             {
                 overworld.doors[i].LoadSaveData(saveData.doorData[i]);
             }
+
+            // NOTE: the doors are all unlocked when the first battle begins (they are locked during the intro tutorial).
+            // To avoid the doors staying locked from a saved tutorial game, the save button is disabled until the first battle is done.
+            // This only goes for the tutorial though. The tutorial can't be turned on after the game starts normally...
+            // So this exploit doesn't need to be addressed. 
+            // By extension, the intro will always be cleared.
 
             // Saves the tutorial values.
             tutorial.clearedIntro = saveData.clearedIntro;

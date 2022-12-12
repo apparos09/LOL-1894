@@ -1546,7 +1546,6 @@ namespace RM_BBTS
                         // Loads the stat change tutorial.
                         else if (!trl.clearedStatChange && (player.HasStatModifiers() || opponent.HasStatModifiers()))
                         {
-                            // TODO: this keeps getting called more than once. Fix it!
                             trl.LoadStatChangeTutorial();
                         }
                         // Loads the burn tutorial.
