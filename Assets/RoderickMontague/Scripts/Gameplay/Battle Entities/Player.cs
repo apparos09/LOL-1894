@@ -20,6 +20,10 @@ namespace RM_BBTS
         private float baseSpeed = 30;
         private float baseMaxEnergy = 100;
 
+        // Restoration percents.
+        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.60F;
+        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.50F;
+
         // Setting the player's stats.
         protected new void Awake()
         {
@@ -81,9 +85,6 @@ namespace RM_BBTS
             Move3 = null;
 
             // sprite = data.sprite;
-
-            // For testing purposes.
-            // Health = 1;
 
             // Translates the player's name.
             LoadTranslation("bey_player_nme");

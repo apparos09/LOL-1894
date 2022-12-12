@@ -6,6 +6,7 @@ using TMPro;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
 using System.Data.Common;
+using static UnityEngine.GraphicsBuffer;
 
 // TODO: do status effects.
 namespace RM_BBTS
@@ -685,29 +686,17 @@ namespace RM_BBTS
             }
         }
 
-        // Apply burn to the player.
-        private void ApplyPlayerBurn()
-        {
-            if (player.burned)
-                player.ApplyBurn(this);
-        }
-
-        // Apply burn to the opponent.
-        private void ApplyOpponentBurn()
-        {
-            if (opponent.burned)
-                opponent.ApplyBurn(this);
-        }
-
         // Called to perform the player's move.
         private void PerformPlayerMove()
         {
-            player.selectedMove.Perform(player, opponent, this);
+            order++;
+            player.selectedMove.Perform(player, opponent, this); 
         }
 
         // Called to perform the opponent's move.
         private void PerformOpponentMove()
         {
+            order++;
             opponent.selectedMove.Perform(opponent, player, this);
         }
 
@@ -792,6 +781,7 @@ namespace RM_BBTS
                         );
 
                     playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
+                    playerMovePage.OnPageOpenedAddCallback(PostPerformMove);
                 }
 
                 // OPPONENT
@@ -819,7 +809,9 @@ namespace RM_BBTS
                     opponentMovePage = new Page(
                         BattleMessages.Instance.GetMoveUsedMessage(opponent.displayName, opponent.selectedMove.Name),
                         BattleMessages.Instance.GetMoveUsedSpeakKey1());
+                    
                     opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
+                    opponentMovePage.OnPageOpenedAddCallback(PostPerformMove);
                 }
                 
 
@@ -914,6 +906,26 @@ namespace RM_BBTS
             }
         }
 
+        // Any checks that should be run after a move ahs been performed.
+        public void PostPerformMove()
+        {
+            TryEndTurnEarly();
+        }
+
+        // Apply burn to the player.
+        private void ApplyPlayerBurn()
+        {
+            if (player.burned)
+                player.ApplyBurn(this);
+        }
+
+        // Apply burn to the opponent.
+        private void ApplyOpponentBurn()
+        {
+            if (opponent.burned)
+                opponent.ApplyBurn(this);
+        }
+
 
         // Called when the player attempts to run away. TODO: have the enemy's move still go off if the run fails.
         public void RunAway()
@@ -955,12 +967,33 @@ namespace RM_BBTS
             // Returns the success of the operation.
             // return success;
                 
+        }        
+
+        // Attempt to end the turn early.
+        // Tries to end the turn early if one of the entities is dead.
+        public bool TryEndTurnEarly()
+        {
+            // The turn won't end early if the battle would normally end at this point anyway.
+            if (order <= 0 || order >= 2)
+                return false;
+
+            // The user or the target is dead.
+            if (player.IsDead() || opponent.IsDead())
+            {
+                // Ends the turn early.
+                EndTurnEarly();
+                return true;
+            }
+            else // Don't end the battle early.
+            {
+                return false;
+            }
         }
 
         // Ends the turn early.
         public void EndTurnEarly()
         {
-            // TODO: this skips the extra move messages (crit, recoil), so fix that.
+            // NOTE: this doesn't skip messages about paralysis and burn from the killing move, but I think that's fine.
 
             // Adds an end page so that the battle can end early.
             Page endPage = new Page(" ");
@@ -972,7 +1005,6 @@ namespace RM_BBTS
             // New - inserts page at second to last index.
             // This puts it before the other battler's move.
             textBox.InsertPage(endPage, textBox.GetPageCount() - 1);
-
         }
 
         // Called when the turn is over.

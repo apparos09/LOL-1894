@@ -681,31 +681,11 @@ namespace RM_BBTS
                 battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, pages);
         }
 
-        // TURN OTHER //
-        // Tries to end the turn early if one of the entities is dead.
-        public bool TryEndTurnEarly(BattleEntity user, BattleEntity target, BattleManager battle)
-        {
-            // The user or the target is dead.
-            if (user.IsDead() || target.IsDead())
-            {
-                // Ends the turn early.
-                battle.EndTurnEarly();
-                return true;
-            }
-            else // Don't end the battle early.
-            {
-                return false;
-            }
-        }
-
 
         // Called when the move is being performed.
         // order: the order number for the move. 1 = first move of the turn, 2 = second move of the turn.
         public virtual bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // Order number for this turn.
-            battle.order++;
-
             // The move inserts a message after the current page in the text box.
 
             // Takes a percentage of the user's max energy.
@@ -800,7 +780,7 @@ namespace RM_BBTS
                 // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
                 float recoilDamage = damage * recoilPercent; // Old
                 // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New
-                if (recoilDamage < 1.0F)
+                if (recoilDamage < 1.0F && recoilPercent != 0.0F) // Always does at least 1 damage.
                     recoilDamage = 1.0F;
 
                 // Reduces the user's health.
@@ -918,11 +898,6 @@ namespace RM_BBTS
                     // Play sound effect.
                     battle.PlayDamageGivenSfx();
                 }
-
-                // Tries ending the turn early.
-                // This only happens if this isn't the second move being performed in the turn.
-                if(battle.order != 2)
-                    TryEndTurnEarly(user, target, battle);
 
                 return true;
             }
