@@ -17288,6 +17288,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6215028496522477459, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6215028496809752549, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_Color.b
       value: 0.9510387
@@ -17299,6 +17303,10 @@ PrefabInstance:
     - target: {fileID: 6215028496809752549, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_Color.r
       value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496963668157, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9027192482064861210, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: menuAudio

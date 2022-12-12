@@ -550,25 +550,25 @@ namespace RM_BBTS
             // Enables/disables various buttons.
 
             // Move 0 
-            if (player.Move0 != null)
+            if (player.Move0 != null && !(opponent is Treasure))
                 move0Button.interactable = player.Move0.Usable(player);
             else
                 move0Button.interactable = false;
 
             // Move 1
-            if (player.Move1 != null)
+            if (player.Move1 != null && !(opponent is Treasure))
                 move1Button.interactable = player.Move1.Usable(player);
             else
                 move1Button.interactable = false;
 
             // Move 2 
-            if (player.Move2 != null)
+            if (player.Move2 != null && !(opponent is Treasure))
                 move2Button.interactable = player.Move2.Usable(player);
             else
                 move2Button.interactable = false;
 
             // Move 3
-            if (player.Move3 != null)
+            if (player.Move3 != null && !(opponent is Treasure))
                 move3Button.interactable = player.Move3.Usable(player);
             else
                 move3Button.interactable = false;
@@ -577,11 +577,11 @@ namespace RM_BBTS
             UpdatePlayerMoveAccuracies();
 
             // Checks if the player has a full charge.
-            chargeButton.interactable = !player.HasFullCharge();
+            chargeButton.interactable = !player.HasFullCharge() && !(opponent is Treasure);
 
             // Enable the run option.
             // If this is the tutorial battle for the game, the run option is disabled.
-            if(gameManager.useTutorial && gameManager.roomsCompleted == 0)
+            if((gameManager.useTutorial && gameManager.roomsCompleted == 0) || opponent is Treasure)
                 runButton.interactable = false;
             else
                 runButton.interactable = true;
