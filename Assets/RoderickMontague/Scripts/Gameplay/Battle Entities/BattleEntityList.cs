@@ -577,7 +577,7 @@ namespace RM_BBTS
                     data.displayName = "<Inkarp>";
                     data.displayNameSpeakKey = "bey_sharp1_nme";
 
-                    data.maxHealth = 12;
+                    data.maxHealth = 18;
                     data.health = data.maxHealth;
 
                     data.attack = 28;
@@ -600,7 +600,7 @@ namespace RM_BBTS
                     data.displayName = "<Poily>";
                     data.displayNameSpeakKey = "bey_sharp2_nme";
 
-                    data.maxHealth = 18;
+                    data.maxHealth = 38;
                     data.health = data.maxHealth;
 
                     data.attack = 58;
@@ -623,7 +623,7 @@ namespace RM_BBTS
                     data.displayName = "<Red>";
                     data.displayNameSpeakKey = "bey_cBugRed1_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 18;
                     data.health = data.maxHealth;
 
                     data.attack = 5;
@@ -646,7 +646,7 @@ namespace RM_BBTS
                     data.displayName = "<Red X>";
                     data.displayNameSpeakKey = "bey_cBugRed2_nme";
 
-                    data.maxHealth = 30;
+                    data.maxHealth = 32;
                     data.health = data.maxHealth;
 
                     data.attack = 20;
@@ -669,7 +669,7 @@ namespace RM_BBTS
                     data.displayName = "<Blue>";
                     data.displayNameSpeakKey = "bey_cBugBlue1_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 18;
                     data.health = data.maxHealth;
 
                     data.attack = 5;
@@ -692,7 +692,7 @@ namespace RM_BBTS
                     data.displayName = "<Blue X>";
                     data.displayNameSpeakKey = "bey_cBugBlue2_nme";
 
-                    data.maxHealth = 30;
+                    data.maxHealth = 32;
                     data.health = data.maxHealth;
 
                     data.attack = 10;
@@ -715,7 +715,7 @@ namespace RM_BBTS
                     data.displayName = "<Yellow>";
                     data.displayNameSpeakKey = "bey_cBugYellow1_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 18;
                     data.health = data.maxHealth;
 
                     data.attack = 5;
@@ -738,7 +738,7 @@ namespace RM_BBTS
                     data.displayName = "<Yellow X>";
                     data.displayNameSpeakKey = "bey_cBugYellow2_nme";
 
-                    data.maxHealth = 30;
+                    data.maxHealth = 32;
                     data.health = data.maxHealth;
 
                     data.attack = 10;
@@ -1306,6 +1306,28 @@ namespace RM_BBTS
             }
 
             return data;
+        }
+
+        // Checks to see if it's a tutorial enemy.
+        public static bool IsTutorialEnemy(battleEntityId id)
+        {
+            List<battleEntityId> ids = new List<battleEntityId>();
+            bool usable = false;
+
+            // These should be enemies that can reasonably be beaten in a tutorial fight.
+            // Said enemies also shouldn't die too quickly.
+            ids.Add(battleEntityId.ufo1);
+            ids.Add(battleEntityId.insect1);
+            ids.Add(battleEntityId.sharp1);
+            // ids.Add(battleEntityId.cBugRed1); // Too weak.
+            ids.Add(battleEntityId.cBugYellow1);
+            // ids.Add(battleEntityId.cBugBlue1); // Too weak.
+
+            // Checks if this is a tutorial enemy or not.
+            usable = ids.Contains(id);
+
+            // Returns result.
+            return usable;
         }
     }
 

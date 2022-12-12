@@ -325,10 +325,18 @@ namespace RM_BBTS
                 tutorial.LoadIntroTutorial();
 
                 // If there are enough doors to lock some down.
+                // I did a +1 so that the boss room is also ignored.
                 if(overworld.treasureDoors.Count + 1 != overworld.doors.Count)
                 {
+                    // The tutorial door count.
+                    const int TRL_DOOR_COUNT = 3;
+
                     // Copies the list.
                     List<Door> battleDoors = new List<Door>(overworld.doors);
+                    
+                    // The list of unused doors (does not include boss and treasures).
+                    // If the battleDoor list doesn't have enough doors, some are added back.
+                    List<Door> unusedDoors = new List<Door>();
 
                     // Locks and removes the special doors from the list.
                     for (int i = battleDoors.Count - 1; i >= 0; i--)
@@ -336,13 +344,29 @@ namespace RM_BBTS
                         battleDoors[i].Locked = true; // Locks the door.
 
                         // Removes the special door from the list.
+                        // Boss and treasure rooms are locked by default.
                         if (battleDoors[i].isBossDoor || battleDoors[i].isTreasureDoor)
                         {
                             battleDoors.RemoveAt(i); // Remove from list.
                         }
+                        // If it isn't a tutorial enemy, and if there are more than 3 potential options left...
+                        // Remove the door from the list.
+                        else if (!BattleEntityList.IsTutorialEnemy(battleDoors[i].battleEntity.id) && battleDoors.Count > TRL_DOOR_COUNT)
+                        {
+                            unusedDoors.Add(battleDoors[i]); // Remembers the removed door.
+                            battleDoors.RemoveAt(i); // Remove from list.
+                        }
                     }
 
-                    // TODO: make it so that the enemy isn't too strong (use bugs, insects, and ufos).
+                    // While the battle door count is less than the tutorial door count.
+                    while(battleDoors.Count < TRL_DOOR_COUNT && unusedDoors.Count > 0)
+                    {
+                        // Adds an element back into the list, and removes it.
+                        int index = Random.Range(0, unusedDoors.Count);
+                        battleDoors.Add(unusedDoors[index]);
+                        unusedDoors.RemoveAt(index);
+                    }
+
                     // Unlocks three random doors.
                     for (int n = 0; n < 3 && battleDoors.Count > 0; n++)
                     {
