@@ -28,6 +28,9 @@ namespace RM_BBTS
     // The door for entering a battle class.
     public class Door : MonoBehaviour
     {
+        // The overworld for the game.
+        public OverworldManager overworld;
+
         // The sprite that the door uses.
         public SpriteRenderer sprite;
 
@@ -102,6 +105,14 @@ namespace RM_BBTS
             }
         }
 
+        // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.
+        private void OnMouseDown()
+        {
+            // This sound plays to indicate that a door is locked.
+            if (locked && overworld != null)
+                overworld.PlayDoorLockedSfx();
+        }
+
         // Sets the door animation.
         public void SetDoorOpenAnimation(int doorType)
         {
@@ -110,42 +121,6 @@ namespace RM_BBTS
             // Sets the integer for the door type.
             animator.SetInteger("doorType", doorType);
         }
-
-        // // Sets the door animation to the white door (default).
-        // public void SetDoorOpenAnimationDefault()
-        // {
-        //     SetDoorOpenAnimation(0);
-        // }
-        // 
-        // // Sets the door animation to the boss door.
-        // public void SetDoorOpenAnimationBoss()
-        // {
-        //     SetDoorOpenAnimation(1);
-        // }
-        // 
-        // // Sets the door animation to the blue door.
-        // public void SetDoorOpenAnimationBlue()
-        // {
-        //     SetDoorOpenAnimation(2);
-        // }
-        // 
-        // // Sets the door animation to the yellow door.
-        // public void SetDoorOpenAnimationYellow()
-        // {
-        //     SetDoorOpenAnimation(3);
-        // }
-        // 
-        // // Sets the door animation to the green door.
-        // public void SetDoorOpenAnimationGreen()
-        // {
-        //     SetDoorOpenAnimation(4);
-        // }
-        // 
-        // // Sets the door animation to the purple door.
-        // public void SetDoorOpenAnimationPurple()
-        // {
-        //     SetDoorOpenAnimation(5);
-        // }
 
         // Updates the sprite.
         public void UpdateSprite()

@@ -259,6 +259,7 @@
       "trl_battle_05": 250,
       "trl_battle_06": 250,
       "trl_battle_07": 250,
+      "trl_battle_08": 250,
 
       "trl_firstMove_00": 250,
       "trl_firstMove_01": 250,
@@ -604,10 +605,11 @@
     "trl_battle_01": "To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.",
     "trl_battle_02": "You can hold up to 4 regular moves at a time, which together with the charge and run moves makes for a total of 6 battle options max.",
     "trl_battle_03": "Selecting the run move has you attempt to flee from the battle, which has a 50% chance of success. If you succeed, you will return to the overworld.",
-    "trl_battle_04": "The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.",
-    "trl_battle_05": "Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.",
-    "trl_battle_06": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.",
-    "trl_battle_07": "That’s all for now, so on with the battle!",
+    "trl_battle_04": "Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.",
+    "trl_battle_05": "The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.",
+    "trl_battle_06": "Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.",
+    "trl_battle_07": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.",
+    "trl_battle_08": "That’s all for now, so on with the battle!",
 
     "trl_firstMove_00": "You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.",
     "trl_firstMove_01": "A move’s rank determines how advanced said move is, which ranges from 1 to 3. The higher the number, the higher the rank. The rank has no effect in battle.",

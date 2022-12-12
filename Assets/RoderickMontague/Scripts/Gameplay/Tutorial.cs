@@ -163,6 +163,7 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_battle_05"], "trl_battle_05"));
                 pages.Add(new Page(defs["trl_battle_06"], "trl_battle_06"));
                 pages.Add(new Page(defs["trl_battle_07"], "trl_battle_07"));
+                pages.Add(new Page(defs["trl_battle_08"], "trl_battle_08"));
             }    
             else // Default
             {
@@ -170,6 +171,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.>"));
                 pages.Add(new Page("<You can hold up to 4 regular moves at a time, which together with the charge and run moves makes for a total of 6 battle options max.>"));
                 pages.Add(new Page("<Selecting the run move has you attempt to flee from the battle, which has a 50% chance of success. If you succeed, you will return to the overworld.>"));
+                pages.Add(new Page("<Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.>"));
                 pages.Add(new Page("<The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.>"));
                 pages.Add(new Page("<Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.>"));
                 pages.Add(new Page("<As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.>"));

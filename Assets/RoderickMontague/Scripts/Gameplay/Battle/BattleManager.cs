@@ -579,8 +579,13 @@ namespace RM_BBTS
             // Checks if the player has a full charge.
             chargeButton.interactable = !player.HasFullCharge();
 
-            // Enable the run.
-            runButton.interactable = true;
+            // Enable the run option.
+            // If this is the tutorial battle for the game, the run option is disabled.
+            if(gameManager.useTutorial && gameManager.roomsCompleted == 0)
+                runButton.interactable = false;
+            else
+                runButton.interactable = true;
+
 
             // The buttons are interactable, though they are only visible in a treasure room.
             treasureYesButton.interactable = true;

@@ -292,7 +292,7 @@ namespace RM_BBTS
                 if(door.Locked)
                 {
                     // Plays the door SFX.
-                    PlayDoorLockedSfx();
+                    // PlayDoorLockedSfx();
                 }
                 else
                 {
