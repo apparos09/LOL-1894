@@ -326,6 +326,37 @@ namespace RM_BBTS
             return doors.Count;
         }
 
+        // Gets the unlocked door sprite.
+        public void SetDoorSpritesByDoorType(Door door)
+        {
+            // Index of door sprites.
+            int index = 0;
+
+            // Boss door locked and unlocked sprite.
+            if (door.isBossDoor)
+            {
+                door.doorType = bossDoorType; // Sets type.
+                door.unlockedSprite = bossDoorUnlockedSprite;
+                door.lockedSprite = bossDoorLockedSprite;
+                return;
+            }
+
+            // Set to the default if the door type is invalid.
+            if (!doorTypes.Contains(door.doorType))
+                door.doorType = 0;
+
+            // Finds the index.
+            if(doorTypes.Contains(door.doorType))
+            {
+                // Gets the index.
+                index = doorTypes.IndexOf(door.doorType);
+
+                // Sets the values.
+                door.unlockedSprite = doorUnlockedSprites[index];
+                door.lockedSprite = doorLockedSprites[index];
+            }
+        }
+
         // Generates a room for the door.
         private void GenerateRoom(Door door)
         {
@@ -414,7 +445,8 @@ namespace RM_BBTS
             if (!door.isBossDoor && doorLockedSprites.Count != 0 && doorLockedSprites.Count == doorUnlockedSprites.Count)
             {
                 // Generates a random door image.
-                int index = Random.Range(0, doorLockedSprites.Count);
+                // Starts at 1 so that the white (default) door.
+                int index = Random.Range(1, doorLockedSprites.Count);
 
                 // Replaces the sprites.
                 door.unlockedSprite = doorUnlockedSprites[index];

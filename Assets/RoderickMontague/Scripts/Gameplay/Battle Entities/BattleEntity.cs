@@ -362,12 +362,42 @@ namespace RM_BBTS
             energy = data.energy;
 
             // Generates the four moves and adds them in as objects.
-            Move0 = MoveList.Instance.GenerateMove(data.move0);
-            Move1 = MoveList.Instance.GenerateMove(data.move1);
-            Move2 = MoveList.Instance.GenerateMove(data.move2);
-            Move3 = MoveList.Instance.GenerateMove(data.move3);
+            // Moves are set to 'null' if the move provied is Run or Charge (they don't get put in standard move slots).
+            // Move 0
+            if (data.move0 == moveId.run || data.move0 == moveId.charge)
+                Move0 = null;
+            else
+                Move0 = MoveList.Instance.GenerateMove(data.move0);
 
-            // Save sprite data.
+            // Move 1
+            if (data.move1 == moveId.run || data.move1 == moveId.charge)
+                Move1 = null;
+            else
+                Move1 = MoveList.Instance.GenerateMove(data.move1);
+
+            // Move 2
+            if (data.move2 == moveId.run || data.move2 == moveId.charge)
+                Move2 = null;
+            else
+                Move2 = MoveList.Instance.GenerateMove(data.move2);
+
+            // Move 3
+            if (data.move3 == moveId.run || data.move3 == moveId.charge)
+                Move3 = null;
+            else
+                Move3 = MoveList.Instance.GenerateMove(data.move3);
+
+            // If the entity has no moves, give it the move "bam".
+            if (!HasMovesSet())
+                Move0 = MoveList.Instance.GenerateMove(moveId.bam);
+
+            // Original
+            // Move0 = MoveList.Instance.GenerateMove(data.move0);
+            // Move1 = MoveList.Instance.GenerateMove(data.move1);
+            // Move2 = MoveList.Instance.GenerateMove(data.move2);
+            // Move3 = MoveList.Instance.GenerateMove(data.move3);
+
+                // Save sprite data.
             sprite = data.sprite;
         }
 
@@ -940,6 +970,21 @@ namespace RM_BBTS
             get { return moves[3]; }
 
             set { moves[3] = value; }
+        }
+
+        // Checks to see if the entity has moves set to it.
+        public bool HasMovesSet()
+        {
+            // Checks each move.
+            foreach(Move move in moves)
+            {
+                // Found a move.
+                if (move != null)
+                    return true;
+            }
+
+            // No moves set.
+            return false;
         }
 
         // Selects the move from the provided index.

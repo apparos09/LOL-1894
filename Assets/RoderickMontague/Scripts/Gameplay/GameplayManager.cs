@@ -1149,6 +1149,7 @@ namespace RM_BBTS
 
             saveData.playerData.maxEnergy = 999;
             saveData.playerData.energy = 600;
+            saveData.playerData.move0 = MoveList.Instance.GetRandomMove().Id;
 
             // Goes through each door data.
             for(int i = 0; i < saveData.doorData.Length; i++)
@@ -1158,16 +1159,21 @@ namespace RM_BBTS
                     !saveData.doorData[i].isBossDoor && !saveData.doorData[i].isTreasureDoor)
                 {
                     bool lockDoor = Random.Range(0, 2) == 0;
-                    
+
                     // If the door should be locked.
-                    if(lockDoor)
+                    if (lockDoor)
                     {
                         saveData.doorData[i].locked = lockDoor;
+
                         saveData.roomsCompleted++;
-                        saveData.score += 200;
+                        saveData.score += 200; 
                     }
                     
                 }
+
+                // Door type test.
+                // This will get overwritten for the boss door since it's unique.
+                saveData.doorData[i].doorType = 2;
             }
 
             // Change tutorial settings to test them.

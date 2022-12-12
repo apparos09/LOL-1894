@@ -9,19 +9,20 @@ namespace RM_BBTS
     [System.Serializable]
     public struct DoorSaveData
     {
-        // TODO: include identifier for sprite.
-
         // Determines if this is a boss door or not.
         public bool isBossDoor;
 
         // Determines if this is a treasure door or not.
         public bool isTreasureDoor;
 
+        // The battle entity behind the door.
+        public BattleEntitySaveData battleEntity;
+
         // Says whether the door is locked or not.
         public bool locked;
 
-        // The battle entity behind the door.
-        public BattleEntitySaveData battleEntity;
+        // The type of the door for saving the sprite.
+        public int doorType;
         
     }
 
@@ -161,6 +162,9 @@ namespace RM_BBTS
             // Battle Entity Save
             saveData.battleEntity = BattleEntity.ConvertBattleEntityGameDataToSaveData(battleEntity);
 
+            // Saves the door type for animations.
+            saveData.doorType = doorType;
+
             // Returns the save data.
             return saveData;
         }
@@ -176,6 +180,11 @@ namespace RM_BBTS
 
             // Implement the battle entity.
             battleEntity = BattleEntity.ConvertBattleEntitySaveDataToGameData(data.battleEntity);
+
+            // Save the door type and change the sprites.
+            doorType = data.doorType;
+            overworld.SetDoorSpritesByDoorType(this);
+            UpdateSprite();
         }
 
         // The mouse_touch class will be used to send the door to the overworld manager.
