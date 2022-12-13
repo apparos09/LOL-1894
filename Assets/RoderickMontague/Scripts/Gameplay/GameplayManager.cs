@@ -6,6 +6,8 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
+using JetBrains.Annotations;
+using UnityEngine.Android;
 
 namespace RM_BBTS
 {
@@ -202,6 +204,9 @@ namespace RM_BBTS
 
         // A game object used to transition between states.
         public Animator stateTransition;
+
+        // The image of the state transition used for colour changes.
+        public Image stateTransitionImage;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -812,6 +817,12 @@ namespace RM_BBTS
                 
         }
 
+        // Goes to the overworld with a transition.
+        public void EnterOverworldWithTransition()
+        {
+            StartCoroutine(EnterStateWithTransition(gameState.overworld, null));
+        }
+
         // Call to enter the battle world.
         public void EnterBattle(Door door)
         {
@@ -876,11 +887,81 @@ namespace RM_BBTS
                 }
 
             }
+        }
 
+        // Goes to the battle with a transition.
+        public void EnterBattleWithTransition(Door door)
+        {
+            // Changes the transition colour.
+            if(door != null)
+            {
+                // Returns the door type color.
+                stateTransitionImage.color = OverworldManager.GetDoorTypeColor(door.doorType);
+            }
+
+            StartCoroutine(EnterStateWithTransition(gameState.battle, door));
+        }
+
+        // A function called to turn off the damage animator once it has played.
+        private IEnumerator EnterStateWithTransition(gameState newState, Door door)
+        {
+            // Gets the amount of wait time for each part of the animation finish.
+            float waitTime = 0.0F;
+
+            // Gets set to 'true' when the transition has happened.
+            bool switched = false;
+
+            // Activate the object so that the transition plays.
+            // The GetCurrentAnimatorClipInfo() function won't work otherwise.
+            stateTransition.gameObject.SetActive(true);
+
+            // Plays the first part of the animation.
+            stateTransition.SetInteger("animPart", 1);
+
+            // Wait for the animation to finish (screen is fully covered when it does).
+            waitTime = stateTransition.GetCurrentAnimatorClipInfo(0).Length / stateTransition.speed;
+
+            // While the operation is going.
+            while (waitTime > 0.0F)
+            {
+                // Reduce by delta time.
+                waitTime -= Time.deltaTime;
+
+                // Checks to see if the animation has not switched over yet.
+                if(!switched && waitTime <= 0.0F)
+                {
+                    // Checks what state to switch to.
+                    switch (newState)
+                    {
+                        case gameState.overworld: // Go to the overworld.
+                            EnterOverworld();
+                            break;
+                        case gameState.battle: // Go to the battle.
+                            EnterBattle(door);
+                            break;
+                    }
+
+                    // Part 1 of the animation is over, so switch to part 2.
+                    stateTransition.SetInteger("animPart", 2);
+                    waitTime = stateTransition.GetCurrentAnimatorClipInfo(0).Length / stateTransition.speed;
+
+                    // Switched state.
+                    switched = true;
+                }
             
+                // Tells the program to stall.
+                if(waitTime > 0.0F)
+                    yield return null;
+            }
+
+            // Switch back to default.
+            stateTransition.SetInteger("animPart", 0);
+
+            // Deactives the object so that the transition animation stops.
+            stateTransition.gameObject.SetActive(false);
 
         }
-        
+
         // Updates the UI
         public void UpdateUI()
         {

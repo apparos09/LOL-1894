@@ -4117,7 +4117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6664,6 +6664,7 @@ MonoBehaviour:
   useTransitions: 1
   sceneTransition: {fileID: 556530665}
   stateTransition: {fileID: 1374763407}
+  stateTransitionImage: {fileID: 1374763408}
 --- !u!1 &878444595
 GameObject:
   m_ObjectHideFlags: 0
@@ -11987,7 +11988,7 @@ GameObject:
   - component: {fileID: 1374763408}
   - component: {fileID: 1374763407}
   m_Layer: 5
-  m_Name: Battle Transition
+  m_Name: Game State Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12005,7 +12006,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1399017747}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12167,8 +12168,8 @@ RectTransform:
   - {fileID: 1411017889}
   - {fileID: 1460657621}
   - {fileID: 482384272}
-  - {fileID: 556530664}
   - {fileID: 1374763406}
+  - {fileID: 556530664}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

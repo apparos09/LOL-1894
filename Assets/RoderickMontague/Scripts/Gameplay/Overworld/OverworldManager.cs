@@ -297,7 +297,11 @@ namespace RM_BBTS
                 else
                 {
                     // Enters the battle.
-                    gameManager.EnterBattle(door);
+                    // Checks if transitions should be used for knowing which function to call.
+                    if(gameManager.useTransitions)
+                        gameManager.EnterBattleWithTransition(door);
+                    else
+                        gameManager.EnterBattle(door);
                 }
             }
         }
@@ -355,6 +359,39 @@ namespace RM_BBTS
                 door.unlockedSprite = doorUnlockedSprites[index];
                 door.lockedSprite = doorLockedSprites[index];
             }
+        }
+
+        // Gets the color for the dedicated door type.
+        public static Color GetDoorTypeColor(int doorType)
+        {
+            // Color object.
+            Color color;
+
+            // Checks the door type.
+            switch (doorType)
+            {
+                case 0: // default (white)
+                default:
+                    color = Color.white;
+                    break;
+                case 1: // boss door (red)
+                    color = Color.red;
+                    break;
+                case 2: // blue
+                    color = Color.blue;
+                    break;
+                case 3: // yellow
+                    color = Color.yellow;
+                    break;
+                case 4: // green (it seems like it should be purple, but it's not).
+                    color = Color.green;
+                    break;
+                case 5: // purple (it seems like it should be green, but it's not).
+                    color = new Color(0.627F, 0.125F, 0.941F);
+                    break;
+            }
+
+            return color;
         }
 
         // Generates a room for the door.
@@ -591,6 +628,7 @@ namespace RM_BBTS
                     {
                         door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
 
+                        // TODO: maybe don't restore it entirely?
                         // Restore health and energy levels to max even if the entity didn't evolve.
                         door.battleEntity.health = door.battleEntity.maxHealth;
                         door.battleEntity.energy = door.battleEntity.maxEnergy;

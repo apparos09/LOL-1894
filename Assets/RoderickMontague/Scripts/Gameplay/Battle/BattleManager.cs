@@ -311,11 +311,14 @@ namespace RM_BBTS
             // In the battle state.
             gameManager.SetStateToBattle();
 
+            // Remove all pages just to be safe.
+            textBox.ClearPages();
 
             // Sets the battle entity from the door.
             // opponent = null; // TODO: comment out.
 
             // Reset the stat modifiers and statuses before the battle starts.
+            player.selectedMove = null;
             player.ResetStatModifiers();
             player.ResetStatuses();
 
@@ -336,6 +339,8 @@ namespace RM_BBTS
             // Opponent has been set.
             if (opponent != null)
             {
+                opponent.selectedMove = null;
+
                 // Loads the battle data
                 opponent.LoadBattleGameData(door.battleEntity);
 
@@ -1267,6 +1272,9 @@ namespace RM_BBTS
             // Player options should be enabled before leaving so that they're ready for the next battle?
             EnablePlayerOptions();
 
+            // Remove selected move.
+            player.selectedMove = null;
+
             // Remove stat changes and status effects
             // This already happens in the initialization phase, but it happens here just to be sure. 
             // TODO: maybe take this out?
@@ -1276,13 +1284,12 @@ namespace RM_BBTS
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityGameData();
 
+            // Remove selected move.
+            opponent.selectedMove = null;
+
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
             StopOpponentDeathAnimation();
-
-            // Go to the overworld.
-            gameManager.UpdateUI();
-            gameManager.EnterOverworld();
 
             // Prepare for next battle.
             gotCritical = false;
@@ -1292,6 +1299,15 @@ namespace RM_BBTS
 
             // The battle gets initialized everytime one starts.
             initialized = false;
+
+            // Go to the overworld.
+            gameManager.UpdateUI();
+
+            // Checks if transitions are being used to know the right function to call.
+            if (gameManager.useTransitions)
+                gameManager.EnterOverworldWithTransition();
+            else
+                gameManager.EnterOverworld();
         }
 
         // Updates all UI elements.
@@ -1435,7 +1451,7 @@ namespace RM_BBTS
             
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
-            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length;
+            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
 
             // Turn off the animation.
             StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));

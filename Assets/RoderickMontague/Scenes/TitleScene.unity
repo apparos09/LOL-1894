@@ -6249,10 +6249,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Transition
       objectReference: {fileID: 0}
-    - target: {fileID: 6778263351606299470, guid: d97f3835246935148b649298cd8dcc07, type: 3}
-      propertyPath: useSceneEnterAnim
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

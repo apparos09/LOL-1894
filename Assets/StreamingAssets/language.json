@@ -561,7 +561,7 @@
     "mve_sonicWave_nme": "Sonic Wave",
     "mve_sonicWave_dsc": "A strong attack that has a 25% chance of lowering the target's accuracy by 1 stage.",
 
-    "mve_hpDrain3_nme": "Health Drain 3",
+    "mve_hpDrain3_nme": "Drain Heal 3",
     "mve_hpDrain3_dsc": "The user attacks the target, gaining 40% of the damage dealt as health.",
     "mve_twister_nme": "Twister",
     "mve_twister_dsc": "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.",

@@ -249,8 +249,8 @@ namespace RM_BBTS
                     descKey = "mve_heal_dsc";
                     break;
 
-                case moveId.hpDrain1: // Heal Drain 1
-                    move = new HealthDrainMove(moveId.hpDrain1, "Heal Drain 1", 1, 25, 0.95F, 0.3F);
+                case moveId.hpDrain1: // Drain Heal 1
+                    move = new HealthDrainMove(moveId.hpDrain1, "Drain Heal 1", 1, 25, 0.95F, 0.3F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.125F;
 
@@ -407,8 +407,8 @@ namespace RM_BBTS
                     descKey = "mve_quickBurst_dsc";
                     break;
 
-                case moveId.hpDrain2: // Heal Drain 2
-                    move = new HealthDrainMove(moveId.hpDrain2, "<Heal Drain 2>", 2, 60, 0.9F, 0.3F);
+                case moveId.hpDrain2: // Drain Heal 2
+                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.9F, 0.3F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.25F;
 
@@ -512,8 +512,8 @@ namespace RM_BBTS
                     descKey = "mve_sonicWave_dsc";
                     break;
 
-                case moveId.hpDrain3: // Heal Drain 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "<Heal Drain 3>", 3, 80, 0.70F, 0.4F);
+                case moveId.hpDrain3: // Drain Heal 3
+                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.70F, 0.4F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 
