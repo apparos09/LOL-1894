@@ -261,6 +261,7 @@ namespace RM_BBTS
         // Called when the user's touch interacts with an entity.
         public override void OnTouchInteract(GameObject touchedObject, Touch touch)
         {
+            // Touched object was set to null for some reason.
             // selectedObject = touchedObject;
 
             // If the object is not set to null.

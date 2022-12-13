@@ -661,7 +661,9 @@ namespace RM_BBTS
 
                     // Checks the state variable to see what kind of scene the game is in.
                     // Calls the appropriate touch interaction.
-                    OnTouchInteract(hitObject, touch);
+                    // NOTE: for some reason this wasn't being set.
+                    if(hitObject != null)
+                        OnTouchInteract(hitObject, touch);
 
                     // switch (state)
                     // {
