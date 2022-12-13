@@ -200,6 +200,9 @@ namespace RM_BBTS
         // The scene transition object.
         public SceneTransition sceneTransition;
 
+        // A game object used to transition between states.
+        public Animator stateTransition;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
@@ -786,6 +789,10 @@ namespace RM_BBTS
         // Call this function to enter the overworld.
         public void EnterOverworld()
         {
+            // TODO: play animation before transition.
+            // if(useTransitions)
+
+
             battle.gameObject.SetActive(false);
             overworld.gameObject.SetActive(false);
 
@@ -808,10 +815,13 @@ namespace RM_BBTS
         // Call to enter the battle world.
         public void EnterBattle(Door door)
         {
-            // TODO: comment this out in the final game.
-            if(door.Locked)
+            // TODO: play animation before transition.
+            // if(useTransitions)
+
+
+            // Can't enter a locked door.
+            if (door.Locked)
             {
-                Debug.Log("The door can't be opened.");
                 return;
             }
 
