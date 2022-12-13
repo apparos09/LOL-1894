@@ -889,14 +889,14 @@ namespace RM_BBTS
                     battle.UpdateOpponentUI(); // Updates enemy health bar.
 
                     // Play opponent's damage animation.
-                    battle.PlayOpponentDamageAnimation();
+                    battle.PlayOpponentHurtAnimation();
                 }
                 else // Not the player.
                 {
                     battle.gameManager.UpdatePlayerHealthUI();
 
-                    // Play sound effect.
-                    battle.PlayDamageGivenSfx();
+                    // Play palyer damage animation.
+                    battle.PlayPlayerHurtAnimation();
                 }
 
                 return true;

@@ -6,9 +6,7 @@ using TMPro;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
 using System.Data.Common;
-using static UnityEngine.GraphicsBuffer;
 
-// TODO: do status effects.
 namespace RM_BBTS
 {
     // Manages the battle operations for the game. This becomes active when the game enters a battle state.
@@ -150,7 +148,6 @@ namespace RM_BBTS
         public TMP_Text move3AccuracyText;
 
         
-
         [Header("UI/Player/Treasure")]
 
         // The text for the treasure prompt.
@@ -171,8 +168,6 @@ namespace RM_BBTS
         [Header("UI/Opponent")]
 
         // The opponent title text.
-        // TODO: during a boss fight this sometimes does not show up. Fix that.
-        // TODO: I think some enemies just don't have names yet, so this field is visible, but blank.
         public TMP_Text opponentNameText;
 
         // The health bar for the opponent.
@@ -198,15 +193,18 @@ namespace RM_BBTS
         public AudioClip battleLostJng;
 
         // The sound effect for the player taking damage.
-        public AudioClip damageGivenSfx;
+        public AudioClip playerHurtSfx;
 
         // The sound effect for the opponent taking damage.
-        public AudioClip damageTakenSfx;
+        public AudioClip opponentHurtSfx;
 
         // THe sound efect for a non-damaging move.
         public AudioClip moveEffectSfx;
 
         [Header("Animations")]
+        // The player's animator.
+        public Animator playerAnimator;
+
         // The opponent's animator.
         public Animator opponentAnimator;
 
@@ -807,6 +805,9 @@ namespace RM_BBTS
                     opponentMovePage = new Page(
                         BattleMessages.Instance.GetParalyzedMessage(opponent.displayName),
                         BattleMessages.Instance.GetParalyzedSpeakKey1());
+
+                    // Play the paralyzed animation.
+                    opponentMovePage.OnPageOpenedAddCallback(PlayOpponentParalysisAnimation);
                 }
                 else // Don't skip.
                 {
@@ -927,8 +928,16 @@ namespace RM_BBTS
         // Apply burn to the opponent.
         private void ApplyOpponentBurn()
         {
+            // Checks if the opponent is burned.
             if (opponent.burned)
+            {
                 opponent.ApplyBurn(this);
+
+                // TODO: add sound effect for burn damage.
+                // Plays the damage animation.
+                PlayOpponentHurtAnimation();
+            }
+
         }
 
 
@@ -1395,16 +1404,16 @@ namespace RM_BBTS
         }
 
         // SFX //
-        // Play sound effect for the player did damage to the opponent.
-        public void PlayDamageGivenSfx()
+        // Play sound effect for the opponent did damage to the player.
+        public void PlayPlayerHurtSfx()
         {
-            gameManager.audioManager.PlaySoundEffect(damageGivenSfx);
+            gameManager.audioManager.PlaySoundEffect(playerHurtSfx);
         }
 
-        // Play sound effect for the opponent did damage to the player.
-        public void PlayDamageTakenSfx()
+        // Play sound effect for the player did damage to the opponent.
+        public void PlayOpponentHurtSfx()
         {
-            gameManager.audioManager.PlaySoundEffect(damageTakenSfx);
+            gameManager.audioManager.PlaySoundEffect(opponentHurtSfx);
         }
 
         // Play sound effect for non-damaging moves.
@@ -1434,8 +1443,30 @@ namespace RM_BBTS
 
 
         // ANIMATIONS //
-        // Plays the oppon
-        public void PlayOpponentDamageAnimation()
+        // Plays the player damage animation.
+        public void PlayPlayerHurtAnimation()
+        {
+            // Play sound effect.
+            PlayPlayerHurtSfx();
+            
+            // Enables the game object so that the animation automatically plays.
+            playerAnimator.gameObject.SetActive(true);
+            
+            // Get the length of the animation.
+            float animTime = playerAnimator.GetCurrentAnimatorStateInfo(0).length / playerAnimator.speed;
+            
+            // Turn off the animation.
+            StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
+        }
+        
+        // Stops the player damage animation.
+        public void StopPlayerDamageAnimation()
+        {
+            playerAnimator.gameObject.SetActive(false);
+        }
+
+        // Plays the opponent damage animation.
+        public void PlayOpponentHurtAnimation()
         {
             // The parameter.
             string parameter = "tookDamage";
@@ -1444,7 +1475,7 @@ namespace RM_BBTS
 
             // TODO: tie the sound effect to the animation itself.
             // Play sound effect.
-            PlayDamageTakenSfx();
+            PlayOpponentHurtSfx();
 
             // Play animation by changing the value, then change it again so that it only plays once.
             opponentAnimator.SetBool(parameter, true);
@@ -1470,6 +1501,60 @@ namespace RM_BBTS
         {
             // Play animation by changing the value.
             opponentAnimator.SetBool("isDead", false);
+        }
+
+        // Plays the opponent damage animation.
+        public void PlayOpponentParalysisAnimation()
+        {
+            // The parameter.
+            string parameter = "paralyzed";
+
+            // TODO: tie the sound effect to the animation itself.
+            // TODO: implement sound effect for parlaysis.
+            // PlayDamageTakenSfx();
+
+            // Play animation by changing the value, then change it again so that it only plays once.
+            opponentAnimator.SetBool(parameter, true);
+
+            // Get the length of the animation.
+            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
+
+            // Turn off the animation.
+            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));
+
+        }
+
+        // Plays the death animation for the opponent.
+        public void StopOpponentParalysisAnimation()
+        {
+            // Stop animation by changing the value.
+            opponentAnimator.SetBool("paralyzed", false);
+        }
+
+        // Disables an animator after a certain amount of wait time.
+        // If 'animatorOnly' is true, then the animator component is disabled.
+        // If 'animatorOnly' is false, then the animator's GameObject is disabled.
+        private IEnumerator AnimatorDisableDelayed(Animator animator, float waitTime, bool animatorOnly)
+        {
+            // While the operation is going.
+            while (waitTime > 0.0F)
+            {
+                // Reduce by delta time.
+                waitTime -= Time.deltaTime;
+
+                // Tells the program to stall.
+                yield return null;
+            }
+
+            // Checks what to disable.
+            if(animatorOnly) // Component only.
+            {
+                animator.enabled = false;
+            }
+            else // Whole object.
+            {
+                animator.gameObject.SetActive(false);
+            }
         }
 
         // A function called to turn off the damage animator once it has played.

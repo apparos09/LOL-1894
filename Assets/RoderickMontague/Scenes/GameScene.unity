@@ -9781,9 +9781,10 @@ MonoBehaviour:
   bossBgm: {fileID: 8300000, guid: ca3dc6b8519cfac4fb668fea22b85529, type: 3}
   battleWonJng: {fileID: 8300000, guid: 21f83d9414e63aa46895ce0159a8b95e, type: 3}
   battleLostJng: {fileID: 8300000, guid: ecd88211fbd53084997d66b1f5644b97, type: 3}
-  damageGivenSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
-  damageTakenSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
+  playerHurtSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
+  opponentHurtSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
   moveEffectSfx: {fileID: 8300000, guid: d221b6f7fec06c444b19c23f5a71ad0a, type: 3}
+  playerAnimator: {fileID: 1411017892}
   opponentAnimator: {fileID: 154329597}
 --- !u!114 &1163903608
 MonoBehaviour:
@@ -12240,7 +12241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.69803923}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
