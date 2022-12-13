@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +12,13 @@ namespace RM_BBTS
 
         // if 'true', the Touch operations are tracked.
         public bool trackTouch = true;
+
+        // Not implementing it for this since it's unneeded, but in the future you should set up callbacks.
+        // A callback for the mouse interactions. It provides the mouse position in world space.
+        public delegate void MouseCallback(GameObject mouseObject, Vector3 mouseWorldPosition);
+
+        // A callback for touch interactions.
+        public delegate void TouchCallback(List<GameObject> touchObjects, List<Touch> touches);
 
         // The mouse interaction.
         [Header("Mouse")]
@@ -29,6 +35,13 @@ namespace RM_BBTS
         // NOTE: it appears that the touch input is detected as a mouse input as well. The latest input overrides this variable.
         public Vector3 mouseWorldPosition;
 
+        // The callback for mouse down.
+        private MouseCallback mouseHeldCallback = null;
+
+        // The callback for the mouse hovered.
+        private MouseCallback mouseHoveredCallback = null;
+
+        
         [Header("Mouse/Interactions")]
 
         // The object the mouse is hovering over.
@@ -59,6 +72,9 @@ namespace RM_BBTS
         // The touched object will be removed from the list when it is let go, but the amount of touches will be retained...
         // for the saved touch.
         public List<Touch> currentTouches = new List<Touch>();
+
+        // The callback for touches.
+        private TouchCallback touchDownCallback = null;
 
         // Start is called before the first frame update.
         void Start()
@@ -441,6 +457,70 @@ namespace RM_BBTS
             }
         }
 
+        // CALLBACKS
+        // Mouse Callbacks
+        // Mouse Hovered - Add
+        public void OnMouseHoveredAddCallback(MouseCallback callback)
+        {
+            mouseHoveredCallback += callback;
+        }
+
+        // Mouse Hovered - Remove.
+        public void OnMouseHoveredRemoveCallback(MouseCallback callback)
+        {
+            mouseHoveredCallback -= callback;
+        }
+
+        // Mouse Held - Add
+        public void OnMouseHeldAddCallback(MouseCallback callback)
+        {
+            mouseHeldCallback += callback;
+        }
+
+        // Mouse Held - Remove
+        public void OnMouseHeldRemoveCallback(MouseCallback callback)
+        {
+            mouseHeldCallback -= callback;
+        }
+
+        // Touch Callbacks
+        // Touch Down - Add
+        public void OnTouchDownAddCallback(TouchCallback callback)
+        {
+            touchDownCallback += callback;
+        }
+
+        // Touch Down - Remove
+        public void OnTouchRemoveCallback(TouchCallback callback)
+        {
+            touchDownCallback -= callback;
+        }
+
+        // Triggers the callbacks.
+        private void TriggerCallbacks()
+        {
+            // Track mouse input.
+            if(trackMouse)
+            {
+                // Mouse hovered callback.
+                if (mouseHoveredCallback != null && mouseHoveredObject != null)
+                    mouseHoveredCallback(mouseHoveredObject, mouseWorldPosition);
+
+                // Mouse down callback.
+                if (mouseHeldCallback != null && mouseHeldObject != null)
+                    mouseHeldCallback(mouseHeldObject, mouseWorldPosition);
+            }
+
+            // Track touch input.
+            if(trackTouch)
+            {
+                // Touch down callback.
+                if (touchDownCallback != null && currentTouches.Count != 0)
+                    touchDownCallback(touchObjects, currentTouches);
+            }
+            
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -451,6 +531,9 @@ namespace RM_BBTS
             // If the touch should be tracked.
             if (trackTouch)
                 TouchUpdate();
+
+            // Trigger the saved callbacks.
+            TriggerCallbacks();
         }
     }
 }
