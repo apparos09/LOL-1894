@@ -205,6 +205,9 @@ namespace RM_BBTS
         // The player's animator.
         public Animator playerAnimator;
 
+        // The image for the player animation (is recoloured as needed).
+        public Image playerAnimationImage;
+
         // The opponent's animator.
         public Animator opponentAnimator;
 
@@ -774,6 +777,9 @@ namespace RM_BBTS
                         BattleMessages.Instance.GetParalyzedMessage(player.displayName),
                         BattleMessages.Instance.GetParalyzedSpeakKey0()
                         );
+
+                    // Play the paralyzed animation.
+                    opponentMovePage.OnPageOpenedAddCallback(PlayPlayerParalysisAnimation);
                 }
                 else
                 {
@@ -1448,8 +1454,9 @@ namespace RM_BBTS
         {
             // Play sound effect.
             PlayPlayerHurtSfx();
-            
+
             // Enables the game object so that the animation automatically plays.
+            playerAnimationImage.color = Color.red;
             playerAnimator.gameObject.SetActive(true);
             
             // Get the length of the animation.
@@ -1460,7 +1467,30 @@ namespace RM_BBTS
         }
         
         // Stops the player damage animation.
-        public void StopPlayerDamageAnimation()
+        public void StopPlayerHurtAnimation()
+        {
+            playerAnimator.gameObject.SetActive(false);
+        }
+
+        // Plays when the player suffers paralysis.
+        public void PlayPlayerParalysisAnimation()
+        {
+            // Play sound effect.
+            PlayPlayerHurtSfx();
+
+            // Enables the game object so that the animation automatically plays.
+            playerAnimationImage.color = Color.yellow;
+            playerAnimator.gameObject.SetActive(true);
+
+            // Get the length of the animation.
+            float animTime = playerAnimator.GetCurrentAnimatorStateInfo(0).length / playerAnimator.speed;
+
+            // Turn off the animation.
+            StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
+        }
+
+        // Stops the player paralysis animation.
+        public void StopPlayerParlysisAnimation()
         {
             playerAnimator.gameObject.SetActive(false);
         }
@@ -1489,20 +1519,6 @@ namespace RM_BBTS
 
         }
 
-        // Plays the death animation for the opponent.
-        public void PlayOpponentDeathAnimation()
-        {
-            // Play animation by changing the value.
-            opponentAnimator.SetBool("isDead", true);
-        }
-
-        // Called to stop the death animation, which stays on until the player leaves the battle (animation doesn't loop).
-        public void StopOpponentDeathAnimation()
-        {
-            // Play animation by changing the value.
-            opponentAnimator.SetBool("isDead", false);
-        }
-
         // Plays the opponent damage animation.
         public void PlayOpponentParalysisAnimation()
         {
@@ -1529,6 +1545,20 @@ namespace RM_BBTS
         {
             // Stop animation by changing the value.
             opponentAnimator.SetBool("paralyzed", false);
+        }
+
+        // Plays the death animation for the opponent.
+        public void PlayOpponentDeathAnimation()
+        {
+            // Play animation by changing the value.
+            opponentAnimator.SetBool("isDead", true);
+        }
+
+        // Called to stop the death animation, which stays on until the player leaves the battle (animation doesn't loop).
+        public void StopOpponentDeathAnimation()
+        {
+            // Play animation by changing the value.
+            opponentAnimator.SetBool("isDead", false);
         }
 
         // Disables an animator after a certain amount of wait time.
