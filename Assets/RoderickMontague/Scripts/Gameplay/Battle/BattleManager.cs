@@ -779,7 +779,7 @@ namespace RM_BBTS
                         );
 
                     // Play the paralyzed animation.
-                    opponentMovePage.OnPageOpenedAddCallback(PlayPlayerParalysisAnimation);
+                    opponentMovePage.OnPageOpenedAddCallback(PlayPlayerParalyzedAnimation);
                 }
                 else
                 {
@@ -813,7 +813,7 @@ namespace RM_BBTS
                         BattleMessages.Instance.GetParalyzedSpeakKey1());
 
                     // Play the paralyzed animation.
-                    opponentMovePage.OnPageOpenedAddCallback(PlayOpponentParalysisAnimation);
+                    opponentMovePage.OnPageOpenedAddCallback(PlayOpponentParalyzedAnimation);
                 }
                 else // Don't skip.
                 {
@@ -1449,37 +1449,26 @@ namespace RM_BBTS
 
 
         // ANIMATIONS //
-        // Plays the player damage animation.
-        public void PlayPlayerHurtAnimation()
+        // Plays the player animation.
+        public void PlayPlayerAnimation(int color)
         {
-            // Play sound effect.
-            PlayPlayerHurtSfx();
-
             // Enables the game object so that the animation automatically plays.
-            playerAnimationImage.color = Color.red;
-            playerAnimator.gameObject.SetActive(true);
-            
-            // Get the length of the animation.
-            float animTime = playerAnimator.GetCurrentAnimatorStateInfo(0).length / playerAnimator.speed;
-            
-            // Turn off the animation.
-            StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
-        }
-        
-        // Stops the player damage animation.
-        public void StopPlayerHurtAnimation()
-        {
-            playerAnimator.gameObject.SetActive(false);
-        }
+            switch(color)
+            {
+                case 1: // Damage
+                    playerAnimationImage.color = Color.red;
+                    break;
+                case 2: // Status
+                    playerAnimationImage.color = Color.blue;
+                    break;
+                case 3: // Paralysis
+                    playerAnimationImage.color = Color.yellow;
+                    break;
+                default: // Default
+                    playerAnimationImage.color = Color.white;
+                    break;
 
-        // Plays when the player suffers paralysis.
-        public void PlayPlayerParalysisAnimation()
-        {
-            // Play sound effect.
-            PlayPlayerHurtSfx();
-
-            // Enables the game object so that the animation automatically plays.
-            playerAnimationImage.color = Color.yellow;
+            }
             playerAnimator.gameObject.SetActive(true);
 
             // Get the length of the animation.
@@ -1490,76 +1479,97 @@ namespace RM_BBTS
         }
 
         // Stops the player paralysis animation.
-        public void StopPlayerParlysisAnimation()
+        public void StopPlayerAnimation()
         {
             playerAnimator.gameObject.SetActive(false);
         }
 
-        // Plays the opponent damage animation.
-        public void PlayOpponentHurtAnimation()
+        // Plays the player damage animation.
+        public void PlayPlayerHurtAnimation()
         {
-            // The parameter.
-            string parameter = "tookDamage";
-
-            // TODO: maybe add in the UI update for the health here too?
-
-            // TODO: tie the sound effect to the animation itself.
             // Play sound effect.
-            PlayOpponentHurtSfx();
+            PlayPlayerHurtSfx();
 
+            PlayPlayerAnimation(1);
+        }
+
+        // Plays the player status effected animation.
+        public void PlayPlayerStatusAnimation()
+        {
+            PlayPlayerAnimation(2);
+        }
+
+        // Plays when the player suffers paralysis.
+        public void PlayPlayerParalyzedAnimation()
+        {
+            PlayPlayerAnimation(3);
+        }
+
+
+        // Plays the opponent damage animation.
+        public void PlayOpponentAnimation(string parameter, bool value)
+        {
             // Play animation by changing the value, then change it again so that it only plays once.
-            opponentAnimator.SetBool(parameter, true);
-            
+            opponentAnimator.SetBool(parameter, value);
+
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
             float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
 
             // Turn off the animation.
-            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));
+            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, !value));
+
+        }
+
+        // Called to stop an opponent animation.
+        public void StopOpponentAnimation(string parameter)
+        {
+            // Play animation by changing the value.
+            opponentAnimator.SetBool(parameter, false);
+        }
+
+        // Plays the opponent damage animation.
+        public void PlayOpponentHurtAnimation()
+        {
+            // Play sound effect.
+            PlayOpponentHurtSfx();
+
+            // Play the animation.
+            PlayOpponentAnimation("tookDamage", true);
+
+        }
+
+        // Plays the opponent status inflicted animation.
+        public void PlayOpponentStatusAnimation()
+        {
+            // Play the animation.
+            PlayOpponentAnimation("statusInflicted", true);
 
         }
 
         // Plays the opponent damage animation.
-        public void PlayOpponentParalysisAnimation()
+        public void PlayOpponentParalyzedAnimation()
         {
-            // The parameter.
-            string parameter = "paralyzed";
-
-            // TODO: tie the sound effect to the animation itself.
-            // TODO: implement sound effect for parlaysis.
-            // PlayDamageTakenSfx();
-
-            // Play animation by changing the value, then change it again so that it only plays once.
-            opponentAnimator.SetBool(parameter, true);
-
-            // Get the length of the animation.
-            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
-
-            // Turn off the animation.
-            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, false));
-
-        }
-
-        // Plays the death animation for the opponent.
-        public void StopOpponentParalysisAnimation()
-        {
-            // Stop animation by changing the value.
-            opponentAnimator.SetBool("paralyzed", false);
+            // TODO: play sound effect
+            PlayOpponentAnimation("paralyzed", true);
         }
 
         // Plays the death animation for the opponent.
         public void PlayOpponentDeathAnimation()
         {
-            // Play animation by changing the value.
-            opponentAnimator.SetBool("isDead", true);
-        }
+            // Should remain on this animation until the player goes back to the overworld.
+            // As such, this doesn't call another function.
 
-        // Called to stop the death animation, which stays on until the player leaves the battle (animation doesn't loop).
+            // Play animation by changing the value.
+            opponentAnimator.SetBool("killed", true);
+        }
+        // Plays the death animation for the opponent.
         public void StopOpponentDeathAnimation()
         {
-            // Play animation by changing the value.
-            opponentAnimator.SetBool("isDead", false);
+            // Stop the animation.
+            opponentAnimator.SetBool("killed", false);
         }
+
 
         // Disables an animator after a certain amount of wait time.
         // If 'animatorOnly' is true, then the animator component is disabled.
