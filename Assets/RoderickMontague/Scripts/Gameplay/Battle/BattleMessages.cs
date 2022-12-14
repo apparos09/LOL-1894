@@ -722,7 +722,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The player has won the battle!>";
+                msg = "<The opponent ran away! The player has won the battle!>";
             }
 
             return msg;
@@ -752,7 +752,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The player has beaten the final boss!>";
+                msg = "<The boss ran away! The player has completed the simulation!>";
             }
 
             return msg;
@@ -782,7 +782,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The player has lost the battle!>";
+                msg = "<The player lost the battle, and had to run away!>";
             }
 
             return msg;

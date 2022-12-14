@@ -480,7 +480,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<You lost the battle and got a game over, so there’s some things that you should know.>"));
                 pages.Add(new Page("<Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.>"));
                 pages.Add(new Page("<As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.>"));
-                pages.Add(new Page("<And as for you, your health and energy have been completed restored, but your moves have been randomized. Make sure to check the stats window to see your new moves.>"));
+                pages.Add(new Page("<And as for you, your health and energy have been completed restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.>"));
                 pages.Add(new Page("<That’s all for now, so good luck!>"));
             }
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Reflection;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace RM_BBTS
 {
@@ -701,26 +702,56 @@ namespace RM_BBTS
             // Randomize player moves
             Player player = gameManager.player;
 
-            // Go through each move.
-            for(int i = 0; i < player.moves.Length; i++)
-            {
-                // Move has been set.
-                if (player.moves[i] != null)
-                {
-                    // Grabs the rank.
-                    int rank = player.moves[i].Rank;
+            // // Original
+            // // Go through each move.
+            // for(int i = 0; i < player.moves.Length && randMoves < RAND_MOVE_COUNT; i++)
+            // {
+            //     // Move has been set.
+            //     if (player.moves[i] != null)
+            //     {
+            //         // Grabs the rank.
+            //         int rank = player.moves[i].Rank;
+            // 
+            //         // Replaces the move.
+            //         switch(rank)
+            //         {
+            //             case 1: // R1
+            //                 player.moves[i] = MoveList.Instance.GetRandomRank1Move();
+            //                 break;
+            //             case 2: // R2
+            //                 player.moves[i] = MoveList.Instance.GetRandomRank2Move();
+            //                 break;
+            //             case 3: // R3
+            //                 player.moves[i] = MoveList.Instance.GetRandomRank3Move();
+            //                 break;
+            //         }
+            //     }
+            // }
 
-                    // Replaces the move.
-                    switch(rank)
+            // List of 4 index spots.
+            List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
+
+            // Removes two indexes.
+            moveIndexes.Remove(Random.Range(0, moveIndexes.Count));
+            moveIndexes.Remove(Random.Range(0, moveIndexes.Count));
+
+            // Goes through each move index.
+            foreach(int moveIndex in moveIndexes)
+            {
+                // Checks that the move exists.
+                if (player.moves[moveIndex] != null)
+                {
+                    // Grabs the move rank, and replaces the move.
+                    switch(player.moves[moveIndex].Rank)
                     {
                         case 1: // R1
-                            player.moves[i] = MoveList.Instance.GetRandomRank1Move();
+                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank1Move();
                             break;
                         case 2: // R2
-                            player.moves[i] = MoveList.Instance.GetRandomRank2Move();
+                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank2Move();
                             break;
                         case 3: // R3
-                            player.moves[i] = MoveList.Instance.GetRandomRank3Move();
+                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank3Move();
                             break;
                     }
                 }
@@ -743,10 +774,18 @@ namespace RM_BBTS
             // The player does not have an attacking move, so give them one.
             if(!playerHasAttack)
             {
-                // Gives the player a basic attack move.
-                player.Move0 = MoveList.Instance.GenerateMove(moveId.kablam);
+                // Gives the player a basic attack move if they don't have one.
+                if(moveIndexes.Count > 0)
+                {
+                    player.moves[moveIndexes[Random.Range(0, moveIndexes.Count)]] = 
+                        MoveList.Instance.GenerateMove(moveId.kablam);
+                }
+                else // Replace the player's first move.
+                {
+                    player.Move0 = MoveList.Instance.GenerateMove(moveId.kablam);
+                }
+                    
             }
-
 
             gameOver = false;
 

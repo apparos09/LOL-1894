@@ -428,9 +428,9 @@
     "btl_msg_paralyzed_alt00": "The player is immobilized, and can't move!",
     "btl_msg_paralyzed_alt01": "The opponent is immobilized, and can't move!",
 
-    "btl_msg_battleWon": "The player has won the battle!",
-    "btl_msg_battleWonBoss": "The player has beaten the final boss!",
-    "btl_msg_battleLost": "The player has lost the battle!",
+    "btl_msg_battleWon": "The opponent ran away! The player has won the battle!",
+    "btl_msg_battleWonBoss": "The boss ran away! The player has completed the simulation!",
+    "btl_msg_battleLost": "The player lost the battle, and had to run away!",
 
     "btl_msg_treasure": "There is treasure in this room. Do you want to take it now?",
     "kwd_yes": "Yes",
@@ -660,7 +660,7 @@
     "trl_gameOver_00": "You lost the battle and got a game over, so there’s some things that you should know.",
     "trl_gameOver_01": "Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.",
     "trl_gameOver_02": "As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.",
-    "trl_gameOver_03": "And as for you, your health and energy have been completed restored, but your moves have been randomized. Make sure to check the stats window to see your new moves.",
+    "trl_gameOver_03": "And as for you, your health and energy have been completed restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.",
     "trl_gameOver_04": "That’s all for now, so good luck!",
 
 
