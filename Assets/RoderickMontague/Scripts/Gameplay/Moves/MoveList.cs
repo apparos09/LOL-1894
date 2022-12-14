@@ -461,7 +461,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "<Wham>", 2, 15.0F, 1.0F, 0.15F);
+                    move = new Move(moveId.wham, "<Wham>", 2, 30.0F, 1.0F, 0.15F);
 
                     move.description = "<The user hits the target with a decent, basic attack.>";
 
@@ -609,7 +609,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 100, 0.9F, 0.18F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 90, 0.9F, 0.30F);
 
                     move.description = "<A move that gets weaker the longer the battle goes on.>";
 
@@ -618,7 +618,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.allOut: // All-Out Attack
-                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 100, 0.95F, 0.4F);
+                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 90, 0.95F, 0.4F);
 
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
@@ -631,7 +631,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "<Kablam>", 3, 30.0F, 1.0F, 0.20F);
+                    move = new Move(moveId.kablam, "<Kablam>", 3, 50.0F, 1.0F, 0.20F);
 
                     move.description = "<A strong, but basic attack.>";
 

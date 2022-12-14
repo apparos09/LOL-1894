@@ -331,7 +331,7 @@ namespace RM_BBTS
             // Sets the new page index.
             currPageIndex = nextPageIndex;
 
-            // Bounds correction.
+            // Bounds correction for the page.
             // Current Page Index is set to -1 if there are no pages.
             if (pages.Count > 0)
             {
@@ -346,23 +346,31 @@ namespace RM_BBTS
             // Calls the 'open' function on the new page.
             pages[currPageIndex].OnPageOpened();
 
-            // Checks if the text should be shown automatically, or if it should be shown letter by letter.
-            if (instantText) // Instant
+            // A bounds check is done again to make sure that the pages weren't cleared in a callback.
+            // This was to address an error that was being encountered.
+            if(currPageIndex >= 0 && currPageIndex < pages.Count)
             {
-                // Sets the box text.
-                boxText.text = pages[currPageIndex].text;
+                // Checks if the text should be shown automatically, or if it should be shown letter by letter.
+                if (instantText) // Instant
+                {
+                    // Sets the box text.
+                    boxText.text = pages[currPageIndex].text;
+                }
+                else // Letter by Letter
+                {
+                    // Set to load characters, and loads up the char queue.
+                    loadingChars = true;
+                    charQueue.Clear();
+                    charQueue = new Queue<char>(pages[currPageIndex].text);
+                    charTimer = 0.0F;
+                }
             }
-            else // Letter by Letter
+            else
             {
-                // Set to load characters, and loads up the char queue.
-                loadingChars = true;
-                charQueue.Clear();
-                charQueue = new Queue<char>(pages[currPageIndex].text);
-                charTimer = 0.0F;
+                boxText.text = string.Empty;
+                // TODO: close textbox?
             }
 
-
-            // TODO: maybe have con
         }
 
         // Loads character by character.

@@ -702,14 +702,34 @@ namespace RM_BBTS
         private void PerformPlayerMove()
         {
             order++;
-            player.selectedMove.Perform(player, opponent, this); 
+
+            // Checks if the player is dead.
+            // This addresses a problem where a move would go off even though the entity was already dead.
+            if(player.IsDead()) // Dead, so don't do anything.
+            {
+                textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+            }
+            else // Perform move.
+            {
+                player.selectedMove.Perform(player, opponent, this);
+            }
         }
 
         // Called to perform the opponent's move.
         private void PerformOpponentMove()
         {
             order++;
-            opponent.selectedMove.Perform(opponent, player, this);
+
+            // Prevents the opponent from using its move if it's already dead.
+            // This is being used to address a glitch where an attack goes off when it shouldn't.
+            if(opponent.IsDead()) // Dead, so don't do anything.
+            {
+                textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+            }
+            else // Perform move.
+            {
+                opponent.selectedMove.Perform(opponent, player, this);
+            }   
         }
 
         // Performs the two moves.

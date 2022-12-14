@@ -456,7 +456,7 @@ namespace RM_BBTS
 
         // MESSAGES //
         // Gets the move no power message.
-        public Page GetMoveNoEnergyMessage(BattleEntity entity)
+        public static Page GetMoveNoEnergyMessage(BattleEntity entity)
         {
             Page page;
 
@@ -480,7 +480,7 @@ namespace RM_BBTS
             return page;
         }
         // Get move hit page.
-        public Page GetMoveHitPage()
+        public static Page GetMoveHitPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveHitMessage(),
@@ -491,7 +491,7 @@ namespace RM_BBTS
         }
 
         // Gets the mvoe successful page.
-        public Page GetMoveSuccessfulPage()
+        public static Page GetMoveSuccessfulPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveSuccessfulMessage(),
@@ -502,7 +502,7 @@ namespace RM_BBTS
         }
 
         // Get move critical page.
-        public Page GetMoveHitCriticalPage()
+        public static Page GetMoveHitCriticalPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveHitCriticalMessage(),
@@ -513,7 +513,7 @@ namespace RM_BBTS
         }
 
         // Get move recoil page.
-        public Page GetMoveHitRecoilPage(BattleEntity entity)
+        public static Page GetMoveHitRecoilPage(BattleEntity entity)
         {
             Page page;
 
@@ -537,7 +537,7 @@ namespace RM_BBTS
         }
 
         // Get move burned page.
-        public Page GetMoveBurnedPage()
+        public static Page GetMoveBurnedPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveBurnedMessage(),
@@ -548,7 +548,7 @@ namespace RM_BBTS
         }
 
         // Get move paralyzed page.
-        public Page GetMoveParalyzedPage()
+        public static Page GetMoveParalyzedPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveParalyzedMessage(),
@@ -560,7 +560,7 @@ namespace RM_BBTS
 
         // Get the stat increased page.
         // 'Stages' should always be positive.
-        public Page GetStatIncreasePage(BattleEntity entity, string stat, int stages)
+        public static Page GetStatIncreasePage(BattleEntity entity, string stat, int stages)
         {
             Page page; 
             
@@ -585,7 +585,7 @@ namespace RM_BBTS
 
         // Get the stat decreased page.
         // 'Stages' should always be positive.
-        public Page GetStatDecreasePage(BattleEntity entity, string stat, int stages)
+        public static Page GetStatDecreasePage(BattleEntity entity, string stat, int stages)
         {
             Page page;
 
@@ -610,7 +610,7 @@ namespace RM_BBTS
 
         // Get attack change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public Page GetAttackChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetAttackChangePage(BattleEntity entity, int stages, bool increase)
         {
             if(increase)
                 return GetStatIncreasePage(entity, "Attack", stages);
@@ -620,7 +620,7 @@ namespace RM_BBTS
 
         // Get defense change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public Page GetDefenseChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetDefenseChangePage(BattleEntity entity, int stages, bool increase)
         {
             if (increase)
                 return GetStatIncreasePage(entity, "Defense", stages);
@@ -630,7 +630,7 @@ namespace RM_BBTS
 
         // Get speed change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public Page GetSpeedChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetSpeedChangePage(BattleEntity entity, int stages, bool increase)
         {
             if (increase)
                 return GetStatIncreasePage(entity, "Speed", stages);
@@ -640,7 +640,7 @@ namespace RM_BBTS
 
         // Get accuracy change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public Page GetAccuracyChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetAccuracyChangePage(BattleEntity entity, int stages, bool increase)
         {
             if (increase)
                 return GetStatIncreasePage(entity, "Accuracy", stages);
@@ -649,7 +649,7 @@ namespace RM_BBTS
         }
 
         // Gets the move missed page.
-        public Page GetMoveMissedPage()
+        public static Page GetMoveMissedPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveMissedMessage(),
@@ -660,7 +660,7 @@ namespace RM_BBTS
         }
 
         // Gets the move failed page.
-        public Page GetMoveFailedPage()
+        public static Page GetMoveFailedPage()
         {
             Page page = new Page(
                 BattleMessages.Instance.GetMoveFailedMessage(),
@@ -671,13 +671,13 @@ namespace RM_BBTS
         }
 
         // Inserts a page after the current page.
-        public void InsertPageAfterCurrentPage(BattleManager battle, Page page)
+        public static void InsertPageAfterCurrentPage(BattleManager battle, Page page)
         {
             battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, page);
         }
 
         // Inserts multiple pages after the current page.
-        public void InsertPagesAfterCurrentPage(BattleManager battle, List<Page> pages)
+        public static void InsertPagesAfterCurrentPage(BattleManager battle, List<Page> pages)
         {
             if(pages.Count != 0)
                 battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, pages);
