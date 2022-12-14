@@ -159,8 +159,9 @@ namespace RM_BBTS
         public void ApplyNewPhaseBonus()
         {
             // Since each enemy stage has a 100 point difference, this increases the player's stats by 100.
+            // Value changed for balance.
 
-            float total = 100.0F;
+            float total = 140.0F;
             float amount = Mathf.Ceil(total / 4.0F);
 
             SetHealthRelativeToMaxHealth(MaxHealth + amount);

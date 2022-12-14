@@ -765,7 +765,8 @@ namespace RM_BBTS
 
                 // PLAYER
                 // Checks if the player is paralyzed.
-                if(player.paralyzed)
+                // The player will never be paralyzed if charging their move or attempting to run away (enemies will though).
+                if(player.paralyzed && player.selectedMove.Id != moveId.run && player.selectedMove.Id != moveId.charge)
                 {
                     // If turn should be skipped.
                     turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;

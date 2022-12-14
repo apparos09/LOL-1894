@@ -14,6 +14,7 @@ namespace RM_BBTS
         // The number of the move.
         protected moveId id = 0;
 
+        // STATS //
         // The name of the move.
         protected string name;
 
@@ -41,6 +42,7 @@ namespace RM_BBTS
         // If set to 'false', the move will always hit if there's enough energy.
         public bool useAccuracy = true;
 
+        // CHANGES //
         // The recoil applied when using the move. This is a percentage of the damage done to the target.
         protected float recoilPercent = 0.0F;
 
