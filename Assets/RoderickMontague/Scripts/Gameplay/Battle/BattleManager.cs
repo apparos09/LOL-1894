@@ -67,7 +67,7 @@ namespace RM_BBTS
         public const float BURN_DAMAGE = 0.0625F;
 
         // The chance to skip a turn if paralyzed.
-        public const float PARALAYSIS_SKIP_CHANCE = 0.1F;
+        public const float PARALAYSIS_SKIP_CHANCE = 0.4F;
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
@@ -1563,10 +1563,10 @@ namespace RM_BBTS
         }
 
         // Called to stop an opponent animation.
-        public void StopOpponentAnimation(string parameter)
+        public void PlayOpponentDefaultAnimation()
         {
             // Play animation by changing the value.
-            opponentAnimator.SetBool(parameter, false);
+            opponentAnimator.SetInteger("anim", 0);
         }
 
         // Plays the opponent damage animation.

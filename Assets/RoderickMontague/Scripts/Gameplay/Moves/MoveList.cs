@@ -355,7 +355,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "<Scorch>", 2, 30, 0.9F, 0.40F);
+                    move = new Move(moveId.torch, "<Scorch>", 2, 10, 0.9F, 0.40F);
                     move.BurnChance = 1.0F;
 
                     move.description = "<A weak attack that always burns the target.>";
@@ -365,7 +365,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "<Electrify>", 2, 30, 0.9F, 0.4F);
+                    move = new Move(moveId.electrify, "<Electrify>", 2, 10, 0.9F, 0.4F);
                     move.ParalysisChance = 1.0F;
 
                     move.description = "<A weak attack that always paralyzes the target.>";
