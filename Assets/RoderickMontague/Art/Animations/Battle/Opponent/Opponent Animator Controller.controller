@@ -66,9 +66,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: healed
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: anim
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8723435581469929995}
   m_Solo: 0
@@ -91,9 +91,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: statusInflicted
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: anim
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5054379895156090878}
   m_Solo: 0
@@ -217,9 +217,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: tookDamage
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: anim
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5310065476990110951}
   m_Solo: 0
@@ -256,9 +256,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: healed
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: anim
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -597918366848514662}
   m_Solo: 0
@@ -281,9 +281,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: paralyzed
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: anim
+    m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7210988888748282347}
   m_Solo: 0
@@ -358,9 +358,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: statusInflicted
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: anim
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8723435581469929995}
   m_Solo: 0
@@ -384,36 +384,12 @@ AnimatorController:
   m_Name: Opponent Animator Controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: tookDamage
-    m_Type: 4
+  - m_Name: anim
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: killed
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: paralyzed
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: statusInflicted
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: healed
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -500,9 +476,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: killed
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: anim
+    m_EventTreshold: 5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8723435581469929995}
   m_Solo: 0
@@ -525,9 +501,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: paralyzed
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: anim
+    m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8723435581469929995}
   m_Solo: 0
@@ -550,9 +526,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: tookDamage
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: anim
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8723435581469929995}
   m_Solo: 0
@@ -601,9 +577,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: killed
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: anim
+    m_EventTreshold: 5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2304362141263144709}
   m_Solo: 0

@@ -1315,7 +1315,7 @@ namespace RM_BBTS
 
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
-            StopOpponentDeathAnimation();
+            PlayDefaultOpponentAnimation();
 
             // Prepare for next battle.
             gotCritical = false;
@@ -1548,17 +1548,17 @@ namespace RM_BBTS
 
 
         // Plays the opponent damage animation.
-        public void PlayOpponentAnimation(string parameter, bool value)
+        public void PlayOpponentAnimation(string parameter, int value)
         {
             // Play animation by changing the value, then change it again so that it only plays once.
-            opponentAnimator.SetBool(parameter, value);
+            opponentAnimator.SetInteger(parameter, value);
 
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
             float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
 
             // Turn off the animation.
-            StartCoroutine(AnimationTransitionTriggerBool(opponentAnimator, parameter, animTime, !value));
+            StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, 0));
 
         }
 
@@ -1577,7 +1577,7 @@ namespace RM_BBTS
                 PlayOpponentHurtSfx();
 
             // Play the animation.
-            PlayOpponentAnimation("tookDamage", true);
+            PlayOpponentAnimation("anim", 1);
 
         }
 
@@ -1587,7 +1587,7 @@ namespace RM_BBTS
             PlayMoveEffectSfx();
 
             // Play the animation.
-            PlayOpponentAnimation("statusInflicted", true);
+            PlayOpponentAnimation("anim", 2);
 
         }
 
@@ -1597,7 +1597,7 @@ namespace RM_BBTS
             PlayMoveEffectSfx();
 
             // Play the animation.
-            PlayOpponentAnimation("healed", true);
+            PlayOpponentAnimation("anim", 3);
         }
 
         // Plays the opponent damage animation.
@@ -1605,7 +1605,8 @@ namespace RM_BBTS
         {
             PlayParalysisSfx();
 
-            PlayOpponentAnimation("paralyzed", true);
+            // TODO: play sound effect
+            PlayOpponentAnimation("anim", 4);
         }
 
         // Plays the death animation for the opponent.
@@ -1615,13 +1616,13 @@ namespace RM_BBTS
             // As such, this doesn't call another function.
 
             // Play animation by changing the value.
-            opponentAnimator.SetBool("killed", true);
+            opponentAnimator.SetInteger("anim", 5);
         }
         // Plays the death animation for the opponent.
-        public void StopOpponentDeathAnimation()
+        public void PlayDefaultOpponentAnimation()
         {
-            // Stop the animation.
-            opponentAnimator.SetBool("killed", false);
+            // Return to the default animation.
+            opponentAnimator.SetInteger("anim", 0);
         }
 
 
@@ -1651,8 +1652,28 @@ namespace RM_BBTS
             }
         }
 
-        // A function called to turn off the damage animator once it has played.
-        private IEnumerator AnimationTransitionTriggerBool(Animator animator, string parameter, float animTime, bool offValue)
+        // A function called to set an int after the timer runs out.
+        private IEnumerator AnimationSetIntegerDelayed(Animator animator, string parameter, float animTime, int value)
+        {
+            // The wait time for the animation.
+            float waitTime = animTime;
+
+            // While the operation is going.
+            while (waitTime > 0.0F)
+            {
+                // Reduce by delta time.
+                waitTime -= Time.deltaTime;
+
+                // Tells the program to stall.
+                yield return null;
+            }
+
+            // Sets the integer.
+            animator.SetInteger(parameter, value);
+        }
+
+        // A function called to set a bool after a timer runs out.
+        private IEnumerator AnimationSetBoolDelayed(Animator animator, string parameter, float animTime, bool value)
         {
             // The wait time for the animation.
             float waitTime = animTime;
@@ -1668,7 +1689,7 @@ namespace RM_BBTS
             }
 
             // Changes the animator so that the animation goes back.
-            animator.SetBool(parameter, offValue);
+            animator.SetBool(parameter, value);
         }
 
 
