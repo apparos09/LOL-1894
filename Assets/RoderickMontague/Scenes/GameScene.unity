@@ -9784,6 +9784,8 @@ MonoBehaviour:
   playerHurtSfx: {fileID: 8300000, guid: 6af039931413b72498d3d4f5cc75b72c, type: 3}
   opponentHurtSfx: {fileID: 8300000, guid: 04db29e2a0009c4428d092b151bb8496, type: 3}
   moveEffectSfx: {fileID: 8300000, guid: d221b6f7fec06c444b19c23f5a71ad0a, type: 3}
+  burnSfx: {fileID: 8300000, guid: ce1f4152780bf544983b1211605ffcf4, type: 3}
+  paralysisSfx: {fileID: 8300000, guid: 17e190b9c64a736409acc7907a68210c, type: 3}
   playerAnimator: {fileID: 1411017892}
   playerAnimationImage: {fileID: 1411017890}
   opponentAnimator: {fileID: 154329597}

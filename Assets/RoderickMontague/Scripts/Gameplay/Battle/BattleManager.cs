@@ -201,6 +201,12 @@ namespace RM_BBTS
         // THe sound efect for a non-damaging move.
         public AudioClip moveEffectSfx;
 
+        // The burn sound effect.
+        public AudioClip burnSfx;
+
+        // The paralysis sound effect.
+        public AudioClip paralysisSfx;
+
         [Header("Animations")]
         // The player's animator.
         public Animator playerAnimator;
@@ -927,8 +933,14 @@ namespace RM_BBTS
         // Apply burn to the player.
         private void ApplyPlayerBurn()
         {
+            // Player was burned.
             if (player.burned)
+            {
                 player.ApplyBurn(this);
+                PlayBurnSfx(); // Plays the sound effect.
+                PlayPlayerHurtAnimation(false); // Play animation.
+            }
+                
         }
 
         // Apply burn to the opponent.
@@ -939,9 +951,8 @@ namespace RM_BBTS
             {
                 opponent.ApplyBurn(this);
 
-                // TODO: add sound effect for burn damage.
-                // Plays the damage animation.
-                PlayOpponentHurtAnimation();
+                PlayBurnSfx(); // Plays the sound effect.
+                PlayOpponentHurtAnimation(false); // Plays the animation.
             }
 
         }
@@ -1428,6 +1439,18 @@ namespace RM_BBTS
             gameManager.audioManager.PlaySoundEffect(moveEffectSfx);
         }
 
+        // Play the burn sound effect.
+        public void PlayBurnSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(burnSfx);
+        }
+
+        // Play the paralysis sound effect.
+        public void PlayParalysisSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(paralysisSfx);
+        }
+
         // JNG //
         // Plays the battle won jingle.
         public void PlayBattleWonJng()
@@ -1488,10 +1511,11 @@ namespace RM_BBTS
         }
 
         // Plays the player damage animation.
-        public void PlayPlayerHurtAnimation()
+        public void PlayPlayerHurtAnimation(bool playSound = true)
         {
             // Play sound effect.
-            PlayPlayerHurtSfx();
+            if(playSound)
+                PlayPlayerHurtSfx();
 
             PlayPlayerAnimation(1);
         }
@@ -1499,6 +1523,8 @@ namespace RM_BBTS
         // Plays the player status effected animation.
         public void PlayPlayerStatusAnimation()
         {
+            PlayMoveEffectSfx();
+
             PlayPlayerAnimation(2);
         }
 
@@ -1507,7 +1533,7 @@ namespace RM_BBTS
         // This isn't used when the player is healed after completing a battle.
         public void PlayPlayerHealAnimation()
         {
-            // TODO: play SFX.
+            PlayMoveEffectSfx();
 
             PlayPlayerAnimation(3);
         }
@@ -1515,7 +1541,7 @@ namespace RM_BBTS
         // Plays when the player suffers paralysis.
         public void PlayPlayerParalyzedAnimation()
         {
-            // TODO: play SFX
+            PlayParalysisSfx();
 
             PlayPlayerAnimation(4);
         }
@@ -1544,10 +1570,11 @@ namespace RM_BBTS
         }
 
         // Plays the opponent damage animation.
-        public void PlayOpponentHurtAnimation()
+        public void PlayOpponentHurtAnimation(bool playSound = true)
         {
             // Play sound effect.
-            PlayOpponentHurtSfx();
+            if(playSound)
+                PlayOpponentHurtSfx();
 
             // Play the animation.
             PlayOpponentAnimation("tookDamage", true);
@@ -1557,6 +1584,8 @@ namespace RM_BBTS
         // Plays the opponent status inflicted animation.
         public void PlayOpponentStatusAnimation()
         {
+            PlayMoveEffectSfx();
+
             // Play the animation.
             PlayOpponentAnimation("statusInflicted", true);
 
@@ -1565,6 +1594,8 @@ namespace RM_BBTS
         // Plays the opponent heal animation.
         public void PlayOpponentHealAnimation()
         {
+            PlayMoveEffectSfx();
+
             // Play the animation.
             PlayOpponentAnimation("healed", true);
         }
@@ -1572,7 +1603,8 @@ namespace RM_BBTS
         // Plays the opponent damage animation.
         public void PlayOpponentParalyzedAnimation()
         {
-            // TODO: play sound effect
+            PlayParalysisSfx();
+
             PlayOpponentAnimation("paralyzed", true);
         }
 

@@ -130,3 +130,9 @@ Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note(s): edited to change the tempo, and shortened.
+
+== Burn Effect (SFX) ==
+Original creation for the game.
+
+== Paralysis Effect (SFX) ==
+Original creation for the game.
