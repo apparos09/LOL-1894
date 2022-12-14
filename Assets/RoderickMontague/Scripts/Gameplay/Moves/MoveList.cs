@@ -575,7 +575,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.quake: // Quake
-                    move = new Move(moveId.quake, "<Quake>", 3, 100, 0.7F, 0.20F);
+                    move = new Move(moveId.quake, "<Quake>", 3, 75, 0.7F, 0.20F);
 
                     move.CriticalChance = 0.3F;
                     move.RecoilPercent = 0.4F;
@@ -588,7 +588,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 130, 0.85F, 0.2F);
+                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 100, 0.85F, 0.2F);
                     move.BurnChance = 0.35F;
 
                     move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a burn chance of 35%.>";
@@ -599,7 +599,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 130, 0.85F, 0.2F);
+                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 100, 0.85F, 0.2F);
                     move.ParalysisChance = 0.35F;
 
                     move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a paralysis chance of 35%.>";
@@ -609,7 +609,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 120, 0.9F, 0.18F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 100, 0.9F, 0.18F);
 
                     move.description = "<A move that gets weaker the longer the battle goes on.>";
 
@@ -618,7 +618,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.allOut: // All-Out Attack
-                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 105, 0.95F, 0.4F);
+                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 100, 0.95F, 0.4F);
 
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
