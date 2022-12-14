@@ -45,11 +45,13 @@ namespace RM_BBTS
                 {
                     // Updates player's health for healed content.
                     battle.UpdatePlayerHealthUI();
+                    battle.PlayPlayerHealAnimation();
                 }
                 else
                 {
                     // Updates opponent's health.
                     battle.UpdateOpponentUI();
+                    battle.PlayOpponentHealAnimation();
                 }
             }
 

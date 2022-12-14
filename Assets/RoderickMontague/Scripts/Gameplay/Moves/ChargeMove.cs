@@ -50,12 +50,18 @@ namespace RM_BBTS
                     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
                                     BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
+
+                    // Status animation.
+                    battle.PlayPlayerStatusAnimation();
                 }
                 else // Opponent
                 {
                     battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
                                     BattleMessages.Instance.GetMoveChargeUsedMessage(user.displayName),
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
+
+                    // Status animation.
+                    battle.PlayOpponentStatusAnimation();
                 }
 
 

@@ -56,12 +56,19 @@ namespace RM_BBTS
                 }
 
                 // Updates the player's energy UI if the user is a player.
-                if (user is Player)
+                if (user is Player) // Player
+                {
                     battle.gameManager.UpdatePlayerEnergyUI();
 
-                // TODO: overlaps with the button SFX.
-                // Play the move effect sfx.
-                // battle.PlayMoveEffectSfx();
+                    if(success) // Player Animation
+                        battle.PlayPlayerStatusAnimation();
+                }
+                else // Opponent
+                {
+                    if(success) // Opponent Animation
+                        battle.PlayOpponentStatusAnimation();
+                }
+                    
             }
             else // Not usable.
             {

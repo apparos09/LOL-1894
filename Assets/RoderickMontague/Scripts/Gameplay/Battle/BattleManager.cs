@@ -1461,7 +1461,10 @@ namespace RM_BBTS
                 case 2: // Status
                     playerAnimationImage.color = Color.blue;
                     break;
-                case 3: // Paralysis
+                case 3: // Heal/Health Restore (Move)
+                    playerAnimationImage.color = Color.green;
+                    break;
+                case 4: // Paralysis
                     playerAnimationImage.color = Color.yellow;
                     break;
                 default: // Default
@@ -1499,10 +1502,22 @@ namespace RM_BBTS
             PlayPlayerAnimation(2);
         }
 
+        // Plays the player heal animation.
+        // This is only used when the player uses a healing move.
+        // This isn't used when the player is healed after completing a battle.
+        public void PlayPlayerHealAnimation()
+        {
+            // TODO: play SFX.
+
+            PlayPlayerAnimation(3);
+        }
+
         // Plays when the player suffers paralysis.
         public void PlayPlayerParalyzedAnimation()
         {
-            PlayPlayerAnimation(3);
+            // TODO: play SFX
+
+            PlayPlayerAnimation(4);
         }
 
 
@@ -1545,6 +1560,13 @@ namespace RM_BBTS
             // Play the animation.
             PlayOpponentAnimation("statusInflicted", true);
 
+        }
+
+        // Plays the opponent heal animation.
+        public void PlayOpponentHealAnimation()
+        {
+            // Play the animation.
+            PlayOpponentAnimation("healed", true);
         }
 
         // Plays the opponent damage animation.

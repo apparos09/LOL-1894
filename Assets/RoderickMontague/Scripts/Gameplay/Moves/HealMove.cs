@@ -40,12 +40,17 @@ namespace RM_BBTS
 
                 user.Health += user.MaxHealth * healPercent; // Heal
 
+                // TODO: maybe don't update it if the move fails since it wouldn't be needed?
                 // Update the health and the energy.
                 if (user is Player) // User is player.
+                {
                     battle.gameManager.UpdateUI();
+                }                    
                 else // User is opponent.
+                {
                     battle.UpdateOpponentUI();
-
+                }
+                   
                 // TODO: overlaps with the button SFX.
                 // Play the move effect sfx.
                 // battle.PlayMoveEffectSfx();
@@ -54,6 +59,13 @@ namespace RM_BBTS
                 if (success) // The move success message - health was restored.
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
+
+                    // Plays the heal animation.
+                    if(user is Player) // Player
+                        battle.PlayPlayerHealAnimation();
+                    else // Opponent
+                        battle.PlayOpponentHealAnimation();
+
                 }
                 else // The move fail message - entity was at full health.
                 {

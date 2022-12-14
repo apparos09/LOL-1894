@@ -68,6 +68,13 @@ namespace RM_BBTS
                 // Updates the player's energy UI if the user is a player.
                 if (user is Player)
                     battle.gameManager.UpdatePlayerEnergyUI();
+
+                // Since this move effects both sides, the animation plays on both the player and the opponent.
+                if(success)
+                {
+                    battle.PlayPlayerStatusAnimation();
+                    battle.PlayOpponentStatusAnimation();
+                }
             }
             else // Not usable.
             {

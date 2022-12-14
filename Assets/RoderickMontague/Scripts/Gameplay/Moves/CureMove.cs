@@ -54,7 +54,19 @@ namespace RM_BBTS
                 // Prints a different message based on if the move actually did anything.
                 if (hadStatus) // A status was cured.
                 {
+                    // Success page.
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
+
+                    // Checks what status animation to play.
+                    if (user is Player) // Player
+                    {
+                        battle.PlayPlayerStatusAnimation();
+                    }
+                    else // Opponent
+                    {
+                        battle.PlayOpponentStatusAnimation();
+                    }
+
                     return true;
                 } 
                 else // The entity never had a status, so the move failed.
@@ -62,7 +74,6 @@ namespace RM_BBTS
                     InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
                     return false;
                 }     
-
             }
             else // Not enough power.
             {
