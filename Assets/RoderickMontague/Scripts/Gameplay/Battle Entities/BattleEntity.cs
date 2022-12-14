@@ -750,27 +750,32 @@ namespace RM_BBTS
             if (times == 0)
                 return data;
 
+            // Copies the data so that a new one is made.
             BattleEntityGameData newData = data;
 
+            // Random number generation.
             int rand;
+
+            // HP and Energy Percentage.
             float hpPercent = data.health / data.maxHealth;
             float engPercent = data.energy / data.maxEnergy;
 
-            // If the level rate is negative, set it to 1.0 (default).
-            if (levelRate < 0.0F)
+            // If the level rate is negative or 0, set it to 1.0 (default).
+            if (levelRate <= 0.0F)
                 levelRate = 1.0F;
 
             newData.level += times;
 
-            newData.maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
-            newData.attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
-            newData.defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
-            newData.speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
-            newData.maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times;
+            newData.maxHealth += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            newData.attack += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            newData.defense += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            newData.speed += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            newData.maxEnergy += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
 
             // Adds a differet bonus per level.
             for(int lvl = 0; lvl < times; lvl++)
             {
+                // Energy isn't used anymore, but it's being kept in since it just acts as a 'no bonus' level-up.
                 rand = Random.Range(0, 5);
 
                 // Random +3 factor
@@ -800,27 +805,25 @@ namespace RM_BBTS
             {
                 case specialty.none:
                     // Increases each stat by 1.
-                    newData.maxHealth += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
-                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
-                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
-                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4) * levelRate;
+                    newData.maxHealth += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
+                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
+                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
+                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
                     break;
                 case specialty.health:
-                    newData.maxEnergy += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    newData.maxEnergy += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
                     break;
                 case specialty.attack:
-                    newData.attack += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
                     break;
                 case specialty.defense:
-                    newData.defense += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
                     break;
                 case specialty.speed:
-                    newData.speed += STAT_LEVEL_SPECIALITY_INC * levelRate;
+                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
                     break;
                 
             }
-
-            // TODO: do speciality bonus.
 
             // Proportional changes.
             newData.health = hpPercent * newData.maxHealth;

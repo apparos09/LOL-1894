@@ -957,10 +957,14 @@ namespace RM_BBTS
             }
 
             // Switch back to default.
-            stateTransition.SetInteger("animPart", 0);
+            stateTransition.SetInteger("animPart", 1);
 
             // Deactives the object so that the transition animation stops.
             stateTransition.gameObject.SetActive(false);
+
+            // TODO: the animation appears to break sometimes, and I'm not sure why.
+            // It appears to happen because its been too short since the last transition?
+            // I'm not sure why that would cause the visual bug though.
 
         }
 

@@ -311,9 +311,9 @@ namespace RM_BBTS
                     data.maxHealth = 40;
                     data.health = data.maxHealth;
 
-                    data.attack = 42;
+                    data.attack = 34;
                     data.defense = 17;
-                    data.speed = 32;
+                    data.speed = 48;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -911,8 +911,8 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     {
                         moveId.poke, moveId.slimeShot, moveId.screech, moveId.chip, moveId.hpDrain1,
-                        moveId.healthSplit, moveId.bam, moveId.soundWave, moveId.quickBurst, moveId.torch, moveId.hpDrain2,
-                        moveId.wham, moveId.hpDrain3, moveId.kablam, moveId.allOut
+                        moveId.healthSplit, moveId.bam, moveId.soundWave, moveId.quickBurst,
+                         moveId.torch, moveId.hpDrain2, moveId.wham, moveId.kablam
                     };
                     break;
 

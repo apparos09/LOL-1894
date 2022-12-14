@@ -130,9 +130,7 @@ namespace RM_BBTS
         // Levels up the player.
         public override void LevelUp()
         {
-            // base.LevelUp();
             LevelUp(levelRate, specialty.none, 1);
-
         }
 
         // Levels up the player.
@@ -150,8 +148,6 @@ namespace RM_BBTS
         public void LevelUp(specialty special, uint times = 1)
         {
             LevelUp(levelRate, special, times);
-        
-            // TODO: implement enemy specialities for level up.
         }
 
         // Applies the new phase bonus for the player.

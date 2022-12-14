@@ -284,6 +284,8 @@ namespace RM_BBTS
         // Sets the text that's on the text box.
         private void SetTextBoxText(int nextPageIndex, bool finishPage = true)
         {
+            // TODO: account for glitch with an index out of bounds error with the pages.
+
             // If text is still being loaded just sub in the rest and stop loading in new characters.
             if (loadingChars)
             {

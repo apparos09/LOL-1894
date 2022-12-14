@@ -508,7 +508,7 @@
     "mve_magnify_dsc": "The user raises their accuracy by 1.",
 
     "mve_heal_nme": "Heal",
-    "mve_heal_dsc": "The user heals 15% of their health.",
+    "mve_heal_dsc": "The user heals 20% of their health.",
     "mve_hpDrain1_nme": "Drain Heal 1",
     "mve_hpDrain1_dsc": "The user attacks the target, and restores their health by 12.5% of the damage given.",
     "mve_healthSplit_nme": "Health Split",

@@ -241,9 +241,9 @@ namespace RM_BBTS
 
                 case moveId.heal: // Heal
                     move = new HealMove(moveId.heal, "<Heal>", 1, 0.40F);
-                    (move as HealMove).healPercent = 0.125F;
+                    (move as HealMove).healPercent = 0.20F;
 
-                    move.description = "<The user heals 15% of their health.>";
+                    move.description = "<The user heals 20% of their health.>";
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
