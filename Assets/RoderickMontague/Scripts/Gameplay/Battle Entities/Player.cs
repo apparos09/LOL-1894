@@ -50,7 +50,7 @@ namespace RM_BBTS
             statSpecial = specialty.none;
 
             // The player levels up faster than the enemies.
-            levelRate = 1.5F;
+            levelRate = 1.25F;
 
             // TODO: set unique sprite?
 
@@ -90,6 +90,15 @@ namespace RM_BBTS
             LoadTranslation("bey_player_nme");
         }
 
+        // Generate the battle entity data with base stats.
+        public override BattleEntityGameData GenerateBattleEntityGameDataWithBaseStats()
+        {
+            // Goes based off of the unknown parameter, then replaces the data.
+            BattleEntityGameData data = base.GenerateBattleEntityGameDataWithBaseStats();
+            SetDataWithBaseStats(ref data);
+            return data;
+        }
+
         // Loads the battle game data.
         public override void LoadBattleGameData(BattleEntityGameData data)
         {
@@ -125,12 +134,6 @@ namespace RM_BBTS
             // This is unneeded.
             data.levelRate = levelRate;
 
-        }
-
-        // Levels up the player.
-        public override void LevelUp()
-        {
-            LevelUp(specialty.none, 1);
         }
 
         // Levels up the player.

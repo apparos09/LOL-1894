@@ -185,6 +185,8 @@ namespace RM_BBTS
             if (displayName == "")
                 displayName = name;
 
+            // The displayNameSpeakKey isn't set since it's unknown what the key would be.
+
             // TODO: this causes an error when loading game data.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
@@ -202,8 +204,9 @@ namespace RM_BBTS
             // If the SDK has been initialized.
             if (defs != null)
             {
-                // Loads in the name and description.
+                // Loads in the name and the speak key.
                 displayName = defs[nameKey];
+                displayNameSpeakKey = nameKey;
             }
 
         }
@@ -219,6 +222,7 @@ namespace RM_BBTS
             {
                 // Loads in the name and description.
                 data.displayName = defs[nameKey];
+                data.displayNameSpeakKey = nameKey;
             }
         }
 
@@ -231,6 +235,8 @@ namespace RM_BBTS
             // Sets the values.
             data.id = id;
             data.displayName = displayName;
+            data.displayNameSpeakKey = displayNameSpeakKey;
+
             data.level = level;
             data.levelRate = levelRate;
 
@@ -264,6 +270,13 @@ namespace RM_BBTS
 
             data.sprite = sprite;
 
+            return data;
+        }
+
+        // Generate the battle entity data with base stats.
+        public virtual BattleEntityGameData GenerateBattleEntityGameDataWithBaseStats()
+        {
+            BattleEntityGameData data = BattleEntityList.Instance.GenerateBattleEntityData(id);
             return data;
         }
 
@@ -656,76 +669,14 @@ namespace RM_BBTS
         // (times) refers to how many times the entity is leveled up.
         public virtual void LevelUp(specialty special, uint times = 1)
         {
-            // TODO: implement level up and level rate.
-
-            // // Relative hp and energy.
-            // float hpPercent = health / maxHealth;
-            // float engPercent = energy / maxEnergy;
-            // 
-            // // Bonus increase.
-            // float bonus = STAT_LEVEL_BONUS_INC;
-            // int rand = Random.Range(0, 5);
-            // 
-            // // The restoration percentage.
-            // float restorePercent = LEVEL_UP_RESTORE_PERCENT;
-            // 
-            // // Increase the level.
-            // level++;
-            // 
-            // // Increases the 5 stats.
-            // maxHealth += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            // attack += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            // defense += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            // speed += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            // maxEnergy += Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX);
-            // 
-            // 
-            // // Random +3 factor
-            // switch(rand)
-            // {
-            //     case 0: // HP
-            //         maxHealth += bonus;
-            //         break;
-            //     case 1: // ATTACK
-            //         attack += bonus;
-            //         break;
-            //     case 2: // DEFENSE
-            //         defense += bonus;
-            //         break;
-            //     case 3: // SPEED
-            //         speed += bonus;
-            //         break;
-            //     case 4: // ENERGY
-            //         maxEnergy += bonus;
-            //         break;
-            // }
-            // 
-            // // Sets new health and energy proportional to new maxes.
-            // health = hpPercent * maxHealth;
-            // energy = engPercent * maxEnergy;
-            // 
-            // // Restores health and energy
-            // Health += maxHealth * restorePercent;
-            // Energy += maxEnergy * restorePercent;
-
-            // Generate and level up the data (data for level 1).
+            // Generate data for current enemy stats, and level up the data.
             BattleEntityGameData data = GenerateBattleEntityGameData();
-
-            // The player is the one leveling up.
-            if(this is Player)
-            {
-                // Sets the data with the player's base stats for leveling up.
-                ((Player)this).SetDataWithBaseStats(ref data);
-            }
 
             // Levels up the data.
             data = LevelUpData(data, levelRate, special, times);
 
             // Save level
             level = data.level;
-            
-            // Doesn't change this since it would overwrite the player's level rate.
-            // levelRate = data.levelRate;
 
             // Save health
             maxHealth = data.maxHealth;
@@ -753,33 +704,60 @@ namespace RM_BBTS
             // Copies the data so that a new one is made.
             BattleEntityGameData newData = data;
 
-            // Random number generation.
-            int rand;
-
             // HP and Energy Percentage.
             float hpPercent = data.health / data.maxHealth;
             float engPercent = data.energy / data.maxEnergy;
 
-            // If the level rate is negative or 0, set it to 1.0 (default).
+            // If the level rate is negative or 0, set it to 1.0F (default).
             if (levelRate <= 0.0F)
                 levelRate = 1.0F;
 
+            // Increase the level.
             newData.level += times;
 
-            newData.maxHealth += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
-            newData.attack += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
-            newData.defense += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
-            newData.speed += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
-            newData.maxEnergy += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            // Run the randomizer for each stat.
+            for(int n = 0; n < 5; n++)
+            {
+                // Calculates the additional value.
+                float value = Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+                
+                // Choose what stat to add the value too.
+                switch (n)
+                {
+                    case 0: // Max HP
+                        newData.maxHealth += value;
+                        break;
+                    case 1: // Attack
+                        newData.attack += value;
+                        break;
+                    case 2: // Defense
+                        newData.defense += value;
+                        break;
+                    case 3: // Speed
+                        newData.speed += value;
+                        break;
+                    case 4: // Max Energy (No Longer Used)
+                        newData.maxEnergy += value;
+                        break;
+                }
+
+            }
+
+
+            // newData.maxHealth += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            // newData.attack += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            // newData.defense += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            // newData.speed += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
+            // newData.maxEnergy += Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
 
             // Adds a differet bonus per level.
-            for(int lvl = 0; lvl < times; lvl++)
+            for (int lvl = 0; lvl < times; lvl++)
             {
                 // Energy isn't used anymore, but it's being kept in since it just acts as a 'no bonus' level-up.
-                rand = Random.Range(0, 5);
+                int rand = Random.Range(0, 5);
 
-                // Random +3 factor
-                // I'm not applying a levle rate change.
+                // Random +5 factor
+                // Not applying a level rate factor for this.
                 switch (rand)
                 {
                     case 0: // HP
@@ -801,38 +779,45 @@ namespace RM_BBTS
             }
 
             // Checks for the special bonus.
-            switch(special)
             {
-                case specialty.none:
-                    // Increases each stat by 1.
-                    newData.maxHealth += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
-                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
-                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
-                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC / 4.0F * levelRate);
-                    break;
-                case specialty.health:
-                    newData.maxEnergy += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
-                    break;
-                case specialty.attack:
-                    newData.attack += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
-                    break;
-                case specialty.defense:
-                    newData.defense += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
-                    break;
-                case specialty.speed:
-                    newData.speed += Mathf.Ceil(STAT_LEVEL_SPECIALITY_INC * levelRate);
-                    break;
-                
+                float value = STAT_LEVEL_SPECIALITY_INC * levelRate;
+
+                switch (special)
+                {
+                    case specialty.none:
+                        // Divides the value by 4 and adds it to each stat.
+                        newData.maxHealth += Mathf.Ceil(value / 4.0F);
+                        newData.attack += Mathf.Ceil(value / 4.0F);
+                        newData.defense += Mathf.Ceil(value / 4.0F);
+                        newData.speed += Mathf.Ceil(value / 4.0F);
+                        break;
+                    case specialty.health:
+                        newData.maxHealth += value;
+                        break;
+                    case specialty.attack:
+                        newData.attack += value;
+                        break;
+                    case specialty.defense:
+                        newData.defense += value;
+                        break;
+                    case specialty.speed:
+                        newData.speed += value;
+                        break;
+
+                }
             }
 
-            // Proportional changes.
-            newData.health = hpPercent * newData.maxHealth;
-            newData.energy = engPercent * newData.maxEnergy;
+            // Make sure all values are whole numbers.
+            newData.maxHealth = Mathf.Ceil(newData.maxHealth);
+            newData.maxEnergy = Mathf.Ceil(newData.maxEnergy);
+            newData.attack = Mathf.Ceil(newData.attack);
+            newData.defense = Mathf.Ceil(newData.defense);
+            newData.speed = Mathf.Ceil(newData.speed);
 
-            // // TODO: move this to the player class.
-            // // Restores health and energy
-            // newData.health += newData.maxHealth * LEVEL_UP_RESTORE_PERCENT;
-            // newData.energy += newData.maxEnergy * LEVEL_UP_RESTORE_PERCENT;
+            
+            // Proportional changes to health and energy.
+            newData.health = Mathf.Ceil(hpPercent * newData.maxHealth);
+            newData.energy = Mathf.Ceil(engPercent * newData.maxEnergy);
 
             // Clamps the health and energy levels.
             newData.health = Mathf.Clamp(newData.health, 0, newData.maxHealth);

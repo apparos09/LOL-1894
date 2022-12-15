@@ -1751,6 +1751,10 @@ namespace RM_BBTS
                     {
                         opponent.Health = 1;
                         UpdateOpponentUI();
+
+                        // Making sure the moves are now all not selected.
+                        player.selectedMove = null;
+                        opponent.selectedMove = null;
                     }
                 }
 
