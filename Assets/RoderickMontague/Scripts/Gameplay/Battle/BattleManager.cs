@@ -6,6 +6,7 @@ using TMPro;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
 using System.Data.Common;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -153,6 +154,9 @@ namespace RM_BBTS
         // The text for the treasure prompt.
         public TMP_Text treasurePromptText;
 
+        // The treasure prompt text key for text-to-speech.
+        private string treasurePromptTextKey = "btl_msg_treasure";
+
         // The yes button for opening the treasure.
         public Button treasureYesButton;
 
@@ -281,7 +285,8 @@ namespace RM_BBTS
             if(defs != null)
             {
                 // Translate the treasure prompt.
-                treasurePromptText.text = defs["btl_msg_treasure"];
+                // treasurePromptTextKey = "btl_msg_treasure"; // Set by default so that the text-to-speech can use it.
+                treasurePromptText.text = defs[treasurePromptTextKey];
                 treasureYesButtonText.text = defs["kwd_yes"];
                 treasureNoButtonText.text = defs["kwd_no"];
             }
@@ -413,8 +418,17 @@ namespace RM_BBTS
                 // If the tutorial box isn't visible, turn on the treasure buttons.
                 if (!gameManager.tutorial.textBox.IsVisible())
                 {
+                    // Enable the buttons for answering the question.
                     treasureYesButton.interactable = true;
                     treasureNoButton.interactable = true;
+
+                    // Reads out the treasure prompt if the treasure tutorial isn't being shown.
+                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && treasurePromptTextKey != "")
+                    {
+                        // Speaks the text for the treasure prompt.
+                        LOLManager.Instance.textToSpeech.SpeakText(treasurePromptTextKey);
+                    }
+
                 }
                 
                 // Hide health bar and health text
@@ -1738,8 +1752,9 @@ namespace RM_BBTS
                         player.SetEnergyToMax();
                         UpdatePlayerEnergyUI();
 
-                        // Tutorial.
-                        gameManager.tutorial.LoadFirstBattleDeathTutorial();
+                        // Tutorial for first battle death.
+                        if(!gameManager.tutorial.clearedFirstBattleDeath)
+                            gameManager.tutorial.LoadFirstBattleDeathTutorial();
                     }
 
                     // TODO: if this is used, the HP hits 0, then goes to 1.

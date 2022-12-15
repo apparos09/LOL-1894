@@ -110,6 +110,9 @@ namespace RM_BBTS
         // The save prompt text.
         public TMP_Text savePromptText;
 
+        // The speak key for the save prompt.
+        private string savePromptTextKey = "";
+
         // The save and continue text.
         public TMP_Text saveAndContinueText;
 
@@ -132,6 +135,9 @@ namespace RM_BBTS
 
         // The quit window.
         public GameObject mainMenuPrompt;
+
+        // The key for the main menu prompt.
+        private string mainMenuPromptTextKey = "";
 
         // The prompt text for the main menu.
         public TMP_Text mainMenuPromptText;
@@ -235,7 +241,8 @@ namespace RM_BBTS
 
                 // SAVE PROMPT //
                 saveButtonText.text = defs["kwd_save"];
-                savePromptText.text = defs["sve_msg_prompt"];
+                savePromptTextKey = "sve_msg_prompt";
+                savePromptText.text = defs[savePromptTextKey];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
                 savePromptBackText.text = defs["kwd_back"];
@@ -245,7 +252,8 @@ namespace RM_BBTS
 
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
-                mainMenuPromptText.text = defs["mmu_msg_prompt"];
+                mainMenuPromptTextKey = "mmu_msg_prompt";
+                mainMenuPromptText.text = defs[mainMenuPromptTextKey];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
@@ -599,6 +607,17 @@ namespace RM_BBTS
 
             // Called since the window/prompt is being toggled.
             OnToggleWindowOrPrompt(active);
+
+            // If the save prompt is being shown.
+            if (active)
+            {
+                // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && savePromptTextKey != "")
+                {
+                    // Read out the mssage.
+                    LOLManager.Instance.textToSpeech.SpeakText(savePromptTextKey);
+                }
+            }
         }
 
         // Opens the settings window.
@@ -632,6 +651,17 @@ namespace RM_BBTS
 
             // Called since the window/prompt is being toggled.
             OnToggleWindowOrPrompt(active);
+
+            // If the main menu prompt is being shown.
+            if (active)
+            {
+                // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && mainMenuPromptTextKey != "")
+                {
+                    // Read out the mssage.
+                    LOLManager.Instance.textToSpeech.SpeakText(mainMenuPromptTextKey);
+                }
+            }
         }
 
         // Checks the mouse and touch to see if there's any object to use.
