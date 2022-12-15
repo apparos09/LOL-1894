@@ -123,20 +123,17 @@ namespace RM_BBTS
                 scoreText.text = scoreLabel + ": " + rd.finalScore;
                 
                 // Rooms cleared.
-                roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCompleted.ToString() + " / " + rd.roomsTotal.ToString();
+                roomsClearedText.text = roomsClearedLabel + ": " + rd.roomsCompleted.ToString() + "/" + rd.roomsTotal.ToString();
 
                 // Total time.
                 {
-                    // ORIGINAL //
-                    // Minutes. This rounds down to the nearest whole number.
-                    // float minutes = Mathf.Floor(rd.totalTime / 60.0F); // original
-
-                    // Seconds. This rounds up the remaining seconds to a whole number.
-                    // float seconds = Mathf.Ceil(rd.totalTime - (minutes * 60.0F));
+                    // Calculates the total time, limiting it to 99 miuntes and 59 seconds.
+                    // Max Time = 60 * 99 + 59 = 5940 + 59 = 5999 [99:59]
+                    float totalTime = Mathf.Clamp(rd.totalTime, 0, 5999.0F); // total time in seconds.
 
                     // NEW - USES MODULUS //
-                    float seconds = Mathf.CeilToInt(rd.totalTime) % 60; // seconds
-                    float minutes = Mathf.CeilToInt(rd.totalTime) - seconds; // minutes
+                    float minutes = Mathf.Floor(totalTime / 60.0F); // minutes (floor round to remove seconds).
+                    float seconds = Mathf.Ceil(totalTime - (minutes * 60.0F)); // seconds (round up to remove nanoseconds).
 
                     // Sets the text.
                     totalTimeText.text = totalTimeLabel + ": " + minutes.ToString("00") + ":" + seconds.ToString("00");

@@ -20,7 +20,7 @@ namespace RM_BBTS
         private static MoveList instance;
 
         // The move ID count.
-        public const int MOVE_ID_COUNT = (int)moveId. kablam + 1;
+        public const int MOVE_ID_COUNT = (int)moveId.kablam + 1;
 
         // The run move that is used to play through the turn.
         private static RunMove runMove;
@@ -165,9 +165,9 @@ namespace RM_BBTS
 
                 case moveId.fireShot: // Fireshot
                     move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.14F);
-                    move.BurnChance = 0.2F;
+                    move.BurnChance = 0.1F;
 
-                    move.description = "<A weak fire attack with a burn chance of 20%.>";
+                    move.description = "<A weak fire attack with a burn chance of 10%.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_fireShot_nme";
@@ -176,9 +176,9 @@ namespace RM_BBTS
 
                 case moveId.elecShot: // Electroshot
                     move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.14F);
-                    move.ParalysisChance = 0.2F;
+                    move.ParalysisChance = 0.1F;
 
-                    move.description = "<A weak electric attack with a paralysis chance of 20%.>";
+                    move.description = "<A weak electric attack with a paralysis chance of 10%.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_elecShot_nme";
@@ -284,7 +284,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.bam, "<Bam>", 1, 10.0F, 1.0F, 0.10F);
+                    move = new Move(moveId.bam, "<Bam>", 1, 25.0F, 1.0F, 0.10F);
 
                     move.description = "<A weak, basic attack.>";
 
@@ -309,9 +309,9 @@ namespace RM_BBTS
 
                 case moveId.fireBurst: // Fire Burst
                     move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 65.0F, 0.85F, 0.20F);
-                    move.BurnChance = 0.35F;
+                    move.BurnChance = 0.20F;
 
-                    move.description = "<A decent fire attack that has a 35% chance of burning the target.>";
+                    move.description = "<A decent fire attack that has a 20% chance of burning the target.>";
 
                     nameKey = "mve_fireBurst_nme";
                     descKey = "mve_fireBurst_dsc";
@@ -319,9 +319,9 @@ namespace RM_BBTS
 
                 case moveId.elecBurst: // Electric Burst
                     move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 65.0F, 0.85F, 0.20F);
-                    move.ParalysisChance = 0.35F;
+                    move.ParalysisChance = 0.20F;
 
-                    move.description = "<A decent electric attack that has a 35% chance of paralyzing the target.>";
+                    move.description = "<A decent electric attack that has a 20% chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBurst_nme";
                     descKey = "mve_elecBurst_dsc";
@@ -461,7 +461,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "<Wham>", 2, 30.0F, 1.0F, 0.15F);
+                    move = new Move(moveId.wham, "<Wham>", 2, 40.0F, 1.0F, 0.15F);
 
                     move.description = "<The user hits the target with a decent, basic attack.>";
 
@@ -482,9 +482,9 @@ namespace RM_BBTS
 
                 case moveId.fireBlast: // Fire Blast
                     move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 90.0F, 0.8F, 0.30F);
-                    move.BurnChance = 0.5F;
+                    move.BurnChance = 0.30F;
 
-                    move.description = "<A strong fire blast with a 50% chance of burning the target.>";
+                    move.description = "<A strong fire blast with a 30% chance of burning the target.>";
 
                     nameKey = "mve_fireBlast_nme";
                     descKey = "mve_fireBlast_dsc";
@@ -492,9 +492,9 @@ namespace RM_BBTS
 
                 case moveId.elecBlast: // Electric Blast
                     move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 90.0F, 0.8F, 0.30F);
-                    move.ParalysisChance = 0.5F;
+                    move.ParalysisChance = 0.30F;
 
-                    move.description = "<A strong electric blast with a 50% chance of paralyzing the target.>";
+                    move.description = "<A strong electric blast with a 30% chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBlast_nme";
                     descKey = "mve_elecBlast_dsc";
@@ -634,7 +634,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "<Kablam>", 3, 60.0F, 1.0F, 0.20F);
+                    move = new Move(moveId.kablam, "<Kablam>", 3, 65.0F, 1.0F, 0.20F);
 
                     move.description = "<A strong, but basic attack.>";
 

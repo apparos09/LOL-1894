@@ -18,6 +18,9 @@ namespace RM_BBTS
         // The name of the move.
         protected string name;
 
+        // The speak key for the move name.
+        public string nameSpeakKey = "";
+
         // The rank of the move.
         protected int rank;
 
@@ -34,6 +37,9 @@ namespace RM_BBTS
 
         // The description of a move.
         public string description = "";
+
+        // The speak key for the description.
+        public string descSpeakKey = "";
 
         // A move of priority '0' has no priority. Two moves with the same priority are based on speed.
         // A move with a higher priority number goes first.
@@ -113,6 +119,10 @@ namespace RM_BBTS
                 // Loads in the name and description.
                 name = defs[nameKey];
                 description = defs[descKey];
+
+                // Saves the name speak key and description speak key.
+                nameSpeakKey = nameKey;
+                descSpeakKey = descKey;
             }
 
         }

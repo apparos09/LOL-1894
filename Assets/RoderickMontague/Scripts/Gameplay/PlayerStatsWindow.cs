@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -278,6 +279,17 @@ namespace RM_BBTS
 
             // Description
             moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
+
+            // If the text-to-speech is enabled, and the SDK has been initialized.. 
+            if(GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
+            {
+                // Speak key has been set.
+                if (move.descSpeakKey != "")
+                {
+                    // Voice the move description.
+                    LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
+                }
+            }
 
         }
 

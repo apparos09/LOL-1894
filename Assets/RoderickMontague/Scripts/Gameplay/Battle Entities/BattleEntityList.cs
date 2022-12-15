@@ -1320,6 +1320,7 @@ namespace RM_BBTS
             ids.Add(battleEntityId.insect1);
             ids.Add(battleEntityId.sharp1);
             // ids.Add(battleEntityId.cBugRed1); // Too weak.
+            ids.Add(battleEntityId.moonRock1);
             ids.Add(battleEntityId.cBugYellow1);
             // ids.Add(battleEntityId.cBugBlue1); // Too weak.
 
