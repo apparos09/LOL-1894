@@ -198,7 +198,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.slam: // Slam
-                    move = new Move(moveId.slam, "<Slam>", 1, 30, 1.0F, 0.10F);
+                    move = new Move(moveId.slam, "<Slam>", 1, 30, 0.95F, 0.15F);
                     move.CriticalChance = 0.6F;
 
                     move.description = "<An attack that has a critical hit chance of 60%.>";
@@ -589,9 +589,11 @@ namespace RM_BBTS
 
                 case moveId.chargeSun: // Charging Sun
                     move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 100, 0.85F, 0.2F);
-                    move.BurnChance = 0.35F;
+                    move.BurnChance = 0.2F;
+                    move.priority = -3;
 
-                    move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a burn chance of 35%.>";
+                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 20%, and always goes last.>";
+
 
                     nameKey = "mve_chargeSun_nme";
                     descKey = "mve_chargeSun_dsc";
@@ -600,9 +602,10 @@ namespace RM_BBTS
 
                 case moveId.chargeMoon: // Charging Moon
                     move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 100, 0.85F, 0.2F);
-                    move.ParalysisChance = 0.35F;
+                    move.ParalysisChance = 0.2F;
+                    move.priority = -3;
 
-                    move.description = "<The user uses all their energy to perform this move. The less energy used, the weaker the move becomes. This move has a paralysis chance of 35%.>";
+                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 20%, and always goes last.>";
 
                     nameKey = "mve_chargeMoon_nme";
                     descKey = "mve_chargeMoon_dsc";
@@ -631,7 +634,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "<Kablam>", 3, 50.0F, 1.0F, 0.20F);
+                    move = new Move(moveId.kablam, "<Kablam>", 3, 60.0F, 1.0F, 0.20F);
 
                     move.description = "<A strong, but basic attack.>";
 

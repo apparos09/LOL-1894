@@ -164,13 +164,15 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_battle_06"], "trl_battle_06"));
                 pages.Add(new Page(defs["trl_battle_07"], "trl_battle_07"));
                 pages.Add(new Page(defs["trl_battle_08"], "trl_battle_08"));
+                pages.Add(new Page(defs["trl_battle_09"], "trl_battle_09"));
             }    
             else // Default
             {
                 pages.Add(new Page("<Welcome to your first battle, Battle Bot!>"));
                 pages.Add(new Page("<To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.>"));
                 pages.Add(new Page("<You can hold up to 4 regular moves at a time, which together with the charge and run moves makes for a total of 6 battle options max.>"));
-                pages.Add(new Page("<Selecting the run move has you attempt to flee from the battle, which has a 50% chance of success. If you succeed, you will return to the overworld.>"));
+                pages.Add(new Page("<Selecting the run move has you attempt to flee from the battle, which always has a 50% chance of success. If you succeed, you will return to the overworld.>"));
+                pages.Add(new Page("<Enemies retain their health and energy levels if you flee, but they will be completely restored if too many rooms are completed without finishing their battles. More on this later.>"));
                 pages.Add(new Page("<Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.>"));
                 pages.Add(new Page("<The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.>"));
                 pages.Add(new Page("<Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.>"));
@@ -391,14 +393,20 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_overworld_04"], "trl_overworld_04"));
                 pages.Add(new Page(defs["trl_overworld_05"], "trl_overworld_05"));
                 pages.Add(new Page(defs["trl_overworld_06"], "trl_overworld_06"));
+                pages.Add(new Page(defs["trl_overworld_07"], "trl_overworld_07"));
+                pages.Add(new Page(defs["trl_overworld_08"], "trl_overworld_08"));
+                pages.Add(new Page(defs["trl_overworld_09"], "trl_overworld_09"));
             }
             else // Default
             {
                 pages.Add(new Page("<Now that you’ve tried out a battle, all the rooms are open, including the boss room.>"));
-                pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, who you can challenge at any time.>"));
+                pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, whom you can challenge at any time.>"));
                 pages.Add(new Page("<You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.>"));
-                pages.Add(new Page("<Just so you know, enemies will get stronger as the game progresses, and some might even evolve into different forms. So, choose your battles carefully.>"));
-                pages.Add(new Page("<Remember that running away from battle is always an option, even against the final boss.>"));
+                pages.Add(new Page("<As for the enemies, they will get stronger as the game progresses, and some can evolve into different forms. If an enemy can evolve, it will happen when a phase change occurs.>"));
+                pages.Add(new Page("<A phase change happens when you complete enough rooms, with there being three phases in total. A phase change is signified by a change in the game background, and in the game music.>"));
+                pages.Add(new Page("<Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.>"));
+                pages.Add(new Page("<Also remember that running away from battle is always an option, even against the final boss.>"));
+                pages.Add(new Page("<Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.>"));
                 pages.Add(new Page("<Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.>"));
                 pages.Add(new Page("<That’s all for now, so on with the game.>"));
             }
