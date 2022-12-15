@@ -649,12 +649,12 @@ namespace RM_BBTS
         // Basic level up.
         public virtual void LevelUp()
         {
-            LevelUp(1.0F, specialty.none, 1);
+            LevelUp(specialty.none, 1);
         }
 
         // Levels up the entity. To get the entity's base stats the BattleEntityList should be consulted.
         // (times) refers to how many times the entity is leveled up.
-        public virtual void LevelUp(float levelRate, specialty special, uint times = 1)
+        public virtual void LevelUp(specialty special, uint times = 1)
         {
             // TODO: implement level up and level rate.
 

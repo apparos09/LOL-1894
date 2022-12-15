@@ -397,7 +397,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<Now that you’ve tried out a battle, all the rooms are open, including the boss room.>"));
                 pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, who you can challenge at any time.>"));
                 pages.Add(new Page("<You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.>"));
-                pages.Add(new Page("<Just so you know, enemies will get stronger as the game progresses, and some might even evolve into different forms. So, choose your fights carefully.>"));
+                pages.Add(new Page("<Just so you know, enemies will get stronger as the game progresses, and some might even evolve into different forms. So, choose your battles carefully.>"));
                 pages.Add(new Page("<Remember that running away from battle is always an option, even against the final boss.>"));
                 pages.Add(new Page("<Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.>"));
                 pages.Add(new Page("<That’s all for now, so on with the game.>"));

@@ -130,24 +130,18 @@ namespace RM_BBTS
         // Levels up the player.
         public override void LevelUp()
         {
-            LevelUp(levelRate, specialty.none, 1);
+            LevelUp(specialty.none, 1);
         }
 
         // Levels up the player.
-        public override void LevelUp(float levelRate, specialty special, uint times = 1)
+        public override void LevelUp(specialty special, uint times = 1)
         {
             // Levels up the player.
-            base.LevelUp(levelRate, special, times);
+            base.LevelUp(special, times);
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
             Health += Mathf.Ceil(MaxHealth * LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
             Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_ENERGY_RESTORE_PERCENT * times);
-        }
-
-        // Levels up the player. The enemy's special determines what kind of stat bonus the player gets.
-        public void LevelUp(specialty special, uint times = 1)
-        {
-            LevelUp(levelRate, special, times);
         }
 
         // Applies the new phase bonus for the player.
