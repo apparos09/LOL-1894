@@ -214,12 +214,12 @@ namespace RM_BBTS
                     data.displayName = "<UFO>";
                     data.displayNameSpeakKey = "bey_ufo1_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 15;
                     data.health = data.maxHealth;
 
                     data.attack = 10;
                     data.defense = 10;
-                    data.speed = 20;
+                    data.speed = 25;
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
@@ -246,7 +246,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 15;
-                    data.defense = 45;
+                    data.defense = 50;
                     data.speed = 20;
 
                     data.maxEnergy = 100;
