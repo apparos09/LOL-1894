@@ -10,7 +10,7 @@ namespace RM_BBTS
     {
         // The stat change move.
         public HealthSplitMove()
-            : base(moveId.healthSplit, "<Health Split>", 1, 0, 100.0F, 0.1F)
+            : base(moveId.healthSplit, "<Health Split>", 1, 0, 1.0F, 0.2F)
         {
             description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
 
