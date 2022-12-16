@@ -505,7 +505,7 @@
 
     "mve_slam_nme": "Slam",
     "mve_slam_dsc": "An attack that has a critical hit chance of 60%.",
-    "mve_chip_nme": "Chip Damage",
+    "mve_chip_nme": "Chip Off",
     "mve_chip_dsc": "A weak attack that always goes first.",
     "mve_toss_nme": "Toss",
     "mve_toss_dsc": "An attack that has a 10% chance of lowering the target's attack by 1 stage.",
@@ -530,9 +530,9 @@
     "mve_elecBurst_nme": "Electric Burst",
     "mve_elecBurst_dsc": "A decent electric attack that has a 20% chance of paralyzing the target.",
 
-    "mve_soundWave_nme": "Sound Wave",
+    "mve_soundWave_nme": "Soundwave",
     "mve_soundWave_dsc": "A decent attack that has a 20% chance of lowering the target's accuracy by 1 stage.",
-    "mve_magnet_nme": "Magnetize",
+    "mve_magnet_nme": "Magnet",
     "mve_magnet_dsc": "The user increases their accuracy by 1 stage, and the target's accuracy by 1 stage.",
     "mve_torch_nme": "Torch",
     "mve_torch_dsc": "A weak attack that always burns the target.",
@@ -563,7 +563,7 @@
     "mve_fireBlast_dsc": "A strong fire blast with a 30% chance of burning the target.",
     "mve_elecBlast_nme": "Electric Blast",
     "mve_elecBlast_dsc": "A strong electric blast with a 30% chance of paralyzing the target.",
-    "mve_sonicWave_nme": "Sonic Wave",
+    "mve_sonicWave_nme": "Sonicwave",
     "mve_sonicWave_dsc": "A strong attack that has a 25% chance of lowering the target's accuracy by 1 stage.",
 
     "mve_hpDrain3_nme": "Drain Heal 3",

@@ -217,9 +217,9 @@ namespace RM_BBTS
                     data.maxHealth = 10;
                     data.health = data.maxHealth;
 
-                    data.attack = 5;
-                    data.defense = 25;
-                    data.speed = 25;
+                    data.attack = 10;
+                    data.defense = 10;
+                    data.speed = 20;
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
@@ -246,7 +246,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 15;
-                    data.defense = 40;
+                    data.defense = 45;
                     data.speed = 20;
 
                     data.maxEnergy = 100;
@@ -263,7 +263,7 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
-                    data.maxHealth = 50;
+                    data.maxHealth = 60;
                     data.health = data.maxHealth;
 
                     data.attack = 50;
@@ -604,7 +604,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 58;
-                    data.defense = 16;
+                    data.defense = 17;
                     data.speed = 58;
 
                     data.maxEnergy = 100;

@@ -141,8 +141,8 @@ namespace RM_BBTS
                     descKey = "mve_poke_dsc";
                     break;
 
-                case moveId.slimeShot: // Slimeshot
-                    move = new Move(moveId.slimeShot, "<Slimeshot>", 1, 30.0F, 0.9F, 0.14F);
+                case moveId.slimeShot: // Slime Shot
+                    move = new Move(moveId.slimeShot, "<Slime Shot>", 1, 30.0F, 0.9F, 0.14F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
@@ -153,8 +153,8 @@ namespace RM_BBTS
                     descKey = "mve_slimeShot_dsc";
                     break;
 
-                case moveId.laserShot: // Lasershot (TODO: not working for osme reason)
-                    move = new Move(moveId.laserShot, "<Lasershot>", 1, 40.0F, 0.9F, 0.12F);
+                case moveId.laserShot: // Laser Shot
+                    move = new Move(moveId.laserShot, "<Laser Shot>", 1, 40.0F, 0.9F, 0.12F);
 
                     move.description = "<A weak laser attack.>";
 
@@ -163,8 +163,8 @@ namespace RM_BBTS
                     descKey = "mve_laserShot_dsc";
                     break;
 
-                case moveId.fireShot: // Fireshot
-                    move = new Move(moveId.fireShot, "<Fireshot>", 1, 30.0F, 0.9F, 0.14F);
+                case moveId.fireShot: // Fire Shot
+                    move = new Move(moveId.fireShot, "<Fire Shot>", 1, 30.0F, 0.9F, 0.14F);
                     move.BurnChance = 0.1F;
 
                     move.description = "<A weak fire attack with a burn chance of 10%.>";
@@ -174,8 +174,8 @@ namespace RM_BBTS
                     descKey = "mve_fireShot_dsc";
                     break;
 
-                case moveId.elecShot: // Electroshot
-                    move = new Move(moveId.elecShot, "<Electro Shot>", 1, 30.0F, 0.9F, 0.14F);
+                case moveId.elecShot: // Electric Shot
+                    move = new Move(moveId.elecShot, "<Electric Shot>", 1, 30.0F, 0.9F, 0.14F);
                     move.ParalysisChance = 0.1F;
 
                     move.description = "<A weak electric attack with a paralysis chance of 10%.>";
@@ -207,8 +207,8 @@ namespace RM_BBTS
                     descKey = "mve_slam_dsc";
                     break;
 
-                case moveId.chip: // Chip Damage
-                    move = new Move(moveId.chip, "<Chip Damage>", 1, 10, 0.95F, 0.1F);
+                case moveId.chip: // Chip Off
+                    move = new Move(moveId.chip, "<Chip Off>", 1, 10, 0.95F, 0.1F);
                     move.priority = 1;
 
                     move.description = "<A weak attack that always goes first.>";
@@ -327,8 +327,8 @@ namespace RM_BBTS
                     descKey = "mve_elecBurst_dsc";
                     break;
 
-                case moveId.soundWave: // Sound Wave
-                    move = new Move(moveId.soundWave, "<Sound Wave>", 2, 65.0F, 1.0F, 0.18F);
+                case moveId.soundWave: // Soundwave
+                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 65.0F, 1.0F, 0.18F);
                     
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 0.2F;
@@ -339,10 +339,10 @@ namespace RM_BBTS
                     descKey = "mve_soundWave_dsc";
                     break;
 
-                case moveId.magnet: // Magnetize
+                case moveId.magnet: // Magnet
                     move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.9F, 0.15F);
 
-                    move.accuracyChangeUser = 2;
+                    move.accuracyChangeUser = 1;
                     move.accuracyChangeChanceUser = 1.0F;
 
                     move.accuracyChangeTarget = 1;
@@ -501,7 +501,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 1.0F, 0.27F);
+                    move = new Move(moveId.sonicWave, "<Sonicwave>", 3, 80.0F, 1.0F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;

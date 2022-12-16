@@ -358,8 +358,8 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetAttackChangePage(user, Mathf.Abs(diff), true) :
-                                GetAttackChangePage(user, Mathf.Abs(diff), false)
+                                GetAttackChangePage(entity, Mathf.Abs(diff), true) :
+                                GetAttackChangePage(entity, Mathf.Abs(diff), false)
                                 );
                         }
                     }
@@ -390,8 +390,8 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetDefenseChangePage(user, Mathf.Abs(diff), true) :
-                                GetDefenseChangePage(user, Mathf.Abs(diff), false)
+                                GetDefenseChangePage(entity, Mathf.Abs(diff), true) :
+                                GetDefenseChangePage(entity, Mathf.Abs(diff), false)
                                 );
                         }
                     }
@@ -421,8 +421,8 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetSpeedChangePage(user, Mathf.Abs(diff), true) :
-                                GetSpeedChangePage(user, Mathf.Abs(diff), false)
+                                GetSpeedChangePage(entity, Mathf.Abs(diff), true) :
+                                GetSpeedChangePage(entity, Mathf.Abs(diff), false)
                                 );
                         }
                     }
@@ -452,8 +452,8 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetAccuracyChangePage(user, Mathf.Abs(diff), true) :
-                                GetAccuracyChangePage(user, Mathf.Abs(diff), false)
+                                GetAccuracyChangePage(entity, Mathf.Abs(diff), true) :
+                                GetAccuracyChangePage(entity, Mathf.Abs(diff), false)
                                 );
                         }
                     }

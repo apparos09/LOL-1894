@@ -6,8 +6,6 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
-using JetBrains.Annotations;
-using UnityEngine.Android;
 
 namespace RM_BBTS
 {
