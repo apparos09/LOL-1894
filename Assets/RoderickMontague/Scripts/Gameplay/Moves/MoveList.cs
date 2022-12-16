@@ -223,7 +223,7 @@ namespace RM_BBTS
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.1F;
 
-                    move.description = "<The user raises their accuracy by 1.>";
+                    move.description = "<An attack that has a 10% chance of lowering the target's attack by 1 stage.>";
                     
                     nameKey = "mve_toss_nme";
                     descKey = "mve_toss_dsc";

@@ -151,6 +151,8 @@ namespace RM_BBTS
         //     // TODO: so it seems that you need to save the data for the game using the SDK.
         //     // I say you load up the save data during the GameInit phase, but don't actually apply it unless 'Continue' is presed.
         //     // You'll also need to setup an autosave async feature.
+        // 
+        //     // SceneManager.LoadScene("ResultsScene");
         // }
 
         // Starts the game (general function for moving to the GameScene).
@@ -161,6 +163,7 @@ namespace RM_BBTS
                 sceneTransition.LoadScene(GAME_SCENE_NAME);
             else
                 SceneManager.LoadScene(GAME_SCENE_NAME);
+
         }
 
         // Starts a new game.

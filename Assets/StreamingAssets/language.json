@@ -322,6 +322,7 @@
       "kwd_roomsCleared": 24,
       "kwd_totalTime": 24,
       "kwd_totalTurns": 24,
+      "kwd_finalLevel": 24,
       "kwd_finalMoves": 24,
       "kwd_finish": 12
 
@@ -507,7 +508,7 @@
     "mve_chip_nme": "Chip Damage",
     "mve_chip_dsc": "A weak attack that always goes first.",
     "mve_toss_nme": "Toss",
-    "mve_toss_dsc": "The user raises their accuracy by 1.",
+    "mve_toss_dsc": "An attack that has a 10% chance of lowering the target's attack by 1 stage.",
     "mve_magnify_nme": "Magnify",
     "mve_magnify_dsc": "The user raises their accuracy by 1.",
 
@@ -677,6 +678,7 @@
     "kwd_roomsCleared": "Rooms Cleared",
     "kwd_totalTime": "Total Time",
     "kwd_totalTurns": "Total Turns",
+    "kwd_finalLevel": "Final Level",
     "kwd_finalMoves": "Final Moves",
     "kwd_finish": "Finish"
   },
