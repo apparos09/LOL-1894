@@ -111,7 +111,7 @@ namespace RM_BBTS
         public TMP_Text savePromptText;
 
         // The speak key for the save prompt.
-        private string savePromptTextKey = "";
+        private string savePromptTextKey = "sve_msg_prompt";
 
         // The save and continue text.
         public TMP_Text saveAndContinueText;
@@ -137,7 +137,7 @@ namespace RM_BBTS
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
-        private string mainMenuPromptTextKey = "";
+        private string mainMenuPromptTextKey = "mmu_msg_prompt";
 
         // The prompt text for the main menu.
         public TMP_Text mainMenuPromptText;
@@ -241,7 +241,6 @@ namespace RM_BBTS
 
                 // SAVE PROMPT //
                 saveButtonText.text = defs["kwd_save"];
-                savePromptTextKey = "sve_msg_prompt";
                 savePromptText.text = defs[savePromptTextKey];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
@@ -252,7 +251,6 @@ namespace RM_BBTS
 
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
-                mainMenuPromptTextKey = "mmu_msg_prompt";
                 mainMenuPromptText.text = defs[mainMenuPromptTextKey];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];

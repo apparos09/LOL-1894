@@ -88,10 +88,14 @@ namespace RM_BBTS
             string finishLabel = "<Finish>";
             string mainMenuLabel = "<Main Menu>";
 
+            // The speak key for the title.
+            string titleSpeakKey = "";
+
             // Translate title text.
-            if(defs != null)
+            if (defs != null)
             {
-                titleLabel = defs["kwd_results"];
+                titleSpeakKey = "kwd_results";
+                titleLabel = defs[titleSpeakKey];
 
                 scoreLabel = defs["kwd_score"];
                 roomsClearedLabel = defs["kwd_roomsCleared"];
@@ -155,6 +159,13 @@ namespace RM_BBTS
                 // Destroy the object.
                 Destroy(rd.gameObject);
             }
+
+            // Say the name of the title text.
+            if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && titleSpeakKey != "")
+            {
+                // Voice the title text.
+                LOLManager.Instance.textToSpeech.SpeakText(titleSpeakKey);
+            }
         }
 
         // Goes to the main menu.
@@ -177,9 +188,12 @@ namespace RM_BBTS
                 Debug.LogError("SDK NOT INITIALIZED");
 
                 // Return to the main menu scene.
-                ToMainMenu();
+                // ToMainMenu();
             }
-            
+
+            // Return to the main scene no matter what.
+            // If the SDK has been initialized, the LOL website will move onto a review screen.
+            ToMainMenu();
         }
     }
 }

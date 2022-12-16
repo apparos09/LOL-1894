@@ -14,7 +14,7 @@
       "kwd_settings": 12,
       "kwd_credits": 12,
 
-      "mnu_controls_instruct": 38,
+      "mnu_controls_instruct": 42,
       "mnu_controls_desc": 240,
 
       "kwd_volume": 12,
@@ -350,7 +350,7 @@
     "kwd_settings": "Settings",
     "kwd_credits": "Credits",
 
-    "mnu_controls_instruct": "Left Mouse/Touch: Interact",
+    "mnu_controls_instruct": "Left Mouse Button/Touch: Interact",
     "mnu_controls_desc": "To interact with elements of the game world, use the left mouse button, or the touch screen if applicable. The entire game is controlled through left mouse click/touch interaction.",
 
     "kwd_volume": "Volume",

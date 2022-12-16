@@ -53,6 +53,9 @@ namespace RM_BBTS
         // The text for the controls description.
         public TMP_Text controlsDescText;
 
+        // THe key for the description text.
+        private string controlsDescTextKey = "mnu_controls_desc";
+
         // The back button text for the controls sebmenu.
         public TMP_Text controlsBackButtonText;
 
@@ -90,7 +93,7 @@ namespace RM_BBTS
                 // Controls Menu
                 controlsTitleText.text = defs["kwd_controls"];
                 controlsInstructText.text = defs["mnu_controls_instruct"];
-                controlsDescText.text = defs["mnu_controls_desc"];
+                controlsDescText.text = defs[controlsDescTextKey];
                 controlsBackButtonText.text = defs["kwd_back"];
 
             }
@@ -186,8 +189,20 @@ namespace RM_BBTS
         // Toggles the controls menu.
         public void ToggleControlsMenu()
         {
-            controlsMenu.gameObject.SetActive(!controlsMenu.gameObject.activeSelf);
-            mainMenu.gameObject.SetActive(!mainMenu.gameObject.activeSelf);
+            bool active = !controlsMenu.gameObject.activeSelf;
+            controlsMenu.gameObject.SetActive(active);
+            mainMenu.gameObject.SetActive(!active);
+
+            // If the controls menu has been opened.
+            if(active)
+            {
+                // Play the controls description.
+                if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && controlsDescTextKey != "")
+                {
+                    // Voice the text.
+                    LOLManager.Instance.textToSpeech.SpeakText(controlsDescTextKey);
+                }
+            }
         }
 
         // Toggles the settings menu.
