@@ -10,9 +10,6 @@ namespace RM_BBTS
     // The class for the player.
     public class Player : BattleEntity
     {
-        // The run move for the player to select.
-        private RunMove runMove;
-
         // The base stats for the player. (30)
         private float baseMaxHealth = 30;
         private float baseAttack = 30;
@@ -21,8 +18,11 @@ namespace RM_BBTS
         private float baseMaxEnergy = 100;
 
         // Restoration percents.
-        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.60F;
+        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.50F;
         public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.50F;
+
+        // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
+        public const float PHASE_BONUS_STAT_TOTAL = 128.0F;
 
         // Setting the player's stats.
         protected new void Awake()
@@ -151,11 +151,8 @@ namespace RM_BBTS
         // This gives them a 100+ stat increase.
         public void ApplyNewPhaseBonus()
         {
-            // Since each enemy stage has a 100 point difference, this increases the player's stats by 100.
-            // Value changed for balance.
-
-            float total = 140.0F;
-            float amount = Mathf.Ceil(total / 4.0F);
+            // Increases the player's stats by a total amount equal to PHASE_BONUS_STAT_TOTAL.
+            float amount = Mathf.Ceil(PHASE_BONUS_STAT_TOTAL / 4.0F);
 
             SetHealthRelativeToMaxHealth(MaxHealth + amount);
             Attack += amount;

@@ -79,10 +79,13 @@ namespace RM_BBTS
         }
 
         // Plays a jingle.
-        public void PlayJingle(AudioClip clip, bool resetPitch)
+        public void PlayJingle(AudioClip clip, bool resetPitch, float extraWaitTime = 0.0F)
         {
-            // Pause the BGM and reset the pitch.
-            bgmSource.Pause();
+            // Stops the BGM and reset the pitch.
+            // The audio must be stopped, otherwise it will start automatically when PlayOneShot() is called.
+            // The song restarts when using the Stop() function, but it isn't a big deal.
+            // bgmSource.Pause();
+            bgmSource.Stop();
 
             // NOTE: one way to fix this is to have a seperate audio object for jingles.
             // That way, the pitch can be retained when the song starts again.
@@ -103,12 +106,13 @@ namespace RM_BBTS
                 // Timer for chaging the pitch back.
                 pitchTimer = clip.length;
             }
-                
+
             // Play a one shot of this clip.
             bgmSource.PlayOneShot(clip);
 
             // Start playing the BGM again after this clip is finished.
-            bgmSource.PlayDelayed(clip.length);
+            // Extra wait time can be provided if the game should wait longer.
+            bgmSource.PlayDelayed(clip.length + ((extraWaitTime < 0.0F) ? 0.0F : extraWaitTime));
         }
 
         // Update is called once per frame

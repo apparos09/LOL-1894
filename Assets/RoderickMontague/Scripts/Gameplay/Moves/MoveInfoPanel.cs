@@ -26,15 +26,28 @@ namespace RM_BBTS
         // Loads the move into the move info pnael.
         public void LoadMoveInfo(Move move)
         {
+            // Id
             id = move.Id;
 
+            // Name
             nameText.text = move.Name;
 
+            // Rank
             rankText.text = move.Rank.ToString();
+
+            // Power
             powerText.text = (move.Power == 0.0F) ? "-" : move.Power.ToString();
-            accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+
+            // Accuracy
+            if (move.useAccuracy)
+                accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            else
+                accuracyText.text = "-";
+
+            // Energy
             energyText.text = (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
 
+            // Description
             description.text = move.description;
 
         }

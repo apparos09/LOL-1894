@@ -820,7 +820,7 @@ namespace RM_BBTS
                         );
 
                     // Play the paralyzed animation.
-                    opponentMovePage.OnPageOpenedAddCallback(PlayPlayerParalyzedAnimation);
+                    playerMovePage.OnPageOpenedAddCallback(PlayPlayerParalyzedAnimation);
                 }
                 else
                 {

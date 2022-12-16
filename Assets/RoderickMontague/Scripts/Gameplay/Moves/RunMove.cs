@@ -54,9 +54,15 @@ namespace RM_BBTS
                     // Grabs the 'end turn early' page?
                     // This is set to run when the next page is opened. I don't think this is the end turn early page though.
                     // Maybe just add a (...) page after the current page and set it to the run page for safety?
-                    Page page = battle.textBox.pages[battle.textBox.CurrentPageIndex + 1];
 
-                    // Call run away when the page closes.
+                    // Original
+                    // Page page = battle.textBox.pages[battle.textBox.CurrentPageIndex + 1];
+
+                    // New
+                    Page page = new Page("..."); // Empty page.
+                    InsertPageAfterCurrentPage(battle, page); // Place after current page.
+
+                    // Call run away when the next page is oepned.
                     page.OnPageOpenedAddCallback(battle.RunAway);
 
                 }
