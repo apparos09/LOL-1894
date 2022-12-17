@@ -863,11 +863,10 @@ namespace RM_BBTS
                 case battleEntityId.combatBot: // BOSS 1
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot, 
-                        moveId.screech, moveId.laserBurst, moveId.fireBurst, moveId.elecBurst, 
-                        moveId.soundWave, moveId.quickBurst, moveId.statClear, moveId.laserBlast, 
-                        moveId.fireBlast, moveId.elecBlast, moveId.sonicWave, moveId.waterBlast, 
-                        moveId.rockBlast, moveId.airBlast, moveId.allOut 
+                        moveId.laserShot, moveId.fireShot, moveId.elecShot, moveId.laserBurst,
+                        moveId.fireBurst, moveId.elecBurst, moveId.soundWave, moveId.quickBurst,
+                        moveId.statClear, moveId.laserBlast, moveId.fireBlast, moveId.elecBlast,
+                        moveId.sonicWave, moveId.waterBlast, moveId.rockBlast, moveId.airBlast
                     };
                     break;
 
