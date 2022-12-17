@@ -448,7 +448,7 @@ namespace RM_BBTS
 
             // Clear out waiting
             loadingChars = false;
-            boxText.text = "...";
+            boxText.text = string.Empty;
             charQueue.Clear();
             charTimer = 0.0F;
         }

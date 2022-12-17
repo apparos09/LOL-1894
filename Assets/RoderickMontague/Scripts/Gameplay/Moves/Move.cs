@@ -315,7 +315,7 @@ namespace RM_BBTS
         }
 
         // Change the stats attached to the moves.
-        public List<Page> ApplyStatChanges(BattleEntity user, BattleEntity target)
+        public List<Page> ApplyStatChanges(BattleEntity user, BattleEntity target, BattleManager battle)
         {
             // THe list of pages.
             List<Page> pages = new List<Page>();
@@ -358,9 +358,22 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetAttackChangePage(entity, Mathf.Abs(diff), true) :
-                                GetAttackChangePage(entity, Mathf.Abs(diff), false)
+                                GetAttackChangePage(entity, Mathf.Abs(diff), true, battle) :
+                                GetAttackChangePage(entity, Mathf.Abs(diff), false, battle)
                                 );
+                        }
+                        else // Limit was reached, so no change happened.
+                        {
+
+                            // Checks if it was a positive stat change or a negatie one.
+                            if(statChange > 0) // Upper limit reached.
+                            {
+                                pages.Add(GetAttackLimitReachedPage(entity, true, battle));
+                            }
+                            else if(statChange < 0) // Lower limit reached.
+                            {
+                                pages.Add(GetAttackLimitReachedPage(entity, false, battle));
+                            }
                         }
                     }
                 }
@@ -390,9 +403,22 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetDefenseChangePage(entity, Mathf.Abs(diff), true) :
-                                GetDefenseChangePage(entity, Mathf.Abs(diff), false)
+                                GetDefenseChangePage(entity, Mathf.Abs(diff), true, battle) :
+                                GetDefenseChangePage(entity, Mathf.Abs(diff), false, battle)
                                 );
+                        }
+                        else // Limit was reached, so no change happened.
+                        {
+
+                            // Checks if it was a positive stat change or a negatie one.
+                            if (statChange > 0) // Upper limit reached.
+                            {
+                                pages.Add(GetDefenseLimitReachedPage(entity, true, battle));
+                            }
+                            else if (statChange < 0) // Lower limit reached.
+                            {
+                                pages.Add(GetDefenseLimitReachedPage(entity, false, battle));
+                            }
                         }
                     }
                 }
@@ -421,9 +447,22 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetSpeedChangePage(entity, Mathf.Abs(diff), true) :
-                                GetSpeedChangePage(entity, Mathf.Abs(diff), false)
+                                GetSpeedChangePage(entity, Mathf.Abs(diff), true, battle) :
+                                GetSpeedChangePage(entity, Mathf.Abs(diff), false, battle)
                                 );
+                        }
+                        else // Limit was reached, so no change happened.
+                        {
+
+                            // Checks if it was a positive stat change or a negatie one.
+                            if (statChange > 0) // Upper limit reached.
+                            {
+                                pages.Add(GetSpeedLimitReachedPage(entity, true, battle));
+                            }
+                            else if (statChange < 0) // Lower limit reached.
+                            {
+                                pages.Add(GetSpeedLimitReachedPage(entity, false, battle));
+                            }
                         }
                     }
                 }
@@ -452,9 +491,22 @@ namespace RM_BBTS
                         if (diff != 0)
                         {
                             pages.Add((diff > 0) ?
-                                GetAccuracyChangePage(entity, Mathf.Abs(diff), true) :
-                                GetAccuracyChangePage(entity, Mathf.Abs(diff), false)
+                                GetAccuracyChangePage(entity, Mathf.Abs(diff), true, battle) :
+                                GetAccuracyChangePage(entity, Mathf.Abs(diff), false, battle)
                                 );
+                        }
+                        else // Limit was reached, so no change happened.
+                        {
+
+                            // Checks if it was a positive stat change or a negatie one.
+                            if (statChange > 0) // Upper limit reached.
+                            {
+                                pages.Add(GetAccuracyLimitReachedPage(entity, true, battle));
+                            }
+                            else if (statChange < 0) // Lower limit reached.
+                            {
+                                pages.Add(GetAccuracyLimitReachedPage(entity, false, battle));
+                            }
                         }
                     }
                 }
@@ -578,14 +630,14 @@ namespace RM_BBTS
             {
                 page = new Page(
                     BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages),
-                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey0(stages)
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey0()
                 );
             }
             else // The entity is an enemy.
             {
                 page = new Page(
                     BattleMessages.Instance.GetMoveStatIncreaseMessage(entity.displayName, stat, stages),
-                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey1(stages)
+                    BattleMessages.Instance.GetMoveStatIncreaseSpeakKey1()
                 );
             }
             
@@ -603,14 +655,14 @@ namespace RM_BBTS
             {
                 page = new Page(
                     BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages),
-                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey0(stages)
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey0()
                 );
             }
             else // The entity is an enemy.
             {
                 page = new Page(
                     BattleMessages.Instance.GetMoveStatDecreaseMessage(entity.displayName, stat, stages),
-                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey1(stages)
+                    BattleMessages.Instance.GetMoveStatDecreaseSpeakKey1()
                 );
             }
 
@@ -620,44 +672,93 @@ namespace RM_BBTS
 
         // Get attack change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public static Page GetAttackChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetAttackChangePage(BattleEntity entity, int stages, bool increase, BattleManager battle)
         {
             if(increase)
-                return GetStatIncreasePage(entity, "Attack", stages);
+                return GetStatIncreasePage(entity, battle.gameManager.AttackString, stages);
             else
-                return GetStatDecreasePage(entity, "Attack", stages);
+                return GetStatDecreasePage(entity, battle.gameManager.AttackString, stages);
         }
 
         // Get defense change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public static Page GetDefenseChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetDefenseChangePage(BattleEntity entity, int stages, bool increase, BattleManager battle)
         {
             if (increase)
-                return GetStatIncreasePage(entity, "Defense", stages);
+                return GetStatIncreasePage(entity, battle.gameManager.DefenseString, stages);
             else
-                return GetStatDecreasePage(entity, "Defense", stages);
+                return GetStatDecreasePage(entity, battle.gameManager.DefenseString, stages);
         }
 
         // Get speed change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public static Page GetSpeedChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetSpeedChangePage(BattleEntity entity, int stages, bool increase, BattleManager battle)
         {
             if (increase)
-                return GetStatIncreasePage(entity, "Speed", stages);
+                return GetStatIncreasePage(entity, battle.gameManager.SpeedString, stages);
             else
-                return GetStatDecreasePage(entity, "Speed", stages);
+                return GetStatDecreasePage(entity, battle.gameManager.SpeedString, stages);
         }
 
         // Get accuracy change page ('increase' determines if it's an increase or a decrease).
         // 'Stages' should always be positive.
-        public static Page GetAccuracyChangePage(BattleEntity entity, int stages, bool increase)
+        public static Page GetAccuracyChangePage(BattleEntity entity, int stages, bool increase, BattleManager battle)
         {
             if (increase)
-                return GetStatIncreasePage(entity, "Accuracy", stages);
+                return GetStatIncreasePage(entity, battle.gameManager.AccuracyString, stages);
             else
-                return GetStatDecreasePage(entity, "Accuracy", stages);
+                return GetStatDecreasePage(entity, battle.gameManager.AccuracyString, stages);
         }
 
+        // Get stat limit reached message.
+        public static Page GetMoveStatLimitReachedPage(BattleEntity entity, string stat, bool upperLimit)
+        {
+            Page page;
+
+            if (entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                        BattleMessages.Instance.GetMoveStatLimitReachedMessage(entity.displayName, stat, upperLimit),
+                        BattleMessages.Instance.GetMoveStatLimitReachedSpeakKey0(upperLimit)
+                        );
+            }
+            else // The entity is an enemy.
+            {
+                page = new Page(
+                        BattleMessages.Instance.GetMoveStatLimitReachedMessage(entity.displayName, stat, upperLimit),
+                        BattleMessages.Instance.GetMoveStatLimitReachedSpeakKey1(upperLimit)
+                        );
+            }
+
+
+            return page;
+        }
+
+        // Get attack limit reached.
+        public static Page GetAttackLimitReachedPage(BattleEntity entity, bool upperLimit, BattleManager battle)
+        {
+            return GetMoveStatLimitReachedPage(entity, battle.gameManager.AttackString, upperLimit);
+        }
+
+        // Get defense limit reached.
+        public static Page GetDefenseLimitReachedPage(BattleEntity entity, bool upperLimit, BattleManager battle)
+        {
+            return GetMoveStatLimitReachedPage(entity, battle.gameManager.DefenseString, upperLimit);
+        }
+
+        // Get speed limit reached.
+        public static Page GetSpeedLimitReachedPage(BattleEntity entity, bool upperLimit, BattleManager battle)
+        {
+            return GetMoveStatLimitReachedPage(entity, battle.gameManager.SpeedString, upperLimit);
+        }
+
+        // Get accuracy limit reached.
+        public static Page GetAccuracyLimitReachedPage(BattleEntity entity, bool upperLimit, BattleManager battle)
+        {
+            return GetMoveStatLimitReachedPage(entity, battle.gameManager.AccuracyString, upperLimit);
+        }
+
+        // MOVE MISSED/FAILED
         // Gets the move missed page.
         public static Page GetMoveMissedPage()
         {
@@ -874,7 +975,7 @@ namespace RM_BBTS
                 if(HasStatChanges()) // There are stat changes to apply.
                 {
                     // Gets the pages for applying stat changes.
-                    List<Page> statPages = ApplyStatChanges(user, target);
+                    List<Page> statPages = ApplyStatChanges(user, target, battle);
 
                     // The list was made.
                     if(statPages != null)

@@ -68,6 +68,12 @@ namespace RM_BBTS
         private string speedString = "<Speed>";
         private string energyString = "<Energy>";
 
+        // Move characteristics.
+        private string rankString = "<Rank>";
+        private string powerString = "<Power>";
+        private string accuracyString = "<Accuracy>";
+        private string descriptionString = "<Description>";
+
         [Header("Game Stats/Time")]
 
         // The total amount of turns completed.
@@ -253,13 +259,20 @@ namespace RM_BBTS
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
-                // String
+                // String Labels
+                // Moves
                 levelString = defs["kwd_level"];
                 healthString = defs["kwd_health"];
                 attackString = defs["kwd_attack"];
                 defenseString = defs["kwd_defense"];
                 speedString = defs["kwd_speed"];
                 energyString = defs["kwd_energy"];
+
+                // Move characteristics.
+                rankString = defs["kwd_rank"];
+                powerString = defs["kwd_power"];
+                accuracyString = defs["kwd_accuracy"];
+                descriptionString = defs["kwd_description"];
             }
 
             // Turns off the entrance animation if scene transitions shouldn't be used.
@@ -500,6 +513,30 @@ namespace RM_BBTS
         public string EnergyString
         {
             get { return energyString; }
+        }
+
+        // Returns the rank string.
+        public string RankString
+        {
+            get { return rankString; }
+        }
+
+        // Returns the power string.
+        public string PowerString
+        {
+            get { return powerString; }
+        }
+
+        // Returns the accuracy string.
+        public string AccuracyString
+        {
+            get { return accuracyString; }
+        }
+
+        // Returns the description string.
+        public string DescriptionString
+        {
+            get { return descriptionString; }
         }
 
 

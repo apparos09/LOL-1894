@@ -93,13 +93,6 @@ namespace RM_BBTS
 
         public TMP_Text moveDescriptionText;
 
-        // String labels
-        private string rankString = "<Rank>";
-        private string powerString = "<Power>";
-        private string accuracyString = "<Accuracy>";
-        // The energy string is reused from the gameManager.
-        private string descriptionString = "<Description>";
-
         // Awake is called when the script is being loaded.
         private void Awake()
         {
@@ -121,21 +114,8 @@ namespace RM_BBTS
             // Language definitions set.
             if(defs != null)
             {
-                // Now consults strings in the gameplay manager.
-                // levelString = defs["kwd_level"];
-                // healthString = defs["kwd_health"];
-                // attackString = defs["kwd_attack"];
-                // defenseString = defs["kwd_defense"];
-                // speedString = defs["kwd_speed"];
-                // energyString = defs["kwd_energy"];
-
                 titleText.text = defs["kwd_stats"];
                 backButtonText.text = defs["kwd_back"];
-
-                rankString = defs["kwd_rank"];
-                powerString = defs["kwd_power"];
-                accuracyString = defs["kwd_accuracy"];
-                descriptionString = defs["kwd_description"];
             }
 
             ResetMoveButtonColors();
@@ -257,20 +237,20 @@ namespace RM_BBTS
             moveNameText.text = move.Name;
 
             // Rank
-            moveRankText.text = rankString + ": " + move.Rank.ToString();
+            moveRankText.text = gameManager.RankString + ": " + move.Rank.ToString();
             
             // Power
-            movePowerText.text = powerString + ": " + ((move.Power == 0.0F) ? "-" : move.Power.ToString());
+            movePowerText.text = gameManager.PowerString + ": " + ((move.Power == 0.0F) ? "-" : move.Power.ToString());
 
             // Accuracy
             if (move.useAccuracy)
             {
-                moveAccuracyText.text = accuracyString + ": " +
+                moveAccuracyText.text = gameManager.AccuracyString + ": " +
                     Mathf.Round(move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
             }
             else
             {
-                moveAccuracyText.text = accuracyString + ": " + "-";
+                moveAccuracyText.text = gameManager.AccuracyString + ": " + "-";
             }
            
             // Energy
@@ -286,7 +266,7 @@ namespace RM_BBTS
             }
 
             // Description
-            moveDescriptionText.text = descriptionString + ": " + move.description.ToString();
+            moveDescriptionText.text = gameManager.DescriptionString + ": " + move.description.ToString();
 
             // If the text-to-speech is enabled, and the SDK has been initialized.. 
             if(GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)

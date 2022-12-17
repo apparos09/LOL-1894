@@ -68,6 +68,9 @@
       "btl_msg_mve_moveStatDecSgl": 250,
       "btl_msg_mve_moveStatDecMlt": 250,
 
+      "btl_msg_mve_moveStatHigh": 250,
+      "btl_msg_mve_moveStatLow": 250,
+
       "btl_msg_mve_moveBurned": 250,
       "btl_msg_mve_moveParalyzed": 250,
 
@@ -414,6 +417,13 @@
     "btl_msg_mve_moveStatDecMlt": "The move decreased {0}'s {1} by {2} stages!",
     "btl_msg_mve_moveStatDec_alt00": "The move decreased one of the player's stats!",
     "btl_msg_mve_moveStatDec_alt01": "The move decreased one of the opponent's stats!",
+
+    "btl_msg_mve_moveStatHigh": "{0}'s {1} stat can't go any higher!",
+    "btl_msg_mve_moveStatHigh_alt00": "The player's stat can't go any higher!",
+    "btl_msg_mve_moveStatHigh_alt01": "The opponent's stat can't go any higher!",
+    "btl_msg_mve_moveStatLow": "{0}'s {1} stat can't go any lower!",
+    "btl_msg_mve_moveStatLow_alt00": "The player's stat can't go any lower!",
+    "btl_msg_mve_moveStatLow_alt01": "The opponent's stat can't go any lower!",
 
     "btl_msg_mve_moveBurned": "The target has been burned!",
     "btl_msg_mve_moveParalyzed": "The target has been paralyzed!",

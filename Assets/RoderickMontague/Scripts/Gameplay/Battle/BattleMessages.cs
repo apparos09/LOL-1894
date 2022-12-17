@@ -396,13 +396,13 @@ namespace RM_BBTS
         }
 
         // Gets the move stat increase speak key 0.
-        public string GetMoveStatIncreaseSpeakKey0(int amount)
+        public string GetMoveStatIncreaseSpeakKey0()
         {
             return "btl_msg_mve_moveStatInc_alt00";
         }
 
         // Gets the move stat increase speak key 1.
-        public string GetMoveStatIncreaseSpeakKey1(int amount)
+        public string GetMoveStatIncreaseSpeakKey1()
         {
             return "btl_msg_mve_moveStatInc_alt01";
         }
@@ -446,17 +446,71 @@ namespace RM_BBTS
         }
 
         // Gets the move stat decrease speak key 0.
-        public string GetMoveStatDecreaseSpeakKey0(int amount)
+        public string GetMoveStatDecreaseSpeakKey0()
         {
             return "btl_msg_mve_moveStatDec_alt00";
         }
 
         // Gets the move stat decrease speak key 1.
-        public string GetMoveStatDecreaseSpeakKey1(int amount)
+        public string GetMoveStatDecreaseSpeakKey1()
         {
             return "btl_msg_mve_moveStatDec_alt01";
         }
 
+        // STAT CHANGE REACHED LIMIT.
+        // Gets the move stat change fail message.
+        // upperLimit = true means that the stat can't go any higher.
+        // upperLimit = false means that the stat can't go any lower.
+        public string GetMoveStatLimitReachedMessage(string target, string stat, bool upperLimit)
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs exists.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                // A different message is used based on if the move can't go any higher, or any lower.
+                if (upperLimit)
+                    msg = defs["btl_msg_mve_moveStatHigh"];
+                else
+                    msg = defs["btl_msg_mve_moveStatLow"];
+            }
+            else
+            {
+                // Checks if the stat can't go any higher, or lower.
+                if (upperLimit)
+                    msg = "<{0}'s {1} stat can't go any higher!>";
+                else
+                    msg = "<{0}'s {1} stat can't go any lower!>";
+            }
+
+            // Slot in values.
+            msg = msg.Replace("{0}", target);
+            msg = msg.Replace("{1}", stat);
+
+            return msg;
+        }
+
+        // Gets the move stat limit reached speak key 0.
+        public string GetMoveStatLimitReachedSpeakKey0(bool upperLimit)
+        {
+            // Checks if the upper limit has been reached, or the lower limit.
+            if(upperLimit)
+                return "btl_msg_mve_moveStatHigh_alt00";
+            else
+                return "btl_msg_mve_moveStatLow_alt00";
+        }
+
+        // Gets the move stat limit reached speak key 1.
+        public string GetMoveStatLimitReachedSpeakKey1(bool upperLimit)
+        {
+            // Checks if the upper limit has been reached, or the lower limit.
+            if (upperLimit)
+                return "btl_msg_mve_moveStatHigh_alt01";
+            else
+                return "btl_msg_mve_moveStatLow_alt01";
+        }
 
 
         // MOVE BURNED //

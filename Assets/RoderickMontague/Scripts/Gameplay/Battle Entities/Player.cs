@@ -68,7 +68,7 @@ namespace RM_BBTS
 
             // Starter moves.
             // TEST
-            // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
+            // // Move0 = MoveList.Instance.GenerateMove(moveId.motivate);
             // Move0 = MoveList.Instance.GenerateMove(moveId.risk);
             // // Move1 = MoveList.Instance.GenerateMove(moveId.wham);
             // // Move1 = MoveList.Instance.GenerateMove(moveId.torch); // burn
@@ -78,7 +78,7 @@ namespace RM_BBTS
             // // Move3 = null;
             // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
 
-            // ACTUAL
+            // // ACTUAL
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);
             Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
             Move2 = MoveList.Instance.GenerateMove(moveId.heal);

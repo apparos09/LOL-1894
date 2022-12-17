@@ -36,7 +36,7 @@ namespace RM_BBTS
                 }
 
                 // Applies the stat changes.
-                List<Page> statPages = ApplyStatChanges(user, target);
+                List<Page> statPages = ApplyStatChanges(user, target, battle);
 
                 // If there are no pages, then the stats could not be changed, meaning that the move failed.
                 if(statPages.Count == 0)
