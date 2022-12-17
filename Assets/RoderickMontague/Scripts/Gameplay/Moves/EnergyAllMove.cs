@@ -13,8 +13,8 @@ namespace RM_BBTS
         // power = lowestPower + (power * energy/maxEnergy).
         public float lowestPower = 20.0F;
 
-        public EnergyAllMove(moveId id, string name, int rank, float power, float accuracy, float energyUsage) : 
-            base(id, name, rank, power, accuracy, energyUsage)
+        public EnergyAllMove(moveId id, string name, int rank, float power, float accuracy) : 
+            base(id, name, rank, power, accuracy, 0.0F)
         {
             // Taken out in case the user changes the lowest power later.
             // // Swaps value if lowest power is equal to 0.

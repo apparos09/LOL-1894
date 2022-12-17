@@ -906,7 +906,13 @@ namespace RM_BBTS
         // Checks if the battle entity has a certain move.
         public bool HasMove(Move move)
         {
-            return HasMove(move.Id);
+            // Checks if the move is set to null.
+            // If so, return a false value.
+            // If true, go through with the move check.
+            if (move == null)
+                return false;
+            else
+                return HasMove(move.Id);
         }
 
         // Checks if the battle entity has a certain move.

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditorInternal;
 
 namespace RM_BBTS
 {
@@ -735,24 +736,67 @@ namespace RM_BBTS
 
             // Goes through each move index.
             foreach(int moveIndex in moveIndexes)
-            {
-                // Checks that the move exists.
-                if (player.moves[moveIndex] != null)
+            {  
+                // Becomes set to 'true' when a move has been found.
+                bool foundMove = false;
+                // If too many attempts are made, then it sticks with the move generated (avoids duplicate moves).
+                int attempts = 0;
+                // Maximum amount of attempts.
+                const int ATTEMPTS_MAX = 5;
+
+                do
                 {
-                    // Grabs the move rank, and replaces the move.
-                    switch(player.moves[moveIndex].Rank)
+                    // The generated move.
+                    Move move = null;
+
+                    // Checks that the move exists in the player's list.
+                    if (player.moves[moveIndex] != null)
                     {
-                        case 1: // R1
-                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank1Move();
-                            break;
-                        case 2: // R2
-                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank2Move();
-                            break;
-                        case 3: // R3
-                            player.moves[moveIndex] = MoveList.Instance.GetRandomRank3Move();
-                            break;
+                        // Grabs the move rank, and replaces the move.
+                        switch (player.moves[moveIndex].Rank)
+                        {
+                            case 1: // R1
+                                move = MoveList.Instance.GetRandomRank1Move();
+                                break;
+                            case 2: // R2
+                                move = MoveList.Instance.GetRandomRank2Move();
+                                break;
+                            case 3: // R3
+                                move = MoveList.Instance.GetRandomRank3Move();
+                                break;
+                            default: // Not applicable rank.
+                                move = MoveList.Instance.GetRandomMove();
+                                break;
+                        }
                     }
-                }
+                    else
+                    {
+                        // The player doesn't have a move at this index, so it can't be replaced.
+                        // Break out of this do-while loop.
+                        break;
+                    }
+
+                    // Made an attempt to find a move.
+                    attempts++;
+
+                    // Checks to make sure the player doesn't already have the move.
+                    // Handles duplicate moves.
+                    if(player.HasMove(move) && attempts <= ATTEMPTS_MAX)
+                    {
+                        // Player already has this move.
+                        // Try generating another move.
+                        foundMove = false;
+                    }
+                    else
+                    {
+                        // Player does not have this move...
+                        // Or the attempts have been maxed out.
+                        player.moves[moveIndex] = move;
+                        foundMove = true;
+                    }
+
+                } while (!foundMove && attempts > ATTEMPTS_MAX);
+                
             }
 
             // Checks to see if the player has an attacking move.

@@ -7,6 +7,9 @@ namespace RM_BBTS
     // The move for an entity charging their energy.
     public class ChargeMove : Move
     {
+        // The percentage of the charge move.
+        public const float CHARGE_PERCENT = 0.5F;
+
         // Constructor for the charge move.
         public ChargeMove() : 
             base(moveId.charge, "<Charge>", 1, 0, 1.0F, 0)
@@ -65,7 +68,7 @@ namespace RM_BBTS
                 }
 
 
-                float chargePlus = user.MaxEnergy * 0.4F;
+                float chargePlus = user.MaxEnergy * CHARGE_PERCENT;
                 user.Energy += chargePlus;
 
                 // Updates the player's energy level.

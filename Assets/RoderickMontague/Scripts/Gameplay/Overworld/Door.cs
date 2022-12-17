@@ -111,7 +111,13 @@ namespace RM_BBTS
         {
             // This sound plays to indicate that a door is locked.
             if (locked && overworld != null)
-                overworld.PlayDoorLockedSfx();
+            {
+                // If the mouse touch input is disabled, then a UI element must be open.
+                // As such, this audio clip shouldn't play since the door is likely blocked.
+                if(overworld.gameManager.mouseTouchInput.isActiveAndEnabled)
+                    overworld.PlayDoorLockedSfx();
+            }
+                
         }
 
         // Sets the door animation.
