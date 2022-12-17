@@ -138,6 +138,7 @@ namespace RM_BBTS
                 descriptionString = defs["kwd_description"];
             }
 
+            ResetMoveButtonColors();
             UpdatePlayerInfo();
             SwitchToChargeMove();
         }
@@ -145,7 +146,14 @@ namespace RM_BBTS
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
+            // The menu always starts on the charge move.
+            // This address a bug where the button highlight didn't match up with what was one screen...
+            // To start off.
+            // It could make more sense to remember the number of the last selected move...
+            // But I don't feel like doing that.
+            ResetMoveButtonColors();
             UpdatePlayerInfo();
+            SwitchToChargeMove();
         }
 
         // // Toggles the visibility of the player stat window.
