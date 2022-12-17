@@ -134,7 +134,7 @@ namespace RM_BBTS
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.05F;
 
-                    move.description = "<An attack that has a 40% critical hit chance, and a 5% chance of raising the user's defense by 1 stage.>";
+                    move.description = "<An attack that has a 40% critical damage chance, and a 5% chance of raising the user's defense by 1 stage.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_poke_nme";
@@ -201,7 +201,7 @@ namespace RM_BBTS
                     move = new Move(moveId.slam, "<Slam>", 1, 30, 0.90F, 0.15F);
                     move.CriticalChance = 0.6F;
 
-                    move.description = "<An attack that has a critical hit chance of 60%.>";
+                    move.description = "<An attack that has a critical damage chance of 60%.>";
 
                     nameKey = "mve_slam_nme";
                     descKey = "mve_slam_dsc";
@@ -230,12 +230,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnify: // Magnify
-                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.15F);
+                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.12F);
 
                     move.accuracyChangeUser = 1;
                     move.accuracyChangeChanceUser = 1.0F;
 
-                    move.description = "<The user raises their accuracy by 1.>";
+                    move.description = "<The user raises their accuracy by 1 stage.>";
 
                     break;
 
@@ -342,13 +342,13 @@ namespace RM_BBTS
                 case moveId.magnet: // Magnet
                     move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.9F, 0.15F);
 
-                    move.accuracyChangeUser = 1;
+                    move.accuracyChangeUser = 2;
                     move.accuracyChangeChanceUser = 1.0F;
 
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 1.0F;
 
-                    move.description = "<The user increases their accuracy by 1 stage, and the target's accuracy by 1 stage.>";
+                    move.description = "<The user increases their accuracy by 2 stages, and the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_magnet_nme";
                     descKey = "mve_magnet_dsc";
@@ -389,7 +389,7 @@ namespace RM_BBTS
                     move.speedChangeUser = 1;
                     move.speedChangeChanceUser = 1.0F;
 
-                    move.description = "<The user increases their attack, defense, and speed by 1 stage. This move will always go last.>";
+                    move.description = "<The user increases their attack, defense, and speed by 1 stage each. This move will always go last.>";
 
                     nameKey = "mve_motivate_nme";
                     descKey = "mve_motivate_dsc";
@@ -397,11 +397,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.quickBurst: // Quick Burst
-                    move = new Move(moveId.quickBurst, "<Quick Burst>", 2, 70, 0.95F, 0.3F);
+                    move = new Move(moveId.quickBurst, "<Quick Burst>", 2, 55, 0.95F, 0.3F);
                     move.RecoilPercent = 0.15F;
                     move.priority = 1;
 
-                    move.description = "<The user does a quick move that always goes first. This move will deal 15% of its damage dealt back to the user.>";
+                    move.description = "<The user does a quick move that always goes first. This move will deal 15% of the damage dealt back to the user.>";
 
                     nameKey = "mve_quickBurst_nme";
                     descKey = "mve_quickBurst_dsc";
@@ -580,7 +580,7 @@ namespace RM_BBTS
                     move.CriticalChance = 0.3F;
                     move.RecoilPercent = 0.4F;
 
-                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 30%, and deals 40% in damage back to the user.>";
+                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 30%, and deals 40% of the damage dealt back to the user.>";
 
                     nameKey = "mve_quake_nme";
                     descKey = "mve_quake_dsc";
@@ -626,7 +626,7 @@ namespace RM_BBTS
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
 
-                    move.description = "<A move that lowers the user's attack stat every time it's used.>";
+                    move.description = "<A move that lowers the user's attack stat by 1 stage every time it's used.>";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_allOut_nme";
