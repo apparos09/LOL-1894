@@ -23,7 +23,7 @@ namespace RM_BBTS
 
         // The maixmum progress points for the game.
         // Currently, progress is based on the amount of doors cleared in the game.
-        const int MAX_PROGRESS = 18;
+        const int MAX_PROGRESS = OverworldManager.ROOM_COUNT; // same as room count.
 
         // private constructor so that only one accessibility object exists.
         private LOLManager()
