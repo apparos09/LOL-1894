@@ -501,7 +501,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonicwave>", 3, 80.0F, 0.95F, 0.27F);
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.95F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
@@ -626,7 +626,7 @@ namespace RM_BBTS
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
 
-                    move.description = "<A move that lowers the user's attack stat everytime it's used.>";
+                    move.description = "<A move that lowers the user's attack stat every time it's used.>";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_allOut_nme";

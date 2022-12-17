@@ -1959,16 +1959,16 @@ namespace RM_BBTS
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
                                     gameManager.HealthString + " +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
-                                    gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "   |   " +
-                                    gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   \n" +
+                                    gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "\n" +
+                                    gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   " +
                                     gameManager.SpeedString + " +" + Mathf.RoundToInt(player.Speed - oldSpd).ToString()
                                     ));
 
                                 // Adds page with new stats.
                                 textBox.pages.Add(new Page(
-                                    gameManager.LevelString + " = " + player.Level.ToString() + " | " +
+                                    gameManager.LevelString + " = " + player.Level.ToString() + "\n" +
                                     gameManager.HealthString + " = " + Mathf.RoundToInt(player.MaxHealth).ToString() + "   |   " +
-                                    gameManager.AttackString + " = " + Mathf.RoundToInt(player.Attack).ToString() + "   |   \n" +
+                                    gameManager.AttackString + " = " + Mathf.RoundToInt(player.Attack).ToString() + "\n" +
                                     gameManager.DefenseString + " = " + Mathf.RoundToInt(player.Defense).ToString() + "   |   " +
                                     gameManager.SpeedString + " = " + Mathf.RoundToInt(player.Speed).ToString()
                                     ));

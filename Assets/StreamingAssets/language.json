@@ -563,7 +563,7 @@
     "mve_fireBlast_dsc": "A strong fire blast with a 30% chance of burning the target.",
     "mve_elecBlast_nme": "Electric Blast",
     "mve_elecBlast_dsc": "A strong electric blast with a 30% chance of paralyzing the target.",
-    "mve_sonicWave_nme": "Sonicwave",
+    "mve_sonicWave_nme": "Sonic Wave",
     "mve_sonicWave_dsc": "A strong attack that has a 25% chance of lowering the target's accuracy by 1 stage.",
 
     "mve_hpDrain3_nme": "Drain Heal 3",
@@ -587,7 +587,7 @@
     "mve_earlyBurst_nme": "Early Burst",
     "mve_earlyBurst_dsc": "A move that gets weaker the longer the battle goes on.",
     "mve_allOut_nme": "All Out Attack",
-    "mve_allOut_dsc": "A move that lowers the user's attack stat everytime it's used.",
+    "mve_allOut_dsc": "A move that lowers the user's attack stat every time it's used.",
     "mve_kablam_nme": "Kablam",
     "mve_kablam_dsc": "A strong, but basic attack.",
 
