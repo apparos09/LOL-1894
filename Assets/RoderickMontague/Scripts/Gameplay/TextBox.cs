@@ -435,6 +435,8 @@ namespace RM_BBTS
         }
 
         // Clears out all pages.
+        // It's recommended that this function is called instead of clearing the page list inself.
+        // There are extra elements that are cleared this function are called, so use this instead of pages.Clear().
         public void ClearPages()
         {
             // Clears out the pages.

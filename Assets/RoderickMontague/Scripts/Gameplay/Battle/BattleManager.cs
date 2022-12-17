@@ -1327,7 +1327,8 @@ namespace RM_BBTS
             if (textBox.IsVisible())
             {
                 textBox.Close();
-                textBox.pages.Clear();
+                // textBox.pages.Clear();
+                textBox.ClearPages(); // Use the dedicated function.
             }
 
             // Player options should be enabled before leaving so that they're ready for the next battle?
@@ -1851,7 +1852,8 @@ namespace RM_BBTS
                             // Restores the opponent's health to max (stops both from dying on the same round.
                             opponent.Health = opponent.MaxHealth;
 
-                            textBox.pages.Clear();
+                            // textBox.pages.Clear();
+                            textBox.ClearPages();
 
                             // Page for losing the game.
                             Page losePage = new Page(
@@ -1871,7 +1873,8 @@ namespace RM_BBTS
                         }
                         else // The player won the fight.
                         {
-                            textBox.pages.Clear();
+                            // textBox.pages.Clear();
+                            textBox.ClearPages();
 
                             // Checks the opponent type.
                             if (opponent is Treasure) // Is Treasure
