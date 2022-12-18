@@ -609,8 +609,8 @@
 
     "trl_intro_00": "Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",
     "trl_intro_01": "Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…",
-    "trl_intro_02": "Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, which is behind the red door. But first, there are some things you should know about the simulation.",
-    "trl_intro_03": "This is the overworld, which is where you pick a door to go through. Once you attempt your first battle, all the other doors will be unlocked.",
+    "trl_intro_02": "Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.",
+    "trl_intro_03": "This is the overworld, which is where you pick a door to go through. Once you win your first battle, all the other doors will be unlocked.",
     "trl_intro_04": "To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.",
     "trl_intro_05": "At the bottom is your current score, which increases by a variable amount for every room that you clear.",
     "trl_intro_06": "And at the top are various options that you can select, some of which may be disabled depending on the state of the game.",
@@ -624,7 +624,7 @@
     "trl_battle_05": "Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.",
     "trl_battle_06": "The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.",
     "trl_battle_07": "Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.",
-    "trl_battle_08": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.",
+    "trl_battle_08": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be disabled.",
     "trl_battle_09": "That’s all for now, so on with the battle!",
 
     "trl_firstMove_00": "You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.",
@@ -649,11 +649,11 @@
 
     "trl_burn_00": "You have encountered burn status!",
     "trl_burn_01": "Damage will be taken each turn when inflicted with burn status.",
-    "trl_burn_02": "Burn status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.",
+    "trl_burn_02": "Burn status wears off if you win the battle, or if you run away from the battle. This goes for you and your opponent.",
 
     "trl_paralysis_00": "You have encountered the paralysis status!",
     "trl_paralysis_01": "When inflicted with paralysis, a battler will move slower and has a chance of skipping a turn.",
-    "trl_paralysis_02": "Paralysis status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.",
+    "trl_paralysis_02": "Paralysis status wears off if you win the battle, or if you run away from the battle. This goes for you and your opponent.",
 
     "trl_firstBattleDeath_00": "Since this is your first battle, the simulation has completely restored your health and energy.",
     "trl_firstBattleDeath_01": "Keep in mind that this is a one-time thing. If you lose all your health after this battle is over, you will get a game over.",
@@ -666,8 +666,8 @@
     "trl_overworld_05": "Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.",
     "trl_overworld_06": "Also remember that running away from battle is always an option, even against the final boss.",
     "trl_overworld_07": "Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.",
-    "trl_overworld_08": "Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.",
-    "trl_overworld_09": "That’s all for now, so on with the game.",
+    "trl_overworld_08": "Since you're currently in the first phase, the phase stat boosts will be applied a total of two separate times.",
+    "trl_overworld_09": "That’s all for now, so on with the game!",
 
     "trl_treasure_00": "This is a treasure room!",
     "trl_treasure_01": "If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.",
@@ -679,8 +679,8 @@
     "trl_gameOver_00": "You lost the battle and got a game over, so there’s some things that you should know.",
     "trl_gameOver_01": "Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.",
     "trl_gameOver_02": "As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.",
-    "trl_gameOver_03": "And as for you, your health and energy have been completed restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.",
-    "trl_gameOver_04": "That’s all for now, so good luck!",
+    "trl_gameOver_03": "And as for you, your health and energy have been completely restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.",
+    "trl_gameOver_04": "That's all for now, so good luck!",
 
 
     "kwd_results": "Results",

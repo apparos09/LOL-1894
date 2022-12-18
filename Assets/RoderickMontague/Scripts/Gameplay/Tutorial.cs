@@ -129,8 +129,8 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("<Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.>"));
                 pages.Add(new Page("<Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…>"));
-                pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, which is behind the red door. But first, there are some things you should know about the simulation.>"));
-                pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you attempt your first battle, all the other doors will be unlocked.>"));
+                pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.>"));
+                pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you win your first battle, all the other doors will be unlocked.>"));
                 pages.Add(new Page("<To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.>"));
                 pages.Add(new Page("<At the bottom is your current score, which increases by a variable amount for every room that you clear.>"));
                 pages.Add(new Page("<And at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
@@ -176,7 +176,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.>"));
                 pages.Add(new Page("<The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.>"));
                 pages.Add(new Page("<Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.>"));
-                pages.Add(new Page("<As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be locked.>"));
+                pages.Add(new Page("<As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be disabled.>"));
                 pages.Add(new Page("<That’s all for now, so on with the battle!>"));
 
             }
@@ -318,7 +318,7 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("<You have encountered burn status!>"));
                 pages.Add(new Page("<Damage will be taken each turn when inflicted with burn status.>"));
-                pages.Add(new Page("<Burn status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.>"));
+                pages.Add(new Page("<Burn status wears off if you win the battle, or if you run away from the battle. This goes for you and your opponent.>"));
             }
 
             // Loads the pages.
@@ -344,7 +344,7 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("<You have encountered the paralysis status!>"));
                 pages.Add(new Page("<When inflicted with paralysis, a battler will move slower and has a chance of skipping a turn.>"));
-                pages.Add(new Page("<Paralysis status wears off if you win the battle, and if you run away from the battle. This goes for you and your opponent.>"));
+                pages.Add(new Page("<Paralysis status wears off if you win the battle, or if you run away from the battle. This goes for you and your opponent.>"));
             }
 
             // Loads the pages.
@@ -407,8 +407,8 @@ namespace RM_BBTS
                 pages.Add(new Page("<Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.>"));
                 pages.Add(new Page("<Also remember that running away from battle is always an option, even against the final boss.>"));
                 pages.Add(new Page("<Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.>"));
-                pages.Add(new Page("<Enemies will keep their health and energy levels if you run away, but they will get restored eventually if you leave them alone for too long.>"));
-                pages.Add(new Page("<That’s all for now, so on with the game.>"));
+                pages.Add(new Page("<Since you're currently in the first phase, the phase stat boosts will be applied a total of two separate times.>"));
+                pages.Add(new Page("<That’s all for now, so on with the game!>"));
             }
             
             // Loads the pages.
@@ -488,8 +488,8 @@ namespace RM_BBTS
                 pages.Add(new Page("<You lost the battle and got a game over, so there’s some things that you should know.>"));
                 pages.Add(new Page("<Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.>"));
                 pages.Add(new Page("<As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.>"));
-                pages.Add(new Page("<And as for you, your health and energy have been completed restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.>"));
-                pages.Add(new Page("<That’s all for now, so good luck!>"));
+                pages.Add(new Page("<And as for you, your health and energy have been completely restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.>"));
+                pages.Add(new Page("<That's all for now, so good luck!>"));
             }
 
             // Loads the pages.
