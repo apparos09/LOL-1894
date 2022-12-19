@@ -19,8 +19,11 @@ namespace RM_BBTS
         // The instance of the move list.
         private static MoveList instance;
 
+        // The starting move for the randomizer.
+        public const int MOVE_ID_RAND_START = ((int)moveId.charge) + 1;
+
         // The move ID count.
-        public const int MOVE_ID_COUNT = (int)moveId.kablam + 1;
+        public const int MOVE_ID_COUNT = ((int)LAST_RANK_3) + 1;
 
         // The run move that is used to play through the turn.
         private static RunMove runMove;
@@ -30,13 +33,13 @@ namespace RM_BBTS
         private static ChargeMove chargeMove;
 
         // The last rank 1 move.
-        private moveId lastRank1 = moveId.bam;
+        private const moveId LAST_RANK_1 = moveId.bam;
 
         // The last rank 2 move.
-        private moveId lastRank2 = moveId.wham;
+        private const moveId LAST_RANK_2 = moveId.wham;
 
         // The last rank 3 move.
-        private moveId lastRank3 = moveId.kablam;
+        private const moveId LAST_RANK_3 = moveId.kablam;
 
         // TODO: include list of move animations.
 
@@ -662,24 +665,26 @@ namespace RM_BBTS
         // Gets a random move. If the rank is invalid, it picks from the whole list.
         public Move GetRandomMove(int rank)
         {
+            // The id of the move being generated.
             moveId id;
 
             switch(rank)
             {
                 case 1: // rank 1
-                    id = (moveId)Random.Range(2, (int)lastRank1 + 1);
+                    id = (moveId)Random.Range(MOVE_ID_RAND_START, (int)LAST_RANK_1 + 1);
                     break;
 
                 case 2: // rank 2
-                    id = (moveId)Random.Range((int)lastRank1 + 1, (int)lastRank2 + 1);
+                    id = (moveId)Random.Range((int)LAST_RANK_1 + 1, (int)LAST_RANK_2 + 1);
                     break;
 
                 case 3: // rank 3
-                    id = (moveId)Random.Range((int)lastRank2 + 1, (int)lastRank3 + 1);
+                    id = (moveId)Random.Range((int)LAST_RANK_2 + 1, (int)LAST_RANK_3 + 1);
                     break;
 
                 default: // Selects from the whole list.
-                    id = (moveId)Random.Range(2, MOVE_ID_COUNT + 1);
+                    // The list starts at 0, with the move count being +1 of the number value of the final move.
+                    id = (moveId)Random.Range(MOVE_ID_RAND_START, MOVE_ID_COUNT);
                     break;
             }
 
