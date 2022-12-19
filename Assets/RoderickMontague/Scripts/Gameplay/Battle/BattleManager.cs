@@ -1903,6 +1903,9 @@ namespace RM_BBTS
                                 textBox.pages.Add(bossPage);
 
                                 // Room has been compelted.
+                                // This is put here because OnPlayerBattleWon is called after the game is set up to switch scenes.
+                                // In said class the roomsCompleted count is increased, meaning that it wouldn't reach its final value...
+                                // Before the game is over without being done manually here.
                                 gameManager.roomsCompleted++;
                             }
                             else // Not Treasure

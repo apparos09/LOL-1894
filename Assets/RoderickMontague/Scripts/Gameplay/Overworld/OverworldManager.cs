@@ -67,6 +67,10 @@ namespace RM_BBTS
         private int speedSpecials = 0;
         private int energySpecials = 0;
 
+        // Determines if the boss can only be fought at the end of the game (true) or not (false).
+        [Tooltip("If true, the boss can only be fought at the end of the game.")]
+        public bool bossAtEnd = true;
+
         // // The door prefab to be instantiated.
         // public GameObject doorPrefab;
         // 
@@ -228,6 +232,10 @@ namespace RM_BBTS
                 // // For some reason the doors sometimes don't get replaced. This should fix it.
                 // bossDoor.unlockedSprite = bossDoorUnlockedSprite;
                 // bossDoor.lockedSprite = bossDoorLockedSprite;
+
+                // If the boss should be locked until the end, lock the door.
+                if (bossAtEnd)
+                    bossDoor.Locked = true;
             }
 
             // Switches to the phase 1 color.
@@ -573,12 +581,31 @@ namespace RM_BBTS
             // Calls the function for OnGamePhaseChange().
             OnGamePhaseChange();
 
+            // If the boss should only be available at the end.
+            if (bossAtEnd)
+            {
+                // If the player is on the last room, unlock the boss door.
+                // Otherwise, lock the boss door.
+                if(gameManager.GetRoomsCompleted() + 1 == gameManager.GetRoomsTotal())
+                {
+                    // Unlocks the door if it is locked.
+                    if (bossDoor.Locked)
+                        bossDoor.Locked = false;
+
+                }
+                else
+                {
+                    // Locks the door if it is unlocked.
+                    if (!bossDoor.Locked)
+                        bossDoor.Locked = true;
+                }
+            }
+
             // Update the UI for the overworld.
             UpdateUI();
 
             // Plays the overworld BGM.
             PlayOverworldBgm();
-
         }
 
         // Called when the game phase changes.

@@ -4246,6 +4246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7f4215c5e1edd48b50ff9a4772c5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2092630934}
   saveFeedbackText: {fileID: 619375391}
   mainMenu: {fileID: 1033825039}
   newGameButton: {fileID: 255729900}

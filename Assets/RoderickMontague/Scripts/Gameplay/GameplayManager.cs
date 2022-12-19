@@ -824,6 +824,18 @@ namespace RM_BBTS
             // pausedTimer = false;
         }
 
+        // Returns the amount of completed rooms.
+        public int GetRoomsCompleted()
+        {
+            return roomsCompleted;
+        }
+
+        // Gets the number of the current round.
+        public int GetCurrentRoomNumber()
+        {
+            return roomsCompleted + 1;
+        }
+
         // Returns the total amount of rooms.
         public int GetRoomsTotal()
         {
@@ -834,6 +846,12 @@ namespace RM_BBTS
             // TODO: this shouldn't be needed, so maybe take this out?
             if (overworld.doors.Count != 0 && overworld.doors.Count != roomsTotal)
                 roomsTotal = overworld.doors.Count;
+
+            // Checks to see if the room total is accurate.
+            if(roomsTotal != OverworldManager.ROOM_COUNT)
+            {
+                Debug.LogWarning("The game's set room count does not match to the actual amount of doors in the list.");
+            }
 
             return roomsTotal;
 
@@ -1135,7 +1153,10 @@ namespace RM_BBTS
             results.totalTurns = turnsPassed;
 
             // Saves the level and final moves the player had.
-            results.finalLevel = player.Level;
+            // The player levels up after the boss battle, so the provided level is subtracted by 1.
+            results.finalLevel = player.Level - 1;
+
+            // Saves the final moves.
             results.move0 = (player.Move0 != null) ? player.Move0.Name : "-";
             results.move1 = (player.Move1 != null) ? player.Move1.Name : "-";
             results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";

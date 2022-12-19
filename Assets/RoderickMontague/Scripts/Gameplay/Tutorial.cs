@@ -130,7 +130,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.>"));
                 pages.Add(new Page("<Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…>"));
                 pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.>"));
-                pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you win your first battle, all the other doors will be unlocked.>"));
+                pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.>"));
                 pages.Add(new Page("<To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.>"));
                 pages.Add(new Page("<At the bottom is your current score, which increases by a variable amount for every room that you clear.>"));
                 pages.Add(new Page("<And at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
@@ -399,8 +399,8 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("<Now that you’ve tried out a battle, all the rooms are open, including the boss room.>"));
-                pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, whom you can challenge at any time.>"));
+                pages.Add(new Page("<Now that you’ve tried out a battle, all the other doors are unlocked, except for the boss room.>"));
+                pages.Add(new Page("<As mentioned before, the game ends when you beat the boss, who can only be challenged after all the other rooms are cleared.>"));
                 pages.Add(new Page("<You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.>"));
                 pages.Add(new Page("<As for the enemies, they will get stronger as the game progresses, and some can evolve into different forms. If an enemy can evolve, it will happen when a phase change occurs.>"));
                 pages.Add(new Page("<A phase change happens when you complete enough rooms, with there being three phases in total. A phase change is signified by a change in the game background, and in the game music.>"));
