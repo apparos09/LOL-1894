@@ -13015,6 +13015,7 @@ MonoBehaviour:
   - {fileID: 656417675}
   bossDoor: {fileID: 0}
   treasureDoors: []
+  bossAtEnd: 1
   doorUnlockedSprites:
   - {fileID: -7341407202210888751, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
   - {fileID: -8382612525795312103, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}

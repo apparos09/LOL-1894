@@ -1153,7 +1153,10 @@ namespace RM_BBTS
             results.totalTurns = turnsPassed;
 
             // Saves the level and final moves the player had.
-            results.finalLevel = player.Level;
+            // The player levels up after the boss battle, so the provided level is subtracted by 1.
+            results.finalLevel = player.Level - 1;
+
+            // Saves the final moves.
             results.move0 = (player.Move0 != null) ? player.Move0.Name : "-";
             results.move1 = (player.Move1 != null) ? player.Move1.Name : "-";
             results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";

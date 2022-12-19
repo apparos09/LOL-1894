@@ -325,7 +325,9 @@ namespace RM_BBTS
             boxText.text = "";
 
             // Calls the function for the page that's being closed.
-            if(currPageIndex >= 0 && currPageIndex < pages.Count)
+            // If the new index is the same as the current index, don't call the OnPageClosed() function.
+            // It will just treat the page as never closing at all.
+            if(currPageIndex >= 0 && currPageIndex < pages.Count && currPageIndex != nextPageIndex)
                 pages[currPageIndex].OnPageClosed();
 
             // Sets the new page index.
