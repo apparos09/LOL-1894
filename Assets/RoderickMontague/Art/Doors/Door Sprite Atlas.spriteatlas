@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Door Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 3
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: db277279b03a8bd4891905d181a160ef, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 5320238743089952348, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 6618103248666153540, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 1158316519162829114, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 6058075553308899857, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: -8382612525795312103, guid: 0bd7dfa0e787d064f85fd64d6864fff8, type: 3}
+  - {fileID: 5592308634772503844, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: -8305413910686114471, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: -9120157742637320912, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: -6738164925414086535, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: 7838470453065261056, guid: 8bc3cd91a41eb6a419eb283053a89c01, type: 3}
+  - {fileID: 4744073622485524861, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: -8810169383252994586, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: -7341407202210888751, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: 6623719234781301212, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: -4935834299494285922, guid: 8f9fab8ac2d154b4a861f7aa47818fe6, type: 3}
+  - {fileID: -9197095005046274868, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: 3708145210769496108, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: -5002754140070859814, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: 8222647493915586171, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: -5940898589881997169, guid: 5c8811ebb4a5e2049ab40d6d1f41f353, type: 3}
+  - {fileID: 8824299224265570810, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
+  - {fileID: -5447645411780213581, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
+  - {fileID: -5034459614733945461, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
+  - {fileID: 1615313635275909200, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
+  - {fileID: -2990408512672589277, guid: 67ed6cced2a14f6469831b875d6f5fa2, type: 3}
+  - {fileID: 4620667733755939123, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  - {fileID: -8109040187468722232, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  - {fileID: 1962524685468842795, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  - {fileID: 338395125187173781, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  - {fileID: 4875518173636282051, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - door_blue_4
+  - door_blue_3
+  - door_blue_2
+  - door_blue_1
+  - door_blue_0
+  - door_yellow_4
+  - door_yellow_3
+  - door_yellow_2
+  - door_yellow_1
+  - door_yellow_0
+  - door_2
+  - door_3
+  - door_0
+  - door_1
+  - door_4
+  - door_purple_4
+  - door_purple_1
+  - door_purple_0
+  - door_purple_3
+  - door_purple_2
+  - door_green_4
+  - door_green_2
+  - door_green_3
+  - door_green_0
+  - door_green_1
+  - door_boss_4
+  - door_boss_0
+  - door_boss_1
+  - door_boss_2
+  - door_boss_3
+  m_RenderDataMap: {}
+  m_Tag: Door Sprite Atlas
+  m_IsVariant: 0
