@@ -22,7 +22,7 @@ namespace RM_BBTS
         public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.50F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
-        public const float PHASE_BONUS_STAT_TOTAL = 128.0F;
+        public const float PHASE_BONUS_STAT_TOTAL = 120.0F;
 
         // Setting the player's stats.
         protected new void Awake()
@@ -76,7 +76,7 @@ namespace RM_BBTS
             // Move2 = MoveList.Instance.GenerateMove(moveId.kablam);
             // // Move3 = MoveList.Instance.GenerateMove(moveId.hpDrain3);
             // // Move3 = null;
-            // Move3 = MoveList.Instance.GenerateMove(moveId.poke);
+            // Move3 = MoveList.Instance.GenerateMove(moveId.torch);
 
             // // ACTUAL
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);

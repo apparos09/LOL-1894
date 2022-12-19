@@ -202,6 +202,10 @@ namespace RM_BBTS
                 }
             }
 
+            // Makes sure the bar value stays within the bounds.
+            // This is to stop the fill image from being shown out of bounds.
+            bar.value = Mathf.Clamp(bar.value, bar.minValue, bar.maxValue);
+
             
         }
     }
