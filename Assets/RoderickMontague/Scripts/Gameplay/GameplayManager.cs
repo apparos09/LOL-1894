@@ -824,6 +824,18 @@ namespace RM_BBTS
             // pausedTimer = false;
         }
 
+        // Returns the amount of completed rooms.
+        public int GetRoomsCompleted()
+        {
+            return roomsCompleted;
+        }
+
+        // Gets the number of the current round.
+        public int GetCurrentRoomNumber()
+        {
+            return roomsCompleted + 1;
+        }
+
         // Returns the total amount of rooms.
         public int GetRoomsTotal()
         {
@@ -834,6 +846,12 @@ namespace RM_BBTS
             // TODO: this shouldn't be needed, so maybe take this out?
             if (overworld.doors.Count != 0 && overworld.doors.Count != roomsTotal)
                 roomsTotal = overworld.doors.Count;
+
+            // Checks to see if the room total is accurate.
+            if(roomsTotal != OverworldManager.ROOM_COUNT)
+            {
+                Debug.LogWarning("The game's set room count does not match to the actual amount of doors in the list.");
+            }
 
             return roomsTotal;
 
