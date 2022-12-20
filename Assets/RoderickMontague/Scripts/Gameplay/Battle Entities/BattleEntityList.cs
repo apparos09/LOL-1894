@@ -209,6 +209,7 @@ namespace RM_BBTS
 
                 case battleEntityId.ufo1: // UFO
                     data.id = battleEntityId.ufo1;
+                    data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.ufo2;
 
                     data.displayName = "<UFO>";
@@ -258,6 +259,7 @@ namespace RM_BBTS
                 case battleEntityId.ufo3: // UFO MKIII
                     data.id = battleEntityId.ufo3;
                     data.preEvoId = battleEntityId.ufo2;
+                    data.evoId = battleEntityId.unknown;
 
                     data.displayName = "<UFO MK III>";
                     data.displayNameSpeakKey = "bey_ufo3_nme";
@@ -455,8 +457,8 @@ namespace RM_BBTS
 
                 case battleEntityId.moonRock2: // Lunooma
                     data.id = battleEntityId.moonRock2;
-                    data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.moonRock1;
+                    data.preEvoId = battleEntityId.moonRock1;
+                    data.evoId = battleEntityId.unknown;
 
                     // Stats
                     data.displayName = "<Lunooma>";
@@ -731,7 +733,7 @@ namespace RM_BBTS
 
                 case battleEntityId.cBugYellow2: // Yellow X
                     data.id = battleEntityId.cBugYellow2;
-                    data.preEvoId = battleEntityId.unknown;
+                    data.preEvoId = battleEntityId.cBugYellow1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
