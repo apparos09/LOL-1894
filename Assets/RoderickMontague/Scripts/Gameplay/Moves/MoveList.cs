@@ -615,7 +615,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 90, 0.90F, 0.30F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 90, 0.85F, 0.30F);
 
                     move.description = "<A move that gets weaker the longer the battle goes on.>";
 
