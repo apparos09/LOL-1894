@@ -123,21 +123,6 @@ namespace RM_BBTS
                 // Enables/disables the continue button based on if there is loaded data or not.
                 continueButton.interactable = lolManager.saveSystem.HasLoadedData();
 
-                // NOTE: you seem to be receiving save data from past runs.
-                // I don't know how to delete them, but closing and opening the project doesn't seem to make a difference.
-
-                // // TODO: if the continue button is made invisible, just turn it on and disable it instead?
-                // // Maybe change this?
-                // if(!continueButton.gameObject.activeSelf) // No save available.
-                // {
-                //     continueButton.gameObject.SetActive(true);
-                //     continueButton.interactable = false;
-                // }
-                // else // Save available.
-                // {
-                //     continueButton.interactable = true;
-                // }
-
                 // LOLSDK.Instance.SubmitProgress();
             }
 
@@ -173,8 +158,10 @@ namespace RM_BBTS
         // Starts a new game.
         public void StartNewGame()
         {
-            // Clear out the loaded data.
-            LOLManager.Instance.saveSystem.loadedData = null;
+            // Clear out the loaded data if the LOLSDK has been initialized.
+            if(LOLSDK.Instance.IsInitialized)
+                LOLManager.Instance.saveSystem.loadedData = null;
+
             StartGame();
         }
 
@@ -236,10 +223,17 @@ namespace RM_BBTS
             continueButton.interactable = false;
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Update is called once per frame
+        void Update()
+        {
+            // The transitions block the UI input, so these buttons cannot be pressed once the scene starts transitioning.
+            // Makes sure the new game button is kept on when the save system turns it off.
+            if(!newGameButton.gameObject.activeSelf)
+                newGameButton.gameObject.SetActive(true);
+
+            // Makes sure the continue button is kept on when the save system turns it off.
+            if (!continueButton.gameObject.activeSelf)
+                continueButton.gameObject.SetActive(true);
+        }
     }
 }

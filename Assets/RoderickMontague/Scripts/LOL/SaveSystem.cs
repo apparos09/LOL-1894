@@ -201,6 +201,12 @@ namespace RM_BBTS
             return result;
         }
 
+        // Removes the loaded data.
+        public void ClearLoadedData()
+        {
+            loadedData = null;
+        }
+
         // The gameplay manager now checks if there is loadedData. If so, then it will load in the data when the game starts.
         // // Loads a saved game. This returns 'false' if there was no data.
         // public bool LoadGame()

@@ -408,6 +408,7 @@ namespace RM_BBTS
 
 
             // Submits a base score of 0 with 0 battles completed.
+            // This is to kick off the start of the game.
             score = 0;
             roomsCompleted = 0;
             SubmitProgress();                
