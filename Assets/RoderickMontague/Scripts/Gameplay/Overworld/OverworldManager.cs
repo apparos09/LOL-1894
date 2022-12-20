@@ -471,15 +471,14 @@ namespace RM_BBTS
             }
             else // Normal Door
             {
-                // Test
+                // Test (always loads the same neemy)
                 // door.battleEntity = BattleEntityList.Instance.GenerateBattleEntityData(battleEntityId.ufo);
 
                 // Generates a random enemy (base version).
 
-                // TODO: switch to the final version after implementing more enemies.
                 // FINAL - I don't think I'll use random weights.
-                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, false, true); // Random rates.
-                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, true, true); // No random rates.
+                // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, false, true); // Random weights.
+                door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(true, true, true); // No random weights.
 
                 // TESTING 
                 // door.battleEntity = BattleEntityList.Instance.GenerateRandomEnemy(false, false, true);

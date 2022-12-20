@@ -19,8 +19,6 @@ namespace RM_BBTS
         // The instance of the opponent list.
         private static BattleEntityList instance;
 
-        // TODO: include list of battle entity sprites
-
         // The amount of opponents in the list.
         public const int BATTLE_ENTITY_ID_COUNT = 30;
 

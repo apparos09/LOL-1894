@@ -17,7 +17,7 @@ namespace RM_BBTS
         private static BattleMessages instance;
 
         // The language definitions.
-        JSONNode defs;
+        JSONNode defs = null;
 
         private BattleMessages()
         {

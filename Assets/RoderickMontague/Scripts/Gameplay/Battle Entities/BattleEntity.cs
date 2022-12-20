@@ -108,7 +108,6 @@ namespace RM_BBTS
         protected uint level = 1;
 
         // The rate that the entity levels up at. The player levels up at a faster rate than the enemies.
-        // TODO: implement the level rate.
         public float levelRate = 1.0F;
 
         [Header("Stats")]
@@ -187,7 +186,7 @@ namespace RM_BBTS
 
             // The displayNameSpeakKey isn't set since it's unknown what the key would be.
 
-            // TODO: this causes an error when loading game data.
+            // NOTE: this caused an error when loading in game data before.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
             health = maxHealth;

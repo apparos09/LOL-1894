@@ -891,8 +891,8 @@ namespace RM_BBTS
                 // Calculates recoil damage (always does at least 1 damage).
 
                 // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
-                float recoilDamage = damage * recoilPercent; // Old
-                // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New
+                float recoilDamage = damage * recoilPercent; // Old (damage done)
+                // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New (health lost)
                 if (recoilDamage < 1.0F && recoilPercent != 0.0F) // Always does at least 1 damage.
                     recoilDamage = 1.0F;
 

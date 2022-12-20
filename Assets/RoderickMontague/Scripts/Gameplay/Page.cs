@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
+    // A page in a textbox.
     public class Page
     {
         // The text for the page.

@@ -134,14 +134,10 @@ namespace RM_BBTS
             }
         }
 
-        // // Start is called before the first frame update
+        // Start is called before the first frame update
         // void Start()
         // {
-        //     // TODO: so it seems that you need to save the data for the game using the SDK.
-        //     // I say you load up the save data during the GameInit phase, but don't actually apply it unless 'Continue' is presed.
-        //     // You'll also need to setup an autosave async feature.
-        // 
-        //     // SceneManager.LoadScene("ResultsScene");
+        //      SceneManager.LoadScene("ResultsScene");
         // }
 
         // Starts the game (general function for moving to the GameScene).

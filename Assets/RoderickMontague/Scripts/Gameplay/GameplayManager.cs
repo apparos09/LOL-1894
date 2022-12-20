@@ -86,6 +86,9 @@ namespace RM_BBTS
         // If set to 'true' the game timer is paused.
         public bool pausedTimer = false;
 
+        // Pauses the timer when the tutorial box is active.
+        public bool pauseTimerWhenTutorial = true;
+
         [Header("UI")]
         // A back panel used to cover up gameplay UI.
         public GameObject backPanel;
@@ -599,6 +602,20 @@ namespace RM_BBTS
 
             // Enable mouse input.
             mouseTouchInput.gameObject.SetActive(true);
+
+            
+            // Checks if the timer should be paused when the tutorial box is open.
+            if (pauseTimerWhenTutorial)
+            {
+                // If the tutorial box isn't open, unpause the timer.
+                if (!tutorial.TextBoxIsVisible())
+                    pausedTimer = false;
+            }
+            else
+            {
+                // Enable timer.
+                pausedTimer = false;
+            }
         }
 
         // Called when toggling a window or prompt.
@@ -608,6 +625,19 @@ namespace RM_BBTS
             // Change the back panel and mouse touch settings.
             backPanel.gameObject.SetActive(active);
             mouseTouchInput.gameObject.SetActive(!active);
+
+            // Checks if the timer should be paused when the tutorial box is open.
+            if (pauseTimerWhenTutorial)
+            {
+                // If the tutorial box isn't open, switch the pause timer.
+                if (!tutorial.TextBoxIsVisible())
+                    pausedTimer = active;
+            }
+            else
+            {
+                // The timer doesn't run when the windows are open.
+                pausedTimer = active;
+            }
         }
 
         // Opens the player stats window.
@@ -624,6 +654,21 @@ namespace RM_BBTS
 
             // Called since the window/prompt is being toggled.
             OnToggleWindowOrPrompt(active);
+
+            // This could be simplified, but this is easier to read.
+            // Checks if the timer should be paused when the tutorial box is open.
+            if(pauseTimerWhenTutorial)
+            {
+                // If the tutorial textbox is not open, run the timer.
+                if (!tutorial.TextBoxIsVisible())
+                    pausedTimer = false;
+            }
+            else
+            {
+                // The stats window does NOT pause the timer like the other windows. 
+                pausedTimer = false;
+            }
+            
         }
 
 
@@ -779,8 +824,9 @@ namespace RM_BBTS
             // Disables the save button.
             saveButton.interactable = false;
 
-            // TODO: Don't count tutorial reading to game time.
-            // pausedTimer = true;
+            // The timer is paused when the tutorial text is being displayed.
+            if(pauseTimerWhenTutorial)
+                pausedTimer = true;
         }
 
         // A function to call when a tutorial ends.
@@ -819,10 +865,11 @@ namespace RM_BBTS
             {
                 saveButton.interactable = false;
             }
-                
 
-            // TODO: Don't count tutorial reading to game time?
-            // pausedTimer = false;
+
+            // The timer is paused when the tutorial text is displayed.
+            if (pauseTimerWhenTutorial)
+                pausedTimer = false;
         }
 
         // Returns the amount of completed rooms.
@@ -1056,7 +1103,11 @@ namespace RM_BBTS
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
 
-            battleNumberText.text = (roomsCompleted + 1).ToString() + "/" + GetRoomsTotal().ToString();
+            // Updates the battle number text.
+            // This prevents the numerator from overtaking the denominator when the game ends.
+            int currRoom = (roomsCompleted + 1 > GetRoomsTotal()) ? roomsCompleted : roomsCompleted + 1;
+            int roomsTotal = GetRoomsTotal();
+            battleNumberText.text = currRoom.ToString() + "/" + roomsTotal.ToString();
         }
         
         // Updates the health bar UI.

@@ -51,8 +51,7 @@ namespace RM_BBTS
         // The finish button.
         public TMP_Text finishButtonText;
 
-        // Main menu button text.
-        // TODO: hide this button when submitting the game.
+        // Main menu button text. Make sure this button is hidden when submitting the game.
         public TMP_Text mainMenuButtonText;
 
         [Header("Animations")]
