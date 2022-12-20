@@ -2,99 +2,141 @@
   "questions": [
     {
       "questionId": "q1",
-      "stem": "What is the meaning of life?",
-      "imageURL": "http://conversationagent.typepad.com/.a/6a00d8341c03bb53ef01bb0855b040970d-pi",
+      "stem": "Event A has a probability of a 0.0. What does this mean?",
       "alternatives": [
         {
           "alternativeId": "a1",
-          "text": "Dunno"
+          "text": "Event A will occur half of the time."
         },
         {
           "alternativeId": "a2",
-          "text": "42"
+          "text": "Event A will never occur."
         },
         {
           "alternativeId": "a3",
-          "text": "Life?"
+          "text": "Event A will always occur."
         },
         {
           "alternativeId": "a4",
-          "text": "Sprinkles"
+          "text": "Not enough information to answer the question."
         }
       ],
       "correctAlternativeId": "a2"
     },
     {
       "questionId": "q2",
-      "stem": "A stitch in time saves nine what?",
-      "imageURL": "http://3.bp.blogspot.com/-QM6KFrHYfMQ/U4X92xgQ5WI/AAAAAAAACo0/KLVH0MJbSrc/s1600/Stitch+in+time+saves+nine+(1).gif",
+      "stem": "How do you convert a probability rate from decimal form to percentage form?",
       "alternatives": [
         {
           "alternativeId": "a5",
-          "text": "Cats"
+          "text": "Multiply the decimal number by 100."
         },
         {
           "alternativeId": "a6",
-          "text": "Pineapples"
+          "text": "Event A will occur half of the time."
         },
         {
           "alternativeId": "a7",
-          "text": "Clouds"
+          "text": "Event A will never occur."
         },
         {
           "alternativeId": "a8",
-          "text": "Sprinkles"
+          "text": "Not enough information to answer the question."
         }
       ],
-      "correctAlternativeId": "a8"
+      "correctAlternativeId": "a5"
     },
     {
       "questionId": "q3",
-      "stem": "After eating, do amphibians have to wait one hour before getting out of the water?",
-      "imageURL": "https://cdn.meme.am/instances/250x250/23625193.jpg",
+      "stem": "Event A has a probability of 0.5. What does that mean?",
       "alternatives": [
         {
           "alternativeId": "a9",
-          "text": "Yes"
+          "text": "Event A will always occur."
         },
         {
           "alternativeId": "a10",
-          "text": "NO"
+          "text": "Event A will occur half of the time."
         },
         {
           "alternativeId": "a11",
-          "text": "Sprinkles"
+          "text": "Event A will never occur."
         },
         {
           "alternativeId": "a12",
-          "text": "Maybe?"
+          "text": "Not enough information to answer the question."
         }
       ],
-      "correctAlternativeId": "a9"
+      "correctAlternativeId": "a10"
     },
     {
       "questionId": "q4",
-      "stem": "After they make Styrofoam, what do they ship it in?",
-      "imageURL": "https://cdn.meme.am/instances/65111038.jpg",
+      "stem": "What is 0.0 to 1.0 in percentage form?",
       "alternatives": [
         {
           "alternativeId": "a13",
-          "text": "Styrofoam"
+          "text": "0% to 10%"
         },
         {
           "alternativeId": "a14",
-          "text": "Sprinkles"
+          "text": "0% to 100%"
         },
         {
           "alternativeId": "a15",
-          "text": "Bubble Wrap"
+          "text": "0% to 1000%"
         },
         {
           "alternativeId": "a16",
-          "text": "Space Ships"
+          "text": "0.0% to 1.0%"
         }
       ],
-      "correctAlternativeId": "a15"
+      "correctAlternativeId": "a14"
+    },
+    {
+      "questionId": "q5",
+      "stem": "Event A has a probability of 1.0. What does that mean?",
+      "alternatives": [
+        {
+          "alternativeId": "a17",
+          "text": "Event A will occur half of the time."
+        },
+        {
+          "alternativeId": "a18",
+          "text": "Not enough information to answer the question."
+        },
+        {
+          "alternativeId": "a19",
+          "text": "Event A will never occur."
+        },
+        {
+          "alternativeId": "a20",
+          "text": "Event A will always occur."
+        }
+      ],
+      "correctAlternativeId": "a20"
+    },
+    {
+      "questionId": "q6",
+      "stem": "Which of these values is NOT equal to 75%?",
+      "alternatives": [
+        {
+          "alternativeId": "a21",
+          "text": "0.75"
+        },
+        {
+          "alternativeId": "a22",
+          "text": "3/4"
+        },
+        {
+          "alternativeId": "a23",
+          "text": "7.5"
+        },
+        {
+          "alternativeId": "a24",
+          "text": "75/100"
+        }
+      ],
+      "correctAlternativeId": "a23"
     }
   ]
 }
