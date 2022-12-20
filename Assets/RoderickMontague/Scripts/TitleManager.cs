@@ -119,20 +119,24 @@ namespace RM_BBTS
                 if(newGameButton != null && continueButton != null)
                     lolManager.saveSystem.Initialize(newGameButton, continueButton);
 
+
+                // Enables/disables the continue button based on if there is loaded data or not.
+                continueButton.interactable = lolManager.saveSystem.HasLoadedData();
+
                 // NOTE: you seem to be receiving save data from past runs.
                 // I don't know how to delete them, but closing and opening the project doesn't seem to make a difference.
 
-                // TODO: if the continue button is made invisible, just turn it on and disable it instead?
-                // Maybe change this?
-                if(!continueButton.gameObject.activeSelf) // No save available.
-                {
-                    continueButton.gameObject.SetActive(true);
-                    continueButton.interactable = false;
-                }
-                else // Save available.
-                {
-                    continueButton.interactable = true;
-                }
+                // // TODO: if the continue button is made invisible, just turn it on and disable it instead?
+                // // Maybe change this?
+                // if(!continueButton.gameObject.activeSelf) // No save available.
+                // {
+                //     continueButton.gameObject.SetActive(true);
+                //     continueButton.interactable = false;
+                // }
+                // else // Save available.
+                // {
+                //     continueButton.interactable = true;
+                // }
 
                 // LOLSDK.Instance.SubmitProgress();
             }
@@ -177,8 +181,8 @@ namespace RM_BBTS
         // Continues a saved game.
         public void ContinueGame()
         {
-            // If there is no loaded data.
-            if(LOLManager.Instance.saveSystem.loadedData == null)
+            // Checks if there is loaded data.
+            if(!LOLManager.Instance.saveSystem.HasLoadedData()) // No data.
             {
                 Debug.LogWarning("No save data found. New game to be loaded.");
                 StartNewGame();

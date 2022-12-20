@@ -302,7 +302,7 @@ namespace RM_BBTS
         void PostStart()
         {
             // If there is save data, load the saved game.
-            if (LOLManager.Instance.saveSystem.loadedData != null)
+            if (LOLManager.Instance.saveSystem.HasLoadedData())
             {
                 // Load the data.
                 LoadGame(LOLManager.Instance.saveSystem.loadedData);
@@ -1204,6 +1204,10 @@ namespace RM_BBTS
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
 
+            // Final flag to indicate that the data is safe to read.
+            // This is done last so that any errors that occur will cause this line to be skipped.
+            saveData.valid = true;
+
             // Send the save state.
             return saveData;
         }
@@ -1263,6 +1267,14 @@ namespace RM_BBTS
         // Loads the game using the provided save data.
         public bool LoadGame(BBTS_GameData saveData)
         {
+            // Checks if the data is marked as valid.
+            // If it isn't valid, then it will not be read.
+            if(!saveData.valid)
+            {
+                Debug.LogError("Data is not marked as valid. Data was not read.");
+                return false;
+            }
+
             // Checks current game state.
             if(state == gameState.battle) // Player is in the battle area, so go to the overworld.
             {
