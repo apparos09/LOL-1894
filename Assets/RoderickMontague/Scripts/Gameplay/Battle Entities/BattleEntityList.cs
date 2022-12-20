@@ -213,11 +213,11 @@ namespace RM_BBTS
                     data.displayName = "<UFO>";
                     data.displayNameSpeakKey = "bey_ufo1_nme";
 
-                    data.maxHealth = 15;
+                    data.maxHealth = 21;
                     data.health = data.maxHealth;
 
-                    data.attack = 10;
-                    data.defense = 10;
+                    data.attack = 12;
+                    data.defense = 12;
                     data.speed = 25;
 
                     data.statSpecial = BattleEntity.specialty.speed;
@@ -241,12 +241,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     // Stats
-                    data.maxHealth = 25;
+                    data.maxHealth = 30;
                     data.health = data.maxHealth;
 
-                    data.attack = 15;
-                    data.defense = 50;
-                    data.speed = 20;
+                    data.attack = 25;
+                    data.defense = 60;
+                    data.speed = 25;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -399,8 +399,8 @@ namespace RM_BBTS
                     data.maxHealth = 27;
                     data.health = data.maxHealth;
 
-                    data.attack = 14;
-                    data.defense = 12;
+                    data.attack = 16;
+                    data.defense = 14;
                     data.speed = 5;
 
                     data.maxEnergy = 100;
@@ -418,12 +418,12 @@ namespace RM_BBTS
                     data.displayName = "<Sunoliss>";
                     data.displayNameSpeakKey = "bey_sunRock2_nme";
 
-                    data.maxHealth = 40;
+                    data.maxHealth = 42;
                     data.health = data.maxHealth;
 
-                    data.attack = 42;
-                    data.defense = 16;
-                    data.speed = 60;
+                    data.attack = 46;
+                    data.defense = 20;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -443,8 +443,8 @@ namespace RM_BBTS
                     data.maxHealth = 27;
                     data.health = data.maxHealth;
 
-                    data.attack = 12;
-                    data.defense = 14;
+                    data.attack = 14;
+                    data.defense = 16;
                     data.speed = 5;
 
                     data.maxEnergy = 100;
@@ -462,12 +462,12 @@ namespace RM_BBTS
                     data.displayName = "<Lunooma>";
                     data.displayNameSpeakKey = "bey_moonRock2_nme";
 
-                    data.maxHealth = 40;
+                    data.maxHealth = 42;
                     data.health = data.maxHealth;
 
-                    data.attack = 16;
-                    data.defense = 42;
-                    data.speed = 60;
+                    data.attack = 20;
+                    data.defense = 46;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -764,9 +764,9 @@ namespace RM_BBTS
                     data.maxHealth = 100;
                     data.health = data.maxHealth;
 
-                    data.attack = 55;
+                    data.attack = 45;
                     data.defense = 110;
-                    data.speed = 35;
+                    data.speed = 45;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;

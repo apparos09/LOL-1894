@@ -134,9 +134,12 @@ namespace RM_BBTS
             // Gets the text based on the provided key.
             string text = SharedState.LanguageDefs[key];
 
-            // There is no text to read, so return.
-            if (text == null || text == "")
-                return;
+            // Took this out so that the text-to-speech can be stopped.
+            // This also means that a false language code will also stop the text-to-speech...
+            // But I had to make a choice.
+            // // There is no text to read, so return.
+            // if (text == null || text == "")
+            //     return;
 
             // Stops any current text-to-speech audio.
             ttsAudioSource.Stop();

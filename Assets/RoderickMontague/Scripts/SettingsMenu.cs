@@ -1,3 +1,4 @@
+using LoLSDK;
 using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
@@ -149,6 +150,10 @@ namespace RM_BBTS
         public void OnTextToSpeechChange(Toggle toggle)
         {
             gameSettings.UseTextToSpeech = toggle.isOn;
+
+            // Stops the text-to-speech if it was just turned off.
+            if (LOLSDK.Instance.IsInitialized && !gameSettings.UseTextToSpeech)
+                LOLManager.Instance.textToSpeech.StopSpeakText();
         }
 
         // On the tutorial changes.
