@@ -1056,7 +1056,11 @@ namespace RM_BBTS
             UpdatePlayerHealthUI();
             UpdatePlayerEnergyUI();
 
-            battleNumberText.text = (roomsCompleted + 1).ToString() + "/" + GetRoomsTotal().ToString();
+            // Updates the battle number text.
+            // This prevents the numerator from overtaking the denominator when the game ends.
+            int currRoom = (roomsCompleted + 1 > GetRoomsTotal()) ? roomsCompleted : roomsCompleted + 1;
+            int roomsTotal = GetRoomsTotal();
+            battleNumberText.text = currRoom.ToString() + "/" + roomsTotal.ToString();
         }
         
         // Updates the health bar UI.
