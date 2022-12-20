@@ -527,7 +527,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "<Twister>", 1, 70, 0.95F, 0.30F);
+                    move = new Move(moveId.twister, "<Twister>", 3, 70, 0.95F, 0.30F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 100.0F;
