@@ -779,8 +779,8 @@ namespace RM_BBTS
             // Disables the save button.
             saveButton.interactable = false;
 
-            // TODO: Don't count tutorial reading to game time.
-            // pausedTimer = true;
+            // The timer is paused when the tutorial text is being displayed.
+            pausedTimer = true;
         }
 
         // A function to call when a tutorial ends.
@@ -821,8 +821,8 @@ namespace RM_BBTS
             }
                 
 
-            // TODO: Don't count tutorial reading to game time?
-            // pausedTimer = false;
+            // The timer is paused when the tutorial text is displayed.
+            pausedTimer = false;
         }
 
         // Returns the amount of completed rooms.

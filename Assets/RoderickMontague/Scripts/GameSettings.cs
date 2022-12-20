@@ -33,7 +33,7 @@ namespace RM_BBTS
         public const string SFX_TAG = "SFX";
 
         // The volume for the sound effects.
-        private float sfxVolume = 0.6F; // TODO: set volume for SFX
+        private float sfxVolume = 0.6F;
 
         // The audio for the TTS.
         public const string TTS_TAG = "TTS";
@@ -69,7 +69,7 @@ namespace RM_BBTS
         {
         }
 
-        // TODO: why did you take this out?
+        // TODO: why did you take this out? I don't remember, but leave it out I guess.
         // // This function is called when the object is enabled and active
         // private void OnEnable()
         // {
@@ -272,7 +272,7 @@ namespace RM_BBTS
                 AdjustAudio(audio);
             }
 
-            // TODO: what's the point of this?
+            // TODO: what was the point of this?
             // // changing the values.
             // bgmVolume = newBgmVolume;
             // sfxVolume = newSfxVolume;

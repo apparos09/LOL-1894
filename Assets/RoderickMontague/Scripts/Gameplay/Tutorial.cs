@@ -293,8 +293,6 @@ namespace RM_BBTS
                 pages.Add(new Page("<Completing or fleeing from a battle will remove all stat changes for both you and your opponent.>"));
             }
 
-            // TODO: STAT CHANGE
-
             // Loads the pages.
             LoadTutorial(ref pages);
 

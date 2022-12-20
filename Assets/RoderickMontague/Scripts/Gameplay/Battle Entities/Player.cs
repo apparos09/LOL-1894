@@ -52,7 +52,7 @@ namespace RM_BBTS
             // The player levels up faster than the enemies.
             levelRate = 1.25F;
 
-            // TODO: set unique sprite?
+            // NOTE: the player doesn't use the battle entity sprite, so nothing is set.
 
             LoadTranslation("bey_player_nme");
         }
