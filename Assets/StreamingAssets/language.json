@@ -1,12 +1,6 @@
 {
   "_meta": {
     "maxChars": {
-      "welcome": 20,
-      "readyToPlay": 20,
-      "pressContinue": 50,
-      "greatJob": 20,
-      "onePlusOne": 30,
-
       "kwd_start": 12,
       "kwd_newGame": 12,
       "kwd_continue": 12,
@@ -54,32 +48,54 @@
 
 
       "btl_msg_mve_moveUsed": 250,
+      "btl_msg_mve_moveUsed_alt00": 250,
+      "btl_msg_mve_moveUsed_alt01": 250,
       "btl_msg_mve_moveHit": 250,
       "btl_msg_mve_moveSuccess": 250,
       "btl_msg_mve_moveCritical": 250,
       "btl_msg_mve_moveRecoil": 250,
+      "btl_msg_mve_moveRecoil_alt00": 250,
+      "btl_msg_mve_moveRecoil_alt01": 250,
       "btl_msg_mve_moveNoEnergy": 250,
+      "btl_msg_mve_moveNoEnergy_alt00": 250,
+      "btl_msg_mve_moveNoEnergy_alt01": 250,
       "btl_msg_mve_moveMissed": 250,
       "btl_msg_mve_moveFailed": 250,
 
       "btl_msg_mve_moveStatIncSgl": 250,
       "btl_msg_mve_moveStatIncMlt": 250,
+      "btl_msg_mve_moveStatInc_alt00": 250,
+      "btl_msg_mve_moveStatInc_alt01": 250,
 
       "btl_msg_mve_moveStatDecSgl": 250,
       "btl_msg_mve_moveStatDecMlt": 250,
+      "btl_msg_mve_moveStatDec_alt00": 250,
+      "btl_msg_mve_moveStatDec_alt01": 250,
 
       "btl_msg_mve_moveStatHigh": 250,
+      "btl_msg_mve_moveStatHigh_alt00": 250,
+      "btl_msg_mve_moveStatHigh_alt01": 250,
       "btl_msg_mve_moveStatLow": 250,
+      "btl_msg_mve_moveStatLow_alt00": 250,
+      "btl_msg_mve_moveStatLow_alt01": 250,
 
       "btl_msg_mve_moveBurned": 250,
       "btl_msg_mve_moveParalyzed": 250,
 
       "btl_msg_mve_chargeUsed": 250,
+      "btl_msg_mve_chargeUsed_alt00": 250,
+      "btl_msg_mve_chargeUsed_alt01": 250,
       "btl_msg_mve_runFailed": 250,
+      "btl_msg_mve_runFailed_alt00": 250,
+      "btl_msg_mve_runFailed_alt01": 250,
       "btl_msg_mve_nothing": 250,
 
       "btl_msg_burned": 250,
+      "btl_msg_burned_alt00": 250,
+      "btl_msg_burned_alt01": 250,
       "btl_msg_paralyzed": 250,
+      "btl_msg_paralyzed_alt00": 250,
+      "btl_msg_paralyzed_alt01": 250,
 
       "btl_msg_battleWon": 250,
       "btl_msg_battleWonBoss": 250,
@@ -93,7 +109,9 @@
       "btl_msg_levelUp": 250,
       "btl_msg_learnMove": 250,
       "btl_msg_learnMoveYes": 250,
+      "btl_msg_learnMoveYes_alt": 250,
       "btl_msg_learnMoveNo": 250,
+      "btl_msg_learnMoveNo_alt": 250,
 
 
       "bey_player_nme": 20,
@@ -332,17 +350,6 @@
     }
   },
   "en": {
-    "welcome": "Welcome!",
-    "readyToPlay": "Are you ready to play?",
-    "greatJob": "Great job!",
-    "pressContinue": "Press the next button to continue.",
-    "onePlusOne": "One + One = Two",
-    "newGame": "New Game",
-    "continue": "Continue",
-    "pantry": "Pantry",
-    "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
-    "autoSave": "...Auto Saving Complete",
-
     "_stop_": "",
 
     "gameTitle": "Battle Bot Training Simulation",
@@ -691,33 +698,5 @@
     "kwd_finalLevel": "Final Level",
     "kwd_finalMoves": "Final Moves",
     "kwd_finish": "Finish"
-  },
-  "es": {
-    "welcome": "¡Bienvenido!",
-    "readyToPlay": "¿Estás listo para jugar?",
-    "greatJob": "¡Gran trabajo!",
-    "pressContinue": "Presione el botón 'siguiente' para continuar.",
-    "onePlusOne": "Uno + Uno = Dos"
-  },
-  "zh": {
-    "welcome": "欢迎！",
-    "readyToPlay": "你准备好玩吗",
-    "greatJob": "做得好！",
-    "pressContinue": "按“下一步”按钮继续。",
-    "onePlusOne": "一+一=二"
-  },
-  "jp": {
-    "welcome": "ようこそ!",
-    "readyToPlay": "あなたは遊ぶ準備ができていますか？",
-    "greatJob": "よくやった！",
-    "pressContinue": "続行するには '次へ'ボタンを押してください。",
-    "onePlusOne": "1 + 1 = 2"
-  },
-  "ru": {
-    "welcome": "Добро пожаловать!",
-    "readyToPlay": "Вы готовы играть?",
-    "greatJob": "Отличная работа!",
-    "pressContinue": "Нажмите следующую кнопку, чтобы продолжить.",
-    "onePlusOne": "один + один"
   }
 }

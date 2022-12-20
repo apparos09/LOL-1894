@@ -14,6 +14,9 @@ namespace RM_BBTS
     [System.Serializable]
     public class BBTS_GameData
     {
+        // Becomes set to 'true' to indicate that there is data to be read.
+        public bool valid = false;
+
         // The player's data.
         public BattleEntitySaveData playerData;
 
@@ -174,6 +177,34 @@ namespace RM_BBTS
             
             // nullifies the feedback method.
             feedbackMethod = null;
+        }
+
+        // Checks if the game has loaded data.
+        public bool HasLoadedData()
+        {
+            // Used to see if the data is available.
+            bool result;
+
+            // Checks to see if the data exists.
+            if (loadedData != null) // Exists.
+            {
+                // Checks to see if the data is valid.
+                result = loadedData.valid;
+            }
+            else // No data.
+            {
+                // Not readable.
+                result = false;
+            }
+                
+            // Returns the result.
+            return result;
+        }
+
+        // Removes the loaded data.
+        public void ClearLoadedData()
+        {
+            loadedData = null;
         }
 
         // The gameplay manager now checks if there is loadedData. If so, then it will load in the data when the game starts.
