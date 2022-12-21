@@ -132,7 +132,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.>"));
                 pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.>"));
                 pages.Add(new Page("<To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.>"));
-                pages.Add(new Page("<At the bottom is your current score, which increases by a variable amount for every room that you clear.>"));
+                pages.Add(new Page("<At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.>"));
                 pages.Add(new Page("<And at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
                 pages.Add(new Page("<With all that explained, please select one of the open doors to attempt your first battle!>"));
 
