@@ -2,11 +2,12 @@
 The repository for a contracted project.
 
 = AUDIO CREDITS =
-The audio credits for the game are as follows. Uncredited audio are original compositions.
-All audio provided is public domain/copyright free.
-All BGM audio has been shortened for size and practicality.
+The audio credits and licenses for the game are as follows. Uncredited audio pieces are original creations. 
+All sourced audio provided is copyright free.
+All audio components have been modified in some way for better usage in the game.
+Some audio pieces were taken from one website, but originate from another website (said details will be specified where applicable).
 
-The audio has been sourced from the following websites. Some songs were taken from one website, but originate from another website.
+The audio has been primarily sourced from the following websites. 
 * GameSound.xyz (https://gamesounds.xyz/)
 * FreePD (https://freepd.com/)
 
@@ -19,14 +20,12 @@ Link (GameSounds.xyz Audio): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ro
 Link (YouTube): https://youtu.be/MzlEX7v0Qz0
 Link (Artist): https://soundcloud.com/rossbugden
 Notes: Copyright free for monetization, but artist must be credited, and a link must be provided if possible.
-* No specific credit format required as long as the artist is named and if possible, linked.
-* https://soundcloud.com/rossbugden
+* No specific credit format required as long as the artist is named and, if possible, linked.
 
 === Copyright ===
-"Ascension" (https://youtu.be/MzlEX7v0Qz0)
+"Ascension"
 Ross Bugden (https://soundcloud.com/rossbugden)
 Licensed under Creative Commons: By Attribution 4.0 International
-Creative Commons Attribution 4.0 International License
 https://creativecommons.org/licenses/by/4.0/
 
 == Battle / Treasure (BGM) ==
@@ -37,7 +36,7 @@ Link (GameSounds.xyz Page): https://freepd.com/electronic.php
 Link (GameSounds.xyz Audio): https://freepd.com/electronic.php
 Link (Website): https://incompetech.com/music/royalty-free/music.html
 Link (Artist): https://incompetech.com/
-Note(s): Artist must be credited for copyright free liscence use. Credits and related links shown below.
+Note(s): Artist must be credited for copyright free licence use. License details are explained below.
 * https://incompetech.com/music/royalty-free/faq.html
 * https://incompetech.com/music/royalty-free/licenses/
 
@@ -56,14 +55,12 @@ Link (GameSounds.xyz Audio): https://gamesounds.xyz/Music%20-%20Ross%20Bugden/Ro
 Link (YouTube): https://youtu.be/q5w5VX4tAD4
 Link (Artist): https://soundcloud.com/rossbugden
 Notes: Copyright free for monetization, but artist must be credited, and a link must be provided if possible.
-* No specific credit format required as long as the artist is named and if possible, linked.
-* https://soundcloud.com/rossbugden
+* No specific credit format required as long as the artist is named and, if possible, linked.
 
 === Copyright ===
 "Welcome to Chaos"
 Ross Bugden (https://soundcloud.com/rossbugden)
 Licensed under Creative Commons: By Attribution 4.0 International
-Creative Commons Attribution 4.0 International License
 https://creativecommons.org/licenses/by/4.0/
 
 == Battle Won (Jingle) ==
@@ -73,7 +70,8 @@ Source(s): FreePD
 Link (FreePD): https://freepd.com/epic.php
 Link (Orchestralis.net): https://music.orchestralis.net/track/28919690
 Note(s): edited to be a fanfare.
-	- Liscencing format: https://www.orchestralis.net/licensing-info.html
+* Originally posted on Orchestralis.net.
+* Licensing format: https://www.orchestralis.net/licensing-info.html
 
 === Copyright ===
 "HEROIC ADVENTURE"
@@ -101,38 +99,38 @@ Song Title: Button 3
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
-Note(s): edited to change the sound.
+Note(s): confirmed to be copyright free by GameSounds.xyz.
 
 == Door Locked (SFX) ==
 Song Title: Door Knock 1
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Doors%20and%20Floors
-Note(s): shortened.
+Note(s): confirmed to be copyright free by GameSounds.xyz.
 
 == Damage Given (SFX) ==
 Song Title: Button 4
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
-Note(s): edited to be a higher pitch.
+Note(s): confirmed to be copyright free by GameSounds.xyz.
 
 == Damage Taken (SFX) ==
 Song Title: Button 4
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
-Note(s): edited to be a lower pitch.
+Note(s): confirmed to be copyright free by GameSounds.xyz.
 
 == Move Effect (SFX) ==
 Song Title: Button 1
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
-Note(s): edited to change the tempo, and shortened.
+Note(s): confirmed to be copyright free by GameSounds.xyz.
 
 == Burn Effect (SFX) ==
-Original creation for the game.
+Original creation for the game by sole developer.
 
 == Paralysis Effect (SFX) ==
-Original creation for the game.
+Original creation for the game by sole developer.
