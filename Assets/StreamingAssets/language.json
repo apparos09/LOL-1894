@@ -406,7 +406,7 @@
     "btl_msg_mve_moveHit": "The move hit!",
     "btl_msg_mve_moveSuccess": "The move was successful!",
     "btl_msg_mve_moveCritical": "The move hit, and it did critical damage!",
-    "btl_msg_mve_moveRecoil": "The {0} took recoil damage!",
+    "btl_msg_mve_moveRecoil": "{0} took recoil damage!",
     "btl_msg_mve_moveRecoil_alt00": "The player took recoil damage!",
     "btl_msg_mve_moveRecoil_alt01": "The opponent took recoil damage!",
     "btl_msg_mve_moveNoEnergy": "{0} does not have enough energy to use their move!",
@@ -619,7 +619,7 @@
     "trl_intro_02": "Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.",
     "trl_intro_03": "This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.",
     "trl_intro_04": "To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.",
-    "trl_intro_05": "At the bottom is your current score, which increases by a variable amount for every room that you clear.",
+    "trl_intro_05": "At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.",
     "trl_intro_06": "And at the top are various options that you can select, some of which may be disabled depending on the state of the game.",
     "trl_intro_07": "With all that explained, please select one of the open doors to attempt your first battle!",
 
@@ -635,7 +635,7 @@
     "trl_battle_09": "That’s all for now, so on with the battle!",
 
     "trl_firstMove_00": "You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.",
-    "trl_firstMove_01": "A move’s rank determines how advanced said move is, which ranges from 1 to 3. The higher the number, the higher the rank. The rank has no effect in battle.",
+    "trl_firstMove_01": "A move’s rank determines how advanced said move is, and it ranges from 1 to 3. The higher the number, the higher the rank. High rank move offers will become more common the further you get into the game.",
     "trl_firstMove_02": "A move’s power determines how strong said move is. If a move doesn’t have a power amount listed, then it either does no damage, or determines damage in a different way than usual.",
     "trl_firstMove_03": "A move’s accuracy determines how likely it is to hit its target. A move with no accuracy listed either always succeeds or has its success rate determined by a different factor than usual.",
     "trl_firstMove_04": "A move’s energy level determines what percentage of the battler’s energy is used to perform said move. If a move’s energy usage isn’t listed, then it either uses no energy, or its energy usage varies.",
@@ -673,7 +673,7 @@
     "trl_overworld_05": "Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.",
     "trl_overworld_06": "Also remember that running away from battle is always an option, even against the final boss.",
     "trl_overworld_07": "Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.",
-    "trl_overworld_08": "Since you're currently in the first phase, the phase stat boosts will be applied a total of two separate times.",
+    "trl_overworld_08": "Since you're currently in the first phase, you have two phase stat boosts left to get.",
     "trl_overworld_09": "That’s all for now, so on with the game!",
 
     "trl_treasure_00": "This is a treasure room!",
