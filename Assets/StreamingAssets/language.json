@@ -6,7 +6,7 @@
       "kwd_continue": 12,
       "kwd_controls": 12,
       "kwd_settings": 12,
-      "kwd_credits": 12,
+      "kwd_licenses": 12,
 
       "mnu_controls_instruct": 42,
       "mnu_controls_desc": 240,
@@ -359,7 +359,7 @@
     "kwd_continue": "Continue",
     "kwd_controls": "Controls",
     "kwd_settings": "Settings",
-    "kwd_credits": "Credits",
+    "kwd_licenses": "Licenses",
 
     "mnu_controls_instruct": "Left Mouse Button/Touch: Interact",
     "mnu_controls_desc": "To interact with elements of the game world, use the left mouse button, or the touch screen if applicable. The entire game is controlled through left mouse click/touch interaction.",
