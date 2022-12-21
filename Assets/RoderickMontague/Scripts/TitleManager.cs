@@ -88,7 +88,7 @@ namespace RM_BBTS
 
                 controlsButtonText.text = defs["kwd_controls"];
                 settingsButtonText.text = defs["kwd_settings"];
-                creditsButtonText.text = defs["kwd_credits"];
+                creditsButtonText.text = defs["kwd_licenses"];
 
                 // Controls Menu
                 controlsTitleText.text = defs["kwd_controls"];

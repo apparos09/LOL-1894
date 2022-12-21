@@ -40,7 +40,7 @@ namespace RM_BBTS
                 "and modification, even for commercial purposes, all without permission.";
 
             // Modification message.
-            string modification = "Asset has been modified for usage in this game";
+            string modification = "Asset has been modified for usage in this game.";
 
             // BACKGROUND MUSIC //
             // Title / Overworld / Results (BGM)

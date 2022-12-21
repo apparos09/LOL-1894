@@ -57,7 +57,7 @@ namespace RM_BBTS
             // Defs set.
             if(defs != null)
             {
-                titleText.text = defs["kwd_credits"];
+                titleText.text = defs["kwd_licenses"];
                 backButtonText.text = defs["kwd_back"];
             }
 
