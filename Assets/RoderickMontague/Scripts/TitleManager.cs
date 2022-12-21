@@ -125,20 +125,25 @@ namespace RM_BBTS
 
                 // LOLSDK.Instance.SubmitProgress();
             }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            //  SceneManager.LoadScene("ResultsScene");
 
             // Sets the save text.
-            if(saveFeedbackText != null)
+            if (saveFeedbackText != null && LOLSDK.Instance.IsInitialized)
             {
                 saveFeedbackText.text = string.Empty;
                 LOLManager.Instance.saveSystem.feedbackText = saveFeedbackText;
             }
+            else
+            {
+                // Just empty out the string.
+                saveFeedbackText.text = string.Empty;
+            }
         }
-
-        // Start is called before the first frame update
-        // void Start()
-        // {
-        //      SceneManager.LoadScene("ResultsScene");
-        // }
 
         // Starts the game (general function for moving to the GameScene).
         public void StartGame()

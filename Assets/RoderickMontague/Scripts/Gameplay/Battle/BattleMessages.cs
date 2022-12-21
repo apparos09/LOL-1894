@@ -237,7 +237,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default message.
-                msg = "<The {0} took recoil damage!>";
+                msg = "<{0} took recoil damage!>";
             }
 
             // Slot in the message text.

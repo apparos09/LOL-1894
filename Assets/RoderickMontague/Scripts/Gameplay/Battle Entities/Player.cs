@@ -10,11 +10,14 @@ namespace RM_BBTS
     // The class for the player.
     public class Player : BattleEntity
     {
+        // Determines if the player uses the debug stats or not.
+        private const bool USE_DEBUG_STATS = false;
+
         // The base stats for the player. (30)
-        private float baseMaxHealth = 30;
-        private float baseAttack = 30;
-        private float baseDefense = 30;
-        private float baseSpeed = 30;
+        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 30;
+        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 30;
+        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 30;
+        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 30;
         private float baseMaxEnergy = 100;
 
         // Restoration percents.

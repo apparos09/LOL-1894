@@ -290,10 +290,15 @@ namespace RM_BBTS
             //     mouseTouchInput = FindObjectOfType<MouseTouchInput>();
 
             // Provides the save feedback text.
-            if (saveFeedbackText != null)
+            if (saveFeedbackText != null && LOLSDK.Instance.IsInitialized)
             {
                 saveFeedbackText.text = string.Empty;
                 LOLManager.Instance.saveSystem.feedbackText = saveFeedbackText;
+            }
+            else
+            {
+                // Just empty out the string.
+                saveFeedbackText.text = string.Empty;
             }
 
             // Initialize
@@ -1213,9 +1218,12 @@ namespace RM_BBTS
             results.move1 = (player.Move1 != null) ? player.Move1.Name : "-";
             results.move2 = (player.Move2 != null) ? player.Move2.Name : "-";
             results.move3 = (player.Move3 != null) ? player.Move3.Name : "-";
-
+            
             // Submit progress to show that the game is complete.
             SubmitProgressComplete();
+
+            // Saves the game before loading the results screen.
+            SaveAndContinueGame();
 
             // Go to the results scene.
             if (useTransitions) // Transition

@@ -14,6 +14,9 @@ namespace RM_BBTS
         // The title text.
         public TMP_Text titleText;
 
+        // The save feedback text for when the game ends.
+        public TMP_Text saveFeedbackText;
+
         [Header("Stats")]
 
         // The final score.
@@ -164,6 +167,18 @@ namespace RM_BBTS
             {
                 // Voice the title text.
                 LOLManager.Instance.textToSpeech.SpeakText(titleSpeakKey);
+            }
+
+            // Provides the save feedback text.
+            if (saveFeedbackText != null && LOLSDK.Instance.IsInitialized)
+            {
+                saveFeedbackText.text = string.Empty;
+                LOLManager.Instance.saveSystem.feedbackText = saveFeedbackText;
+            }
+            else
+            {
+                // Just empty out the string.
+                saveFeedbackText.text = string.Empty;
             }
         }
 
