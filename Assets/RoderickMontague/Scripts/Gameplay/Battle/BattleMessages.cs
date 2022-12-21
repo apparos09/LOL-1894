@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
-using System.Security.Cryptography;
-using static UnityEngine.GraphicsBuffer;
 
 namespace RM_BBTS
 {
@@ -237,7 +235,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default message.
-                msg = "<The {0} took recoil damage!>";
+                msg = "<{0} took recoil damage!>";
             }
 
             // Slot in the message text.

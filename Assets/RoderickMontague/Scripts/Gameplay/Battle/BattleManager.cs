@@ -211,6 +211,9 @@ namespace RM_BBTS
         // The paralysis sound effect.
         public AudioClip paralysisSfx;
 
+        // Extra wait time for playing jingles.
+        private const float JNG_EXTRA_WAIT_TIME = 0.5F;
+
         [Header("Animations")]
         // The player's animator.
         public Animator playerAnimator;
@@ -1494,7 +1497,7 @@ namespace RM_BBTS
             // This will play when the jingle is done.
             PlayBattleResultsBgm();
 
-            gameManager.audioManager.PlayJingle(battleWonJng, false);
+            gameManager.audioManager.PlayJingle(battleWonJng, false, JNG_EXTRA_WAIT_TIME);
         }
 
         // Plays the battle lost jingle.
@@ -1503,7 +1506,7 @@ namespace RM_BBTS
             // This will play when the jingle is done.
             PlayBattleResultsBgm();
 
-            gameManager.audioManager.PlayJingle(battleLostJng, false);
+            gameManager.audioManager.PlayJingle(battleLostJng, false, JNG_EXTRA_WAIT_TIME);
         }
 
 

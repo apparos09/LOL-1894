@@ -207,7 +207,7 @@ namespace RM_BBTS
             else // Default
             {
                 pages.Add(new Page("<You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.>"));
-                pages.Add(new Page("<A move’s rank determines how advanced said move is, which ranges from 1 to 3. The higher the number, the higher the rank. The rank has no effect in battle.>"));
+                pages.Add(new Page("<A move’s rank determines how advanced said move is, and it ranges from 1 to 3. The higher the number, the higher the rank. High rank move offers will become more common the further you get into the game.>"));
                 pages.Add(new Page("<A move’s power determines how strong said move is. If a move doesn’t have a power amount listed, then it either does no damage, or determines damage in a different way than usual.>"));
                 pages.Add(new Page("<A move’s accuracy determines how likely it is to hit its target. A move with no accuracy listed either always succeeds or has its success rate determined by a different factor than usual.>"));
                 pages.Add(new Page("<A move’s energy level determines what percentage of the battler’s energy is used to perform said move. If a move’s energy usage isn’t listed, then it either uses no energy, or its energy usage varies.>"));
@@ -256,8 +256,8 @@ namespace RM_BBTS
             // Pages
             if (defs != null) // Translation
             {
-                pages.Add(new Page(defs["trl_recoil_01"], "trl_recoil_01"));
                 pages.Add(new Page(defs["trl_recoil_00"], "trl_recoil_00"));
+                pages.Add(new Page(defs["trl_recoil_01"], "trl_recoil_01"));
                 pages.Add(new Page(defs["trl_recoil_02"], "trl_recoil_02"));
             }
             else // Default
@@ -405,7 +405,7 @@ namespace RM_BBTS
                 pages.Add(new Page("<Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.>"));
                 pages.Add(new Page("<Also remember that running away from battle is always an option, even against the final boss.>"));
                 pages.Add(new Page("<Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.>"));
-                pages.Add(new Page("<Since you're currently in the first phase, the phase stat boosts will be applied a total of two separate times.>"));
+                pages.Add(new Page("<Since you're currently in the first phase, you have two phase stat boosts left to get.>"));
                 pages.Add(new Page("<That’s all for now, so on with the game!>"));
             }
             
