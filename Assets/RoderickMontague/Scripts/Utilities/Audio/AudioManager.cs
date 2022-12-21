@@ -16,13 +16,9 @@ namespace RM_BBTS
         // Source for sound effects.
         public AudioSource sfxSource;
 
-        // TODO: having the jingle on a seperate audio source didn't work for delaying the BGM.
-        // I think the pitch change caused a problem.
-        // Either way, I'll just set the pitch back to what it was before after (X) amount of time.
-
         // The audio source for jingles.
         // This is tagged as a BGM so that it shares the same volume.
-        // public AudioSource jngSource;
+        public AudioSource jngSource;
 
         // The pitch for the paused BGM.
         private float bgmPausedPitch = 1.0F;
@@ -80,39 +76,72 @@ namespace RM_BBTS
 
         // Plays a jingle.
         public void PlayJingle(AudioClip clip, bool resetPitch, float extraWaitTime = 0.0F)
-        {
-            // Stops the BGM and reset the pitch.
-            // The audio must be stopped, otherwise it will start automatically when PlayOneShot() is called.
-            // The song restarts when using the Stop() function, but it isn't a big deal.
-            // bgmSource.Pause();
-            bgmSource.Stop();
-
-            // NOTE: one way to fix this is to have a seperate audio object for jingles.
-            // That way, the pitch can be retained when the song starts again.
-            // That wasn't done here 
-
-            // Resets the pitch so that the song now plays at normal speed.
-            if (resetPitch)
+        {   
+            // Plays teh game jingle.
+            if(jngSource != null) // New
             {
-                bgmSource.pitch = 1.0F;
-                pitchTimer = 0.0F;
+                // Checks if the BGM is playing.
+                bool bgmPlaying = bgmSource.isPlaying;
+
+                // Pauses the BGM.
+                // Using Pause() caused problems, so Stop() is now used instead.
+                if (bgmPlaying)
+                    bgmSource.Stop();
+
+                // Plays the jingle.
+                jngSource.PlayOneShot(clip);
+
+                // Plays the bgm after the clip is finished.
+                if(bgmPlaying)
+                {
+                    // Wait for turning back on the BGM.
+                    float waitTime = clip.length + extraWaitTime;
+
+                    // Recommended that extra wait time is given since the BGM always seems to start too soon.
+
+                    // Delayed play and revert the pitch back when the BGM starts up again.
+                    bgmSource.PlayDelayed(waitTime);
+                }
+                    
             }
-            else
+            else // Old
             {
-                // Saves the old pitch and sets the BGM back to normal.
-                bgmPausedPitch = bgmSource.pitch;
-                bgmSource.pitch = 1.0F;
+                // Reuses the BGM audio source and stops the BGM audio for a moment.
+                // This is unreliable since the audio often starts up before the jingle is finished.
 
-                // Timer for chaging the pitch back.
-                pitchTimer = clip.length;
+                // Stops the BGM and reset the pitch.
+                // The audio must be stopped, otherwise it will start automatically when PlayOneShot() is called.
+                // The song restarts when using the Stop() function, but it isn't a big deal.
+                // bgmSource.Pause();
+                bgmSource.Stop();
+                
+                // NOTE: one way to fix this is to have a seperate audio object for jingles.
+                // That way, the pitch can be retained when the song starts again.
+                // That wasn't done here 
+                
+                // Resets the pitch so that the song now plays at normal speed.
+                if (resetPitch)
+                {
+                    bgmSource.pitch = 1.0F;
+                    pitchTimer = 0.0F;
+                }
+                else
+                {
+                    // Saves the old pitch and sets the BGM back to normal.
+                    bgmPausedPitch = bgmSource.pitch;
+                    bgmSource.pitch = 1.0F;
+                
+                    // Timer for chaging the pitch back.
+                    pitchTimer = clip.length;
+                }
+                
+                // Play a one shot of this clip.
+                bgmSource.PlayOneShot(clip);
+                
+                // Start playing the BGM again after this clip is finished.
+                // Extra wait time can be provided if the game should wait longer.
+                bgmSource.PlayDelayed(clip.length + ((extraWaitTime < 0.0F) ? 0.0F : extraWaitTime));
             }
-
-            // Play a one shot of this clip.
-            bgmSource.PlayOneShot(clip);
-
-            // Start playing the BGM again after this clip is finished.
-            // Extra wait time can be provided if the game should wait longer.
-            bgmSource.PlayDelayed(clip.length + ((extraWaitTime < 0.0F) ? 0.0F : extraWaitTime));
         }
 
         // Update is called once per frame
