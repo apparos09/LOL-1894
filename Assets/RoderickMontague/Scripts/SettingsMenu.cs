@@ -110,6 +110,20 @@ namespace RM_BBTS
             // });
 
 
+            // If the SDK isn't initialized, some functions may be unavailable.
+            // These functions are disabled here.
+            if (!LOLSDK.Instance.IsInitialized)
+            {
+                ttsVolumeSlider.interactable = false;
+                textToSpeechToggle.interactable = false;
+            }
+            else
+            {
+                // Hides the tutorial toggle since it shoudn't be usable.
+                tutorialToggle.gameObject.SetActive(false);
+            }
+                
+
             // Translation.
             JSONNode defs = SharedState.LanguageDefs;
 
