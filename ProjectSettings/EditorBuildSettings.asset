@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/RoderickMontague/Scenes/InitScene.unity
     guid: 4ca225bbb30a82946876bb96ca48b732
   - enabled: 1
