@@ -9,14 +9,14 @@ namespace RM_BBTS
     {
         // Heals the user.
         public CureMove() :
-            base(moveId.cure, "<Cure>", 2, 0.0F, 100.0F, 0.1F)
+            base(moveId.cure, "Cure", 2, 0.0F, 100.0F, 0.1F)
         {
             // Heal moves don't have power or accuracy.
 
             // Name and Desc
-            name = "<Cure>";
+            name = "Cure";
 
-            description = "<The user removes all their status ailments.>";
+            description = "The user removes all their status ailments.";
     
             LoadTranslation("mve_cure_nme", "mve_cure_dsc");
         }
