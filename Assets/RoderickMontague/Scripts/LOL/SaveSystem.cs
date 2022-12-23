@@ -27,13 +27,18 @@ namespace RM_BBTS
         // The door save data.
         public DoorSaveData[] doorData = new DoorSaveData[OverworldManager.ROOM_COUNT];
 
-
-
         // Triggers for the tutorial for the game.
         public bool clearedIntro; // Intro tutorial.
         public bool clearedBattle; // Battle tutorial.
-        public bool clearedTreasure; // Treasure tutorial.
+        public bool clearedFirstMove; // First move tutorial.
+        public bool clearedCritical; // Critical tutorial.
+        public bool clearedRecoil; // Recoil tutorial.
+        public bool clearedStatChange; // Stat change tutorial.
+        public bool clearedBurn; // Burn tutorial.
+        public bool clearedParalysis; // Paralysis tutorial.
+        public bool clearedFirstBattleDeath; // First battle death tutorial.
         public bool clearedOverworld; // Overworld tutorial.
+        public bool clearedTreasure; // Treasure tutorial.
         public bool clearedBoss; // Boss tutorial.
         public bool clearedGameOver; // Game over tutorial.
 
@@ -111,18 +116,22 @@ namespace RM_BBTS
             return true;
         }
 
+        // Sets the last bit of saved data to the loaded data object.
+        public void SetLastSaveAsLoadedData()
+        {
+            loadedData = lastSave;
+        }
+
+        // Clears out the last save and the loaded data object.
+        public void ClearLoadedAndLastSaveData()
+        {
+            lastSave = null;
+            loadedData = null;
+        }
+
         // Saves data.
         public bool SaveGame()
         {
-            // TODO: maybe store a value in lastSave before you return false?
-            // If the instance has been initialized.
-            if(!LOLSDK.Instance.IsInitialized)
-            {
-                Debug.LogError("The SDK has not been initialized. Save failed.");
-                lastSave = null;
-                return false;
-            }
-
             // The game manager does not exist if false.
             if(!IsGameManagerSet())
             {
@@ -130,18 +139,29 @@ namespace RM_BBTS
                 return false;
             }
 
+            // Determines if saving wa a success.
+            bool success = false;
+
             // Generates the save data.
             BBTS_GameData savedData = gameManager.GenerateSaveData();
 
             // Stores the most recent save.
             lastSave = savedData;
 
-            // Send the save state.
-            LOLSDK.Instance.SaveState(savedData);
+            // If the instance has been initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Send the save state.
+                LOLSDK.Instance.SaveState(savedData);
+                success = true;
+            }
+            else // Not initialized.
+            {
+                Debug.LogError("The SDK has not been initialized. Improper save made.");
+                success = false;
+            }
 
-            return true;
-
-            // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
+            return success;
         }
 
         // Called for saving the result.

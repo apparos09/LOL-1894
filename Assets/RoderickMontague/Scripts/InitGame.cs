@@ -58,6 +58,9 @@ namespace RM_BBTS
             Application.targetFrameRate = 30; // 30 FPS
             Application.runInBackground = false; // Don't run in the background.
 
+            // Use the tutorial by default.
+            GameSettings.Instance.UseTutorial = true;
+
             // LOL Initialization
             // Create the WebGL (or mock) object
 #if UNITY_EDITOR
