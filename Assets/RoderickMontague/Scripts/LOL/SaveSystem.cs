@@ -111,18 +111,22 @@ namespace RM_BBTS
             return true;
         }
 
+        // Sets the last bit of saved data to the loaded data object.
+        public void SetLastSaveAsLoadedData()
+        {
+            loadedData = lastSave;
+        }
+
+        // Clears out the last save and the loaded data object.
+        public void ClearLoadedAndLastSaveData()
+        {
+            lastSave = null;
+            loadedData = null;
+        }
+
         // Saves data.
         public bool SaveGame()
         {
-            // TODO: maybe store a value in lastSave before you return false?
-            // If the instance has been initialized.
-            if(!LOLSDK.Instance.IsInitialized)
-            {
-                Debug.LogError("The SDK has not been initialized. Save failed.");
-                lastSave = null;
-                return false;
-            }
-
             // The game manager does not exist if false.
             if(!IsGameManagerSet())
             {
@@ -130,18 +134,29 @@ namespace RM_BBTS
                 return false;
             }
 
+            // Determines if saving wa a success.
+            bool success = false;
+
             // Generates the save data.
             BBTS_GameData savedData = gameManager.GenerateSaveData();
 
             // Stores the most recent save.
             lastSave = savedData;
 
-            // Send the save state.
-            LOLSDK.Instance.SaveState(savedData);
+            // If the instance has been initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Send the save state.
+                LOLSDK.Instance.SaveState(savedData);
+                success = true;
+            }
+            else // Not initialized.
+            {
+                Debug.LogError("The SDK has not been initialized. Improper save made.");
+                success = false;
+            }
 
-            return true;
-
-            // Helper.StateButtonInitialize<CookingData>(newGameButton, continueButton, OnLoad);
+            return success;
         }
 
         // Called for saving the result.

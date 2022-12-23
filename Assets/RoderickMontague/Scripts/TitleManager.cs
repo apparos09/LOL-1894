@@ -21,6 +21,12 @@ namespace RM_BBTS
         // The name of the game scene.
         public const string GAME_SCENE_NAME = "GameScene";
 
+        // This variable is used to check i the tutorial setting should be overrided for a continued game.
+        private bool overrideTutorial = false;
+
+        // This variable holds the value for whether or not to use the tutorial in a continued game.
+        private bool continueTutorial = false;
+
         [Header("Main Menu")]
         // Menu
         public GameObject mainMenu;
@@ -102,28 +108,63 @@ namespace RM_BBTS
             settings.UseTutorial = true;
 
             // Checks for initialization
-            if (!settings.InitializedLOLSDK)
-            {
-                Debug.LogError("LOL SDK NOT INITIALIZED.");
-
-                // Do not allow the button to be used.
-                continueButton.interactable = false;
-                
-                settings.AdjustAllAudioLevels();
-            }
-            else
+            if (settings.InitializedLOLSDK)
             {
                 // NOTE: the buttons disappear for a frame if there is no save state.
                 // It doesn't effect anything, but it's jarring visually.
-                // Initialize the game.
-                if(newGameButton != null && continueButton != null)
+                // As such, the Update loop keeps them both on.
+
+
+                // Set up the game initializations.
+                if (newGameButton != null && continueButton != null)
                     lolManager.saveSystem.Initialize(newGameButton, continueButton);
 
 
+                // Don't disable the continue button, otherwise the save data can't be loaded.
                 // Enables/disables the continue button based on if there is loaded data or not.
-                continueButton.interactable = lolManager.saveSystem.HasLoadedData();
+                // continueButton.interactable = lolManager.saveSystem.HasLoadedData();
+                // Continue button is left alone.
+
+                // Since the player can't change the tutorial settings anyway when loaded from InitScene...
+                // These are turned off just as a safety precaution. 
+                overrideTutorial = false;
+                continueTutorial = false;
 
                 // LOLSDK.Instance.SubmitProgress();
+            }
+            else
+            {
+                Debug.LogError("LOL SDK NOT INITIALIZED.");
+
+                // You can save and go back to the menu, so the continue button is usable under that circumstance.
+                if(LOLManager.Instance.saveSystem.HasLoadedData()) // Game has loaded data.
+                {
+                    // Checks if the intro was cleared.
+                    if(LOLManager.Instance.saveSystem.loadedData.clearedIntro)
+                    {
+                        // If the intro was cleared, then that means the tutorial was on last time.
+                        overrideTutorial = true;
+                        continueTutorial = true;
+                    }
+                    else
+                    {
+                        // If the intro wasn't cleared, then the tutorial was disabled last time.
+                        overrideTutorial = false;
+                        continueTutorial = false;
+                    }
+
+                    // Activate continue button.
+                    continueButton.interactable = true;
+                }
+                else // No loaded data.
+                {
+                    // Disable continue button.
+                    continueButton.interactable = false;
+                }
+                
+
+                // Adjust the audio settings since the InitScene was not used.
+                settings.AdjustAllAudioLevels();
             }
         }
 
@@ -159,9 +200,8 @@ namespace RM_BBTS
         // Starts a new game.
         public void StartNewGame()
         {
-            // Clear out the loaded data if the LOLSDK has been initialized.
-            if(LOLSDK.Instance.IsInitialized)
-                LOLManager.Instance.saveSystem.loadedData = null;
+            // Clear out the loaded data and last save if the LOLSDK has been initialized.
+            LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
 
             StartGame();
         }
@@ -170,14 +210,19 @@ namespace RM_BBTS
         public void ContinueGame()
         {
             // Checks if there is loaded data.
-            if(!LOLManager.Instance.saveSystem.HasLoadedData()) // No data.
+            if(LOLManager.Instance.saveSystem.HasLoadedData()) // Game has loaded data, so start game.
+            {
+                // If the user's tutorial settings should be overwritten, do so.
+                if (overrideTutorial)
+                    GameSettings.Instance.UseTutorial = continueTutorial;
+
+                StartGame();
+                
+            }
+            else // No data, so start new game.
             {
                 Debug.LogWarning("No save data found. New game to be loaded.");
                 StartNewGame();
-            }
-            else // Loaded data will be inplemented by the gameplay manager when entering the scene.
-            {
-                StartGame();
             }            
         }
 

@@ -1225,6 +1225,9 @@ namespace RM_BBTS
             // Saves the game before loading the results screen.
             SaveAndContinueGame();
 
+            // Clears out the saves.
+            LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
+
             // Go to the results scene.
             if (useTransitions) // Transition
                 sceneTransition.LoadScene(RESULTS_SCENE_NAME);
@@ -1278,22 +1281,20 @@ namespace RM_BBTS
             // Saves the game.
             bool success = LOLManager.Instance.saveSystem.SaveGame();
 
-            // Was the save successful?
-            if(success)
-            {
-                // If the game should be continued, or should be quit.
-                if (continueGame)
-                {
-                    // Turn off the save prompt object if it is visible.
-                    if (savePrompt.gameObject.activeSelf)
-                        ToggleSavePrompt();
-                }
-                else
-                {
-                    // Go to the title scene.
-                    ToTitleScene();
-                }
+            // NOTE: a message is printed to show that the save failed if the game hasn't been initialized.
+            // As such, that message is not repeated.
 
+            // If the game should be continued, or should be quit.
+            if (continueGame)
+            {
+                // Turn off the save prompt object if it is visible.
+                if (savePrompt.gameObject.activeSelf)
+                    ToggleSavePrompt();
+            }
+            else
+            {
+                // Go to the title scene.
+                ToTitleScene();
             }
 
             return success;
@@ -1303,7 +1304,6 @@ namespace RM_BBTS
         // Called when the game should be saved and continued.
         public void SaveAndContinueGame()
         {
-            // TODO: maybe post message instead of closing the window?
             // Hide the save prompt.
             if (savePrompt.gameObject.activeSelf)
                 ToggleSavePrompt();
@@ -1477,6 +1477,9 @@ namespace RM_BBTS
         // Goes to the main menu.
         public void ToTitleScene()
         {
+            // Sets the last save as the loaded data.
+            LOLManager.Instance.saveSystem.SetLastSaveAsLoadedData();
+
             // Goes to the title scene.
             SceneManager.LoadScene("TitleScene");
         }
