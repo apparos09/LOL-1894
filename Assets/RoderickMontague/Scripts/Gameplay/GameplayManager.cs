@@ -1367,11 +1367,10 @@ namespace RM_BBTS
                 return false; 
             }
 
-            // TODO: the player's health is loaded properly, but for some reason it gets reset to the max later.
-            // I don't know why this happens.
             // Load the player's save data.
             player.LoadBattleSaveData(saveData.playerData);
 
+            // DOORS
             // Clears out the boss door and the treasure door list.
             overworld.bossDoor = null;
             overworld.treasureDoors.Clear();
@@ -1379,6 +1378,7 @@ namespace RM_BBTS
             // Load the door data.
             for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
             {
+                // Loads the save data.
                 overworld.doors[i].LoadSaveData(saveData.doorData[i]);
 
                 // Found the boss door, so save it.
@@ -1389,6 +1389,21 @@ namespace RM_BBTS
                 if (overworld.doors[i].isTreasureDoor)
                     overworld.treasureDoors.Add(overworld.doors[i]);
             }
+
+            // For some reason the boss door would be left unlocked when loading in game...
+            // That had the tutorial enabled. This is a patch work fix of that.
+            if (overworld.bossAtEnd && roomsCompleted != GetRoomsTotal() - 1)
+            {
+                // Locks the boss door if it's not the final round.
+                overworld.bossDoor.Locked = true;
+            }
+            else
+            {
+                // Unlock the boss door.
+                // Since this is from the tutorial room.
+                overworld.bossDoor.Locked = false;
+            }
+                
 
             // NOTE: the doors are all unlocked when the first battle begins (they are locked during the intro tutorial).
             // To avoid the doors staying locked from a saved tutorial game, the save button is disabled until the first battle is done.
