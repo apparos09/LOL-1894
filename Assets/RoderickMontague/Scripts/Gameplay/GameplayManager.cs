@@ -1278,6 +1278,10 @@ namespace RM_BBTS
             // Saves the game before loading the results screen.
             SaveAndContinueGame();
 
+            // Sets the last save as the loaded data.
+            // This gets overwritten anyway if the player is saving like normal.
+            LOLManager.Instance.saveSystem.SetLastSaveAsLoadedData();
+
             // Clears out the saves.
             LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
 

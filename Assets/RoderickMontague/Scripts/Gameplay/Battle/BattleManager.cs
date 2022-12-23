@@ -1359,6 +1359,10 @@ namespace RM_BBTS
             opponentSprite.gameObject.SetActive(false);
             PlayDefaultOpponentAnimation();
 
+            // Stops the jingle from playing before leaving the battle.
+            // This is in case the jingle is still playing when the player goes back to the overworld.
+            gameManager.audioManager.StopJingle();
+
             // Prepare for next battle.
             gotCritical = false;
             gotRecoil = false;
