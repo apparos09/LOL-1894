@@ -144,6 +144,15 @@ namespace RM_BBTS
             }
         }
 
+        // Stops the jingle audio from playing.
+        // This only works if jingles are on a seperate audio source from the BGM.
+        public void StopJingle()
+        {
+            // Checks if the jingle has been set.
+            if (jngSource != null)
+                jngSource.Stop();
+        }
+
         // Update is called once per frame
         void Update()
         {

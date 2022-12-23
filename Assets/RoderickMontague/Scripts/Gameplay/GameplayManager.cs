@@ -61,18 +61,18 @@ namespace RM_BBTS
         public int evolveWaves = 0;
 
         // String labels for each stat (used for translation).
-        private string levelString = "Level";
-        private string healthString = "Health";
-        private string attackString = "Attack";
-        private string defenseString = "Defense";
-        private string speedString = "Speed";
-        private string energyString = "Energy";
+        private string levelString = "<Level>";
+        private string healthString = "<Health>";
+        private string attackString = "<Attack>";
+        private string defenseString = "<Defense>";
+        private string speedString = "<Speed>";
+        private string energyString = "<Energy>";
 
         // Move characteristics.
-        private string rankString = "Rank";
-        private string powerString = "Power";
-        private string accuracyString = "Accuracy";
-        private string descriptionString = "Description";
+        private string rankString = "<Rank>";
+        private string powerString = "<Power>";
+        private string accuracyString = "<Accuracy>";
+        private string descriptionString = "<Description>";
 
         [Header("Game Stats/Time")]
 
@@ -313,10 +313,64 @@ namespace RM_BBTS
             if (LOLManager.Instance.saveSystem.HasLoadedData())
             {
                 // Load the data.
-                LoadGame(LOLManager.Instance.saveSystem.loadedData);
+                // This function also updates the UI once the data is loaded.
+                bool success = LoadGame(LOLManager.Instance.saveSystem.loadedData);
 
                 // Clear data.
-                LOLManager.Instance.saveSystem.loadedData = null;
+                LOLManager.Instance.saveSystem.ClearLoadedData();
+
+                // Data successfully loaded.
+                if(success)
+                {
+                    // Gets set to 'true' if a new tutorial was loaded.
+                    bool loadedTutorial = false;
+
+                    // If the tutorial textbox is open.
+                    if (tutorial.TextBoxIsVisible())
+                    {
+                        // Closes the textbox.
+                        tutorial.CloseTextbox();
+
+                        // Stops the text-to-speech if it's active.
+                        if (GameSettings.Instance.UseTextToSpeech)
+                            LOLManager.Instance.textToSpeech.StopSpeakText();
+
+                        // Checks to see if any oveworld tutorials need to be run.
+                        // However, the player shouldn't be able to save before the intro happened.
+                        // Due to where auto save occurs, the overworld tutorial hasn't necessarily been shown yet.
+                        if (!tutorial.clearedIntro) // Intro
+                        {
+                            tutorial.LoadIntroTutorial();
+                            loadedTutorial = true;
+                        }
+                        else if (!tutorial.clearedOverworld) // Overworld
+                        {
+                            tutorial.LoadOverworldTutorial();
+                            loadedTutorial = true;
+                        }
+
+                        // There is a text-to-speech glitch that happens due to the textbox being open.
+                        // It reads the textbox that was closed when it shouldn't, but there's no workaround there.
+
+                        // The game over tutorial would also show up on the overworld.
+                        // However, the game doesn't save after a game over, so it would end up getting triggered twice...
+                        // If the user quits without saving. That's fine though.
+                    }
+
+                    // If a tutorial wasn't loaded, stop the speak text from the closed textbox.
+                    if(!loadedTutorial && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+                    {
+                        // Stop the speak text does not work here, so you need to have it say something else.
+                        // LOLManager.Instance.textToSpeech.StopSpeakText();
+
+                        // Uses an alternate message to stop the closed textbox's text from being read.
+                        // NOTE: this does not work when hosted though the LOL website itself.
+                        LOLManager.Instance.textToSpeech.SpeakText("owd_loadSuccess_msg");
+                    }
+                        
+
+                }
+                
             }
             else
             {
@@ -1225,6 +1279,18 @@ namespace RM_BBTS
             // Saves the game before loading the results screen.
             SaveAndContinueGame();
 
+            // Sets the last save as the loaded data.
+            // This gets overwritten anyway if the player is saving like normal.
+            LOLManager.Instance.saveSystem.SetLastSaveAsLoadedData();
+
+            // Clears out the saves.
+            // Taken out so that the game shows the results screen if attempt to continue.
+            // This only applies when loading from the title scene, not the init scene.
+            
+            // NOTE: this only happens once. If the player attempts to continue again once the game is over, a new game will start.
+            // As such, I have decided to leave this in, even though it undoes SetLastSaveAsLoadedData.
+            LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
+
             // Go to the results scene.
             if (useTransitions) // Transition
                 sceneTransition.LoadScene(RESULTS_SCENE_NAME);
@@ -1251,8 +1317,15 @@ namespace RM_BBTS
             // Saves the tutorial content.
             saveData.clearedIntro = tutorial.clearedIntro;
             saveData.clearedBattle = tutorial.clearedBattle;
-            saveData.clearedTreasure = tutorial.clearedTreasure;
+            saveData.clearedFirstMove = tutorial.clearedFirstMove;
+            saveData.clearedCritical = tutorial.clearedCritical;
+            saveData.clearedRecoil = tutorial.clearedRecoil;
+            saveData.clearedStatChange = tutorial.clearedStatChange;
+            saveData.clearedBurn = tutorial.clearedBurn;
+            saveData.clearedParalysis = tutorial.clearedParalysis;
+            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;
             saveData.clearedOverworld = tutorial.clearedOverworld;
+            saveData.clearedTreasure = tutorial.clearedTreasure;
             saveData.clearedBoss = tutorial.clearedBoss;
             saveData.clearedGameOver = tutorial.clearedGameOver;
 
@@ -1278,22 +1351,20 @@ namespace RM_BBTS
             // Saves the game.
             bool success = LOLManager.Instance.saveSystem.SaveGame();
 
-            // Was the save successful?
-            if(success)
-            {
-                // If the game should be continued, or should be quit.
-                if (continueGame)
-                {
-                    // Turn off the save prompt object if it is visible.
-                    if (savePrompt.gameObject.activeSelf)
-                        ToggleSavePrompt();
-                }
-                else
-                {
-                    // Go to the title scene.
-                    ToTitleScene();
-                }
+            // NOTE: a message is printed to show that the save failed if the game hasn't been initialized.
+            // As such, that message is not repeated.
 
+            // If the game should be continued, or should be quit.
+            if (continueGame)
+            {
+                // Turn off the save prompt object if it is visible.
+                if (savePrompt.gameObject.activeSelf)
+                    ToggleSavePrompt();
+            }
+            else
+            {
+                // Go to the title scene.
+                ToTitleScene();
             }
 
             return success;
@@ -1303,7 +1374,6 @@ namespace RM_BBTS
         // Called when the game should be saved and continued.
         public void SaveAndContinueGame()
         {
-            // TODO: maybe post message instead of closing the window?
             // Hide the save prompt.
             if (savePrompt.gameObject.activeSelf)
                 ToggleSavePrompt();
@@ -1327,9 +1397,16 @@ namespace RM_BBTS
         // Loads the game using the provided save data.
         public bool LoadGame(BBTS_GameData saveData)
         {
+            // Null data check.
+            if (saveData == null)
+            {
+                Debug.LogError("No data sent.");
+                return false;
+            }
+
             // Checks if the data is marked as valid.
             // If it isn't valid, then it will not be read.
-            if(!saveData.valid)
+            if (!saveData.valid)
             {
                 Debug.LogError("Data is not marked as valid. Data was not read.");
                 return false;
@@ -1347,16 +1424,43 @@ namespace RM_BBTS
                 return false; 
             }
 
-            // TODO: the player's health is loaded properly, but for some reason it gets reset to the max later.
-            // I don't know why this happens.
             // Load the player's save data.
             player.LoadBattleSaveData(saveData.playerData);
+
+            // DOORS
+            // Clears out the boss door and the treasure door list.
+            overworld.bossDoor = null;
+            overworld.treasureDoors.Clear();
 
             // Load the door data.
             for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
             {
+                // Loads the save data.
                 overworld.doors[i].LoadSaveData(saveData.doorData[i]);
+
+                // Found the boss door, so save it.
+                if (overworld.doors[i].isBossDoor)
+                    overworld.bossDoor = overworld.doors[i];
+
+                // Found a treasure door, so add it to the list.
+                if (overworld.doors[i].isTreasureDoor)
+                    overworld.treasureDoors.Add(overworld.doors[i]);
             }
+
+            // For some reason the boss door would be left unlocked when loading in game...
+            // That had the tutorial enabled. This is a patch work fix of that.
+            // Cites the save data because the roomsCompleted content hasn't been loaded into the game's variable yet.
+            if (overworld.bossAtEnd && saveData.roomsCompleted != GetRoomsTotal() - 1)
+            {
+                // Locks the boss door if it's not the final round.
+                overworld.bossDoor.Locked = true;
+            }
+            else
+            {
+                // Unlock the boss door.
+                // Since this is from the tutorial room.
+                overworld.bossDoor.Locked = false;
+            }                
 
             // NOTE: the doors are all unlocked when the first battle begins (they are locked during the intro tutorial).
             // To avoid the doors staying locked from a saved tutorial game, the save button is disabled until the first battle is done.
@@ -1364,11 +1468,18 @@ namespace RM_BBTS
             // So this exploit doesn't need to be addressed. 
             // By extension, the intro will always be cleared.
 
-            // Saves the tutorial values.
+            // Loads in the tutorial triggers.
             tutorial.clearedIntro = saveData.clearedIntro;
             tutorial.clearedBattle = saveData.clearedBattle;
-            tutorial.clearedTreasure = saveData.clearedTreasure;
+            tutorial.clearedFirstMove = saveData.clearedFirstMove;
+            tutorial.clearedCritical = saveData.clearedCritical;
+            tutorial.clearedRecoil = saveData.clearedRecoil;
+            tutorial.clearedStatChange = saveData.clearedStatChange;
+            tutorial.clearedBurn = saveData.clearedBurn;
+            tutorial.clearedParalysis = saveData.clearedParalysis;
+            tutorial.clearedFirstBattleDeath = saveData.clearedFirstBattleDeath;
             tutorial.clearedOverworld = saveData.clearedOverworld;
+            tutorial.clearedTreasure = saveData.clearedTreasure;
             tutorial.clearedBoss = saveData.clearedBoss;
             tutorial.clearedGameOver = saveData.clearedGameOver;
 
@@ -1405,12 +1516,19 @@ namespace RM_BBTS
             gameTimer = saveData.gameTime;
             turnsPassed = saveData.turnsPassed;
 
-            // Updates the UI.
+            // Updates the UI in general.
             UpdateUI();
+            // Updates the overworld UI since the player starts there.
+            overworld.UpdateUI();
 
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
             // playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+
+            // If the player is attempted to continue a finished game, go straight to the results screen.
+            // This is because the data may still exist for the player.
+            if (roomsCompleted == GetRoomsTotal())
+                ToResultsScene();
 
             return true;
         }
@@ -1477,6 +1595,9 @@ namespace RM_BBTS
         // Goes to the main menu.
         public void ToTitleScene()
         {
+            // Sets the last save as the loaded data.
+            LOLManager.Instance.saveSystem.SetLastSaveAsLoadedData();
+
             // Goes to the title scene.
             SceneManager.LoadScene("TitleScene");
         }
