@@ -161,7 +161,10 @@ namespace RM_BBTS
                     // Disable continue button.
                     continueButton.interactable = false;
                 }
-                
+
+
+                // Have the button be turned on no matter what for testing purposes.
+                continueButton.interactable = true;
 
                 // Adjust the audio settings since the InitScene was not used.
                 settings.AdjustAllAudioLevels();

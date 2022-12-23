@@ -322,6 +322,9 @@ namespace RM_BBTS
                 // Data successfully loaded.
                 if(success)
                 {
+                    // Gets set to 'true' if a new tutorial was loaded.
+                    bool loadedTutorial = false;
+
                     // If the tutorial textbox is open.
                     if (tutorial.TextBoxIsVisible())
                     {
@@ -338,10 +341,12 @@ namespace RM_BBTS
                         if (!tutorial.clearedIntro) // Intro
                         {
                             tutorial.LoadIntroTutorial();
+                            loadedTutorial = true;
                         }
                         else if (!tutorial.clearedOverworld) // Overworld
                         {
                             tutorial.LoadOverworldTutorial();
+                            loadedTutorial = true;
                         }
 
                         // There is a text-to-speech glitch that happens due to the textbox being open.
@@ -351,6 +356,18 @@ namespace RM_BBTS
                         // However, the game doesn't save after a game over, so it would end up getting triggered twice...
                         // If the user quits without saving. That's fine though.
                     }
+
+                    // If a tutorial wasn't loaded, stop the speak text from the closed textbox.
+                    if(!loadedTutorial && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+                    {
+                        // Stop the speak text does not work here, so you need to have it say something else.
+                        // LOLManager.Instance.textToSpeech.StopSpeakText();
+
+                        // Uses an alternate message to stop the closed textbox's text from being read.
+                        LOLManager.Instance.textToSpeech.SpeakText("owd_loadSuccess_msg");
+                    }
+                        
+
                 }
                 
             }

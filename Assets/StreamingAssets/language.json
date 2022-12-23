@@ -1,6 +1,9 @@
 {
   "_meta": {
     "maxChars": {
+      "_stop_": 0,
+      "gameTitle": 60,
+
       "kwd_start": 12,
       "kwd_newGame": 12,
       "kwd_continue": 12,
@@ -19,6 +22,8 @@
       "kwd_textToSpeech": 24,
       "kwd_tutorial": 24,
       "kwd_back": 12,
+
+      "owd_loadSuccess_msg": 250,
 
       "kwd_stats": 12,
       "kwd_level": 12,
@@ -373,6 +378,7 @@
     "kwd_tutorial": "Tutorial",
     "kwd_back": "Back",
 
+    "owd_loadSuccess_msg": "Save data loaded successfully.",
 
     "kwd_stats": "Stats",
     "kwd_level": "Level",
