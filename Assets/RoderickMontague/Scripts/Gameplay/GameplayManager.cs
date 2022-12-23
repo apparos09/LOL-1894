@@ -314,29 +314,38 @@ namespace RM_BBTS
             {
                 // Load the data.
                 // This function also updates the UI once the data is loaded.
-                LoadGame(LOLManager.Instance.saveSystem.loadedData);
+                bool success = LoadGame(LOLManager.Instance.saveSystem.loadedData);
 
                 // Clear data.
                 LOLManager.Instance.saveSystem.ClearLoadedData();
 
-                // If the tutorial textbox is open.
-                if(tutorial.TextBoxIsVisible())
+                // Data successfully loaded.
+                if(success)
                 {
-                    // Closes the textbox.
-                    tutorial.CloseTextbox();
+                    // If the tutorial textbox is open.
+                    if (tutorial.TextBoxIsVisible())
+                    {
+                        // Closes the textbox.
+                        tutorial.CloseTextbox();
 
-                    // Checks to see if any oveworld tutorials need to be run.
-                    // However, the player shouldn't be able to save before the intro happened.
-                    // Due to where auto save occurs, the overworld tutorial hasn't necessarily been shown yet.
-                    if(!tutorial.clearedIntro) // Intro
-                    {
-                        tutorial.LoadIntroTutorial();
-                    }
-                    else if(!tutorial.clearedOverworld) // Overworld
-                    {
-                        tutorial.LoadOverworldTutorial();
+                        // Stops the text-to-speech if it's active.
+                        if (GameSettings.Instance.UseTextToSpeech)
+                            LOLManager.Instance.textToSpeech.StopSpeakText();
+
+                        // Checks to see if any oveworld tutorials need to be run.
+                        // However, the player shouldn't be able to save before the intro happened.
+                        // Due to where auto save occurs, the overworld tutorial hasn't necessarily been shown yet.
+                        if (!tutorial.clearedIntro) // Intro
+                        {
+                            tutorial.LoadIntroTutorial();
+                        }
+                        else if (!tutorial.clearedOverworld) // Overworld
+                        {
+                            tutorial.LoadOverworldTutorial();
+                        }
                     }
                 }
+                
             }
             else
             {
@@ -1274,8 +1283,15 @@ namespace RM_BBTS
             // Saves the tutorial content.
             saveData.clearedIntro = tutorial.clearedIntro;
             saveData.clearedBattle = tutorial.clearedBattle;
-            saveData.clearedTreasure = tutorial.clearedTreasure;
+            saveData.clearedFirstMove = tutorial.clearedFirstMove;
+            saveData.clearedCritical = tutorial.clearedCritical;
+            saveData.clearedRecoil = tutorial.clearedRecoil;
+            saveData.clearedStatChange = tutorial.clearedStatChange;
+            saveData.clearedBurn = tutorial.clearedBurn;
+            saveData.clearedParalysis = tutorial.clearedParalysis;
+            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;
             saveData.clearedOverworld = tutorial.clearedOverworld;
+            saveData.clearedTreasure = tutorial.clearedTreasure;
             saveData.clearedBoss = tutorial.clearedBoss;
             saveData.clearedGameOver = tutorial.clearedGameOver;
 
@@ -1347,9 +1363,16 @@ namespace RM_BBTS
         // Loads the game using the provided save data.
         public bool LoadGame(BBTS_GameData saveData)
         {
+            // Null data check.
+            if (saveData == null)
+            {
+                Debug.LogError("No data sent.");
+                return false;
+            }
+
             // Checks if the data is marked as valid.
             // If it isn't valid, then it will not be read.
-            if(!saveData.valid)
+            if (!saveData.valid)
             {
                 Debug.LogError("Data is not marked as valid. Data was not read.");
                 return false;
@@ -1411,11 +1434,18 @@ namespace RM_BBTS
             // So this exploit doesn't need to be addressed. 
             // By extension, the intro will always be cleared.
 
-            // Saves the tutorial values.
+            // Loads in the tutorial triggers.
             tutorial.clearedIntro = saveData.clearedIntro;
             tutorial.clearedBattle = saveData.clearedBattle;
-            tutorial.clearedTreasure = saveData.clearedTreasure;
+            tutorial.clearedFirstMove = saveData.clearedFirstMove;
+            tutorial.clearedCritical = saveData.clearedCritical;
+            tutorial.clearedRecoil = saveData.clearedRecoil;
+            tutorial.clearedStatChange = saveData.clearedStatChange;
+            tutorial.clearedBurn = saveData.clearedBurn;
+            tutorial.clearedParalysis = saveData.clearedParalysis;
+            tutorial.clearedFirstBattleDeath = saveData.clearedFirstBattleDeath;
             tutorial.clearedOverworld = saveData.clearedOverworld;
+            tutorial.clearedTreasure = saveData.clearedTreasure;
             tutorial.clearedBoss = saveData.clearedBoss;
             tutorial.clearedGameOver = saveData.clearedGameOver;
 

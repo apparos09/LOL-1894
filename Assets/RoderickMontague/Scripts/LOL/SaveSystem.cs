@@ -27,13 +27,18 @@ namespace RM_BBTS
         // The door save data.
         public DoorSaveData[] doorData = new DoorSaveData[OverworldManager.ROOM_COUNT];
 
-
-
         // Triggers for the tutorial for the game.
         public bool clearedIntro; // Intro tutorial.
         public bool clearedBattle; // Battle tutorial.
-        public bool clearedTreasure; // Treasure tutorial.
+        public bool clearedFirstMove; // First move tutorial.
+        public bool clearedCritical; // Critical tutorial.
+        public bool clearedRecoil; // Recoil tutorial.
+        public bool clearedStatChange; // Stat change tutorial.
+        public bool clearedBurn; // Burn tutorial.
+        public bool clearedParalysis; // Paralysis tutorial.
+        public bool clearedFirstBattleDeath; // First battle death tutorial.
         public bool clearedOverworld; // Overworld tutorial.
+        public bool clearedTreasure; // Treasure tutorial.
         public bool clearedBoss; // Boss tutorial.
         public bool clearedGameOver; // Game over tutorial.
 
