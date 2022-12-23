@@ -61,18 +61,18 @@ namespace RM_BBTS
         public int evolveWaves = 0;
 
         // String labels for each stat (used for translation).
-        private string levelString = "<Level>";
-        private string healthString = "<Health>";
-        private string attackString = "<Attack>";
-        private string defenseString = "<Defense>";
-        private string speedString = "<Speed>";
-        private string energyString = "<Energy>";
+        private string levelString = "Level";
+        private string healthString = "Health";
+        private string attackString = "Attack";
+        private string defenseString = "Defense";
+        private string speedString = "Speed";
+        private string energyString = "Energy";
 
         // Move characteristics.
-        private string rankString = "<Rank>";
-        private string powerString = "<Power>";
-        private string accuracyString = "<Accuracy>";
-        private string descriptionString = "<Description>";
+        private string rankString = "Rank";
+        private string powerString = "Power";
+        private string accuracyString = "Accuracy";
+        private string descriptionString = "Description";
 
         [Header("Game Stats/Time")]
 
