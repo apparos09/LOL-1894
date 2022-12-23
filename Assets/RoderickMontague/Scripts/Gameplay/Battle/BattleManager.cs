@@ -1181,6 +1181,9 @@ namespace RM_BBTS
 
             // The "battle" is over.
             opponent.Health = 0;
+
+            // Counts this as a turn to avoid tutorial trigger issues.
+            turnsTaken++;
         }
 
         // Call this function to leave the treasure.
@@ -1766,7 +1769,7 @@ namespace RM_BBTS
 
                     // If it's the first turn and the opponent is dead, give them 1 HP back.
                     // The other tutorials won't happen if the enemy dies in one turn.
-                    if (opponent.IsDead() && turnsTaken <= 1)
+                    if (gameManager.roomsCompleted == 0 && opponent.IsDead() && turnsTaken <= 1)
                     {
                         opponent.Health = 1;
                         UpdateOpponentUI();

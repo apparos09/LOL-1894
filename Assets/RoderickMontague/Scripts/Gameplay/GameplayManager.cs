@@ -313,10 +313,30 @@ namespace RM_BBTS
             if (LOLManager.Instance.saveSystem.HasLoadedData())
             {
                 // Load the data.
+                // This function also updates the UI once the data is loaded.
                 LoadGame(LOLManager.Instance.saveSystem.loadedData);
 
                 // Clear data.
-                LOLManager.Instance.saveSystem.loadedData = null;
+                LOLManager.Instance.saveSystem.ClearLoadedData();
+
+                // If the tutorial textbox is open.
+                if(tutorial.TextBoxIsVisible())
+                {
+                    // Closes the textbox.
+                    tutorial.CloseTextbox();
+
+                    // Checks to see if any oveworld tutorials need to be run.
+                    // However, the player shouldn't be able to save before the intro happened.
+                    // Due to where auto save occurs, the overworld tutorial hasn't necessarily been shown yet.
+                    if(!tutorial.clearedIntro) // Intro
+                    {
+                        tutorial.LoadIntroTutorial();
+                    }
+                    else if(!tutorial.clearedOverworld) // Overworld
+                    {
+                        tutorial.LoadOverworldTutorial();
+                    }
+                }
             }
             else
             {
@@ -1352,10 +1372,22 @@ namespace RM_BBTS
             // Load the player's save data.
             player.LoadBattleSaveData(saveData.playerData);
 
+            // Clears out the boss door and the treasure door list.
+            overworld.bossDoor = null;
+            overworld.treasureDoors.Clear();
+
             // Load the door data.
             for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
             {
                 overworld.doors[i].LoadSaveData(saveData.doorData[i]);
+
+                // Found the boss door, so save it.
+                if (overworld.doors[i].isBossDoor)
+                    overworld.bossDoor = overworld.doors[i];
+
+                // Found a treasure door, so add it to the list.
+                if (overworld.doors[i].isTreasureDoor)
+                    overworld.treasureDoors.Add(overworld.doors[i]);
             }
 
             // NOTE: the doors are all unlocked when the first battle begins (they are locked during the intro tutorial).
@@ -1405,8 +1437,10 @@ namespace RM_BBTS
             gameTimer = saveData.gameTime;
             turnsPassed = saveData.turnsPassed;
 
-            // Updates the UI.
+            // Updates the UI in general.
             UpdateUI();
+            // Updates the overworld UI since the player starts there.
+            overworld.UpdateUI();
 
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();

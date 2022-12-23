@@ -20,7 +20,7 @@ namespace RM_BBTS
 
         // Use the tutorial for the game.
         // This is only relevant when starting up the game scene.
-        private bool useTutorial = false; // Off by default to help with game scene testing.
+        private bool useTutorial = true; // Off by default to help with game scene testing.
 
         // Audio Tags
         // The tag for BGM objects.

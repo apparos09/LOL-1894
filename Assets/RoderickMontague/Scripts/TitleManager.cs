@@ -104,11 +104,8 @@ namespace RM_BBTS
 
             }
 
-            // Use the tutorial for the game.
-            settings.UseTutorial = true;
-
             // Checks for initialization
-            if (settings.InitializedLOLSDK)
+            if (LOLSDK.Instance.IsInitialized)
             {
                 // NOTE: the buttons disappear for a frame if there is no save state.
                 // It doesn't effect anything, but it's jarring visually.
