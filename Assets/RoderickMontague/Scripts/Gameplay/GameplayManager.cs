@@ -343,6 +343,13 @@ namespace RM_BBTS
                         {
                             tutorial.LoadOverworldTutorial();
                         }
+
+                        // There is a text-to-speech glitch that happens due to the textbox being open.
+                        // It reads the textbox that was closed when it shouldn't, but there's no workaround there.
+
+                        // The game over tutorial would also show up on the overworld.
+                        // However, the game doesn't save after a game over, so it would end up getting triggered twice...
+                        // If the user quits without saving. That's fine though.
                     }
                 }
                 
@@ -1415,7 +1422,8 @@ namespace RM_BBTS
 
             // For some reason the boss door would be left unlocked when loading in game...
             // That had the tutorial enabled. This is a patch work fix of that.
-            if (overworld.bossAtEnd && roomsCompleted != GetRoomsTotal() - 1)
+            // Cites the save data because the roomsCompleted content hasn't been loaded into the game's variable yet.
+            if (overworld.bossAtEnd && saveData.roomsCompleted != GetRoomsTotal() - 1)
             {
                 // Locks the boss door if it's not the final round.
                 overworld.bossDoor.Locked = true;
@@ -1425,8 +1433,7 @@ namespace RM_BBTS
                 // Unlock the boss door.
                 // Since this is from the tutorial room.
                 overworld.bossDoor.Locked = false;
-            }
-                
+            }                
 
             // NOTE: the doors are all unlocked when the first battle begins (they are locked during the intro tutorial).
             // To avoid the doors staying locked from a saved tutorial game, the save button is disabled until the first battle is done.
@@ -1490,6 +1497,11 @@ namespace RM_BBTS
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
             // playerEnergyText.text = player.Energy.ToString() + "/" + player.MaxEnergy.ToString();
+
+            // If the player is attempted to continue a finished game, go straight to the results screen.
+            // This is because the data may still exist for the player.
+            if (roomsCompleted == GetRoomsTotal())
+                ToResultsScene();
 
             return true;
         }

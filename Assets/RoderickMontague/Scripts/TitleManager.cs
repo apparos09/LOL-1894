@@ -124,8 +124,10 @@ namespace RM_BBTS
 
                 // Since the player can't change the tutorial settings anyway when loaded from InitScene...
                 // These are turned off just as a safety precaution. 
-                overrideTutorial = false;
-                continueTutorial = false;
+                // This isn't needed since the tutorial is activated by default if going from InitScene...
+                // And can't be turned off.
+                // overrideTutorial = true;
+                // continueTutorial = true;
 
                 // LOLSDK.Instance.SubmitProgress();
             }
@@ -136,17 +138,18 @@ namespace RM_BBTS
                 // You can save and go back to the menu, so the continue button is usable under that circumstance.
                 if(LOLManager.Instance.saveSystem.HasLoadedData()) // Game has loaded data.
                 {
+                    // Tutorial should be overwritten.
+                    overrideTutorial = true;
+
                     // Checks if the intro was cleared.
-                    if(LOLManager.Instance.saveSystem.loadedData.clearedIntro)
+                    if (LOLManager.Instance.saveSystem.loadedData.clearedIntro)
                     {
                         // If the intro was cleared, then that means the tutorial was on last time.
-                        overrideTutorial = true;
                         continueTutorial = true;
                     }
                     else
                     {
                         // If the intro wasn't cleared, then the tutorial was disabled last time.
-                        overrideTutorial = false;
                         continueTutorial = false;
                     }
 
