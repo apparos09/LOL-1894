@@ -23,6 +23,10 @@ namespace RM_BBTS
 
         // The type of the door for saving the sprite.
         public int doorType;
+
+        // Saves the position of the door.
+        // This is needed in case the door position changes from a game over.
+        public Vector3 position;
         
     }
 
@@ -171,6 +175,9 @@ namespace RM_BBTS
             // Saves the door type for animations.
             saveData.doorType = doorType;
 
+            // Save the door's position.
+            saveData.position = transform.position;
+
             // Returns the save data.
             return saveData;
         }
@@ -190,6 +197,10 @@ namespace RM_BBTS
             // Save the door type and change the sprites.
             doorType = data.doorType;
             overworld.SetDoorSpritesByDoorType(this);
+
+            // Sets the door's position from the save data in case it got changed.
+            transform.position = data.position;
+
             UpdateSprite();
         }
 
