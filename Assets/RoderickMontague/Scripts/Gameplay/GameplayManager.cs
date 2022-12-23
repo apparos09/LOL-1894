@@ -364,6 +364,7 @@ namespace RM_BBTS
                         // LOLManager.Instance.textToSpeech.StopSpeakText();
 
                         // Uses an alternate message to stop the closed textbox's text from being read.
+                        // NOTE: this does not work when hosted though the LOL website itself.
                         LOLManager.Instance.textToSpeech.SpeakText("owd_loadSuccess_msg");
                     }
                         
@@ -1283,6 +1284,11 @@ namespace RM_BBTS
             LOLManager.Instance.saveSystem.SetLastSaveAsLoadedData();
 
             // Clears out the saves.
+            // Taken out so that the game shows the results screen if attempt to continue.
+            // This only applies when loading from the title scene, not the init scene.
+            
+            // NOTE: this only happens once. If the player attempts to continue again once the game is over, a new game will start.
+            // As such, I have decided to leave this in, even though it undoes SetLastSaveAsLoadedData.
             LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
 
             // Go to the results scene.
