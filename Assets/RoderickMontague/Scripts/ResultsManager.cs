@@ -54,9 +54,6 @@ namespace RM_BBTS
         // The finish button.
         public TMP_Text finishButtonText;
 
-        // Main menu button text. Make sure this button is hidden when submitting the game.
-        public TMP_Text mainMenuButtonText;
-
         [Header("Animations")]
         // If transitions should be used.
         public bool useTransitions = true;
@@ -88,7 +85,6 @@ namespace RM_BBTS
 
             // The main menu title text.
             string finishLabel = "<Finish>";
-            string mainMenuLabel = "<Main Menu>";
 
             // The speak key for the title.
             string titleSpeakKey = "";
@@ -107,7 +103,6 @@ namespace RM_BBTS
                 finalMovesLabel = defs["kwd_finalMoves"];
 
                 finishLabel = defs["kwd_finish"];
-                mainMenuLabel = defs["kwd_mainMenu"];
             }
 
             // Change out titles and buttons with translated label.
@@ -115,7 +110,6 @@ namespace RM_BBTS
             moveSubtitleText.text = finalMovesLabel;
 
             finishButtonText.text = finishLabel;
-            mainMenuButtonText.text = mainMenuLabel;
 
             // Change out button text with translated.
 
