@@ -224,7 +224,7 @@ namespace RM_BBTS
                     move = new Move(moveId.toss, "<Toss>", 1, 25, 0.95F, 0.1F);
                     
                     move.attackChangeTarget = -1;
-                    move.attackChangeChanceTarget = 0.1F;
+                    move.attackChangeChanceTarget = 0.10F;
 
                     move.description = "<An attack that has a 10% chance of lowering the target's attack by 1 stage.>";
                     
@@ -253,7 +253,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain1: // Drain Heal 1
-                    move = new HealthDrainMove(moveId.hpDrain1, "Drain Heal 1", 1, 25, 0.95F, 0.3F);
+                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.3F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.125F;
 
@@ -333,7 +333,7 @@ namespace RM_BBTS
                 case moveId.soundWave: // Soundwave
                     move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 1.0F, 0.18F);
                     
-                    move.accuracyChangeTarget = 1;
+                    move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
 
                     move.description = "<A decent attack that has a 20% chance of lowering the target's accuracy by 1 stage.>";
@@ -343,7 +343,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnet: // Magnet
-                    move = new Move(moveId.magnet, "<Magnet>", 2, 0.0F, 0.9F, 0.15F);
+                    move = new Move(moveId.magnet, "<Magnet>", 2, 45.0F, 0.9F, 0.15F);
 
                     move.accuracyChangeUser = 2;
                     move.accuracyChangeChanceUser = 1.0F;
@@ -351,7 +351,7 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 1.0F;
 
-                    move.description = "<The user increases their accuracy by 2 stages, and the target's accuracy by 1 stage.>";
+                    move.description = "<The user pulls the target towards them, which increases the user's accuracy by 2 stages, and the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_magnet_nme";
                     descKey = "mve_magnet_dsc";
@@ -434,7 +434,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.risk: // Risk
-                    move = new StatChangeMove(moveId.risk, "Risk", 2, 0.20F);
+                    move = new StatChangeMove(moveId.risk, "<Risk>", 2, 0.20F);
 
                     move.attackChangeUser = 2;
                     move.attackChangeChanceUser = 1.0F;

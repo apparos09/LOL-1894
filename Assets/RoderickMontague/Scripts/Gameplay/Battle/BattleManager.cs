@@ -724,7 +724,22 @@ namespace RM_BBTS
             // This addresses a problem where a move would go off even though the entity was already dead.
             if(player.IsDead()) // Dead, so don't do anything.
             {
-                textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+                // If the text box is open, close it so that the game moves on.
+                // If the textbox is closed (which should never happen), add a move failed page.
+                if (textBox.IsVisible())
+                {
+                    // This fixes the error where the entity attempts to do a move even though it's dead.
+                    // I don't know why EndTurnEarly doesn't consistently stop this, but this fix helps address it.
+                    // There's still some changes that happen when they don't matter (e.g. burning an entity when it's already dead)...
+                    // But I think it's okay to leave that.
+                    textBox.Close();
+                }
+                else // Inserts a move failed page to skip over.
+                {
+                    // This should never be reached since this function is only called when the textbox is visible.
+                    textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+                }
+
             }
             else // Perform move.
             {
@@ -741,7 +756,22 @@ namespace RM_BBTS
             // This is being used to address a glitch where an attack goes off when it shouldn't.
             if(opponent.IsDead()) // Dead, so don't do anything.
             {
-                textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+                // If the text box is open, close it so that the game moves on.
+                // If the textbox is closed (which should never happen), add a move failed page.
+                if (textBox.IsVisible())
+                {
+                    // This fixes the error where the entity attempts to do a move even though it's dead.
+                    // I don't know why EndTurnEarly doesn't consistently stop this, but this fix helps address it.
+                    // There's still some changes that happen when they don't matter (e.g. burning an entity when it's already dead)...
+                    // But I think it's okay to leave that.
+                    textBox.Close();
+                }  
+                else // Inserts a move failed page to skip over.
+                {
+                    // This should never be reached since this function is only called when the textbox is visible.
+                    textBox.InsertAfterCurrentPage(Move.GetMoveFailedPage());
+                }
+
             }
             else // Perform move.
             {
