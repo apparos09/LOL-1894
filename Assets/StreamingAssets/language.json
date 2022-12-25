@@ -557,7 +557,7 @@
     "mve_soundWave_nme": "Soundwave",
     "mve_soundWave_dsc": "A decent attack that has a 20% chance of lowering the target's accuracy by 1 stage.",
     "mve_magnet_nme": "Magnet",
-    "mve_magnet_dsc": "The user increases their accuracy by 2 stages, and the target's accuracy by 1 stage.",
+    "mve_magnet_dsc": "The user pulls the target towards them, which increases the user's accuracy by 2 stages, and the target's accuracy by 1 stage.",
     "mve_torch_nme": "Torch",
     "mve_torch_dsc": "A weak attack that always burns the target.",
     "mve_electrify_nme": "Electrify",
