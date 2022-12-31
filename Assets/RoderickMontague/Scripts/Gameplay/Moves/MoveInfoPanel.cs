@@ -40,9 +40,18 @@ namespace RM_BBTS
 
             // Accuracy
             if (move.useAccuracy)
-                accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            {
+                // Percentage
+                // accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+
+                // Decimal
+                accuracyText.text = move.Accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
+            }
             else
+            {
                 accuracyText.text = "-";
+            }
+                
 
             // Energy
             energyText.text = (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";

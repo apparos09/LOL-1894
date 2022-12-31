@@ -245,8 +245,13 @@ namespace RM_BBTS
             // Accuracy
             if (move.useAccuracy)
             {
+                // Percent
+                // moveAccuracyText.text = gameManager.AccuracyString + ": " +
+                //     Mathf.Round(move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+
+                // Decimal
                 moveAccuracyText.text = gameManager.AccuracyString + ": " +
-                    Mathf.Round(move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+                    move.Accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
             }
             else
             {
