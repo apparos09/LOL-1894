@@ -434,7 +434,7 @@
     "kwd_stats": "Stats",
     "kwd_licenses": "Licenses",
     "btl_msg_mve_chargeUsed_alt01": "The opponent charged their energy!",
-    "mve_heal_dsc": "The user heals 0.20 of their health.",
+    "mve_heal_dsc": "The user heals 20% of their health.",
     "mve_elecBlast_dsc": "A strong electric blast with a 0.30 chance of paralyzing the target.",
     "mve_screech_nme": "Screech",
     "trl_firstBattleDeath_00": "Since this is your first battle, the simulation has completely restored your health and energy.",
