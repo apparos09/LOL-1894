@@ -593,7 +593,7 @@ namespace RM_BBTS
             attackMod = Mathf.Clamp(attackMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
             // Returns the value.
-            return attack + attack * attackMod * 0.125F; // default: 0.05F
+            return attack + attack * attackMod * 0.10F; // default: 0.05F
         }
 
         // Gets the modified defense of the entity.
@@ -603,7 +603,7 @@ namespace RM_BBTS
             defenseMod = Mathf.Clamp(defenseMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
             // Returns the value.
-            return defense + defense * defenseMod * 0.125F; // default: 0.05F
+            return defense + defense * defenseMod * 0.10F; // default: 0.05F
         }
 
         // Gets the modified speed of the entity.
@@ -613,7 +613,7 @@ namespace RM_BBTS
             speedMod = Mathf.Clamp(speedMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
             // Returns the value. This is affected by paralysis.
-            return (speed + speed * speedMod * 0.125F) * (paralyzed ? 0.80F : 1.0F); // default: 0.05F
+            return (speed + speed * speedMod * 0.10F) * (paralyzed ? 0.80F : 1.0F); // default: 0.05F
         }
 
         // Gets the accuracy modified.
