@@ -137,7 +137,7 @@ namespace RM_BBTS
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.05F;
 
-                    move.description = "<An attack that has a 40% critical damage chance, and a 5% chance of raising the user's defense by 1 stage.>";
+                    move.description = "<An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_poke_nme";
@@ -150,7 +150,7 @@ namespace RM_BBTS
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
 
-                    move.description = "<An attack that has a 15% chance of lowering the target's speed by 1 stage.>";
+                    move.description = "<An attack that has a 0.15 chance of lowering the target's speed by 1 stage.>";
 
                     nameKey = "mve_slimeShot_nme";
                     descKey = "mve_slimeShot_dsc";
@@ -170,7 +170,7 @@ namespace RM_BBTS
                     move = new Move(moveId.fireShot, "<Fire Shot>", 1, 30.0F, 0.95F, 0.14F);
                     move.BurnChance = 0.1F;
 
-                    move.description = "<A weak fire attack with a burn chance of 10%.>";
+                    move.description = "<A weak fire attack with a burn chance of 0.10.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_fireShot_nme";
@@ -181,7 +181,7 @@ namespace RM_BBTS
                     move = new Move(moveId.elecShot, "<Electric Shot>", 1, 30.0F, 0.95F, 0.14F);
                     move.ParalysisChance = 0.1F;
 
-                    move.description = "<A weak electric attack with a paralysis chance of 10%.>";
+                    move.description = "<A weak electric attack with a paralysis chance of 0.10.>";
                     
                     // Sets the keys for translating the data.
                     nameKey = "mve_elecShot_nme";
@@ -194,7 +194,7 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.15F;
 
-                    move.description = "<A weak attack that has a 15% chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "<A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_screech_nme";
                     descKey = "mve_screech_dsc";
@@ -204,7 +204,7 @@ namespace RM_BBTS
                     move = new Move(moveId.slam, "<Slam>", 1, 30, 0.90F, 0.15F);
                     move.CriticalChance = 0.6F;
 
-                    move.description = "<An attack that has a critical damage chance of 60%.>";
+                    move.description = "<An attack that has a critical damage chance of 0.60.>";
 
                     nameKey = "mve_slam_nme";
                     descKey = "mve_slam_dsc";
@@ -226,7 +226,7 @@ namespace RM_BBTS
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.10F;
 
-                    move.description = "<An attack that has a 10% chance of lowering the target's attack by 1 stage.>";
+                    move.description = "<An attack that has a 0.10 chance of lowering the target's attack by 1 stage.>";
                     
                     nameKey = "mve_toss_nme";
                     descKey = "mve_toss_dsc";
@@ -279,7 +279,7 @@ namespace RM_BBTS
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.2F;
 
-                    move.description = "<The user pushes the target back, which has a 20% chance of increasing the user's defense.>";
+                    move.description = "<The user pushes the target back, which has a 0.20 chance of increasing the user's defense.>";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_pushBack_nme";
@@ -314,7 +314,7 @@ namespace RM_BBTS
                     move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 60.0F, 0.85F, 0.20F);
                     move.BurnChance = 0.20F;
 
-                    move.description = "<A decent fire attack that has a 20% chance of burning the target.>";
+                    move.description = "<A decent fire attack that has a 0.20 chance of burning the target.>";
 
                     nameKey = "mve_fireBurst_nme";
                     descKey = "mve_fireBurst_dsc";
@@ -324,7 +324,7 @@ namespace RM_BBTS
                     move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 60.0F, 0.85F, 0.20F);
                     move.ParalysisChance = 0.20F;
 
-                    move.description = "<A decent electric attack that has a 20% chance of paralyzing the target.>";
+                    move.description = "<A decent electric attack that has a 0.20 chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBurst_nme";
                     descKey = "mve_elecBurst_dsc";
@@ -336,7 +336,7 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
 
-                    move.description = "<A decent attack that has a 20% chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "<A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_soundWave_nme";
                     descKey = "mve_soundWave_dsc";
@@ -404,7 +404,7 @@ namespace RM_BBTS
                     move.RecoilPercent = 0.15F;
                     move.priority = 1;
 
-                    move.description = "<The user does a quick move that always goes first. This move will deal 15% of the damage dealt back to the user.>";
+                    move.description = "<The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.>";
 
                     nameKey = "mve_quickBurst_nme";
                     descKey = "mve_quickBurst_dsc";
@@ -487,7 +487,7 @@ namespace RM_BBTS
                     move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 85.0F, 0.8F, 0.30F);
                     move.BurnChance = 0.30F;
 
-                    move.description = "<A strong fire blast with a 30% chance of burning the target.>";
+                    move.description = "<A strong fire blast with a 0.30 chance of burning the target.>";
 
                     nameKey = "mve_fireBlast_nme";
                     descKey = "mve_fireBlast_dsc";
@@ -497,7 +497,7 @@ namespace RM_BBTS
                     move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 85.0F, 0.8F, 0.30F);
                     move.ParalysisChance = 0.30F;
 
-                    move.description = "<A strong electric blast with a 30% chance of paralyzing the target.>";
+                    move.description = "<A strong electric blast with a 0.30 chance of paralyzing the target.>";
 
                     nameKey = "mve_elecBlast_nme";
                     descKey = "mve_elecBlast_dsc";
@@ -509,7 +509,7 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
 
-                    move.description = "<A strong attack that has a 25% chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "<A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.>";
 
                     nameKey = "mve_sonicWave_nme";
                     descKey = "mve_sonicWave_dsc";
@@ -546,7 +546,7 @@ namespace RM_BBTS
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 30.0F;
 
-                    move.description = "<The user attacks the target. This move has a 30% chance of lowering the target's attack by 1 stage.>";
+                    move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.>";
 
                     nameKey = "mve_waterBlast_nme";
                     descKey = "mve_waterBlast_dsc";
@@ -558,7 +558,7 @@ namespace RM_BBTS
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 30.0F;
 
-                    move.description = "<The user attacks the target. This move has a 30% chance of lowering the target's defense by 1 stage.>";
+                    move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.>";
 
                     nameKey = "mve_rockBlast_nme";
                     descKey = "mve_rockBlast_dsc";
@@ -570,7 +570,7 @@ namespace RM_BBTS
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 30.0F;
 
-                    move.description = "<The user attacks the target. This move has a 30% of lowering the target's speed by 1 stage.>";
+                    move.description = "<The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.>";
 
                     nameKey = "mve_airBlast_nme";
                     descKey = "mve_airBlast_dsc";
@@ -583,7 +583,7 @@ namespace RM_BBTS
                     move.CriticalChance = 0.3F;
                     move.RecoilPercent = 0.4F;
 
-                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 30%, and deals 40% of the damage dealt back to the user.>";
+                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user.>";
 
                     nameKey = "mve_quake_nme";
                     descKey = "mve_quake_dsc";
@@ -595,7 +595,7 @@ namespace RM_BBTS
                     move.BurnChance = 0.2F;
                     move.priority = -3;
 
-                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 20%, and always goes last.>";
+                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.>";
 
 
                     nameKey = "mve_chargeSun_nme";
@@ -608,7 +608,7 @@ namespace RM_BBTS
                     move.ParalysisChance = 0.2F;
                     move.priority = -3;
 
-                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 20%, and always goes last.>";
+                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.>";
 
                     nameKey = "mve_chargeMoon_nme";
                     descKey = "mve_chargeMoon_dsc";
