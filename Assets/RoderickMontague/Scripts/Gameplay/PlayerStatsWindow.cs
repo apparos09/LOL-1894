@@ -83,6 +83,9 @@ namespace RM_BBTS
         public TMP_Text backButtonText;
 
         [Header("Move Info")]
+        // Move Info Object
+        public GameObject moveInfoObject;
+
         // Move Info
         public TMP_Text moveNameText;
 
@@ -92,6 +95,13 @@ namespace RM_BBTS
         public TMP_Text moveEnergyText;
 
         public TMP_Text moveDescriptionText;
+
+        [Header("Move Comparison")]
+        // The comparison object.
+        public GameObject moveComparisonObject;
+
+        // The move comparison.
+        public MoveComparison moveCompare;
 
         // Awake is called when the script is being loaded.
         private void Awake()

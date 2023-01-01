@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // The script for the move comparisons.
-    public class MoveComparisonWindow : MonoBehaviour
+    public class MoveComparison : MonoBehaviour
     {
         //  Player object.
         public Player player;
