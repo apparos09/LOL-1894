@@ -79,10 +79,16 @@ namespace RM_BBTS
         public Image runButtonImage;
         public TMP_Text runButtonText;
 
+        // Switch Button Text
+        public TMP_Text switchButtonText;
+
         // Back Button Text
         public TMP_Text backButtonText;
 
         [Header("Move Info")]
+        // Move Info Object
+        public GameObject moveInfoObject;
+
         // Move Info
         public TMP_Text moveNameText;
 
@@ -93,12 +99,23 @@ namespace RM_BBTS
 
         public TMP_Text moveDescriptionText;
 
+        [Header("Move Comparison")]
+        // The comparison object.
+        public GameObject moveCompareObject;
+
+        // The move comparison.
+        public MoveComparison moveCompare;
+
         // Awake is called when the script is being loaded.
         private void Awake()
         {
-            // Load moves.
+            // Load charge and run moves.
             chargeMove = new ChargeMove();
             runMove = new RunMove();
+
+            // Gives it to the move compare object. These shouldn't be loaded yet.
+            moveCompare.chargeMove = chargeMove;
+            moveCompare.runMove = runMove;
         }
 
         // Start is called before the first frame update
@@ -115,12 +132,16 @@ namespace RM_BBTS
             if(defs != null)
             {
                 titleText.text = defs["kwd_stats"];
+                switchButtonText.text = defs["kwd_switch"];
                 backButtonText.text = defs["kwd_back"];
             }
 
             ResetMoveButtonColors();
             UpdatePlayerInfo();
             SwitchToChargeMove();
+
+            // Default section.
+            SwitchToMoveInfo();
         }
 
         // This function is called when the object becomes enabled and active.
@@ -134,6 +155,9 @@ namespace RM_BBTS
             ResetMoveButtonColors();
             UpdatePlayerInfo();
             SwitchToChargeMove();
+
+            // Default section.
+            SwitchToMoveInfo();
         }
 
         // // Toggles the visibility of the player stat window.
@@ -191,6 +215,8 @@ namespace RM_BBTS
 
             // Default showing.
             UpdateMoveInfo(4);
+
+            // TODO: add icon to show where the selected move.
         }
 
         // Updates the move info.
@@ -238,40 +264,20 @@ namespace RM_BBTS
 
             // Rank
             moveRankText.text = gameManager.RankString + ": " + move.Rank.ToString();
-            
+
             // Power
-            movePowerText.text = gameManager.PowerString + ": " + ((move.Power == 0.0F) ? "-" : move.Power.ToString());
+            movePowerText.text = gameManager.PowerString + ": " + move.GetPowerAsString();
 
             // Accuracy
-            if (move.useAccuracy)
-            {
-                // Percent
-                // moveAccuracyText.text = gameManager.AccuracyString + ": " +
-                //     Mathf.Round(move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            moveAccuracyText.text = gameManager.AccuracyString + ": " + move.GetAccuracyAsString();
 
-                // Decimal
-                moveAccuracyText.text = gameManager.AccuracyString + ": " +
-                    move.Accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
-            }
-            else
-            {
-                moveAccuracyText.text = gameManager.AccuracyString + ": " + "-";
-            }
-           
             // Energy
-            if(move.EnergyUsage != 0.0F)
-            {
-                moveEnergyText.text =
-                    gameManager.EnergyString + ": " +
-                    (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
-            }
-            else
-            {
-                moveEnergyText.text = gameManager.EnergyString + ": " + "-";
-            }
+            moveEnergyText.text = gameManager.EnergyString + ": " + move.GetEnergyUsageAsString();
 
             // Description
             moveDescriptionText.text = gameManager.DescriptionString + ": " + move.description.ToString();
+
+            // TODO: maybe only read the description if in the right view?
 
             // If the text-to-speech is enabled, and the SDK has been initialized.. 
             if(GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
@@ -283,6 +289,8 @@ namespace RM_BBTS
                     LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
                 }
             }
+
+            // TODO: update other view indicator
 
         }
 
@@ -345,6 +353,29 @@ namespace RM_BBTS
             ResetMoveButtonColors();
             runButtonImage.color = selectButtonColor;
             UpdateMoveInfo(5);
+        }
+
+        // VIEW SWITCHES
+        // Switches the current view in the player stats.
+        public void SwitchView()
+        {
+            bool active = moveInfoObject.activeSelf;
+            moveInfoObject.SetActive(!active);
+            moveCompareObject.SetActive(active);
+        }
+
+        // Switch to the move info window.
+        public void SwitchToMoveInfo()
+        {
+            moveInfoObject.SetActive(true);
+            moveCompareObject.SetActive(false);
+        }
+
+        // Switch to the move compare window.
+        public void SwitchToMoveCompare()
+        {
+            moveInfoObject.SetActive(false);
+            moveCompareObject.SetActive(true);
         }
 
     }
