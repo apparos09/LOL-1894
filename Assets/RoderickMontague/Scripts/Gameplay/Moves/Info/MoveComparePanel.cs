@@ -11,38 +11,44 @@ namespace RM_BBTS
         private bool loaded = false;
 
         // The id of the move being represented.
-        public moveId id;
+        private moveId id;
 
         // The name of the move.
         public TMPro.TMP_Text nameText;
 
         // Move Attributes
         // Standard Info
+        [Header("Primary Stats")]
         public TMPro.TMP_Text rankText;
         public TMPro.TMP_Text powerText;
         public TMPro.TMP_Text accuracyText;
         public TMPro.TMP_Text energyText;
 
         // Stat Change Info
+
         // Attack
+        [Header("Attack Chance Events")]
         public TMPro.TMP_Text attackChangeUserText;
         public TMPro.TMP_Text attackChanceUserText;
         public TMPro.TMP_Text attackChangeTargetText;
         public TMPro.TMP_Text attackChanceTargetText;
 
         // Defense
+        [Header("Defense Chance Events")]
         public TMPro.TMP_Text defenseChangeUserText;
         public TMPro.TMP_Text defenseChanceUserText;
         public TMPro.TMP_Text defenseChangeTargetText;
         public TMPro.TMP_Text defenseChanceTargetText;
 
         // Speed
+        [Header("Speed Chance Events")]
         public TMPro.TMP_Text speedChangeUserText;
         public TMPro.TMP_Text speedChanceUserText;
         public TMPro.TMP_Text speedChangeTargetText;
         public TMPro.TMP_Text speedChanceTargetText;
 
         // Critical, Burn, and Paralysis
+        [Header("Other Chance Events")]
         public TMPro.TMP_Text criticalChanceText;
         public TMPro.TMP_Text burnChanceText;
         public TMPro.TMP_Text paralysisChanceText;
@@ -53,6 +59,12 @@ namespace RM_BBTS
         public bool Loaded
         {
             get { return loaded; }
+        }
+
+        // Gets the move id.
+        public moveId Id
+        {
+            get { return id; }
         }
 
         // Loads the move info.

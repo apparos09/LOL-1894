@@ -9,7 +9,7 @@ namespace RM_BBTS
     public class MoveInfoPanel : MonoBehaviour
     {
         // The id of the move being represented.
-        public moveId id;
+        private moveId id;
 
         // Move Title
         public TMPro.TMP_Text nameText;
@@ -22,6 +22,12 @@ namespace RM_BBTS
 
         // Move Description
         public TMPro.TMP_Text description;
+
+        // Gets the move id.
+        public moveId Id
+        {
+            get { return id; }
+        }
 
         // Loads the move into the move info pnael.
         public void LoadMoveInfo(Move move)
