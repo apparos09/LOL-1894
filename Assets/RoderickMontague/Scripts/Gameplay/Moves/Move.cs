@@ -213,6 +213,58 @@ namespace RM_BBTS
             }
         }
 
+        // Gets the power of the move as a string.
+        public string GetPowerAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if power is greater than 0.
+            result = (Power > 0) ? Power.ToString() : "-";
+
+            return result;
+        }
+
+        // Gets the accuracy of the move as a string.
+        public string GetAccuracyAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if accuracy should be used.
+            if(useAccuracy)
+            {
+                // Checks if accuracy is above 0.
+                result = (Accuracy > 0) ? Accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) : "-";
+            }
+            else
+            {
+                result = "-";
+            }
+
+            return result;
+        }
+
+        // Gets the energy usage as a string.
+        public string GetEnergyUsageAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if energy usage is above 0.
+            if(EnergyUsage > 0)
+            {
+                result = Mathf.Ceil(EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
+                result += "%";
+            }
+            else // Energy not used.
+            {
+                result = "-";
+            }
+
+            return result;
+        }
+
         // Checks if a move is available for the battle entity to perform.
         public bool Usable(BattleEntity user)
         {

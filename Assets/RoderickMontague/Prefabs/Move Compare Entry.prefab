@@ -467,7 +467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000.00
+  m_text: 000.00%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   defenseChangeUserText: {fileID: 7255217518286113718}
   defenseChanceUserText: {fileID: 7255217518139439757}
   defenseChangeTargetText: {fileID: 7255217518536578261}
-  defenseChanceTargetText: {fileID: 7255217518139439757}
+  defenseChanceTargetText: {fileID: 7255217519868308996}
   speedChangeUserText: {fileID: 7255217518981423734}
   speedChanceUserText: {fileID: 7255217518766349074}
   speedChangeTargetText: {fileID: 7255217518430487891}
@@ -2163,7 +2163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AAAAAAAAAAAAAAAAAAAAAA
+  m_text: '[Move]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -70,6 +70,9 @@ namespace RM_BBTS
         // Loads the move info.
         public void LoadMoveInfo(Move move)
         {
+            // The decimal points to display. 
+            string decPoints = "F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString();
+
             // Sets to see if the move info has been loaded.
             loaded = move != null;
 
@@ -82,36 +85,36 @@ namespace RM_BBTS
             // Move Attributes
             // Standard Info
             rankText.text = (move != null) ? move.Rank.ToString() : "-";
-            powerText.text = (move != null) ? move.Power.ToString() : "-";
-            accuracyText.text = (move != null) ? move.Accuracy.ToString() : "-";
-            energyText.text = (move != null) ? move.EnergyUsage.ToString() : "-";
+            powerText.text = (move != null) ? move.GetPowerAsString() : "-";
+            accuracyText.text = (move != null) ? move.GetAccuracyAsString() : "-";
+            energyText.text = (move != null) ? move.GetEnergyUsageAsString(): "-";
 
             // Stat Change Info
             // Attack
             attackChangeUserText.text = (move != null) ? move.attackChangeUser.ToString() : "-";
-            attackChanceUserText.text = (move != null) ? move.attackChangeChanceUser.ToString() : "-";
+            attackChanceUserText.text = (move != null) ? move.attackChangeChanceUser.ToString(decPoints) : "-";
             
             attackChangeTargetText.text = (move != null) ? move.attackChangeTarget.ToString() : "-";
-            attackChanceTargetText.text = (move != null) ? move.attackChangeChanceTarget.ToString() : "-";
+            attackChanceTargetText.text = (move != null) ? move.attackChangeChanceTarget.ToString(decPoints) : "-";
 
             // Defense
             defenseChangeUserText.text = (move != null) ? move.defenseChangeUser.ToString() : "-";
-            defenseChanceUserText.text = (move != null) ? move.defenseChangeChanceUser.ToString() : "-";
+            defenseChanceUserText.text = (move != null) ? move.defenseChangeChanceUser.ToString(decPoints) : "-";
             
             defenseChangeTargetText.text = (move != null) ? move.defenseChangeTarget.ToString() : "-";
-            defenseChanceTargetText.text = (move != null) ? move.defenseChangeChanceTarget.ToString() : "-";
+            defenseChanceTargetText.text = (move != null) ? move.defenseChangeChanceTarget.ToString(decPoints) : "-";
 
             // Speed
             speedChangeUserText.text = (move != null) ? move.speedChangeUser.ToString() : "-";
-            speedChanceUserText.text = (move != null) ? move.speedChangeChanceUser.ToString() : "-";
+            speedChanceUserText.text = (move != null) ? move.speedChangeChanceUser.ToString(decPoints) : "-";
             
             speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString() : "-";
-            speedChanceTargetText.text = (move != null) ? move.speedChangeChanceTarget.ToString() : "-";
+            speedChanceTargetText.text = (move != null) ? move.speedChangeChanceTarget.ToString(decPoints) : "-";
 
             // Critical, Burn, and Paralysis
-            criticalChanceText.text = (move != null) ? move.CriticalChance.ToString() : "-";
-            burnChanceText.text = (move != null) ? move.BurnChance.ToString() : "-";
-            paralysisChanceText.text = (move != null) ? move.ParalysisChance.ToString() : "-";
+            criticalChanceText.text = (move != null) ? move.CriticalChance.ToString(decPoints) : "-";
+            burnChanceText.text = (move != null) ? move.BurnChance.ToString(decPoints) : "-";
+            paralysisChanceText.text = (move != null) ? move.ParalysisChance.ToString(decPoints) : "-";
         }
 
         // Sets the move info to the default display.
