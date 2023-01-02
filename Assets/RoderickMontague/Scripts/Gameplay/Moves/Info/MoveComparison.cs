@@ -38,7 +38,7 @@ namespace RM_BBTS
         [Header("Scroll Bars")]
         
         // Resets the scroll bar positions when the move comparison is enabled.
-        public bool resetScrollBarsOnEnable = true;
+        public bool resetScrollBarsOnEnable = false;
 
         // The horizontal and vertical scrollbars.
         public Scrollbar horizontal;
@@ -69,7 +69,7 @@ namespace RM_BBTS
         private void OnEnable()
         {
             UpdatePlayerInfo();
-            HighlightChargeMove();
+            // HighlightChargeMove();
 
             // Reset the scroll bar positions.
             if (resetScrollBarsOnEnable)

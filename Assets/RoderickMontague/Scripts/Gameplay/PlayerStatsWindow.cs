@@ -156,9 +156,21 @@ namespace RM_BBTS
             UpdatePlayerInfo();
             SwitchToChargeMove();
 
+            // Reset the scroll bar positions.
+            moveCompare.ResetScrollBarPositions();
+
             // Default section.
             SwitchToMoveInfo();
         }
+
+        // // Called when the player stats window is disabled.
+        // private void OnDisable()
+        // {
+        //     // Reset the scroll bar positions.
+        //     moveCompareObject.gameObject.SetActive(true);
+        //     moveCompare.ResetScrollBarPositions();
+        //     SwitchToMoveInfo();
+        // }
 
         // // Toggles the visibility of the player stat window.
         // public void ToggleVisibility()
