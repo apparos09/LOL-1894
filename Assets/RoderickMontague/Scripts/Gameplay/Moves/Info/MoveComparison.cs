@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_BBTS
 {
@@ -17,6 +18,12 @@ namespace RM_BBTS
         [HideInInspector]
         public RunMove runMove;
 
+        // The marker for the highlighted move.
+        public GameObject moveHighlight;
+
+        // The offset for highlighting a move, which is relative to a move panel.
+        public Vector3 highlightOffset = new Vector3(0.0F, 0.0F, 0.0F);
+
         [Header("Moves")]
         // The 4 standard moves.
         public MoveComparePanel move0Panel;
@@ -27,6 +34,15 @@ namespace RM_BBTS
         // The charge and run move info.
         public MoveComparePanel chargeMovePanel;
         public MoveComparePanel runMovePanel;
+
+        [Header("Scroll Bars")]
+        
+        // Resets the scroll bar positions when the move comparison is enabled.
+        public bool resetScrollBarsOnEnable = true;
+
+        // The horizontal and vertical scrollbars.
+        public Scrollbar horizontal;
+        public Scrollbar vertical;
 
 
         // Start is called before the first frame update
@@ -42,12 +58,34 @@ namespace RM_BBTS
 
 
             UpdatePlayerInfo();
+            HighlightChargeMove();
+
+            // Reset the scroll bar positions.
+            if (resetScrollBarsOnEnable)
+                ResetScrollBarPositions();
         }
 
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
             UpdatePlayerInfo();
+            HighlightChargeMove();
+
+            // Reset the scroll bar positions.
+            if (resetScrollBarsOnEnable)
+                ResetScrollBarPositions();
+        }
+
+        // Resets the scroll bar positions.
+        public void ResetScrollBarPositions()
+        {
+            // Resets the horizontal.
+            if (horizontal != null)
+                horizontal.value = 0;
+
+            // Resets the vertical.
+            if (vertical != null)
+                vertical.value = 0;
         }
 
         // Updates the player info.
@@ -64,6 +102,81 @@ namespace RM_BBTS
 
             // Run
             runMovePanel.LoadMoveInfo(runMove);
+        }
+        
+        // Highlights the move.
+        public void HighlightMove(int moveNumber)
+        {
+            // The panel to be highlighted.
+            MoveComparePanel panel = null;
+
+            // Checks the move number.
+            switch(moveNumber)
+            {
+                case 0: // Move 0
+                    panel = move0Panel;
+                    break;
+                case 1: // Move 1
+                    panel = move1Panel;
+                    break;
+                case 2: // Move 2
+                    panel = move2Panel;
+                    break;
+                case 3: // Move 3
+                    panel = move3Panel;
+                    break;
+                case 4: // Charge
+                    panel = chargeMovePanel;
+                    break;
+                case 5: // Run
+                    panel = runMovePanel;
+                    break;
+                default:
+                    return;
+            }
+
+            // Moves the highlight object.
+            Vector3 newPos = moveHighlight.transform.position;
+            newPos.y = panel.transform.position.y;
+
+            moveHighlight.transform.position = newPos;
+            moveHighlight.transform.Translate(highlightOffset);
+        }
+
+        // Highlights move 0.
+        public void HighlightMove0()
+        {
+            HighlightMove(0);
+        }
+
+        // Highlights move 1.
+        public void HighlightMove1()
+        {
+            HighlightMove(1);
+        }
+
+        // Highlights move 2.
+        public void HighlightMove2()
+        {
+            HighlightMove(2);
+        }
+
+        // Highlights move 3.
+        public void HighlightMove3()
+        {
+            HighlightMove(3);
+        }
+
+        // Highlights charge move.
+        public void HighlightChargeMove()
+        {
+            HighlightMove(4);
+        }
+
+        // Highlights run move.
+        public void HighlightRunMove()
+        {
+            HighlightMove(5);
         }
     }
 }

@@ -213,10 +213,9 @@ namespace RM_BBTS
             chargeButton.interactable = true;
             runButton.interactable = true;
 
-            // Default showing.
+            // Default showing for both versions (charge move).
             UpdateMoveInfo(4);
-
-            // TODO: add icon to show where the selected move.
+            moveCompare.HighlightMove(4);
         }
 
         // Updates the move info.
@@ -290,7 +289,8 @@ namespace RM_BBTS
                 }
             }
 
-            // TODO: update other view indicator
+            // Highlights the move.
+            moveCompare.HighlightMove(moveNumber);
 
         }
 
