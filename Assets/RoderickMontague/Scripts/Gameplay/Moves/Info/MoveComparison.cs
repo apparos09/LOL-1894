@@ -1,5 +1,7 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,9 @@ namespace RM_BBTS
     // The script for the move comparisons.
     public class MoveComparison : MonoBehaviour
     {
+        // The gameplay manager.
+        public GameplayManager gameManager;
+
         //  Player object.
         public Player player;
 
@@ -18,13 +23,40 @@ namespace RM_BBTS
         [HideInInspector]
         public RunMove runMove;
 
+        // The legend text.
+        [Header("Legend")]
+        // Legend text.
+        public TMP_Text legendTitleText;
+
+        // Rank, power, and accuracy.
+        public TMP_Text rankLabel;
+        public TMP_Text powerLabel;
+        public TMP_Text accuracyLabel;
+        public TMP_Text energyLabel;
+
+        // Attack, defense, and speed.
+        public TMP_Text attackChangeLabel;
+        public TMP_Text defenseChangeLabel;
+        public TMP_Text speedChangeLabel;
+        public TMP_Text accuracyChangeLabel;
+
+        // Effect on Self, and Effect on Target
+        public TMP_Text effectSelfLabel;
+        public TMP_Text effectTargetLabel;
+
+        // Critical, burn, and paralysis effects.
+        public TMP_Text criticalLabel;
+        public TMP_Text burnLabel;
+        public TMP_Text paralysisLabel;
+
+
+        [Header("Moves")]
         // The marker for the highlighted move.
         public GameObject moveHighlight;
 
         // The offset for highlighting a move, which is relative to a move panel.
-        public Vector3 highlightOffset = new Vector3(0.0F, 0.0F, 0.0F);
+        public Vector3 moveHighlightOffset = new Vector3(0.0F, 0.0F, 0.0F);
 
-        [Header("Moves")]
         // The 4 standard moves.
         public MoveComparePanel move0Panel;
         public MoveComparePanel move1Panel;
@@ -37,13 +69,42 @@ namespace RM_BBTS
 
         [Header("Scroll Bars")]
         
+        // If 'true', the scroll values are set automatically.
+        [Tooltip("Sets the reset values based on the values of the sliders at compile time.")]
+        public bool autoSetDefaultScrollValues = true;
+
         // Resets the scroll bar positions when the move comparison is enabled.
+        [Tooltip("Resets the scroll bar positions when the script is enabled.")]
         public bool resetScrollBarsOnEnable = false;
 
+        [Header("Scrollbars/Legend")]
         // The horizontal and vertical scrollbars.
-        public Scrollbar horizontal;
-        public Scrollbar vertical;
+        public Scrollbar legendHorizontal;
+        public float legendHoriResetValue = 0.0F;
+        public Scrollbar legendVertical;
+        public float legendVertResetValue = 1.0F;
 
+        [Header("Scrollbars/Moves")]
+        // The horizontal and vertical scrollbars.
+        public Scrollbar moveHorizontal;
+        public float moveHoriResetValue = 0.0F;
+        public Scrollbar moveVertical;
+        public float moveVertResetValue = 1.0F;
+
+
+        // Awake is called when the script instance is loaded.
+        private void Awake()
+        {
+            // Auto set the scroll values.
+            if (autoSetDefaultScrollValues)
+            {
+                legendHoriResetValue = legendHorizontal.value;
+                legendVertResetValue = legendVertical.value;
+
+                moveHoriResetValue = moveHorizontal.value;
+                moveVertResetValue = moveVertical.value;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -55,6 +116,34 @@ namespace RM_BBTS
             // Checks for the saved run move.
             if (runMove == null)
                 runMove = MoveList.Instance.RunMove;
+
+            // Translation
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // Language definitions set.
+            if (defs != null)
+            {
+                legendTitleText.text = defs["kwd_legend"];
+
+                // Standard Symbols
+                rankLabel.text = gameManager.RankString;
+                powerLabel.text = gameManager.PowerString;
+                accuracyLabel.text = gameManager.AccuracyString;
+                energyLabel.text = gameManager.EnergyString;
+
+                // Stat Changes
+                attackChangeLabel.text = defs["kwd_attackChange"];
+                defenseChangeLabel.text = defs["kwd_defenseChange"];
+                speedChangeLabel.text = defs["kwd_speedChange"];
+                accuracyChangeLabel.text = defs["kwd_accuracyChange"];
+
+                // Effects
+                effectSelfLabel.text = defs["kwd_effectSelf"];
+                effectTargetLabel.text = defs["kwd_effectTarget"];
+                criticalLabel.text = defs["kwd_criticalChance"];
+                burnLabel.text = defs["kwd_burnChance"];
+                paralysisLabel.text = defs["kwd_paralysisChance"];
+            }
 
 
             UpdatePlayerInfo();
@@ -79,13 +168,22 @@ namespace RM_BBTS
         // Resets the scroll bar positions.
         public void ResetScrollBarPositions()
         {
-            // Resets the horizontal.
-            if (horizontal != null)
-                horizontal.value = 0;
+            // Resets the legend horizontal.
+            if (legendHorizontal != null)
+                legendHorizontal.value = legendHoriResetValue;
 
-            // Resets the vertical.
-            if (vertical != null)
-                vertical.value = 0;
+            // Resets the legend vertical.
+            if (legendVertical != null)
+                legendVertical.value = legendVertResetValue;
+
+
+            // Resets the move horizontal.
+            if (moveHorizontal != null)
+                moveHorizontal.value = moveHoriResetValue;
+
+            // Resets the move vertical.
+            if (moveVertical != null)
+                moveVertical.value = moveVertResetValue;
         }
 
         // Updates the player info.
@@ -140,7 +238,7 @@ namespace RM_BBTS
             newPos.y = panel.transform.position.y;
 
             moveHighlight.transform.position = newPos;
-            moveHighlight.transform.Translate(highlightOffset);
+            moveHighlight.transform.Translate(moveHighlightOffset);
         }
 
         // Highlights move 0.

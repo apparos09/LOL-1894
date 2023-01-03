@@ -39,11 +39,16 @@
       "kwd_accuracy": 12,
       "kwd_description": 20,
 
-
-      "kwd_mainMenu": 12,
-      "mmu_msg_prompt": 95,
-      "kwd_returnToMainMenu": 26,
-      "kwd_returnToGame": 26,
+      "kwd_legend": 12,
+      "kwd_attackChange": 26,
+      "kwd_defenseChange": 26,
+      "kwd_speedChange": 26,
+      "kwd_accuracyChange": 26,
+      "kwd_effectSelf": 26,
+      "kwd_effectTarget": 26,
+      "kwd_criticalChance": 26,
+      "kwd_burnChance": 26,
+      "kwd_paralysisChance": 26,
 
 
       "kwd_save": 12,
@@ -51,6 +56,12 @@
       "kwd_saveQuit": 24,
       "sve_msg_prompt": 95,
       "sve_msg_savingGame": 32,
+
+
+      "kwd_mainMenu": 12,
+      "mmu_msg_prompt": 95,
+      "kwd_returnToMainMenu": 26,
+      "kwd_returnToGame": 26,
 
 
       "btl_msg_mve_moveUsed": 250,
@@ -394,17 +405,30 @@
     "kwd_accuracy": "Accuracy",
     "kwd_description": "Description",
 
+    "kwd_legend": "Legend",
+    "kwd_attackChange": "Attack Change/Chance",
+    "kwd_defenseChange": "Defense Change/Chance",
+    "kwd_speedChange": "Speed Change/Chance",
+    "kwd_accuracyChange": "Accuracy Change/Chance",
+    "kwd_effectSelf": "Effect on Self",
+    "kwd_effectTarget": "Effect on Target",
+    "kwd_criticalChance": "Critical Damage Chance",
+    "kwd_burnChance": "Burn Chance",
+    "kwd_paralysisChance": "Paralysis Chance",
 
-    "kwd_mainMenu": "Main Menu",
-    "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
-    "kwd_returnToMainMenu": "Return to Main Menu",
-    "kwd_returnToGame": "Return to Game",
 
     "kwd_save": "Save",
     "kwd_saveContinue": "Save and Continue",
     "kwd_saveQuit": "Save and Quit",
     "sve_msg_prompt": "Would you like to save and continue the game, or save and quit the game?",
     "sve_msg_savingGame": "Saving game...",
+
+
+    "kwd_mainMenu": "Main Menu",
+    "mmu_msg_prompt": "Would you like to return to the title screen? You will lose all unsaved progress.",
+    "kwd_returnToMainMenu": "Return to Main Menu",
+    "kwd_returnToGame": "Return to Game",
+
 
     "btl_msg_mve_moveUsed": "{0} used {1}!",
     "btl_msg_mve_moveUsed_alt00": "The player used a move!",
@@ -507,8 +531,8 @@
     "bey_blackHole_nme": "Vortex",
     "bey_planet1_nme": "Strange Island",
     "bey_planet2_nme": "Strange Planet",
-    
-    
+
+
     "mve_run_nme": "Run",
     "mve_run_dsc": "The user attempts to run away. There is a 0.50 chance of success.",
     "mve_charge_nme": "Charge",
@@ -517,7 +541,7 @@
     "mve_poke_dsc": "An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.",
     "mve_slimeShot_nme": "Slime Shot",
     "mve_slimeShot_dsc": "An attack that has a 0.15 chance of lowering the target's speed by 1 stage.",
-    
+
     "mve_laserShot_nme": "Laser Shot",
     "mve_laserShot_dsc": "A weak laser attack.",
     "mve_fireShot_nme": "Fire Shot",
@@ -526,7 +550,7 @@
     "mve_elecShot_nme": "Electric Shot",
     "mve_screech_nme": "Screech",
     "mve_screech_dsc": "A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.",
-    
+
     "mve_slam_nme": "Slam",
     "mve_slam_dsc": "An attack that has a critical damage chance of 0.60.",
     "mve_chip_nme": "Chip Off",
@@ -535,7 +559,7 @@
     "mve_toss_dsc": "An attack that has a 0.10 chance of lowering the target's attack by 1 stage.",
     "mve_magnify_nme": "Magnify",
     "mve_magnify_dsc": "The user raises their accuracy by 1 stage.",
-    
+
     "mve_heal_nme": "Heal",
     "mve_heal_dsc": "The user heals 20% of their health.",
     "mve_hpDrain1_nme": "Drain Heal 1",
@@ -544,7 +568,7 @@
     "mve_healthSplit_dsc": "The user and the target add together their proportional health, then split said health evenly between themselves.",
     "mve_pushBack_nme": "Push Back",
     "mve_pushBack_dsc": "The user pushes the target back, which has a 0.20 chance of increasing the user's defense.",
-   
+
     "mve_bam_nme": "Bam",
     "mve_bam_dsc": "A weak, basic attack.",
     "mve_laserBurst_nme": "Laser Burst",
@@ -553,7 +577,7 @@
     "mve_fireBurst_dsc": "A decent fire attack that has a 0.20 chance of burning the target.",
     "mve_elecBurst_nme": "Electric Burst",
     "mve_elecBurst_dsc": "A decent electric attack that has a 0.20 chance of paralyzing the target.",
-    
+
     "mve_soundWave_nme": "Soundwave",
     "mve_soundWave_dsc": "A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.",
     "mve_magnet_nme": "Magnet",
@@ -562,7 +586,7 @@
     "mve_torch_dsc": "A weak attack that always burns the target.",
     "mve_electrify_nme": "Electrify",
     "mve_electrify_dsc": "A weak attack that always paralyzes the target.",
-    
+
     "mve_motivate_nme": "Motivate",
     "mve_motivate_dsc": "The user increases their attack, defense, and speed by 1 stage each. This move will always go last.",
     "mve_quickBurst_nme": "Quick Burst",
@@ -571,7 +595,7 @@
     "mve_hpDrain2_dsc": "The user attacks the target, gaining 25% of the damage dealt as health.",
     "mve_statClear_nme": "Stat Clear",
     "mve_statClear_dsc": "The user resets all stat changes for themselves and their opponent.",
-    
+
     "mve_cure_dsc": "The user removes all their status ailments.",
     "mve_cure_nme": "Cure",
     "mve_risk_nme": "Risk",
@@ -589,7 +613,7 @@
     "mve_elecBlast_dsc": "A strong electric blast with a 0.30 chance of paralyzing the target.",
     "mve_sonicWave_nme": "Sonic Wave",
     "mve_sonicWave_dsc": "A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.",
-    
+
     "mve_hpDrain3_nme": "Drain Heal 3",
     "mve_hpDrain3_dsc": "The user attacks the target, gaining 40% of the damage dealt as health.",
     "mve_twister_nme": "Twister",
@@ -598,7 +622,7 @@
     "mve_waterBlast_dsc": "The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.",
     "mve_rockBlast_nme": "Rock Blast",
     "mve_rockBlast_dsc": "The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.",
-    
+
     "mve_airBlast_nme": "Air Blast",
     "mve_airBlast_dsc": "The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.",
     "mve_quake_nme": "Quake",
@@ -607,14 +631,14 @@
     "mve_chargeSun_dsc": "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.",
     "mve_chargeMoon_nme": "Charging Moon",
     "mve_chargeMoon_dsc": "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.",
-    
+
     "mve_earlyBurst_nme": "Early Burst",
     "mve_earlyBurst_dsc": "A move that gets weaker the longer the battle goes on.",
     "mve_allOut_nme": "All Out Attack",
     "mve_allOut_dsc": "A move that lowers the user's attack stat by 1 stage every time it's used.",
     "mve_kablam_nme": "Kablam",
     "mve_kablam_dsc": "A strong, basic attack.",
-   
+
 
     "switchMoveMessage": "Switch out for a new move?",
     "kwd_playerMoves": "Player Moves",

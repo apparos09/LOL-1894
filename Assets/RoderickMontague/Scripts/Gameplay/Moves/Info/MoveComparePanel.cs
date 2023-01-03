@@ -47,6 +47,14 @@ namespace RM_BBTS
         public TMPro.TMP_Text speedChangeTargetText;
         public TMPro.TMP_Text speedChanceTargetText;
 
+        // Accuracy
+        [Header("Accuracy Chance Events")]
+        public TMPro.TMP_Text accuracyChangeUserText;
+        public TMPro.TMP_Text accuracyChanceUserText;
+        public TMPro.TMP_Text accuracyChangeTargetText;
+        public TMPro.TMP_Text accuracyChanceTargetText;
+
+
         // Critical, Burn, and Paralysis
         [Header("Other Chance Events")]
         public TMPro.TMP_Text criticalChanceText;
@@ -91,24 +99,24 @@ namespace RM_BBTS
 
             // Stat Change Info
             // Attack
-            attackChangeUserText.text = (move != null) ? move.attackChangeUser.ToString() : "-";
+            attackChangeUserText.text = (move != null) ? move.attackChangeUser.ToString("+#;-#;0") : "-";
             attackChanceUserText.text = (move != null) ? move.attackChangeChanceUser.ToString(decPoints) : "-";
             
-            attackChangeTargetText.text = (move != null) ? move.attackChangeTarget.ToString() : "-";
+            attackChangeTargetText.text = (move != null) ? move.attackChangeTarget.ToString("+#;-#;0") : "-";
             attackChanceTargetText.text = (move != null) ? move.attackChangeChanceTarget.ToString(decPoints) : "-";
 
             // Defense
-            defenseChangeUserText.text = (move != null) ? move.defenseChangeUser.ToString() : "-";
+            defenseChangeUserText.text = (move != null) ? move.defenseChangeUser.ToString("+#;-#;0") : "-";
             defenseChanceUserText.text = (move != null) ? move.defenseChangeChanceUser.ToString(decPoints) : "-";
             
-            defenseChangeTargetText.text = (move != null) ? move.defenseChangeTarget.ToString() : "-";
+            defenseChangeTargetText.text = (move != null) ? move.defenseChangeTarget.ToString("+#;-#;0") : "-";
             defenseChanceTargetText.text = (move != null) ? move.defenseChangeChanceTarget.ToString(decPoints) : "-";
 
             // Speed
-            speedChangeUserText.text = (move != null) ? move.speedChangeUser.ToString() : "-";
+            speedChangeUserText.text = (move != null) ? move.speedChangeUser.ToString("+#;-#;0") : "-";
             speedChanceUserText.text = (move != null) ? move.speedChangeChanceUser.ToString(decPoints) : "-";
             
-            speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString() : "-";
+            speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString("+#;-#;0") : "-";
             speedChanceTargetText.text = (move != null) ? move.speedChangeChanceTarget.ToString(decPoints) : "-";
 
             // Critical, Burn, and Paralysis
