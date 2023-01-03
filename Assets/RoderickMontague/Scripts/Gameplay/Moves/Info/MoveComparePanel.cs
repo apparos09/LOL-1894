@@ -78,6 +78,8 @@ namespace RM_BBTS
         // Loads the move info.
         public void LoadMoveInfo(Move move)
         {
+            // The change format for the change attributes.
+            string changeFormat = "+#;-#;0";
             // The decimal points to display. 
             string decPoints = "F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString();
 
@@ -99,31 +101,31 @@ namespace RM_BBTS
 
             // Stat Change Info
             // Attack
-            attackChangeUserText.text = (move != null) ? move.attackChangeUser.ToString("+#;-#;0") : "-";
+            attackChangeUserText.text = (move != null) ? move.attackChangeUser.ToString(changeFormat) : "-";
             attackChanceUserText.text = (move != null) ? move.attackChangeChanceUser.ToString(decPoints) : "-";
             
-            attackChangeTargetText.text = (move != null) ? move.attackChangeTarget.ToString("+#;-#;0") : "-";
+            attackChangeTargetText.text = (move != null) ? move.attackChangeTarget.ToString(changeFormat) : "-";
             attackChanceTargetText.text = (move != null) ? move.attackChangeChanceTarget.ToString(decPoints) : "-";
 
             // Defense
-            defenseChangeUserText.text = (move != null) ? move.defenseChangeUser.ToString("+#;-#;0") : "-";
+            defenseChangeUserText.text = (move != null) ? move.defenseChangeUser.ToString(changeFormat) : "-";
             defenseChanceUserText.text = (move != null) ? move.defenseChangeChanceUser.ToString(decPoints) : "-";
             
-            defenseChangeTargetText.text = (move != null) ? move.defenseChangeTarget.ToString("+#;-#;0") : "-";
+            defenseChangeTargetText.text = (move != null) ? move.defenseChangeTarget.ToString(changeFormat) : "-";
             defenseChanceTargetText.text = (move != null) ? move.defenseChangeChanceTarget.ToString(decPoints) : "-";
 
             // Speed
-            speedChangeUserText.text = (move != null) ? move.speedChangeUser.ToString("+#;-#;0") : "-";
+            speedChangeUserText.text = (move != null) ? move.speedChangeUser.ToString(changeFormat) : "-";
             speedChanceUserText.text = (move != null) ? move.speedChangeChanceUser.ToString(decPoints) : "-";
             
-            speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString("+#;-#;0") : "-";
+            speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString(changeFormat) : "-";
             speedChanceTargetText.text = (move != null) ? move.speedChangeChanceTarget.ToString(decPoints) : "-";
 
             // Accuracy (Change)
-            accuracyChangeUserText.text = (move != null) ? move.accuracyChangeUser.ToString("+#;-#;0") : "-";
+            accuracyChangeUserText.text = (move != null) ? move.accuracyChangeUser.ToString(changeFormat) : "-";
             accuracyChanceUserText.text = (move != null) ? move.accuracyChangeChanceUser.ToString(decPoints) : "-";
 
-            accuracyChangeTargetText.text = (move != null) ? move.accuracyChangeTarget.ToString("+#;-#;0") : "-";
+            accuracyChangeTargetText.text = (move != null) ? move.accuracyChangeTarget.ToString(changeFormat) : "-";
             accuracyChanceTargetText.text = (move != null) ? move.accuracyChangeChanceTarget.ToString(decPoints) : "-";
 
             // Critical, Burn, and Paralysis

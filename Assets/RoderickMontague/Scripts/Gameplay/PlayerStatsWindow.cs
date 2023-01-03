@@ -288,18 +288,21 @@ namespace RM_BBTS
             // Description
             moveDescriptionText.text = gameManager.DescriptionString + ": " + move.description.ToString();
 
-            // TODO: maybe only read the description if in the right view?
-
-            // If the text-to-speech is enabled, and the SDK has been initialized.. 
-            if(GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
+            // Only reads the description if the move info object is the one that's open.
+            if(moveInfoObject.activeSelf)
             {
-                // Speak key has been set.
-                if (move.descSpeakKey != "")
+                // If the text-to-speech is enabled, and the SDK has been initialized.. 
+                if (GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
                 {
-                    // Voice the move description.
-                    LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
+                    // Speak key has been set.
+                    if (move.descSpeakKey != "")
+                    {
+                        // Voice the move description.
+                        LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
+                    }
                 }
             }
+            
 
             // Highlights the move.
             moveCompare.HighlightMove(moveNumber);
