@@ -289,7 +289,7 @@ namespace RM_BBTS
                     data.maxHealth = 20;
                     data.health = data.maxHealth;
 
-                    data.attack = 16;
+                    data.attack = 12;
                     data.defense = 12;
                     data.speed = 28;
 
