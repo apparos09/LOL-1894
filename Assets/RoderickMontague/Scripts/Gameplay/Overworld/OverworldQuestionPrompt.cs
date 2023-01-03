@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Namespace.
 namespace RM_BBTS
 {
-    // The system for posing questions in the overworld.
-    public class OverworldQuestionSystem : MonoBehaviour
+    // A question prompt object.
+    public class OverworldQuestionPrompt : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()

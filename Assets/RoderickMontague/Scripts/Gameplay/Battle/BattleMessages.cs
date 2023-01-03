@@ -17,6 +17,7 @@ namespace RM_BBTS
         // The language definitions.
         JSONNode defs = null;
 
+        // Constructor
         private BattleMessages()
         {
         }
@@ -42,7 +43,7 @@ namespace RM_BBTS
         //     
         // }
 
-        // Returns the instance of the game settings.
+        // Returns the instance of the class.
         public static BattleMessages Instance
         {
             get
