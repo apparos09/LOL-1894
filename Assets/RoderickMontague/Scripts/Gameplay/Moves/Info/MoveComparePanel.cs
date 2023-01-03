@@ -94,7 +94,7 @@ namespace RM_BBTS
             // Standard Info
             rankText.text = (move != null) ? move.Rank.ToString() : "-";
             powerText.text = (move != null) ? move.GetPowerAsString() : "-";
-            accuracyText.text = (move != null) ? move.GetAccuracyAsString() : "-";
+            accuracyText.text = (move != null) ? move.GetAccuracyAsString() : "-"; // Stat
             energyText.text = (move != null) ? move.GetEnergyUsageAsString(): "-";
 
             // Stat Change Info
@@ -118,6 +118,13 @@ namespace RM_BBTS
             
             speedChangeTargetText.text = (move != null) ? move.speedChangeTarget.ToString("+#;-#;0") : "-";
             speedChanceTargetText.text = (move != null) ? move.speedChangeChanceTarget.ToString(decPoints) : "-";
+
+            // Accuracy (Change)
+            accuracyChangeUserText.text = (move != null) ? move.accuracyChangeUser.ToString("+#;-#;0") : "-";
+            accuracyChanceUserText.text = (move != null) ? move.accuracyChangeChanceUser.ToString(decPoints) : "-";
+
+            accuracyChangeTargetText.text = (move != null) ? move.accuracyChangeTarget.ToString("+#;-#;0") : "-";
+            accuracyChanceTargetText.text = (move != null) ? move.accuracyChangeChanceTarget.ToString(decPoints) : "-";
 
             // Critical, Burn, and Paralysis
             criticalChanceText.text = (move != null) ? move.CriticalChance.ToString(decPoints) : "-";
