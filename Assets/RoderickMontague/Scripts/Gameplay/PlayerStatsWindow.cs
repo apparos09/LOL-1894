@@ -288,21 +288,31 @@ namespace RM_BBTS
             // Description
             moveDescriptionText.text = gameManager.DescriptionString + ": " + move.description.ToString();
 
-            // Only reads the description if the move info object is the one that's open.
-            if(moveInfoObject.activeSelf)
+            // If the text-to-speech is enabled, and the SDK has been initialized.. 
+            if (GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
             {
-                // If the text-to-speech is enabled, and the SDK has been initialized.. 
-                if (GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
+                // Checks which mode the menu is in.
+                // If move info is visible, then the move description is read.
+                if (moveInfoObject.activeSelf)
                 {
-                    // Speak key has been set.
+                    // Desc speak key has been set.
                     if (move.descSpeakKey != "")
                     {
                         // Voice the move description.
                         LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
                     }
                 }
+                else // If the move info object isn't visible, just read the move name.
+                {
+                    // Name speak key has been set.
+                    if (move.nameSpeakKey != "")
+                    {
+                        // Voice the move description.
+                        LOLManager.Instance.textToSpeech.SpeakText(move.nameSpeakKey);
+                    }
+                }
             }
-            
+
 
             // Highlights the move.
             moveCompare.HighlightMove(moveNumber);
