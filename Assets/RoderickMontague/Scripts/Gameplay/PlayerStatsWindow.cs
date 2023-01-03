@@ -156,9 +156,21 @@ namespace RM_BBTS
             UpdatePlayerInfo();
             SwitchToChargeMove();
 
+            // Reset the scroll bar positions.
+            moveCompare.ResetScrollBarPositions();
+
             // Default section.
             SwitchToMoveInfo();
         }
+
+        // // Called when the player stats window is disabled.
+        // private void OnDisable()
+        // {
+        //     // Reset the scroll bar positions.
+        //     moveCompareObject.gameObject.SetActive(true);
+        //     moveCompare.ResetScrollBarPositions();
+        //     SwitchToMoveInfo();
+        // }
 
         // // Toggles the visibility of the player stat window.
         // public void ToggleVisibility()
@@ -213,10 +225,9 @@ namespace RM_BBTS
             chargeButton.interactable = true;
             runButton.interactable = true;
 
-            // Default showing.
+            // Default showing for both versions (charge move).
             UpdateMoveInfo(4);
-
-            // TODO: add icon to show where the selected move.
+            moveCompare.HighlightMove(4);
         }
 
         // Updates the move info.
@@ -277,20 +288,34 @@ namespace RM_BBTS
             // Description
             moveDescriptionText.text = gameManager.DescriptionString + ": " + move.description.ToString();
 
-            // TODO: maybe only read the description if in the right view?
-
             // If the text-to-speech is enabled, and the SDK has been initialized.. 
-            if(GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
+            if (GameSettings.Instance.UseTextToSpeech && LOLSDK.Instance.IsInitialized)
             {
-                // Speak key has been set.
-                if (move.descSpeakKey != "")
+                // Checks which mode the menu is in.
+                // If move info is visible, then the move description is read.
+                if (moveInfoObject.activeSelf)
                 {
-                    // Voice the move description.
-                    LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
+                    // Desc speak key has been set.
+                    if (move.descSpeakKey != "")
+                    {
+                        // Voice the move description.
+                        LOLManager.Instance.textToSpeech.SpeakText(move.descSpeakKey);
+                    }
+                }
+                else // If the move info object isn't visible, just read the move name.
+                {
+                    // Name speak key has been set.
+                    if (move.nameSpeakKey != "")
+                    {
+                        // Voice the move description.
+                        LOLManager.Instance.textToSpeech.SpeakText(move.nameSpeakKey);
+                    }
                 }
             }
 
-            // TODO: update other view indicator
+
+            // Highlights the move.
+            moveCompare.HighlightMove(moveNumber);
 
         }
 
