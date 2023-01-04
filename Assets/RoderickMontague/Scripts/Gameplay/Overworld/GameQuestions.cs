@@ -5,8 +5,11 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // A question to be posed in the overworld.
-    public struct OverworldQuestion
+    public struct GameQuestion
     {
+        // The question number (unused).
+        public int number;
+
         // The question.
         public string question;
 
@@ -14,7 +17,7 @@ namespace RM_BBTS
         public string[] responses;
 
         // The index of the correct response.
-        public int correctIndex;
+        public int answerIndex;
 
         // Returns the response by the index.
         public string GetResponseByIndex(int index)
@@ -82,22 +85,42 @@ namespace RM_BBTS
             }
         }
 
+        // Gets the answer to the question.
+        public string GetAnswer()
+        {
+            if (answerIndex >= 0 && answerIndex < responses.Length)
+                return responses[answerIndex];
+            else
+                return string.Empty;
+        }
+
+        // Checks of the index provided matches the answer index.
+        public bool CorrectAnswer(int index)
+        {
+            return index == answerIndex;
+        }
+
+        // Checks of the string provided matches the answer string.
+        public bool CorrectAnswer(string response)
+        {
+            return response == GetAnswer();
+        }
     }
 
     // The list of the overworld questions.
-    public class OverworldQuestions : MonoBehaviour
+    public class GameQuestions : MonoBehaviour
     {
         // The amount of overworld questions.
-        public const int QUESTION_COUNT = 5;
+        public const int QUESTION_COUNT = 6;
 
         // The maximum amount of options for a question.
         public const int QUESTION_OPTIONS_MAX = 4;
 
         // the instance of the overworld questions.
-        private static OverworldQuestions instance;
+        private static GameQuestions instance;
 
         // Constructor
-        private OverworldQuestions()
+        private GameQuestions()
         {
         }
 
@@ -112,14 +135,14 @@ namespace RM_BBTS
         }
 
         // Returns the instance of the class.
-        public static OverworldQuestions Instance
+        public static GameQuestions Instance
         {
             get
             {
                 // Checks to see if the instance exists. If it doesn't, generate an object.
                 if (instance == null)
                 {
-                    instance = FindObjectOfType<OverworldQuestions>(true);
+                    instance = FindObjectOfType<GameQuestions>(true);
 
                     // Generate new instance if an existing instance was not found.
                     if (instance == null)
@@ -128,7 +151,7 @@ namespace RM_BBTS
                         GameObject go = new GameObject("(singleton) Overworld Questions");
 
                         // Adds the instance component to the new object.
-                        instance = go.AddComponent<OverworldQuestions>();
+                        instance = go.AddComponent<GameQuestions>();
                     }
 
                 }
@@ -139,10 +162,13 @@ namespace RM_BBTS
         }
 
         // Gets a question, starting from 0.
-        public OverworldQuestion GetQuestion(int number)
+        public GameQuestion GetQuestion(int number)
         {
             // The queston to be returned.
-            OverworldQuestion question = new OverworldQuestion();
+            GameQuestion question = new GameQuestion();
+
+            // The number of the question.
+            question.number = number;
 
             // Creates the list of responses.
             question.responses = new string[QUESTION_OPTIONS_MAX] 
@@ -155,12 +181,16 @@ namespace RM_BBTS
             {
                 case 0:
                 default:
+                    // Question
                     question.question = "This is a test.";
 
+                    // Responses
                     question.Response0 = "A";
                     question.Response1 = "";
                     question.Response2 = "";
                     question.Response3 = "";
+
+                    question.answerIndex = 0;
 
                     break;
                 case 1:
@@ -180,9 +210,43 @@ namespace RM_BBTS
         }
 
         // Gets a random question from the list.
-        public OverworldQuestion GetRandomQuestion()
+        public GameQuestion GetRandomQuestion(bool randomResponseOrder = false)
         {
-            return GetQuestion(Random.Range(1, QUESTION_COUNT));
+            // Gets the question (question 0 sould not be used).
+            GameQuestion question = GetQuestion(Random.Range(1, QUESTION_COUNT));
+
+            // Randomizes the response order.
+            if (randomResponseOrder)
+                RandomizeResponseOrder(ref question);
+
+            // Returns result.
+            return question;
+        }
+
+        // Randomizes the order of the responses in the question.
+        public void RandomizeResponseOrder(ref GameQuestion question)
+        {
+            // Gets the response list.
+            List<string> responseList = new List<string>(question.responses);
+            string answer = question.GetAnswer();
+
+            // The new index for the question array.
+            int newIndex = 0;
+
+            // While there are entries in the list.
+            while (responseList.Count != 0)
+            {
+                // Gets the randomization index.
+                int randIndex = Random.Range(0, responseList.Count);
+
+                // Moves the response, removes it from the list, and moves onto the next index.
+                question.responses[newIndex] = responseList[randIndex]; 
+                responseList.RemoveAt(randIndex);
+                newIndex++;
+            }
+
+            // Gets the index of the answer and replaces the answer index.
+            question.answerIndex = System.Array.IndexOf(question.responses, answer);
         }
     }
 }
