@@ -931,6 +931,18 @@ namespace RM_BBTS
                 pausedTimer = false;
         }
 
+        // Called when a question is given to the user.
+        public void OnQuestionStart()
+        {
+            mouseTouchInput.gameObject.SetActive(false);
+        }
+
+        // Called when a question has been finished.
+        public void OnQuestionEnd()
+        {
+            mouseTouchInput.gameObject.SetActive(true);
+        }
+
         // Returns the amount of completed rooms.
         public int GetRoomsCompleted()
         {

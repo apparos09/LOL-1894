@@ -16845,7 +16845,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1399017747}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17079,8 +17079,8 @@ RectTransform:
   - {fileID: 1129041252}
   - {fileID: 1576811979}
   - {fileID: 1965941143}
-  m_Father: {fileID: 1399017747}
-  m_RootOrder: 7
+  m_Father: {fileID: 1666888080}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17223,7 +17223,6 @@ RectTransform:
   - {fileID: 1411017889}
   - {fileID: 1460657621}
   - {fileID: 482384272}
-  - {fileID: 1394537498}
   - {fileID: 1374763406}
   - {fileID: 556530664}
   m_Father: {fileID: 0}
@@ -18266,6 +18265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1472320083}
   - component: {fileID: 1472320084}
+  - component: {fileID: 1472320085}
   m_Layer: 0
   m_Name: Overworld
   m_TagString: Manager
@@ -18342,10 +18342,25 @@ MonoBehaviour:
   bossDoorLockedSprite: {fileID: 4620667733755939123, guid: b5d4729fefae60e43a01632fee73cf6f, type: 3}
   doorTypes: 0000000002000000030000000400000005000000
   bossDoorType: 1
+  gameQuestion: {fileID: 1394537499}
+  questionRoundInc: 1
+  nextQuestionRound: 0
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
   doorLockedSfx: {fileID: 8300000, guid: 67dd6860510dc1147a1c0a0e00e9aaa3, type: 3}
+--- !u!114 &1472320085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472320082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0215bc7aaa4f97c4abfac16f8d123f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1486936159
 GameObject:
   m_ObjectHideFlags: 0
@@ -20365,6 +20380,7 @@ RectTransform:
   m_Children:
   - {fileID: 1708766356}
   - {fileID: 1230323521}
+  - {fileID: 1394537498}
   m_Father: {fileID: 1399017747}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

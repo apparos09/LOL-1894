@@ -102,6 +102,18 @@ namespace RM_BBTS
         // The boss door type integer.
         public int bossDoorType = 0;
 
+        [Header("Game Question")]
+        // The game question manager.
+        public GameQuestionManager gameQuestion;
+
+        // The increment for the round spacing for asking questions.
+        [Tooltip("The multiple used to determine what round to ask questions on.")]
+        public int questionRoundInc = 3;
+
+        // The next round that a question will be asked on.
+        [Tooltip("The next round the question will be asked on (roomsCompleted + 1). This is set to questionRoundInc when the overworld is initialized.")]
+        public int nextQuestionRound = 0;
+
         [Header("UI")]
         
         // The user interface.
@@ -242,6 +254,10 @@ namespace RM_BBTS
             if (usePhaseColors)
                 background.color = phase1Color;
 
+
+            // Prepares for when the question will be asked.
+            nextQuestionRound = questionRoundInc;
+
             // Updates the UI.
             UpdateUI();
 
@@ -317,12 +333,18 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
+            // Disables the question if one is being asked.
+            if (gameQuestion.QuestionIsRunning())
+                gameQuestion.DisableQuestion();
 
         }
 
         // A function to call when a tutorial ends.
         public override void OnTutorialEnd()
         {
+            // Enables the question if one is being asked.
+            if (gameQuestion.QuestionIsRunning())
+                gameQuestion.EnableQuestion();
 
         }
 
@@ -600,6 +622,14 @@ namespace RM_BBTS
                 }
             }
 
+            // Asking a question of the question round number has been reached or surpassed.
+            if(gameManager.GetCurrentRoomNumber() >= nextQuestionRound)
+            {
+                // Ask a random question, and increase the next round counter.
+                gameQuestion.AskRandomQuestion();
+                nextQuestionRound += questionRoundInc;
+            }
+
             // Update the UI for the overworld.
             UpdateUI();
 
@@ -677,13 +707,16 @@ namespace RM_BBTS
                 switch (phase)
                 {
                     case 1: // Phase 1 (Start)
-                        background.color = phase1Color;
+                        if(background.color != phase1Color)
+                            background.color = phase1Color;
                         break;
                     case 2: // Phase 2 (Middle)
-                        background.color = phase2Color;
+                        if (background.color != phase2Color)
+                            background.color = phase2Color;
                         break;
                     case 3: // Phase 3 (End)
-                        background.color = phase3Color;
+                        if (background.color != phase3Color)
+                            background.color = phase3Color;
                         break;
                     default: // White
                         background.color = Color.white;
@@ -725,32 +758,6 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
-
-            // // Original
-            // // Go through each move.
-            // for(int i = 0; i < player.moves.Length && randMoves < RAND_MOVE_COUNT; i++)
-            // {
-            //     // Move has been set.
-            //     if (player.moves[i] != null)
-            //     {
-            //         // Grabs the rank.
-            //         int rank = player.moves[i].Rank;
-            // 
-            //         // Replaces the move.
-            //         switch(rank)
-            //         {
-            //             case 1: // R1
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank1Move();
-            //                 break;
-            //             case 2: // R2
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank2Move();
-            //                 break;
-            //             case 3: // R3
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank3Move();
-            //                 break;
-            //         }
-            //     }
-            // }
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };

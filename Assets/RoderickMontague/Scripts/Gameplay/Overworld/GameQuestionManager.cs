@@ -15,7 +15,7 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-
+        // TODO: hide question when in a tutorial.
         // The object of the question window.
         public GameObject questionObject;
 
@@ -23,14 +23,21 @@ namespace RM_BBTS
         public TMP_Text titleText;
 
         [Header("Question Info")]
+
+        // Gets set to 'true' if the question is being asked.
+        private bool running = false;
+
+        // Gets set to 'true' if the question has been answered (does not specify if correct or incorrect).
+        private bool responded = false;
+
         // The question text.
         public TMP_Text questionText;
 
         // The loaded question.
         public GameQuestion currentQuestion;
 
-        // The standard game questions.
-        private GameQuestions gameQuestions;
+        // Taken out since it doesn't get initialized in time.
+        // private GameQuestions gameQuestions;
 
         
         // The button text for the four responses.
@@ -55,7 +62,7 @@ namespace RM_BBTS
         public TMP_Text response3Text;
 
         // The list of response button.
-        private Button[] responseButtons;
+        // private Button[] responseButtons;
 
         // The number of the selected response.
         private int selectedResponse = -1;
@@ -94,17 +101,16 @@ namespace RM_BBTS
         private string correctString = "[Correct]";
         private string incorrectString = "[Incorrect]";
 
+        // Awake is called when the script instance is being loaded.
+        private void Awake()
+        {
+            // Load question 0 to reset the question manager.
+            LoadQuestion(GameQuestions.Instance.GetQuestion(0));
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            gameQuestions = GameQuestions.Instance;
-
-            // Puts the responses in a list.
-            responseButtons = new Button[] { response0Button, response1Button, response2Button, response3Button };
-
-            // Load question 0 to reset the question manager.
-            LoadQuestion(gameQuestions.GetQuestion(0));
-
             // Translation.
             JSONNode defs = SharedState.LanguageDefs;
 
@@ -127,6 +133,12 @@ namespace RM_BBTS
         public int AnswerIndex
         { 
             get { return currentQuestion.answerIndex; }
+        }
+
+        // Returns 'true' if a question is being asked.
+        public bool QuestionIsRunning()
+        {
+            return running;
         }
 
         // Returns the answer for the loaded question.
@@ -162,8 +174,11 @@ namespace RM_BBTS
                 // Checks if at least one of the buttons is available.
                 bool available = false;
 
+                // Makes an array for this question.
+                Button[] responseButtons = new Button[] { response0Button, response1Button, response2Button, response3Button };
+
                 // Checks each button.
-                foreach(Button rb in responseButtons)
+                foreach (Button rb in responseButtons)
                 {
                     // If one of the buttons is active, stop the check.
                     if (rb.gameObject.activeSelf)
@@ -204,18 +219,25 @@ namespace RM_BBTS
         {
             // TODO: make sure that the same question can't be returned.
 
-            LoadQuestion(gameQuestions.GetRandomQuestion(true));
+            LoadQuestion(GameQuestions.Instance.GetRandomQuestion(true));
         }
 
         // Asks the loaded question.
         public void AskQuestion()
         {
+            // The question is running now, and no response has been given yet.
+            running = true;
+            responded = false;
+
             // Open the prompt.
             questionObject.SetActive(true);
 
             // Start the timer.
             timer = startTime;
             pausedTimer = false;
+
+            // Call to signify that a question has been asked.
+            gameManager.OnQuestionStart();
         }
 
         // Ask the new question, loading said question into the game.
@@ -302,6 +324,9 @@ namespace RM_BBTS
         // Confirms the user's inputted response.
         public void ConfirmResponse()
         {
+            // The question has been responded to.
+            responded = true;
+
             // Gets the correct response.
             bool correct = currentQuestion.CorrectAnswer(selectedResponse);
 
@@ -327,6 +352,7 @@ namespace RM_BBTS
 
             // Add to the score, and display it.
             gameManager.score += scorePlus;
+            gameManager.overworld.UpdateUI(); // Updates the UI to display the new score.
             scorePlusText.text = (scorePlus > 0) ? scorePlus.ToString("#+;#-;0") : "-";
 
             // Response locked in.
@@ -339,8 +365,53 @@ namespace RM_BBTS
         // End the question.
         public void FinishQuestion()
         {
+            // The question is no longer running, and thus no response has been given.
+            running = false;
+            responded = false;
+
             // Turn off the question object.
             questionObject.SetActive(!questionObject.activeSelf);
+
+            // Call to signify that a question has been ended.
+            gameManager.OnQuestionEnd();
+        }
+
+        // Disables the question (prevents all interaction from the user).
+        public void DisableQuestion()
+        {
+            // Disable the responses (some may not be visible anyway).
+            response0Button.interactable = false;
+            response1Button.interactable = false;
+            response2Button.interactable = false;
+            response3Button.interactable = false;
+
+            // Disable the lock-in options.
+            confirmButton.interactable = false;
+            finishButton.interactable = false;
+        }
+
+        // Enables the question (enables interaction from the user).
+        public void EnableQuestion()
+        {
+            // Enable the responses (some may not be visible anyway).
+            response0Button.interactable = true;
+            response1Button.interactable = true;
+            response2Button.interactable = true;
+            response3Button.interactable = true;
+
+            // Checks if the user has responded to the question.
+            if(responded)
+            {
+                // If the user responded, only the finish button should be enabled.
+                confirmButton.interactable = false;
+                finishButton.interactable = true;
+            }    
+            else
+            {
+                // If the user hasn't responded yet, only the confirm button should be enabled.
+                confirmButton.interactable = true;
+                finishButton.interactable = false;
+            }
         }
 
         // Update is called once per frame

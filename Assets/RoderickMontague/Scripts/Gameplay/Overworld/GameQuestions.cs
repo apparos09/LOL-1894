@@ -182,11 +182,11 @@ namespace RM_BBTS
                 case 0:
                 default:
                     // Question
-                    question.question = "This is a test.";
+                    question.question = "[Is this a test?]";
 
                     // Responses
-                    question.Response0 = "A";
-                    question.Response1 = "";
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
                     question.Response2 = "";
                     question.Response3 = "";
 
@@ -194,14 +194,69 @@ namespace RM_BBTS
 
                     break;
                 case 1:
+                    // Question
+                    question.question = "[Is this a test?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    question.answerIndex = 0;
+
                     break;
                 case 2:
+                    // Question
+                    question.question = "[Is this a test?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    question.answerIndex = 0;
+
                     break;
                 case 3:
+                    // Question
+                    question.question = "[Is this a test?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    question.answerIndex = 0;
+
                     break;
                 case 4:
+                    // Question
+                    question.question = "[Is this a test?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    question.answerIndex = 0;
+
                     break;
                 case 5:
+                    // Question
+                    question.question = "[Is this a test?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    question.answerIndex = 0;
+
                     break;
             }
 
