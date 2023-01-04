@@ -22,6 +22,12 @@ namespace RM_BBTS
         // The title text of the question window.
         public TMP_Text titleText;
 
+        // The amount of questions that have been asked to the player.
+        public int questionsAsked = 0;
+
+        // The amount of questions answered correctly.
+        public int questionsCorrect = 0;
+
         [Header("Question Info")]
 
         // Gets set to 'true' if the question is being asked.
@@ -75,14 +81,14 @@ namespace RM_BBTS
 
         [Header("Score Plus/Time")]
         // The maximum and minimum for adding to the player's score.
-        public int maxScorePlus = 100;
+        public int maxScorePlus = 150;
         public int minScorePlus = 5;
 
         // Gets set to 'true' when the timer is paused.
         public bool pausedTimer = true;
 
         // What the timer starts at.
-        public float startTime = 12.0F;
+        public float startTime = 15.0F;
 
         // When the time falls below this value, the reward is reduced.
         public float reduceRewardTime = 10.0F;
@@ -93,9 +99,13 @@ namespace RM_BBTS
         [Header("Evaluation")]
         // The confirm button.
         public Button confirmButton;
+        // The confirm button text.
+        public TMP_Text confirmButtonText;
 
         // The next button.
         public Button finishButton;
+        // The finish button text.
+        public TMP_Text finishButtonText;
 
         // The correct and incorrect string.
         private string correctString = "[Correct]";
@@ -114,12 +124,14 @@ namespace RM_BBTS
             // Translation.
             JSONNode defs = SharedState.LanguageDefs;
 
+            // Translate text.
             if(defs != null)
             {
-                // correctString = defs["kwd_correct"];
-                // incorrectString = defs["kwd_incorrect"];
-
-
+                questionText.text = defs["kwd_questionTime"];
+                correctString = defs["kwd_correct"];
+                incorrectString = defs["kwd_incorrect"];
+                confirmButtonText.text = defs["kwd_confirm"];
+                finishButtonText.text = defs["kwd_finish"];
             }
         }
 
@@ -228,6 +240,10 @@ namespace RM_BBTS
             // The question is running now, and no response has been given yet.
             running = true;
             responded = false;
+            selectedResponse = -1;
+
+            // A question has been asked.
+            questionsAsked++;
 
             // Open the prompt.
             questionObject.SetActive(true);
@@ -321,6 +337,24 @@ namespace RM_BBTS
             SelectResponse(3);
         }
 
+        // Disables all the response buttons.
+        public void DisableAllResponseButtons()
+        {
+            response0Button.interactable = false;
+            response1Button.interactable = false;
+            response2Button.interactable = false;
+            response3Button.interactable = false;
+        }
+
+        // Enables all the response buttons.
+        public void EnableAllResponseButtons()
+        {
+            response0Button.interactable = true;
+            response1Button.interactable = true;
+            response2Button.interactable = true;
+            response3Button.interactable = true;
+        }
+
         // Confirms the user's inputted response.
         public void ConfirmResponse()
         {
@@ -339,8 +373,11 @@ namespace RM_BBTS
             // Checks if the user got the question right or not.
             if(correct)
             {
-                // Pause the timer and adjust the score plus.
+                // Pause the timer, and increment the question correct variable.
                 pausedTimer = true;
+                questionsCorrect++;
+
+                // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
                 scorePlus = Mathf.Clamp(scorePlus, minScorePlus, maxScorePlus);
             }
@@ -369,6 +406,9 @@ namespace RM_BBTS
             running = false;
             responded = false;
 
+            // Set selected response to default.
+            selectedResponse = -1;
+
             // Turn off the question object.
             questionObject.SetActive(!questionObject.activeSelf);
 
@@ -376,28 +416,32 @@ namespace RM_BBTS
             gameManager.OnQuestionEnd();
         }
 
+        // Resets the amount of asked questions.
+        public void ResetAskedQuestionCount()
+        {
+            questionsAsked = 0;
+            questionsCorrect = 0;
+        }
+
         // Disables the question (prevents all interaction from the user).
         public void DisableQuestion()
         {
             // Disable the responses (some may not be visible anyway).
-            response0Button.interactable = false;
-            response1Button.interactable = false;
-            response2Button.interactable = false;
-            response3Button.interactable = false;
+            DisableAllResponseButtons();
 
             // Disable the lock-in options.
             confirmButton.interactable = false;
             finishButton.interactable = false;
+
+            // Pause the timer.
+            pausedTimer = true;
         }
 
         // Enables the question (enables interaction from the user).
         public void EnableQuestion()
         {
             // Enable the responses (some may not be visible anyway).
-            response0Button.interactable = true;
-            response1Button.interactable = true;
-            response2Button.interactable = true;
-            response3Button.interactable = true;
+            EnableAllResponseButtons();
 
             // Checks if the user has responded to the question.
             if(responded)
@@ -409,8 +453,13 @@ namespace RM_BBTS
             else
             {
                 // If the user hasn't responded yet, only the confirm button should be enabled.
-                confirmButton.interactable = true;
+                // If the player hasn't selected a response yet, don't make the confirm button interactable.
+                confirmButton.interactable = (selectedResponse >= 0);
                 finishButton.interactable = false;
+
+                // Unpause the timer if the question is running.
+                if (running)
+                    pausedTimer = false;
             }
         }
 

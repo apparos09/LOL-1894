@@ -31,6 +31,9 @@ namespace RM_BBTS
         // The total turns text.
         public TMP_Text totalTurnsText;
 
+        // The questions correct text.
+        public TMP_Text questionsCorrectText;
+
         // The text for the final level.
         public TMP_Text finalLevelText;
 
@@ -76,10 +79,11 @@ namespace RM_BBTS
 
             // Labels for translation.
             string titleLabel = "<Results>";
-            string scoreLabel = "<Score>";
+            string scoreLabel = "<Final Score>";
             string roomsClearedLabel = "<Rooms Cleared>";
             string totalTimeLabel = "<Total Time>";
             string totalTurnsLabel = "<Total Turns>";
+            string questionsCorrectLabel = "<Questions Correct>";
             string finalLevelLabel = "<Final Level>";
             string finalMovesLabel = "<Final Moves>";
 
@@ -95,10 +99,11 @@ namespace RM_BBTS
                 titleSpeakKey = "kwd_results";
                 titleLabel = defs[titleSpeakKey];
 
-                scoreLabel = defs["kwd_score"];
+                scoreLabel = defs["kwd_finalScore"];
                 roomsClearedLabel = defs["kwd_roomsCleared"];
                 totalTimeLabel = defs["kwd_totalTime"];
                 totalTurnsLabel = defs["kwd_totalTurns"];
+                questionsCorrectLabel = defs["kwd_questionsCorrect"];
                 finalLevelLabel = defs["kwd_finalLevel"];
                 finalMovesLabel = defs["kwd_finalMoves"];
 
@@ -142,6 +147,10 @@ namespace RM_BBTS
 
                 // Total turns.
                 totalTurnsText.text = totalTurnsLabel + ": " + rd.totalTurns.ToString();
+
+                // Questions Correct Text
+                questionsCorrectText.text = questionsCorrectLabel + ": " + 
+                    rd.totalQuestionsCorrect.ToString() + "/" + rd.totalQuestionsAsked.ToString();
 
                 // Final player level
                 finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();

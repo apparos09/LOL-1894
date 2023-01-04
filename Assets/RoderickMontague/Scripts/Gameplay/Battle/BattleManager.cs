@@ -2010,7 +2010,6 @@ namespace RM_BBTS
                                     player.LevelUp();
                                 }
 
-
                                 // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
@@ -2030,6 +2029,18 @@ namespace RM_BBTS
                                     ));
 
                                 
+                            }
+
+                            // Score Page
+                            {
+                                // Calculates the battle score.
+                                float battleScore = CalculateBattleScore();
+
+                                // Adds a page for showing the battle score.
+                                textBox.pages.Add(new Page(
+                                    gameManager.ScoreString + " +" + Mathf.RoundToInt(battleScore).ToString() + "\n" +
+                                    gameManager.ScoreString + " = " + Mathf.RoundToInt(gameManager.score + battleScore).ToString()
+                                    ));
                             }
 
                             // Checks to see if a new move should be learned.

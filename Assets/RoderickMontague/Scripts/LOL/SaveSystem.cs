@@ -47,7 +47,14 @@ namespace RM_BBTS
         // Results data at the time of the save.
         public int score = 0; // Score
         public int roomsCompleted = 0; // Rooms cleared by the player.
-        
+
+        // The next question round.
+        public int nextQuestionRound = 0;
+
+        // The amount of questions asked, and the amount answered correctly.
+        public int questionsAsked = 0;
+        public int questionsCorrect = 0;
+
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.
         

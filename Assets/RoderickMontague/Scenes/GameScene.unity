@@ -6240,7 +6240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17102,6 +17102,8 @@ MonoBehaviour:
   gameManager: {fileID: 877465982}
   questionObject: {fileID: 1394537497}
   titleText: {fileID: 152234224}
+  questionsAsked: 0
+  questionsCorrect: 0
   questionText: {fileID: 1419568338}
   response0Button: {fileID: 1528021438}
   response0Fill: {fileID: 1661802517}
@@ -17117,14 +17119,16 @@ MonoBehaviour:
   response3Text: {fileID: 343103620}
   evaluationText: {fileID: 1737250088}
   scorePlusText: {fileID: 1129041253}
-  maxScorePlus: 100
+  maxScorePlus: 150
   minScorePlus: 5
   pausedTimer: 1
-  startTime: 12
+  startTime: 15
   reduceRewardTime: 10
   timer: 0
   confirmButton: {fileID: 1576811981}
+  confirmButtonText: {fileID: 0}
   finishButton: {fileID: 1965941145}
+  finishButtonText: {fileID: 0}
 --- !u!1 &1399017743
 GameObject:
   m_ObjectHideFlags: 0
@@ -18343,7 +18347,7 @@ MonoBehaviour:
   doorTypes: 0000000002000000030000000400000005000000
   bossDoorType: 1
   gameQuestion: {fileID: 1394537499}
-  questionRoundInc: 1
+  questionRoundInc: 3
   nextQuestionRound: 0
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}

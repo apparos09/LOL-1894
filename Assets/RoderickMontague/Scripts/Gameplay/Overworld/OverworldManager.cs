@@ -333,8 +333,9 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
+            // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Disables the question if one is being asked.
-            if (gameQuestion.QuestionIsRunning())
+            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
                 gameQuestion.DisableQuestion();
 
         }
@@ -342,9 +343,16 @@ namespace RM_BBTS
         // A function to call when a tutorial ends.
         public override void OnTutorialEnd()
         {
+            // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Enables the question if one is being asked.
-            if (gameQuestion.QuestionIsRunning())
+            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            {
+                // Enable the question.
                 gameQuestion.EnableQuestion();
+
+                // Makes sure that the mouse touch input is still off since there's a question.
+                gameManager.mouseTouchInput.gameObject.SetActive(false);
+            }
 
         }
 
