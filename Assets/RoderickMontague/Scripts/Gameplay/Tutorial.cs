@@ -124,6 +124,8 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_intro_05"], "trl_intro_05"));
                 pages.Add(new Page(defs["trl_intro_06"], "trl_intro_06"));
                 pages.Add(new Page(defs["trl_intro_07"], "trl_intro_07"));
+                pages.Add(new Page(defs["trl_intro_08"], "trl_intro_08"));
+                pages.Add(new Page(defs["trl_intro_09"], "trl_intro_09"));
             }
             else // Default
             {
@@ -131,9 +133,11 @@ namespace RM_BBTS
                 pages.Add(new Page("<Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…>"));
                 pages.Add(new Page("<Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.>"));
                 pages.Add(new Page("<This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.>"));
+                pages.Add(new Page("<In addition, you will occasionally be given a question after you complete a room and return to the overworld. These questions serve to test your understanding of different probability concepts.>"));
                 pages.Add(new Page("<To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.>"));
                 pages.Add(new Page("<At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.>"));
-                pages.Add(new Page("<And at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
+                pages.Add(new Page("<Your score also increases when you answer a question correctly. The faster you answer a question, the more points that are rewarded if said answer is correct.>"));
+                pages.Add(new Page("<And finally, at the top are various options that you can select, some of which may be disabled depending on the state of the game.>"));
                 pages.Add(new Page("<With all that explained, please select one of the open doors to attempt your first battle!>"));
 
             }

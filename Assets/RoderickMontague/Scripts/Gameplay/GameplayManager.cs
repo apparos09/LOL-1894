@@ -74,6 +74,9 @@ namespace RM_BBTS
         private string accuracyString = "<Accuracy>";
         private string descriptionString = "<Description>";
 
+        // Score label.
+        private string scoreString = "<Score>";
+
         [Header("Game Stats/Time")]
 
         // The total amount of turns completed.
@@ -276,6 +279,9 @@ namespace RM_BBTS
                 powerString = defs["kwd_power"];
                 accuracyString = defs["kwd_accuracy"];
                 descriptionString = defs["kwd_description"];
+
+                // The score string.
+                scoreString = defs["kwd_score"];
             }
 
             // Turns off the entrance animation if scene transitions shouldn't be used.
@@ -602,6 +608,11 @@ namespace RM_BBTS
             get { return descriptionString; }
         }
 
+        // Returns the score string.
+        public string ScoreString
+        {
+            get { return scoreString; }
+        }
 
         // Sets the game stat.
         public void SetState(gameState newState)
@@ -929,6 +940,21 @@ namespace RM_BBTS
             // The timer is paused when the tutorial text is displayed.
             if (pauseTimerWhenTutorial)
                 pausedTimer = false;
+        }
+
+        // Called when a question is given to the user.
+        public void OnQuestionStart()
+        {
+            mouseTouchInput.gameObject.SetActive(false);
+        }
+
+        // Called when a question has been finished.
+        public void OnQuestionEnd()
+        {
+            mouseTouchInput.gameObject.SetActive(true);
+            
+            // Save that the player answered a question.
+            SaveAndContinueGame();
         }
 
         // Returns the amount of completed rooms.
@@ -1263,6 +1289,10 @@ namespace RM_BBTS
             results.totalTime = gameTimer;
             results.totalTurns = turnsPassed;
 
+            // The amount of questions asked, and the amount of questions correct.
+            results.totalQuestionsAsked = overworld.gameQuestion.questionsAsked;
+            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrect;
+
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.
             results.finalLevel = player.Level - 1;
@@ -1333,6 +1363,12 @@ namespace RM_BBTS
             saveData.score = score;
             saveData.roomsCompleted = roomsCompleted;
             // saveData.roomsTotal = GetRoomsTotal();
+
+            // Question information.
+            saveData.nextQuestionRound = overworld.nextQuestionRound;
+            saveData.questionsAsked = overworld.gameQuestion.questionsAsked;
+            saveData.questionsCorrect = overworld.gameQuestion.questionsCorrect;
+
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
@@ -1507,8 +1543,13 @@ namespace RM_BBTS
             // Sets the game data values.
             score = saveData.score;
             roomsCompleted = saveData.roomsCompleted;
-            
+
             // Rooms total isn't sent over since that value shouldn't changed.
+
+            // Sets the question information.
+            overworld.nextQuestionRound = saveData.nextQuestionRound;
+            overworld.gameQuestion.questionsAsked = saveData.questionsAsked;
+            overworld.gameQuestion.questionsCorrect = saveData.questionsCorrect;
 
             // Sets the evolve waves.
             evolveWaves = saveData.evolveWaves;

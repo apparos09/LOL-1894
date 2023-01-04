@@ -34,6 +34,8 @@
       "kwd_speed": 12,
       "kwd_energy": 12,
 
+      "kwd_score": 12,
+
       "kwd_rank": 12,
       "kwd_power": 12,
       "kwd_accuracy": 12,
@@ -279,6 +281,10 @@
       "kwd_confirm": 12,
       "kwd_switch": 12,
 
+      "kwd_questionTime": 25,
+      "kwd_correct": 12,
+      "kwd_incorrect": 12,
+      "kwd_finish": 12,
 
       "trl_intro_00": 250,
       "trl_intro_01": 250,
@@ -288,6 +294,8 @@
       "trl_intro_05": 250,
       "trl_intro_06": 250,
       "trl_intro_07": 250,
+      "trl_intro_08": 250,
+      "trl_intro_09": 250,
 
       "trl_battle_00": 250,
       "trl_battle_01": 250,
@@ -356,13 +364,13 @@
       "trl_gameOver_04": 250,
 
       "kwd_results": 12,
-      "kwd_score": 24,
+      "kwd_finalScore": 24,
       "kwd_roomsCleared": 24,
+      "kwd_questionsCorrect": 24,
       "kwd_totalTime": 24,
       "kwd_totalTurns": 24,
       "kwd_finalLevel": 24,
-      "kwd_finalMoves": 24,
-      "kwd_finish": 12
+      "kwd_finalMoves": 24
 
     }
   },
@@ -399,6 +407,8 @@
     "kwd_defense": "Defense",
     "kwd_speed": "Speed",
     "kwd_energy": "Energy",
+
+    "kwd_score": "Score",
 
     "kwd_rank": "Rank",
     "kwd_power": "Power",
@@ -645,14 +655,22 @@
     "kwd_confirm": "Confirm",
     "kwd_switch": "Switch",
 
+    "kwd_questionTime": "Question Time",
+    "kwd_correct": "Correct",
+    "kwd_incorrect": "Incorrect",
+    "kwd_finish": "Finish",
+
+
     "trl_intro_00": "Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",
     "trl_intro_01": "Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…",
     "trl_intro_02": "Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.",
     "trl_intro_03": "This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.",
-    "trl_intro_04": "To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.",
-    "trl_intro_05": "At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.",
-    "trl_intro_06": "And at the top are various options that you can select, some of which may be disabled depending on the state of the game.",
-    "trl_intro_07": "With all that explained, please select one of the open doors to attempt your first battle!",
+    "trl_intro_04": "In addition, you will occasionally be given a question after you complete a room and return to the overworld. These questions serve to test your understanding of different probability concepts.",
+    "trl_intro_05": "To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.",
+    "trl_intro_06": "At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.",
+    "trl_intro_07": "Your score also increases when you answer a question correctly. The faster you answer a question, the more points that are rewarded if said answer is correct.",
+    "trl_intro_08": "And finally, at the top are various options that you can select, some of which may be disabled depending on the state of the game.",
+    "trl_intro_09": "With all that explained, please select one of the open doors to attempt your first battle!",
 
     "trl_battle_00": "Welcome to your first battle, Battle Bot!",
     "trl_battle_01": "To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.",
@@ -721,12 +739,12 @@
     "trl_gameOver_04": "That's all for now, so good luck!",
 
     "kwd_results": "Results",
-    "kwd_score": "Score",
+    "kwd_finalScore": "Final Score",
     "kwd_roomsCleared": "Rooms Cleared",
+    "kwd_questionsCorrect": "Questions Correct",
     "kwd_totalTime": "Total Time",
     "kwd_totalTurns": "Total Turns",
     "kwd_finalLevel": "Final Level",
-    "kwd_finalMoves": "Final Moves",
-    "kwd_finish": "Finish"
+    "kwd_finalMoves": "Final Moves"
   }
 }
