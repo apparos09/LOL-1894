@@ -127,7 +127,7 @@ namespace RM_BBTS
             // Translate text.
             if(defs != null)
             {
-                questionText.text = defs["kwd_questionTime"];
+                titleText.text = defs["kwd_questionTime"];
                 correctString = defs["kwd_correct"];
                 incorrectString = defs["kwd_incorrect"];
                 confirmButtonText.text = defs["kwd_confirm"];
