@@ -17126,9 +17126,9 @@ MonoBehaviour:
   reduceRewardTime: 10
   timer: 0
   confirmButton: {fileID: 1576811981}
-  confirmButtonText: {fileID: 0}
+  confirmButtonText: {fileID: 1776744855}
   finishButton: {fileID: 1965941145}
-  finishButtonText: {fileID: 0}
+  finishButtonText: {fileID: 1513999682}
 --- !u!1 &1399017743
 GameObject:
   m_ObjectHideFlags: 0
