@@ -53,7 +53,7 @@ Song Title: Action Strike
 Artist(s): Rafael Krux
 Source(s): FreePD
 Link (FreePD): https://freepd.com/scoring.php
-Link (Film Music): https://filmmusic.io/song/5300-action-strike
+Link (Filmmusic): https://filmmusic.io/song/5300-action-strike
 Note(s): the track has been edited down.
 * This does not appear to be on the composer's website (Orchestralis.net), but their account on Film Music is verified, so the information should be accurate.
 * Licensing format: https://filmmusic.io/standard-license

@@ -7,6 +7,14 @@ namespace RM_BBTS
     // A treasure entity.
     public class Treasure : BattleEntity
     {
+        [Header("Treasure")]
+        
+        // The sprite for the treasure chest when it's closed.
+        public Sprite closedSprite;
+
+        // The sprite for the treasure chest when it's open.
+        public Sprite openSprite;
+
         // Start is called before the first frame update
         new void Start()
         {

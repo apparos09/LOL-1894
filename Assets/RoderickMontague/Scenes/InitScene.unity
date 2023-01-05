@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSave:
+    valid: 0
     playerData:
       id: 0
       level: 0
@@ -656,6 +657,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -674,6 +676,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -692,6 +695,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -710,6 +714,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -728,6 +733,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -746,6 +752,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -764,6 +771,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -782,6 +790,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -800,6 +809,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -818,6 +828,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -836,6 +847,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -854,6 +866,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -872,6 +885,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -890,6 +904,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -908,6 +923,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -926,6 +942,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -944,6 +961,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -962,18 +980,30 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     clearedIntro: 0
     clearedBattle: 0
-    clearedTreasure: 0
+    clearedFirstMove: 0
+    clearedCritical: 0
+    clearedRecoil: 0
+    clearedStatChange: 0
+    clearedBurn: 0
+    clearedParalysis: 0
+    clearedFirstBattleDeath: 0
     clearedOverworld: 0
+    clearedTreasure: 0
     clearedBoss: 0
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
+    nextQuestionRound: 0
+    questionsAsked: 0
+    questionsCorrect: 0
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
   loadedData:
+    valid: 0
     playerData:
       id: 0
       level: 0
@@ -1007,6 +1037,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1025,6 +1056,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1043,6 +1075,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1061,6 +1094,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1079,6 +1113,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1097,6 +1132,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1115,6 +1151,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1133,6 +1170,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1151,6 +1189,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1169,6 +1208,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1187,6 +1227,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1205,6 +1246,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1223,6 +1265,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1241,6 +1284,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1259,6 +1303,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1277,6 +1322,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1295,6 +1341,7 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     - isBossDoor: 0
       isTreasureDoor: 0
       battleEntity:
@@ -1313,14 +1360,25 @@ MonoBehaviour:
         move3: 0
       locked: 0
       doorType: 0
+      position: {x: 0, y: 0, z: 0}
     clearedIntro: 0
     clearedBattle: 0
-    clearedTreasure: 0
+    clearedFirstMove: 0
+    clearedCritical: 0
+    clearedRecoil: 0
+    clearedStatChange: 0
+    clearedBurn: 0
+    clearedParalysis: 0
+    clearedFirstBattleDeath: 0
     clearedOverworld: 0
+    clearedTreasure: 0
     clearedBoss: 0
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
+    nextQuestionRound: 0
+    questionsAsked: 0
+    questionsCorrect: 0
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
