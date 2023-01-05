@@ -45,25 +45,33 @@ namespace RM_BBTS
         // Taken out since it doesn't get initialized in time.
         // private GameQuestions gameQuestions;
 
-        
+
         // The button text for the four responses.
         // Response 0
-        public Button response0Button;
-        public GameObject response0Fill;
-        public TMP_Text response0Text;
+        [Header("Question Info/Response 0")]
+        public Button response0Button; // Button
+        public Image response0Bubble; // Background to be recolored for correct/incorrect answer.
+        public GameObject response0Fill; // The image object used to fill the response bubble.
+        public TMP_Text response0Text; // The text tied to the response.
 
         // Response 1
+        [Header("Question Info/Response 1")]
         public Button response1Button;
+        public Image response1Bubble;
         public GameObject response1Fill;
         public TMP_Text response1Text;
 
         // Respone 2
+        [Header("Question Info/Response 2")]
         public Button response2Button;
+        public Image response2Bubble;
         public GameObject response2Fill;
         public TMP_Text response2Text;
 
         // Response 3
+        [Header("Question Info/Response 4")]
         public Button response3Button;
+        public Image response3Bubble;
         public GameObject response3Fill;
         public TMP_Text response3Text;
 
@@ -74,7 +82,17 @@ namespace RM_BBTS
         private int selectedResponse = -1;
 
         // The text for evaluation.
+        [Header("Question Info/Evaluation")]
         public TMP_Text evaluationText;
+
+        // The color for the correct answer.
+        public Color correctColor = Color.green;
+
+        // The color for an incorrect answer.
+        public Color incorrectColor = Color.red;
+
+        // The color for when no questions have been answered. 
+        public Color unansweredColor = Color.white;
 
         // The text for the score addition.
         public TMP_Text scorePlusText;
@@ -127,7 +145,7 @@ namespace RM_BBTS
             // Translate text.
             if(defs != null)
             {
-                questionText.text = defs["kwd_questionTime"];
+                titleText.text = defs["kwd_questionTime"];
                 correctString = defs["kwd_correct"];
                 incorrectString = defs["kwd_incorrect"];
                 confirmButtonText.text = defs["kwd_confirm"];
@@ -248,6 +266,9 @@ namespace RM_BBTS
             // Open the prompt.
             questionObject.SetActive(true);
 
+            // Deselect all of the responses since a question is now being asked.
+            DeselectAllResponses();
+
             // Start the timer.
             timer = startTime;
             pausedTimer = false;
@@ -275,9 +296,16 @@ namespace RM_BBTS
         {
             // Turn off the other responses.
             response0Fill.SetActive(false);
+            response0Bubble.color = unansweredColor;
+
             response1Fill.SetActive(false);
+            response1Bubble.color = unansweredColor;
+
             response2Fill.SetActive(false);
+            response2Bubble.color = unansweredColor;
+
             response3Fill.SetActive(false);
+            response3Bubble.color = unansweredColor;
         }
 
         // Selects a response.
@@ -387,6 +415,22 @@ namespace RM_BBTS
                 scorePlus = 0;
             }
 
+            {
+                // Makes an array for recoloring the bubbles.
+                Image[] responseButtonBubbles = new Image[] 
+                { response0Bubble, response1Bubble, response2Bubble, response3Bubble };
+
+                // Checks each button.
+                for(int i = 0; i < responseButtonBubbles.Length; i++)
+                {
+                    // Grabs the response button bubble.
+                    Image rbb = responseButtonBubbles[i];
+
+                    // Change the bubble colours.
+                    rbb.color = (currentQuestion.CorrectAnswer(i)) ? correctColor : incorrectColor;
+                }
+            }            
+
             // Add to the score, and display it.
             gameManager.score += scorePlus;
             gameManager.overworld.UpdateUI(); // Updates the UI to display the new score.
@@ -408,6 +452,9 @@ namespace RM_BBTS
 
             // Set selected response to default.
             selectedResponse = -1;
+
+            // Deselect all the responses just to be safe.
+            DeselectAllResponses();
 
             // Turn off the question object.
             questionObject.SetActive(!questionObject.activeSelf);

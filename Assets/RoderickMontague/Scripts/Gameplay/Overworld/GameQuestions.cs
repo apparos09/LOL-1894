@@ -283,13 +283,15 @@ namespace RM_BBTS
         {
             // Gets the response list.
             List<string> responseList = new List<string>(question.responses);
+
+            // Grabs the answer string.
             string answer = question.GetAnswer();
 
             // The new index for the question array.
             int newIndex = 0;
 
             // While there are entries in the list.
-            while (responseList.Count != 0)
+            while (responseList.Count != 0 && newIndex < question.responses.Length)
             {
                 // Gets the randomization index.
                 int randIndex = Random.Range(0, responseList.Count);
@@ -300,8 +302,36 @@ namespace RM_BBTS
                 newIndex++;
             }
 
-            // Gets the index of the answer and replaces the answer index.
-            question.answerIndex = System.Array.IndexOf(question.responses, answer);
+            // Make sure the empty string responses are all at the back of the array.
+            {
+                // Copies the new question order into the original response list object.
+                responseList = new List<string>(question.responses);
+
+                // Removes empty strings from the response list.
+                while (responseList.Contains(string.Empty))
+                    responseList.Remove(string.Empty);
+
+                // While the local response list is not equal to the question's response count...
+                // Add empty strings so that the counts both match.
+                while (responseList.Count < question.responses.Length)
+                    responseList.Add(string.Empty);
+
+                // Copies the response list content into the question response array.
+                for (int i = 0; i < question.responses.Length && i < responseList.Count; i++)
+                    question.responses[i] = responseList[i];
+            }
+
+            // Makes sure the answer index is set properly with the list changes.
+            for (int i = 0; i < question.responses.Length; i++)
+            {
+                // If the new answer index has been found, repalce the answer index saved to the response.
+                // Also, break the loop since the rest of the spots don't need to be checked.
+                if (question.responses[i] == answer)
+                {
+                    question.answerIndex = i;
+                    break;
+                }
+            }
         }
     }
 }
