@@ -28,6 +28,7 @@ Ross Bugden (https://soundcloud.com/rossbugden)
 Licensed under Creative Commons: By Attribution 4.0 International
 https://creativecommons.org/licenses/by/4.0/
 
+
 == Battle / Treasure (BGM) ==
 Song Title: Goodnightmare
 Artist: Kevin MacLeod
@@ -46,6 +47,24 @@ Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0
 http://creativecommons.org/licenses/by/3.0/
 
+
+== Question (BGM) ==
+Song Title: Action Strike
+Artist(s): Rafael Krux
+Source(s): FreePD
+Link (FreePD): https://freepd.com/scoring.php
+Link (Film Music): https://filmmusic.io/song/5300-action-strike
+Note(s): the track has been edited down.
+* This does not appear to be on the composer's website (Orchestralis.net), but their account on Film Music is verified, so the information should be accurate.
+* Licensing format: https://filmmusic.io/standard-license
+
+=== Copyright ===
+"ACTION STRIKE"
+Composed by Rafael Krux, Filmmusic.io
+Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
+
+
 == Boss (BGM) ==
 Song Title: Welcome to Chaos
 Artist(s): Ross Bugden
@@ -63,6 +82,7 @@ Ross Bugden (https://soundcloud.com/rossbugden)
 Licensed under Creative Commons: By Attribution 4.0 International
 https://creativecommons.org/licenses/by/4.0/
 
+
 == Battle Won (Jingle) ==
 Song Title: Heroic Adventure
 Artist(s): Rafael Krux
@@ -79,6 +99,7 @@ Composed by Rafael Krux, Orchestralis.net
 Creative Commons Attribution 4.0 International License
 https://creativecommons.org/licenses/by/4.0/
 
+
 == Battle Lost (Jingle) ==
 Song Title: Stratosphere
 Artist(s): Kevin MacLeod
@@ -94,12 +115,14 @@ Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0
 http://creativecommons.org/licenses/by/3.0/
 
+
 == Button Press (SFX) ==
 Song Title: Button 3
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note(s): confirmed to be copyright free by GameSounds.xyz.
+
 
 == Door Locked (SFX) ==
 Song Title: Door Knock 1
@@ -108,12 +131,14 @@ Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Doors%20and%20Floors
 Note(s): confirmed to be copyright free by GameSounds.xyz.
 
+
 == Damage Given (SFX) ==
 Song Title: Button 4
 Artist(s): Unknown Artist
 Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note(s): confirmed to be copyright free by GameSounds.xyz.
+
 
 == Damage Taken (SFX) ==
 Song Title: Button 4
@@ -122,6 +147,7 @@ Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note(s): confirmed to be copyright free by GameSounds.xyz.
 
+
 == Move Effect (SFX) ==
 Song Title: Button 1
 Artist(s): Unknown Artist
@@ -129,8 +155,11 @@ Source(s): GameSounds.xyz
 Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
 Note(s): confirmed to be copyright free by GameSounds.xyz.
 
+
 == Burn Effect (SFX) ==
 Original creation for the game by sole developer.
 
+
 == Paralysis Effect (SFX) ==
 Original creation for the game by sole developer.
+
