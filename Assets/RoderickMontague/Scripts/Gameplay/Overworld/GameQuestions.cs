@@ -14,6 +14,9 @@ namespace RM_BBTS
         // The question.
         public string question;
 
+        // The speak key for the question.
+        public string questionSpeakKey;
+
         // The responses for the question.
         public string[] responses;
 
@@ -182,8 +185,12 @@ namespace RM_BBTS
                 string.Empty, string.Empty, string.Empty, string.Empty
             };
 
+            // Sets the speak key to be empty.
+            // TODO: add speak key for questions.
+            question.questionSpeakKey = string.Empty;
+
             // Checks the question number.
-            switch(number)
+            switch (number)
             {
                 case 0:
                 default:

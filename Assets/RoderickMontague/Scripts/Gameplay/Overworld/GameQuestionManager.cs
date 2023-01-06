@@ -130,8 +130,13 @@ namespace RM_BBTS
         public TMP_Text finishButtonText;
 
         // The correct and incorrect string.
+        // Correct
         private string correctString = "[Correct]";
+        private string correctKey = "kwd_correct";
+
+        // Incorrect
         private string incorrectString = "[Incorrect]";
+        private string incorrectKey = "kwd_incorrect";
 
         // Awake is called when the script instance is being loaded.
         private void Awake()
@@ -150,8 +155,8 @@ namespace RM_BBTS
             if(defs != null)
             {
                 titleText.text = defs["kwd_questionTime"];
-                correctString = defs["kwd_correct"];
-                incorrectString = defs["kwd_incorrect"];
+                correctString = defs[correctKey];
+                incorrectString = defs[incorrectKey];
                 confirmButtonText.text = defs["kwd_confirm"];
                 finishButtonText.text = defs["kwd_finish"];
             }
@@ -277,8 +282,9 @@ namespace RM_BBTS
         // Clears the question.
         public void ClearQuestion()
         {
-            // Clears out the question.
+            // Clears out the question and its speak key.s
             currentQuestion.question = string.Empty;
+            currentQuestion.questionSpeakKey = string.Empty;
 
             // Clears out the responses.
             for(int i = 0; i < currentQuestion.responses.Length; i++)
@@ -319,12 +325,14 @@ namespace RM_BBTS
             // Call to signify that a question has been asked.
             gameManager.OnQuestionStart();
 
-            // // If the LOLSDK is initialized.
-            // if(LOLSDK.Instance.IsInitialized)
-            // {
-            //     if(GameSettings.Instance.UseTextToSpeech)
-            //         LOLManager.Instance.textToSpeech.SpeakText
-            // }
+            // Reads out the question.
+            // If the LOLSDK is initialized.
+            if(LOLSDK.Instance.IsInitialized)
+            {
+                // Use the text-to-speech, and the speak key is set.
+                if (GameSettings.Instance.UseTextToSpeech && currentQuestion.questionSpeakKey != string.Empty)
+                    LOLManager.Instance.textToSpeech.SpeakText(currentQuestion.questionSpeakKey);
+            }
         }
 
         // Ask the new question, loading said question into the game.
@@ -472,6 +480,19 @@ namespace RM_BBTS
                 if (playAudio)
                     gameManager.overworld.PlayQuestionIncorrectSfx();
             }
+
+            // Reads out evaluation response.
+            // If the LOLSDK is initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Use the text-to-speech, and the speak keys are set.
+                // Checks both keys at the same time. There'd be no point in speaking one without the other being available.
+                if (GameSettings.Instance.UseTextToSpeech && correctKey != string.Empty && incorrectKey != string.Empty)
+                {
+                    LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                }
+            }
+
 
             {
                 // Makes an array for recoloring the bubbles.
