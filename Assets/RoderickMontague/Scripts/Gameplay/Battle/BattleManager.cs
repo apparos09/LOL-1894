@@ -440,6 +440,10 @@ namespace RM_BBTS
 
                 // Show treasure prompt.
                 treasurePrompt.gameObject.SetActive(true);
+
+                // Replace the opponent sprite with the closed treasure chest sprite.
+                if(treasureBase.closedSprite != null)
+                    opponentSprite.sprite = treasureBase.closedSprite;
             }
             else
             {
@@ -1224,6 +1228,10 @@ namespace RM_BBTS
 
             // Counts this as a turn to avoid tutorial trigger issues.
             turnsTaken++;
+
+            // Replaces the oponnent sprite with the treasure open sprite.
+            if (treasureBase.openSprite)
+                opponent.sprite = treasureBase.openSprite;
         }
 
         // Call this function to leave the treasure.
@@ -1471,15 +1479,15 @@ namespace RM_BBTS
             {
                 default:
                 case 1: // Normal Speed
-                    audioManager.PlayBgm(battleBgm, 1.0F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.0F);
                     break;
 
                 case 2: // Faster
-                    audioManager.PlayBgm(battleBgm, 1.2F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.2F);
                     break;
 
                 case 3: // Faster
-                    audioManager.PlayBgm(battleBgm, 1.4F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.4F);
                     break;
             }
         }
@@ -1488,7 +1496,7 @@ namespace RM_BBTS
         public void PlayTreasureBgm()
         {
             // Slower version of the battle theme.
-            gameManager.audioManager.PlayBgm(battleBgm, 0.8F);
+            gameManager.audioManager.PlayBackgroundMusic(battleBgm, 0.8F);
         }
 
         // Plays the battle - boss bgm.
@@ -1501,7 +1509,7 @@ namespace RM_BBTS
         public void PlayBattleResultsBgm()
         {
             // Reuses the overworld BGM at plays it at a lower pitch.
-            gameManager.audioManager.PlayBgm(
+            gameManager.audioManager.PlayBackgroundMusic(
                 gameManager.overworld.overworldBgm,
                 0.8F);
         }

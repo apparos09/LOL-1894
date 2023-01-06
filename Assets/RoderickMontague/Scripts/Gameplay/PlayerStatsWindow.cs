@@ -156,8 +156,19 @@ namespace RM_BBTS
             UpdatePlayerInfo();
             SwitchToChargeMove();
 
-            // Reset the scroll bar positions.
+
+            // Checks if the move compare object is inactive.
+            bool makeInactive = !moveCompareObject.activeSelf;
+
+            // Turns the move compare object on to make sure the changes happen.
+            moveCompareObject.SetActive(true);
+
+            // Reset the scroll bar positions for the move compare object.
             moveCompare.ResetScrollBarPositions();
+
+            // If the object should be made inactive again.
+            if (makeInactive)
+                moveCompareObject.SetActive(false);
 
             // Default section.
             SwitchToMoveInfo();

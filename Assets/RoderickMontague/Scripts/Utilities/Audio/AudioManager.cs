@@ -55,7 +55,7 @@ namespace RM_BBTS
         }
 
         // Plays the BGM and changes the pitch.
-        public void PlayBgm(AudioClip clip, float pitch)
+        public void PlayBackgroundMusic(AudioClip clip, float pitch)
         {
             // Changes the pitch.
             bgmSource.pitch = pitch;
@@ -73,6 +73,7 @@ namespace RM_BBTS
         {
             sfxSource.PlayOneShot(clip);
         }
+
 
         // Plays a jingle.
         public void PlayJingle(AudioClip clip, bool resetPitch, float extraWaitTime = 0.0F)
@@ -152,6 +153,7 @@ namespace RM_BBTS
             if (jngSource != null)
                 jngSource.Stop();
         }
+
 
         // Update is called once per frame
         void Update()

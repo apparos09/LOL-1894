@@ -1,3 +1,4 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,14 +111,16 @@ namespace RM_BBTS
     // The list of the overworld questions.
     public class GameQuestions : MonoBehaviour
     {
+        // the instance of the overworld questions.
+        private static GameQuestions instance;
+
         // The amount of overworld questions.
         public const int QUESTION_COUNT = 6;
 
         // The maximum amount of options for a question.
         public const int QUESTION_OPTIONS_MAX = 4;
 
-        // the instance of the overworld questions.
-        private static GameQuestions instance;
+        
 
         // Constructor
         private GameQuestions()
@@ -164,6 +167,9 @@ namespace RM_BBTS
         // Gets a question, starting from 0.
         public GameQuestion GetQuestion(int number)
         {
+            // Finds the language defs.
+            JSONNode defs = SharedState.LanguageDefs;
+
             // The queston to be returned.
             GameQuestion question = new GameQuestion();
 
@@ -182,11 +188,11 @@ namespace RM_BBTS
                 case 0:
                 default:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "Is this a test?";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
+                    question.Response0 = "Yes";
+                    question.Response1 = "No";
                     question.Response2 = "";
                     question.Response3 = "";
 
@@ -195,67 +201,82 @@ namespace RM_BBTS
                     break;
                 case 1:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "[When two battlers move have the same speed, the turn order is evenly random. If the player has the same speed as the opponent, what is the chance that the player goes first?]";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
-                    question.Response2 = "";
-                    question.Response3 = "";
+                    question.Response0 = "0.25";
+                    question.Response1 = "0.50";
+                    question.Response2 = "0.75";
+                    question.Response3 = "1.00";
 
-                    question.answerIndex = 0;
+                    question.answerIndex = 1;
 
                     break;
                 case 2:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "[If a move does not mention the ability to burn the opponent, what is the burn chance of said move?]";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
-                    question.Response2 = "";
-                    question.Response3 = "";
+                    question.Response0 = "0.00";
+                    question.Response1 = "0.25";
+                    question.Response2 = "0.50";
+                    question.Response3 = "0.75";
 
                     question.answerIndex = 0;
 
                     break;
                 case 3:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "[If a move does not mention the ability to paralyze the opponent, what is the paralysis chance of said move?]";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
-                    question.Response2 = "";
-                    question.Response3 = "";
+                    question.Response0 = "0.75";
+                    question.Response1 = "0.50";
+                    question.Response2 = "0.25";
+                    question.Response3 = "0.00";
 
-                    question.answerIndex = 0;
+                    question.answerIndex = 3;
 
                     break;
                 case 4:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B.]";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
-                    question.Response2 = "";
-                    question.Response3 = "";
+                    question.Response0 = "[Move A is stronger than Move B, but it less accurate.]";
+                    question.Response1 = "[Move A is stronger than Move B, and it is more accurate.]";
+                    question.Response2 = "[Move A is weaker than Move B, and it is less accurate.]";
+                    question.Response3 = "[Move A is weaker than Move B, but it is more accurate.]";
 
-                    question.answerIndex = 0;
+                    question.answerIndex = 3;
 
                     break;
+                
                 case 5:
                     // Question
-                    question.question = "[Is this a test?]";
+                    question.question = "[The opponent has 65% of their health, and 3 of their 4 standard moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?]";
 
                     // Responses
-                    question.Response0 = "[Yes]";
-                    question.Response1 = "[No]";
-                    question.Response2 = "";
-                    question.Response3 = "";
+                    question.Response0 = "0.20";
+                    question.Response1 = "0.60";
+                    question.Response2 = "0.75";
+                    question.Response3 = "1.00";
 
-                    question.answerIndex = 0;
+                    question.answerIndex = 2;
+
+                    break;
+
+                case 6:
+                    // Question
+                    question.question = "[The player uses a move that raises their accuracy by 5%. Which of the following statements is true?]";
+
+                    // Responses
+                    question.Response0 = "The player will move faster than they did before.";
+                    question.Response1 = "The player’s attacks will do more damage.";
+                    question.Response2 = "The player’s moves are more likely to hit their target.";
+                    question.Response3 = "The opponent’s moves will do less damage to the player.";
+
+                    question.answerIndex = 2;
 
                     break;
             }
@@ -272,14 +293,14 @@ namespace RM_BBTS
 
             // Randomizes the response order.
             if (randomResponseOrder)
-                RandomizeResponseOrder(ref question);
+                question = RandomizeResponseOrder(question);
 
             // Returns result.
             return question;
         }
 
         // Randomizes the order of the responses in the question.
-        public void RandomizeResponseOrder(ref GameQuestion question)
+        public GameQuestion RandomizeResponseOrder(GameQuestion question)
         {
             // Gets the response list.
             List<string> responseList = new List<string>(question.responses);
@@ -332,6 +353,8 @@ namespace RM_BBTS
                     break;
                 }
             }
+
+            return question;
         }
     }
 }
