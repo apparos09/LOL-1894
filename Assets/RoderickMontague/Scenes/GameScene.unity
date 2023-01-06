@@ -856,7 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entitySprites:
   - {fileID: 21300000, guid: 782c2d4f008187a4d815cdb865ea4ca6, type: 3}
-  - {fileID: 21300000, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  - {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
   - {fileID: 21300000, guid: 98e84e4dbeac05040af5bacb5a3ea894, type: 3}
   - {fileID: 21300000, guid: 037371909e2c0264e9c93c2559065483, type: 3}
   - {fileID: 21300000, guid: 89764e6dfcf6cf044ac3fbabf05ea651, type: 3}
@@ -3399,6 +3399,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -15691,6 +15695,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -17126,6 +17134,7 @@ MonoBehaviour:
   titleText: {fileID: 152234224}
   questionsAsked: 0
   questionsCorrect: 0
+  playAudio: 1
   questionText: {fileID: 1419568338}
   response0Button: {fileID: 1528021438}
   response0Bubble: {fileID: 1890312842512477819}
@@ -17148,11 +17157,11 @@ MonoBehaviour:
   incorrectColor: {r: 1, g: 0.4392157, b: 0.4392157, a: 1}
   unansweredColor: {r: 1, g: 1, b: 1, a: 1}
   scorePlusText: {fileID: 1129041253}
-  maxScorePlus: 150
+  maxScorePlus: 300
   minScorePlus: 5
   pausedTimer: 1
-  startTime: 15
-  reduceRewardTime: 10
+  startTime: 30
+  reduceRewardTime: 20
   timer: 0
   confirmButton: {fileID: 1576811981}
   confirmButtonText: {fileID: 1776744855}
@@ -18381,7 +18390,10 @@ MonoBehaviour:
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
+  questionBgm: {fileID: 8300000, guid: bdcd51667f8ac254fa3b59895293e9fd, type: 3}
   doorLockedSfx: {fileID: 8300000, guid: 67dd6860510dc1147a1c0a0e00e9aaa3, type: 3}
+  questionCorrectSfx: {fileID: 8300000, guid: bc4e420bd61924a42af022ce74353fcc, type: 3}
+  questionIncorrectSfx: {fileID: 8300000, guid: 38cb43ee1e311064b911685411771593, type: 3}
 --- !u!114 &1472320085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22923,6 +22935,8 @@ MonoBehaviour:
   statSpecial: 0
   burned: 0
   paralyzed: 0
+  closedSprite: {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  openSprite: {fileID: 8200721904344378434, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
 --- !u!4 &1932905572
 Transform:
   m_ObjectHideFlags: 0
@@ -24374,6 +24388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -25486,6 +25504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

@@ -80,6 +80,24 @@ namespace RM_BBTS
 
             audioCredits.Add(credit);
 
+            // Question (BGM)
+            credit = new AudioCredit();
+            credit.song = "Action Strike";
+            credit.artist = "Rafael Krux";
+            credit.collection = "Scoring (Percussion/Underscoring)";
+            credit.source = "FreePD, Filmmusic.io";
+            credit.link1 = "https://freepd.com/scoring.php";
+            credit.link2 = "https://filmmusic.io/song/5300-action-strike";
+
+            credit.copyright =
+                "\"ACTION STRIKE\"" + "\n" +
+                "Composed by Rafael Krux, Filmmusic.io" + "\n" +
+                "Licensed under Creative Commons: By Attribution 4.0 International" + "\n" +
+                "https://creativecommons.org/licenses/by/4.0/";
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
             // Boss (BGM)
             credit = new AudioCredit();
             credit.song = "Welcome to Chaos";

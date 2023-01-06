@@ -130,8 +130,17 @@ namespace RM_BBTS
         // The bgm for the overworld.
         public AudioClip overworldBgm;
 
+        // The bgm for having a question.
+        public AudioClip questionBgm;
+
         // The sound effect for a locked door.
         public AudioClip doorLockedSfx;
+
+        // The question correct SFX.
+        public AudioClip questionCorrectSfx;
+
+        // The question incorrect SFX.
+        public AudioClip questionIncorrectSfx;
 
         // Start is called before the first frame update
         void Start()
@@ -572,19 +581,26 @@ namespace RM_BBTS
             {
                 default:
                 case 1: // Normal Speed
-                    audioManager.PlayBgm(overworldBgm, 1.0F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.0F);
                     break;
 
                 case 2: // Faster
-                    audioManager.PlayBgm(overworldBgm, 1.2F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.2F);
                     break;
 
                 case 3: // Faster
-                    audioManager.PlayBgm(overworldBgm, 1.4F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.4F);
                     break;
             }
 
 
+        }
+
+        // Plays the overworld bgm.
+        public void PlayQuestionBgm()
+        {
+            // Plays the question bgm.
+            gameManager.audioManager.PlayBackgroundMusic(questionBgm);
         }
 
         // Play the door locked SFX.
@@ -595,6 +611,18 @@ namespace RM_BBTS
 
             // Plays the door locked SFX.
             audioManager.PlaySoundEffect(doorLockedSfx);
+        }
+
+        // Plays the question correct SFX.
+        public void PlayQuestionCorrectSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(questionCorrectSfx);
+        }
+
+        // Plays the question incorrect SFX.
+        public void PlayQuestionIncorrectSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(questionIncorrectSfx);
         }
 
         // Called when returning to the overworld.

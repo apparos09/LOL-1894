@@ -73,7 +73,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 18e9c6ecc9f49f54b8503da112c08aca, type: 3}
   - {fileID: 21300000, guid: 98e84e4dbeac05040af5bacb5a3ea894, type: 3}
   - {fileID: 21300000, guid: 89764e6dfcf6cf044ac3fbabf05ea651, type: 3}
-  - {fileID: 21300000, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  - {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  - {fileID: 8200721904344378434, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
   - {fileID: 21300000, guid: 959f63cedeb045c48abe786198eced7a, type: 3}
   - {fileID: 21300000, guid: 7730a6febf905db48b777b44f2181967, type: 3}
   - {fileID: 21300000, guid: 7761ad3f67b4c0342b0c6cbbb2d42d08, type: 3}
@@ -104,7 +105,8 @@ SpriteAtlas:
   - bey_earthbot
   - bey_combatbot
   - bey_ufo2
-  - bey_treasure
+  - bey_treasure_0
+  - bey_treasure_1
   - bey_sunrock2
   - bey_comet
   - bey_airbot

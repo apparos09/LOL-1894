@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using SimpleJSON;
 using System.ComponentModel.Design.Serialization;
+using LoLSDK;
 
 // Namespace.
 namespace RM_BBTS
@@ -27,6 +28,9 @@ namespace RM_BBTS
 
         // The amount of questions answered correctly.
         public int questionsCorrect = 0;
+
+        // Plays the audio for the question manager.
+        public bool playAudio = true;
 
         [Header("Question Info")]
 
@@ -99,17 +103,17 @@ namespace RM_BBTS
 
         [Header("Score Plus/Time")]
         // The maximum and minimum for adding to the player's score.
-        public int maxScorePlus = 150;
+        public int maxScorePlus = 300;
         public int minScorePlus = 5;
 
         // Gets set to 'true' when the timer is paused.
         public bool pausedTimer = true;
 
         // What the timer starts at.
-        public float startTime = 15.0F;
+        public float startTime = 30.0F;
 
         // When the time falls below this value, the reward is reduced.
-        public float reduceRewardTime = 10.0F;
+        public float reduceRewardTime = 20.0F;
 
         // The timer for the game.
         public float timer = 0.0F;
@@ -126,8 +130,13 @@ namespace RM_BBTS
         public TMP_Text finishButtonText;
 
         // The correct and incorrect string.
+        // Correct
         private string correctString = "[Correct]";
+        private string correctKey = "kwd_correct";
+
+        // Incorrect
         private string incorrectString = "[Incorrect]";
+        private string incorrectKey = "kwd_incorrect";
 
         // Awake is called when the script instance is being loaded.
         private void Awake()
@@ -146,8 +155,8 @@ namespace RM_BBTS
             if(defs != null)
             {
                 titleText.text = defs["kwd_questionTime"];
-                correctString = defs["kwd_correct"];
-                incorrectString = defs["kwd_incorrect"];
+                correctString = defs[correctKey];
+                incorrectString = defs[incorrectKey];
                 confirmButtonText.text = defs["kwd_confirm"];
                 finishButtonText.text = defs["kwd_finish"];
             }
@@ -180,6 +189,20 @@ namespace RM_BBTS
         // Loads the question into the question manager.
         public void LoadQuestion(GameQuestion question)
         {
+            // If the question object should be made inactive when the question is loaded.
+            bool makeInactive = false;
+
+            // Note: the changes do not apply if the object is deactivated...
+            // So it must be activated first.
+            if (!questionObject.activeSelf)
+                makeInactive = true;
+
+            // Activates the object so that changes can be made.
+            questionObject.SetActive(true);
+
+            // Sets as the current question.
+            currentQuestion = question;
+
             // Sets the question.
             questionText.text = question.question;
 
@@ -242,6 +265,10 @@ namespace RM_BBTS
             // Stop the timer since no question is running yet.
             pausedTimer = true;
             timer = startTime;
+
+            // If the question object should be turned off after the changes are made, turn it off.
+            if (makeInactive)
+                questionObject.SetActive(false);
         }
 
         // Loads a random question.
@@ -252,9 +279,27 @@ namespace RM_BBTS
             LoadQuestion(GameQuestions.Instance.GetRandomQuestion(true));
         }
 
+        // Clears the question.
+        public void ClearQuestion()
+        {
+            // Clears out the question and its speak key.s
+            currentQuestion.question = string.Empty;
+            currentQuestion.questionSpeakKey = string.Empty;
+
+            // Clears out the responses.
+            for(int i = 0; i < currentQuestion.responses.Length; i++)
+                currentQuestion.responses[i] = string.Empty;
+
+            // Sets the answer index to 0.
+            currentQuestion.answerIndex = 0;
+        }
+
         // Asks the loaded question.
         public void AskQuestion()
         {
+            // Open the prompt to make sure all the changes are applied.
+            questionObject.SetActive(true);
+
             // The question is running now, and no response has been given yet.
             running = true;
             responded = false;
@@ -263,9 +308,6 @@ namespace RM_BBTS
             // A question has been asked.
             questionsAsked++;
 
-            // Open the prompt.
-            questionObject.SetActive(true);
-
             // Deselect all of the responses since a question is now being asked.
             DeselectAllResponses();
 
@@ -273,8 +315,24 @@ namespace RM_BBTS
             timer = startTime;
             pausedTimer = false;
 
+            // Plays the bgm for the game question.
+            if(playAudio)
+            {
+                // Plays the question BGM.
+                gameManager.overworld.PlayQuestionBgm();
+            }
+
             // Call to signify that a question has been asked.
             gameManager.OnQuestionStart();
+
+            // Reads out the question.
+            // If the LOLSDK is initialized.
+            if(LOLSDK.Instance.IsInitialized)
+            {
+                // Use the text-to-speech, and the speak key is set.
+                if (GameSettings.Instance.UseTextToSpeech && currentQuestion.questionSpeakKey != string.Empty)
+                    LOLManager.Instance.textToSpeech.SpeakText(currentQuestion.questionSpeakKey);
+            }
         }
 
         // Ask the new question, loading said question into the game.
@@ -408,12 +466,33 @@ namespace RM_BBTS
                 // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
                 scorePlus = Mathf.Clamp(scorePlus, minScorePlus, maxScorePlus);
+
+                // Plays the question answer correct SFX.
+                if(playAudio)
+                    gameManager.overworld.PlayQuestionCorrectSfx();
             }
             else
             {
                 // TODO: should the player lose points for getting the question wrong?
                 scorePlus = 0;
+
+                // Plays the question answer incorrect SFX.
+                if (playAudio)
+                    gameManager.overworld.PlayQuestionIncorrectSfx();
             }
+
+            // Reads out evaluation response.
+            // If the LOLSDK is initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Use the text-to-speech, and the speak keys are set.
+                // Checks both keys at the same time. There'd be no point in speaking one without the other being available.
+                if (GameSettings.Instance.UseTextToSpeech && correctKey != string.Empty && incorrectKey != string.Empty)
+                {
+                    LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                }
+            }
+
 
             {
                 // Makes an array for recoloring the bubbles.
@@ -441,6 +520,9 @@ namespace RM_BBTS
 
             // Question can now be finished/closed.
             finishButton.interactable = true;
+
+            // Plays the overworld BGM.
+            gameManager.overworld.PlayOverworldBgm();
         }
 
         // End the question.
@@ -456,8 +538,11 @@ namespace RM_BBTS
             // Deselect all the responses just to be safe.
             DeselectAllResponses();
 
+            // Clears out the question. This isn't required, but it helps indicate that no question is loaded.
+            ClearQuestion();
+
             // Turn off the question object.
-            questionObject.SetActive(!questionObject.activeSelf);
+            questionObject.SetActive(false);
 
             // Call to signify that a question has been ended.
             gameManager.OnQuestionEnd();
@@ -527,6 +612,21 @@ namespace RM_BBTS
                 if (timer == 0.0F)
                     pausedTimer = true;
 
+            }
+
+            // Plays the question BGM if it isn't currently playing.
+            // This is to address an issue where the overworld audio was still playing.
+            if(playAudio)
+            {
+                // The question BGM should stop once the player responds so that the overworld BGM can play.
+                // It also shouldn't play unless the question is running.
+                // This is wonky, but it's a workaround I had to do because of the BGM being overwritten elsewhere.
+                if(running && !responded)
+                {
+                    // Checks if the right audio clip is playing.
+                    if (gameManager.audioManager.bgmSource.clip != gameManager.overworld.questionBgm)
+                        gameManager.audioManager.PlayBackgroundMusic(gameManager.overworld.questionBgm);
+                }
             }
                 
         }
