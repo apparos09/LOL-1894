@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using SimpleJSON;
 using System.ComponentModel.Design.Serialization;
+using LoLSDK;
 
 // Namespace.
 namespace RM_BBTS
@@ -102,17 +103,17 @@ namespace RM_BBTS
 
         [Header("Score Plus/Time")]
         // The maximum and minimum for adding to the player's score.
-        public int maxScorePlus = 150;
+        public int maxScorePlus = 300;
         public int minScorePlus = 5;
 
         // Gets set to 'true' when the timer is paused.
         public bool pausedTimer = true;
 
         // What the timer starts at.
-        public float startTime = 15.0F;
+        public float startTime = 30.0F;
 
         // When the time falls below this value, the reward is reduced.
-        public float reduceRewardTime = 10.0F;
+        public float reduceRewardTime = 20.0F;
 
         // The timer for the game.
         public float timer = 0.0F;
@@ -317,6 +318,13 @@ namespace RM_BBTS
 
             // Call to signify that a question has been asked.
             gameManager.OnQuestionStart();
+
+            // // If the LOLSDK is initialized.
+            // if(LOLSDK.Instance.IsInitialized)
+            // {
+            //     if(GameSettings.Instance.UseTextToSpeech)
+            //         LOLManager.Instance.textToSpeech.SpeakText
+            // }
         }
 
         // Ask the new question, loading said question into the game.

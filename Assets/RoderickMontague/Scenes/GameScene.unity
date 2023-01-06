@@ -3399,6 +3399,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -15691,6 +15695,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -17149,11 +17157,11 @@ MonoBehaviour:
   incorrectColor: {r: 1, g: 0.4392157, b: 0.4392157, a: 1}
   unansweredColor: {r: 1, g: 1, b: 1, a: 1}
   scorePlusText: {fileID: 1129041253}
-  maxScorePlus: 150
+  maxScorePlus: 300
   minScorePlus: 5
   pausedTimer: 1
-  startTime: 15
-  reduceRewardTime: 10
+  startTime: 30
+  reduceRewardTime: 20
   timer: 0
   confirmButton: {fileID: 1576811981}
   confirmButtonText: {fileID: 1776744855}
@@ -24380,6 +24388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -25492,6 +25504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394537498}
     m_Modifications:
+    - target: {fileID: 492171519504795182, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
+      propertyPath: menuAudio
+      value: 
+      objectReference: {fileID: 877465981}
     - target: {fileID: 3301375952942201154, guid: c2a1cbb00723ea04cb06d716cbac104a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

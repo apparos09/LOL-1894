@@ -443,7 +443,10 @@ namespace RM_BBTS
 
                 // Replace the opponent sprite with the closed treasure chest sprite.
                 if(treasureBase.closedSprite != null)
-                    opponentSprite.sprite = treasureBase.closedSprite;
+                {
+                    opponent.sprite = treasureBase.closedSprite;
+                    opponentSprite.sprite = opponent.sprite;
+                }
             }
             else
             {
@@ -1230,8 +1233,13 @@ namespace RM_BBTS
             turnsTaken++;
 
             // Replaces the oponnent sprite with the treasure open sprite.
-            if (treasureBase.openSprite)
+            if (treasureBase.openSprite != null)
+            {
+                // Overwrite the sprite with the open treasure chest.
                 opponent.sprite = treasureBase.openSprite;
+                opponentSprite.sprite = opponent.sprite;
+            }
+                
         }
 
         // Call this function to leave the treasure.
@@ -1999,6 +2007,7 @@ namespace RM_BBTS
                                 tempPage.OnPageOpenedAddCallback(gameManager.UpdateUI);
 
                                 // Saves the old stats.
+                                uint oldLevel = player.Level;
                                 float oldMaxHp = player.MaxHealth;
                                 float oldAtk = player.Attack;
                                 float oldDef = player.Defense;
@@ -2021,6 +2030,7 @@ namespace RM_BBTS
                                 // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
+                                    gameManager.LevelString + " +" + (player.Level - oldLevel).ToString() + "\n" +
                                     gameManager.HealthString + " +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
                                     gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "\n" +
                                     gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   " +
