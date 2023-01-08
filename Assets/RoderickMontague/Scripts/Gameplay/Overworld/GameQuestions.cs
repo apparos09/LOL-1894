@@ -9,7 +9,8 @@ namespace RM_BBTS
     // A question to be posed in the overworld.
     public struct GameQuestion
     {
-        // The question number (unused).
+        // The question number (used to remember questions).
+        // Negative numbers are considered empty slots, and are not perserved when saving and loading the game.
         public int number;
 
         // The question.

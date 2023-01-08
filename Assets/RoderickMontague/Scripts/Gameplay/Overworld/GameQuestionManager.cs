@@ -24,10 +24,15 @@ namespace RM_BBTS
         public TMP_Text titleText;
 
         // The amount of questions that have been asked to the player.
-        public int questionsAsked = 0;
+        public int questionsAskedCount = 0;
+
+        // The list of asked questions (goes by question number).
+        // This is to help prevent the randomizer from asking the same question multiple times.
+        [Header("A list of the asked questions by question number. This helps prevent the randomizer from asking a used question.")]
+        public List<int> questionsAsked = new List<int>();
 
         // The amount of questions answered correctly.
-        public int questionsCorrect = 0;
+        public int questionsCorrectCount = 0;
 
         // Plays the audio for the question manager.
         public bool playAudio = true;
@@ -49,6 +54,8 @@ namespace RM_BBTS
         // Taken out since it doesn't get initialized in time.
         // private GameQuestions gameQuestions;
 
+        // If 'true', the response order is randomized.
+        public bool randomResponseOrder = true;
 
         // The button text for the four responses.
         // Response 0
@@ -121,8 +128,6 @@ namespace RM_BBTS
 
         // Allows for extra time to the timer when TTS is active.
         public bool addExtraTime = true;
-
-        // TODO: make the timer be more lenient if text-to-speech is enabled.
 
         // The timer for the game.
         public float timer = 0.0F;
@@ -283,9 +288,38 @@ namespace RM_BBTS
         // Loads a random question.
         public void LoadRandomQuestion()
         {
-            // TODO: make sure that the same question can't be returned.
+            // Gets given the random queston generated.
+            GameQuestion randQuestion;
 
-            LoadQuestion(GameQuestions.Instance.GetRandomQuestion(true));
+            // Amount of attempts taken to generate a new question.
+            int attempts = 0;
+
+            // Clears out the list if the question count has been reached.
+            // This doesn't mean every question has been asked, but there are few to no new questions to ask.
+            if (questionsAsked.Count >= GameQuestions.QUESTION_COUNT)
+                questionsAsked.Clear();
+
+            do
+            {
+                // Generates the random question.
+                randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+
+                // Checks to see if it's a new question.
+                if(questionsAsked.Contains(randQuestion.number)) // New
+                {
+                    // Breaks out of the loop.
+                    break;
+                }
+                else // Already got this question.
+                {
+                    attempts++;
+                }
+
+            } while (attempts <= 3);
+
+
+            // Loads the question.
+            LoadQuestion(randQuestion);
         }
 
         // Clears the question.
@@ -329,8 +363,9 @@ namespace RM_BBTS
             responded = false;
             selectedResponse = -1;
 
-            // A question has been asked.
-            questionsAsked++;
+            // A question has been asked, so add to the counter, and to the list.
+            questionsAskedCount++;
+            questionsAsked.Add(currentQuestion.number);
 
             // Deselect all of the responses since a question is now being asked.
             DeselectAllResponses();
@@ -485,7 +520,7 @@ namespace RM_BBTS
             {
                 // Pause the timer, and increment the question correct variable.
                 pausedTimer = true;
-                questionsCorrect++;
+                questionsCorrectCount++;
 
                 // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
@@ -556,6 +591,10 @@ namespace RM_BBTS
             running = false;
             responded = false;
 
+            // Clear out timer.
+            pausedTimer = true;
+            timer = 0.0F;
+
             // Set selected response to default.
             selectedResponse = -1;
 
@@ -575,8 +614,8 @@ namespace RM_BBTS
         // Resets the amount of asked questions.
         public void ResetAskedQuestionCount()
         {
-            questionsAsked = 0;
-            questionsCorrect = 0;
+            questionsAskedCount = 0;
+            questionsCorrectCount = 0;
         }
 
         // Disables the question (prevents all interaction from the user).

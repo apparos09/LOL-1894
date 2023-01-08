@@ -52,8 +52,12 @@ namespace RM_BBTS
         public int nextQuestionRound = 0;
 
         // The amount of questions asked, and the amount answered correctly.
-        public int questionsAsked = 0;
-        public int questionsCorrect = 0;
+        public int questionsAskedCount = 0;
+        public int questionsCorrectCount = 0;
+
+        // The list of asked questions.
+        // Since the player is currently asked four questions total, that is the length of this array.
+        public int[] questionsAsked = new int[4];
 
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.
