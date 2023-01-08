@@ -1,7 +1,8 @@
-using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LoLSDK;
+using SimpleJSON;
 
 namespace RM_BBTS
 {
@@ -173,6 +174,9 @@ namespace RM_BBTS
             // Finds the language defs.
             JSONNode defs = SharedState.LanguageDefs;
 
+            // If the text should be translated.
+            bool translate = LOLSDK.Instance.IsInitialized && defs != null;
+
             // The queston to be returned.
             GameQuestion question = new GameQuestion();
 
@@ -205,11 +209,23 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+
+                    // // Translates the question.
+                    // if (translate)
+                    // {
+                    //     question.question = defs["que00"];
+                    //     question.Response1 = defs["que00_res00"];
+                    //     question.Response0 = defs["que00_res01"];
+                    //     question.Response2 = defs["que00_res02"];
+                    //     question.Response3 = defs["que00_res03"];
+                    // }
+
                     break;
 
                 case 1:
                     // Question
                     question.question = "[When 2 battlers have the same speed, the turn order is evenly random. If the player has the same speed as their opponent, what is the chance of the player going first?]";
+                    question.questionSpeakKey = "que01";
 
                     // Responses
                     question.Response0 = "0.25";
@@ -220,38 +236,67 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 1;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que01"];
+                    }
+
                     break;
                 case 2:
                     // Question
-                    question.question = "[If a move does not mention the ability to burn the opponent, what is the burn chance of said move?]";
+                    question.question = "[If a move does not mention that it can burn the target, the burn chance is 0.00. What does this mean?]";
+                    question.questionSpeakKey = "que02";
 
                     // Responses
-                    question.Response0 = "0.00";
-                    question.Response1 = "0.25";
-                    question.Response2 = "0.50";
-                    question.Response3 = "0.75";
+                    question.Response0 = "[The move cannot inflict burn status on the target.]";
+                    question.Response1 = "[The move always inflicts burn status on the target.]";
+                    question.Response2 = "[The move might inflict burn status on the target.]";
+                    question.Response3 = "[The target is immune to being burned.]";
 
                     // Answer
                     question.answerIndex = 0;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que02"];
+                        question.Response0 = defs["que02_res00"];
+                        question.Response1 = defs["que02_res01"];
+                        question.Response2 = defs["que02_res02"];
+                        question.Response3 = defs["que02_res03"];
+                    }
+
                     break;
                 case 3:
                     // Question
-                    question.question = "[If a move does not mention the ability to paralyze the opponent, what is the paralysis chance of said move?]";
+                    question.question = "[If a move mentions that it can paralyze the target, the paralysis chance is greater than 0.00. If the paralysis chance is set to 1.00, what does this mean?]";
+                    question.questionSpeakKey = "que03";
 
                     // Responses
-                    question.Response0 = "0.75";
-                    question.Response1 = "0.50";
-                    question.Response2 = "0.25";
-                    question.Response3 = "0.00";
+                    question.Response0 = "[The target is immune to paralysis status.]";
+                    question.Response1 = "[The move will never inflict paralysis status.]";
+                    question.Response2 = "[The move will inflict paralysis status half of the time.]";
+                    question.Response3 = "[The move will always inflict paralysis status.]";
 
                     // Answer
                     question.answerIndex = 3;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que03"];
+                        question.Response0 = defs["que03_res00"];
+                        question.Response1 = defs["que03_res01"];
+                        question.Response2 = defs["que03_res02"];
+                        question.Response3 = defs["que03_res03"];
+                    }
                     break;
+
                 case 4:
                     // Question
                     question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B?]";
+                    question.questionSpeakKey = "que04";
 
                     // Responses
                     question.Response0 = "[Move A is stronger than Move B, but it is less accurate.]";
@@ -261,6 +306,16 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que04"];
+                        question.Response0 = defs["que04_res00"];
+                        question.Response1 = defs["que04_res01"];
+                        question.Response2 = defs["que04_res02"];
+                        question.Response3 = defs["que04_res03"];
+                    }
                     break;
                 
                 
@@ -268,6 +323,7 @@ namespace RM_BBTS
                 case 5:
                     // Question
                     question.question = "[The opponent has 65% of their health, and 3 of their 4 battle moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?]";
+                    question.questionSpeakKey = "que05";
 
                     // Responses
                     question.Response0 = "0.20";
@@ -278,11 +334,18 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 2;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que05"];
+                    }
+
                     break;
 
                 case 6:
                     // Question
                     question.question = "[The player uses a move that raises their accuracy by 2 stages. Which of the following statements is true?]";
+                    question.questionSpeakKey = "que06";
 
                     // Responses
                     question.Response0 = "[The player will move faster than they did before.]";
@@ -292,11 +355,22 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que06"];
+                        question.Response0 = defs["que06_res00"];
+                        question.Response1 = defs["que06_res01"];
+                        question.Response2 = defs["que06_res02"];
+                        question.Response3 = defs["que06_res03"];
+                    }
                     break;
 
                 case 7:
                     // Question
                     question.question = "[The player is hit by a move that lowers their accuracy by 1 stage. Which of the following statements is true?]";
+                    question.questionSpeakKey = "que07";
 
                     // Responses
                     question.Response0 = "[The player’s moves are now less likely to hit their target.]";
@@ -306,11 +380,22 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que07"];
+                        question.Response0 = defs["que07_res00"];
+                        question.Response1 = defs["que07_res01"];
+                        question.Response2 = defs["que07_res02"];
+                        question.Response3 = defs["que07_res03"];
+                    }
                     break;
 
                 case 8:
                     // Question
                     question.question = "[The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Of the opponent’s available moves, how likely is it that they will choose the charge move?]";
+                    question.questionSpeakKey = "que08";
 
                     // Responses
                     question.Response0 = "0.33";
@@ -320,6 +405,12 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que08"];
+                    }
                     break;
                 
 
@@ -327,6 +418,7 @@ namespace RM_BBTS
                 case 9:
                     // Question
                     question.question = "[Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If the user is prioritizing moves with high accuracy, should they pick Move B over Move A?]";
+                    question.questionSpeakKey = "que09";
 
                     // Responses
                     question.Response0 = "[Yes]";
@@ -336,11 +428,20 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que09"];
+                        question.Response0 = defs["kwd_yes"];
+                        question.Response1 = defs["kwd_no"];
+                    }
                     break;
 
                 case 10:
                     // Question
                     question.question = "[Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If the user is prioritizing moves with high accuracy, which move would they pick?]";
+                    question.questionSpeakKey = "que10";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -350,11 +451,20 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que10"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                    }
                     break;
 
                 case 11:
                     // Question
                     question.question = "[Move A has a 0.40 chance of burning the target, Move B has a 0.25 chance of burning the target, and Move C always burns the target. If the user wants to burn their opponent, which move has the best chance of doing so?]";
+                    question.questionSpeakKey = "que11";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -364,11 +474,21 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que11"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                    }
                     break;
 
                 case 12:
                     // Question
                     question.question = "[Move A has a 0.30 chance of burning the target, Move B has a 0.10 chance of burning the target, and Move C has a 0.60 chance of burning the target. If the user wants to burn their opponent, which move has the worst chance of doing so?]";
+                    question.questionSpeakKey = "que12";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -378,6 +498,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que12"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                    }
                     break;
 
 
@@ -385,6 +514,7 @@ namespace RM_BBTS
                 case 13:
                     // Question
                     question.question = "[Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. Which move has the lowest chance of paralyzing the target if it hits?]";
+                    question.questionSpeakKey = "que13";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -394,11 +524,21 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que13"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                    }
                     break;
 
                 case 14:
                     // Question
                     question.question = "[The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?]";
+                    question.questionSpeakKey = "que14";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -408,11 +548,22 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que14"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                        question.Response3 = defs["que14_res03"];
+                    }
                     break;
 
                 case 15:
                     // Question
                     question.question = "[Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?]";
+                    question.questionSpeakKey = "que15";
 
                     // Responses
                     question.Response0 = "[Move A only]";
@@ -422,11 +573,22 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que15"];
+                        question.Response1 = defs["que15_res00"];
+                        question.Response0 = defs["que15_res01"];
+                        question.Response2 = defs["que15_res02"];
+                        question.Response3 = defs["que15_res03"];
+                    }
                     break;
 
                 case 16:
                     // Question
                     question.question = "[Move A has a 0.25 chance of burning the opponent, Move B has a 0.30 chance of paralyzing the opponent, and Move C has a 0.50 chance of getting critical damage. Which event is the most likely to happen?]";
+                    question.questionSpeakKey = "que16";
 
                     // Responses
                     question.Response0 = "[Move A burning the target.]";
@@ -436,6 +598,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que16"];
+                        question.Response1 = defs["que16_res00"];
+                        question.Response0 = defs["que16_res01"];
+                        question.Response2 = defs["que16_res02"];
+                    }
                     break;
 
 
@@ -443,6 +614,7 @@ namespace RM_BBTS
                 case 17:
                     // Question
                     question.question = "[Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?]";
+                    question.questionSpeakKey = "que17";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -453,10 +625,21 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 0;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que17"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                        question.Response3 = defs["que17_res03"];
+                    }
                     break;
+
                 case 18:
                     // Question
                     question.question = "[The opponent has 4 moves. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?]";
+                    question.questionSpeakKey = "que18";
 
                     // Responses
                     question.Response0 = "[Move A]";
@@ -467,33 +650,65 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 1;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que18"];
+                        question.Response0 = defs["que_res_moveA"];
+                        question.Response1 = defs["que_res_moveB"];
+                        question.Response2 = defs["que_res_moveC"];
+                        question.Response3 = defs["que_res_moveD"];
+                    }
                     break;
+
                 case 19:
                     // Question
                     question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the player’s attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
+                    question.questionSpeakKey = "que19";
 
                     // Responses
                     question.Response0 = "[Move A increasing the user’s attack stat.]";
                     question.Response1 = "[Move B increasing the user’s defense stat.]";
                     question.Response2 = "[Move C increasing the user’s speed stat.]";
-                    question.Response3 = "[All events have the same chance of occurring.]";
+                    question.Response3 = "[All move effects have an equal chance of occurring.]";
 
                     // Answer
                     question.answerIndex = 1;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que19"];
+                        question.Response0 = defs["que19_res00"];
+                        question.Response1 = defs["que19_res01"];
+                        question.Response2 = defs["que19_res02"];
+                        question.Response3 = defs["que19_res03"];
+                    }
                     break;
+
                 case 20:
                     // Question
                     question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s defense cannot go any lower, which move effect has the highest chance of occurring?]";
+                    question.questionSpeakKey = "que20";
 
                     // Responses
                     question.Response0 = "[Move A raising the user’s attack.]";
                     question.Response1 = "[Move B raising the user’s defense.]";
                     question.Response2 = "[Move C raising the user’s speed.]";
-                    question.Response3 = "[All events have the same chance of occurring.]";
+                    question.Response3 = "[The events all have the same chance of occurring.]";
 
                     // Answer
                     question.answerIndex = 1;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que20"];
+                        question.Response0 = defs["que20_res00"];
+                        question.Response1 = defs["que20_res01"];
+                        question.Response2 = defs["que20_res02"];
+                        question.Response3 = defs["que20_res03"];
+                    }
                     break;
 
 
@@ -501,6 +716,7 @@ namespace RM_BBTS
                 case 21:
                     // Question
                     question.question = "[There are 10 doors remaining, and 2 of them are treasure doors. If every door has an equal chance of being chosen, what is the chance of the player choosing a treasure door?]";
+                    question.questionSpeakKey = "que21";
 
                     // Responses
                     question.Response0 = "0.20";
@@ -510,11 +726,18 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que21"];
+                    }
                     break;
 
                 case 22:
                     // Question
                     question.question = "[There are 5 doors remaining, and 1 of them is a treasure door. If every door has an equal chance of being chosen, what is the chance of a non-treasure door being chosen?]";
+                    question.questionSpeakKey = "que22";
 
                     // Responses
                     question.Response0 = "0.20";
@@ -524,11 +747,18 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que22"];
+                    }
                     break;
 
                 case 23:
                     // Question
-                    question.question = "[Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind all remaining doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?]";
+                    question.question = "[Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind 2/12 doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?]";
+                    question.questionSpeakKey = "que23";
 
                     // Responses
                     question.Response0 = "[Enemy A]";
@@ -538,11 +768,22 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que23"];
+                        question.Response0 = defs["que_res_enemyA"];
+                        question.Response1 = defs["que_res_enemyB"];
+                        question.Response2 = defs["que_res_enemyC"];
+                        question.Response3 = defs["que_res_enemyD"];
+                    }
                     break;
 
                 case 24:
                     // Question
-                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind all remaining doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?]";
+                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?]";
+                    question.questionSpeakKey = "que24";
 
                     // Responses
                     question.Response0 = "[Enemy A]";
@@ -552,8 +793,17 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
-                    break;
 
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que24"];
+                        question.Response0 = defs["que_res_enemyA"];
+                        question.Response1 = defs["que_res_enemyB"];
+                        question.Response2 = defs["que_res_enemyC"];
+                        question.Response3 = defs["que_res_enemyD"];
+                    }
+                    break;
             }
 
             // Returns the question.

@@ -115,6 +115,13 @@ namespace RM_BBTS
         // When the time falls below this value, the reward is reduced.
         public float reduceRewardTime = 60.0F;
 
+        // Adds extra time when TTS is active, as the question needs to be read.
+        // This is the extra time that's aded to the game timer.
+        public float ttsExtraTime = 60.0F;
+
+        // Allows for extra time to the timer when TTS is active.
+        public bool addExtraTime = true;
+
         // TODO: make the timer be more lenient if text-to-speech is enabled.
 
         // The timer for the game.
@@ -266,7 +273,7 @@ namespace RM_BBTS
 
             // Stop the timer since no question is running yet.
             pausedTimer = true;
-            timer = startTime;
+            ResetTimer();
 
             // If the question object should be turned off after the changes are made, turn it off.
             if (makeInactive)
@@ -296,6 +303,21 @@ namespace RM_BBTS
             currentQuestion.answerIndex = 0;
         }
 
+        // Resets the timer to its max. This does not check if the timer is paused or unpaused.
+        private void ResetTimer()
+        {
+            // Checks if extra time should be added.
+            // Extra time won't be added if TTS is not being used.
+            if(addExtraTime && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            {
+                timer = startTime + ttsExtraTime;
+            }
+            else
+            {
+                timer = startTime;
+            }
+        }
+
         // Asks the loaded question.
         public void AskQuestion()
         {
@@ -314,7 +336,7 @@ namespace RM_BBTS
             DeselectAllResponses();
 
             // Start the timer.
-            timer = startTime;
+            ResetTimer();
             pausedTimer = false;
 
             // Plays the bgm for the game question.

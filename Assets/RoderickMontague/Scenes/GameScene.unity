@@ -17162,6 +17162,8 @@ MonoBehaviour:
   pausedTimer: 1
   startTime: 80
   reduceRewardTime: 60
+  ttsExtraTime: 60
+  addExtraTime: 1
   timer: 0
   confirmButton: {fileID: 1576811981}
   confirmButtonText: {fileID: 1776744855}

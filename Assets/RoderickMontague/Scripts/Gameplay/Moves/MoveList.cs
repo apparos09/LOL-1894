@@ -240,6 +240,8 @@ namespace RM_BBTS
 
                     move.description = "<The user raises their accuracy by 1 stage.>";
 
+                    nameKey = "mve_magnify_nme";
+                    descKey = "mve_magnify_dsc";
                     break;
 
                 case moveId.heal: // Heal
