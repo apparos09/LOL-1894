@@ -118,7 +118,7 @@ namespace RM_BBTS
         private static GameQuestions instance;
 
         // The amount of overworld questions.
-        public const int QUESTION_COUNT = 6;
+        public const int QUESTION_COUNT = 25;
 
         // The maximum amount of options for a question.
         public const int QUESTION_OPTIONS_MAX = 4;
@@ -203,12 +203,13 @@ namespace RM_BBTS
                     question.Response2 = "";
                     question.Response3 = "";
 
+                    // Answer
                     question.answerIndex = 0;
-
                     break;
+
                 case 1:
                     // Question
-                    question.question = "[When two battlers move have the same speed, the turn order is evenly random. If the player has the same speed as the opponent, what is the chance that the player goes first?]";
+                    question.question = "[When 2 battlers have the same speed, the turn order is evenly random. If the player has the same speed as their opponent, what is the chance of the player going first?]";
 
                     // Responses
                     question.Response0 = "0.25";
@@ -216,6 +217,7 @@ namespace RM_BBTS
                     question.Response2 = "0.75";
                     question.Response3 = "1.00";
 
+                    // Answer
                     question.answerIndex = 1;
 
                     break;
@@ -229,6 +231,7 @@ namespace RM_BBTS
                     question.Response2 = "0.50";
                     question.Response3 = "0.75";
 
+                    // Answer
                     question.answerIndex = 0;
 
                     break;
@@ -242,26 +245,29 @@ namespace RM_BBTS
                     question.Response2 = "0.25";
                     question.Response3 = "0.00";
 
+                    // Answer
                     question.answerIndex = 3;
 
                     break;
                 case 4:
                     // Question
-                    question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B.]";
+                    question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B?]";
 
                     // Responses
-                    question.Response0 = "[Move A is stronger than Move B, but it less accurate.]";
+                    question.Response0 = "[Move A is stronger than Move B, but it is less accurate.]";
                     question.Response1 = "[Move A is stronger than Move B, and it is more accurate.]";
                     question.Response2 = "[Move A is weaker than Move B, and it is less accurate.]";
                     question.Response3 = "[Move A is weaker than Move B, but it is more accurate.]";
 
+                    // Answer
                     question.answerIndex = 3;
-
                     break;
+                
+                
                 
                 case 5:
                     // Question
-                    question.question = "[The opponent has 65% of their health, and 3 of their 4 standard moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?]";
+                    question.question = "[The opponent has 65% of their health, and 3 of their 4 battle moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?]";
 
                     // Responses
                     question.Response0 = "0.20";
@@ -269,23 +275,285 @@ namespace RM_BBTS
                     question.Response2 = "0.75";
                     question.Response3 = "1.00";
 
+                    // Answer
                     question.answerIndex = 2;
 
                     break;
 
                 case 6:
                     // Question
-                    question.question = "[The player uses a move that raises their accuracy by 5%. Which of the following statements is true?]";
+                    question.question = "[The player uses a move that raises their accuracy by 2 stages. Which of the following statements is true?]";
 
                     // Responses
-                    question.Response0 = "The player will move faster than they did before.";
-                    question.Response1 = "The player’s attacks will do more damage.";
-                    question.Response2 = "The player’s moves are more likely to hit their target.";
-                    question.Response3 = "The opponent’s moves will do less damage to the player.";
+                    question.Response0 = "[The player will move faster than they did before.]";
+                    question.Response1 = "[The player’s attacks will do more damage.]";
+                    question.Response2 = "[The player’s moves are more likely to hit their target.]";
+                    question.Response3 = "[The opponent’s moves will do less damage to the player.]";
 
+                    // Answer
                     question.answerIndex = 2;
+                    break;
+
+                case 7:
+                    // Question
+                    question.question = "[The player is hit by a move that lowers their accuracy by 1 stage. Which of the following statements is true?]";
+
+                    // Responses
+                    question.Response0 = "[The player’s moves are now less likely to hit their target.]";
+                    question.Response1 = "[The player will move slower than they did before.]";
+                    question.Response2 = "[The player will take more damage from their opponent.]";
+                    question.Response3 = "[The player’s attacks will do less damage.]";
+
+                    // Answer
+                    question.answerIndex = 0;
+                    break;
+
+                case 8:
+                    // Question
+                    question.question = "[The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Of the opponent’s available moves, how likely is it that they will choose the charge move?]";
+
+                    // Responses
+                    question.Response0 = "0.33";
+                    question.Response1 = "0.40";
+                    question.Response2 = "0.50";
+                    question.Response3 = "1.00";
+
+                    // Answer
+                    question.answerIndex = 2;
+                    break;
+                
+
+                
+                case 9:
+                    // Question
+                    question.question = "[Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If the user is prioritizing moves with high accuracy, should they pick Move B over Move A?]";
+
+                    // Responses
+                    question.Response0 = "[Yes]";
+                    question.Response1 = "[No]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 1;
+                    break;
+
+                case 10:
+                    // Question
+                    question.question = "[Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If the user is prioritizing moves with high accuracy, which move would they pick?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 0;
+                    break;
+
+                case 11:
+                    // Question
+                    question.question = "[Move A has a 0.40 chance of burning the target, Move B has a 0.25 chance of burning the target, and Move C always burns the target. If the user wants to burn their opponent, which move has the best chance of doing so?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 2;
+                    break;
+
+                case 12:
+                    // Question
+                    question.question = "[Move A has a 0.30 chance of burning the target, Move B has a 0.10 chance of burning the target, and Move C has a 0.60 chance of burning the target. If the user wants to burn their opponent, which move has the worst chance of doing so?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 1;
+                    break;
+
+
+
+                case 13:
+                    // Question
+                    question.question = "[Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. Which move has the lowest chance of paralyzing the target if it hits?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 1;
+                    break;
+
+                case 14:
+                    // Question
+                    question.question = "[The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "[All 3 moves have a chance of missing their target.]";
+
+                    // Answer
+                    question.answerIndex = 3;
+                    break;
+
+                case 15:
+                    // Question
+                    question.question = "[Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?]";
+
+                    // Responses
+                    question.Response0 = "[Move A only]";
+                    question.Response1 = "[Move A and Move B]";
+                    question.Response2 = "[Move A and Move C]";
+                    question.Response3 = "[All 3 moves are guaranteed to hit their target.]";
+
+                    // Answer
+                    question.answerIndex = 1;
+                    break;
+
+                case 16:
+                    // Question
+                    question.question = "[Move A has a 0.25 chance of burning the opponent, Move B has a 0.30 chance of paralyzing the opponent, and Move C has a 0.50 chance of getting critical damage. Which event is the most likely to happen?]";
+
+                    // Responses
+                    question.Response0 = "[Move A burning the target.]";
+                    question.Response1 = "[Move B paralyzing the target.]";
+                    question.Response2 = "[Move C getting a critical damage bonus on the target.]";
+                    question.Response3 = "";
+
+                    // Answer
+                    question.answerIndex = 2;
+                    break;
+
+
+
+                case 17:
+                    // Question
+                    question.question = "[Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "[All 3 moves are equally as risky.]";
+
+                    // Answer
+                    question.answerIndex = 0;
 
                     break;
+                case 18:
+                    // Question
+                    question.question = "[The opponent has 4 moves. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?]";
+
+                    // Responses
+                    question.Response0 = "[Move A]";
+                    question.Response1 = "[Move B]";
+                    question.Response2 = "[Move C]";
+                    question.Response3 = "[Move D]";
+
+                    // Answer
+                    question.answerIndex = 1;
+
+                    break;
+                case 19:
+                    // Question
+                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the player’s attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
+
+                    // Responses
+                    question.Response0 = "[Move A increasing the user’s attack stat.]";
+                    question.Response1 = "[Move B increasing the user’s defense stat.]";
+                    question.Response2 = "[Move C increasing the user’s speed stat.]";
+                    question.Response3 = "[All events have the same chance of occurring.]";
+
+                    // Answer
+                    question.answerIndex = 1;
+
+                    break;
+                case 20:
+                    // Question
+                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s defense cannot go any lower, which move effect has the highest chance of occurring?]";
+
+                    // Responses
+                    question.Response0 = "[Move A raising the user’s attack.]";
+                    question.Response1 = "[Move B raising the user’s defense.]";
+                    question.Response2 = "[Move C raising the user’s speed.]";
+                    question.Response3 = "[All events have the same chance of occurring.]";
+
+                    // Answer
+                    question.answerIndex = 1;
+                    break;
+
+
+
+                case 21:
+                    // Question
+                    question.question = "[There are 10 doors remaining, and 2 of them are treasure doors. If every door has an equal chance of being chosen, what is the chance of the player choosing a treasure door?]";
+
+                    // Responses
+                    question.Response0 = "0.20";
+                    question.Response1 = "0.40";
+                    question.Response2 = "0.60";
+                    question.Response3 = "0.80";
+
+                    // Answer
+                    question.answerIndex = 0;
+                    break;
+
+                case 22:
+                    // Question
+                    question.question = "[There are 5 doors remaining, and 1 of them is a treasure door. If every door has an equal chance of being chosen, what is the chance of a non-treasure door being chosen?]";
+
+                    // Responses
+                    question.Response0 = "0.20";
+                    question.Response1 = "0.40";
+                    question.Response2 = "0.60";
+                    question.Response3 = "0.80";
+
+                    // Answer
+                    question.answerIndex = 3;
+                    break;
+
+                case 23:
+                    // Question
+                    question.question = "[Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind all remaining doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?]";
+
+                    // Responses
+                    question.Response0 = "[Enemy A]";
+                    question.Response1 = "[Enemy B]";
+                    question.Response2 = "[Enemy C]";
+                    question.Response3 = "[Enemy D]";
+
+                    // Answer
+                    question.answerIndex = 2;
+                    break;
+
+                case 24:
+                    // Question
+                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind all remaining doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?]";
+
+                    // Responses
+                    question.Response0 = "[Enemy A]";
+                    question.Response1 = "[Enemy B]";
+                    question.Response2 = "[Enemy C]";
+                    question.Response3 = "[Enemy D]";
+
+                    // Answer
+                    question.answerIndex = 3;
+                    break;
+
             }
 
             // Returns the question.

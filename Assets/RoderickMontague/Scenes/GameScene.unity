@@ -17160,8 +17160,8 @@ MonoBehaviour:
   maxScorePlus: 300
   minScorePlus: 5
   pausedTimer: 1
-  startTime: 30
-  reduceRewardTime: 20
+  startTime: 80
+  reduceRewardTime: 60
   timer: 0
   confirmButton: {fileID: 1576811981}
   confirmButtonText: {fileID: 1776744855}
