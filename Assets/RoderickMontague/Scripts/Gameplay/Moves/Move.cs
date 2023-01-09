@@ -290,7 +290,8 @@ namespace RM_BBTS
                 float randFloat = GenerateRandomFloat01();
 
                 // Checks if the modified accuracy should be used.
-                success = randFloat <= ((useModified) ? user.GetModifiedAccuracy(accuracy) : accuracy);
+                // The accuracy isn't clamped to make sure the calculations work as intended.
+                success = randFloat <= ((useModified) ? user.GetModifiedAccuracy(accuracy, false) : accuracy);
 
             }
             else // Always Succeeds

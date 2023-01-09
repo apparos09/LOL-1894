@@ -592,8 +592,16 @@ namespace RM_BBTS
             // Clamp modifier.
             attackMod = Mathf.Clamp(attackMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value.
-            return attack + attack * attackMod * 0.10F; // default: 0.05F
+            // Calculates the attack.
+            // A modifier will always change the attack by at least 1 point per stage.
+            float result = attack + attack * attackMod * 0.10F + (1.0F * attackMod); // default: 0.05F
+
+            // If the attack stat would be 0 or negative, set it to 1.
+            if (result <= 0.0F)
+                result = 1.0F;
+
+            // Return the result.
+            return result;
         }
 
         // Gets the modified defense of the entity.
@@ -602,8 +610,15 @@ namespace RM_BBTS
             // Clamp modifier.
             defenseMod = Mathf.Clamp(defenseMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value.
-            return defense + defense * defenseMod * 0.10F; // default: 0.05F
+            // A modifier will always change the defense by at least 1 point per stage.
+            float result = defense + defense * defenseMod * 0.10F + (1.0F * defenseMod); // default: 0.05F
+
+            // If the defense is less than or equal to 0, set it to 1.
+            if (result <= 0.0F)
+                result = 1.0F;
+
+            // Return the result.
+            return result;
         }
 
         // Gets the modified speed of the entity.
@@ -612,18 +627,31 @@ namespace RM_BBTS
             // Clamp modifier.
             speedMod = Mathf.Clamp(speedMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value. This is affected by paralysis.
-            return (speed + speed * speedMod * 0.10F) * (paralyzed ? 0.80F : 1.0F); // default: 0.05F
+            // Calculates the speed - this is affected by paralysis.
+            // A modifier will always change the speed by at least 1 point per stage.
+            float result = (speed + speed * speedMod * 0.10F) * (paralyzed ? 0.80F : 1.0F) + (1.0F * speedMod); // default: 0.05F
+            
+            // If the speed would be 0 or negative, set it to 1.
+            if (result <= 0.0F)
+                result = 1.0F;
+
+            return result;
         }
 
-        // Gets the accuracy modified.
-        public float GetModifiedAccuracy(float baseAccuracy)
+        // Gets the accuracy modified. If 'clamp' is true, the accuracy is clamped at [0,1] range.
+        public float GetModifiedAccuracy(float baseAccuracy, bool clamp = true)
         {
             // Clamp modifier.
             accuracyMod = Mathf.Clamp(accuracyMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value. Each stage is 0.05F in inc/dec.
-            return baseAccuracy + (accuracyMod * 0.05F);
+            // Calculates the accuracy. Each stage is 0.05F in inc/dec.
+            float result = baseAccuracy + (accuracyMod * 0.05F);
+
+            // If the accuracy should be clamped at [0, 1] (0%-100%).
+            if (clamp)
+                result = Mathf.Clamp01(result);
+
+            return result;
         }
 
         // Returns 'true' has the stat modifiers.

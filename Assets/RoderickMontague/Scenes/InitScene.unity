@@ -158,7 +158,7 @@ Camera:
   m_GameObject: {fileID: 199354115}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -997,8 +997,13 @@ MonoBehaviour:
     score: 0
     roomsCompleted: 0
     nextQuestionRound: 0
-    questionsAsked: 0
-    questionsCorrect: 0
+    questionsAskedCount: 0
+    questionsCorrectCount: 0
+    questionsAsked0: -1
+    questionsAsked1: -1
+    questionsAsked2: -1
+    questionsAsked3: -1
+    questionsAsked4: -1
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
@@ -1377,8 +1382,13 @@ MonoBehaviour:
     score: 0
     roomsCompleted: 0
     nextQuestionRound: 0
-    questionsAsked: 0
-    questionsCorrect: 0
+    questionsAskedCount: 0
+    questionsCorrectCount: 0
+    questionsAsked0: -1
+    questionsAsked1: -1
+    questionsAsked2: -1
+    questionsAsked3: -1
+    questionsAsked4: -1
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0

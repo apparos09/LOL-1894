@@ -17137,7 +17137,7 @@ MonoBehaviour:
   questionsCorrectCount: 0
   playAudio: 1
   questionText: {fileID: 1419568338}
-  randomResponseOrder: 0
+  randomResponseOrder: 1
   response0Button: {fileID: 1528021438}
   response0Bubble: {fileID: 1890312842512477819}
   response0Fill: {fileID: 1661802517}
