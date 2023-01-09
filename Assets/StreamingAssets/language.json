@@ -286,6 +286,105 @@
       "kwd_incorrect": 12,
       "kwd_finish": 12,
 
+
+
+      "que_res_moveA": 100,
+      "que_res_moveB": 100,
+      "que_res_moveC": 100,
+      "que_res_moveD": 100,
+
+      "que_res_enemyA": 340,
+      "que_res_enemyB": 340,
+      "que_res_enemyC": 340,
+      "que_res_enemyD": 340,
+
+      "que01": 340,
+
+      "que02": 340,
+      "que02_res00": 100,
+      "que02_res01": 100,
+      "que02_res02": 100,
+      "que02_res03": 100,
+
+      "que03": 340,
+      "que03_res00": 100,
+      "que03_res01": 100,
+      "que03_res02": 100,
+      "que03_res03": 100,
+
+      "que04": 340,
+      "que04_res00": 100,
+      "que04_res01": 100,
+      "que04_res02": 100,
+      "que04_res03": 100,
+
+      "que05": 340,
+
+      "que06": 340,
+      "que06_res00": 100,
+      "que06_res01": 100,
+      "que06_res02": 100,
+      "que06_res03": 100,
+
+      "que07": 340,
+      "que07_res00": 100,
+      "que07_res01": 100,
+      "que07_res02": 100,
+      "que07_res03": 100,
+
+      "que08": 340,
+
+      "que09": 340,
+
+      "que10": 340,
+
+      "que11": 340,
+
+      "que12": 340,
+
+      "que13": 340,
+
+      "que14": 340,
+      "que14_res03": 100,
+
+      "que15": 340,
+      "que15_res00": 100,
+      "que15_res01": 100,
+      "que15_res02": 100,
+      "que15_res03": 100,
+
+      "que16": 340,
+      "que16_res00": 100,
+      "que16_res01": 100,
+      "que16_res02": 100,
+
+      "que17": 340,
+      "que17_res03": 100,
+
+      "que18": 340,
+
+      "que19": 340,
+      "que19_res00": 100,
+      "que19_res01": 100,
+      "que19_res02": 100,
+      "que19_res03": 100,
+
+      "que20": 340,
+      "que20_res00": 100,
+      "que20_res01": 100,
+      "que20_res02": 100,
+      "que20_res03": 100,
+
+      "que21": 340,
+
+      "que22": 340,
+
+      "que23": 340,
+
+      "que24": 340,
+
+
+
       "trl_intro_00": 250,
       "trl_intro_01": 250,
       "trl_intro_02": 250,
@@ -659,6 +758,104 @@
     "kwd_correct": "Correct",
     "kwd_incorrect": "Incorrect",
     "kwd_finish": "Finish",
+
+
+
+    "que_res_moveA": "Move A",
+    "que_res_moveB": "Move B",
+    "que_res_moveC": "Move C",
+    "que_res_moveD": "Move D",
+
+    "que_res_enemyA": "Enemy A",
+    "que_res_enemyB": "Enemy B",
+    "que_res_enemyC": "Enemy C",
+    "que_res_enemyD": "Enemy D",
+
+    "que01": "When 2 battlers have the same speed, the turn order is evenly random. If the player has the same speed as their opponent, what is the chance of the player going first?",
+
+    "que02": "If a move does not mention that it can burn the target, the burn chance is 0.00. What does this mean?",
+    "que02_res00": "The move cannot inflict burn status on the target.",
+    "que02_res01": "The move always inflicts burn status on the target.",
+    "que02_res02": "The move might inflict burn status on the target.",
+    "que02_res03": "The target is immune to being burned.",
+
+    "que03": "If a move mentions that it can paralyze the target, the paralysis chance is greater than 0.00. If the paralysis chance is set to 1.00, what does this mean?",
+    "que03_res00": "The target is immune to paralysis status.",
+    "que03_res01": "The move will never inflict paralysis status.",
+    "que03_res02": "The move will inflict paralysis status half of the time.",
+    "que03_res03": "The move will always inflict paralysis status.",
+
+    "que04": "Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B?",
+    "que04_res00": "Move A is stronger than Move B, but it is less accurate.",
+    "que04_res01": "Move A is stronger than Move B, and it is more accurate.",
+    "que04_res02": "Move A is weaker than Move B, and it is less accurate.",
+    "que04_res03": "Move A is weaker than Move B, but it is more accurate.",
+
+    "que05": "The opponent has 65% of their health, and 3 of their 4 battle moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?",
+
+    "que06": "The player uses a move that raises their accuracy by 2 stages. Which of the following statements is true?",
+    "que06_res00": "The player will move faster than they did before.",
+    "que06_res01": "The player’s attacks will do more damage.",
+    "que06_res02": "The player’s moves are more likely to hit their target.",
+    "que06_res03": "The opponent’s moves will do less damage to the player.",
+
+    "que07": "The player is hit by a move that lowers their accuracy by 1 stage. Which of the following statements is true?",
+    "que07_res00": "The player’s moves are now less likely to hit their target.",
+    "que07_res01": "The player will move slower than they did before.",
+    "que07_res02": "The player will take more damage from their opponent.",
+    "que07_res03": "The player’s attacks will do less damage",
+
+    "que08": "The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Of the opponent’s available moves, how likely is it that they will choose the charge move?",
+
+    "que09": "Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If the user is prioritizing moves with high accuracy, should they pick Move B over Move A?",
+
+    "que10": "Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If the user is prioritizing moves with high accuracy, which move would they pick?",
+
+    "que11": "Move A has a 0.40 chance of burning the target, Move B has a 0.25 chance of burning the target, and Move C always burns the target. If the user wants to burn their opponent, which move has the best chance of doing so?",
+
+    "que12": "Move A has a 0.30 chance of burning the target, Move B has a 0.10 chance of burning the target, and Move C has a 0.60 chance of burning the target. If the user wants to burn their opponent, which move has the worst chance of doing so?",
+
+    "que13": "Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. Which move has the lowest chance of paralyzing the target if it hits?",
+
+    "que14": "The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?",
+    "que14_res03": "All 3 moves have a chance of missing their target.",
+
+    "que15": "Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?",
+    "que15_res00": "Move A only",
+    "que15_res01": "Move A and Move B.",
+    "que15_res02": "Move A and Move C.",
+    "que15_res03": "All 3 moves are guaranteed to hit their target.",
+
+    "que16": "Move A has a 0.25 chance of burning the opponent, Move B has a 0.30 chance of paralyzing the opponent, and Move C has a 0.50 chance of getting critical damage. Which event is the most likely to happen?",
+    "que16_res00": "Move A burning the target.",
+    "que16_res01": "Move B paralyzing the target.",
+    "que16_res02": "Move C getting a critical damage bonus on the target.",
+
+    "que17": "Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?",
+    "que17_res03": "All 3 moves are equally as risky.",
+
+    "que18": "The opponent has 4 moves. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?",
+
+    "que19": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the player’s attack stat cannot go any higher, which move effect has the highest chance of occurring?",
+    "que19_res00": "Move A increasing the user’s attack stat.",
+    "que19_res01": "Move B increasing the user’s defense stat.",
+    "que19_res02": "Move C increasing the user’s speed stat.",
+    "que19_res03": "All move effects have an equal chance of occurring.",
+
+    "que20": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s defense cannot go any lower, which move effect has the highest chance of occurring?",
+    "que20_res00": "Move A raising the user’s attack.",
+    "que20_res01": "Move B raising the user’s defense.",
+    "que20_res02": "Move C raising the user’s speed.",
+    "que20_res03": "The events all have the same chance of occurring.",
+
+    "que21": "There are 10 doors remaining, and 2 of them are treasure doors. If every door has an equal chance of being chosen, what is the chance of the player choosing a treasure door?",
+
+    "que22": "There are 5 doors remaining, and 1 of them is a treasure door. If every door has an equal chance of being chosen, what is the chance of a non-treasure door being chosen?",
+
+    "que23": "Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind 2/12 doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?",
+
+    "que24": "Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?",
+
 
 
     "trl_intro_00": "Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",

@@ -1290,8 +1290,8 @@ namespace RM_BBTS
             results.totalTurns = turnsPassed;
 
             // The amount of questions asked, and the amount of questions correct.
-            results.totalQuestionsAsked = overworld.gameQuestion.questionsAsked;
-            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrect;
+            results.totalQuestionsAsked = overworld.gameQuestion.questionsAskedCount;
+            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrectCount;
 
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.
@@ -1337,6 +1337,10 @@ namespace RM_BBTS
             // Gets the player save data.
             saveData.playerData = player.GenerateBattleEntitySaveData();
 
+            // If the door data array is not initialized, initialize it.
+            if (saveData.doorData == null)
+                saveData.doorData = new DoorSaveData[OverworldManager.ROOM_COUNT];
+
             // Converts the door save data.
             for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
             {
@@ -1366,8 +1370,60 @@ namespace RM_BBTS
 
             // Question information.
             saveData.nextQuestionRound = overworld.nextQuestionRound;
-            saveData.questionsAsked = overworld.gameQuestion.questionsAsked;
-            saveData.questionsCorrect = overworld.gameQuestion.questionsCorrect;
+            saveData.questionsAskedCount = overworld.gameQuestion.questionsAskedCount;
+            saveData.questionsCorrectCount = overworld.gameQuestion.questionsCorrectCount;
+
+            // Puts the asked questions into the list.
+            for(int i = 0; i < GameQuestionManager.QUESTIONS_ASKED_SAVE_MAX; i++)
+            {
+                // Checks if there's a valid index in the list.
+                if(i < overworld.gameQuestion.questionsAsked.Count) // Index exists.
+                {
+                    // Places number in designated variable.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                    }
+
+                }
+                else // Index does not exist.
+                {
+                    // Set value to -1 at the provided slot.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = -1;
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = -1;
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = -1;
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = -1;
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = -1;
+                            break;
+                    }
+                }
+            }
+
 
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
@@ -1468,19 +1524,23 @@ namespace RM_BBTS
             overworld.bossDoor = null;
             overworld.treasureDoors.Clear();
 
-            // Load the door data.
-            for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+            // If there is door data to pull from.
+            if(saveData.doorData != null)
             {
-                // Loads the save data.
-                overworld.doors[i].LoadSaveData(saveData.doorData[i]);
+                // Load the door data.
+                for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+                {
+                    // Loads the save data.
+                    overworld.doors[i].LoadSaveData(saveData.doorData[i]);
 
-                // Found the boss door, so save it.
-                if (overworld.doors[i].isBossDoor)
-                    overworld.bossDoor = overworld.doors[i];
+                    // Found the boss door, so save it.
+                    if (overworld.doors[i].isBossDoor)
+                        overworld.bossDoor = overworld.doors[i];
 
-                // Found a treasure door, so add it to the list.
-                if (overworld.doors[i].isTreasureDoor)
-                    overworld.treasureDoors.Add(overworld.doors[i]);
+                    // Found a treasure door, so add it to the list.
+                    if (overworld.doors[i].isTreasureDoor)
+                        overworld.treasureDoors.Add(overworld.doors[i]);
+                }
             }
 
             // For some reason the boss door would be left unlocked when loading in game...
@@ -1548,8 +1608,44 @@ namespace RM_BBTS
 
             // Sets the question information.
             overworld.nextQuestionRound = saveData.nextQuestionRound;
-            overworld.gameQuestion.questionsAsked = saveData.questionsAsked;
-            overworld.gameQuestion.questionsCorrect = saveData.questionsCorrect;
+            overworld.gameQuestion.questionsAskedCount = saveData.questionsAskedCount;
+            overworld.gameQuestion.questionsCorrectCount = saveData.questionsCorrectCount;
+
+
+            // Clears out the list of asked questions.
+            overworld.gameQuestion.questionsAsked.Clear();
+
+            // Grabs the asked questions from the save data and adds thm to the list.
+            for (int i = 0; i < GameQuestions.QUESTION_OPTIONS_MAX; i++)
+            {
+                // The value to be added.
+                int value = -1;
+
+                // Checks the index to see which value is next.
+                switch (i)
+                {
+                    case 0:
+                        value = saveData.questionsAsked0;
+                        break;
+                    case 1:
+                        value = saveData.questionsAsked1;
+                        break;
+                    case 2:
+                        value = saveData.questionsAsked2;
+                        break;
+                    case 3:
+                        value = saveData.questionsAsked3;
+                        break;
+                    case 4:
+                        value = saveData.questionsAsked4;
+                        break;
+                }
+
+                // Adds the value to the memory if it is greater than or equal to 0.
+                // Negative numbers indicate that it's not an actual question.
+                if(value >= 0)
+                    overworld.gameQuestion.questionsAsked.Add(value);
+            }
 
             // Sets the evolve waves.
             evolveWaves = saveData.evolveWaves;

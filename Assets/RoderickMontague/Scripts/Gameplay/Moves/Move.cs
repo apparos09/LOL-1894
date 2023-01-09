@@ -254,7 +254,7 @@ namespace RM_BBTS
             // Checks if energy usage is above 0.
             if(EnergyUsage > 0)
             {
-                result = Mathf.Ceil(EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
+                result = Mathf.Round(EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
                 result += "%";
             }
             else // Energy not used.

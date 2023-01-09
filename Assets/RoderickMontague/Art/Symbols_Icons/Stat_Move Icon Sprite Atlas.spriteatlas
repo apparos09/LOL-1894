@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Stat_Move Icon Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 3
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: e637dbd671004dd4a8838781c0400428, type: 3}
+    - {fileID: 2800000, guid: fc69eb1988f353242ae50495503292bc, type: 3}
+    - {fileID: 2800000, guid: 8dc64a7c166a3e3489ccd28edc038b0b, type: 3}
+    - {fileID: 2800000, guid: 83276a751d9cc8f4d82edc6409f47ced, type: 3}
+    - {fileID: 2800000, guid: 6044ce392548b62408f9d2419e7b66a5, type: 3}
+    - {fileID: 2800000, guid: 72751f0baa7dd2741a1a1076d3349b31, type: 3}
+    - {fileID: 2800000, guid: 94caee45554fdf14e96196811c503452, type: 3}
+    - {fileID: 2800000, guid: 1472431340fbdce4997070bb611bbbc1, type: 3}
+    - {fileID: 2800000, guid: f44cdb18ad9600c4da3d49255db93484, type: 3}
+    - {fileID: 2800000, guid: e75ca8221c6b5c844a262ba56cba6069, type: 3}
+    - {fileID: 2800000, guid: 87fb8b4f6df73644182cb8e38bdc451f, type: 3}
+    - {fileID: 2800000, guid: 03e385079bc09d44f92f8ca3b9866d15, type: 3}
+    - {fileID: 2800000, guid: 64d68952f6eec4843b01e5bbda85cfd6, type: 3}
+    - {fileID: 2800000, guid: 923278d2ca93f3948a1ffd2af8aac57e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e75ca8221c6b5c844a262ba56cba6069, type: 3}
+  - {fileID: 21300000, guid: 64d68952f6eec4843b01e5bbda85cfd6, type: 3}
+  - {fileID: 21300000, guid: 923278d2ca93f3948a1ffd2af8aac57e, type: 3}
+  - {fileID: 21300000, guid: 1472431340fbdce4997070bb611bbbc1, type: 3}
+  - {fileID: 21300000, guid: 94caee45554fdf14e96196811c503452, type: 3}
+  - {fileID: 21300000, guid: 83276a751d9cc8f4d82edc6409f47ced, type: 3}
+  - {fileID: 21300000, guid: e637dbd671004dd4a8838781c0400428, type: 3}
+  - {fileID: 21300000, guid: 03e385079bc09d44f92f8ca3b9866d15, type: 3}
+  - {fileID: 21300000, guid: f44cdb18ad9600c4da3d49255db93484, type: 3}
+  - {fileID: 21300000, guid: fc69eb1988f353242ae50495503292bc, type: 3}
+  - {fileID: 21300000, guid: 6044ce392548b62408f9d2419e7b66a5, type: 3}
+  - {fileID: 21300000, guid: 72751f0baa7dd2741a1a1076d3349b31, type: 3}
+  - {fileID: 21300000, guid: 8dc64a7c166a3e3489ccd28edc038b0b, type: 3}
+  - {fileID: 21300000, guid: 87fb8b4f6df73644182cb8e38bdc451f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - defense_symbol
+  - paralysis_symbol
+  - speed_symbol
+  - burn_symbol
+  - accuracy_change_symbol
+  - rank_symbol
+  - accuracy_stat_symbol
+  - effect_on_target_symbol
+  - critical_damage_symbol
+  - energy_symbol
+  - player_icon
+  - attack_symbol
+  - power_symbol
+  - effect_on_self_symbol
+  m_RenderDataMap: {}
+  m_Tag: Stat_Move Icon Sprite Atlas
+  m_IsVariant: 0

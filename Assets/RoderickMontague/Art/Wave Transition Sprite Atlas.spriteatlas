@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wave Transition Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 3
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6354576973757187778, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -6854301451569968208, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -2883968536477560947, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 948074019420730137, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -7230184666142664335, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 8936311073813461590, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -405438947600388905, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -281386467321057533, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 1597667363150926447, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 4134711948056123467, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 2789953017416701841, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: 5133626170831163304, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -8770463902826456141, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -4386586694259485901, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  - {fileID: -5706127559477579460, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - wave_transition_14
+  - wave_transition_12
+  - wave_transition_13
+  - wave_transition_10
+  - wave_transition_11
+  - wave_transition_9
+  - wave_transition_8
+  - wave_transition_3
+  - wave_transition_2
+  - wave_transition_1
+  - wave_transition_0
+  - wave_transition_7
+  - wave_transition_6
+  - wave_transition_5
+  - wave_transition_4
+  m_RenderDataMap: {}
+  m_Tag: Wave Transition Sprite Atlas
+  m_IsVariant: 0

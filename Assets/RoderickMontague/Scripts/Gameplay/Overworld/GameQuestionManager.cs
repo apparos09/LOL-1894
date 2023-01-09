@@ -24,10 +24,18 @@ namespace RM_BBTS
         public TMP_Text titleText;
 
         // The amount of questions that have been asked to the player.
-        public int questionsAsked = 0;
+        public int questionsAskedCount = 0;
+
+        // The maximum amount of asked questions that will be saved when saving the game.
+        public const int QUESTIONS_ASKED_SAVE_MAX = 5;
+
+        // The list of asked questions (goes by question number).
+        // This is to help prevent the randomizer from asking the same question multiple times.
+        [Header("A list of the asked questions by question number. This helps prevent the randomizer from asking a used question.")]
+        public List<int> questionsAsked = new List<int>();
 
         // The amount of questions answered correctly.
-        public int questionsCorrect = 0;
+        public int questionsCorrectCount = 0;
 
         // Plays the audio for the question manager.
         public bool playAudio = true;
@@ -49,6 +57,8 @@ namespace RM_BBTS
         // Taken out since it doesn't get initialized in time.
         // private GameQuestions gameQuestions;
 
+        // If 'true', the response order is randomized.
+        public bool randomResponseOrder = true;
 
         // The button text for the four responses.
         // Response 0
@@ -110,10 +120,17 @@ namespace RM_BBTS
         public bool pausedTimer = true;
 
         // What the timer starts at.
-        public float startTime = 30.0F;
+        public float startTime = 80.0F;
 
         // When the time falls below this value, the reward is reduced.
-        public float reduceRewardTime = 20.0F;
+        public float reduceRewardTime = 60.0F;
+
+        // Adds extra time when TTS is active, as the question needs to be read.
+        // This is the extra time that's aded to the game timer.
+        public float ttsExtraTime = 60.0F;
+
+        // Allows for extra time to the timer when TTS is active.
+        public bool addExtraTime = true;
 
         // The timer for the game.
         public float timer = 0.0F;
@@ -264,7 +281,7 @@ namespace RM_BBTS
 
             // Stop the timer since no question is running yet.
             pausedTimer = true;
-            timer = startTime;
+            ResetTimer();
 
             // If the question object should be turned off after the changes are made, turn it off.
             if (makeInactive)
@@ -274,9 +291,38 @@ namespace RM_BBTS
         // Loads a random question.
         public void LoadRandomQuestion()
         {
-            // TODO: make sure that the same question can't be returned.
+            // Gets given the random queston generated.
+            GameQuestion randQuestion;
 
-            LoadQuestion(GameQuestions.Instance.GetRandomQuestion(true));
+            // Amount of attempts taken to generate a new question.
+            int attempts = 0;
+
+            // Clears out the list if the question count has been reached.
+            // This doesn't mean every question has been asked, but there are few to no new questions to ask.
+            if (questionsAsked.Count >= GameQuestions.QUESTION_COUNT)
+                questionsAsked.Clear();
+
+            do
+            {
+                // Generates the random question.
+                randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+
+                // Checks to see if it's a new question.
+                if(questionsAsked.Contains(randQuestion.number)) // New
+                {
+                    // Breaks out of the loop.
+                    break;
+                }
+                else // Already got this question.
+                {
+                    attempts++;
+                }
+
+            } while (attempts <= 3);
+
+
+            // Loads the question.
+            LoadQuestion(randQuestion);
         }
 
         // Clears the question.
@@ -294,6 +340,21 @@ namespace RM_BBTS
             currentQuestion.answerIndex = 0;
         }
 
+        // Resets the timer to its max. This does not check if the timer is paused or unpaused.
+        private void ResetTimer()
+        {
+            // Checks if extra time should be added.
+            // Extra time won't be added if TTS is not being used.
+            if(addExtraTime && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            {
+                timer = startTime + ttsExtraTime;
+            }
+            else
+            {
+                timer = startTime;
+            }
+        }
+
         // Asks the loaded question.
         public void AskQuestion()
         {
@@ -305,14 +366,15 @@ namespace RM_BBTS
             responded = false;
             selectedResponse = -1;
 
-            // A question has been asked.
-            questionsAsked++;
+            // A question has been asked, so add to the counter, and to the list.
+            questionsAskedCount++;
+            questionsAsked.Add(currentQuestion.number);
 
             // Deselect all of the responses since a question is now being asked.
             DeselectAllResponses();
 
             // Start the timer.
-            timer = startTime;
+            ResetTimer();
             pausedTimer = false;
 
             // Plays the bgm for the game question.
@@ -461,7 +523,7 @@ namespace RM_BBTS
             {
                 // Pause the timer, and increment the question correct variable.
                 pausedTimer = true;
-                questionsCorrect++;
+                questionsCorrectCount++;
 
                 // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
@@ -532,6 +594,10 @@ namespace RM_BBTS
             running = false;
             responded = false;
 
+            // Clear out timer.
+            pausedTimer = true;
+            timer = 0.0F;
+
             // Set selected response to default.
             selectedResponse = -1;
 
@@ -551,8 +617,8 @@ namespace RM_BBTS
         // Resets the amount of asked questions.
         public void ResetAskedQuestionCount()
         {
-            questionsAsked = 0;
-            questionsCorrect = 0;
+            questionsAskedCount = 0;
+            questionsCorrectCount = 0;
         }
 
         // Disables the question (prevents all interaction from the user).
