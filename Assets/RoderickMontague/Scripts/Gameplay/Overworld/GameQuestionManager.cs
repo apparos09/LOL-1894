@@ -120,7 +120,7 @@ namespace RM_BBTS
         public bool pausedTimer = true;
 
         // What the timer starts at.
-        public float startTime = 80.0F;
+        public float startTime = 100.0F;
 
         // When the time falls below this value, the reward is reduced.
         public float reduceRewardTime = 60.0F;

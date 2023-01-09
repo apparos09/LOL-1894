@@ -17162,7 +17162,7 @@ MonoBehaviour:
   maxScorePlus: 300
   minScorePlus: 5
   pausedTimer: 1
-  startTime: 80
+  startTime: 100
   reduceRewardTime: 60
   ttsExtraTime: 60
   addExtraTime: 1
