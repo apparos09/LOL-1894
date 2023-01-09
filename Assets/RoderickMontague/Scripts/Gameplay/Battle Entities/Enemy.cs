@@ -62,11 +62,19 @@ namespace RM_BBTS
             // TODO: implement AI
             // StartCoroutine(DecideNextMove());
 
+            // Checks if the enemy needs to change their energy.
+            // If the enemy has no energy, then they MUST charge their energy.
+            // If the enemy does have energy, then it needs to check if any move can be performed.
+            // If no move can be performed, then the enemy must change their energy.
+            bool needCharge = (Energy <= 0.0F);
+
             // Check if any move can be performed without charging to start off.
             // This will always make the entity select charge if they don't have any other usable moves.
+            if(!needCharge)
             {
                 // Checks if a charge is needed.
-                bool needCharge = true;
+                // This needs to be set to true by default for the check.
+                needCharge = true;
 
                 // Goes through each move.
                 for (int i = 0; i < moves.Length; i++)
@@ -83,13 +91,13 @@ namespace RM_BBTS
                         break;
 
                 }
+            }
 
-                // Charge is needed, so select it.
-                if(needCharge)
-                {
-                    SelectCharge();
-                    return;
-                }
+            // The enemy needs to charge their energy, so select this move.
+            if (needCharge)
+            {
+                SelectCharge();
+                return;
             }
 
             // Determines the move options the player has.
