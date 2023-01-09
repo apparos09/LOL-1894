@@ -652,7 +652,7 @@ namespace RM_BBTS
 
                 // Decimal Form
                 // Get the accuracy.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move0.Accuracy));
+                accuracy = player.GetModifiedAccuracy(player.Move0.Accuracy, true);
 
                 // Slots in the text.
                 move0AccuracyText.text = (player.Move0.useAccuracy) ?
@@ -667,7 +667,7 @@ namespace RM_BBTS
             if (player.Move1 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move1.Accuracy));
+                accuracy = player.GetModifiedAccuracy(player.Move1.Accuracy, true);
 
                 // Slots in the text.
                 move1AccuracyText.text = (player.Move1.useAccuracy) ? 
@@ -682,7 +682,7 @@ namespace RM_BBTS
             if (player.Move2 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move2.Accuracy));
+                accuracy = player.GetModifiedAccuracy(player.Move2.Accuracy, true);
 
                 // Slots in the text.
                 move2AccuracyText.text = (player.Move2.useAccuracy) ? 
@@ -697,7 +697,7 @@ namespace RM_BBTS
             if (player.Move3 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move3.Accuracy));
+                accuracy = player.GetModifiedAccuracy(player.Move3.Accuracy, true);
 
                 // Slots in the text.
                 move3AccuracyText.text = (player.Move3.useAccuracy) ? 
