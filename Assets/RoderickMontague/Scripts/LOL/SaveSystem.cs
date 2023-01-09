@@ -57,7 +57,7 @@ namespace RM_BBTS
 
         // The list of asked questions.
         // Since the player is currently asked four questions total, that is the length of this array.
-        public int[] questionsAsked = new int[4];
+        public int[] questionsAsked = new int[5];
 
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.

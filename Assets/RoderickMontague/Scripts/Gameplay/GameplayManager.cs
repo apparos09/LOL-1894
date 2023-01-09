@@ -1376,7 +1376,7 @@ namespace RM_BBTS
             // If this was never initialized, initialize it.
             // This is to get around a null reference error.
             if (saveData.questionsAsked == null)
-                saveData.questionsAsked = new int[4];
+                saveData.questionsAsked = new int[5];
 
             // Puts the asked questions into the list.
             for(int i = 0; i < saveData.questionsAsked.Length; i++)
