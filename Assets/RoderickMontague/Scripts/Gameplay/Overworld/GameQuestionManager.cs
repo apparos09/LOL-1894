@@ -26,6 +26,9 @@ namespace RM_BBTS
         // The amount of questions that have been asked to the player.
         public int questionsAskedCount = 0;
 
+        // The maximum amount of asked questions that will be saved when saving the game.
+        public const int QUESTIONS_ASKED_SAVE_MAX = 5;
+
         // The list of asked questions (goes by question number).
         // This is to help prevent the randomizer from asking the same question multiple times.
         [Header("A list of the asked questions by question number. This helps prevent the randomizer from asking a used question.")]

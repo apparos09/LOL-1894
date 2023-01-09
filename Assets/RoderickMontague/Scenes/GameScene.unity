@@ -17132,10 +17132,12 @@ MonoBehaviour:
   gameManager: {fileID: 877465982}
   questionObject: {fileID: 1394537497}
   titleText: {fileID: 152234224}
-  questionsAsked: 0
-  questionsCorrect: 0
+  questionsAskedCount: 0
+  questionsAsked: 
+  questionsCorrectCount: 0
   playAudio: 1
   questionText: {fileID: 1419568338}
+  randomResponseOrder: 0
   response0Button: {fileID: 1528021438}
   response0Bubble: {fileID: 1890312842512477819}
   response0Fill: {fileID: 1661802517}

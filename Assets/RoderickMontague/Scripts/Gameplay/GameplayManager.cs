@@ -1373,24 +1373,54 @@ namespace RM_BBTS
             saveData.questionsAskedCount = overworld.gameQuestion.questionsAskedCount;
             saveData.questionsCorrectCount = overworld.gameQuestion.questionsCorrectCount;
 
-            // If this was never initialized, initialize it.
-            // This is to get around a null reference error.
-            if (saveData.questionsAsked == null)
-                saveData.questionsAsked = new int[5];
-
             // Puts the asked questions into the list.
-            for(int i = 0; i < saveData.questionsAsked.Length; i++)
+            for(int i = 0; i < GameQuestionManager.QUESTIONS_ASKED_SAVE_MAX; i++)
             {
                 // Checks if there's a valid index in the list.
                 if(i < overworld.gameQuestion.questionsAsked.Count) // Index exists.
                 {
-                    // Places number in index.
-                    saveData.questionsAsked[i] = overworld.gameQuestion.questionsAsked[i];
+                    // Places number in designated variable.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                    }
+
                 }
                 else // Index does not exist.
                 {
-                    // Place -1 in index to mark that no question is here.
-                    saveData.questionsAsked[i] = -1;
+                    // Set value to -1 at the provided slot.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = -1;
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = -1;
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = -1;
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = -1;
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = -1;
+                            break;
+                    }
                 }
             }
 
@@ -1585,19 +1615,36 @@ namespace RM_BBTS
             // Clears out the list of asked questions.
             overworld.gameQuestion.questionsAsked.Clear();
 
-            // If the questions asked array is not set to null.
-            if(saveData.questionsAsked != null)
+            // Grabs the asked questions from the save data and adds thm to the list.
+            for (int i = 0; i < GameQuestions.QUESTION_OPTIONS_MAX; i++)
             {
-                // Grabs the asked questions from the save data and adds thm to the list.
-                for (int i = 0; i < saveData.questionsAsked.Length; i++)
+                // The value to be added.
+                int value = -1;
+
+                // Checks the index to see which value is next.
+                switch (i)
                 {
-                    // If the question number is negative, then it is a blank slot.
-                    // Blank slots are ignored.
-                    if (saveData.questionsAsked[i] >= 0)
-                    {
-                        overworld.gameQuestion.questionsAsked.Add(saveData.questionsAsked[i]);
-                    }
+                    case 0:
+                        value = saveData.questionsAsked0;
+                        break;
+                    case 1:
+                        value = saveData.questionsAsked1;
+                        break;
+                    case 2:
+                        value = saveData.questionsAsked2;
+                        break;
+                    case 3:
+                        value = saveData.questionsAsked3;
+                        break;
+                    case 4:
+                        value = saveData.questionsAsked4;
+                        break;
                 }
+
+                // Adds the value to the memory if it is greater than or equal to 0.
+                // Negative numbers indicate that it's not an actual question.
+                if(value >= 0)
+                    overworld.gameQuestion.questionsAsked.Add(value);
             }
 
             // Sets the evolve waves.

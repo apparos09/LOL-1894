@@ -55,13 +55,20 @@ namespace RM_BBTS
         public int questionsAskedCount = 0;
         public int questionsCorrectCount = 0;
 
+        // The serializer does NOT like integer arrays or lists for some reason.
+        // As such, each one had to be stored as a seperate variable.
+
         // The list of asked questions.
-        // Since the player is currently asked four questions total, that is the length of this array.
-        public int[] questionsAsked = new int[5];
+        // Since the player is currently asked five questions total, that is the length of this array.
+        public int questionsAsked0 = -1;
+        public int questionsAsked1 = -1;
+        public int questionsAsked2 = -1;
+        public int questionsAsked3 = -1;
+        public int questionsAsked4 = -1;
 
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.
-        
+
         public int evolveWaves = 0; // Evolution waves.
         public float gameTime = 0.0F; // Total game time.
         public int turnsPassed = 0; // Total turns.

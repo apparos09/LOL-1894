@@ -579,8 +579,8 @@ namespace RM_BBTS
                     if (translate)
                     {
                         question.question = defs["que15"];
-                        question.Response1 = defs["que15_res00"];
-                        question.Response0 = defs["que15_res01"];
+                        question.Response0 = defs["que15_res00"];
+                        question.Response1 = defs["que15_res01"];
                         question.Response2 = defs["que15_res02"];
                         question.Response3 = defs["que15_res03"];
                     }
@@ -604,8 +604,8 @@ namespace RM_BBTS
                     if (translate)
                     {
                         question.question = defs["que16"];
-                        question.Response1 = defs["que16_res00"];
-                        question.Response0 = defs["que16_res01"];
+                        question.Response0 = defs["que16_res00"];
+                        question.Response1 = defs["que16_res01"];
                         question.Response2 = defs["que16_res02"];
                     }
                     break;
