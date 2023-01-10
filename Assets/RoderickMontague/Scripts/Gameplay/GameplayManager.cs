@@ -1763,8 +1763,27 @@ namespace RM_BBTS
             if (!calledPostStart)
                 PostStart();
 
-            // Checks for some mouse input.
-            MouseTouchCheck();
+            
+            // Checks if the mouse input object is active.
+            // This is used to correct cases where the mouseTouch is activated when it shouldn't be.
+            if(mouseTouchInput.gameObject.activeSelf)
+            {
+                // If the tutorial is running, disable the mouse touch input.
+                if (tutorial.TextBoxIsVisible())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+                // If a question is running, disable the mouse touch input.
+                if (overworld.gameQuestion.QuestionIsRunning())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+            }
+
+            // If the mouse touch input is active, check for the mouse touch.
+            if(mouseTouchInput.isActiveAndEnabled)
+            {
+                // Checks for some mouse input.
+                MouseTouchCheck();
+            }
 
             // Updates the player's UI.
             // UpdateUI();

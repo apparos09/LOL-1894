@@ -785,7 +785,7 @@
     "que03_res02": "The move will inflict paralysis status half of the time.",
     "que03_res03": "The move will always inflict paralysis status.",
 
-    "que04": "Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B?",
+    "que04": "Move A has a power of 40 and an accuracy of 1.00. Move B has a power of 60 and an accuracy of 0.90. What is true about Move A and Move B?",
     "que04_res00": "Move A is stronger than Move B, but it is less accurate.",
     "que04_res01": "Move A is stronger than Move B, and it is more accurate.",
     "que04_res02": "Move A is weaker than Move B, and it is less accurate.",

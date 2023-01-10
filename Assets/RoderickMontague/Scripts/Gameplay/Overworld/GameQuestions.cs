@@ -377,7 +377,7 @@ namespace RM_BBTS
 
                 case 4:
                     // Question
-                    question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power 60 and an accuracy of 0.90. What is true about Move A and Move B?]";
+                    question.question = "[Move A has a power of 40 and an accuracy of 1.00. Move B has a power of 60 and an accuracy of 0.90. What is true about Move A and Move B?]";
                     question.questionSpeakKey = "que04";
 
                     // Responses
