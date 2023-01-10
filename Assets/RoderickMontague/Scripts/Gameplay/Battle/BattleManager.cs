@@ -579,36 +579,49 @@ namespace RM_BBTS
             SetPlayerOptionsAvailable(false);
         }
 
+        // Refreshes the options for the player.
         public void RefreshPlayerOptions()
         {
             // Checks move activity to see if the player can use it or not.
             // Also changes the move name on the display.
 
             // Enables/disables various buttons.
-
-            // Move 0 
-            if (player.Move0 != null && !(opponent is Treasure))
-                move0Button.interactable = player.Move0.Usable(player);
-            else
+            if(player.HasNoEnergy()) // If 'true', the player has no energy.
+            {
+                // Turn off the four move buttons.
                 move0Button.interactable = false;
-
-            // Move 1
-            if (player.Move1 != null && !(opponent is Treasure))
-                move1Button.interactable = player.Move1.Usable(player);
-            else
                 move1Button.interactable = false;
-
-            // Move 2 
-            if (player.Move2 != null && !(opponent is Treasure))
-                move2Button.interactable = player.Move2.Usable(player);
-            else
                 move2Button.interactable = false;
-
-            // Move 3
-            if (player.Move3 != null && !(opponent is Treasure))
-                move3Button.interactable = player.Move3.Usable(player);
-            else
                 move3Button.interactable = false;
+            }
+            else // The player has energy, so check if any moves can be performed.
+            {
+                // Move 0 
+                if (player.Move0 != null && !(opponent is Treasure))
+                    move0Button.interactable = player.Move0.Usable(player);
+                else
+                    move0Button.interactable = false;
+
+                // Move 1
+                if (player.Move1 != null && !(opponent is Treasure))
+                    move1Button.interactable = player.Move1.Usable(player);
+                else
+                    move1Button.interactable = false;
+
+                // Move 2 
+                if (player.Move2 != null && !(opponent is Treasure))
+                    move2Button.interactable = player.Move2.Usable(player);
+                else
+                    move2Button.interactable = false;
+
+                // Move 3
+                if (player.Move3 != null && !(opponent is Treasure))
+                    move3Button.interactable = player.Move3.Usable(player);
+                else
+                    move3Button.interactable = false;
+            }
+
+
 
             // Updates the move accuracy displays.
             UpdatePlayerMoveAccuracies();

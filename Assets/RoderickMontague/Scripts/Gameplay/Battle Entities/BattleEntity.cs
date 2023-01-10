@@ -521,6 +521,12 @@ namespace RM_BBTS
 
         }
 
+        // Returns 'true' if the entity has no energy.
+        public bool HasNoEnergy()
+        {
+            return energy <= 0.0F;
+        }
+
         // Returns 'true' if the entity has the maximum amount of energy.
         public bool HasFullCharge()
         {
@@ -533,7 +539,44 @@ namespace RM_BBTS
             energy = maxEnergy;
         }
 
-        
+        // Restores energy by a certain percentage, not rounding the amount added.
+        // The percent is locked in a [0, 1] range, with 1.0 meaning 100%.
+        // This function makes it so that no rounding is done.
+        public void RestoreEnergy(float percent)
+        {
+            RestoreEnergy(percent, -1);
+        }
+
+        // Restores energy to the player by a certain percent. The percent is locked in a [0, 1] range, with 1.0 meaning 100%.
+        // Variable 'decimalPlaces' determines how many decimal places are rounded for the addition.
+        // If 'decimalPlaces' is 0, then it rounds to a whole number.
+        // If 'decimalPlaces' is negative, then no rounding is done.
+        public void RestoreEnergy(float percent, int decimalPlaces)
+        {
+            // Gets the raw calculation.
+            float chargePlus = MaxEnergy * percent;
+
+            // Checks if rounding should be done or not.
+            if (decimalPlaces >= 0) // Round
+            {
+                // Find the amount of decimal places.
+                float mult = Mathf.Pow(10.0F, decimalPlaces);
+
+                // Multiply to keep (X) amount of decimal places, then round to get rid of the remaining decimal points.
+                // After that, divide by the mult so that there are decimal points again.
+                float chargePlusRounded = (Mathf.Round(chargePlus * mult)) / mult;
+
+                // Add the rounded amount to the player's energy.
+                Energy += chargePlusRounded;
+
+            }
+            else // Don't Round
+            {
+                Energy += chargePlus;
+            }
+        }
+
+
         // GET MODIFIED STATS
         // Attack  Mod
         public int AttackMod

@@ -545,7 +545,7 @@ namespace RM_BBTS
                     question.Response0 = "[Move A]";
                     question.Response1 = "[Move B]";
                     question.Response2 = "[Move C]";
-                    question.Response3 = "[All 3 moves have a chance of missing their target.]";
+                    question.Response3 = "[None of the 3 moves have a 1.00 chance of hitting their target.]";
 
                     // Answer
                     question.answerIndex = 3;

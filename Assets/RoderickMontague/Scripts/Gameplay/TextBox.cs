@@ -310,7 +310,9 @@ namespace RM_BBTS
             if (nextPageIndex >= pages.Count || nextPageIndex < 0)
             {
                 // The textbox is about to be closed, so call the 'on page closed' callback for the last page.
-                pages[currPageIndex].OnPageClosed();
+                // There were some index out of bounds errors here, and I don't know why.
+                if(currPageIndex >= 0 && currPageIndex < pages.Count)
+                    pages[currPageIndex].OnPageClosed();
 
                 // The text has all been displayed, so call the callbacks.
                 if (nextPageIndex >= pages.Count)

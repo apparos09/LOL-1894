@@ -818,7 +818,7 @@
     "que13": "Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. Which move has the lowest chance of paralyzing the target if it hits?",
 
     "que14": "The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?",
-    "que14_res03": "All 3 moves have a chance of missing their target.",
+    "que14_res03": "None of the 3 moves have a 1.00 chance of hitting their target.",
 
     "que15": "Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?",
     "que15_res00": "Move A only",
