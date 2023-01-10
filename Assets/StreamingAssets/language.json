@@ -805,7 +805,7 @@
     "que07_res02": "The player will take more damage from their opponent.",
     "que07_res03": "The player’s attacks will do less damage",
 
-    "que08": "The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Of the opponent’s available moves, how likely is it that they will choose the charge move?",
+    "que08": "The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Assuming each move has an equal chance of being chosen, how likely is it that the opponent will choose the charge move?",
 
     "que09": "Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If the user is prioritizing moves with high accuracy, should they pick Move B over Move A?",
 
@@ -826,7 +826,7 @@
     "que15_res02": "Move A and Move C.",
     "que15_res03": "All 3 moves are guaranteed to hit their target.",
 
-    "que16": "Move A has a 0.25 chance of burning the opponent, Move B has a 0.30 chance of paralyzing the opponent, and Move C has a 0.50 chance of getting critical damage. Which event is the most likely to happen?",
+    "que16": "Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Which event is most likely to occur?",
     "que16_res00": "Move A burning the target.",
     "que16_res01": "Move B paralyzing the target.",
     "que16_res02": "Move C getting a critical damage bonus on the target.",
@@ -834,9 +834,9 @@
     "que17": "Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?",
     "que17_res03": "All 3 moves are equally as risky.",
 
-    "que18": "The opponent has 4 moves. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?",
+    "que18": "The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?",
 
-    "que19": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the player’s attack stat cannot go any higher, which move effect has the highest chance of occurring?",
+    "que19": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s attack stat cannot go any higher, which move effect has the highest chance of occurring?",
     "que19_res00": "Move A increasing the user’s attack stat.",
     "que19_res01": "Move B increasing the user’s defense stat.",
     "que19_res02": "Move C increasing the user’s speed stat.",
@@ -854,7 +854,7 @@
 
     "que23": "Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind 2/12 doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?",
 
-    "que24": "Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?",
+    "que24": "Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is least likely to be encountered next by the player?",
 
 
 

@@ -476,7 +476,7 @@ namespace RM_BBTS
 
                 case 8:
                     // Question
-                    question.question = "[The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Of the opponent’s available moves, how likely is it that they will choose the charge move?]";
+                    question.question = "[The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Assuming each move has an equal chance of being chosen, how likely is it that the opponent will choose the charge move?]";
                     question.questionSpeakKey = "que08";
 
                     // Responses
@@ -669,7 +669,7 @@ namespace RM_BBTS
 
                 case 16:
                     // Question
-                    question.question = "[Move A has a 0.25 chance of burning the opponent, Move B has a 0.30 chance of paralyzing the opponent, and Move C has a 0.50 chance of getting critical damage. Which event is the most likely to happen?]";
+                    question.question = "[Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Which event is most likely to occur?]";
                     question.questionSpeakKey = "que16";
 
                     // Responses
@@ -720,7 +720,7 @@ namespace RM_BBTS
 
                 case 18:
                     // Question
-                    question.question = "[The opponent has 4 moves. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?]";
+                    question.question = "[The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?]";
                     question.questionSpeakKey = "que18";
 
                     // Responses
@@ -745,7 +745,7 @@ namespace RM_BBTS
 
                 case 19:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the player’s attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
+                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
                     question.questionSpeakKey = "que19";
 
                     // Responses
@@ -864,7 +864,7 @@ namespace RM_BBTS
 
                 case 24:
                     // Question
-                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is the least likely to be encountered next by the player?]";
+                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is least likely to be encountered next by the player?]";
                     question.questionSpeakKey = "que24";
 
                     // Responses
