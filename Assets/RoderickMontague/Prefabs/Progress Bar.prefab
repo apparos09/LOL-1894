@@ -271,6 +271,10 @@ MonoBehaviour:
   bar: {fileID: 4866852875785391320}
   speed: 1
   fixedSpeed: 0
+  barFill: {fileID: 4866852875582632112}
+  hideFillOnMin: 1
+  fillAlpha: 1
+  autoSetFillAlpha: 1
 --- !u!1 &4866852875986281929
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,9 +67,14 @@ namespace RM_BBTS
                     battle.PlayOpponentStatusAnimation();
                 }
 
+                // Original
+                // float chargePlus = user.MaxEnergy * CHARGE_PERCENT;
+                // user.Energy += chargePlus;
 
-                float chargePlus = user.MaxEnergy * CHARGE_PERCENT;
-                user.Energy += chargePlus;
+                // New
+                // Restores energy based on the display decimal places.
+                // This rounds to a whole number for restoring the energy.
+                user.RestoreEnergy(CHARGE_PERCENT, 0);
 
                 // Updates the player's energy level.
                 battle.gameManager.UpdatePlayerEnergyUI();

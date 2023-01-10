@@ -268,7 +268,38 @@ namespace RM_BBTS
         // Checks if a move is available for the battle entity to perform.
         public bool Usable(BattleEntity user)
         {
-            return (CalculateEnergyUsed(user) <= user.Energy);
+            // Grabs the amount of decimal place moves, and calculates the multiplier.
+            int movePlaces = GameplayManager.DISPLAY_DECIMAL_PLACES;
+
+            // The result of the comparison.
+            bool result;
+
+            // If the 'decimals' value is greater than 0, then the decimal point will be moved.
+            // If the value of 'decimals' was 0, it would make the mult 1.0.
+            // If the value of 'decimals' is less than 0, it would cause a negative exponent.
+            // As such, any value that would result in a <= 0 exponent just does a direct comparison.
+            if(movePlaces > 0)
+            {
+                // This moves the decimal point over to the right by (decimal) amount of times.
+                // If 'decimals' is set to 0, then it will become 1.
+                float mult = Mathf.Pow(10.0F, movePlaces);
+
+                // Moves the decimal places and converts the values to an int.
+                // This gets rid of the rest of the decimal content.
+                // The values are floored for this comparison.
+                int moveEnergyAdjust = Mathf.FloorToInt(CalculateEnergyUsed(user) * mult);
+                int userEnergyAdjust = Mathf.FloorToInt(user.Energy * mult);
+
+                // Compares the floored values.
+                result = (moveEnergyAdjust <= userEnergyAdjust);
+            }
+            else
+            {
+                // Standard, direct calculation.
+                result = (CalculateEnergyUsed(user) <= user.Energy);
+            }
+
+            return result;
         }
 
         // Generates a random float in the 0-1 range.

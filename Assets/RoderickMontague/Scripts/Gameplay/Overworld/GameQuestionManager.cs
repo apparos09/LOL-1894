@@ -113,8 +113,8 @@ namespace RM_BBTS
 
         [Header("Score Plus/Time")]
         // The maximum and minimum for adding to the player's score.
-        public int maxScorePlus = 300;
-        public int minScorePlus = 5;
+        public int maxScorePlus = 500;
+        public int minScorePlus = 50;
 
         // Gets set to 'true' when the timer is paused.
         public bool pausedTimer = true;
@@ -308,14 +308,14 @@ namespace RM_BBTS
                 randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
 
                 // Checks to see if it's a new question.
-                if(questionsAsked.Contains(randQuestion.number)) // New
+                if(questionsAsked.Contains(randQuestion.number)) // Already got this question.
+                {
+                    attempts++;
+                }
+                else // New 
                 {
                     // Breaks out of the loop.
                     break;
-                }
-                else // Already got this question.
-                {
-                    attempts++;
                 }
 
             } while (attempts <= 3);
@@ -535,8 +535,8 @@ namespace RM_BBTS
             }
             else
             {
-                // TODO: should the player lose points for getting the question wrong?
-                scorePlus = 0;
+                // Subtracts 100 points from the player.
+                scorePlus = -100;
 
                 // Plays the question answer incorrect SFX.
                 if (playAudio)
@@ -573,9 +573,18 @@ namespace RM_BBTS
             }            
 
             // Add to the score, and display it.
+            // Add score plus to game score.
             gameManager.score += scorePlus;
-            gameManager.overworld.UpdateUI(); // Updates the UI to display the new score.
-            scorePlusText.text = (scorePlus > 0) ? scorePlus.ToString("#+;#-;0") : "-";
+
+            // If the score is now negative, set it to 0.
+            if (gameManager.score < 0)
+                gameManager.score = 0;
+
+            // Updates the UI to display the new score.
+            gameManager.overworld.UpdateUI(); 
+
+            // Updates the score text.
+            scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
 
             // Response locked in.
             confirmButton.interactable = false;
