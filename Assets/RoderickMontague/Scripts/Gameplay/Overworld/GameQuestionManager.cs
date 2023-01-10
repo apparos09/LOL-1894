@@ -580,8 +580,11 @@ namespace RM_BBTS
             if (gameManager.score < 0)
                 gameManager.score = 0;
 
-            gameManager.overworld.UpdateUI(); // Updates the UI to display the new score.
-            scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("#+;#-;0") : "-";
+            // Updates the UI to display the new score.
+            gameManager.overworld.UpdateUI(); 
+
+            // Updates the score text.
+            scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
 
             // Response locked in.
             confirmButton.interactable = false;

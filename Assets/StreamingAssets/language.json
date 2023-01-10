@@ -771,7 +771,7 @@
     "que_res_enemyC": "Enemy C",
     "que_res_enemyD": "Enemy D",
 
-    "que01": "When 2 battlers have the same speed, the turn order is evenly random. If the player has the same speed as their opponent, what is the chance of the player going first?",
+    "que01": "When 2 battlers have the same speed, the turn order is perfectly random. If the player has the same speed as their opponent, what is the chance of the player going first?",
 
     "que02": "If a move does not mention that it can burn the target, the burn chance is 0.00. What does this mean?",
     "que02_res00": "The move cannot inflict burn status on the target.",

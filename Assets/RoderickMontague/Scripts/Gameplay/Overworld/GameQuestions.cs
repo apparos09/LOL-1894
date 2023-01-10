@@ -22,6 +22,10 @@ namespace RM_BBTS
         // The responses for the question.
         public string[] responses;
 
+        // Taken out because they can't consistently be read (numbers aren't in the language file).
+        // The speak keys for the responses.
+        // public string[] responseSpeakKeys;
+
         // The index of the correct response.
         public int answerIndex;
 
@@ -42,11 +46,35 @@ namespace RM_BBTS
         // Set the response by the index.
         public void SetResponseByIndex(int index, string response)
         {
-            // Returns the string by index.
+            // Sets the string by index.
             if (index >= 0 && index < responses.Length)
                 responses[index] = response;
         }
 
+        // // Returns the response speak key by the index.
+        // public string GetResponseSpeakKeyByIndex(int index)
+        // {
+        //     // Returns an empty string.
+        //     if (responseSpeakKeys == null)
+        //         return string.Empty;
+        // 
+        //     // Returns the string by index.
+        //     if (index >= 0 && index < responseSpeakKeys.Length)
+        //         return responseSpeakKeys[index];
+        //     else // Empty string.
+        //         return string.Empty;
+        // }
+        // 
+        // // Set the response speak key by the index.
+        // public void SetResponseSpeakKeyByIndex(int index, string speakKey)
+        // {
+        //     // Sets the string by index.
+        //     if (index >= 0 && index < responseSpeakKeys.Length)
+        //         responseSpeakKeys[index] = speakKey;
+        // }
+
+
+        // RESPONSES 
         // The first response/index 0 entry.
         public string Response0
         {
@@ -90,6 +118,53 @@ namespace RM_BBTS
                 SetResponseByIndex(3, value);
             }
         }
+
+
+        // // SPEAK KEYS
+        // // The first response speak key/index 0 entry.
+        // public string Response0SpeakKey
+        // {
+        //     get { return GetResponseSpeakKeyByIndex(0); }
+        // 
+        //     set
+        //     {
+        //         SetResponseSpeakKeyByIndex(0, value);
+        //     }
+        // }
+        // 
+        // // The second response speak key/index 1 entry.
+        // public string Response1SpeakKey
+        // {
+        //     get { return GetResponseSpeakKeyByIndex(1); }
+        // 
+        //     set
+        //     {
+        //         SetResponseSpeakKeyByIndex(1, value);
+        //     }
+        // }
+        // 
+        // // The third response speak key/index 2 entry.
+        // public string Response2SpeakKey
+        // {
+        //     get { return GetResponseSpeakKeyByIndex(2); }
+        // 
+        //     set
+        //     {
+        //         SetResponseSpeakKeyByIndex(2, value);
+        //     }
+        // }
+        // 
+        // // The forth response speak key/index 3 entry.
+        // public string Response3SpeakKey
+        // {
+        //     get { return GetResponseSpeakKeyByIndex(3); }
+        // 
+        //     set
+        //     {
+        //         SetResponseSpeakKeyByIndex(3, value);
+        //     }
+        // }
+
 
         // Gets the answer to the question.
         public string GetAnswer()
@@ -184,15 +259,21 @@ namespace RM_BBTS
             // The number of the question.
             question.number = number;
 
+            // Sets the speak key to be empty.
+            question.questionSpeakKey = string.Empty;
+
             // Creates the list of responses.
             question.responses = new string[QUESTION_OPTIONS_MAX] 
             {
                 string.Empty, string.Empty, string.Empty, string.Empty
             };
 
-            // Sets the speak key to be empty.
-            // TODO: add speak key for questions.
-            question.questionSpeakKey = string.Empty;
+            // // Creates the list of response speak keys.
+            // question.responseSpeakKeys = new string[QUESTION_OPTIONS_MAX]
+            // {
+            //     string.Empty, string.Empty, string.Empty, string.Empty
+            // };
+
 
             // Checks the question number.
             switch (number)
@@ -225,7 +306,7 @@ namespace RM_BBTS
 
                 case 1:
                     // Question
-                    question.question = "[When 2 battlers have the same speed, the turn order is evenly random. If the player has the same speed as their opponent, what is the chance of the player going first?]";
+                    question.question = "[When 2 battlers have the same speed, the turn order is perfectly random. If the player has the same speed as their opponent, what is the chance of the player going first?]";
                     question.questionSpeakKey = "que01";
 
                     // Responses
