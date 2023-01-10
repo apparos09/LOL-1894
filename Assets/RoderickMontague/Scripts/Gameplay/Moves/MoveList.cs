@@ -333,7 +333,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.soundWave: // Soundwave
-                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 1.0F, 0.18F);
+                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 0.95F, 0.18F);
                     
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
@@ -506,7 +506,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.95F, 0.27F);
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.90F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
