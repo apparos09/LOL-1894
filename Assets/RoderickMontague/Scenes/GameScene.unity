@@ -17159,8 +17159,8 @@ MonoBehaviour:
   incorrectColor: {r: 1, g: 0.4392157, b: 0.4392157, a: 1}
   unansweredColor: {r: 1, g: 1, b: 1, a: 1}
   scorePlusText: {fileID: 1129041253}
-  maxScorePlus: 300
-  minScorePlus: 5
+  maxScorePlus: 500
+  minScorePlus: 50
   pausedTimer: 1
   startTime: 100
   reduceRewardTime: 60
