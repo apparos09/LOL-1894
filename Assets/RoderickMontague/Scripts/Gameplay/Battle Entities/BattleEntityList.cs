@@ -496,6 +496,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.15F;
 
                     break;
 
@@ -519,6 +520,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
+                    data.levelRate = 1.15F;
 
                     break;
 
@@ -542,6 +544,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
+                    data.levelRate = 1.15F;
 
                     break;
 
@@ -565,6 +568,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.15F;
 
                     break;
 

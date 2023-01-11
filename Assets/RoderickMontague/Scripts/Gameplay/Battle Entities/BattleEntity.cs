@@ -174,7 +174,7 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
         {
-            
+            // ...
         }
 
         // Start is called before the first frame update
@@ -189,6 +189,9 @@ namespace RM_BBTS
             // NOTE: this caused an error when loading in game data before.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
+            
+            // NOTE: this still causes issues for enemies when loading in from a saved game (overrides save data health and energy).
+            // I don't want to move or comment this out, so I wrote a workaround in BattleManager.cs.
             health = maxHealth;
             energy = maxEnergy;
         }
@@ -637,10 +640,10 @@ namespace RM_BBTS
 
             // Calculates the attack.
             // A modifier will always change the attack by at least 1 point per stage.
-            float result = attack + attack * attackMod * 0.10F + (1.0F * attackMod); // default: 0.05F
+            float result = attack + attack * attackMod * 0.25F + (1.0F * attackMod); // default: 0.05F
 
             // If the attack stat would be 0 or negative, set it to 1.
-            if (result <= 0.0F)
+            if (result < 1.0F)
                 result = 1.0F;
 
             // Return the result.
@@ -654,10 +657,10 @@ namespace RM_BBTS
             defenseMod = Mathf.Clamp(defenseMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
             // A modifier will always change the defense by at least 1 point per stage.
-            float result = defense + defense * defenseMod * 0.10F + (1.0F * defenseMod); // default: 0.05F
+            float result = defense + defense * defenseMod * 0.25F + (1.0F * defenseMod); // default: 0.05F
 
             // If the defense is less than or equal to 0, set it to 1.
-            if (result <= 0.0F)
+            if (result < 1.0F)
                 result = 1.0F;
 
             // Return the result.
@@ -672,10 +675,10 @@ namespace RM_BBTS
 
             // Calculates the speed - this is affected by paralysis.
             // A modifier will always change the speed by at least 1 point per stage.
-            float result = (speed + speed * speedMod * 0.10F) * (paralyzed ? 0.80F : 1.0F) + (1.0F * speedMod); // default: 0.05F
-            
+            float result = (speed + speed * speedMod * 0.25F) * (paralyzed ? 0.80F : 1.0F) + (1.0F * speedMod); // default: 0.05F
+
             // If the speed would be 0 or negative, set it to 1.
-            if (result <= 0.0F)
+            if (result < 1.0F)
                 result = 1.0F;
 
             return result;

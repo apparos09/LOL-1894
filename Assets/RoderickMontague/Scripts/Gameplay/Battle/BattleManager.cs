@@ -16,6 +16,11 @@ namespace RM_BBTS
         // Becomes 'true' when the overworld is initialized.
         private bool initialized = false;
 
+        // Signifies that the post initialization function has been called.
+        // This was used to fix a bug when initializing the battle from a saved game.
+        // This gets set to false when 'Initialize()' is called, which triggers the post function call.
+        private bool postInitialized = true;
+
         // the manager for the game.
         public GameplayManager gameManager;
 
@@ -56,6 +61,15 @@ namespace RM_BBTS
         public Enemy enemyBase; // Enemy base.
         public Treasure treasureBase; // Treasure base.
         public Boss bossBase; // Boss base.
+
+        // Saves the initial health and energy for the opponent when the battle got initialized.
+        // This is to fix a bug where a load from a saved game did not keep the health and energy level.
+        // Initial Health
+        private float opponentInitHealth = -1;
+        private float opponentInitMaxHealth = -1;
+        // Initial Energy
+        private float opponentInitEnergy = -1;
+        private float opponentInitMaxEnergy = -1;
 
         // [Header("Battle/Mechanics")]
         // // The move the player has selected.
@@ -155,7 +169,7 @@ namespace RM_BBTS
         public TMP_Text treasurePromptText;
 
         // The treasure prompt text key for text-to-speech.
-        private string treasurePromptTextKey = "btl_msg_treasure";
+        private const string TREASURE_PROMPT_TEXT_KEY = "btl_msg_treasure";
 
         // The yes button for opening the treasure.
         public Button treasureYesButton;
@@ -289,7 +303,7 @@ namespace RM_BBTS
             {
                 // Translate the treasure prompt.
                 // treasurePromptTextKey = "btl_msg_treasure"; // Set by default so that the text-to-speech can use it.
-                treasurePromptText.text = defs[treasurePromptTextKey];
+                treasurePromptText.text = defs[TREASURE_PROMPT_TEXT_KEY];
                 treasureYesButtonText.text = defs["kwd_yes"];
                 treasureNoButtonText.text = defs["kwd_no"];
             }
@@ -426,10 +440,10 @@ namespace RM_BBTS
                     treasureNoButton.interactable = true;
 
                     // Reads out the treasure prompt if the treasure tutorial isn't being shown.
-                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && treasurePromptTextKey != "")
+                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && TREASURE_PROMPT_TEXT_KEY != "")
                     {
                         // Speaks the text for the treasure prompt.
-                        LOLManager.Instance.textToSpeech.SpeakText(treasurePromptTextKey);
+                        LOLManager.Instance.textToSpeech.SpeakText(TREASURE_PROMPT_TEXT_KEY);
                     }
 
                 }
@@ -450,24 +464,32 @@ namespace RM_BBTS
             }
             else
             {
-                // Show health bar and health text
+                // Show health bar, and update it.
                 opponentHealthBar.bar.gameObject.SetActive(true);
-                
-                // Set value.
-                opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+                // opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false); // Moved
 
-                // Show game text.
+                // Show health text, and update it.
                 opponentHealthText.gameObject.SetActive(true);
+                // opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString(); // Moved
 
                 // Hide treasure prompt.
                 treasurePrompt.gameObject.SetActive(false);
             }
 
-            // Set initial showing of health.
-            opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+            // Update the opponent health bar and health text.
+            opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+            opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString();
+
+            // Saves the initial health and max health of the opponent.
+            opponentInitHealth = opponent.Health;
+            opponentInitMaxHealth = opponent.MaxHealth;
+
+            // Saves the initial energy and max energy of the opponent.
+            opponentInitEnergy = opponent.Energy;
+            opponentInitMaxEnergy = opponent.MaxEnergy;
 
             // Plays the BGM based on the opponent.
-            if(opponent is Boss)
+            if (opponent is Boss)
             {
                 // Boss BGM.
                 PlayBossBgm();
@@ -496,7 +518,42 @@ namespace RM_BBTS
             learnedMove = false;
 
             // The battle has been initialized.
+            // Also sets 'postInitialized' to false so that the post initialization function is called.
             initialized = true;
+            postInitialized = false;
+        }
+
+        // Called after the battle is initialized.
+        private void PostInitalize()
+        {
+            // If the PostInitialize() function has already been called, do nothing.
+            if (postInitialized)
+                return;
+
+            // Make sure the health wasn't overwritten.
+            if(opponentInitHealth != -1 && opponentInitMaxHealth != -1)
+            {
+                // Update the health with the initial values.
+                // Do it in this order in case there's a mismatch between the health and max health.
+                opponent.MaxHealth = opponentInitMaxHealth;
+                opponent.Health = opponentInitHealth;
+
+                // Update the opponent health bar and health text.
+                opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+                opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString();
+            }
+
+            // Make sure the energy wasn't overwritten.
+            if(opponentInitEnergy != -1 && opponentInitMaxEnergy != -1)
+            {
+                // Update the energy with the initial values.
+                // Do it in this order in case there's a mismatch between the energy and max energy.
+                opponent.MaxEnergy = opponentInitMaxEnergy;
+                opponent.Energy = opponentInitEnergy;
+            }
+
+            // The function is finished, so don't call it again.
+            postInitialized = true;
         }
 
         // Called when the mouse hovers over an object.
@@ -1440,6 +1497,15 @@ namespace RM_BBTS
 
             // The battle gets initialized everytime one starts.
             initialized = false;
+            // Set to false in Initialize() function so that the post function can be called.
+            postInitialized = true;
+
+            // Reset the initial health and energy variables.
+            // This may not be needed, but this is just to be safe.
+            opponentInitHealth = -1;
+            opponentInitMaxHealth = -1;
+            opponentInitEnergy = -1;
+            opponentInitMaxEnergy = -1;
 
             // Go to the overworld.
             gameManager.UpdateUI();
@@ -1811,6 +1877,12 @@ namespace RM_BBTS
         // Update is called once per frame
         void Update()
         {
+            // If the PostInitialize() function hasn't been called, call it.
+            if(!postInitialized)
+            {
+                PostInitalize();
+            }
+
             // If the text box is not visible.
             if (!textBox.IsVisible())
             {

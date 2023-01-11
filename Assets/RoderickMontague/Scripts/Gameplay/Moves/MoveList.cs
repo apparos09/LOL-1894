@@ -270,8 +270,6 @@ namespace RM_BBTS
                 case moveId.healthSplit: // Health Split
                     move = new HealthSplitMove();
                     
-                    move.description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
-
                     // Translation is done in function.
                     break;
 
@@ -333,7 +331,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.soundWave: // Soundwave
-                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 1.0F, 0.18F);
+                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 0.95F, 0.18F);
                     
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
@@ -475,6 +473,8 @@ namespace RM_BBTS
                     break;
 
 
+
+
                 // RANK 3
                 case moveId.laserBlast: // Laser Blast
                     move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 90.0F, 0.85F, 0.27F);
@@ -506,7 +506,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.95F, 0.27F);
+                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.90F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
@@ -532,7 +532,7 @@ namespace RM_BBTS
                     move = new Move(moveId.twister, "<Twister>", 3, 70, 0.95F, 0.30F);
 
                     move.defenseChangeTarget = -1;
-                    move.defenseChangeChanceTarget = 100.0F;
+                    move.defenseChangeChanceTarget = 1.0F;
 
                     move.CriticalChance = 0.0F;
 
@@ -546,7 +546,7 @@ namespace RM_BBTS
                     move = new Move(moveId.waterBlast, "<Water Blast>", 3, 85, 0.80F, 0.30F);
 
                     move.attackChangeTarget = -1;
-                    move.attackChangeChanceTarget = 30.0F;
+                    move.attackChangeChanceTarget = 0.30F;
 
                     move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.>";
 
@@ -558,7 +558,7 @@ namespace RM_BBTS
                     move = new Move(moveId.rockBlast, "<Rock Blast>", 3, 85, 0.80F, 0.30F);
 
                     move.defenseChangeTarget = -1;
-                    move.defenseChangeChanceTarget = 30.0F;
+                    move.defenseChangeChanceTarget = 0.30F;
 
                     move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.>";
 
@@ -570,7 +570,7 @@ namespace RM_BBTS
                     move = new Move(moveId.airBlast, "<Air Blast>", 3, 85, 0.80F, 0.30F);
 
                     move.speedChangeTarget = -1;
-                    move.speedChangeChanceTarget = 30.0F;
+                    move.speedChangeChanceTarget = 0.30F;
 
                     move.description = "<The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.>";
 
@@ -582,8 +582,8 @@ namespace RM_BBTS
                 case moveId.quake: // Quake
                     move = new Move(moveId.quake, "<Quake>", 3, 75, 0.80F, 0.30F);
 
-                    move.CriticalChance = 0.3F;
-                    move.RecoilPercent = 0.4F;
+                    move.CriticalChance = 0.30F;
+                    move.RecoilPercent = 0.40F;
 
                     move.description = "<The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user.>";
 
@@ -594,7 +594,7 @@ namespace RM_BBTS
 
                 case moveId.chargeSun: // Charging Sun
                     move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 100, 0.85F);
-                    move.BurnChance = 0.2F;
+                    move.BurnChance = 0.20F;
                     move.priority = -3;
 
                     move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.>";
@@ -607,7 +607,7 @@ namespace RM_BBTS
 
                 case moveId.chargeMoon: // Charging Moon
                     move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 100, 0.85F);
-                    move.ParalysisChance = 0.2F;
+                    move.ParalysisChance = 0.20F;
                     move.priority = -3;
 
                     move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.>";

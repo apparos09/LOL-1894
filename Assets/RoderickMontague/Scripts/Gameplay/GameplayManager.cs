@@ -121,7 +121,7 @@ namespace RM_BBTS
         public TMP_Text savePromptText;
 
         // The speak key for the save prompt.
-        private string savePromptTextKey = "sve_msg_prompt";
+        private const string SAVE_PROMPT_TEXT_KEY = "sve_msg_prompt";
 
         // The save and continue text.
         public TMP_Text saveAndContinueText;
@@ -140,14 +140,17 @@ namespace RM_BBTS
         public SettingsMenu settingsWindow;
 
         [Header("UI/Main Menu Prompt")]
-        // The quit button text.
+        // The main menu button.
+        public Button mainMenuButton;
+
+        // The main menu button text.
         public TMP_Text mainMenuButtonText;
 
         // The quit window.
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
-        private string mainMenuPromptTextKey = "mmu_msg_prompt";
+        private const string MAIN_MENU_PROMPT_TEXT_KEY = "mmu_msg_prompt";
 
         // The prompt text for the main menu.
         public TMP_Text mainMenuPromptText;
@@ -251,7 +254,7 @@ namespace RM_BBTS
 
                 // SAVE PROMPT //
                 saveButtonText.text = defs["kwd_save"];
-                savePromptText.text = defs[savePromptTextKey];
+                savePromptText.text = defs[SAVE_PROMPT_TEXT_KEY];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
                 savePromptBackText.text = defs["kwd_back"];
@@ -261,7 +264,7 @@ namespace RM_BBTS
 
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
-                mainMenuPromptText.text = defs[mainMenuPromptTextKey];
+                mainMenuPromptText.text = defs[MAIN_MENU_PROMPT_TEXT_KEY];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
@@ -761,10 +764,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && savePromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && SAVE_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(savePromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(SAVE_PROMPT_TEXT_KEY);
                 }
             }
         }
@@ -805,10 +808,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && mainMenuPromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && MAIN_MENU_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(mainMenuPromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(MAIN_MENU_PROMPT_TEXT_KEY);
                 }
             }
         }
@@ -945,14 +948,36 @@ namespace RM_BBTS
         // Called when a question is given to the user.
         public void OnQuestionStart()
         {
+            // Disables the mouse.
             mouseTouchInput.gameObject.SetActive(false);
+
+            // Disables the save button and the main menu button.
+            saveButton.interactable = false;
+            mainMenuButton.interactable = false;
         }
 
         // Called when a question has been finished.
         public void OnQuestionEnd()
         {
             mouseTouchInput.gameObject.SetActive(true);
-            
+
+            // If in the overworld, enable the save button.
+            // If in a battle, disable the save button.
+            // The player can't save during battles.
+            if (state == gameState.overworld)
+            {
+                // In overworld, so activate save button.
+                saveButton.interactable = true;
+            }
+            else if (state == gameState.battle)
+            {
+                // In battle, so keep save button disabled.
+                saveButton.interactable = false;
+            }
+
+            // Enables the main menu button.
+            mainMenuButton.interactable = true;
+
             // Save that the player answered a question.
             SaveAndContinueGame();
         }
@@ -1655,8 +1680,12 @@ namespace RM_BBTS
 
             // Updates the UI in general.
             UpdateUI();
+
             // Updates the overworld UI since the player starts there.
             overworld.UpdateUI();
+
+            // Restarts the overworld BGM so that it matches the game phase (will play at default pitch otherwise).
+            overworld.PlayOverworldBgm();
 
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
@@ -1763,8 +1792,27 @@ namespace RM_BBTS
             if (!calledPostStart)
                 PostStart();
 
-            // Checks for some mouse input.
-            MouseTouchCheck();
+            
+            // Checks if the mouse input object is active.
+            // This is used to correct cases where the mouseTouch is activated when it shouldn't be.
+            if(mouseTouchInput.gameObject.activeSelf)
+            {
+                // If the tutorial is running, disable the mouse touch input.
+                if (tutorial.TextBoxIsVisible())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+                // If a question is running, disable the mouse touch input.
+                if (overworld.gameQuestion.QuestionIsRunning())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+            }
+
+            // If the mouse touch input is active, check for the mouse touch.
+            if(mouseTouchInput.isActiveAndEnabled)
+            {
+                // Checks for some mouse input.
+                MouseTouchCheck();
+            }
 
             // Updates the player's UI.
             // UpdateUI();
