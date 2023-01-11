@@ -140,7 +140,10 @@ namespace RM_BBTS
         public SettingsMenu settingsWindow;
 
         [Header("UI/Main Menu Prompt")]
-        // The quit button text.
+        // The main menu button.
+        public Button mainMenuButton;
+
+        // The main menu button text.
         public TMP_Text mainMenuButtonText;
 
         // The quit window.
@@ -945,14 +948,36 @@ namespace RM_BBTS
         // Called when a question is given to the user.
         public void OnQuestionStart()
         {
+            // Disables the mouse.
             mouseTouchInput.gameObject.SetActive(false);
+
+            // Disables the save button and the main menu button.
+            saveButton.interactable = false;
+            mainMenuButton.interactable = false;
         }
 
         // Called when a question has been finished.
         public void OnQuestionEnd()
         {
             mouseTouchInput.gameObject.SetActive(true);
-            
+
+            // If in the overworld, enable the save button.
+            // If in a battle, disable the save button.
+            // The player can't save during battles.
+            if (state == gameState.overworld)
+            {
+                // In overworld, so activate save button.
+                saveButton.interactable = true;
+            }
+            else if (state == gameState.battle)
+            {
+                // In battle, so keep save button disabled.
+                saveButton.interactable = false;
+            }
+
+            // Enables the main menu button.
+            mainMenuButton.interactable = true;
+
             // Save that the player answered a question.
             SaveAndContinueGame();
         }

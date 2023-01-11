@@ -171,11 +171,11 @@ namespace RM_BBTS
         // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
         public bool paralyzed;
 
-        // // Awake is called when the script instance is being loaded.
-        // protected virtual void Awake()
-        // {
-        //     
-        // }
+        // Awake is called when the script instance is being loaded.
+        protected virtual void Awake()
+        {
+            // ...
+        }
 
         // Start is called before the first frame update
         protected virtual void Start()

@@ -870,7 +870,7 @@
     "trl_intro_05": "To the left is your health, and to the right is your energy. These will be explained further once you get into a battle.",
     "trl_intro_06": "At the bottom is your current score, which increases every time you clear a room. The number of points given for clearing a room is based on how well you did at completing said room.",
     "trl_intro_07": "Your score also increases when you answer a question correctly. The faster you answer a question, the more points that are rewarded if said answer is correct.",
-    "trl_intro_08": "And finally, at the top are various options that you can select, some of which may be disabled depending on the state of the game.",
+    "trl_intro_08": "And finally, at the top is the round number, as well as various options that you can select. Notably, some of the options up top get disabled depending on the state of the game.",
     "trl_intro_09": "With all that explained, please select one of the open doors to attempt your first battle!",
 
     "trl_battle_00": "Welcome to your first battle, Battle Bot!",
