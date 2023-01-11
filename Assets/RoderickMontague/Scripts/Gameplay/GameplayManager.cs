@@ -121,7 +121,7 @@ namespace RM_BBTS
         public TMP_Text savePromptText;
 
         // The speak key for the save prompt.
-        private string savePromptTextKey = "sve_msg_prompt";
+        private const string SAVE_PROMPT_TEXT_KEY = "sve_msg_prompt";
 
         // The save and continue text.
         public TMP_Text saveAndContinueText;
@@ -150,7 +150,7 @@ namespace RM_BBTS
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
-        private string mainMenuPromptTextKey = "mmu_msg_prompt";
+        private const string MAIN_MENU_PROMPT_TEXT_KEY = "mmu_msg_prompt";
 
         // The prompt text for the main menu.
         public TMP_Text mainMenuPromptText;
@@ -254,7 +254,7 @@ namespace RM_BBTS
 
                 // SAVE PROMPT //
                 saveButtonText.text = defs["kwd_save"];
-                savePromptText.text = defs[savePromptTextKey];
+                savePromptText.text = defs[SAVE_PROMPT_TEXT_KEY];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
                 savePromptBackText.text = defs["kwd_back"];
@@ -264,7 +264,7 @@ namespace RM_BBTS
 
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
-                mainMenuPromptText.text = defs[mainMenuPromptTextKey];
+                mainMenuPromptText.text = defs[MAIN_MENU_PROMPT_TEXT_KEY];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
@@ -764,10 +764,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && savePromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && SAVE_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(savePromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(SAVE_PROMPT_TEXT_KEY);
                 }
             }
         }
@@ -808,10 +808,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && mainMenuPromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && MAIN_MENU_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(mainMenuPromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(MAIN_MENU_PROMPT_TEXT_KEY);
                 }
             }
         }

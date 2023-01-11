@@ -169,7 +169,7 @@ namespace RM_BBTS
         public TMP_Text treasurePromptText;
 
         // The treasure prompt text key for text-to-speech.
-        private string treasurePromptTextKey = "btl_msg_treasure";
+        private const string TREASURE_PROMPT_TEXT_KEY = "btl_msg_treasure";
 
         // The yes button for opening the treasure.
         public Button treasureYesButton;
@@ -303,7 +303,7 @@ namespace RM_BBTS
             {
                 // Translate the treasure prompt.
                 // treasurePromptTextKey = "btl_msg_treasure"; // Set by default so that the text-to-speech can use it.
-                treasurePromptText.text = defs[treasurePromptTextKey];
+                treasurePromptText.text = defs[TREASURE_PROMPT_TEXT_KEY];
                 treasureYesButtonText.text = defs["kwd_yes"];
                 treasureNoButtonText.text = defs["kwd_no"];
             }
@@ -440,10 +440,10 @@ namespace RM_BBTS
                     treasureNoButton.interactable = true;
 
                     // Reads out the treasure prompt if the treasure tutorial isn't being shown.
-                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && treasurePromptTextKey != "")
+                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && TREASURE_PROMPT_TEXT_KEY != "")
                     {
                         // Speaks the text for the treasure prompt.
-                        LOLManager.Instance.textToSpeech.SpeakText(treasurePromptTextKey);
+                        LOLManager.Instance.textToSpeech.SpeakText(TREASURE_PROMPT_TEXT_KEY);
                     }
 
                 }

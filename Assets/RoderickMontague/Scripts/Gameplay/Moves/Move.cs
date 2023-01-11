@@ -498,7 +498,7 @@ namespace RM_BBTS
                         else // Limit was reached, so no change happened.
                         {
 
-                            // Checks if it was a positive stat change or a negatie one.
+                            // Checks if it was a positive stat change or a negative one.
                             if (statChange > 0) // Upper limit reached.
                             {
                                 pages.Add(GetDefenseLimitReachedPage(entity, true, battle));

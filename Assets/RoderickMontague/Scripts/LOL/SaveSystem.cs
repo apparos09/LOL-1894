@@ -97,6 +97,9 @@ namespace RM_BBTS
         // The string shown when having feedback.
         private string feedbackString = "<Saving Data>";
 
+        // The string key for the feedback.
+        private const string FEEDBACK_STRING_KEY = "sve_msg_savingGame";
+
         // Start is called before the first frame update
         void Start()
         {
@@ -108,7 +111,7 @@ namespace RM_BBTS
 
             // Sets the save complete text.
             if (defs != null)
-                feedbackString = defs["sve_msg_savingGame"];
+                feedbackString = defs[FEEDBACK_STRING_KEY];
         }
 
         // Set save and load operations.
@@ -169,6 +172,18 @@ namespace RM_BBTS
             // If the instance has been initialized.
             if (LOLSDK.Instance.IsInitialized)
             {
+                // Makes sure that the feedback string is set.
+                if(FEEDBACK_STRING_KEY != string.Empty)
+                {
+                    // Gets the language definition.
+                    JSONNode defs = SharedState.LanguageDefs;
+
+                    // Sets the feedback string if it wasn't already set.
+                    if (feedbackString != defs[FEEDBACK_STRING_KEY])
+                        feedbackString = defs[FEEDBACK_STRING_KEY];
+                }
+               
+
                 // Send the save state.
                 LOLSDK.Instance.SaveState(savedData);
                 success = true;
