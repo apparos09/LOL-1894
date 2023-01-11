@@ -899,7 +899,7 @@ namespace RM_BBTS
                     question.Response3 = "1.00";
 
                     // Answer
-                    question.answerIndex = 3;
+                    question.answerIndex = 2;
 
                     // Translates the question.
                     if (translate)

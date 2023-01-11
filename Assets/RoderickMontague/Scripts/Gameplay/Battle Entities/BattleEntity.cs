@@ -171,11 +171,11 @@ namespace RM_BBTS
         // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
         public bool paralyzed;
 
-        // Awake is called when the script instance is being loaded.
-        protected virtual void Awake()
-        {
-            
-        }
+        // // Awake is called when the script instance is being loaded.
+        // protected virtual void Awake()
+        // {
+        //     
+        // }
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -189,6 +189,9 @@ namespace RM_BBTS
             // NOTE: this caused an error when loading in game data before.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
+            
+            // NOTE: this still causes issues for enemies when loading in from a saved game (overrides save data health and energy).
+            // I don't want to move or comment this out, so I wrote a workaround in BattleManager.cs.
             health = maxHealth;
             energy = maxEnergy;
         }

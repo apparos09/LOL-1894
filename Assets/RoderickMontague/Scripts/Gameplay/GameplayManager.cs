@@ -1655,8 +1655,12 @@ namespace RM_BBTS
 
             // Updates the UI in general.
             UpdateUI();
+
             // Updates the overworld UI since the player starts there.
             overworld.UpdateUI();
+
+            // Restarts the overworld BGM so that it matches the game phase (will play at default pitch otherwise).
+            overworld.PlayOverworldBgm();
 
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
