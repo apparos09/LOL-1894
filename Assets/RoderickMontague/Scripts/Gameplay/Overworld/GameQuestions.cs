@@ -195,7 +195,7 @@ namespace RM_BBTS
         private static GameQuestions instance;
 
         // The amount of overworld questions.
-        public const int QUESTION_COUNT = 25;
+        public const int QUESTION_COUNT = 26;
 
         // The maximum amount of options for a question.
         public const int QUESTION_OPTIONS_MAX = 4;
@@ -886,6 +886,28 @@ namespace RM_BBTS
                         question.Response3 = defs["que_res_enemyD"];
                     }
                     break;
+
+                case 25:
+                    // Question
+                    question.question = "[Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn’t get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?]";
+                    question.questionSpeakKey = "que25";
+
+                    // Responses
+                    question.Response0 = "0.00";
+                    question.Response1 = "0.40";
+                    question.Response2 = "0.60";
+                    question.Response3 = "1.00";
+
+                    // Answer
+                    question.answerIndex = 3;
+
+                    // Translates the question.
+                    if (translate)
+                    {
+                        question.question = defs["que25"];
+                    }
+                    break;
+
             }
 
             // Returns the question.

@@ -383,6 +383,8 @@
 
       "que24": 340,
 
+      "que25": 340,
+
 
 
       "trl_intro_00": 250,
@@ -855,6 +857,8 @@
     "que23": "Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind 2/12 doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?",
 
     "que24": "Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is least likely to be encountered next by the player?",
+
+    "que25": "Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn’t get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?",
 
 
 
