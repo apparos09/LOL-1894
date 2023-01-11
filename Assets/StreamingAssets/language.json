@@ -797,15 +797,15 @@
 
     "que06": "The player uses a move that raises their accuracy by 2 stages. Which of the following statements is true?",
     "que06_res00": "The player will move faster than they did before.",
-    "que06_res01": "The player’s attacks will do more damage.",
-    "que06_res02": "The player’s moves are more likely to hit their target.",
-    "que06_res03": "The opponent’s moves will do less damage to the player.",
+    "que06_res01": "The player's attacks will do more damage.",
+    "que06_res02": "The player's moves are more likely to hit their target.",
+    "que06_res03": "The opponent's moves will do less damage to the player.",
 
     "que07": "The player is hit by a move that lowers their accuracy by 1 stage. Which of the following statements is true?",
-    "que07_res00": "The player’s moves are now less likely to hit their target.",
+    "que07_res00": "The player's moves are now less likely to hit their target.",
     "que07_res01": "The player will move slower than they did before.",
     "que07_res02": "The player will take more damage from their opponent.",
-    "que07_res03": "The player’s attacks will do less damage",
+    "que07_res03": "The player's attacks will do less damage",
 
     "que08": "The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Assuming each move has an equal chance of being chosen, how likely is it that the opponent will choose the charge move?",
 
@@ -822,7 +822,7 @@
     "que14": "The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?",
     "que14_res03": "None of the 3 moves have a 1.00 chance of hitting their target.",
 
-    "que15": "Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?",
+    "que15": "Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user's accuracy is increased by 0.05, which moves will always hit their target?",
     "que15_res00": "Move A only",
     "que15_res01": "Move A and Move B.",
     "que15_res02": "Move A and Move C.",
@@ -836,18 +836,18 @@
     "que17": "Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?",
     "que17_res03": "All 3 moves are equally as risky.",
 
-    "que18": "The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?",
+    "que18": "The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A's accuracy is 0.90, Move B's accuracy is 0.70, Move C's accuracy is 1.00, and Move D's accuracy is 0.85. Which move is least likely to hit the player?",
 
-    "que19": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s attack stat cannot go any higher, which move effect has the highest chance of occurring?",
-    "que19_res00": "Move A increasing the user’s attack stat.",
-    "que19_res01": "Move B increasing the user’s defense stat.",
-    "que19_res02": "Move C increasing the user’s speed stat.",
+    "que19": "Move A has a 0.40 chance of raising the user's attack, Move B has a 0.30 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's attack stat cannot go any higher, which move effect has the highest chance of occurring?",
+    "que19_res00": "Move A increasing the user's attack stat.",
+    "que19_res01": "Move B increasing the user's defense stat.",
+    "que19_res02": "Move C increasing the user's speed stat.",
     "que19_res03": "All move effects have an equal chance of occurring.",
 
-    "que20": "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s defense cannot go any lower, which move effect has the highest chance of occurring?",
-    "que20_res00": "Move A raising the user’s attack.",
-    "que20_res01": "Move B raising the user’s defense.",
-    "que20_res02": "Move C raising the user’s speed.",
+    "que20": "Move A has a 0.40 chance of raising the user's attack, Move B has a 0.60 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's defense cannot go any lower, which move effect has the highest chance of occurring?",
+    "que20_res00": "Move A raising the user's attack.",
+    "que20_res01": "Move B raising the user's defense.",
+    "que20_res02": "Move C raising the user's speed.",
     "que20_res03": "The events all have the same chance of occurring.",
 
     "que21": "There are 10 doors remaining, and 2 of them are treasure doors. If every door has an equal chance of being chosen, what is the chance of the player choosing a treasure door?",
@@ -858,11 +858,11 @@
 
     "que24": "Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is least likely to be encountered next by the player?",
 
-    "que25": "Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn’t get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?",
+    "que25": "Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn't get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?",
 
 
 
-    "trl_intro_00": "Before we begin, here’s a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",
+    "trl_intro_00": "Before we begin, here's a quick tip. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",
     "trl_intro_01": "Once all the page text is displayed, the forward button will move onto the next page, or close the textbox if there are no more pages. Now, with all that out of the way…",
     "trl_intro_02": "Welcome to the battle simulator, Battle Bot! Your job is to beat the boss of this simulation, who is behind the red door. But first, there are some things you should know about the simulation.",
     "trl_intro_03": "This is the overworld, which is where you pick a door to go through. Once you win your first battle, all regular doors will be unlocked. The boss room is only unlocked after you complete all other rooms.",
@@ -874,23 +874,23 @@
     "trl_intro_09": "With all that explained, please select one of the open doors to attempt your first battle!",
 
     "trl_battle_00": "Welcome to your first battle, Battle Bot!",
-    "trl_battle_01": "To successfully win a battle, you must bring your opponent’s health down to 0. If your health hits 0, you will lose the battle and get a game over.",
+    "trl_battle_01": "To successfully win a battle, you must bring your opponent's health down to 0. If your health hits 0, you will lose the battle and get a game over.",
     "trl_battle_02": "You can hold up to 4 regular moves at a time, which together with the charge and run moves makes for a total of 6 battle options max.",
     "trl_battle_03": "Selecting the run move has you attempt to flee from the battle, which always has a 0.50 chance of success. If you succeed, you will return to the overworld.",
     "trl_battle_04": "Enemies retain their health and energy levels if you flee, but they will be completely restored if too many rooms are completed without finishing their battles. More on this later.",
     "trl_battle_05": "Since this is the tutorial battle, the run option has been disabled. After this battle ends, the run option will always be available, even when battling the boss of the simulation.",
     "trl_battle_06": "The charge move is used to charge your energy, which it restores by a fixed amount. Regular moves take energy to perform, so they cannot be used without enough energy.",
     "trl_battle_07": "Speaking of which, regular moves all have different characteristics that determine how well they perform in battle. To view your full move information, check the stats window.",
-    "trl_battle_08": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don’t have enough energy to perform a move, said move’s button will be disabled.",
-    "trl_battle_09": "That’s all for now, so on with the battle!",
+    "trl_battle_08": "As for the move buttons, they show the move names, and the current accuracy of every move. If you don't have enough energy to perform a move, said move's button will be disabled.",
+    "trl_battle_09": "That's all for now, so on with the battle!",
 
-    "trl_firstMove_00": "You just completed your first turn of battle! Now that you’ve experienced how the battles work, some more move elements will be explained.",
-    "trl_firstMove_01": "A move’s rank determines how advanced said move is, and it ranges from 1 to 3. The higher the number, the higher the rank. High rank move offers will become more common the further you get into the game.",
-    "trl_firstMove_02": "A move’s power determines how strong said move is. If a move doesn’t have a power amount listed, then it either does no damage, or determines damage in a different way than usual.",
-    "trl_firstMove_03": "A move’s accuracy determines how likely it is to hit its target. A move with no accuracy listed either always succeeds or has its success rate determined by a different factor than usual.",
-    "trl_firstMove_04": "A move’s energy level determines what percentage of the battler’s energy is used to perform said move. If a move’s energy usage isn’t listed, then it either uses no energy, or its energy usage varies.",
+    "trl_firstMove_00": "You just completed your first turn of battle! Now that you've experienced how the battles work, some more move elements will be explained.",
+    "trl_firstMove_01": "A move's rank determines how advanced said move is, and it ranges from 1 to 3. The higher the number, the higher the rank. High rank move offers will become more common the further you get into the game.",
+    "trl_firstMove_02": "A move's power determines how strong said move is. If a move doesn't have a power amount listed, then it either does no damage, or determines damage in a different way than usual.",
+    "trl_firstMove_03": "A move's accuracy determines how likely it is to hit its target. A move with no accuracy listed either always succeeds or has its success rate determined by a different factor than usual.",
+    "trl_firstMove_04": "A move's energy level determines what percentage of the battler's energy is used to perform said move. If a move's energy usage isn't listed, then it either uses no energy, or its energy usage varies.",
     "trl_firstMove_05": "Make sure to open the stats window if you ever want to see any of the information mentioned for one of your moves.",
-    "trl_firstMove_06": "That’s all for the move explanations, so on with the battle!",
+    "trl_firstMove_06": "That's all for the move explanations, so on with the battle!",
 
     "trl_critical_00": "You just encountered critical damage!",
     "trl_critical_01": "Critical damage is a damage bonus that has a chance of being applied for every directly damaging move.",
@@ -898,10 +898,10 @@
 
     "trl_recoil_00": "You just encountered recoil damage!",
     "trl_recoil_01": "Recoil damage is damage done to the user for successfully performing their move.",
-    "trl_recoil_02": "A move’s description will state if it does recoil damage.",
+    "trl_recoil_02": "A move's description will state if it does recoil damage.",
 
     "trl_statChange_00": "You have encountered a stat change!",
-    "trl_statChange_01": "Some moves can increase or decrease a battler’s stats, with said changes being in effect for the rest of the battle unless stated otherwise.",
+    "trl_statChange_01": "Some moves can increase or decrease a battler's stats, with said changes being in effect for the rest of the battle unless stated otherwise.",
     "trl_statChange_02": "Completing or fleeing from a battle will remove all stat changes for both you and your opponent.",
 
     "trl_burn_00": "You have encountered burn status!",
@@ -915,26 +915,26 @@
     "trl_firstBattleDeath_00": "Since this is your first battle, the simulation has completely restored your health and energy.",
     "trl_firstBattleDeath_01": "Keep in mind that this is a one-time thing. If you lose all your health after this battle is over, you will get a game over.",
 
-    "trl_overworld_00": "Now that you’ve tried out a battle, all the other doors are unlocked, except for the boss room.",
+    "trl_overworld_00": "Now that you've tried out a battle, all the other doors are unlocked, except for the boss room.",
     "trl_overworld_01": "As mentioned before, the game ends when you beat the boss, who can only be challenged after all the other rooms are cleared.",
-    "trl_overworld_02": "You’ll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.",
+    "trl_overworld_02": "You'll get stronger and learn better moves the more rooms that you clear, so how you approach this task is up to you.",
     "trl_overworld_03": "As for the enemies, they will get stronger as the game progresses, and some can evolve into different forms. If an enemy can evolve, it will happen when a phase change occurs.",
     "trl_overworld_04": "A phase change happens when you complete enough rooms, with there being three phases in total. A phase change is signified by a change in the game background, and in the game music.",
-    "trl_overworld_05": "Enemies regain all their health and energy when a phase change occurs, even if they don’t evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.",
+    "trl_overworld_05": "Enemies regain all their health and energy when a phase change occurs, even if they don't evolve. Each phase has an equal number of doors, so keep that in mind if you leave any battles unfinished.",
     "trl_overworld_06": "Also remember that running away from battle is always an option, even against the final boss.",
     "trl_overworld_07": "Going back to phases, you get permanent stat boosts when the phase changes, but your current health and energy levels stay the same. The stats screen reflects these changes as usual.",
     "trl_overworld_08": "Since you're currently in the first phase, you have two phase stat boosts left to get.",
-    "trl_overworld_09": "That’s all for now, so on with the game!",
+    "trl_overworld_09": "That's all for now, so on with the game!",
 
     "trl_treasure_00": "This is a treasure room!",
     "trl_treasure_01": "If you take the treasure, you get a free level up, some heath restored, some energy restored, and an opportunity to learn a new move.",
-    "trl_treasure_02": "If you don’t take the treasure, the room will remain open, so you can always pick up the treasure later.",
+    "trl_treasure_02": "If you don't take the treasure, the room will remain open, so you can always pick up the treasure later.",
 
     "trl_boss_00": "Welcome to the boss room!",
     "trl_boss_01": "All you need to do is beat the boss to win the game! Good luck!",
 
-    "trl_gameOver_00": "You lost the battle and got a game over, so there’s some things that you should know.",
-    "trl_gameOver_01": "Once a room is completed, it will stay completed no matter what. So, you don’t have to redo any rooms you already cleared. The open doors have had their positions randomized though.",
+    "trl_gameOver_00": "You lost the battle and got a game over, so there's some things that you should know.",
+    "trl_gameOver_01": "Once a room is completed, it will stay completed no matter what. So, you don't have to redo any rooms you already cleared. The open doors have had their positions randomized though.",
     "trl_gameOver_02": "As for the enemies, they have all had their health and energy fully restored. However, the enemies themselves and their moves have not changed.",
     "trl_gameOver_03": "And as for you, your health and energy have been completely restored, but some of your moves have been randomized. Make sure to check the stats window to see your new moves.",
     "trl_gameOver_04": "That's all for now, so good luck!",

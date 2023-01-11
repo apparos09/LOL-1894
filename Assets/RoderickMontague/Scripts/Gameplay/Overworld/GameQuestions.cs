@@ -431,9 +431,9 @@ namespace RM_BBTS
 
                     // Responses
                     question.Response0 = "[The player will move faster than they did before.]";
-                    question.Response1 = "[The player’s attacks will do more damage.]";
-                    question.Response2 = "[The player’s moves are more likely to hit their target.]";
-                    question.Response3 = "[The opponent’s moves will do less damage to the player.]";
+                    question.Response1 = "[The player's attacks will do more damage.]";
+                    question.Response2 = "[The player's moves are more likely to hit their target.]";
+                    question.Response3 = "[The opponent's moves will do less damage to the player.]";
 
                     // Answer
                     question.answerIndex = 2;
@@ -455,10 +455,10 @@ namespace RM_BBTS
                     question.questionSpeakKey = "que07";
 
                     // Responses
-                    question.Response0 = "[The player’s moves are now less likely to hit their target.]";
+                    question.Response0 = "[The player's moves are now less likely to hit their target.]";
                     question.Response1 = "[The player will move slower than they did before.]";
                     question.Response2 = "[The player will take more damage from their opponent.]";
-                    question.Response3 = "[The player’s attacks will do less damage.]";
+                    question.Response3 = "[The player's attacks will do less damage.]";
 
                     // Answer
                     question.answerIndex = 0;
@@ -644,7 +644,7 @@ namespace RM_BBTS
 
                 case 15:
                     // Question
-                    question.question = "[Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user’s accuracy is increased by 0.05, which moves will always hit their target?]";
+                    question.question = "[Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user's accuracy is increased by 0.05, which moves will always hit their target?]";
                     question.questionSpeakKey = "que15";
 
                     // Responses
@@ -720,7 +720,7 @@ namespace RM_BBTS
 
                 case 18:
                     // Question
-                    question.question = "[The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C’s accuracy is 1.00, and Move D’s accuracy is 0.85. Which move is least likely to hit the player?]";
+                    question.question = "[The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A's accuracy is 0.90, Move B's accuracy is 0.70, Move C's accuracy is 1.00, and Move D's accuracy is 0.85. Which move is least likely to hit the player?]";
                     question.questionSpeakKey = "que18";
 
                     // Responses
@@ -745,13 +745,13 @@ namespace RM_BBTS
 
                 case 19:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
+                    question.question = "[Move A has a 0.40 chance of raising the user's attack, Move B has a 0.30 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
                     question.questionSpeakKey = "que19";
 
                     // Responses
-                    question.Response0 = "[Move A increasing the user’s attack stat.]";
-                    question.Response1 = "[Move B increasing the user’s defense stat.]";
-                    question.Response2 = "[Move C increasing the user’s speed stat.]";
+                    question.Response0 = "[Move A increasing the user's attack stat.]";
+                    question.Response1 = "[Move B increasing the user's defense stat.]";
+                    question.Response2 = "[Move C increasing the user's speed stat.]";
                     question.Response3 = "[All move effects have an equal chance of occurring.]";
 
                     // Answer
@@ -770,13 +770,13 @@ namespace RM_BBTS
 
                 case 20:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If the user’s defense cannot go any lower, which move effect has the highest chance of occurring?]";
+                    question.question = "[Move A has a 0.40 chance of raising the user's attack, Move B has a 0.60 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's defense cannot go any lower, which move effect has the highest chance of occurring?]";
                     question.questionSpeakKey = "que20";
 
                     // Responses
-                    question.Response0 = "[Move A raising the user’s attack.]";
-                    question.Response1 = "[Move B raising the user’s defense.]";
-                    question.Response2 = "[Move C raising the user’s speed.]";
+                    question.Response0 = "[Move A raising the user's attack.]";
+                    question.Response1 = "[Move B raising the user's defense.]";
+                    question.Response2 = "[Move C raising the user's speed.]";
                     question.Response3 = "[The events all have the same chance of occurring.]";
 
                     // Answer
@@ -889,9 +889,9 @@ namespace RM_BBTS
 
                 case 25:
                     // Question
-                    question.question = "[Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn’t get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?]";
+                    question.question = "[Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn't get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?]";
                     question.questionSpeakKey = "que25";
-
+                    
                     // Responses
                     question.Response0 = "0.00";
                     question.Response1 = "0.40";
