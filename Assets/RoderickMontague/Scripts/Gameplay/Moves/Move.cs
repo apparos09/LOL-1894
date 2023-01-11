@@ -89,7 +89,7 @@ namespace RM_BBTS
         public float accuracyChangeChanceTarget = 0.0F; // chance
 
         // The boost for critical damage.
-        public const float CRITICAL_BOOST = 1.25F; // 1.20 originally.
+        public const float CRITICAL_BOOST = 1.50F; // 1.20 originally.
         
         // TODO: replace name with file citation for translation.
         // Move constructor
