@@ -95,7 +95,7 @@ namespace RM_BBTS
         public TMP_Text feedbackText;
 
         // The string shown when having feedback.
-        private string feedbackString = "<Saving Data>";
+        private string feedbackString = "Saving Data";
 
         // The string key for the feedback.
         private const string FEEDBACK_STRING_KEY = "sve_msg_savingGame";

@@ -148,11 +148,11 @@ namespace RM_BBTS
 
         // The correct and incorrect string.
         // Correct
-        private string correctString = "[Correct]";
+        private string correctString = "Correct";
         private string correctKey = "kwd_correct";
 
         // Incorrect
-        private string incorrectString = "[Incorrect]";
+        private string incorrectString = "Incorrect";
         private string incorrectKey = "kwd_incorrect";
 
         // Awake is called when the script instance is being loaded.

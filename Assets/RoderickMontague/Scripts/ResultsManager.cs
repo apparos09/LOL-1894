@@ -78,17 +78,17 @@ namespace RM_BBTS
             JSONNode defs = SharedState.LanguageDefs;
 
             // Labels for translation.
-            string titleLabel = "<Results>";
-            string scoreLabel = "<Final Score>";
-            string roomsClearedLabel = "<Rooms Cleared>";
-            string totalTimeLabel = "<Total Time>";
-            string totalTurnsLabel = "<Total Turns>";
-            string questionsCorrectLabel = "<Questions Correct>";
-            string finalLevelLabel = "<Final Level>";
-            string finalMovesLabel = "<Final Moves>";
+            string titleLabel = "Results";
+            string scoreLabel = "Final Score";
+            string roomsClearedLabel = "Rooms Cleared";
+            string totalTimeLabel = "Total Time";
+            string totalTurnsLabel = "Total Turns";
+            string questionsCorrectLabel = "Questions Correct";
+            string finalLevelLabel = "Final Level";
+            string finalMovesLabel = "Final Moves";
 
             // The main menu title text.
-            string finishLabel = "<Finish>";
+            string finishLabel = "Finish";
 
             // The speak key for the title.
             string titleSpeakKey = "";

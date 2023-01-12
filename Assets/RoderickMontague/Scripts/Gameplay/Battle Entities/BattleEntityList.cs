@@ -139,7 +139,7 @@ namespace RM_BBTS
                 case battleEntityId.unknown: // Unknown
                 default:
                     data.id = battleEntityId.unknown;
-                    data.displayName = "<Unknown>";
+                    data.displayName = "Unknown";
                     data.displayNameSpeakKey = "bey_unknown_nme";
 
                     data.maxHealth = 10;
@@ -165,7 +165,7 @@ namespace RM_BBTS
 
                 case battleEntityId.treasure: // 1. Treasure Chest
                     data.id = battleEntityId.treasure;
-                    data.displayName = "<Treasure>";
+                    data.displayName = "Treasure";
                     data.displayNameSpeakKey = "bey_treasure_nme";
 
                     data.maxHealth = 1;
@@ -188,7 +188,7 @@ namespace RM_BBTS
                 case battleEntityId.combatBot: // Combat Bot
 
                     data.id = battleEntityId.combatBot;
-                    data.displayName = "<Combat Bot>";
+                    data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
                     data.maxHealth = 140;
@@ -210,7 +210,7 @@ namespace RM_BBTS
                     data.preEvoId = battleEntityId.unknown;
                     data.evoId = battleEntityId.ufo2;
 
-                    data.displayName = "<UFO>";
+                    data.displayName = "UFO";
                     data.displayNameSpeakKey = "bey_ufo1_nme";
 
                     data.maxHealth = 21;
@@ -237,7 +237,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.ufo3;
 
 
-                    data.displayName = "<UFO MK II>";
+                    data.displayName = "UFO MK II";
                     data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     // Stats
@@ -259,7 +259,7 @@ namespace RM_BBTS
                     data.preEvoId = battleEntityId.ufo2;
                     data.evoId = battleEntityId.unknown;
 
-                    data.displayName = "<UFO MK III>";
+                    data.displayName = "UFO MK III";
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
@@ -282,7 +282,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.insect2;
 
 
-                    data.displayName = "<Starfly>";
+                    data.displayName = "Starfly";
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
@@ -305,7 +305,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Spacectoid>";
+                    data.displayName = "Spacectoid";
                     data.displayNameSpeakKey = "bey_insect2_nme";
 
                     data.maxHealth = 40;
@@ -327,7 +327,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.ghost2;
 
                     // Stats
-                    data.displayName = "<Techno Ghost>";
+                    data.displayName = "Techno Ghost";
                     data.displayNameSpeakKey = "bey_ghost1_nme";
 
                     data.maxHealth = 5;
@@ -349,7 +349,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Techno Phantom>";
+                    data.displayName = "Techno Phantom";
                     data.displayNameSpeakKey = "bey_ghost2_nme";
 
                     data.maxHealth = 10;
@@ -371,7 +371,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Comet>";
+                    data.displayName = "Comet";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
                     data.maxHealth = 120;
@@ -393,7 +393,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.sunRock2;
 
                     // Stats
-                    data.displayName = "<Stellosis>";
+                    data.displayName = "Stellosis";
                     data.displayNameSpeakKey = "bey_sunRock1_nme";
 
                     data.maxHealth = 27;
@@ -415,7 +415,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Sunoliss>";
+                    data.displayName = "Sunoliss";
                     data.displayNameSpeakKey = "bey_sunRock2_nme";
 
                     data.maxHealth = 42;
@@ -437,7 +437,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.moonRock2;
 
                     // Stats
-                    data.displayName = "<Stelluna>";
+                    data.displayName = "Stelluna";
                     data.displayNameSpeakKey = "bey_moonRock1_nme";
 
                     data.maxHealth = 27;
@@ -459,7 +459,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Lunooma>";
+                    data.displayName = "Lunooma";
                     data.displayNameSpeakKey = "bey_moonRock2_nme";
 
                     data.maxHealth = 42;
@@ -482,7 +482,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Pyrobot>";
+                    data.displayName = "Pyrobot";
                     data.displayNameSpeakKey = "bey_fireBot_nme";
 
                     data.maxHealth = 30;
@@ -506,7 +506,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Aquadroid>";
+                    data.displayName = "Aquadroid";
                     data.displayNameSpeakKey = "bey_waterBot_nme";
 
                     data.maxHealth = 55;
@@ -530,7 +530,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Terrachine>";
+                    data.displayName = "Terrachine";
                     data.displayNameSpeakKey = "bey_earthBot_nme";
 
                     data.maxHealth = 30;
@@ -578,7 +578,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.sharp2;
 
                     // Stats
-                    data.displayName = "<Inkarp>";
+                    data.displayName = "Inkarp";
                     data.displayNameSpeakKey = "bey_sharp1_nme";
 
                     data.maxHealth = 18;
@@ -601,7 +601,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Poily>";
+                    data.displayName = "Poily";
                     data.displayNameSpeakKey = "bey_sharp2_nme";
 
                     data.maxHealth = 38;
@@ -624,7 +624,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.cBugRed2;
 
                     // Stats
-                    data.displayName = "<Red>";
+                    data.displayName = "Red";
                     data.displayNameSpeakKey = "bey_cBugRed1_nme";
 
                     data.maxHealth = 18;
@@ -647,7 +647,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Red X>";
+                    data.displayName = "Red X";
                     data.displayNameSpeakKey = "bey_cBugRed2_nme";
 
                     data.maxHealth = 32;
@@ -670,7 +670,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.cBugBlue2;
 
                     // Stats
-                    data.displayName = "<Blue>";
+                    data.displayName = "Blue";
                     data.displayNameSpeakKey = "bey_cBugBlue1_nme";
 
                     data.maxHealth = 18;
@@ -693,7 +693,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Blue X>";
+                    data.displayName = "Blue X";
                     data.displayNameSpeakKey = "bey_cBugBlue2_nme";
 
                     data.maxHealth = 32;
@@ -716,7 +716,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.cBugYellow2;
 
                     // Stats
-                    data.displayName = "<Yellow>";
+                    data.displayName = "Yellow";
                     data.displayNameSpeakKey = "bey_cBugYellow1_nme";
 
                     data.maxHealth = 18;
@@ -739,7 +739,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Yellow X>";
+                    data.displayName = "Yellow X";
                     data.displayNameSpeakKey = "bey_cBugYellow2_nme";
 
                     data.maxHealth = 32;
@@ -762,7 +762,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Vortex>";
+                    data.displayName = "Vortex";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
                     data.maxHealth = 100;
@@ -785,7 +785,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.planet2;
 
                     // Stats
-                    data.displayName = "<Strange Island>";
+                    data.displayName = "Strange Island";
                     data.displayNameSpeakKey = "bey_planet1_nme";
 
                     data.maxHealth = 40;
@@ -808,7 +808,7 @@ namespace RM_BBTS
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
-                    data.displayName = "<Strange Planet>";
+                    data.displayName = "Strange Planet";
                     data.displayNameSpeakKey = "bey_planet2_nme";
 
                     data.maxHealth = 120;
