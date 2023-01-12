@@ -89,7 +89,7 @@ namespace RM_BBTS
         public float accuracyChangeChanceTarget = 0.0F; // chance
 
         // The boost for critical damage.
-        public const float CRITICAL_BOOST = 1.2F;
+        public const float CRITICAL_BOOST = 1.50F; // 1.20 originally.
         
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -213,10 +213,93 @@ namespace RM_BBTS
             }
         }
 
+        // Gets the power of the move as a string.
+        public string GetPowerAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if power is greater than 0.
+            result = (Power > 0) ? Power.ToString() : "-";
+
+            return result;
+        }
+
+        // Gets the accuracy of the move as a string.
+        public string GetAccuracyAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if accuracy should be used.
+            if(useAccuracy)
+            {
+                // Checks if accuracy is above 0.
+                result = (Accuracy > 0) ? Accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) : "-";
+            }
+            else
+            {
+                result = "-";
+            }
+
+            return result;
+        }
+
+        // Gets the energy usage as a string.
+        public string GetEnergyUsageAsString()
+        {
+            // The result to be returned.
+            string result = "";
+
+            // Checks if energy usage is above 0.
+            if(EnergyUsage > 0)
+            {
+                result = Mathf.Round(EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString());
+                result += "%";
+            }
+            else // Energy not used.
+            {
+                result = "-";
+            }
+
+            return result;
+        }
+
         // Checks if a move is available for the battle entity to perform.
         public bool Usable(BattleEntity user)
         {
-            return (CalculateEnergyUsed(user) <= user.Energy);
+            // Grabs the amount of decimal place moves, and calculates the multiplier.
+            int movePlaces = GameplayManager.DISPLAY_DECIMAL_PLACES;
+
+            // The result of the comparison.
+            bool result;
+
+            // If the 'decimals' value is greater than 0, then the decimal point will be moved.
+            // If the value of 'decimals' was 0, it would make the mult 1.0.
+            // If the value of 'decimals' is less than 0, it would cause a negative exponent.
+            // As such, any value that would result in a <= 0 exponent just does a direct comparison.
+            if(movePlaces > 0)
+            {
+                // This moves the decimal point over to the right by (decimal) amount of times.
+                // If 'decimals' is set to 0, then it will become 1.
+                float mult = Mathf.Pow(10.0F, movePlaces);
+
+                // Moves the decimal places and converts the values to an int.
+                // This gets rid of the rest of the decimal content.
+                // The values are floored for this comparison.
+                int moveEnergyAdjust = Mathf.FloorToInt(CalculateEnergyUsed(user) * mult);
+                int userEnergyAdjust = Mathf.FloorToInt(user.Energy * mult);
+
+                // Compares the floored values.
+                result = (moveEnergyAdjust <= userEnergyAdjust);
+            }
+            else
+            {
+                // Standard, direct calculation.
+                result = (CalculateEnergyUsed(user) <= user.Energy);
+            }
+
+            return result;
         }
 
         // Generates a random float in the 0-1 range.
@@ -238,7 +321,8 @@ namespace RM_BBTS
                 float randFloat = GenerateRandomFloat01();
 
                 // Checks if the modified accuracy should be used.
-                success = randFloat <= ((useModified) ? user.GetModifiedAccuracy(accuracy) : accuracy);
+                // The accuracy isn't clamped to make sure the calculations work as intended.
+                success = randFloat <= ((useModified) ? user.GetModifiedAccuracy(accuracy, false) : accuracy);
 
             }
             else // Always Succeeds
@@ -283,8 +367,12 @@ namespace RM_BBTS
             // power * 0.75 * ((attack *1.125)/(2.75 * defense)) * critical
             damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (2.75F * target.GetDefenseModified())) * critBoost;
 
-            damage = Mathf.Ceil(damage); // Round Up to Nearest Whole Number
+            damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
+
+            // A critical hit will always do at least 1 extra point of damage.
+            if (useCritBoost)
+                damage += 1.0F;
 
             // Returns the damage amount.
             return damage;
@@ -410,7 +498,7 @@ namespace RM_BBTS
                         else // Limit was reached, so no change happened.
                         {
 
-                            // Checks if it was a positive stat change or a negatie one.
+                            // Checks if it was a positive stat change or a negative one.
                             if (statChange > 0) // Upper limit reached.
                             {
                                 pages.Add(GetDefenseLimitReachedPage(entity, true, battle));

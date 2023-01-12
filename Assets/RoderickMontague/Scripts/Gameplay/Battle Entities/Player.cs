@@ -35,7 +35,7 @@ namespace RM_BBTS
             preEvoId = 0;
             evoId = 0;
 
-            displayName = "Player";
+            displayName = "<Player>";
             displayNameSpeakKey = "bey_player_nme";
             level = 1;
 
@@ -146,8 +146,13 @@ namespace RM_BBTS
             base.LevelUp(special, times);
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
+            // HEALTH
             Health += Mathf.Ceil(MaxHealth * LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
-            Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_ENERGY_RESTORE_PERCENT * times);
+
+            // ENERGY
+            // Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_ENERGY_RESTORE_PERCENT * times);
+            // This now rounds to a whole number.
+            RestoreEnergy(LEVEL_UP_ENERGY_RESTORE_PERCENT * times, 0);
         }
 
         // Applies the new phase bonus for the player.

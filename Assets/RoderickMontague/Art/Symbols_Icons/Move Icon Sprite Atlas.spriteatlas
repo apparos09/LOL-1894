@@ -60,7 +60,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8dc64a7c166a3e3489ccd28edc038b0b, type: 3}
   m_PackedSpriteNamesToIndex:
   - rank_symbol
-  - accuracy_symbol
+  - accuracy_stat_symbol
   - energy_symbol
   - player_icon
   - power_symbol

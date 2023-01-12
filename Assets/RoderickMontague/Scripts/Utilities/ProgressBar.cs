@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace RM_BBTS
     {
         // The slider bar that's being animated.
         public Slider bar;
-
+ 
         // The minimum value.
         private float minValue = 0.0F;
 
@@ -35,12 +36,30 @@ namespace RM_BBTS
         // value t for interlation
         private float v_t = 0.0F;
 
+        [Header("Bar Fill")]
+        // The bar fill image.
+        public Image barFill;
+
+        // If 'true', the fill is hidden when the progress bar is at 0.
+        public bool hideFillOnMin = true;
+
+        // The fill alpha for hiding it when the bar slider is set to zero.
+        [Range(0.0F, 1.0F)]
+        public float fillAlpha = 1.0F;
+
+        // If set to 'true', the fill alpha is automatically set on the start screen.
+        public bool autoSetFillAlpha = true;
+
         // Start is called before the first frame update
         void Start()
         {
             // Grabs the slider component from the object if this hasn't been set.
             if (bar == null)
                 bar = GetComponent<Slider>();
+
+            // Gets the alpha of the bar fill colour.
+            if (autoSetFillAlpha && barFill != null)
+                fillAlpha = barFill.color.a;
         }
 
         // The minimum value.
@@ -203,8 +222,35 @@ namespace RM_BBTS
             }
 
             // Makes sure the bar value stays within the bounds.
-            // This is to stop the fill image from being shown out of bounds.
-            bar.value = Mathf.Clamp(bar.value, bar.minValue, bar.maxValue);
+            if(bar.value < bar.minValue || bar.value > bar.maxValue)
+                bar.value = Mathf.Clamp(bar.value, bar.minValue, bar.maxValue);
+
+
+            // If the bar fill should be hidden when the bar is at 0.
+            // This is needed because it won't be gone when set to 0 with how you have it set up.
+            if(hideFillOnMin)
+            {
+                // Checks to see if the bar fill should be hidden.
+                if (bar.value <= bar.minValue && barFill.color.a != 0.0F) // Hide bar fill.
+                {
+                    // Creates a new colour variable with an alpha of 0.
+                    Color newColor = barFill.color;
+                    newColor.a = 0.0F;
+
+                    // Replaces the bar colour with the new colour.
+                    barFill.color = newColor;
+                }
+                else if (bar.value > bar.minValue && barFill.color.a == 0.0F && fillAlpha != 0.0F) // Show bar fill.
+                {
+                    // The program doesn't bother if the fill alpha is set to 0.0F.
+                    // Creates a new colour variable, giving it the fill alpha.
+                    Color newColor = barFill.color;
+                    newColor.a = fillAlpha;
+
+                    // Replaces the bar colour with the new colour.
+                    barFill.color = newColor;
+                }
+            }
 
             
         }

@@ -17,6 +17,7 @@ namespace RM_BBTS
         // The language definitions.
         JSONNode defs = null;
 
+        // Constructor
         private BattleMessages()
         {
         }
@@ -42,7 +43,7 @@ namespace RM_BBTS
         //     
         // }
 
-        // Returns the instance of the game settings.
+        // Returns the instance of the class.
         public static BattleMessages Instance
         {
             get
@@ -110,7 +111,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} used {1}!";
+                msg = "<{0} used {1}!>";
             }
 
             // Replaces the information.
@@ -150,7 +151,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move hit!";
+                msg = "<The move hit!>";
             }
 
             return msg;
@@ -177,7 +178,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move was successful!";
+                msg = "<The move was successful!>";
             }
 
             return msg;
@@ -207,7 +208,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move hit, and it did critical damage!";
+                msg = "<The move hit, and it did critical damage!>";
             }
 
             return msg;
@@ -235,7 +236,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default message.
-                msg = "{0} took recoil damage!";
+                msg = "<{0} took recoil damage!>";
             }
 
             // Slot in the message text.
@@ -274,7 +275,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} does not have enough energy to use their move!";
+                msg = "<{0} does not have enough energy to use their move!>";
             }
 
             // Replaces the information.
@@ -313,7 +314,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move missed!";
+                msg = "<The move missed!>";
             }
 
             return msg;
@@ -343,7 +344,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The move failed!";
+                msg = "<The move failed!>";
             }
 
             return msg;
@@ -378,9 +379,9 @@ namespace RM_BBTS
             {
                 // Grabs the default mesage (singular vs. pural).
                 if (amount == 1)
-                    msg = "The move increased {0}'s {1} by 1 stage!";
+                    msg = "<The move increased {0}'s {1} by 1 stage!>";
                 else
-                    msg = "The move increased {0}'s {1} by {2} stage(s)!";
+                    msg = "<The move increased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.
@@ -428,9 +429,9 @@ namespace RM_BBTS
             {
                 // Grabs the default mesage (singular vs. pural).
                 if (amount == 1)
-                    msg = "The move decreased {0}'s {1} by 1 stage!";
+                    msg = "<The move decreased {0}'s {1} by 1 stage!>";
                 else
-                    msg = "The move decreased {0}'s {1} by {2} stage(s)!";
+                    msg = "<The move decreased {0}'s {1} by {2} stage(s)!>";
             }
 
             // Slot in values.
@@ -478,9 +479,9 @@ namespace RM_BBTS
             {
                 // Checks if the stat can't go any higher, or lower.
                 if (upperLimit)
-                    msg = "{0}'s {1} stat can't go any higher!";
+                    msg = "<{0}'s {1} stat can't go any higher!>";
                 else
-                    msg = "{0}'s {1} stat can't go any lower!";
+                    msg = "<{0}'s {1} stat can't go any lower!>";
             }
 
             // Slot in values.
@@ -527,7 +528,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The target has been burned!";
+                msg = "<The target has been burned!>";
             }
 
             return msg;
@@ -557,7 +558,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The target has been paralyzed!";
+                msg = "<The target has been paralyzed!>";
             }
 
             return msg;
@@ -588,7 +589,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} charged their energy!";
+                msg = "<{0} charged their energy!>";
             }
 
             // Slotting in content.
@@ -627,7 +628,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} failed to run away!";
+                msg = "<{0} failed to run away!>";
             }
 
             // Slotting in content.
@@ -666,7 +667,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "Nothing happened.";
+                msg = "<Nothing happened.>";
             }
 
             return msg;
@@ -696,7 +697,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} took burn damage!";
+                msg = "<{0} took burn damage!>";
             }
 
             // Slotting in content.
@@ -735,7 +736,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "{0} is immobilized, and can't move!";
+                msg = "<{0} is immobilized, and can't move!>";
             }
 
             // Slotting in content.
@@ -774,7 +775,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The opponent ran away! The player has won the battle!";
+                msg = "<The opponent ran away! The player has won the battle!>";
             }
 
             return msg;
@@ -804,7 +805,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The boss ran away! The player has completed the simulation!";
+                msg = "<The boss ran away! The player has completed the simulation!>";
             }
 
             return msg;
@@ -834,7 +835,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player lost the battle, and had to run away!";
+                msg = "<The player lost the battle, and had to run away!>";
             }
 
             return msg;
@@ -864,7 +865,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player has taken the treasure!";
+                msg = "<The player has taken the treasure!>";
             }
 
             return msg;
@@ -894,7 +895,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player got a level up!";
+                msg = "<The player got a level up!>";
             }
 
             return msg;
@@ -924,7 +925,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player is trying to learn a new move!";
+                msg = "<The player is trying to learn a new move!>";
             }
 
             return msg;
@@ -954,7 +955,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player learned {0}!";
+                msg = "<The player learned {0}!>";
             }
 
             // Slotting in content.
@@ -987,7 +988,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player did not learn {0}.";
+                msg = "<The player did not learn {0}.>";
             }
 
             // Slotting in content.

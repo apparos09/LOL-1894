@@ -61,18 +61,21 @@ namespace RM_BBTS
         public int evolveWaves = 0;
 
         // String labels for each stat (used for translation).
-        private string levelString = "Level";
-        private string healthString = "Health";
-        private string attackString = "Attack";
-        private string defenseString = "Defense";
-        private string speedString = "Speed";
-        private string energyString = "Energy";
+        private string levelString = "<Level>";
+        private string healthString = "<Health>";
+        private string attackString = "<Attack>";
+        private string defenseString = "<Defense>";
+        private string speedString = "<Speed>";
+        private string energyString = "<Energy>";
 
         // Move characteristics.
-        private string rankString = "Rank";
-        private string powerString = "Power";
-        private string accuracyString = "Accuracy";
-        private string descriptionString = "Description";
+        private string rankString = "<Rank>";
+        private string powerString = "<Power>";
+        private string accuracyString = "<Accuracy>";
+        private string descriptionString = "<Description>";
+
+        // Score label.
+        private string scoreString = "<Score>";
 
         [Header("Game Stats/Time")]
 
@@ -118,7 +121,7 @@ namespace RM_BBTS
         public TMP_Text savePromptText;
 
         // The speak key for the save prompt.
-        private string savePromptTextKey = "sve_msg_prompt";
+        private const string SAVE_PROMPT_TEXT_KEY = "sve_msg_prompt";
 
         // The save and continue text.
         public TMP_Text saveAndContinueText;
@@ -137,14 +140,17 @@ namespace RM_BBTS
         public SettingsMenu settingsWindow;
 
         [Header("UI/Main Menu Prompt")]
-        // The quit button text.
+        // The main menu button.
+        public Button mainMenuButton;
+
+        // The main menu button text.
         public TMP_Text mainMenuButtonText;
 
         // The quit window.
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
-        private string mainMenuPromptTextKey = "mmu_msg_prompt";
+        private const string MAIN_MENU_PROMPT_TEXT_KEY = "mmu_msg_prompt";
 
         // The prompt text for the main menu.
         public TMP_Text mainMenuPromptText;
@@ -248,7 +254,7 @@ namespace RM_BBTS
 
                 // SAVE PROMPT //
                 saveButtonText.text = defs["kwd_save"];
-                savePromptText.text = defs[savePromptTextKey];
+                savePromptText.text = defs[SAVE_PROMPT_TEXT_KEY];
                 saveAndContinueText.text = defs["kwd_saveContinue"];
                 saveAndQuitText.text = defs["kwd_saveQuit"];
                 savePromptBackText.text = defs["kwd_back"];
@@ -258,7 +264,7 @@ namespace RM_BBTS
 
                 // TITLE SCREEN PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
-                mainMenuPromptText.text = defs[mainMenuPromptTextKey];
+                mainMenuPromptText.text = defs[MAIN_MENU_PROMPT_TEXT_KEY];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
 
@@ -276,6 +282,9 @@ namespace RM_BBTS
                 powerString = defs["kwd_power"];
                 accuracyString = defs["kwd_accuracy"];
                 descriptionString = defs["kwd_description"];
+
+                // The score string.
+                scoreString = defs["kwd_score"];
             }
 
             // Turns off the entrance animation if scene transitions shouldn't be used.
@@ -602,6 +611,11 @@ namespace RM_BBTS
             get { return descriptionString; }
         }
 
+        // Returns the score string.
+        public string ScoreString
+        {
+            get { return scoreString; }
+        }
 
         // Sets the game stat.
         public void SetState(gameState newState)
@@ -750,10 +764,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && savePromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && SAVE_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(savePromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(SAVE_PROMPT_TEXT_KEY);
                 }
             }
         }
@@ -794,10 +808,10 @@ namespace RM_BBTS
             if (active)
             {
                 // If the SDK is initialized, text-to-speech is being used, and the speak key has been set.
-                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && mainMenuPromptTextKey != "")
+                if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && MAIN_MENU_PROMPT_TEXT_KEY != "")
                 {
                     // Read out the mssage.
-                    LOLManager.Instance.textToSpeech.SpeakText(mainMenuPromptTextKey);
+                    LOLManager.Instance.textToSpeech.SpeakText(MAIN_MENU_PROMPT_TEXT_KEY);
                 }
             }
         }
@@ -929,6 +943,43 @@ namespace RM_BBTS
             // The timer is paused when the tutorial text is displayed.
             if (pauseTimerWhenTutorial)
                 pausedTimer = false;
+        }
+
+        // Called when a question is given to the user.
+        public void OnQuestionStart()
+        {
+            // Disables the mouse.
+            mouseTouchInput.gameObject.SetActive(false);
+
+            // Disables the save button and the main menu button.
+            saveButton.interactable = false;
+            mainMenuButton.interactable = false;
+        }
+
+        // Called when a question has been finished.
+        public void OnQuestionEnd()
+        {
+            mouseTouchInput.gameObject.SetActive(true);
+
+            // If in the overworld, enable the save button.
+            // If in a battle, disable the save button.
+            // The player can't save during battles.
+            if (state == gameState.overworld)
+            {
+                // In overworld, so activate save button.
+                saveButton.interactable = true;
+            }
+            else if (state == gameState.battle)
+            {
+                // In battle, so keep save button disabled.
+                saveButton.interactable = false;
+            }
+
+            // Enables the main menu button.
+            mainMenuButton.interactable = true;
+
+            // Save that the player answered a question.
+            SaveAndContinueGame();
         }
 
         // Returns the amount of completed rooms.
@@ -1263,6 +1314,10 @@ namespace RM_BBTS
             results.totalTime = gameTimer;
             results.totalTurns = turnsPassed;
 
+            // The amount of questions asked, and the amount of questions correct.
+            results.totalQuestionsAsked = overworld.gameQuestion.questionsAskedCount;
+            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrectCount;
+
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.
             results.finalLevel = player.Level - 1;
@@ -1307,6 +1362,10 @@ namespace RM_BBTS
             // Gets the player save data.
             saveData.playerData = player.GenerateBattleEntitySaveData();
 
+            // If the door data array is not initialized, initialize it.
+            if (saveData.doorData == null)
+                saveData.doorData = new DoorSaveData[OverworldManager.ROOM_COUNT];
+
             // Converts the door save data.
             for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
             {
@@ -1333,6 +1392,64 @@ namespace RM_BBTS
             saveData.score = score;
             saveData.roomsCompleted = roomsCompleted;
             // saveData.roomsTotal = GetRoomsTotal();
+
+            // Question information.
+            saveData.nextQuestionRound = overworld.nextQuestionRound;
+            saveData.questionsAskedCount = overworld.gameQuestion.questionsAskedCount;
+            saveData.questionsCorrectCount = overworld.gameQuestion.questionsCorrectCount;
+
+            // Puts the asked questions into the list.
+            for(int i = 0; i < GameQuestionManager.QUESTIONS_ASKED_SAVE_MAX; i++)
+            {
+                // Checks if there's a valid index in the list.
+                if(i < overworld.gameQuestion.questionsAsked.Count) // Index exists.
+                {
+                    // Places number in designated variable.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = overworld.gameQuestion.questionsAsked[i];
+                            break;
+                    }
+
+                }
+                else // Index does not exist.
+                {
+                    // Set value to -1 at the provided slot.
+                    switch (i)
+                    {
+                        case 0:
+                            saveData.questionsAsked0 = -1;
+                            break;
+                        case 1:
+                            saveData.questionsAsked1 = -1;
+                            break;
+                        case 2:
+                            saveData.questionsAsked2 = -1;
+                            break;
+                        case 3:
+                            saveData.questionsAsked3 = -1;
+                            break;
+                        case 4:
+                            saveData.questionsAsked4 = -1;
+                            break;
+                    }
+                }
+            }
+
+
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = turnsPassed;
@@ -1432,19 +1549,23 @@ namespace RM_BBTS
             overworld.bossDoor = null;
             overworld.treasureDoors.Clear();
 
-            // Load the door data.
-            for(int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+            // If there is door data to pull from.
+            if(saveData.doorData != null)
             {
-                // Loads the save data.
-                overworld.doors[i].LoadSaveData(saveData.doorData[i]);
+                // Load the door data.
+                for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
+                {
+                    // Loads the save data.
+                    overworld.doors[i].LoadSaveData(saveData.doorData[i]);
 
-                // Found the boss door, so save it.
-                if (overworld.doors[i].isBossDoor)
-                    overworld.bossDoor = overworld.doors[i];
+                    // Found the boss door, so save it.
+                    if (overworld.doors[i].isBossDoor)
+                        overworld.bossDoor = overworld.doors[i];
 
-                // Found a treasure door, so add it to the list.
-                if (overworld.doors[i].isTreasureDoor)
-                    overworld.treasureDoors.Add(overworld.doors[i]);
+                    // Found a treasure door, so add it to the list.
+                    if (overworld.doors[i].isTreasureDoor)
+                        overworld.treasureDoors.Add(overworld.doors[i]);
+                }
             }
 
             // For some reason the boss door would be left unlocked when loading in game...
@@ -1507,8 +1628,49 @@ namespace RM_BBTS
             // Sets the game data values.
             score = saveData.score;
             roomsCompleted = saveData.roomsCompleted;
-            
+
             // Rooms total isn't sent over since that value shouldn't changed.
+
+            // Sets the question information.
+            overworld.nextQuestionRound = saveData.nextQuestionRound;
+            overworld.gameQuestion.questionsAskedCount = saveData.questionsAskedCount;
+            overworld.gameQuestion.questionsCorrectCount = saveData.questionsCorrectCount;
+
+
+            // Clears out the list of asked questions.
+            overworld.gameQuestion.questionsAsked.Clear();
+
+            // Grabs the asked questions from the save data and adds thm to the list.
+            for (int i = 0; i < GameQuestions.QUESTION_OPTIONS_MAX; i++)
+            {
+                // The value to be added.
+                int value = -1;
+
+                // Checks the index to see which value is next.
+                switch (i)
+                {
+                    case 0:
+                        value = saveData.questionsAsked0;
+                        break;
+                    case 1:
+                        value = saveData.questionsAsked1;
+                        break;
+                    case 2:
+                        value = saveData.questionsAsked2;
+                        break;
+                    case 3:
+                        value = saveData.questionsAsked3;
+                        break;
+                    case 4:
+                        value = saveData.questionsAsked4;
+                        break;
+                }
+
+                // Adds the value to the memory if it is greater than or equal to 0.
+                // Negative numbers indicate that it's not an actual question.
+                if(value >= 0)
+                    overworld.gameQuestion.questionsAsked.Add(value);
+            }
 
             // Sets the evolve waves.
             evolveWaves = saveData.evolveWaves;
@@ -1518,8 +1680,12 @@ namespace RM_BBTS
 
             // Updates the UI in general.
             UpdateUI();
+
             // Updates the overworld UI since the player starts there.
             overworld.UpdateUI();
+
+            // Restarts the overworld BGM so that it matches the game phase (will play at default pitch otherwise).
+            overworld.PlayOverworldBgm();
 
             // UI isn't updating properly.
             // playerHealthText.text = player.Health.ToString() + "/" + player.MaxHealth.ToString();
@@ -1626,8 +1792,27 @@ namespace RM_BBTS
             if (!calledPostStart)
                 PostStart();
 
-            // Checks for some mouse input.
-            MouseTouchCheck();
+            
+            // Checks if the mouse input object is active.
+            // This is used to correct cases where the mouseTouch is activated when it shouldn't be.
+            if(mouseTouchInput.gameObject.activeSelf)
+            {
+                // If the tutorial is running, disable the mouse touch input.
+                if (tutorial.TextBoxIsVisible())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+                // If a question is running, disable the mouse touch input.
+                if (overworld.gameQuestion.QuestionIsRunning())
+                    mouseTouchInput.gameObject.SetActive(false);
+
+            }
+
+            // If the mouse touch input is active, check for the mouse touch.
+            if(mouseTouchInput.isActiveAndEnabled)
+            {
+                // Checks for some mouse input.
+                MouseTouchCheck();
+            }
 
             // Updates the player's UI.
             // UpdateUI();

@@ -9,7 +9,7 @@ namespace RM_BBTS
     public class MoveInfoPanel : MonoBehaviour
     {
         // The id of the move being represented.
-        public moveId id;
+        private moveId id;
 
         // Move Title
         public TMPro.TMP_Text nameText;
@@ -22,6 +22,12 @@ namespace RM_BBTS
 
         // Move Description
         public TMPro.TMP_Text description;
+
+        // Gets the move id.
+        public moveId Id
+        {
+            get { return id; }
+        }
 
         // Loads the move into the move info pnael.
         public void LoadMoveInfo(Move move)
@@ -36,16 +42,13 @@ namespace RM_BBTS
             rankText.text = move.Rank.ToString();
 
             // Power
-            powerText.text = (move.Power == 0.0F) ? "-" : move.Power.ToString();
+            powerText.text = move.GetPowerAsString();
 
             // Accuracy
-            if (move.useAccuracy)
-                accuracyText.text = (move.Accuracy * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
-            else
-                accuracyText.text = "-";
+            accuracyText.text = move.GetAccuracyAsString();
 
             // Energy
-            energyText.text = (move.EnergyUsage * 100.0F).ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%";
+            energyText.text = move.GetEnergyUsageAsString();
 
             // Description
             description.text = move.description;

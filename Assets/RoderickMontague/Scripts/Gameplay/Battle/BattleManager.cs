@@ -16,6 +16,11 @@ namespace RM_BBTS
         // Becomes 'true' when the overworld is initialized.
         private bool initialized = false;
 
+        // Signifies that the post initialization function has been called.
+        // This was used to fix a bug when initializing the battle from a saved game.
+        // This gets set to false when 'Initialize()' is called, which triggers the post function call.
+        private bool postInitialized = true;
+
         // the manager for the game.
         public GameplayManager gameManager;
 
@@ -56,6 +61,15 @@ namespace RM_BBTS
         public Enemy enemyBase; // Enemy base.
         public Treasure treasureBase; // Treasure base.
         public Boss bossBase; // Boss base.
+
+        // Saves the initial health and energy for the opponent when the battle got initialized.
+        // This is to fix a bug where a load from a saved game did not keep the health and energy level.
+        // Initial Health
+        private float opponentInitHealth = -1;
+        private float opponentInitMaxHealth = -1;
+        // Initial Energy
+        private float opponentInitEnergy = -1;
+        private float opponentInitMaxEnergy = -1;
 
         // [Header("Battle/Mechanics")]
         // // The move the player has selected.
@@ -155,7 +169,7 @@ namespace RM_BBTS
         public TMP_Text treasurePromptText;
 
         // The treasure prompt text key for text-to-speech.
-        private string treasurePromptTextKey = "btl_msg_treasure";
+        private const string TREASURE_PROMPT_TEXT_KEY = "btl_msg_treasure";
 
         // The yes button for opening the treasure.
         public Button treasureYesButton;
@@ -289,7 +303,7 @@ namespace RM_BBTS
             {
                 // Translate the treasure prompt.
                 // treasurePromptTextKey = "btl_msg_treasure"; // Set by default so that the text-to-speech can use it.
-                treasurePromptText.text = defs[treasurePromptTextKey];
+                treasurePromptText.text = defs[TREASURE_PROMPT_TEXT_KEY];
                 treasureYesButtonText.text = defs["kwd_yes"];
                 treasureNoButtonText.text = defs["kwd_no"];
             }
@@ -426,10 +440,10 @@ namespace RM_BBTS
                     treasureNoButton.interactable = true;
 
                     // Reads out the treasure prompt if the treasure tutorial isn't being shown.
-                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && treasurePromptTextKey != "")
+                    if(LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech && TREASURE_PROMPT_TEXT_KEY != "")
                     {
                         // Speaks the text for the treasure prompt.
-                        LOLManager.Instance.textToSpeech.SpeakText(treasurePromptTextKey);
+                        LOLManager.Instance.textToSpeech.SpeakText(TREASURE_PROMPT_TEXT_KEY);
                     }
 
                 }
@@ -440,27 +454,42 @@ namespace RM_BBTS
 
                 // Show treasure prompt.
                 treasurePrompt.gameObject.SetActive(true);
+
+                // Replace the opponent sprite with the closed treasure chest sprite.
+                if(treasureBase.closedSprite != null)
+                {
+                    opponent.sprite = treasureBase.closedSprite;
+                    opponentSprite.sprite = opponent.sprite;
+                }
             }
             else
             {
-                // Show health bar and health text
+                // Show health bar, and update it.
                 opponentHealthBar.bar.gameObject.SetActive(true);
-                
-                // Set value.
-                opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+                // opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false); // Moved
 
-                // Show game text.
+                // Show health text, and update it.
                 opponentHealthText.gameObject.SetActive(true);
+                // opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString(); // Moved
 
                 // Hide treasure prompt.
                 treasurePrompt.gameObject.SetActive(false);
             }
 
-            // Set initial showing of health.
-            opponentHealthText.text = opponent.Health.ToString() + "/" + opponent.MaxHealth.ToString();
+            // Update the opponent health bar and health text.
+            opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+            opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString();
+
+            // Saves the initial health and max health of the opponent.
+            opponentInitHealth = opponent.Health;
+            opponentInitMaxHealth = opponent.MaxHealth;
+
+            // Saves the initial energy and max energy of the opponent.
+            opponentInitEnergy = opponent.Energy;
+            opponentInitMaxEnergy = opponent.MaxEnergy;
 
             // Plays the BGM based on the opponent.
-            if(opponent is Boss)
+            if (opponent is Boss)
             {
                 // Boss BGM.
                 PlayBossBgm();
@@ -489,7 +518,42 @@ namespace RM_BBTS
             learnedMove = false;
 
             // The battle has been initialized.
+            // Also sets 'postInitialized' to false so that the post initialization function is called.
             initialized = true;
+            postInitialized = false;
+        }
+
+        // Called after the battle is initialized.
+        private void PostInitalize()
+        {
+            // If the PostInitialize() function has already been called, do nothing.
+            if (postInitialized)
+                return;
+
+            // Make sure the health wasn't overwritten.
+            if(opponentInitHealth != -1 && opponentInitMaxHealth != -1)
+            {
+                // Update the health with the initial values.
+                // Do it in this order in case there's a mismatch between the health and max health.
+                opponent.MaxHealth = opponentInitMaxHealth;
+                opponent.Health = opponentInitHealth;
+
+                // Update the opponent health bar and health text.
+                opponentHealthBar.SetValue(opponent.Health / opponent.MaxHealth, false);
+                opponentHealthText.text = Mathf.Ceil(opponent.Health).ToString() + "/" + Mathf.Ceil(opponent.MaxHealth).ToString();
+            }
+
+            // Make sure the energy wasn't overwritten.
+            if(opponentInitEnergy != -1 && opponentInitMaxEnergy != -1)
+            {
+                // Update the energy with the initial values.
+                // Do it in this order in case there's a mismatch between the energy and max energy.
+                opponent.MaxEnergy = opponentInitMaxEnergy;
+                opponent.Energy = opponentInitEnergy;
+            }
+
+            // The function is finished, so don't call it again.
+            postInitialized = true;
         }
 
         // Called when the mouse hovers over an object.
@@ -572,36 +636,49 @@ namespace RM_BBTS
             SetPlayerOptionsAvailable(false);
         }
 
+        // Refreshes the options for the player.
         public void RefreshPlayerOptions()
         {
             // Checks move activity to see if the player can use it or not.
             // Also changes the move name on the display.
 
             // Enables/disables various buttons.
-
-            // Move 0 
-            if (player.Move0 != null && !(opponent is Treasure))
-                move0Button.interactable = player.Move0.Usable(player);
-            else
+            if(player.HasNoEnergy()) // If 'true', the player has no energy.
+            {
+                // Turn off the four move buttons.
                 move0Button.interactable = false;
-
-            // Move 1
-            if (player.Move1 != null && !(opponent is Treasure))
-                move1Button.interactable = player.Move1.Usable(player);
-            else
                 move1Button.interactable = false;
-
-            // Move 2 
-            if (player.Move2 != null && !(opponent is Treasure))
-                move2Button.interactable = player.Move2.Usable(player);
-            else
                 move2Button.interactable = false;
-
-            // Move 3
-            if (player.Move3 != null && !(opponent is Treasure))
-                move3Button.interactable = player.Move3.Usable(player);
-            else
                 move3Button.interactable = false;
+            }
+            else // The player has energy, so check if any moves can be performed.
+            {
+                // Move 0 
+                if (player.Move0 != null && !(opponent is Treasure))
+                    move0Button.interactable = player.Move0.Usable(player);
+                else
+                    move0Button.interactable = false;
+
+                // Move 1
+                if (player.Move1 != null && !(opponent is Treasure))
+                    move1Button.interactable = player.Move1.Usable(player);
+                else
+                    move1Button.interactable = false;
+
+                // Move 2 
+                if (player.Move2 != null && !(opponent is Treasure))
+                    move2Button.interactable = player.Move2.Usable(player);
+                else
+                    move2Button.interactable = false;
+
+                // Move 3
+                if (player.Move3 != null && !(opponent is Treasure))
+                    move3Button.interactable = player.Move3.Usable(player);
+                else
+                    move3Button.interactable = false;
+            }
+
+
 
             // Updates the move accuracy displays.
             UpdatePlayerMoveAccuracies();
@@ -635,11 +712,21 @@ namespace RM_BBTS
             if (player.Move0 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move0.Accuracy)) * 100.0F;
+
+                // Percent Form
+                // accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move0.Accuracy)) * 100.0F;
 
                 // Slots in the text.
-                move0AccuracyText.text = (player.Move0.useAccuracy) ? 
-                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
+                // move0AccuracyText.text = (player.Move0.useAccuracy) ? 
+                //     accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
+
+                // Decimal Form
+                // Get the accuracy.
+                accuracy = player.GetModifiedAccuracy(player.Move0.Accuracy, true);
+
+                // Slots in the text.
+                move0AccuracyText.text = (player.Move0.useAccuracy) ?
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) : "-";
             }
             else
             {
@@ -650,11 +737,11 @@ namespace RM_BBTS
             if (player.Move1 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move1.Accuracy)) * 100.0F;
+                accuracy = player.GetModifiedAccuracy(player.Move1.Accuracy, true);
 
                 // Slots in the text.
                 move1AccuracyText.text = (player.Move1.useAccuracy) ? 
-                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()): "-";
             }
             else
             {
@@ -665,11 +752,11 @@ namespace RM_BBTS
             if (player.Move2 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move2.Accuracy)) * 100.0F;
+                accuracy = player.GetModifiedAccuracy(player.Move2.Accuracy, true);
 
                 // Slots in the text.
                 move2AccuracyText.text = (player.Move2.useAccuracy) ? 
-                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) : "-";
             }
             else
             {
@@ -680,11 +767,11 @@ namespace RM_BBTS
             if (player.Move3 != null)
             {
                 // Calculates the accuracy to display.
-                accuracy = Mathf.Clamp01(player.GetModifiedAccuracy(player.Move3.Accuracy)) * 100.0F;
+                accuracy = player.GetModifiedAccuracy(player.Move3.Accuracy, true);
 
                 // Slots in the text.
                 move3AccuracyText.text = (player.Move3.useAccuracy) ? 
-                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()) + "%" : "-";
+                    accuracy.ToString("F" + GameplayManager.DISPLAY_DECIMAL_PLACES.ToString()): "-";
             }
             else
             {
@@ -1214,6 +1301,15 @@ namespace RM_BBTS
 
             // Counts this as a turn to avoid tutorial trigger issues.
             turnsTaken++;
+
+            // Replaces the oponnent sprite with the treasure open sprite.
+            if (treasureBase.openSprite != null)
+            {
+                // Overwrite the sprite with the open treasure chest.
+                opponent.sprite = treasureBase.openSprite;
+                opponentSprite.sprite = opponent.sprite;
+            }
+                
         }
 
         // Call this function to leave the treasure.
@@ -1401,6 +1497,15 @@ namespace RM_BBTS
 
             // The battle gets initialized everytime one starts.
             initialized = false;
+            // Set to false in Initialize() function so that the post function can be called.
+            postInitialized = true;
+
+            // Reset the initial health and energy variables.
+            // This may not be needed, but this is just to be safe.
+            opponentInitHealth = -1;
+            opponentInitMaxHealth = -1;
+            opponentInitEnergy = -1;
+            opponentInitMaxEnergy = -1;
 
             // Go to the overworld.
             gameManager.UpdateUI();
@@ -1461,15 +1566,15 @@ namespace RM_BBTS
             {
                 default:
                 case 1: // Normal Speed
-                    audioManager.PlayBgm(battleBgm, 1.0F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.0F);
                     break;
 
                 case 2: // Faster
-                    audioManager.PlayBgm(battleBgm, 1.2F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.2F);
                     break;
 
                 case 3: // Faster
-                    audioManager.PlayBgm(battleBgm, 1.4F);
+                    audioManager.PlayBackgroundMusic(battleBgm, 1.4F);
                     break;
             }
         }
@@ -1478,7 +1583,7 @@ namespace RM_BBTS
         public void PlayTreasureBgm()
         {
             // Slower version of the battle theme.
-            gameManager.audioManager.PlayBgm(battleBgm, 0.8F);
+            gameManager.audioManager.PlayBackgroundMusic(battleBgm, 0.8F);
         }
 
         // Plays the battle - boss bgm.
@@ -1491,7 +1596,7 @@ namespace RM_BBTS
         public void PlayBattleResultsBgm()
         {
             // Reuses the overworld BGM at plays it at a lower pitch.
-            gameManager.audioManager.PlayBgm(
+            gameManager.audioManager.PlayBackgroundMusic(
                 gameManager.overworld.overworldBgm,
                 0.8F);
         }
@@ -1772,6 +1877,12 @@ namespace RM_BBTS
         // Update is called once per frame
         void Update()
         {
+            // If the PostInitialize() function hasn't been called, call it.
+            if(!postInitialized)
+            {
+                PostInitalize();
+            }
+
             // If the text box is not visible.
             if (!textBox.IsVisible())
             {
@@ -1981,6 +2092,7 @@ namespace RM_BBTS
                                 tempPage.OnPageOpenedAddCallback(gameManager.UpdateUI);
 
                                 // Saves the old stats.
+                                uint oldLevel = player.Level;
                                 float oldMaxHp = player.MaxHealth;
                                 float oldAtk = player.Attack;
                                 float oldDef = player.Defense;
@@ -2000,10 +2112,10 @@ namespace RM_BBTS
                                     player.LevelUp();
                                 }
 
-
                                 // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(
+                                    gameManager.LevelString + " +" + (player.Level - oldLevel).ToString() + "\n" +
                                     gameManager.HealthString + " +" + Mathf.RoundToInt(player.MaxHealth - oldMaxHp).ToString() + "   |   " +
                                     gameManager.AttackString + " +" + Mathf.RoundToInt(player.Attack - oldAtk).ToString() + "\n" +
                                     gameManager.DefenseString + " +" + Mathf.RoundToInt(player.Defense - oldDef).ToString() + "   |   " +
@@ -2020,6 +2132,18 @@ namespace RM_BBTS
                                     ));
 
                                 
+                            }
+
+                            // Score Page
+                            {
+                                // Calculates the battle score.
+                                float battleScore = CalculateBattleScore();
+
+                                // Adds a page for showing the battle score.
+                                textBox.pages.Add(new Page(
+                                    gameManager.ScoreString + " +" + Mathf.RoundToInt(battleScore).ToString() + "\n" +
+                                    gameManager.ScoreString + " = " + Mathf.RoundToInt(gameManager.score + battleScore).ToString()
+                                    ));
                             }
 
                             // Checks to see if a new move should be learned.

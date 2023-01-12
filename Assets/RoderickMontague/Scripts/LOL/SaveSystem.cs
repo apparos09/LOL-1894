@@ -47,10 +47,28 @@ namespace RM_BBTS
         // Results data at the time of the save.
         public int score = 0; // Score
         public int roomsCompleted = 0; // Rooms cleared by the player.
-        
+
+        // The next question round.
+        public int nextQuestionRound = 0;
+
+        // The amount of questions asked, and the amount answered correctly.
+        public int questionsAskedCount = 0;
+        public int questionsCorrectCount = 0;
+
+        // The serializer does NOT like integer arrays or lists for some reason.
+        // As such, each one had to be stored as a seperate variable.
+
+        // The list of asked questions.
+        // Since the player is currently asked five questions total, that is the length of this array.
+        public int questionsAsked0 = -1;
+        public int questionsAsked1 = -1;
+        public int questionsAsked2 = -1;
+        public int questionsAsked3 = -1;
+        public int questionsAsked4 = -1;
+
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.
-        
+
         public int evolveWaves = 0; // Evolution waves.
         public float gameTime = 0.0F; // Total game time.
         public int turnsPassed = 0; // Total turns.
@@ -79,6 +97,9 @@ namespace RM_BBTS
         // The string shown when having feedback.
         private string feedbackString = "<Saving Data>";
 
+        // The string key for the feedback.
+        private const string FEEDBACK_STRING_KEY = "sve_msg_savingGame";
+
         // Start is called before the first frame update
         void Start()
         {
@@ -90,7 +111,7 @@ namespace RM_BBTS
 
             // Sets the save complete text.
             if (defs != null)
-                feedbackString = defs["sve_msg_savingGame"];
+                feedbackString = defs[FEEDBACK_STRING_KEY];
         }
 
         // Set save and load operations.
@@ -151,6 +172,18 @@ namespace RM_BBTS
             // If the instance has been initialized.
             if (LOLSDK.Instance.IsInitialized)
             {
+                // Makes sure that the feedback string is set.
+                if(FEEDBACK_STRING_KEY != string.Empty)
+                {
+                    // Gets the language definition.
+                    JSONNode defs = SharedState.LanguageDefs;
+
+                    // Sets the feedback string if it wasn't already set.
+                    if (feedbackString != defs[FEEDBACK_STRING_KEY])
+                        feedbackString = defs[FEEDBACK_STRING_KEY];
+                }
+               
+
                 // Send the save state.
                 LOLSDK.Instance.SaveState(savedData);
                 success = true;

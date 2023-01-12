@@ -174,7 +174,7 @@ namespace RM_BBTS
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
         {
-            
+            // ...
         }
 
         // Start is called before the first frame update
@@ -189,6 +189,9 @@ namespace RM_BBTS
             // NOTE: this caused an error when loading in game data before.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
+            
+            // NOTE: this still causes issues for enemies when loading in from a saved game (overrides save data health and energy).
+            // I don't want to move or comment this out, so I wrote a workaround in BattleManager.cs.
             health = maxHealth;
             energy = maxEnergy;
         }
@@ -521,6 +524,12 @@ namespace RM_BBTS
 
         }
 
+        // Returns 'true' if the entity has no energy.
+        public bool HasNoEnergy()
+        {
+            return energy <= 0.0F;
+        }
+
         // Returns 'true' if the entity has the maximum amount of energy.
         public bool HasFullCharge()
         {
@@ -533,7 +542,44 @@ namespace RM_BBTS
             energy = maxEnergy;
         }
 
-        
+        // Restores energy by a certain percentage, not rounding the amount added.
+        // The percent is locked in a [0, 1] range, with 1.0 meaning 100%.
+        // This function makes it so that no rounding is done.
+        public void RestoreEnergy(float percent)
+        {
+            RestoreEnergy(percent, -1);
+        }
+
+        // Restores energy to the player by a certain percent. The percent is locked in a [0, 1] range, with 1.0 meaning 100%.
+        // Variable 'decimalPlaces' determines how many decimal places are rounded for the addition.
+        // If 'decimalPlaces' is 0, then it rounds to a whole number.
+        // If 'decimalPlaces' is negative, then no rounding is done.
+        public void RestoreEnergy(float percent, int decimalPlaces)
+        {
+            // Gets the raw calculation.
+            float chargePlus = MaxEnergy * percent;
+
+            // Checks if rounding should be done or not.
+            if (decimalPlaces >= 0) // Round
+            {
+                // Find the amount of decimal places.
+                float mult = Mathf.Pow(10.0F, decimalPlaces);
+
+                // Multiply to keep (X) amount of decimal places, then round to get rid of the remaining decimal points.
+                // After that, divide by the mult so that there are decimal points again.
+                float chargePlusRounded = (Mathf.Round(chargePlus * mult)) / mult;
+
+                // Add the rounded amount to the player's energy.
+                Energy += chargePlusRounded;
+
+            }
+            else // Don't Round
+            {
+                Energy += chargePlus;
+            }
+        }
+
+
         // GET MODIFIED STATS
         // Attack  Mod
         public int AttackMod
@@ -592,8 +638,16 @@ namespace RM_BBTS
             // Clamp modifier.
             attackMod = Mathf.Clamp(attackMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value.
-            return attack + attack * attackMod * 0.05F;
+            // Calculates the attack.
+            // A modifier will always change the attack by at least 1 point per stage.
+            float result = attack + attack * attackMod * 0.25F + (1.0F * attackMod); // default: 0.05F
+
+            // If the attack stat would be 0 or negative, set it to 1.
+            if (result < 1.0F)
+                result = 1.0F;
+
+            // Return the result.
+            return result;
         }
 
         // Gets the modified defense of the entity.
@@ -602,8 +656,15 @@ namespace RM_BBTS
             // Clamp modifier.
             defenseMod = Mathf.Clamp(defenseMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value.
-            return defense + defense * defenseMod * 0.05F;
+            // A modifier will always change the defense by at least 1 point per stage.
+            float result = defense + defense * defenseMod * 0.25F + (1.0F * defenseMod); // default: 0.05F
+
+            // If the defense is less than or equal to 0, set it to 1.
+            if (result < 1.0F)
+                result = 1.0F;
+
+            // Return the result.
+            return result;
         }
 
         // Gets the modified speed of the entity.
@@ -612,18 +673,31 @@ namespace RM_BBTS
             // Clamp modifier.
             speedMod = Mathf.Clamp(speedMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value. This is affected by paralysis.
-            return speed + speed * speedMod * 0.05F * (paralyzed ? 0.75F : 1.0F);
+            // Calculates the speed - this is affected by paralysis.
+            // A modifier will always change the speed by at least 1 point per stage.
+            float result = (speed + speed * speedMod * 0.25F) * (paralyzed ? 0.80F : 1.0F) + (1.0F * speedMod); // default: 0.05F
+
+            // If the speed would be 0 or negative, set it to 1.
+            if (result < 1.0F)
+                result = 1.0F;
+
+            return result;
         }
 
-        // Gets the accuracy modified.
-        public float GetModifiedAccuracy(float baseAccuracy)
+        // Gets the accuracy modified. If 'clamp' is true, the accuracy is clamped at [0,1] range.
+        public float GetModifiedAccuracy(float baseAccuracy, bool clamp = true)
         {
             // Clamp modifier.
             accuracyMod = Mathf.Clamp(accuracyMod, STAT_MOD_MIN, STAT_MOD_MAX);
 
-            // Returns the value. Each stage is 0.05F in inc/dec.
-            return baseAccuracy + (accuracyMod * 0.05F);
+            // Calculates the accuracy. Each stage is 0.05F in inc/dec.
+            float result = baseAccuracy + (accuracyMod * 0.05F);
+
+            // If the accuracy should be clamped at [0, 1] (0%-100%).
+            if (clamp)
+                result = Mathf.Clamp01(result);
+
+            return result;
         }
 
         // Returns 'true' has the stat modifiers.

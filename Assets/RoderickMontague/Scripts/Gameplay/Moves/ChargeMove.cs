@@ -12,10 +12,10 @@ namespace RM_BBTS
 
         // Constructor for the charge move.
         public ChargeMove() : 
-            base(moveId.charge, "Charge", 1, 0, 1.0F, 0)
+            base(moveId.charge, "<Charge>", 1, 0, 1.0F, 0)
         {
 
-            description = "The user charges their energy by 40%.";
+            description = "<The user charges their energy by 40%.>";
             useAccuracy = false;
 
             // Loads in the translation for the run name and description.
@@ -67,9 +67,14 @@ namespace RM_BBTS
                     battle.PlayOpponentStatusAnimation();
                 }
 
+                // Original
+                // float chargePlus = user.MaxEnergy * CHARGE_PERCENT;
+                // user.Energy += chargePlus;
 
-                float chargePlus = user.MaxEnergy * CHARGE_PERCENT;
-                user.Energy += chargePlus;
+                // New
+                // Restores energy based on the display decimal places.
+                // This rounds to a whole number for restoring the energy.
+                user.RestoreEnergy(CHARGE_PERCENT, 0);
 
                 // Updates the player's energy level.
                 battle.gameManager.UpdatePlayerEnergyUI();

@@ -102,6 +102,18 @@ namespace RM_BBTS
         // The boss door type integer.
         public int bossDoorType = 0;
 
+        [Header("Game Question")]
+        // The game question manager.
+        public GameQuestionManager gameQuestion;
+
+        // The increment for the round spacing for asking questions.
+        [Tooltip("The multiple used to determine what round to ask questions on.")]
+        public int questionRoundInc = 3;
+
+        // The next round that a question will be asked on.
+        [Tooltip("The next round the question will be asked on (roomsCompleted + 1). This is set to questionRoundInc when the overworld is initialized.")]
+        public int nextQuestionRound = 0;
+
         [Header("UI")]
         
         // The user interface.
@@ -118,8 +130,17 @@ namespace RM_BBTS
         // The bgm for the overworld.
         public AudioClip overworldBgm;
 
+        // The bgm for having a question.
+        public AudioClip questionBgm;
+
         // The sound effect for a locked door.
         public AudioClip doorLockedSfx;
+
+        // The question correct SFX.
+        public AudioClip questionCorrectSfx;
+
+        // The question incorrect SFX.
+        public AudioClip questionIncorrectSfx;
 
         // Start is called before the first frame update
         void Start()
@@ -242,6 +263,10 @@ namespace RM_BBTS
             if (usePhaseColors)
                 background.color = phase1Color;
 
+
+            // Prepares for when the question will be asked.
+            nextQuestionRound = questionRoundInc;
+
             // Updates the UI.
             UpdateUI();
 
@@ -317,12 +342,26 @@ namespace RM_BBTS
         // A function to call when a tutorial starts.
         public override void OnTutorialStart()
         {
+            // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
+            // Disables the question if one is being asked.
+            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+                gameQuestion.DisableQuestion();
 
         }
 
         // A function to call when a tutorial ends.
         public override void OnTutorialEnd()
         {
+            // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
+            // Enables the question if one is being asked.
+            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            {
+                // Enable the question.
+                gameQuestion.EnableQuestion();
+
+                // Makes sure that the mouse touch input is still off since there's a question.
+                gameManager.mouseTouchInput.gameObject.SetActive(false);
+            }
 
         }
 
@@ -542,19 +581,26 @@ namespace RM_BBTS
             {
                 default:
                 case 1: // Normal Speed
-                    audioManager.PlayBgm(overworldBgm, 1.0F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.0F);
                     break;
 
                 case 2: // Faster
-                    audioManager.PlayBgm(overworldBgm, 1.2F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.2F);
                     break;
 
                 case 3: // Faster
-                    audioManager.PlayBgm(overworldBgm, 1.4F);
+                    audioManager.PlayBackgroundMusic(overworldBgm, 1.4F);
                     break;
             }
 
 
+        }
+
+        // Plays the overworld bgm.
+        public void PlayQuestionBgm()
+        {
+            // Plays the question bgm.
+            gameManager.audioManager.PlayBackgroundMusic(questionBgm);
         }
 
         // Play the door locked SFX.
@@ -565,6 +611,18 @@ namespace RM_BBTS
 
             // Plays the door locked SFX.
             audioManager.PlaySoundEffect(doorLockedSfx);
+        }
+
+        // Plays the question correct SFX.
+        public void PlayQuestionCorrectSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(questionCorrectSfx);
+        }
+
+        // Plays the question incorrect SFX.
+        public void PlayQuestionIncorrectSfx()
+        {
+            gameManager.audioManager.PlaySoundEffect(questionIncorrectSfx);
         }
 
         // Called when returning to the overworld.
@@ -598,6 +656,14 @@ namespace RM_BBTS
                     if (!bossDoor.Locked)
                         bossDoor.Locked = true;
                 }
+            }
+
+            // Asking a question of the question round number has been reached or surpassed.
+            if(gameManager.GetCurrentRoomNumber() >= nextQuestionRound)
+            {
+                // Ask a random question, and increase the next round counter.
+                gameQuestion.AskRandomQuestion();
+                nextQuestionRound += questionRoundInc;
             }
 
             // Update the UI for the overworld.
@@ -677,13 +743,16 @@ namespace RM_BBTS
                 switch (phase)
                 {
                     case 1: // Phase 1 (Start)
-                        background.color = phase1Color;
+                        if(background.color != phase1Color)
+                            background.color = phase1Color;
                         break;
                     case 2: // Phase 2 (Middle)
-                        background.color = phase2Color;
+                        if (background.color != phase2Color)
+                            background.color = phase2Color;
                         break;
                     case 3: // Phase 3 (End)
-                        background.color = phase3Color;
+                        if (background.color != phase3Color)
+                            background.color = phase3Color;
                         break;
                     default: // White
                         background.color = Color.white;
@@ -725,32 +794,6 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
-
-            // // Original
-            // // Go through each move.
-            // for(int i = 0; i < player.moves.Length && randMoves < RAND_MOVE_COUNT; i++)
-            // {
-            //     // Move has been set.
-            //     if (player.moves[i] != null)
-            //     {
-            //         // Grabs the rank.
-            //         int rank = player.moves[i].Rank;
-            // 
-            //         // Replaces the move.
-            //         switch(rank)
-            //         {
-            //             case 1: // R1
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank1Move();
-            //                 break;
-            //             case 2: // R2
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank2Move();
-            //                 break;
-            //             case 3: // R3
-            //                 player.moves[i] = MoveList.Instance.GetRandomRank3Move();
-            //                 break;
-            //         }
-            //     }
-            // }
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
