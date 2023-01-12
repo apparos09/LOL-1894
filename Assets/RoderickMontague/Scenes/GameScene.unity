@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Health]: 0000/0000'
+  m_text: 'Health: 0000/0000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Run]'
+  m_text: Run
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -647,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Move 3]'
+      value: Move 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Settings]'
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Move]'
+  m_text: Move
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1042,7 +1042,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Speed Change/Chance]'
+      value: Speed Change/Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -1164,7 +1164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Power]'
+      value: Power
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[There is treasure in this room. Do you want to take it now?]'
+  m_text: There is treasure in this room. Do you want to take it now?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch]'
+  m_text: Switch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1813,7 +1813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Legend]'
+  m_text: Legend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1987,8 +1987,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Would you like to return to the title screen? Any unsaved progress will
-    be lost.]'
+  m_text: Would you like to return to the title screen? Any unsaved progress will
+    be lost.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2122,7 +2122,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Stats]'
+  m_text: Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Question Time!]'
+  m_text: Question Time!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3005,7 +3005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Save and Continue]'
+  m_text: Save and Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3315,7 +3315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Move 2]'
+  m_text: Move 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3634,7 +3634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch out for a new move?]'
+  m_text: Switch out for a new move?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch]'
+  m_text: Switch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4050,7 +4050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Energy]: 000.00%'
+  m_text: 'Energy: 000.00%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4136,7 +4136,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 663937952514663849, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_text
-      value: '[Move 2]'
+      value: Move 2
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_Pivot.x
@@ -4581,7 +4581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Move 0]'
+      value: Move 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -4610,7 +4610,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Accuracy Change/Chance]'
+      value: Accuracy Change/Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -4832,7 +4832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Save and Quit]'
+  m_text: Save and Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5004,7 +5004,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Accuracy]'
+      value: Accuracy
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -5589,7 +5589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Player Moves]'
+  m_text: Player Moves
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5754,7 +5754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Effect on Self]'
+      value: Effect on Self
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -6701,7 +6701,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Return to Main Menu]'
+  m_text: Return to Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7044,7 +7044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Level]: 1'
+  m_text: 'Level: 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7337,7 +7337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Effect on Target]'
+      value: Effect on Target
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -7728,7 +7728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Charge]'
+      value: Charge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -7768,7 +7768,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 663937952514663849, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_text
-      value: '[Move 3]'
+      value: Move 3
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_Pivot.x
@@ -8484,7 +8484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Run]'
+  m_text: Run
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8692,7 +8692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Stats]'
+  m_text: Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8862,7 +8862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch]'
+  m_text: Switch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9647,7 +9647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch]'
+  m_text: Switch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9808,7 +9808,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 663937952514663849, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_text
-      value: '[Move 1]'
+      value: Move 1
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_Pivot.x
@@ -10603,7 +10603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Run]'
+      value: Run
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -11094,7 +11094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Move 3]'
+  m_text: Move 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11228,7 +11228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Move 0]'
+  m_text: Move 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11606,7 +11606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Accuracy]: 000.00%'
+  m_text: 'Accuracy: 000.00%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11888,7 +11888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Rank]: 0'
+  m_text: 'Rank: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12357,7 +12357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Yes]'
+  m_text: Yes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12689,7 +12689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Main Menu]'
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13499,7 +13499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Power]: 0'
+  m_text: 'Power: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13746,7 +13746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Save]'
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14168,7 +14168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Energy]: 000.00%'
+  m_text: 'Energy: 000.00%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14302,7 +14302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[OPPONENT NAME]'
+  m_text: OPPONENT NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14676,7 +14676,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <SAVE TEXT>
+  m_text: SAVE TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14848,7 +14848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Burn Chance]'
+      value: Burn Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -15307,7 +15307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Switch]'
+  m_text: Switch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15583,7 +15583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Move 2]'
+      value: Move 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -15931,7 +15931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Confirm]'
+  m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16746,7 +16746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Back]'
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17588,7 +17588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Return to Game]'
+  m_text: Return to Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18468,7 +18468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Speed]: 0000'
+  m_text: 'Speed: 0000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18852,7 +18852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Finish]'
+  m_text: Finish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19347,7 +19347,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Energy]'
+      value: Energy
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -19545,7 +19545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255217519079623092, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
       propertyPath: m_text
-      value: '[Move 1]'
+      value: Move 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}
@@ -19942,7 +19942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Defense]: 0000'
+  m_text: 'Defense: 0000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20182,7 +20182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Charge]'
+  m_text: Charge
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20448,7 +20448,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Attack Change/Chance]'
+      value: Attack Change/Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -20927,7 +20927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Would you like to save and continue the game, or save and quit the game?]'
+  m_text: Would you like to save and continue the game, or save and quit the game?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21478,7 +21478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Attack]: 0000'
+  m_text: 'Attack: 0000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21612,7 +21612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Confirm]'
+  m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21925,7 +21925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[No]'
+  m_text: No
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22011,7 +22011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Defense Change/Chance]'
+      value: Defense Change/Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -22540,7 +22540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Move 1]'
+  m_text: Move 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23436,7 +23436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Charge]'
+  m_text: Charge
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23864,7 +23864,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Back]'
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23950,7 +23950,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Critical Chance]'
+      value: Critical Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -24273,7 +24273,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Paralysis Chance]'
+      value: Paralysis Chance
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
@@ -25301,7 +25301,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 663937952514663849, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_text
-      value: '[Move 0]'
+      value: Move 0
       objectReference: {fileID: 0}
     - target: {fileID: 663937952745944928, guid: 782f96c0ecb734b49a137d3faf77d7d9, type: 3}
       propertyPath: m_Pivot.x
@@ -25406,7 +25406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1157484126352499457, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_text
-      value: '[Rank]'
+      value: Rank
       objectReference: {fileID: 0}
     - target: {fileID: 1157484127006006776, guid: 475dc0b7e841ddc4e8aaf2bad4ef79b8, type: 3}
       propertyPath: m_Sprite
