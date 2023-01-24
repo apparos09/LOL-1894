@@ -60,6 +60,18 @@ namespace RM_BBTS
         // If 'true', the response order is randomized.
         public bool randomResponseOrder = true;
 
+        // If set to 'true', the right answer is always shown when the question response is given.
+        public bool alwaysShowAnswer = false;
+
+        // If set to 'true', questions are redone if the user doesn't get them correct.
+        public bool redoQuestionIfWrong = true;
+
+        // The number of the past question. This is negative 1 by default.
+        private int priorQuestion = -1;
+
+        // Redoes the prior question.
+        private bool redoPriorQuestion = false;
+
         // The button text for the four responses.
         // Response 0
         [Header("Question Info/Response 0")]
@@ -294,32 +306,77 @@ namespace RM_BBTS
             // Gets given the random queston generated.
             GameQuestion randQuestion;
 
+            // Gets set to 'true' when the random question has been found.
+            bool found = false;
+
             // Amount of attempts taken to generate a new question.
-            int attempts = 0;
+            // int attempts = 0;
 
             // Clears out the list if the question count has been reached.
             // This doesn't mean every question has been asked, but there are few to no new questions to ask.
+            // TODO: remove this.
             if (questionsAsked.Count >= GameQuestions.QUESTION_COUNT)
                 questionsAsked.Clear();
 
-            do
+
+            // Old - Do Not Give Asked Question List
+            // do
+            // {
+            //     // Generates the random question.
+            //     randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+            // 
+            //     // Checks to see if it's a new question.
+            //     if(questionsAsked.Contains(randQuestion.number)) // Already got this question.
+            //     {
+            //         attempts++;
+            //     }
+            //     else // New 
+            //     {
+            //         // Breaks out of the loop.
+            //         break;
+            //     }
+            // 
+            // } while (attempts <= 3);
+
+            // Sets this to a new question by default since it caused complier issues.
+            // If this go correctly, this generated question shouldn't be used.
+            randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+
+            // New - Makes sure to only get new questions.
+            if (redoQuestionIfWrong) // Redo prior question.
             {
-                // Generates the random question.
-                randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
-
-                // Checks to see if it's a new question.
-                if(questionsAsked.Contains(randQuestion.number)) // Already got this question.
+                // If the prior question should be redone, and there is a prior question set.
+                if(redoPriorQuestion && priorQuestion != -1)
                 {
-                    attempts++;
-                }
-                else // New 
-                {
-                    // Breaks out of the loop.
-                    break;
-                }
+                    // For some reason, simply saving hte current question again didn't work.
 
-            } while (attempts <= 3);
+                    // // If the current question number is equal to the prior question, just re-ask this question.
+                    // if(currentQuestion.number == priorQuestion)
+                    // {
+                    //     // Reuse the question.
+                    //     randQuestion = currentQuestion;
+                    //     found = true;
+                    // }
+                    // else // Try to find the question again.
+                    // {
+                    //     // Try to find the prior question.
+                    //     randQuestion = GameQuestions.Instance.GetQuestion(priorQuestion);
+                    //     
+                    //     // If the numbers match, that means the question was found, which would make this true.
+                    //     found = (randQuestion.number == currentQuestion.number);
+                    // }
 
+                    // Try to find the prior question.
+                    randQuestion = GameQuestions.Instance.GetQuestion(priorQuestion);
+
+                    // If the numbers match, that means the question was found, which would make this true.
+                    found = (randQuestion.number == currentQuestion.number);
+                }
+            }          
+
+            // Load up a new question if none have been found yet.
+            if(!found)
+                randQuestion = GameQuestions.Instance.GetRandomQuestion(questionsAsked, randomResponseOrder);
 
             // Loads the question.
             LoadQuestion(randQuestion);
@@ -369,6 +426,17 @@ namespace RM_BBTS
             // A question has been asked, so add to the counter, and to the list.
             questionsAskedCount++;
             questionsAsked.Add(currentQuestion.number);
+
+            // TODO: implement this. You need to differentiate the asked questions list from the question count.
+            // Checks if the question has been asked before.
+            // if(questionsAsked.Contains(CurrentQuestion.number)) // Asked before.
+            // {
+            // 
+            // }
+            // else // Not asked before.
+            // {
+            //     
+            // }
 
             // Deselect all of the responses since a question is now being asked.
             DeselectAllResponses();
@@ -556,21 +624,44 @@ namespace RM_BBTS
             }
 
 
+            // If the answer should always be shown, highlight the correct and incorrect answers.
             {
                 // Makes an array for recoloring the bubbles.
                 Image[] responseButtonBubbles = new Image[] 
                 { response0Bubble, response1Bubble, response2Bubble, response3Bubble };
 
-                // Checks each button.
-                for(int i = 0; i < responseButtonBubbles.Length; i++)
+                // If the answer should always be shown.
+                if (alwaysShowAnswer)
                 {
-                    // Grabs the response button bubble.
-                    Image rbb = responseButtonBubbles[i];
+                    // Checks each button.
+                    for (int i = 0; i < responseButtonBubbles.Length; i++)
+                    {
+                        // Grabs the response button bubble.
+                        Image rbb = responseButtonBubbles[i];
 
-                    // Change the bubble colours.
-                    rbb.color = (currentQuestion.CorrectAnswer(i)) ? correctColor : incorrectColor;
+                        // Change the bubble colours.
+                        rbb.color = (currentQuestion.CorrectAnswer(i)) ? correctColor : incorrectColor;
+                    }
                 }
-            }            
+                else
+                {
+                    // Reset all the colours.
+                    foreach (Image rbb in responseButtonBubbles)
+                        rbb.color = unansweredColor;
+
+                    // Only confirm/deny the answer the player provided.
+                    if(selectedResponse >= 0 && selectedResponse < responseButtonBubbles.Length)
+                    {
+                        // Grabs the bubble of the user's selected response.
+                        Image rbb = responseButtonBubbles[selectedResponse];
+
+                        // Sets the colour of the response.
+                        rbb.color = (currentQuestion.CorrectAnswer(selectedResponse)) ? correctColor : incorrectColor;
+                    }
+
+                }
+                    
+            }
 
             // Add to the score, and display it.
             // Add score plus to game score.
@@ -585,6 +676,12 @@ namespace RM_BBTS
 
             // Updates the score text.
             scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
+
+            // Saves this as the prior question now that it has been answered.
+            priorQuestion = currentQuestion.number;
+
+            // Sets this variable to see if the prior question should be redone or not.
+            redoPriorQuestion = !correct;
 
             // Response locked in.
             confirmButton.interactable = false;
@@ -623,11 +720,19 @@ namespace RM_BBTS
             gameManager.OnQuestionEnd();
         }
 
-        // Resets the amount of asked questions.
-        public void ResetAskedQuestionCount()
+        // Resets the question history.
+        public void ResetQuestionHistory()
         {
+            // Clears out the questionsAsked list.
+            questionsAsked.Clear();
+
+            // Clears out the questions asked count.
             questionsAskedCount = 0;
             questionsCorrectCount = 0;
+
+            // Removes the prior question from the history, and says not to use it.
+            priorQuestion = -1;
+            redoPriorQuestion= false;
         }
 
         // Disables the question (prevents all interaction from the user).

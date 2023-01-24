@@ -29,6 +29,12 @@ namespace RM_BBTS
         // The index of the correct response.
         public int answerIndex;
 
+        // This message is used if the user gets the question wrong.
+        public string incorrectAnswerResponse;
+
+        // This message is used if the user gets the question right.
+        public string correctAnswerResponse;
+
         // Returns the response by the index.
         public string GetResponseByIndex(int index)
         {
@@ -200,8 +206,6 @@ namespace RM_BBTS
         // The maximum amount of options for a question.
         public const int QUESTION_OPTIONS_MAX = 4;
 
-        
-
         // Constructor
         private GameQuestions()
         {
@@ -274,6 +278,9 @@ namespace RM_BBTS
             //     string.Empty, string.Empty, string.Empty, string.Empty
             // };
 
+            // TODO: implement.
+            question.incorrectAnswerResponse = string.Empty;
+            question.correctAnswerResponse = string.Empty;
 
             // Checks the question number.
             switch (number)
@@ -926,6 +933,51 @@ namespace RM_BBTS
 
             // Returns result.
             return question;
+        }
+
+        // Gets a random question, ignoring the questions in the 'usedQuestions' list.
+        // This ignores question 0, since it's a default question.
+        public GameQuestion GetRandomQuestion(List<int> usedQuestions, bool randomResponseOrder = false)
+        {
+            // The question list.
+            List<int> questions = new List<int>();
+
+            // Adds all the questions to the list.
+            for(int i = 1; i < QUESTION_COUNT; i++)
+            {
+                questions.Add(i);
+            }
+
+            // Removes the used questions.
+            for(int i = 0; i < usedQuestions.Count && questions.Count > 0; i++)
+            {
+                // Removes all the used questions.
+                if (questions.Contains(usedQuestions[i]))
+                    questions.Remove(usedQuestions[i]);
+            }
+
+
+            // If there are no questions left, just give a random question (which may have already been used).
+            if(questions.Count != 0)
+            {
+                // Grabs a random index.
+                int randIndex = Random.Range(0, questions.Count);
+
+                // Gets the question of the provided number.
+                GameQuestion question = GetQuestion(questions[randIndex]);
+
+                // Randomizes the response order if that was what was requested.
+                if (randomResponseOrder)
+                    question = RandomizeResponseOrder(question);
+
+                // Returns the question.
+                return question;
+            }
+            else
+            {
+                // Gets a random question, regardless of if it's been used or not.
+                return GetRandomQuestion(randomResponseOrder);
+            }
         }
 
         // Randomizes the order of the responses in the question.

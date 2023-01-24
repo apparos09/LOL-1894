@@ -82,7 +82,7 @@ namespace RM_BBTS
         public const float BURN_DAMAGE = 0.0625F;
 
         // The chance to skip a turn if paralyzed.
-        public const float PARALAYSIS_SKIP_CHANCE = 0.4F;
+        public const float PARALYSIS_SKIP_CHANCE = 0.4F;
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 0.80F;
@@ -802,6 +802,28 @@ namespace RM_BBTS
             }
         }
 
+        // Generates a random float in the 0-1 range.
+        public static float GenerateRandomFloat01()
+        {
+            // I'm doing it this way to try and improve the randomizer.
+            // Originally it just randomized a float from 0.0 to 1.0, which may have been weighted poorly.
+
+            // Generates a random value of [0, 100), which gives a value from 0 to 99.
+            float value = Random.Range(0, 100);
+
+            // Adds a float, which has the potential to increase the value to 100.0.
+            value += Random.Range(0.0F, 1.0F);
+
+            // Divides the value by 100 so that it's in a [0.0, 1.0] scale.
+            value /= 100.0F;
+
+            // Clamping the value to be sure nothing screwed up.
+            value = Mathf.Clamp01(value);
+
+            // Returns the result.
+            return value;
+        }
+
         // Called to perform the player's move.
         private void PerformPlayerMove()
         {
@@ -923,7 +945,7 @@ namespace RM_BBTS
                 if(player.paralyzed && player.selectedMove.Id != moveId.run && player.selectedMove.Id != moveId.charge)
                 {
                     // If turn should be skipped.
-                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                    turnSkip = GenerateRandomFloat01() <= PARALYSIS_SKIP_CHANCE;
                 }
                 else
                 {
@@ -958,7 +980,7 @@ namespace RM_BBTS
                 if (opponent.paralyzed)
                 {
                     // If turn should be skipped.
-                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                    turnSkip = GenerateRandomFloat01() <= PARALYSIS_SKIP_CHANCE;
                 }
                 else
                 {
@@ -1346,7 +1368,7 @@ namespace RM_BBTS
 
             // Runs a randomizer to see if a move of a random rank will be chosen.
             // The random rank being chosen.
-            int randRank = (Random.Range(0.0F, 1.0F) <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
+            int randRank = (GenerateRandomFloat01() <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
 
             // The new move.
             Move newMove;
@@ -2147,7 +2169,7 @@ namespace RM_BBTS
                             }
 
                             // Checks to see if a new move should be learned.
-                            bool learningMove = (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure);
+                            bool learningMove = (GenerateRandomFloat01() <= NEW_MOVE_CHANCE || opponent is Treasure);
 
                             // If this is the tutorial, and it's the first room cleared, always give the player a new move.
                             if(learningMove == false)

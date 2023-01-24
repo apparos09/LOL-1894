@@ -302,12 +302,6 @@ namespace RM_BBTS
             return result;
         }
 
-        // Generates a random float in the 0-1 range.
-        public static float GenerateRandomFloat01()
-        {
-            return Random.Range(0.0F, 1.0F);
-        }
-
         // Checks if a move accuracy returns a success.
         // This does not factor in anything else that would make the move fail.
         public bool AccuracySuccessful(BattleEntity user, bool useModified = true)
@@ -318,7 +312,7 @@ namespace RM_BBTS
 
             if(useAccuracy) // May Not Succeed
             {
-                float randFloat = GenerateRandomFloat01();
+                float randFloat = BattleManager.GenerateRandomFloat01();
 
                 // Checks if the modified accuracy should be used.
                 // The accuracy isn't clamped to make sure the calculations work as intended.
@@ -430,7 +424,7 @@ namespace RM_BBTS
                 if (chance > 0.0F)
                 {
                     // Float for chance generation.
-                    randFloat = GenerateRandomFloat01();
+                    randFloat = BattleManager.GenerateRandomFloat01();
 
                     // The change in the stat's value.
                     int statChange = (entity == user) ? attackChangeUser : attackChangeTarget;
@@ -475,7 +469,7 @@ namespace RM_BBTS
                 if (chance > 0.0F)
                 {
                     // Float for chance generation.
-                    randFloat = GenerateRandomFloat01();
+                    randFloat = BattleManager.GenerateRandomFloat01();
 
                     // The change in the stat's value.
                     int statChange = (entity == user) ? defenseChangeUser : defenseChangeTarget;
@@ -519,7 +513,7 @@ namespace RM_BBTS
                 if (chance > 0.0F)
                 {
                     // Float for chance generation.
-                    randFloat = GenerateRandomFloat01();
+                    randFloat = BattleManager.GenerateRandomFloat01();
 
                     // The change in the stat's value.
                     int statChange = (entity == user) ? speedChangeUser : speedChangeTarget;
@@ -563,7 +557,7 @@ namespace RM_BBTS
                 if (chance > 0.0F)
                 {
                     // Float for chance generation.
-                    randFloat = GenerateRandomFloat01();
+                    randFloat = BattleManager.GenerateRandomFloat01();
 
                     // The change in the stat's value.
                     int statChange = (entity == user) ? accuracyChangeUser : accuracyChangeTarget;
@@ -941,7 +935,7 @@ namespace RM_BBTS
                 
                 // If there is a critical chance, run the randomizer.
                 if(criticalChance > 0.0F)
-                    useCritBoost = GenerateRandomFloat01() <= criticalChance;
+                    useCritBoost = BattleManager.GenerateRandomFloat01() <= criticalChance;
 
                 // Calculates the damage.
                 float damage = CalculateDamage(user, target, battle, useCritBoost);
@@ -1034,7 +1028,7 @@ namespace RM_BBTS
                 }
 
                 // Burn Infliction
-                if (!target.burned && GenerateRandomFloat01() < burnChance)
+                if (!target.burned && BattleManager.GenerateRandomFloat01() < burnChance)
                 {
                     target.burned = true;
 
@@ -1047,7 +1041,7 @@ namespace RM_BBTS
                 }
 
                 // Paralysis Infliction
-                if (!target.paralyzed && GenerateRandomFloat01() < paralysisChance)
+                if (!target.paralyzed && BattleManager.GenerateRandomFloat01() < paralysisChance)
                 {
                     target.paralyzed = true;
 
