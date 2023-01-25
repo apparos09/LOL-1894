@@ -23,19 +23,24 @@ namespace RM_BBTS
         // The title text of the question window.
         public TMP_Text titleText;
 
-        // The amount of questions that have been asked to the player.
-        public int questionsAskedCount = 0;
+        // // The amount of questions that have been asked to the player.
+        // public int questionsUsedCount = 0;
 
         // The maximum amount of asked questions that will be saved when saving the game.
-        public const int QUESTIONS_ASKED_SAVE_MAX = 5;
+        // TODO: update number to match the total amount of rounds.
+        public const int QUESTIONS_USED_SAVE_MAX = 5;
 
         // The list of asked questions (goes by question number).
         // This is to help prevent the randomizer from asking the same question multiple times.
-        [Header("A list of the asked questions by question number. This helps prevent the randomizer from asking a used question.")]
-        public List<int> questionsAsked = new List<int>();
+        [Header("A list of the used questions by question number. This helps prevent the randomizer from asking a used question.")]
+        private List<int> questionsUsed = new List<int>();
 
         // The amount of questions answered correctly.
-        public int questionsCorrectCount = 0;
+        // private int questionsCorrectCount = 0;
+
+        // This is a list of the questions results, which tracks if the user's answers were correct or incorrect.
+        // This list should match the length of the questions used list. As such, it includes responses to duplicate responses.
+        private List<bool> questionResults = new List<bool>();
 
         // Plays the audio for the question manager.
         public bool playAudio = true;
@@ -203,6 +208,122 @@ namespace RM_BBTS
             get { return currentQuestion.answerIndex; }
         }
 
+        // Returns the used questions.
+        public List<int> GetQuestionsUsed(bool removeDuplicates)
+        {
+            // Checks if duplicate questions should be removed.
+            if(removeDuplicates)
+            {
+                // Copies the list into a temp variable.
+                List<int> temp = new List<int>();
+
+                // Goes through each question used.
+                foreach(int q in questionsUsed)
+                {
+                    // Add the question number to the list if it hasn't been put in there already.
+                    if (!temp.Contains(q))
+                        temp.Add(q);
+                }
+
+                // Returns the list.
+                return temp;
+            }
+            else // Return the length of the list, which includes duplicates.
+            {
+                return questionsUsed;
+            }
+        }
+
+        // Gets the number of used questions.
+        public int GetQuestionsUsedCount(bool removeDuplicates)
+        {
+            List<int> temp = GetQuestionsUsed(removeDuplicates);
+            return temp.Count;
+        }
+
+        // Gets a list of the question results, which has 'true' for correct answers, and 'false' for incorrect answers.
+        public List<bool> GetQuestionResults(bool removeDuplicates)
+        {
+            // Checks if duplicates should be removed.
+            if(removeDuplicates)
+            {
+                // The temporary list of questions (will remove duplicates).
+                List<int> tempQues = new List<int>();
+
+                // The list of temporary results (will remove results).
+                List<bool> tempRes = new List<bool>();
+
+                // Goes through each question used.
+                for (int i = 0; i < questionsUsed.Count; i++)
+                {
+                    // Add the question number to the list if it hasn't been put in there already.
+                    if (!tempQues.Contains(questionsUsed[i]))
+                    {
+                        tempQues.Add(questionsUsed[i]);
+                        tempRes.Add(questionResults[i]);
+                    }
+                }
+
+                // Returns the temporary results.
+                return tempRes;
+            }
+            else // Return the results.
+            {
+                return questionResults;
+            }
+        }
+
+        // Gets the number of question results that were correct.
+        public int GetQuestionResultsCorrect(bool removeDuplicates)
+        {
+            // The list of results.
+            List<bool> tempList = GetQuestionResults(removeDuplicates);
+            
+            // The number of correct answers. 
+            int correctCount = 0;
+
+            // Goes through the temporary list to see how many responses were correct.
+            foreach (bool result in tempList)
+            {
+                // If a correct response was found, then add to the counter.
+                if(result)
+                    correctCount++;
+            }
+
+            // Returns the correct count.
+            return correctCount;
+        }
+
+        // Replaces the questions used and results list with the provided used questions and results list.
+        // This copies the values, so it doesn't provide the list directly.
+        public void ReplaceQuestionsUsedList(List<int> newUsed, List<bool> newResults)
+        {
+            // If the numbers don't match, the replacement fails.
+            if (questionsUsed.Count != questionResults.Count)
+            {
+                Debug.LogError("The lists must be of the same length. Replacement failed.");
+                return;
+            }
+
+            // Copies the values form the questions used list.
+            questionsUsed.Clear();
+            questionsUsed = new List<int>(newUsed);
+
+            // Copies the values from the question results list.
+            questionResults.Clear();
+            questionResults = new List<bool>(newResults);
+        }
+
+        // Replaces the questions used and results list with the provided used questions and results arrays.
+        public void ReplaceQuestionsUsedList(int[] newUsed, bool[] newResults)
+        {
+            // Calls the other function, converting the arrays to lists.
+            ReplaceQuestionsUsedList(new List<int>(newUsed), new List<bool>(newResults));
+        }
+
+
+
+
         // Returns 'true' if a question is being asked.
         public bool QuestionIsRunning()
         {
@@ -315,8 +436,8 @@ namespace RM_BBTS
             // Clears out the list if the question count has been reached.
             // This doesn't mean every question has been asked, but there are few to no new questions to ask.
             // TODO: remove this.
-            if (questionsAsked.Count >= GameQuestions.QUESTION_COUNT)
-                questionsAsked.Clear();
+            if (questionsUsed.Count >= GameQuestions.QUESTION_COUNT)
+                questionsUsed.Clear();
 
 
             // Old - Do Not Give Asked Question List
@@ -376,7 +497,7 @@ namespace RM_BBTS
 
             // Load up a new question if none have been found yet.
             if(!found)
-                randQuestion = GameQuestions.Instance.GetRandomQuestion(questionsAsked, randomResponseOrder);
+                randQuestion = GameQuestions.Instance.GetRandomQuestion(questionsUsed, randomResponseOrder);
 
             // Loads the question.
             LoadQuestion(randQuestion);
@@ -423,9 +544,8 @@ namespace RM_BBTS
             responded = false;
             selectedResponse = -1;
 
-            // A question has been asked, so add to the counter, and to the list.
-            questionsAskedCount++;
-            questionsAsked.Add(currentQuestion.number);
+            // A question has been asked, so add to the list.
+            questionsUsed.Add(currentQuestion.number);
 
             // TODO: implement this. You need to differentiate the asked questions list from the question count.
             // Checks if the question has been asked before.
@@ -577,7 +697,7 @@ namespace RM_BBTS
             // The question has been responded to.
             responded = true;
 
-            // Gets the correct response.
+            // Checks if the response is correct.
             bool correct = currentQuestion.CorrectAnswer(selectedResponse);
 
             // Shows the evaluation text.
@@ -591,7 +711,6 @@ namespace RM_BBTS
             {
                 // Pause the timer, and increment the question correct variable.
                 pausedTimer = true;
-                questionsCorrectCount++;
 
                 // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
@@ -610,6 +729,9 @@ namespace RM_BBTS
                 if (playAudio)
                     gameManager.overworld.PlayQuestionIncorrectSfx();
             }
+
+            // Add the result to the results list.
+            questionResults.Add(correct);
 
             // Reads out evaluation response.
             // If the LOLSDK is initialized.
@@ -724,11 +846,11 @@ namespace RM_BBTS
         public void ResetQuestionHistory()
         {
             // Clears out the questionsAsked list.
-            questionsAsked.Clear();
+            questionsUsed.Clear();
 
-            // Clears out the questions asked count.
-            questionsAskedCount = 0;
-            questionsCorrectCount = 0;
+            // Clears out the questions asked and question results count.
+            questionsUsed.Clear();
+            questionResults.Clear();
 
             // Removes the prior question from the history, and says not to use it.
             priorQuestion = -1;

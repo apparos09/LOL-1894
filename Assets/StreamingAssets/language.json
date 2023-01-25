@@ -901,7 +901,7 @@
     "trl_recoil_02": "A move's description will state if it does recoil damage.",
 
     "trl_statChange_00": "You have encountered a stat change!",
-    "trl_statChange_01": "Some moves can increase or decrease a battler's stats, with said changes being in effect for the rest of the battle unless stated otherwise."
+    "trl_statChange_01": "Some moves can increase or decrease a battler's stats, with said changes being in effect for the rest of the battle unless stated otherwise.",
     "trl_statChange_02": "Completing or fleeing from a battle will remove all stat changes for both you and your opponent.",
 
     "trl_burn_00": "You have encountered burn status!",

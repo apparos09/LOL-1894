@@ -1315,8 +1315,9 @@ namespace RM_BBTS
             results.totalTurns = turnsPassed;
 
             // The amount of questions asked, and the amount of questions correct.
-            results.totalQuestionsAsked = overworld.gameQuestion.questionsAskedCount;
-            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrectCount;
+            // TODO: maybe seperate it to remove duplicate questions, or change how it was phrased.
+            results.totalQuestionsAsked = overworld.gameQuestion.GetQuestionsUsedCount(false);
+            results.totalQuestionsCorrect = overworld.gameQuestion.GetQuestionResultsCorrect(false);
 
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.
@@ -1395,60 +1396,38 @@ namespace RM_BBTS
 
             // Question information.
             saveData.nextQuestionRound = overworld.nextQuestionRound;
-            saveData.questionsAskedCount = overworld.gameQuestion.questionsAskedCount;
-            saveData.questionsCorrectCount = overworld.gameQuestion.questionsCorrectCount;
 
-            // Puts the asked questions into the list.
-            for(int i = 0; i < GameQuestionManager.QUESTIONS_ASKED_SAVE_MAX; i++)
+            // Copies the asked questions into the array in the save system object.
             {
-                // Checks if there's a valid index in the list.
-                if(i < overworld.gameQuestion.questionsAsked.Count) // Index exists.
+                // Grabs the two lists.
+                List<int> questionsUsed = overworld.gameQuestion.GetQuestionsUsed(false);
+                List<bool> questionResults = overworld.gameQuestion.GetQuestionResults(false);
+
+                // Copies the used questions into the data array.
+                for (int i = 0; i < saveData.questionsUsed.Length; i++)
                 {
-                    // Places number in designated variable.
-                    switch (i)
-                    {
-                        case 0:
-                            saveData.questionsAsked0 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 1:
-                            saveData.questionsAsked1 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 2:
-                            saveData.questionsAsked2 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 3:
-                            saveData.questionsAsked3 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 4:
-                            saveData.questionsAsked4 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                    }
+                    // Copies the question into the list if it exists.
+                    // If it doesn't exist, -1 is used to mark an empty space.
+                    if (i < questionsUsed.Count)
+                        saveData.questionsUsed[i] = questionsUsed[i];
+                    else
+                        saveData.questionsUsed[i] = -1;
 
                 }
-                else // Index does not exist.
+
+                // Copies the question results into the data array.
+                for (int i = 0; i < saveData.questionResults.Length; i++)
                 {
-                    // Set value to -1 at the provided slot.
-                    switch (i)
-                    {
-                        case 0:
-                            saveData.questionsAsked0 = -1;
-                            break;
-                        case 1:
-                            saveData.questionsAsked1 = -1;
-                            break;
-                        case 2:
-                            saveData.questionsAsked2 = -1;
-                            break;
-                        case 3:
-                            saveData.questionsAsked3 = -1;
-                            break;
-                        case 4:
-                            saveData.questionsAsked4 = -1;
-                            break;
-                    }
+                    // Copies the result into the list if it exists.
+                    // The length of the questionsUsed array (which is the same length of this array)...
+                    // Is used to know what spots are default entries, as those are set to false.
+                    if (i < questionResults.Count)
+                        saveData.questionResults[i] = questionResults[i];
+                    else
+                        saveData.questionResults[i] = false;
+
                 }
             }
-
 
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
@@ -1633,43 +1612,30 @@ namespace RM_BBTS
 
             // Sets the question information.
             overworld.nextQuestionRound = saveData.nextQuestionRound;
-            overworld.gameQuestion.questionsAskedCount = saveData.questionsAskedCount;
-            overworld.gameQuestion.questionsCorrectCount = saveData.questionsCorrectCount;
 
-
-            // Clears out the list of asked questions.
-            overworld.gameQuestion.questionsAsked.Clear();
-
-            // Grabs the asked questions from the save data and adds thm to the list.
-            for (int i = 0; i < GameQuestions.QUESTION_OPTIONS_MAX; i++)
+            // Copies the question content into the question manager.
             {
-                // The value to be added.
-                int value = -1;
+                // Questions used list, and the question results.
+                List<int> questionsUsed = new List<int>();
+                List<bool> questionResults = new List<bool>();
 
-                // Checks the index to see which value is next.
-                switch (i)
+                // Goes through each used question and result, which are the same length.
+                for(int i = 0; i < saveData.questionsUsed.Length; i++)
                 {
-                    case 0:
-                        value = saveData.questionsAsked0;
-                        break;
-                    case 1:
-                        value = saveData.questionsAsked1;
-                        break;
-                    case 2:
-                        value = saveData.questionsAsked2;
-                        break;
-                    case 3:
-                        value = saveData.questionsAsked3;
-                        break;
-                    case 4:
-                        value = saveData.questionsAsked4;
-                        break;
+                    // Checks if the question number is valid (negatives are marked as invalid).
+                    if (saveData.questionsUsed[i] >= 0)
+                    {
+                        // Adds the save data contnet to the lists.
+                        questionsUsed.Add(saveData.questionsUsed[i]);
+                        questionResults.Add(saveData.questionResults[i]);
+                    }
+
+                    // NOTE: there shouldn't be any data after the first -1 marker, but all spots are checked anyway.
+                    // TODO: maybe have it break after the first negative marker?
                 }
 
-                // Adds the value to the memory if it is greater than or equal to 0.
-                // Negative numbers indicate that it's not an actual question.
-                if(value >= 0)
-                    overworld.gameQuestion.questionsAsked.Add(value);
+                // Replaces the questions used and results lists.
+                overworld.gameQuestion.ReplaceQuestionsUsedList(questionsUsed, questionResults);
             }
 
             // Sets the evolve waves.
