@@ -417,6 +417,9 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedOverworld = true;
+
+            // TODO: don't ask questions until the overworld tutorial is given.
+            // gameManager.overworld.askQuestions = true;
         }
 
         // Loads the treasure tutorial.

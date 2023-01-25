@@ -106,13 +106,16 @@ namespace RM_BBTS
         // The game question manager.
         public GameQuestionManager gameQuestion;
 
-        // The increment for the round spacing for asking questions.
-        [Tooltip("The multiple used to determine what round to ask questions on.")]
-        public int questionRoundInc = 3;
+        // Asks questions if set to true.
+        public bool askQuestions = true;
 
-        // The next round that a question will be asked on.
-        [Tooltip("The next round the question will be asked on (roomsCompleted + 1). This is set to questionRoundInc when the overworld is initialized.")]
-        public int nextQuestionRound = 0;
+        // The wait time (in rounds) for automatically asking a question.
+        [Tooltip("The wait time (in rounds) to ask a question.")]
+        public int questionWaitTime = 3;
+
+        // Counts down to the next time a question will be asked.
+        [Tooltip("The countdown for asking the user a question.")]
+        public int questionCountdown = 0;
 
         [Header("UI")]
         
@@ -265,7 +268,7 @@ namespace RM_BBTS
 
 
             // Prepares for when the question will be asked.
-            nextQuestionRound = questionRoundInc;
+            questionCountdown = questionWaitTime;
 
             // Updates the UI.
             UpdateUI();
@@ -560,6 +563,13 @@ namespace RM_BBTS
 
         }
 
+
+        // Asks the user a random question.
+        public void AskQuestion()
+        {
+            gameQuestion.AskRandomQuestion();
+        }
+
         // Updates the UI for the overworld.
         public void UpdateUI()
         {
@@ -626,7 +636,7 @@ namespace RM_BBTS
         }
 
         // Called when returning to the overworld.
-        public void OnOverworldReturn()
+        public void OnOverworldReturn(bool battleWon)
         {
             // Currently in the overworld.
             gameManager.SetStateToOverworld();
@@ -658,13 +668,23 @@ namespace RM_BBTS
                 }
             }
 
-            // Asking a question of the question round number has been reached or surpassed.
-            if(gameManager.GetCurrentRoomNumber() >= nextQuestionRound)
+            // If set to 'true', questions are asked.
+            if(askQuestions)
             {
-                // Ask a random question, and increase the next round counter.
-                gameQuestion.AskRandomQuestion();
-                nextQuestionRound += questionRoundInc;
+                // Subtracts from the countdown if a battle was completed.
+                if (battleWon)
+                    questionCountdown--;
+
+
+                // If the countdown has reached (or fallen below) 0, ask a question.
+                if (questionCountdown <= 0)
+                {
+                    AskQuestion();
+                    questionCountdown = questionWaitTime;
+                }
+
             }
+            
 
             // Update the UI for the overworld.
             UpdateUI();

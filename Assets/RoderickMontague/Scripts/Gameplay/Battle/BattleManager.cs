@@ -1165,7 +1165,7 @@ namespace RM_BBTS
             // Returns to the overworld if the run was successful.
             if (success)
             {
-                ToOverworld();
+                ToOverworld(false);
             }
             else
             {
@@ -1301,7 +1301,7 @@ namespace RM_BBTS
             }
 
             // Go to the overworld.
-            ToOverworld();
+            ToOverworld(true);
         }
 
         // Called when the player has lost the battle.
@@ -1309,7 +1309,7 @@ namespace RM_BBTS
         {
             textBox.OnTextBoxFinishedRemoveCallback(OnPlayerBattleLost);
             gameManager.OnGameOver();
-            ToOverworld();
+            ToOverworld(false);
         }
 
         // Call this function to open the treasure.
@@ -1334,14 +1334,14 @@ namespace RM_BBTS
                 
         }
 
-        // Call this function to leave the treasure.
+        // Call this function to leave the treasure (the treasure was not opened).
         public void LeaveTreasure()
         {
             // Hide prompt.
             treasurePrompt.gameObject.SetActive(false);
 
             // Return to the overworld.
-            ToOverworld();
+            ToOverworld(false);
         }
 
         // Called when potentially learning a new move.
@@ -1475,7 +1475,7 @@ namespace RM_BBTS
         }
 
         // Goes to the overworld.
-        public void ToOverworld()
+        public void ToOverworld(bool battleWon)
         {
             // Clear out the textbox.
             if (textBox.IsVisible())
@@ -1534,9 +1534,9 @@ namespace RM_BBTS
 
             // Checks if transitions are being used to know the right function to call.
             if (gameManager.useTransitions)
-                gameManager.EnterOverworldWithTransition();
+                gameManager.EnterOverworldWithTransition(battleWon);
             else
-                gameManager.EnterOverworld();
+                gameManager.EnterOverworld(battleWon);
         }
 
         // Updates all UI elements.

@@ -1033,7 +1033,7 @@ namespace RM_BBTS
         }
 
         // Call this function to enter the overworld.
-        public void EnterOverworld()
+        public void EnterOverworld(bool battleWon)
         {
             // TODO: play animation before transition.
             // if(useTransitions)
@@ -1048,7 +1048,7 @@ namespace RM_BBTS
             player.selectedMove = null; // TODO: may not be needed.
 
             // Called upon returning to the overworld.
-            overworld.OnOverworldReturn();
+            overworld.OnOverworldReturn(battleWon);
 
             // The intro text has already been shown, but not the overworld text.
             if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
@@ -1059,9 +1059,9 @@ namespace RM_BBTS
         }
 
         // Goes to the overworld with a transition.
-        public void EnterOverworldWithTransition()
+        public void EnterOverworldWithTransition(bool battleWon)
         {
-            StartCoroutine(EnterStateWithTransition(gameState.overworld, null));
+            StartCoroutine(EnterStateWithTransition(gameState.overworld, null, battleWon));
         }
 
         // Call to enter the battle world.
@@ -1140,11 +1140,13 @@ namespace RM_BBTS
                 stateTransitionImage.color = OverworldManager.GetDoorTypeColor(door.doorType);
             }
 
-            StartCoroutine(EnterStateWithTransition(gameState.battle, door));
+            StartCoroutine(EnterStateWithTransition(gameState.battle, door, false));
         }
 
         // A function called to turn off the damage animator once it has played.
-        private IEnumerator EnterStateWithTransition(gameState newState, Door door)
+        // Argument 'door' is used when entering the battle.
+        // Arugment 'battleWon' is used when entering the overworld.
+        private IEnumerator EnterStateWithTransition(gameState newState, Door door, bool battleWon)
         {
             // Gets the amount of wait time for each part of the animation finish.
             float waitTime = 0.0F;
@@ -1175,7 +1177,7 @@ namespace RM_BBTS
                     switch (newState)
                     {
                         case gameState.overworld: // Go to the overworld.
-                            EnterOverworld();
+                            EnterOverworld(battleWon);
                             break;
                         case gameState.battle: // Go to the battle.
                             EnterBattle(door);
@@ -1398,7 +1400,8 @@ namespace RM_BBTS
             // saveData.roomsTotal = GetRoomsTotal();
 
             // Question information.
-            saveData.nextQuestionRound = overworld.nextQuestionRound;
+            // Question countdown information.
+            saveData.questionCountdown = overworld.questionCountdown;
 
             // Copies the asked questions into the array in the save system object.
             {
@@ -1514,8 +1517,8 @@ namespace RM_BBTS
             // Checks current game state.
             if(state == gameState.battle) // Player is in the battle area, so go to the overworld.
             {
-                // Return to the overoworld.
-                battle.ToOverworld();
+                // Return to the overworld. The battle hasn't been completed, so set 'battleWon' to false.
+                battle.ToOverworld(false);
             }
             else if(state == gameState.none) // Game not initialized.
             {
@@ -1614,7 +1617,8 @@ namespace RM_BBTS
             // Rooms total isn't sent over since that value shouldn't changed.
 
             // Sets the question information.
-            overworld.nextQuestionRound = saveData.nextQuestionRound;
+            // Loads the question countdown information.
+            overworld.questionCountdown = saveData.questionCountdown;
 
             // Copies the question content into the question manager.
             {

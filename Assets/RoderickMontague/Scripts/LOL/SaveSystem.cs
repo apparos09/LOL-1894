@@ -49,7 +49,7 @@ namespace RM_BBTS
         public int roomsCompleted = 0; // Rooms cleared by the player.
 
         // The next question round.
-        public int nextQuestionRound = 0;
+        public int questionCountdown = 0;
 
         // The amount of used questions and the results for said questions.
         public int[] questionsUsed = new int[OverworldManager.ROOM_COUNT];
