@@ -235,17 +235,17 @@ namespace RM_BBTS
         }
 
         // Gets the number of used questions.
-        public int GetQuestionsUsedCount(bool removeDuplicates)
+        public int GetQuestionsUsedCount(bool removeRepeats)
         {
-            List<int> temp = GetQuestionsUsed(removeDuplicates);
+            List<int> temp = GetQuestionsUsed(removeRepeats);
             return temp.Count;
         }
 
         // Gets a list of the question results, which has 'true' for correct answers, and 'false' for incorrect answers.
-        public List<bool> GetQuestionResults(bool removeDuplicates)
+        public List<bool> GetQuestionResults(bool removeRepeats)
         {
             // Checks if duplicates should be removed.
-            if(removeDuplicates)
+            if(removeRepeats)
             {
                 // The temporary list of questions (will remove duplicates).
                 List<int> tempQues = new List<int>();
@@ -274,10 +274,10 @@ namespace RM_BBTS
         }
 
         // Gets the number of question results that were correct.
-        public int GetQuestionResultsCorrect(bool removeDuplicates)
+        public int GetQuestionResultsCorrect(bool removeRepeats)
         {
             // The list of results.
-            List<bool> tempList = GetQuestionResults(removeDuplicates);
+            List<bool> tempList = GetQuestionResults(removeRepeats);
             
             // The number of correct answers. 
             int correctCount = 0;
@@ -293,6 +293,29 @@ namespace RM_BBTS
             // Returns the correct count.
             return correctCount;
         }
+
+        // Gets the number of question results that were incorrect.
+        public int GetQuestionResultsIncorrect(bool removeRepeats)
+        {
+            // The list of results.
+            List<bool> tempList = GetQuestionResults(removeRepeats);
+
+            // The number of incorrect answers. 
+            int incorrectCount = 0;
+
+            // Goes through the temporary list to see how many responses were correct.
+            foreach (bool result in tempList)
+            {
+                // If an incorrect response was found, then add to the counter.
+                if (!result)
+                    incorrectCount++;
+            }
+
+            // Returns the incorrect counter.
+            return incorrectCount;
+        }
+
+
 
         // Replaces the questions used and results list with the provided used questions and results list.
         // This copies the values, so it doesn't provide the list directly.

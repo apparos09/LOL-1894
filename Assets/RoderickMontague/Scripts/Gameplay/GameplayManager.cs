@@ -1314,10 +1314,13 @@ namespace RM_BBTS
             results.totalTime = gameTimer;
             results.totalTurns = turnsPassed;
 
-            // The amount of questions asked, and the amount of questions correct.
-            // TODO: maybe seperate it to remove duplicate questions, or change how it was phrased.
-            results.totalQuestionsAsked = overworld.gameQuestion.GetQuestionsUsedCount(false);
-            results.totalQuestionsCorrect = overworld.gameQuestion.GetQuestionResultsCorrect(false);
+            // Copies the amount of questions used, and a version with no repeats.
+            results.questionsUsed = overworld.gameQuestion.GetQuestionsUsedCount(false);
+            results.questionsUsedNoRepeats = overworld.gameQuestion.GetQuestionsUsedCount(true);
+
+            // Copies the amount of correct responses, and a version with no repeats.
+            results.questionsCorrect = overworld.gameQuestion.GetQuestionResultsCorrect(false);
+            results.questionsCorrectNoRepeats = overworld.gameQuestion.GetQuestionResultsCorrect(true);
 
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.

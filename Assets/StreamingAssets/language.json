@@ -468,6 +468,7 @@
       "kwd_finalScore": 24,
       "kwd_roomsCleared": 24,
       "kwd_questionsCorrect": 24,
+      "kwd_noRepeats": 24,
       "kwd_totalTime": 24,
       "kwd_totalTurns": 24,
       "kwd_finalLevel": 24,
@@ -769,7 +770,7 @@
     "que_res_moveD": "Move D",
 
     "que_res_enemyA": "Enemy A",
-    "que_res_enemyB": "Enemy B", 
+    "que_res_enemyB": "Enemy B",
     "que_res_enemyC": "Enemy C",
     "que_res_enemyD": "Enemy D",
 
@@ -788,7 +789,7 @@
     "que03_res03": "The move will always inflict paralysis status.",
 
     "que04": "Move A has a power of 40 and an accuracy of 1.00. Move B has a power of 60 and an accuracy of 0.90. What is true about Move A and Move B?",
-    "que04_res00": "Move A is stronger than Move B, but it is less accurate.", 
+    "que04_res00": "Move A is stronger than Move B, but it is less accurate.",
     "que04_res01": "Move A is stronger than Move B, and it is more accurate.",
     "que04_res02": "Move A is weaker than Move B, and it is less accurate.",
     "que04_res03": "Move A is weaker than Move B, but it is more accurate.",
@@ -943,6 +944,7 @@
     "kwd_finalScore": "Final Score",
     "kwd_roomsCleared": "Rooms Cleared",
     "kwd_questionsCorrect": "Questions Correct",
+    "kwd_noRepeats": "No Repeats",
     "kwd_totalTime": "Total Time",
     "kwd_totalTurns": "Total Turns",
     "kwd_finalLevel": "Final Level",
