@@ -765,8 +765,11 @@ namespace RM_BBTS
             // Checks if the response is correct.
             bool correct = currentQuestion.CorrectAnswer(selectedResponse);
 
-            // Shows the evaluation text.
-            evaluationText.text = (correct) ? correctString : incorrectString;
+            // Shows the evaluation text, which says if the answer was correct, and provides a message response.
+            if(correct)
+                evaluationText.text = correctString + "! " + CurrentQuestion.correctAnswerResponse;
+            else
+                evaluationText.text = incorrectString + "! " + CurrentQuestion.incorrectAnswerResponse;
 
             // The maximum score addition to be made.
             int scorePlus = 0;
