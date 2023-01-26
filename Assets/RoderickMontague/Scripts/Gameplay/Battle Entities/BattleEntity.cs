@@ -44,6 +44,11 @@ namespace RM_BBTS
         // The stat specialty
         public BattleEntity.specialty statSpecial;
 
+        // Stat modifiers
+        public int attackMod;
+        public int defenseMod;
+        public int speedMod;
+
         // The moves
         public moveId move0, move1, move2, move3;
 
@@ -239,19 +244,29 @@ namespace RM_BBTS
             data.displayName = displayName;
             data.displayNameSpeakKey = displayNameSpeakKey;
 
+            // Level
             data.level = level;
             data.levelRate = levelRate;
 
+            // Health
             data.maxHealth = maxHealth;
             data.health = health;
 
+            // Stats
             data.attack = attack;
             data.defense = defense;
             data.speed = speed;
 
+            // Energy
             data.maxEnergy = maxEnergy;
             data.energy = energy;
 
+            // Modifiers
+            data.attackMod = attackMod;
+            data.defenseMod = defenseMod;
+            data.speedMod = speedMod;
+
+            // Stat speciality.
             data.statSpecial = statSpecial;
 
             // Move 0 Set.
@@ -364,6 +379,7 @@ namespace RM_BBTS
             level = data.level;
             levelRate = data.levelRate;
 
+            // Main Stats
             maxHealth = data.maxHealth;
             health = data.health;
 
@@ -375,6 +391,11 @@ namespace RM_BBTS
 
             maxEnergy = data.maxEnergy;
             energy = data.energy;
+
+            // Stat modifiers.
+            attackMod = data.attackMod;
+            defenseMod = data.defenseMod;
+            speedMod = data.speedMod;
 
             // Generates the four moves and adds them in as objects.
             // Moves are set to 'null' if the move provied is Run or Charge (they don't get put in standard move slots).

@@ -2597,7 +2597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2673,7 +2673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690814, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_Name
-      value: Question Stat Change - Attack/Defense/Speed
+      value: Attack/Defense/Speed Stage Change
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
@@ -2685,6 +2685,17 @@ RectTransform:
 --- !u!114 &180556752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3505996213790913449, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
+  m_PrefabInstance: {fileID: 180556750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180556753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3505996213974349426, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
   m_PrefabInstance: {fileID: 180556750}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -13449,8 +13460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 500, y: 20}
+  m_AnchoredPosition: {x: 0, y: -168}
+  m_SizeDelta: {x: 500, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129041253
 MonoBehaviour:
@@ -13499,8 +13510,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15548,7 +15559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -190}
+  m_AnchoredPosition: {x: 0, y: -195}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1285196434
@@ -17247,7 +17258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17323,7 +17334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690814, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_Name
-      value: Question Stat Change - Energy
+      value: Energy Amount Change
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
@@ -17359,7 +17370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1394537498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17448,10 +17459,14 @@ MonoBehaviour:
   statChanges: {fileID: 1282702811}
   healthArrow: {fileID: 3505996215101373308}
   energyArrow: {fileID: 1389321471}
+  battleStatIcon: {fileID: 180556753}
   attackIcon: {fileID: 21300000, guid: 72751f0baa7dd2741a1a1076d3349b31, type: 3}
+  attackIconColor: {r: 1, g: 0.29803923, b: 0.3019608, a: 1}
   defenseIcon: {fileID: 21300000, guid: e75ca8221c6b5c844a262ba56cba6069, type: 3}
+  defenseIconColor: {r: 1, g: 0.7882353, b: 0, a: 1}
   speedIcon: {fileID: 21300000, guid: 923278d2ca93f3948a1ffd2af8aac57e, type: 3}
-  statChangeArrow: {fileID: 180556752}
+  speedIconColor: {r: 0.13725491, g: 0.78431374, b: 1, a: 1}
+  battleStatArrow: {fileID: 180556752}
 --- !u!1 &1399017743
 GameObject:
   m_ObjectHideFlags: 0
@@ -21319,8 +21334,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 500, y: 25}
+  m_AnchoredPosition: {x: 0, y: -134}
+  m_SizeDelta: {x: 720, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737250088
 MonoBehaviour:
@@ -21369,15 +21384,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -25989,7 +26004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690813, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -26065,7 +26080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3505996215063690814, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}
       propertyPath: m_Name
-      value: Question Stat Change - Health
+      value: Health Amount Change
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1530c53cef721344e9bee30f060deb9b, type: 3}

@@ -348,7 +348,7 @@ namespace RM_BBTS
 
             // Reset the stat modifiers and statuses before the battle starts.
             player.selectedMove = null;
-            player.ResetStatModifiers();
+            // player.ResetStatModifiers(); // This is no longer done since questions can apply them.
             player.ResetStatuses();
 
             // Checks to see what type of entity is being faced.

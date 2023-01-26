@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using SimpleJSON;
-using System.ComponentModel.Design.Serialization;
 using LoLSDK;
 
 // Namespace.
@@ -28,7 +27,7 @@ namespace RM_BBTS
 
         // The maximum amount of asked questions that will be saved when saving the game.
         // TODO: update number to match the total amount of rounds.
-        public const int QUESTIONS_USED_SAVE_MAX = 5;
+        public const int QUESTIONS_USED_SAVE_MAX = 15;
 
         // The list of asked questions (goes by question number).
         // This is to help prevent the randomizer from asking the same question multiple times.
@@ -172,7 +171,7 @@ namespace RM_BBTS
         private string incorrectString = "[Incorrect]";
         private string incorrectKey = "kwd_incorrect";
 
-        [Header("Evaluation/Stat Changes")]
+        [Header("Evaluation/Battle Effects")]
         // The object that's enabled/disabled to show the stat changes for the results.
         public GameObject statChanges;
 
@@ -182,17 +181,24 @@ namespace RM_BBTS
 
         // The health icon's arrow.
         public Image healthArrow;
+        public const float HEALTH_CHANGE_PERCENT = 0.20F;
 
         // The energy icon's arrow.
         public Image energyArrow;
+        public const float ENERGY_CHANGE_PERCENT = 0.20F;
 
+        [Header("Evaluation/Battle Effects/Stat Mods")]
         // The icons for attack, defense, and speed.
+        public Image battleStatIcon; // The image used for one of the three battle stats.
         public Sprite attackIcon;
+        public Color attackIconColor = Color.white;
         public Sprite defenseIcon;
+        public Color defenseIconColor = Color.white;
         public Sprite speedIcon;
+        public Color speedIconColor = Color.white;
 
         // The arrow image for the attack/defense/speed stat change.
-        public Image statChangeArrow;
+        public Image battleStatArrow;
 
         // Awake is called when the script instance is being loaded.
         private void Awake()
@@ -610,11 +616,22 @@ namespace RM_BBTS
             ResetTimer();
             pausedTimer = false;
 
-            // Hide the stat changes.
+            // Hide the stat changes, and reset the arrows (to be safe).
             statChanges.SetActive(false);
+            healthArrow.transform.rotation = Quaternion.identity;
+            healthArrow.color = unansweredColor;
+
+            energyArrow.transform.rotation = Quaternion.identity;
+            energyArrow.color = unansweredColor;
+
+            // Resets the icon and arrow.
+            battleStatIcon.sprite = null;
+            battleStatIcon.color = Color.white;
+            battleStatArrow.transform.rotation = Quaternion.identity;
+            battleStatArrow.color = unansweredColor;
 
             // Plays the bgm for the game question.
-            if(playAudio)
+            if (playAudio)
             {
                 // Plays the question BGM.
                 gameManager.overworld.PlayQuestionBgm();
@@ -755,6 +772,7 @@ namespace RM_BBTS
             int scorePlus = 0;
 
             // Checks if the user got the question right or not.
+            // SCORE
             if(correct)
             {
                 // Pause the timer, and increment the question correct variable.
@@ -777,6 +795,7 @@ namespace RM_BBTS
                 if (playAudio)
                     gameManager.overworld.PlayQuestionIncorrectSfx();
             }
+
 
             // Add the result to the results list.
             questionResults.Add(correct);
@@ -833,19 +852,92 @@ namespace RM_BBTS
                     
             }
 
-            // Add to the score, and display it.
-            // Add score plus to game score.
-            gameManager.score += scorePlus;
+            // Provide Reward/Punishment to the Player
+            {
+                // SCORE
+                // Add to the score, and display it.
+                // Add score plus to game score.
+                gameManager.score += scorePlus;
 
-            // If the score is now negative, set it to 0.
-            if (gameManager.score < 0)
-                gameManager.score = 0;
+                // If the score is now negative, set it to 0.
+                if (gameManager.score < 0)
+                    gameManager.score = 0;
 
-            // Updates the UI to display the new score.
-            gameManager.overworld.UpdateUI(); 
+                // Updates the UI to display the new score.
+                gameManager.overworld.UpdateUI(); 
 
-            // Updates the score text.
-            scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
+                // Updates the score text.
+                scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
+
+                // STAT CHANGES
+                // Grab the player object.
+                Player player = gameManager.player;
+                
+                // Sets whether the stat change will be positive or negative.
+                int change = (correct) ? 1 : -1;
+
+                // The battle stat, where 1 = attack, 2 = defense, and 3 = speed.
+                int battleStat = 0;
+
+                // The euler rotation of the arrows.
+                Vector3 arrowRot = new Vector3(0, 0, (correct) ? ARROW_UP_ROT : ARROW_DOWN_ROT);
+
+                // HEALTH
+                // Changes the player's health.
+                player.Health += player.MaxHealth * HEALTH_CHANGE_PERCENT * change;
+
+                // The player will always have at least 1 hit point.
+                if (player.Health <= 0)
+                    player.Health = 1;
+
+                // ENERGY
+                // Changes the player's energy.
+                player.Energy += player.MaxEnergy * ENERGY_CHANGE_PERCENT * change;
+
+                // Updates the UI for the player's health and energy.
+                gameManager.UpdatePlayerHealthUI();
+                gameManager.UpdatePlayerEnergyUI();
+
+                // BATTLE STAT CHANGE
+                battleStat = Random.Range(1, 4); // 1 = atk, 2 = def, 3 = spd
+
+                // Checks which stat is being changed.
+                switch(battleStat)
+                {
+                    default:
+                    case 1: // Attack
+                        player.AttackMod += 1 * change;
+                        battleStatIcon.sprite = attackIcon;
+                        battleStatIcon.color = attackIconColor;
+                        break;
+
+                    case 2: // Defense
+                        player.DefenseMod += 1 * change;
+                        battleStatIcon.sprite = defenseIcon;
+                        battleStatIcon.color = defenseIconColor;
+                        break;
+
+                    case 3: // Speed
+                        player.SpeedMod += 1 * change;
+                        battleStatIcon.sprite = speedIcon;
+                        battleStatIcon.color = speedIconColor;
+                        break;
+                }
+
+                // TODO: you'll need to change symbol colours.
+
+                // Changes the arrow colours, and rotates them.
+                Quaternion eulerQuat = Quaternion.Euler(arrowRot);
+                healthArrow.transform.rotation = eulerQuat;
+                healthArrow.color = (correct) ? correctColor : incorrectColor;
+
+                energyArrow.transform.rotation = eulerQuat;
+                energyArrow.color = (correct) ? correctColor : incorrectColor;
+
+                battleStatArrow.transform.rotation = eulerQuat;
+                battleStatArrow.color = (correct) ? correctColor : incorrectColor;
+            }
+            
 
             // Saves this as the prior question now that it has been answered.
             priorQuestion = currentQuestion.number;

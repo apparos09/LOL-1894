@@ -21,8 +21,8 @@ namespace RM_BBTS
         private float baseMaxEnergy = 100;
 
         // Restoration percents.
-        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.50F;
-        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.50F;
+        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.30F;
+        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.30F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
         public const float PHASE_BONUS_STAT_TOTAL = 120.0F;
