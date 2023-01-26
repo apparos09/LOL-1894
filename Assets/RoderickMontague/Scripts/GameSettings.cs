@@ -150,7 +150,7 @@ namespace RM_BBTS
             }
         }
 
-        // is the audio muted?
+        // Is the audio muted?
         public bool Mute
         {
             get

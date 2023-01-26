@@ -17133,13 +17133,11 @@ MonoBehaviour:
   gameManager: {fileID: 877465982}
   questionObject: {fileID: 1394537497}
   titleText: {fileID: 152234224}
-  questionsAskedCount: 0
-  questionsAsked: 
-  questionsCorrectCount: 0
   playAudio: 1
   questionText: {fileID: 1419568338}
   randomResponseOrder: 1
   alwaysShowAnswer: 0
+  redoQuestionIfWrong: 1
   response0Button: {fileID: 1528021438}
   response0Bubble: {fileID: 1890312842512477819}
   response0Fill: {fileID: 1661802517}
@@ -18391,8 +18389,9 @@ MonoBehaviour:
   doorTypes: 0000000002000000030000000400000005000000
   bossDoorType: 1
   gameQuestion: {fileID: 1394537499}
-  questionRoundInc: 3
-  nextQuestionRound: 0
+  askQuestions: 1
+  questionWaitTime: 0
+  questionCountdown: 0
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}

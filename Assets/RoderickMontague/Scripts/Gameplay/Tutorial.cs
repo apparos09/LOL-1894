@@ -44,6 +44,10 @@ namespace RM_BBTS
         // Cleared the treasure tutorial.
         public bool clearedTreasure = false;
 
+        // TODO: include the question and phase tutorials. The question tutorial will be used to start asking questions.
+        // public bool clearedQuestion;
+        // public bool clearedPhase;
+
         // Cleared the boss tutorial.
         public bool clearedBoss = false;
         

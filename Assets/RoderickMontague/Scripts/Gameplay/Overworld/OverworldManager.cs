@@ -347,8 +347,12 @@ namespace RM_BBTS
         {
             // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Disables the question if one is being asked.
-            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            // NOTE: you removed the activeSelf check to fix a problem.
+            if (gameQuestion.QuestionIsRunning())
+            {
                 gameQuestion.DisableQuestion();
+                gameQuestion.gameObject.SetActive(false);
+            }
 
         }
 
@@ -357,10 +361,12 @@ namespace RM_BBTS
         {
             // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Enables the question if one is being asked.
-            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            // NOTE: you removed the activeSelf check to fix a re-activation problem.
+            if (gameQuestion.QuestionIsRunning())
             {
                 // Enable the question.
                 gameQuestion.EnableQuestion();
+                gameQuestion.gameObject.SetActive(true);
 
                 // Makes sure that the mouse touch input is still off since there's a question.
                 gameManager.mouseTouchInput.gameObject.SetActive(false);
@@ -672,15 +678,19 @@ namespace RM_BBTS
             if(askQuestions)
             {
                 // Subtracts from the countdown if a battle was completed.
+                // NOTE: this won't be asked on the first turn since this function isn't called until a battle is completed.
+                // This will show up on every following turn though.
+                // TODO: make a questions tutorial that triggers the start of asking questions.
                 if (battleWon)
+                {
                     questionCountdown--;
 
-
-                // If the countdown has reached (or fallen below) 0, ask a question.
-                if (questionCountdown <= 0)
-                {
-                    AskQuestion();
-                    questionCountdown = questionWaitTime;
+                    // If the countdown has reached (or fallen below) 0, ask a question.
+                    if (questionCountdown <= 0)
+                    {
+                        AskQuestion();
+                        questionCountdown = questionWaitTime;
+                    }
                 }
 
             }
