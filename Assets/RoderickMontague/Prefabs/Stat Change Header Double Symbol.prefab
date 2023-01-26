@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506874446175261965}
   m_Layer: 5
-  m_Name: Stat Change Double Symbol
+  m_Name: Stat Change Header Double Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

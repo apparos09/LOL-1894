@@ -172,6 +172,28 @@ namespace RM_BBTS
         private string incorrectString = "[Incorrect]";
         private string incorrectKey = "kwd_incorrect";
 
+        [Header("Evaluation/Stat Changes")]
+        // The object that's enabled/disabled to show the stat changes for the results.
+        public GameObject statChanges;
+
+        // Arrow Up and Arrow Down Rotations
+        private const float ARROW_UP_ROT = 90.0F;
+        private const float ARROW_DOWN_ROT = -90.0F;
+
+        // The health icon's arrow.
+        public Image healthArrow;
+
+        // The energy icon's arrow.
+        public Image energyArrow;
+
+        // The icons for attack, defense, and speed.
+        public Sprite attackIcon;
+        public Sprite defenseIcon;
+        public Sprite speedIcon;
+
+        // The arrow image for the attack/defense/speed stat change.
+        public Image statChangeArrow;
+
         // Awake is called when the script instance is being loaded.
         private void Awake()
         {
@@ -588,6 +610,9 @@ namespace RM_BBTS
             ResetTimer();
             pausedTimer = false;
 
+            // Hide the stat changes.
+            statChanges.SetActive(false);
+
             // Plays the bgm for the game question.
             if(playAudio)
             {
@@ -827,6 +852,11 @@ namespace RM_BBTS
 
             // Sets this variable to see if the prior question should be redone or not.
             redoPriorQuestion = !correct;
+
+            // Show the stat changes.
+            statChanges.SetActive(true);
+
+            // TODO: implement the stat changes.
 
             // Response locked in.
             confirmButton.interactable = false;
