@@ -146,7 +146,7 @@ namespace RM_BBTS
         // The main menu button text.
         public TMP_Text mainMenuButtonText;
 
-        // The quit window.
+        // The main menu window.
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
@@ -160,6 +160,18 @@ namespace RM_BBTS
 
         // The continue game confirmation text.
         public TMP_Text mainMenuNoText;
+
+        [Header("UI/Info Prompt")]
+        // The info button.
+        public Button infoButton;
+
+        // The info button text.
+        public TMP_Text infoButtonText;
+
+        // The info window.
+        public GameObject infoWindow;
+
+
 
         [Header("UI/Game")]
 
@@ -262,11 +274,14 @@ namespace RM_BBTS
                 // SETTINGS WINDOW //
                 settingsButtonText.text = defs["kwd_settings"];
 
-                // TITLE SCREEN PROMPT
+                // MAIN MENU (TITLE SCREEN) PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
                 mainMenuPromptText.text = defs[MAIN_MENU_PROMPT_TEXT_KEY];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
+
+                // INFO WINDOW
+                infoButtonText.text = defs["kwd_info"];
 
                 // String Labels
                 // Moves
@@ -463,8 +478,8 @@ namespace RM_BBTS
                         unusedDoors.RemoveAt(index);
                     }
 
-                    // Unlocks three random doors.
-                    for (int n = 0; n < 3 && battleDoors.Count > 0; n++)
+                    // Unlocks two random doors.
+                    for (int n = 0; n < 2 && battleDoors.Count > 0; n++)
                     {
                         // Grabs a random index.
                         int randIndex = Random.Range(0, battleDoors.Count);
@@ -672,6 +687,7 @@ namespace RM_BBTS
             savePrompt.gameObject.SetActive(false);
             settingsWindow.gameObject.SetActive(false);
             mainMenuPrompt.gameObject.SetActive(false);
+            infoWindow.gameObject.SetActive(false);
 
             // Enable mouse input.
             mouseTouchInput.gameObject.SetActive(true);
@@ -815,6 +831,25 @@ namespace RM_BBTS
                 }
             }
         }
+
+        // Opens the info window.
+        public void ToggleInfoWindow()
+        {
+            // Gets the change in activity.
+            bool active = !infoWindow.gameObject.activeSelf;
+
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
+            infoWindow.gameObject.SetActive(active);
+
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
+        }
+
+
+
 
         // Checks the mouse and touch to see if there's any object to use.
         public void MouseTouchCheck()
@@ -1482,6 +1517,17 @@ namespace RM_BBTS
 
             // Save the game.
             SaveGame(true);
+        }
+
+        // Called to save and continue the game using a button.
+        public void SaveAndContinueGameButton()
+        {
+            SaveAndContinueGame();
+
+            // TODO: should I keep this?
+            // // Play a voice cue to read out the save message text.
+            // if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            //     LOLManager.Instance.textToSpeech.SpeakText("sve_msg_savingGame");
         }
 
         // Called when the game should be saved and quit.
