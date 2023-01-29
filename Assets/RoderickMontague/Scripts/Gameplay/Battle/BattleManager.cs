@@ -33,8 +33,9 @@ namespace RM_BBTS
         // The prompt for asking the player about the treasure.
         public GameObject treasurePrompt;
 
-        // The panel for learning a new move.
+        // The panel for learning a new move, and the move to be offered.
         public LearnMove learnMovePanel;
+        private Move moveOffer;
 
         // Auto save the game when exiting the battle scene.
         public bool autoSaveOnExit = false;
@@ -514,7 +515,8 @@ namespace RM_BBTS
             // No moves have been performed.
             order = 0;
 
-            // No move has neen learned for this battle.
+            // No move has been learned for this battle yet, so set moveOffer to null, and learnedMove to false.
+            moveOffer = null;
             learnedMove = false;
 
             // The battle has been initialized.
@@ -1370,58 +1372,59 @@ namespace RM_BBTS
             // The random rank being chosen.
             int randRank = (GenerateRandomFloat01() <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
 
-            // The new move.
-            Move newMove;
-
             // Becomes 'true' if the move was found.
             bool moveFound = false;
 
             // The attempts to get a new move.
             int attempts = 0;
 
-            do
+            // If the move offer has not been generated yet, generate the new move.
+            if (moveOffer == null)
             {
-                // Checks the phase.
-                switch (randRank)
+                do
                 {
-                    case 1: // beginning - 1
-                        newMove = MoveList.Instance.GetRandomRank1Move();
-                        break;
-                    case 2: // middle - 2
-                        newMove = MoveList.Instance.GetRandomRank2Move();
-                        break;
-                    case 3: // end - 3
-                        newMove = MoveList.Instance.GetRandomRank3Move();
-                        break;
-                    default: // random
-                        newMove = MoveList.Instance.GetRandomMove();
-                        break;
-                }
+                    // Checks the phase.
+                    switch (randRank)
+                    {
+                        case 1: // beginning - 1
+                            moveOffer = MoveList.Instance.GetRandomRank1Move();
+                            break;
+                        case 2: // middle - 2
+                            moveOffer = MoveList.Instance.GetRandomRank2Move();
+                            break;
+                        case 3: // end - 3
+                            moveOffer = MoveList.Instance.GetRandomRank3Move();
+                            break;
+                        default: // random
+                            moveOffer = MoveList.Instance.GetRandomMove();
+                            break;
+                    }
 
-                // Checks if the player has the move already.
-                if(player.HasMove(newMove)) // Move is not valid.
-                {
-                    // Pick from all moves.
-                    randRank = 0;
+                    // Checks if the player has the move already.
+                    if (player.HasMove(moveOffer)) // Move is not valid.
+                    {
+                        // Pick from all moves.
+                        randRank = 0;
 
-                    // Move has not been found.
-                    moveFound = false;
-                }
-                else // Move is valid.
-                {
-                    moveFound = true;
-                }
+                        // Move has not been found.
+                        moveFound = false;
+                    }
+                    else // Move is valid.
+                    {
+                        moveFound = true;
+                    }
 
-                // Increases the amount of attempts made.
-                attempts++;
+                    // Increases the amount of attempts made.
+                    attempts++;
 
-                // Max amount of attempts were made, so just stick with whatever move the game gave.
-                if (attempts >= 5)
-                    moveFound = true;
+                    // Max amount of attempts were made, so just stick with whatever move the game gave.
+                    if (attempts >= 5)
+                        moveFound = true;
 
-            } while (!moveFound);
+                } while (!moveFound);
+            }
 
-           
+
             // If the player has less than 4 moves, automatically learn the move.
             if (player.GetMoveCount() < 4)
             {
@@ -1430,7 +1433,7 @@ namespace RM_BBTS
                 {
                     if (player.moves[i] == null)
                     {
-                        player.moves[i] = newMove;
+                        player.moves[i] = moveOffer;
                         break;
                     }
                 }
@@ -1446,7 +1449,7 @@ namespace RM_BBTS
 
                 // Inserts a new page.
                 textBox.InsertAfterCurrentPage(new Page(
-                    BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name),
+                    BattleMessages.Instance.GetLearnMoveYesMessage(moveOffer.Name),
                     BattleMessages.Instance.GetLearnMoveYesSpeakKey()));
 
                 // NOT NEEDED.
@@ -1464,15 +1467,28 @@ namespace RM_BBTS
                 textBox.Hide(); // This already gets called in the learn move panel OnEnable(). (TODO: remove?)
 
                 // Update the information.
-                learnMovePanel.newMove = newMove;
+                learnMovePanel.newMove = moveOffer;
                 learnMovePanel.LoadMoveInformation(); // Happens on enable (TODO: remove?)
 
                 // Turn on the move panel, which also updates the move list.
                 learnMovePanel.Activate(); // Turns on the object.
+            }
 
-                
-            }            
+            // Clear this out for the next move offer.
+            moveOffer = null;
         }
+
+        // // Called by the treasure move offer class when moving onto the move learn screen.
+        // public void OnTreasureMoveOfferNext()
+        // {
+        //     // TODO: implement.
+        // }
+        // 
+        // // Called by the treasure move offer class when skipping learning the new move.
+        // public void OnTreasureMoveOfferSkip()
+        // {
+        //     // TODO: implement.
+        // }
 
         // Goes to the overworld.
         public void ToOverworld(bool battleWon)
@@ -1510,6 +1526,9 @@ namespace RM_BBTS
             // Stops the jingle from playing before leaving the battle.
             // This is in case the jingle is still playing when the player goes back to the overworld.
             gameManager.audioManager.StopJingle();
+
+            // Nullifies the move offer for the next round.
+            moveOffer = null;
 
             // Prepare for next battle.
             gotCritical = false;
@@ -2184,6 +2203,7 @@ namespace RM_BBTS
                                 learningMove = false;
                             
 
+                            // TODO: maybe move this to its own function.
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
                             if (learningMove)
