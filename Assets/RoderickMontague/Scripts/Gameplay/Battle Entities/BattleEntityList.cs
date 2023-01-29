@@ -231,13 +231,13 @@ namespace RM_BBTS
                     // data.move0 = moveId.lasershot;
                     break;
 
-                case battleEntityId.ufo2: // UFO MKII
+                case battleEntityId.ufo2: // UFO MK 2
                     data.id = battleEntityId.ufo2;
                     data.preEvoId = battleEntityId.ufo1;
                     data.evoId = battleEntityId.ufo3;
 
 
-                    data.displayName = "<UFO MK II>";
+                    data.displayName = "<UFO MK 2>";
                     data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     // Stats
@@ -254,12 +254,12 @@ namespace RM_BBTS
                     data.statSpecial = BattleEntity.specialty.defense;
                     break;
 
-                case battleEntityId.ufo3: // UFO MKIII
+                case battleEntityId.ufo3: // UFO MK 3
                     data.id = battleEntityId.ufo3;
                     data.preEvoId = battleEntityId.ufo2;
                     data.evoId = battleEntityId.unknown;
 
-                    data.displayName = "<UFO MK III>";
+                    data.displayName = "<UFO MK 3>";
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
