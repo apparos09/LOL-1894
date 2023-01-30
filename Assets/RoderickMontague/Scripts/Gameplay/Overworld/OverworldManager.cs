@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
 
 namespace RM_BBTS
 {
@@ -39,7 +38,7 @@ namespace RM_BBTS
         public List<Door> doors = new List<Door>();
 
         // The total amount of rooms in the game.
-        public const int ROOM_COUNT = 15;
+        public const int ROOM_COUNT = 12;
 
         // The boss door.
         public Door bossDoor = null;
@@ -48,7 +47,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 3;
+        public const int TREASURE_COUNT = 2;
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
