@@ -1013,6 +1013,14 @@ namespace RM_BBTS
             // Enables the main menu button.
             mainMenuButton.interactable = true;
 
+            // The 'useTutorial' object in this class could also be referenced, but I don't think it matters.
+            if(GameSettings.Instance.UseTutorial)
+            {
+                // Loads the stat change tutorial if it hasn't happened already.
+                if (player.HasStatModifiers() && !tutorial.clearedStatChange)
+                    tutorial.LoadStatChangeTutorial();
+            }
+
             // Save that the player answered a question.
             SaveAndContinueGame();
         }

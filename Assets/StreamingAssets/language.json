@@ -139,6 +139,9 @@
       "btl_msg_multMoveOffer": 250,
       "multMoveOffer_msg_prompt": 190,
       "btl_msg_multMoveOfferSkip": 250,
+      "kwd_next": 12,
+      "kwd_skip": 12,
+
 
       "bey_player_nme": 25,
 
@@ -628,6 +631,9 @@
     "btl_msg_multMoveOffer": "The treasure had three moves inside! Choose one of the three moves to learn!",
     "multMoveOffer_msg_prompt": "Select one of the three moves, then hit \"Next\" to move onto the move learning screen. If you don't want to learn any of the moves, hit \"Skip\".",
     "btl_msg_multMoveOfferSkip": "The player did not learn any of the new moves!",
+    "kwd_next": "Next",
+    "kwd_skip": "Skip",
+
 
     "bey_player_nme": "Player",
 

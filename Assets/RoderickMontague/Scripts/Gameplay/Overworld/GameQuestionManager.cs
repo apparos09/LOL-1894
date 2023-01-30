@@ -1020,7 +1020,8 @@ namespace RM_BBTS
         }
 
         // Enables the question (enables interaction from the user).
-        public void EnableQuestion()
+        // If 'read' is set to true, the question is read using text-to-speech, but only if it is enabled.
+        public void EnableQuestion(bool speakQuestion)
         {
             // Enable the responses (some may not be visible anyway).
             EnableAllResponseButtons();
@@ -1042,6 +1043,13 @@ namespace RM_BBTS
                 // Unpause the timer if the question is running.
                 if (running)
                     pausedTimer = false;
+            }
+
+            // Reads out the question again.
+            if(GameSettings.Instance.UseTextToSpeech && speakQuestion)
+            {
+                // Reads out the current question again.
+                LOLManager.Instance.textToSpeech.SpeakText(currentQuestion.questionSpeakKey);
             }
         }
 

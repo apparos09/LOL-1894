@@ -82,6 +82,8 @@ namespace RM_BBTS
             if (defs != null)
             {
                 descriptionText.text = defs["multMoveOffer_msg_prompt"];
+                nextButtonText.text = defs["kwd_next"];
+                skipButtonText.text = defs["kwd_skip"];
             }
         }
 

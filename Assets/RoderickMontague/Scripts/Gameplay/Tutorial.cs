@@ -45,10 +45,10 @@ namespace RM_BBTS
         public bool clearedTreasure = false;
 
         // Cleared the question tutorial.
-        public bool clearedQuestion;
+        public bool clearedQuestion = false;
 
         // Cleared the phase tutorial.
-        public bool clearedPhase;
+        public bool clearedPhase = false;
 
         // Cleared the boss tutorial.
         public bool clearedBoss = false;
@@ -557,6 +557,12 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedGameOver = true;
+        }
+
+        // Reads the current page of the tutorial box using TTS. This does not check if TTS is enabled.
+        public void SpeakCurrentPage()
+        {
+            textBox.CurrentPage.SpeakPage();
         }
 
         // Called when the tutorial starts, which is when the textbox is opened.

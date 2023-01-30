@@ -20723,6 +20723,7 @@ MonoBehaviour:
   askQuestions: 1
   questionWaitTime: 0
   questionCountdown: 0
+  askQuestionsFromRound: 2
   ui: {fileID: 1666888079}
   scoreText: {fileID: 1708766357}
   overworldBgm: {fileID: 8300000, guid: 900e546873db56d4b808567384db31d1, type: 3}
@@ -22711,6 +22712,8 @@ MonoBehaviour:
   clearedFirstBattleDeath: 0
   clearedOverworld: 0
   clearedTreasure: 0
+  clearedQuestion: 0
+  clearedPhase: 0
   clearedBoss: 0
   clearedGameOver: 0
 --- !u!4 &1635305063
