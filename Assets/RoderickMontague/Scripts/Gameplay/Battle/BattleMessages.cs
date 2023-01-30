@@ -937,8 +937,6 @@ namespace RM_BBTS
             return "btl_msg_learnMove";
         }
 
-
-
         // LEARN MOVE YES //
         // The player learned the new move.
         public string GetLearnMoveYesMessage(string newMove)
@@ -970,8 +968,6 @@ namespace RM_BBTS
             return "btl_msg_learnMoveYes_alt";
         }
 
-
-
         // LEARN MOVE NO //
         // The player did not learn the new move.
         public string GetLearnMoveNoMessage(string newMove)
@@ -1001,6 +997,64 @@ namespace RM_BBTS
         public string GetLearnMoveNoSpeakKey()
         {
             return "btl_msg_learnMoveNo_alt";
+        }
+
+
+
+        // LEARN MULTIPLE MOVES (Treasure Chest) //
+        // The player is being offered multiple moves.
+        public string GetMultipleMoveOfferMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs exists.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_multMoveOffer"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The treasure had three moves inside! Choose one of the three moves to learn!>";
+            }
+
+            return msg;
+        }
+
+        // Gets the multi-move offer speak key.
+        public string GetMultipleMoveOfferSpeakKey()
+        {
+            return "btl_msg_multMoveOffer";
+        }
+
+        // Multiple Move - Skip
+        // The player is being offered multiple moves.
+        public string GetMultipleMoveOfferSkipMessage()
+        {
+            // The message string.
+            string msg = "";
+
+            // Checks if defs exists.
+            if (defs != null)
+            {
+                // Grabs the translated message.
+                msg = defs["btl_msg_multMoveOfferSkip"];
+            }
+            else
+            {
+                // Grabs the default mesage.
+                msg = "<The player did not learn any of the new moves!>";
+            }
+
+            return msg;
+        }
+
+        // Gets the multi-move offer speak key.
+        public string GetMultipleMoveOfferSkipSpeakKey()
+        {
+            return "btl_msg_multMoveOfferSkip";
         }
     }
 

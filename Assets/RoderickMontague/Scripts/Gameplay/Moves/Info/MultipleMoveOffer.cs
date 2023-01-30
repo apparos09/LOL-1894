@@ -1,3 +1,4 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,8 +8,11 @@ using UnityEngine.UI;
 namespace RM_BBTS
 {
     // The script for managing treasure moves.
-    public class TreasureMoveOffer : MonoBehaviour
+    public class MultipleMoveOffer : MonoBehaviour
     {
+        // The winow object to be activated and deactivated.
+        public GameObject windowObject;
+
         // The gameplay manager.
         public BattleManager battle;
 
@@ -70,6 +74,23 @@ namespace RM_BBTS
         void Start()
         {
             selectedMoveInfo.ClearMoveInfo();
+
+            // The definitions for the language.
+            JSONNode defs = SharedState.LanguageDefs;
+
+            // The defs are not set.
+            if (defs != null)
+            {
+                descriptionText.text = defs["multMoveOffer_msg_prompt"];
+            }
+        }
+
+        // This function is called when the object becomes enabled and visible.
+        private void OnEnable()
+        {
+            // Hides the battle textbox.
+            battle.textBox.Hide();
+            GenerateMoves();
         }
 
         // Move 0
@@ -94,6 +115,18 @@ namespace RM_BBTS
             get { return moves[2]; }
 
             set { moves[2] = value; }
+        }
+
+        // Activates the panel.
+        public void Activate()
+        {
+            windowObject.SetActive(true);
+        }
+
+        // Deactivates the panel.
+        public void Deactivate()
+        {
+            windowObject.SetActive(false);
         }
 
         // Gets a move from the array.
@@ -131,6 +164,11 @@ namespace RM_BBTS
             {
                 moves[i] = newMoves[i];
             }
+
+            // Sets the buttons text.
+            move0ButtonText.text = moves[0].Name;
+            move1ButtonText.text = moves[1].Name;
+            move2ButtonText.text = moves[2].Name;
         }
 
         // Selects the provided move.
@@ -212,6 +250,12 @@ namespace RM_BBTS
             for (int i = 0; i < moves.Length; i++)
                 moves[i] = null;
 
+
+            // Clears out the button text.
+            move0ButtonText.text = "-";
+            move1ButtonText.text = "-";
+            move2ButtonText.text = "-";
+
             // Unselects all the moves.
             DeselectAllMoves();
         }
@@ -222,12 +266,85 @@ namespace RM_BBTS
             // No move has been selected.
             if (selectedMoveIndex < 0 || selectedMoveIndex >= moves.Length)
                 return;
+
+            
+            // Grabs the player from the battle script.
+            Player player = battle.player;
+
+            // Checks if the player has four moves or not.
+            if(player.HasFourFightMoves()) // Go onto move learn screen.
+            {
+                // Deactivates the window object.
+                Deactivate();
+
+                // Activates the learned move.
+                learnMove.newMove = moves[selectedMoveIndex];
+                learnMove.Activate();
+            }
+            else // Auto learn the move.
+            {
+                // This case should never be reached, but it will still be checked.
+                // Deactive the multi move offer.
+                Deactivate();
+
+                // The selected move.
+                Move newMove = moves[selectedMoveIndex];
+
+                // Gives the player a new move.
+                for(int i = 0; i < player.moves.Length; i++)
+                {
+                    // Found slot for move.
+                    if (player.moves[i] == null)
+                    {
+                        player.moves[i] = newMove;
+                        break;
+                    }
+                        
+                }
+
+                // Say what move the player learned.
+                battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
+                        new Page(
+                            BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name),
+                            BattleMessages.Instance.GetLearnMoveYesSpeakKey()
+                        ));
+
+                // Move onto the next page (skip placeholder text).
+                battle.textBox.NextPage();
+
+                // This may not be needed, but it's done again to be sure.
+                // TODO: remove this?
+                windowObject.SetActive(false);
+
+                // Show the textbox and go onto the skip page.
+                battle.textBox.Show();
+                battle.textBox.NextPage();
+            }
         }
 
         // Used to skip learning the new move.
         public void Skip()
         {
+            // Deactive the multi move offer.
+            Deactivate();
 
+            // Says that the player did not learn any of the new moves.
+            battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
+                    new Page(
+                        BattleMessages.Instance.GetMultipleMoveOfferSkipMessage(),
+                        BattleMessages.Instance.GetMultipleMoveOfferSkipSpeakKey()
+                    ));
+
+            // Move onto the next pages (skip placeholder text).
+            battle.textBox.NextPage();
+
+            // Show the box again, and move onto the next page.
+            // May not be needed.
+            windowObject.SetActive(false);
+
+            // Show the textbox and go onto the skip page.
+            battle.textBox.Show();
+            battle.textBox.NextPage();
         }
     }
 }

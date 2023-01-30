@@ -997,6 +997,19 @@ namespace RM_BBTS
 
         }
 
+        // Checks to see if the battle entity has 4 moves.
+        public bool HasFourFightMoves()
+        {
+            // The result variable.
+            bool result = true;
+
+            // Checks that he has all four move slots filled.
+            result = (moves[0] != null && moves[1] != null && moves[2] != null && moves[3] != null);
+
+            // Return result.
+            return result;
+        }
+
         // Checks if the battle entity has a certain move.
         public bool HasMove(Move move)
         {

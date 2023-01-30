@@ -136,6 +136,9 @@
       "btl_msg_learnMoveNo": 250,
       "btl_msg_learnMoveNo_alt": 250,
 
+      "btl_msg_multMoveOffer": 250,
+      "multMoveOffer_msg_prompt": 190,
+      "btl_msg_multMoveOfferSkip": 250,
 
       "bey_player_nme": 25,
 
@@ -545,7 +548,7 @@
     "kwd_returnToMainMenu": "Return to Main Menu",
     "kwd_returnToGame": "Return to Game",
 
-    
+
     "kwd_info": "Info",
 
 
@@ -609,12 +612,16 @@
     "btl_msg_takeTreasure": "The player has taken the treasure!",
 
     "btl_msg_levelUp": "The player got a level up!",
+
     "btl_msg_learnMove": "The player is trying to learn a new move!",
     "btl_msg_learnMoveYes": "The player learned {0}!",
     "btl_msg_learnMoveYes_alt": "The player learned the new move!",
     "btl_msg_learnMoveNo": "The player did not learn {0}.",
     "btl_msg_learnMoveNo_alt": "The player did not learn the new move.",
 
+    "btl_msg_multMoveOffer": "The treasure had three moves inside! Choose one of the three moves to learn!",
+    "multMoveOffer_msg_prompt": "Select one of the three moves, then hit \"Next\" to move onto the move learning screen. If you don't want to learn any of the moves, hit \"Skip\".",
+    "btl_msg_multMoveOfferSkip": "The player did not learn any of the new moves!",
 
     "bey_player_nme": "Player",
 

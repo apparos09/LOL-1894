@@ -35,6 +35,7 @@ namespace RM_BBTS
 
         // The panel for learning a new move, and the move to be offered.
         public LearnMove learnMovePanel;
+        public MultipleMoveOffer multiMoveOfferPanel;
         private Move moveOffer;
 
         // Auto save the game when exiting the battle scene.
@@ -86,7 +87,7 @@ namespace RM_BBTS
         public const float PARALYSIS_SKIP_CHANCE = 0.4F;
 
         // The chance of learning a new move.
-        private float NEW_MOVE_CHANCE = 0.80F;
+        private float NEW_MOVE_CHANCE = 1.00F; // 0.80
 
         // The chance of the randomly learned move being a random rank.
         private float RANDOM_RANK_MOVE_CHANCE = 0.05F;
@@ -1364,7 +1365,6 @@ namespace RM_BBTS
             // textBox.Close();
             textBox.Hide();
 
-            // TODO: implement new move learning.
             // The phase.
             int phase = gameManager.GetGamePhase();
 
@@ -1478,17 +1478,15 @@ namespace RM_BBTS
             moveOffer = null;
         }
 
-        // // Called by the treasure move offer class when moving onto the move learn screen.
-        // public void OnTreasureMoveOfferNext()
-        // {
-        //     // TODO: implement.
-        // }
-        // 
-        // // Called by the treasure move offer class when skipping learning the new move.
-        // public void OnTreasureMoveOfferSkip()
-        // {
-        //     // TODO: implement.
-        // }
+        // Called when being offered multiple moves.
+        public void OnMultipleMovesOffered()
+        {
+            // Hide the textbox so that it doesn't get in the way of the multi move offer pnale.
+            textBox.Hide();
+
+            // Activates the object - functions are called in OnEnable().
+            multiMoveOfferPanel.Activate();
+        }
 
         // Goes to the overworld.
         public void ToOverworld(bool battleWon)
@@ -2203,22 +2201,46 @@ namespace RM_BBTS
                                 learningMove = false;
                             
 
-                            // TODO: maybe move this to its own function.
+                            
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
                             if (learningMove)
                             {
-                                Page newMovePage = new Page(
-                                    BattleMessages.Instance.GetLearnMoveMessage(),
-                                    BattleMessages.Instance.GetLearnMoveSpeakKey()
-                                    );
+                                // Checks if the opponent was a treasure or not.
+                                // If it was, the player can learn from multiple moves.
+                                if(opponent is Treasure) // Offer multiple moves.
+                                {
+                                    // Generates the page.
+                                    Page multiMovePage = new Page(
+                                        BattleMessages.Instance.GetMultipleMoveOfferMessage(),
+                                        BattleMessages.Instance.GetMultipleMoveOfferSpeakKey()
+                                        );
 
-                                newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
-                                textBox.pages.Add(newMovePage);
+                                    // Add the callback, and put the page in the list.
+                                    multiMovePage.OnPageClosedAddCallback(OnMultipleMovesOffered);
+                                    textBox.pages.Add(multiMovePage);
 
-                                // Needed for the learn move panel to skip through.
-                                // This page is active when learning the move.
-                                textBox.pages.Add(new Page("..."));
+                                    // Needed for the learn move panel to skip through.
+                                    // This page is active when learning the move.
+                                    textBox.pages.Add(new Page("..."));
+                                }
+                                else // Only offer one move.
+                                {
+                                    // Generates the page.
+                                    Page newMovePage = new Page(
+                                        BattleMessages.Instance.GetLearnMoveMessage(),
+                                        BattleMessages.Instance.GetLearnMoveSpeakKey()
+                                        );
+                                    
+                                    // Add the callback, and put the page in the list.
+                                    newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
+                                    textBox.pages.Add(newMovePage);
+                                    
+                                    // Needed for the learn move panel to skip through.
+                                    // This page is active when learning the move.
+                                    textBox.pages.Add(new Page("..."));
+                                }
+                                
                             }
 
                             // Set up the textbox.

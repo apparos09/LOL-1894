@@ -1197,7 +1197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
+  m_AnchoredPosition: {x: 0, y: -175}
   m_SizeDelta: {x: 215, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &604117015
@@ -3866,7 +3866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 170}
   m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1499054175
@@ -4356,8 +4356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 830, y: 250}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 830, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648780967
 MonoBehaviour:
@@ -4379,16 +4379,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[This game teaches you about ''probability'', which is a math concept
-    where you analyze the likelyhood of events. A probability of 0.00 (0%) means
-    an event will never happen, while a probability of 1.00 (100%) means an event
-    will always happen. The higher the probability, the more likely an event is.
-
-
-    [To
-    interact with elements of the game world, use the left mouse button, or the touch
-    screen if applicable. The entire game is controlled through left mouse click/touch
-    interaction.]'
+  m_text: '[To interact with elements of the game world, use the left mouse button,
+    or the touch screen if applicable. The entire game is controlled through left
+    mouse click/touch interaction.]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4415,8 +4408,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4480,7 +4473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1666009699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4821,7 +4814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 115}
   m_SizeDelta: {x: 830, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796333798
@@ -5248,7 +5241,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 880, y: 500}
+  m_SizeDelta: {x: 880, y: 410}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891325556
 MonoBehaviour:
