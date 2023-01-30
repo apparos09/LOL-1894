@@ -44,9 +44,11 @@ namespace RM_BBTS
         // Cleared the treasure tutorial.
         public bool clearedTreasure = false;
 
-        // TODO: include the question and phase tutorials. The question tutorial will be used to start asking questions.
-        // public bool clearedQuestion;
-        // public bool clearedPhase;
+        // Cleared the question tutorial.
+        public bool clearedQuestion;
+
+        // Cleared the phase tutorial.
+        public bool clearedPhase;
 
         // Cleared the boss tutorial.
         public bool clearedBoss = false;
@@ -451,6 +453,56 @@ namespace RM_BBTS
             LoadTutorial(ref pages);
 
             clearedTreasure = true;
+        }
+
+        // Loads the question tutorial.
+        public void LoadQuestionTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_question_00"], "trl_question_00"));
+                pages.Add(new Page(defs["trl_question_01"], "trl_question_01"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Heads up! You’re about to be asked a question. From this point forward, you’ll get a question every time you clear a room.>"));
+                pages.Add(new Page("<If you answer correctly, you’ll get a bonus that’ll help you in the next room. But if you get the answer wrong, you’ll have a penalty for the next room. Good luck!>"));
+
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedQuestion = true;
+        }
+
+        // Loads the phase tutorial.
+        public void LoadPhaseTutorial()
+        {
+            // Page Object
+            List<Page> pages = new List<Page>();
+
+            // Pages
+            if (defs != null) // Translation
+            {
+                pages.Add(new Page(defs["trl_phase_00"], "trl_phase_00"));
+                pages.Add(new Page(defs["trl_phase_01"], "trl_phase_01"));
+            }
+            else // Default
+            {
+                pages.Add(new Page("<Looks like you’ve encountered a phase change, which occurs every time you clear out a certain number of rooms.>"));
+                pages.Add(new Page("<When a phase change happens, your stats get a permanent boost! However, not only do the enemies get all their health and energy back, but some of them evolve too! An enemy gets stronger and learns new moves when it evolves, so be careful!>"));
+
+            }
+
+            // Loads the pages.
+            LoadTutorial(ref pages);
+
+            clearedPhase = true;
         }
 
         // Loads for the boss tutorial.

@@ -462,6 +462,12 @@
       "trl_treasure_01": 270,
       "trl_treasure_02": 270,
 
+      "trl_question_00": 270,
+      "trl_question_01": 270,
+
+      "trl_phase_00": 270,
+      "trl_phase_01": 270,
+
       "trl_boss_00": 270,
       "trl_boss_01": 270,
 
@@ -944,6 +950,12 @@
     "trl_treasure_00": "This is a treasure room!",
     "trl_treasure_01": "If you take the treasure, you get a free level up, some health restored, some energy restored, and an opportunity to learn a new move.",
     "trl_treasure_02": "If you don't take the treasure, the room will remain open, so you can always pick up the treasure later.",
+
+    "trl_question_00": "Heads up! You’re about to be asked a question. From this point forward, you’ll get a question every time you clear a room.",
+    "trl_question_01": "If you answer correctly, you’ll get a bonus that’ll help you in the next room. But if you get the answer wrong, you’ll have a penalty for the next room. Good luck!",,
+
+    "trl_phase_00": "Looks like you’ve encountered a phase change, which occurs every time you clear out a certain number of rooms.",
+    "trl_phase_01": "When the phase changes, you get permanent stat boosts! Unfortunately, not only do the remaining enemies get all their health back, but some of them evolve too! An enemy gets better stats and new moves when they evolve, so be careful!",
 
     "trl_boss_00": "Welcome to the boss room!",
     "trl_boss_01": "All you need to do is beat the boss to win the game! Good luck!",
