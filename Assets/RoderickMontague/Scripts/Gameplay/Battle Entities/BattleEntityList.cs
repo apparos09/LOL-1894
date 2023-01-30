@@ -213,7 +213,7 @@ namespace RM_BBTS
                     data.displayName = "<UFO>";
                     data.displayNameSpeakKey = "bey_ufo1_nme";
 
-                    data.maxHealth = 21;
+                    data.maxHealth = 31;
                     data.health = data.maxHealth;
 
                     data.attack = 12;
@@ -241,7 +241,7 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     // Stats
-                    data.maxHealth = 30;
+                    data.maxHealth = 40;
                     data.health = data.maxHealth;
 
                     data.attack = 25;
@@ -263,7 +263,7 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
-                    data.maxHealth = 60;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
                     data.attack = 50;
@@ -286,7 +286,7 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
-                    data.maxHealth = 20;
+                    data.maxHealth = 30;
                     data.health = data.maxHealth;
 
                     data.attack = 12;
@@ -308,7 +308,7 @@ namespace RM_BBTS
                     data.displayName = "<Spacectoid>";
                     data.displayNameSpeakKey = "bey_insect2_nme";
 
-                    data.maxHealth = 40;
+                    data.maxHealth = 50;
                     data.health = data.maxHealth;
 
                     data.attack = 34;
@@ -330,17 +330,17 @@ namespace RM_BBTS
                     data.displayName = "<Techno Ghost>";
                     data.displayNameSpeakKey = "bey_ghost1_nme";
 
-                    data.maxHealth = 5;
+                    data.maxHealth = 10;
                     data.health = data.maxHealth;
 
                     data.attack = 22;
-                    data.defense = 55;
+                    data.defense = 54;
                     data.speed = 14;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
-                    data.statSpecial = BattleEntity.specialty.attack;
+                    data.statSpecial = BattleEntity.specialty.defense;
                     break;
 
                 case battleEntityId.ghost2: // Techno Phantom
@@ -352,7 +352,7 @@ namespace RM_BBTS
                     data.displayName = "<Techno Phantom>";
                     data.displayNameSpeakKey = "bey_ghost2_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 20;
                     data.health = data.maxHealth;
 
                     data.attack = 30;
@@ -362,7 +362,7 @@ namespace RM_BBTS
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
-                    data.statSpecial = BattleEntity.specialty.attack;
+                    data.statSpecial = BattleEntity.specialty.defense;
                     break;
 
                 case battleEntityId.comet: // Comet (BOSS)
@@ -1321,7 +1321,7 @@ namespace RM_BBTS
             // Said enemies also shouldn't die too quickly.
             ids.Add(battleEntityId.ufo1);
             ids.Add(battleEntityId.insect1);
-            ids.Add(battleEntityId.sharp1);
+            // ids.Add(battleEntityId.sharp1);
             // ids.Add(battleEntityId.cBugRed1); // Too weak.
             ids.Add(battleEntityId.moonRock1);
             ids.Add(battleEntityId.cBugYellow1);

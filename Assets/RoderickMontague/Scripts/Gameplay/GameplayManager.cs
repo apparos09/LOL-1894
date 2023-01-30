@@ -435,13 +435,13 @@ namespace RM_BBTS
             {
                 tutorial.LoadIntroTutorial();
 
+                // The tutorial door count.
+                const int TRL_DOOR_COUNT = 1;
+
                 // If there are enough doors to lock, lock down some.
                 // I did a +1 so that the boss room is also ignored.
-                if(overworld.treasureDoors.Count + 1 != overworld.doors.Count)
+                if (TRL_DOOR_COUNT > 0 && overworld.treasureDoors.Count + 1 != overworld.doors.Count)
                 {
-                    // The tutorial door count.
-                    const int TRL_DOOR_COUNT = 3;
-
                     // Copies the list.
                     List<Door> battleDoors = new List<Door>(overworld.doors);
                     
@@ -479,7 +479,7 @@ namespace RM_BBTS
                     }
 
                     // Unlocks two random doors.
-                    for (int n = 0; n < 2 && battleDoors.Count > 0; n++)
+                    for (int n = 0; n < TRL_DOOR_COUNT && battleDoors.Count > 0; n++)
                     {
                         // Grabs a random index.
                         int randIndex = Random.Range(0, battleDoors.Count);
