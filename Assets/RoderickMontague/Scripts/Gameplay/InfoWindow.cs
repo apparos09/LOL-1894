@@ -52,7 +52,6 @@ namespace RM_BBTS
         public InfoPageEntryDisplay pageEntry0;
         public InfoPageEntryDisplay pageEntry1;
         public InfoPageEntryDisplay pageEntry2;
-        public InfoPageEntryDisplay pageEntry3;
 
 
         [Header("Other")]
@@ -162,7 +161,7 @@ namespace RM_BBTS
             pageTitle.text = infoPage.title;
 
             // Creates an array.
-            InfoPageEntryDisplay[] displays = new InfoPageEntryDisplay[] { pageEntry0, pageEntry1, pageEntry2, pageEntry3 };
+            InfoPageEntryDisplay[] displays = new InfoPageEntryDisplay[] { pageEntry0, pageEntry1, pageEntry2 };
 
             // Updates the entry displays.
             for(int i = 0; i < displays.Length; i++)
