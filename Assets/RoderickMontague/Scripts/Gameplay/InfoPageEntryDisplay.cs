@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Profiling.Memory.Experimental;
 
 namespace RM_BBTS
 {
@@ -41,6 +42,9 @@ namespace RM_BBTS
             symbol.sprite = newEntry.symbol;
             symbolColor = newEntry.symbolColor;
             symbol.color = symbolColor;
+
+            // Shows the symbol i the alpha value is not set to 0.
+            symbol.gameObject.SetActive(symbol.sprite != null);
         }
 
         // Clear the entry.

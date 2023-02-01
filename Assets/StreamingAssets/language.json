@@ -69,6 +69,20 @@
       "ifo_probability_fraction_nme": 50,
       "ifo_probability_fraction_dsc": 200,
 
+      "ifo_stats": 35,
+      "ifo_stats_level_nme": 50,
+      "ifo_stats_level_dsc": 200,
+      "ifo_stats_health_nme": 50,
+      "ifo_stats_health_dsc": 200,
+      "ifo_stats_attack_nme": 50,
+      "ifo_stats_attack_dsc": 200,
+      "ifo_stats_defense_nme": 50,
+      "ifo_stats_defense_dsc": 200,
+      "ifo_stats_speed_nme": 50,
+      "ifo_stats_speed_dsc": 200,
+      "ifo_stats_energy_nme": 50,
+      "ifo_stats_energy_dsc": 200,
+
 
 
       "kwd_mainMenu": 12,
@@ -538,6 +552,19 @@
     "ifo_probability_fraction_nme": "Probability (Fraction Form)",
     "ifo_probability_fraction_dsc": "A probability format that uses fractions (x/y). The denominator (y) equates to 1.00, with the numerator (x) acting as the chance value. The larger the value of (x), the more likely the event is. When (x) equals 0, the event will not happen, and when (x) equals (y), the event will always happen.",
 
+    "ifo_stats": "Battler Stats",
+    "ifo_stats_level_nme": "Level",
+    "ifo_stats_level_dsc": "A number value that marks a battler’s strength. Upon leveling up, a battler’s stats get permanent upgrades.",
+    "ifo_stats_health_nme": "Health",
+    "ifo_stats_health_dsc": "The hit points of a battler. When a battler’s health reaches 0, they have lost the battle.",
+    "ifo_stats_attack_nme": "Attack",
+    "ifo_stats_attack_dsc": "The inherent strength of the battler. Combined with other factors, the battler’s attack determines how much damage they do to their target.",
+    "ifo_stats_defense_nme": "Defense",
+    "ifo_stats_defense_dsc": "The battler’s inherent resistance to damage. In combination with other factors, this is used to calculate the amount of damage the battler takes when hit by a move.",
+    "ifo_stats_speed_nme": "Speed",
+    "ifo_stats_speed_dsc": "How fast the battler moves. This is the primary factor that determines the order that battlers go in. If two battlers have the same speed, the turn order is random.",
+    "ifo_stats_energy_nme": "Energy",
+    "ifo_stats_energy_dsc": "The power source for a battler’s moves. The battler cannot perform a move if they do not have enough energy. If a battler runs out of energy, they must take a turn to charge their energy.",
 
 
     "kwd_mainMenu": "Main Menu",

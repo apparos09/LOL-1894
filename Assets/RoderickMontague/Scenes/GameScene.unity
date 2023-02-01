@@ -12628,6 +12628,11 @@ MonoBehaviour:
   pageEntry0: {fileID: 1163535253512358991}
   pageEntry1: {fileID: 1002306878}
   pageEntry2: {fileID: 1117626067}
+  healthSprite: {fileID: 21300000, guid: a7d5a658ba56a914184427c53a06a16c, type: 3}
+  attackSprite: {fileID: 21300000, guid: 72751f0baa7dd2741a1a1076d3349b31, type: 3}
+  defenseSprite: {fileID: 21300000, guid: e75ca8221c6b5c844a262ba56cba6069, type: 3}
+  speedSprite: {fileID: 21300000, guid: 923278d2ca93f3948a1ffd2af8aac57e, type: 3}
+  energySprite: {fileID: 21300000, guid: fc69eb1988f353242ae50495503292bc, type: 3}
   pageNumberText: {fileID: 638852752}
   backButtonText: {fileID: 115701472}
 --- !u!1001 &951002638
@@ -13805,7 +13810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15689,7 +15694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_AnchorMax.x
@@ -29652,7 +29657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_AnchorMax.x

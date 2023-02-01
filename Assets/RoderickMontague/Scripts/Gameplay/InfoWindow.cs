@@ -64,6 +64,12 @@ namespace RM_BBTS
         public InfoPageEntryDisplay pageEntry1;
         public InfoPageEntryDisplay pageEntry2;
 
+        [Header("Sprites")]
+        public Sprite healthSprite;
+        public Sprite attackSprite;
+        public Sprite defenseSprite;
+        public Sprite speedSprite;
+        public Sprite energySprite;
 
         [Header("Other")]
         // The page number text, which is a fraction (000/000)
@@ -90,6 +96,7 @@ namespace RM_BBTS
 
             // NOTE: only the page titles are going to have the brackets around them since...
             // I'm short on time, and this would have to be taken out anyway...
+
 
             // Probability Page
             {
@@ -139,18 +146,127 @@ namespace RM_BBTS
                 page.entries.Add(entry);
 
 
-                // Add the page.
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
                 pages.Add(page);
             }
 
-            // Translates each page if the SDK has been initialized.
-            if(LOLSDK.Instance.IsInitialized)
+
+            // Stats Page - 1
             {
-                for (int i = 0; i < pages.Count; i++)
-                {
-                    pages[i] = LoadPageLanguageText(pages[i], true);
-                }
+                InfoPage page = new InfoPage();
+                page.title = "<Battler Stats>";
+                page.titleKey = "ifo_stats";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Level
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Level";
+                entry.nameKey = "ifo_stats_level_nme";
+
+                entry.description = "A number value that marks a battler’s strength. Upon leveling up, a battler’s stats get permanent upgrades.";
+                entry.descriptionKey = "ifo_stats_level_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+                // Health
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Health";
+                entry.nameKey = "ifo_stats_health_nme";
+
+                entry.description = "The hit points of a battler. When a battler’s health reaches 0, they have lost the battle.";
+                entry.descriptionKey = "ifo_stats_health_dsc";
+
+                entry.symbol = healthSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Attack
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Attack";
+                entry.nameKey = "ifo_stats_attack_nme";
+
+                entry.description = "The inherent strength of the battler. Combined with other factors, the battler’s attack determines how much damage they do to their target.";
+                entry.descriptionKey = "ifo_stats_attack_dsc";
+
+                entry.symbol = attackSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
+                page.title += " - 1";
+                pages.Add(page);
             }
+
+            // Stats Page - 2
+            {
+                InfoPage page = new InfoPage();
+                page.title = "<Battler Stats>";
+                page.titleKey = "ifo_stats";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Defense
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Defense";
+                entry.nameKey = "ifo_stats_defense_nme";
+
+                entry.description = "The battler’s inherent resistance to damage. In combination with other factors, this is used to calculate the amount of damage the battler takes when hit by a move.";
+                entry.descriptionKey = "ifo_stats_defense_dsc";
+
+                entry.symbol = defenseSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+                // Speed
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Speed";
+                entry.nameKey = "ifo_stats_speed_nme";
+
+                entry.description = "How fast the battler moves. This is the primary factor that determines the order that battlers go in. If two battlers have the same speed, the turn order is random.";
+                entry.descriptionKey = "ifo_stats_speed_dsc";
+
+                entry.symbol = speedSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Energy
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Energy";
+                entry.nameKey = "ifo_stats_energy_nme";
+
+                entry.description = "The power source for a battler’s moves. The battler cannot perform a move if they do not have enough energy. If a battler runs out of energy, they must take a turn to charge their energy.";
+                entry.descriptionKey = "ifo_stats_energy_dsc";
+
+                entry.symbol = energySprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
+                page.title += " - 2";
+                pages.Add(page);
+            }
+
+            // This needs to be done individually so that numbers can be attached.
+            // // Translates each page if the SDK has been initialized.
+            // if (LOLSDK.Instance.IsInitialized)
+            // {
+            //     for (int i = 0; i < pages.Count; i++)
+            //     {
+            //         pages[i] = LoadPageLanguageText(pages[i], true);
+            //     }
+            // }
 
             // First page.
             pageIndex = 0;
