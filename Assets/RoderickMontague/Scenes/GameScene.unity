@@ -12630,9 +12630,21 @@ MonoBehaviour:
   pageEntry2: {fileID: 1117626067}
   healthSprite: {fileID: 21300000, guid: a7d5a658ba56a914184427c53a06a16c, type: 3}
   attackSprite: {fileID: 21300000, guid: 72751f0baa7dd2741a1a1076d3349b31, type: 3}
+  attackColor: {r: 1, g: 0.29803923, b: 0.3019608, a: 1}
   defenseSprite: {fileID: 21300000, guid: e75ca8221c6b5c844a262ba56cba6069, type: 3}
+  defenseColor: {r: 1, g: 0.7882353, b: 0, a: 1}
   speedSprite: {fileID: 21300000, guid: 923278d2ca93f3948a1ffd2af8aac57e, type: 3}
+  speedColor: {r: 0.13725491, g: 0.78431374, b: 1, a: 1}
   energySprite: {fileID: 21300000, guid: fc69eb1988f353242ae50495503292bc, type: 3}
+  rankSprite: {fileID: 21300000, guid: 83276a751d9cc8f4d82edc6409f47ced, type: 3}
+  powerSprite: {fileID: 21300000, guid: 8dc64a7c166a3e3489ccd28edc038b0b, type: 3}
+  accuracySprite: {fileID: 21300000, guid: e637dbd671004dd4a8838781c0400428, type: 3}
+  criticalSprite: {fileID: 21300000, guid: f44cdb18ad9600c4da3d49255db93484, type: 3}
+  criticalColor: {r: 1, g: 0.42745098, b: 0.69411767, a: 1}
+  burnSprite: {fileID: 21300000, guid: 1472431340fbdce4997070bb611bbbc1, type: 3}
+  burnColor: {r: 1, g: 0.5372549, b: 0.49411765, a: 1}
+  paralysisSprite: {fileID: 21300000, guid: 64d68952f6eec4843b01e5bbda85cfd6, type: 3}
+  paralysisColor: {r: 1, g: 0.90588236, b: 0.56078434, a: 1}
   pageNumberText: {fileID: 638852752}
   backButtonText: {fileID: 115701472}
 --- !u!1001 &951002638

@@ -67,9 +67,23 @@ namespace RM_BBTS
         [Header("Sprites")]
         public Sprite healthSprite;
         public Sprite attackSprite;
+        public Color attackColor = Color.white;
         public Sprite defenseSprite;
+        public Color defenseColor = Color.white;
         public Sprite speedSprite;
+        public Color speedColor = Color.white;
         public Sprite energySprite;
+
+        [Header("Sprites/Moves")]
+        public Sprite rankSprite;
+        public Sprite powerSprite;
+        public Sprite accuracySprite;
+        public Sprite criticalSprite;
+        public Color criticalColor = Color.white;
+        public Sprite burnSprite;
+        public Color burnColor = Color.white;
+        public Sprite paralysisSprite;
+        public Color paralysisColor = Color.white;
 
         [Header("Other")]
         // The page number text, which is a fraction (000/000)
@@ -152,7 +166,8 @@ namespace RM_BBTS
             }
 
 
-            // Stats Page - 1
+
+            // Battle Stats Page - 1
             {
                 InfoPage page = new InfoPage();
                 page.title = "<Battler Stats>";
@@ -182,7 +197,6 @@ namespace RM_BBTS
                 entry.descriptionKey = "ifo_stats_health_dsc";
 
                 entry.symbol = healthSprite;
-                entry.symbolColor = Color.white;
                 page.entries.Add(entry);
 
 
@@ -195,7 +209,7 @@ namespace RM_BBTS
                 entry.descriptionKey = "ifo_stats_attack_dsc";
 
                 entry.symbol = attackSprite;
-                entry.symbolColor = Color.white;
+                entry.symbolColor = attackColor;
                 page.entries.Add(entry);
 
 
@@ -205,7 +219,7 @@ namespace RM_BBTS
                 pages.Add(page);
             }
 
-            // Stats Page - 2
+            // Battle Stats Page - 2
             {
                 InfoPage page = new InfoPage();
                 page.title = "<Battler Stats>";
@@ -223,7 +237,7 @@ namespace RM_BBTS
                 entry.descriptionKey = "ifo_stats_defense_dsc";
 
                 entry.symbol = defenseSprite;
-                entry.symbolColor = Color.white;
+                entry.symbolColor = defenseColor;
                 page.entries.Add(entry);
 
                 // Speed
@@ -235,7 +249,7 @@ namespace RM_BBTS
                 entry.descriptionKey = "ifo_stats_speed_dsc";
 
                 entry.symbol = speedSprite;
-                entry.symbolColor = Color.white;
+                entry.symbolColor = speedColor;
                 page.entries.Add(entry);
 
 
@@ -257,6 +271,169 @@ namespace RM_BBTS
                 page.title += " - 2";
                 pages.Add(page);
             }
+
+
+
+            // Moves - 1
+            {
+                InfoPage page = new InfoPage();
+                page.title = "<Moves>";
+                page.titleKey = "ifo_moves";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Rank
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Rank";
+                entry.nameKey = "ifo_moves_rank_nme";
+
+                entry.description = "A numerical label that conveys how advanced a move is, which ranges from 1 to 3. The higher the rank, the more advanced the move is. Higher rank moves become more common as the player progresses through the simulation.";
+                entry.descriptionKey = "ifo_moves_rank_dsc";
+
+                entry.symbol = rankSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+                // Power
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Power";
+                entry.nameKey = "ifo_moves_power_nme";
+
+                entry.description = "The base strength of a move, which along with other factors determines how much damage the move does. A move with no power listed either does no damage, or does a varying amount of damage based on certain factors.";
+                entry.descriptionKey = "ifo_moves_power_dsc";
+
+                entry.symbol = powerSprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Accuracy
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Accuracy";
+                entry.nameKey = "ifo_moves_accuracy_nme";
+
+                entry.description = "The likelihood of a move hitting its target, with a 1.00 accuracy being a guaranteed hit. A move with no accuracy listed either always hits, or the move’s success is determined by some unique set of factors.";
+                entry.descriptionKey = "ifo_moves_accuracy_dsc";
+
+                entry.symbol = accuracySprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
+                page.title += " - 1";
+                pages.Add(page);
+            }
+
+            // Moves - 2
+            {
+                InfoPage page = new InfoPage();
+                page.title = "<Moves>";
+                page.titleKey = "ifo_moves";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Energy Usage
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Energy Usage";
+                entry.nameKey = "ifo_moves_energyUsage_nme";
+
+                entry.description = "The amount of energy needed to perform a move. A move cannot be chosen if the user does not have enough energy to use it. If a move’s energy amount isn’t listed, then the move either uses no energy, or it calculates energy usage using unique factors.";
+                entry.descriptionKey = "ifo_moves_energyUsage_dsc";
+
+                entry.symbol = energySprite;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+                // Critical Damage
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Critical Damage";
+                entry.nameKey = "ifo_moves_critical_nme";
+
+                entry.description = "Extra damage done randomly when a directly damaging move successfully hits its target. Unless a move’s description states otherwise, every directly damaging move has the same critical damage chance.";
+                entry.descriptionKey = "ifo_moves_critical_dsc";
+
+                entry.symbol = criticalSprite;
+                entry.symbolColor = criticalColor;
+                page.entries.Add(entry);
+
+
+                // Recoil
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Recoil Damage";
+                entry.nameKey = "ifo_moves_recoil_nme";
+
+                entry.description = "Damage dealt to the user for successfully performing a certain move. If a move has recoil damage, it will be stated in said move’s description.";
+                entry.descriptionKey = "ifo_moves_recoil_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
+                page.title += " - 2";
+                pages.Add(page);
+            }
+
+            // Moves - 3
+            {
+                InfoPage page = new InfoPage();
+                page.title = "<Moves>";
+                page.titleKey = "ifo_moves";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Stat Change
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Stat Change";
+                entry.nameKey = "ifo_moves_statChange_nme";
+
+                entry.description = "A modifier that will temporarily change one of the battler’s stats. Stat modifiers wear off for both the player and their opponent when they leave the battle. A stat change can modifier the target’s attack, defense, speed, or accuracy.";
+                entry.descriptionKey = "ifo_moves_statChange_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+                // Burn
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Burn";
+                entry.nameKey = "ifo_moves_burn_nme";
+
+                entry.description = "A status effect that applies damage to the inflicted battler every turn. This status wears off for both battlers when the battle ends.";
+                entry.descriptionKey = "ifo_moves_burn_dsc";
+
+                entry.symbol = burnSprite;
+                entry.symbolColor = burnColor;
+                page.entries.Add(entry);
+
+
+                // Paralysis
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Paralysis";
+                entry.nameKey = "ifo_moves_paralysis_nme";
+
+                entry.description = "A status effect that reduces the inflicted battler’s speed, and that causes them to randomly miss turns. This status effect wears off for both battlers when the battle ends.";
+                entry.descriptionKey = "ifo_moves_paralysis_dsc";
+
+                entry.symbol = paralysisSprite;
+                entry.symbolColor = paralysisColor;
+                page.entries.Add(entry);
+
+
+                // Translate, and add the page.
+                page = LoadPageLanguageText(page, true);
+                page.title += " - 3";
+                pages.Add(page);
+            }
+
+
 
             // This needs to be done individually so that numbers can be attached.
             // // Translates each page if the SDK has been initialized.

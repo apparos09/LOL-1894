@@ -360,7 +360,6 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("<Look! The other doors have opened! But the boss door is still locked… I guess you’ll have to clear out all the other rooms before the boss accepts your challenge. But that shouldn’t be a problem.>"));
                 pages.Add(new Page("<As the simulation progresses, you’ll grow stronger, and learn even better moves! Your foes will probably get stronger too, but I’m sure you can handle it! And remember, if you don’t understand something, check out the stats and info windows! Good luck!>"));
-                pages.Add(new Page("<Good luck, Battle Bot! I believe in you!>"));
             }
             
             // Loads the pages.
@@ -477,9 +476,6 @@ namespace RM_BBTS
             {
                 pages.Add(new Page(defs["trl_gameOver_00"], "trl_gameOver_00"));
                 pages.Add(new Page(defs["trl_gameOver_01"], "trl_gameOver_01"));
-                pages.Add(new Page(defs["trl_gameOver_02"], "trl_gameOver_02"));
-                pages.Add(new Page(defs["trl_gameOver_03"], "trl_gameOver_03"));
-                pages.Add(new Page(defs["trl_gameOver_04"], "trl_gameOver_04"));
             }
             else // Default
             {
