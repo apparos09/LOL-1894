@@ -313,7 +313,7 @@ namespace RM_BBTS
 
                 case 1:
                     // Question
-                    question.question = "[When 2 battlers have the same speed, the turn order is perfectly random. If the player has the same speed as their opponent, what is the chance of the player going first?]";
+                    question.question = "[When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance that you go first?]";
                     question.questionSpeakKey = "que01";
 
                     // Responses
@@ -359,7 +359,7 @@ namespace RM_BBTS
                     break;
                 case 3:
                     // Question
-                    question.question = "[If a move mentions that it can paralyze the target, the paralysis chance is greater than 0.00. If the paralysis chance is set to 1.00, what does this mean?]";
+                    question.question = "[If a move mentions that it can paralyze the target, its paralysis chance is greater than 0.00. If a move’s paralysis chance is 1.00, what does this mean?]";
                     question.questionSpeakKey = "que03";
 
                     // Responses
@@ -411,14 +411,14 @@ namespace RM_BBTS
                 
                 case 5:
                     // Question
-                    question.question = "[The opponent has 65% of their health, and 3 of their 4 battle moves can restore their health. Assuming the opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that the opponent will use a healing move?]";
+                    question.question = "[Your opponent has 65% of their health, and 3 of their 4 battle moves can restore their health. Assuming your opponent will not charge their energy, and that each move has an equal chance of being chosen, what is the chance that your foe will heal themselves?]";
                     question.questionSpeakKey = "que05";
 
                     // Responses
-                    question.Response0 = "0.20";
-                    question.Response1 = "0.60";
-                    question.Response2 = "0.75";
-                    question.Response3 = "1.00";
+                    question.Response0 = "1/4";
+                    question.Response1 = "2/4";
+                    question.Response2 = "3/4";
+                    question.Response3 = "4/4";
 
                     // Answer
                     question.answerIndex = 2;
@@ -433,14 +433,14 @@ namespace RM_BBTS
 
                 case 6:
                     // Question
-                    question.question = "[The player uses a move that raises their accuracy by 2 stages. Which of the following statements is true?]";
+                    question.question = "[If you used a move that increases your accuracy by 2 stages, which of the following statements would be true?]";
                     question.questionSpeakKey = "que06";
 
                     // Responses
-                    question.Response0 = "[The player will move faster than they did before.]";
-                    question.Response1 = "[The player's attacks will do more damage.]";
-                    question.Response2 = "[The player's moves are more likely to hit their target.]";
-                    question.Response3 = "[The opponent's moves will do less damage to the player.]";
+                    question.Response0 = "[You will move faster than before.]";
+                    question.Response1 = "[Your attacks will do more damage.]";
+                    question.Response2 = "[Your moves are now more likely to hit their target.]";
+                    question.Response3 = "[You will now take less damage from your opponent’s attacks.]";
 
                     // Answer
                     question.answerIndex = 2;
@@ -458,14 +458,14 @@ namespace RM_BBTS
 
                 case 7:
                     // Question
-                    question.question = "[The player is hit by a move that lowers their accuracy by 1 stage. Which of the following statements is true?]";
+                    question.question = "[If you were hit by a move that lowers your accuracy by 1 stage, which of the following statements would be true?]";
                     question.questionSpeakKey = "que07";
 
                     // Responses
-                    question.Response0 = "[The player's moves are now less likely to hit their target.]";
-                    question.Response1 = "[The player will move slower than they did before.]";
-                    question.Response2 = "[The player will take more damage from their opponent.]";
-                    question.Response3 = "[The player's attacks will do less damage.]";
+                    question.Response0 = "[Your moves are more likely to miss their target.]";
+                    question.Response1 = "[You will move slower than you did before.]";
+                    question.Response2 = "[You will now take more damage from your opponent’s attacks.]";
+                    question.Response3 = "[Your attacks will do less than damage than before.]";
 
                     // Answer
                     question.answerIndex = 0;
@@ -483,7 +483,7 @@ namespace RM_BBTS
 
                 case 8:
                     // Question
-                    question.question = "[The opponent has 20% of their energy left. Along with the charge move, the opponent has 1 other move that they can use. Assuming each move has an equal chance of being chosen, how likely is it that the opponent will choose the charge move?]";
+                    question.question = "[Your opponent has 20% of their energy left. Along with the charge move, your opponent has 1 other move that they can use. Assuming each move has an equal chance of being chosen, how likely is it that your opponent will charge their energy next turn?]";
                     question.questionSpeakKey = "que08";
 
                     // Responses
@@ -506,7 +506,7 @@ namespace RM_BBTS
                 
                 case 9:
                     // Question
-                    question.question = "[Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If the user is prioritizing moves with high accuracy, should they pick Move B over Move A?]";
+                    question.question = "[Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If you’re prioritizing moves with high accuracies, should you pick Move B over Move A?]";
                     question.questionSpeakKey = "que09";
 
                     // Responses
@@ -529,7 +529,7 @@ namespace RM_BBTS
 
                 case 10:
                     // Question
-                    question.question = "[Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If the user is prioritizing moves with high accuracy, which move would they pick?]";
+                    question.question = "[Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If you’re prioritizing moves with high accuracies, which move would you pick?]";
                     question.questionSpeakKey = "que10";
 
                     // Responses
@@ -552,7 +552,7 @@ namespace RM_BBTS
 
                 case 11:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of burning the target, Move B has a 0.25 chance of burning the target, and Move C always burns the target. If the user wants to burn their opponent, which move has the best chance of doing so?]";
+                    question.question = "[Move A has a 0.40 chance of burning the target, Move B has a 0.25 chance of burning the target, and Move C always burns the target. If you want to burn your foe, which move would have the best chance of doing so?]";
                     question.questionSpeakKey = "que11";
 
                     // Responses
@@ -576,7 +576,7 @@ namespace RM_BBTS
 
                 case 12:
                     // Question
-                    question.question = "[Move A has a 0.30 chance of burning the target, Move B has a 0.10 chance of burning the target, and Move C has a 0.60 chance of burning the target. If the user wants to burn their opponent, which move has the worst chance of doing so?]";
+                    question.question = "[Move A has a 0.30 chance of burning the target, Move B has a 0.10 chance of burning the target, and Move C has a 0.60 chance of burning the target. If you want to burn your opponent, which move has the worst chance of doing so?]";
                     question.questionSpeakKey = "que12";
 
                     // Responses
@@ -602,7 +602,7 @@ namespace RM_BBTS
 
                 case 13:
                     // Question
-                    question.question = "[Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. Which move has the lowest chance of paralyzing the target if it hits?]";
+                    question.question = "[Move A has an accuracy of 0.85 and a paralysis chance of 0.45. Move B has an accuracy of 0.95 and a paralysis chance of 0.30. Move C has an accuracy of 0.70 and a paralysis chance of 0.60. If you want to paralyze the target, which move has the lowest chance of doing so if it hits?]";
                     question.questionSpeakKey = "que13";
 
                     // Responses
@@ -626,7 +626,7 @@ namespace RM_BBTS
 
                 case 14:
                     // Question
-                    question.question = "[The player has 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If the player is hit by a move that reduces their accuracy, which move has a 1.00 chance of hitting its target?]";
+                    question.question = "[You have 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 0.90, Move B has an accuracy of 0.80, and Move C has an accuracy of 1.00. If you are hit by a move that reduces your accuracy, which move now has a 1.00 chance of hitting its target?]";
                     question.questionSpeakKey = "que14";
 
                     // Responses
@@ -651,7 +651,7 @@ namespace RM_BBTS
 
                 case 15:
                     // Question
-                    question.question = "[Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If the user's accuracy is increased by 0.05, which moves will always hit their target?]";
+                    question.question = "[You have three moves: Move A, Move B, and Move C. Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If your accuracy was increased by 0.05, which moves would always hit their target?]";
                     question.questionSpeakKey = "que15";
 
                     // Responses
@@ -676,7 +676,7 @@ namespace RM_BBTS
 
                 case 16:
                     // Question
-                    question.question = "[Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Which event is most likely to occur?]";
+                    question.question = "[Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Across these three moves, which event is the most likely to occur?]";
                     question.questionSpeakKey = "que16";
 
                     // Responses
@@ -702,7 +702,7 @@ namespace RM_BBTS
 
                 case 17:
                     // Question
-                    question.question = "[Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If all 3 moves are powerful enough to defeat the opponent in one turn, which move is the riskiest option?]";
+                    question.question = "[Move A has an accuracy of 0.70, Move B has an accuracy of 0.85, and Move C has an accuracy of 0.90. If you want to defeat your foe the next turn, and all 3 moves are powerful enough to do so, which move would be the riskiest choice?]";
                     question.questionSpeakKey = "que17";
 
                     // Responses
@@ -727,7 +727,7 @@ namespace RM_BBTS
 
                 case 18:
                     // Question
-                    question.question = "[The opponent has 4 moves: Move A, Move B, Move C, and Move D. Move A's accuracy is 0.90, Move B's accuracy is 0.70, Move C's accuracy is 1.00, and Move D's accuracy is 0.85. Which move is least likely to hit the player?]";
+                    question.question = "[Your foe has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C never misses, and Move D’s accuracy is 0.85. Which move is least likely to hit you?]";
                     question.questionSpeakKey = "que18";
 
                     // Responses
@@ -752,13 +752,13 @@ namespace RM_BBTS
 
                 case 19:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of raising the user's attack, Move B has a 0.30 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's attack stat cannot go any higher, which move effect has the highest chance of occurring?]";
+                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If your attack stat cannot go any higher, which event is the most likely?]";
                     question.questionSpeakKey = "que19";
 
                     // Responses
-                    question.Response0 = "[Move A increasing the user's attack stat.]";
-                    question.Response1 = "[Move B increasing the user's defense stat.]";
-                    question.Response2 = "[Move C increasing the user's speed stat.]";
+                    question.Response0 = "[Move A increasing your attack stat.]";
+                    question.Response1 = "[Move B increasing your defense stat.]";
+                    question.Response2 = "[Move C increasing your speed stat.]";
                     question.Response3 = "[All move effects have an equal chance of occurring.]";
 
                     // Answer
@@ -777,13 +777,13 @@ namespace RM_BBTS
 
                 case 20:
                     // Question
-                    question.question = "[Move A has a 0.40 chance of raising the user's attack, Move B has a 0.60 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If the user's defense cannot go any lower, which move effect has the highest chance of occurring?]";
+                    question.question = "[Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If your defense cannot go any lower, which event is the most likely?]";
                     question.questionSpeakKey = "que20";
 
                     // Responses
-                    question.Response0 = "[Move A raising the user's attack.]";
-                    question.Response1 = "[Move B raising the user's defense.]";
-                    question.Response2 = "[Move C raising the user's speed.]";
+                    question.Response0 = "[Move A raising your attack.]";
+                    question.Response1 = "[Move B raising your defense.]";
+                    question.Response2 = "[Move C raising your speed.]";
                     question.Response3 = "[The events all have the same chance of occurring.]";
 
                     // Answer
@@ -804,14 +804,14 @@ namespace RM_BBTS
 
                 case 21:
                     // Question
-                    question.question = "[There are 10 doors remaining, and 2 of them are treasure doors. If every door has an equal chance of being chosen, what is the chance of the player choosing a treasure door?]";
+                    question.question = "[There are 10 doors remaining, and 2 of them are treasure doors. Assuming you have no other information, what is the chance of you choosing a treasure door?]";
                     question.questionSpeakKey = "que21";
 
                     // Responses
-                    question.Response0 = "0.20";
-                    question.Response1 = "0.40";
-                    question.Response2 = "0.60";
-                    question.Response3 = "0.80";
+                    question.Response0 = "2/10";
+                    question.Response1 = "4/10";
+                    question.Response2 = "6/10";
+                    question.Response3 = "8/10";
 
                     // Answer
                     question.answerIndex = 0;
@@ -825,14 +825,14 @@ namespace RM_BBTS
 
                 case 22:
                     // Question
-                    question.question = "[There are 5 doors remaining, and 1 of them is a treasure door. If every door has an equal chance of being chosen, what is the chance of a non-treasure door being chosen?]";
+                    question.question = "[There are 5 doors remaining, and 1 of them is a treasure door. If every door has an equal chance of being chosen, what is the chance of you not choosing the treasure door?]";
                     question.questionSpeakKey = "que22";
 
                     // Responses
-                    question.Response0 = "0.20";
-                    question.Response1 = "0.40";
-                    question.Response2 = "0.60";
-                    question.Response3 = "0.80";
+                    question.Response0 = "1/5";
+                    question.Response1 = "2/5";
+                    question.Response2 = "3/5";
+                    question.Response3 = "4/5";
 
                     // Answer
                     question.answerIndex = 3;
@@ -846,7 +846,7 @@ namespace RM_BBTS
 
                 case 23:
                     // Question
-                    question.question = "[Enemy A is behind 1/12 doors, Enemy B is behind 3/12 doors, Enemy C is behind 6/12 doors, and Enemy D is behind 2/12 doors. If every door has an equal chance of being chosen, which enemy will the player most likely encounter next?]";
+                    question.question = "[Enemy A is behind 1/10 doors, Enemy B is behind 2/10 doors, Enemy C is behind 5/10 doors, and Enemy D is behind 2/10 doors. If every door has an equal chance of being chosen, which enemy will you most likely encounter next?]";
                     question.questionSpeakKey = "que23";
 
                     // Responses
@@ -871,7 +871,7 @@ namespace RM_BBTS
 
                 case 24:
                     // Question
-                    question.question = "[Enemy A is behind 4/14 doors, Enemy B is behind 5/14 doors, Enemy C is behind 3/14 doors, and Enemy D is behind 2/14 doors. If every door has an equal chance of being chosen, which enemy is least likely to be encountered next by the player?]";
+                    question.question = "[Enemy A is behind 2/9 doors, Enemy B is behind 3/9 doors, Enemy C is behind 3/9 doors, and Enemy D is behind all remaining doors. If every door has an equal chance of being chosen, which enemy are you least likely to encounter next?]";
                     question.questionSpeakKey = "que24";
 
                     // Responses
@@ -896,7 +896,7 @@ namespace RM_BBTS
 
                 case 25:
                     // Question
-                    question.question = "[Move A has a critical damage chance of 0.40. If the player gets the critical damage bonus, they will win the battle in 1 turn. If the player doesn't get the critical damage bonus, they will win the battle in 2 turns. What is the chance of the player winning the battle in 2 turns?]";
+                    question.question = "[Move A has a critical damage chance of 0.40. If you get the critical damage bonus, you will win the battle in 1 turn. If you don’t get the critical damage bonus, you will win the battle in 2 turns. What is your chance of winning the battle in 2 turns?]";
                     question.questionSpeakKey = "que25";
                     
                     // Responses

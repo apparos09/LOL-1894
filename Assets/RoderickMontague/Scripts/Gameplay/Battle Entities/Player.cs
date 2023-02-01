@@ -35,7 +35,8 @@ namespace RM_BBTS
             preEvoId = 0;
             evoId = 0;
 
-            displayName = "<Player>";
+            // displayName = "<Player>";
+            displayName = "<Battle Bot>";
             displayNameSpeakKey = "bey_player_nme";
             level = 1;
 

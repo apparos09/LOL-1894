@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using SimpleJSON;
+using LoLSDK;
 
 namespace RM_BBTS
 {
     // An info window entry.
     public struct InfoPageEntry
     {
+        // The name, and its key in the file.
         public string name;
+        public string nameKey;
+
+        // The description, and its key in the file.
         public string description;
+        public string descriptionKey;
+
+        // The symbol and its colour.
         public Sprite symbol;
         public Color symbolColor;
     }
@@ -20,6 +28,9 @@ namespace RM_BBTS
     {
         // The title of the info page.
         public string title;
+
+        // The key for the title.
+        public string titleKey;
 
         // The list of the entries.
         public List<InfoPageEntry> entries;
@@ -77,20 +88,77 @@ namespace RM_BBTS
             // Initialize the list.
             pages = new List<InfoPage>();
 
-            // TODO: load pages.
+            // NOTE: only the page titles are going to have the brackets around them since...
+            // I'm short on time, and this would have to be taken out anyway...
+
+            // Probability Page
             {
-                InfoPage newPage = new InfoPage();
-                newPage.title = "Test";
-                newPage.entries = new List<InfoPageEntry>();
-                pages.Add(newPage);
+                InfoPage page = new InfoPage();
+                page.title = "<Probability>";
+                page.titleKey = "ifo_probability";
+                page.entries = new List<InfoPageEntry>();
+
+                InfoPageEntry entry = new InfoPageEntry();
+
+                // Probability
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Probability";
+                entry.nameKey = "ifo_probability_decimal_nme";
+                
+                entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
+                entry.descriptionKey = "ifo_probability_decimal_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Probability (Percent)
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Probability";
+                entry.nameKey = "ifo_probability_percent_nme";
+
+                entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
+                entry.descriptionKey = "ifo_probability_decimal_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Probability (Fraction)
+                entry = ClearInfoPageEntry(entry);
+                entry.name = "Probability";
+                entry.nameKey = "ifo_probability_fraction_nme";
+
+                entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
+                entry.descriptionKey = "ifo_probability_fraction_dsc";
+
+                entry.symbol = null;
+                entry.symbolColor = Color.white;
+                page.entries.Add(entry);
+
+
+                // Add the page.
+                pages.Add(page);
             }
 
+            // Translates each page if the SDK has been initialized.
+            if(LOLSDK.Instance.IsInitialized)
+            {
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    pages[i] = LoadPageLanguageText(pages[i], true);
+                }
+            }
+
+            // First page.
             pageIndex = 0;
             UpdatePage();
         }
 
         // Checks if the index is in the bounds.
-        public bool IndexInBounds<T>(List<T> list, int index)
+        public static bool IndexInBounds<T>(List<T> list, int index)
         {
             // The result object.
             bool result = false;
@@ -106,6 +174,57 @@ namespace RM_BBTS
             }
 
             return result;
+        }
+
+        // Loads the entry's language text.
+        public static InfoPage LoadPageLanguageText(InfoPage infoPage, bool loadEntryText)
+        {
+            // If the SDK has been initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Translates the page title.
+                infoPage.title = LOLManager.Instance.GetLanguageText(infoPage.titleKey);
+            
+                // If the entry text should also be loaded.
+                if(loadEntryText)
+                {
+                    // Loads the text for each entry.
+                    for (int i = 0; i < infoPage.entries.Count; i++)
+                    {
+                        infoPage.entries[i] = LoadEntryLanguageText(infoPage.entries[i]);
+                    }
+                }
+            
+            }
+
+            return infoPage;
+        }
+
+        // Loads the entry's language text.
+        public static InfoPageEntry LoadEntryLanguageText(InfoPageEntry infoEntry)
+        {
+            // If the SDK has been initialized.
+            if(LOLSDK.Instance.IsInitialized)
+            {
+                infoEntry.name = LOLManager.Instance.GetLanguageText(infoEntry.nameKey);
+                infoEntry.description = LOLManager.Instance.GetLanguageText(infoEntry.descriptionKey);
+            }
+
+            return infoEntry;
+        }
+
+        // Clears out the info page entry.
+        public static InfoPageEntry ClearInfoPageEntry(InfoPageEntry entry)
+        {
+            entry.name = string.Empty;
+            entry.nameKey = string.Empty;
+
+            entry.description = string.Empty;
+            entry.descriptionKey = string.Empty;
+
+            entry.symbol = null;
+            entry.symbolColor = Color.white;
+            return entry;
         }
 
         // Sets the index of the page.
