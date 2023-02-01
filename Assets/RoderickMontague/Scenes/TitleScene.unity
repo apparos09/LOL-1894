@@ -3584,7 +3584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioCredits: {fileID: 1264203305}
-  creditIndex: 0
   titleText: {fileID: 121041320}
   backButtonText: {fileID: 1548451597}
   songNameText: {fileID: 1112761589}

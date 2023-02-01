@@ -69,11 +69,11 @@ namespace RM_BBTS
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+        // // Start is called before the first frame update
+        // void Start()
+        // {
+        // 
+        // }
 
         // returns the instance of the accessibility.
         public static LOLManager Instance
@@ -96,7 +96,7 @@ namespace RM_BBTS
         }
 
         // Gets the text from the language file.
-        public string GetText(string key)
+        public string GetLanguageText(string key)
         {
             // Gets the language definitions.
             if(defs == null)
