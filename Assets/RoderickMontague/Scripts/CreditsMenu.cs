@@ -13,7 +13,7 @@ namespace RM_BBTS
         public AudioCredits audioCredits;
 
         // The credit index for the audio reference.
-        public int creditIndex = 0;
+        private int creditIndex = 0;
 
         // The user interface for the credits menu.
         [Header("UI")]
@@ -78,7 +78,7 @@ namespace RM_BBTS
                 return;
             }
 
-            // Sets the new index, clamping it within the page count.
+            // Sets the new index, clamping it so that it's within the page count.
             creditIndex = Mathf.Clamp(newIndex, 0, refCount - 1);
 
             // Updates the displayed credit.
@@ -134,10 +134,6 @@ namespace RM_BBTS
             pageNumberText.text = (creditIndex + 1).ToString() + "/" + audioCredits.GetCreditCount().ToString();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
     }
 }

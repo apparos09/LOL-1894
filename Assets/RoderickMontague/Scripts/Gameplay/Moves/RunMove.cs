@@ -43,7 +43,7 @@ namespace RM_BBTS
             {
                 // Calls the run function.
                 // bool success = AccuracySuccessful(user, false);
-                bool success = GenerateRandomFloat01() <= SUCCESS_CHANCE;
+                bool success = BattleManager.GenerateRandomFloat01() <= SUCCESS_CHANCE;
 
                 // Checks if the player was able to run away successfully.
                 if (success)

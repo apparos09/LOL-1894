@@ -22,9 +22,13 @@ namespace RM_BBTS
         // The total turns.
         public int totalTurns = 0;
 
-        // The amount of questions asked, and the total amount of questions correct.
-        public int totalQuestionsAsked = 0;
-        public int totalQuestionsCorrect = 0;
+        // The amount of questions used, and the total amount of correct responses.
+        public int questionsUsed = 0;
+        public int questionsUsedNoRepeats = 0;
+
+        // The amount of questions correct, and the amount of questions correct without repeated questions.
+        public int questionsCorrect = 0;
+        public int questionsCorrectNoRepeats = 0;
 
         // Final level
         public uint finalLevel = 0;

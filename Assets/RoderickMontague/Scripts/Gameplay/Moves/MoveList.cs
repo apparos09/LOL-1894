@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
@@ -245,21 +246,21 @@ namespace RM_BBTS
                     break;
 
                 case moveId.heal: // Heal
-                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.40F);
-                    (move as HealMove).healPercent = 0.20F;
+                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.50F);
+                    (move as HealMove).healPercent = 0.30F;
 
-                    move.description = "<The user heals 20% of their health.>";
+                    move.description = "<The user heals 30% of their health.>";
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
                     break;
 
                 case moveId.hpDrain1: // Drain Heal 1
-                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.3F);
+                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.30F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.125F;
+                    (move as HealthDrainMove).damageHealPercent = 0.25F;
 
-                    move.description = "<The user attacks the target, and restores their health by 12.5% of the damage given.>";
+                    move.description = "<The user attacks the target, and restores their health by 25% of the damage given.>";
 
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
@@ -378,7 +379,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.motivate: // Motivate
-                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.4F);
+                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.40F);
                     
                     move.useAccuracy = false;
                     move.priority = -1;
@@ -411,11 +412,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain2: // Drain Heal 2
-                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.35F);
+                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.40F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.25F;
+                    (move as HealthDrainMove).damageHealPercent = 0.35F;
 
-                    move.description = "<The user attacks the target, gaining 25% of the damage dealt as health.>";
+                    move.description = "<The user attacks the target, gaining 35% of the damage dealt as health.>";
 
                     nameKey = "mve_hpDrain2_nme";
                     descKey = "mve_hpDrain2_dsc";
@@ -518,11 +519,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain3: // Drain Heal 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.75F, 0.4F);
+                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.75F, 0.45F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 
-                    move.description = "<The user attacks the target, gaining 40% of the damage dealt as health.>";
+                    move.description = "<The user attacks the target, gaining 50% of the damage dealt as health.>";
 
                     nameKey = "mve_hpDrain3_nme";
                     descKey = "mve_hpDrain3_dsc";
@@ -670,6 +671,7 @@ namespace RM_BBTS
             // The id of the move being generated.
             moveId id;
 
+            // TODO: optimize method.
             switch(rank)
             {
                 case 1: // rank 1
@@ -711,6 +713,72 @@ namespace RM_BBTS
         public Move GetRandomRank3Move()
         {
             return GetRandomMove(3);
+        }
+
+        // Gets multiple random moves, going by the whole list.
+        public List<Move> GetRandomMoves(int count, List<moveId> ignoreList)
+        {
+            // Creates a move list of move selections (for the randomizer), and resultMoves (for returning moves).
+            List<moveId> moveOptions = new List<moveId>();
+            List<Move> chosenMoves = new List<Move>();
+
+            // The number of the last move.
+            int lastMoveNum = (int)LAST_RANK_3;
+
+            // Returns an empty list if the count is invalid.
+            if (count <= 0)
+                return chosenMoves;
+
+            // While there are still moves to add.
+            for (int i = MOVE_ID_RAND_START; i <= lastMoveNum; i++)
+            {
+                // Grabs the move id.
+                moveId mid = (moveId)i;
+
+                // If the move is not in the ignore list, add it to the list.
+                if (!ignoreList.Contains(mid))
+                    moveOptions.Add(mid);
+            }
+
+
+            // Generates the random moves.
+            while (chosenMoves.Count < count && moveOptions.Count != 0)
+            {
+                // Generates the random index.
+                int randIndex = Random.Range(0, moveOptions.Count);
+
+                // Gets the random move ID from the list, remvoing it as well.
+                moveId randMoveId = moveOptions[randIndex];
+                moveOptions.RemoveAt(randIndex);
+
+                // Generates a random move using the id provided.
+                Move randMove = GenerateMove(randMoveId);
+
+                // Adds a random move to the list of chosen moves.
+                chosenMoves.Add(randMove);
+            }
+
+
+            // Returns the chosen moves in the list.
+            return chosenMoves;
+        }
+
+        // Gets a list of random moves, ignoring any moves that the provided entity already has.
+        public List<Move> GetRandomMoves(int count, BattleEntity entity)
+        {
+            // The list of entities to be ignored.
+            List<moveId> ignoreList = new List<moveId>();
+
+            // Goes through each move.
+            foreach (Move move in entity.moves)
+            {
+                // If the move is not set to null, add it to the ignore list.
+                if (move != null)
+                    ignoreList.Add(move.Id);
+            }
+
+            // Re-uses the other function.
+            return GetRandomMoves(count, ignoreList);
         }
     }
 }

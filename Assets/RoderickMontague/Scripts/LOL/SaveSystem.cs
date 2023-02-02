@@ -39,6 +39,8 @@ namespace RM_BBTS
         public bool clearedFirstBattleDeath; // First battle death tutorial.
         public bool clearedOverworld; // Overworld tutorial.
         public bool clearedTreasure; // Treasure tutorial.
+        public bool clearedQuestion; // Question tutorial.
+        public bool clearedPhase; // Phase tutorial.
         public bool clearedBoss; // Boss tutorial.
         public bool clearedGameOver; // Game over tutorial.
 
@@ -49,22 +51,14 @@ namespace RM_BBTS
         public int roomsCompleted = 0; // Rooms cleared by the player.
 
         // The next question round.
-        public int nextQuestionRound = 0;
+        public int questionCountdown = 0;
 
-        // The amount of questions asked, and the amount answered correctly.
-        public int questionsAskedCount = 0;
-        public int questionsCorrectCount = 0;
+        // The amount of used questions and the results for said questions.
+        public int[] questionsUsed = new int[OverworldManager.ROOM_COUNT];
+        public bool[] questionResults = new bool[OverworldManager.ROOM_COUNT];
 
         // The serializer does NOT like integer arrays or lists for some reason.
         // As such, each one had to be stored as a seperate variable.
-
-        // The list of asked questions.
-        // Since the player is currently asked five questions total, that is the length of this array.
-        public int questionsAsked0 = -1;
-        public int questionsAsked1 = -1;
-        public int questionsAsked2 = -1;
-        public int questionsAsked3 = -1;
-        public int questionsAsked4 = -1;
 
         // Not needed since this is a fixed value.
         // public int roomsTotal = 0; // Total rooms cleared.

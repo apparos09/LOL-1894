@@ -146,7 +146,7 @@ namespace RM_BBTS
         // The main menu button text.
         public TMP_Text mainMenuButtonText;
 
-        // The quit window.
+        // The main menu window.
         public GameObject mainMenuPrompt;
 
         // The key for the main menu prompt.
@@ -160,6 +160,18 @@ namespace RM_BBTS
 
         // The continue game confirmation text.
         public TMP_Text mainMenuNoText;
+
+        [Header("UI/Info Prompt")]
+        // The info button.
+        public Button infoButton;
+
+        // The info button text.
+        public TMP_Text infoButtonText;
+
+        // The info window.
+        public GameObject infoWindow;
+
+
 
         [Header("UI/Game")]
 
@@ -262,11 +274,14 @@ namespace RM_BBTS
                 // SETTINGS WINDOW //
                 settingsButtonText.text = defs["kwd_settings"];
 
-                // TITLE SCREEN PROMPT
+                // MAIN MENU (TITLE SCREEN) PROMPT
                 mainMenuButtonText.text = defs["kwd_mainMenu"];
                 mainMenuPromptText.text = defs[MAIN_MENU_PROMPT_TEXT_KEY];
                 mainMenuYesText.text = defs["kwd_returnToMainMenu"];
                 mainMenuNoText.text = defs["kwd_returnToGame"];
+
+                // INFO WINDOW
+                infoButtonText.text = defs["kwd_info"];
 
                 // String Labels
                 // Moves
@@ -420,13 +435,13 @@ namespace RM_BBTS
             {
                 tutorial.LoadIntroTutorial();
 
+                // The tutorial door count.
+                const int TRL_DOOR_COUNT = 1;
+
                 // If there are enough doors to lock, lock down some.
                 // I did a +1 so that the boss room is also ignored.
-                if(overworld.treasureDoors.Count + 1 != overworld.doors.Count)
+                if (TRL_DOOR_COUNT > 0 && overworld.treasureDoors.Count + 1 != overworld.doors.Count)
                 {
-                    // The tutorial door count.
-                    const int TRL_DOOR_COUNT = 3;
-
                     // Copies the list.
                     List<Door> battleDoors = new List<Door>(overworld.doors);
                     
@@ -463,8 +478,8 @@ namespace RM_BBTS
                         unusedDoors.RemoveAt(index);
                     }
 
-                    // Unlocks three random doors.
-                    for (int n = 0; n < 3 && battleDoors.Count > 0; n++)
+                    // Unlocks two random doors.
+                    for (int n = 0; n < TRL_DOOR_COUNT && battleDoors.Count > 0; n++)
                     {
                         // Grabs a random index.
                         int randIndex = Random.Range(0, battleDoors.Count);
@@ -672,6 +687,7 @@ namespace RM_BBTS
             savePrompt.gameObject.SetActive(false);
             settingsWindow.gameObject.SetActive(false);
             mainMenuPrompt.gameObject.SetActive(false);
+            infoWindow.gameObject.SetActive(false);
 
             // Enable mouse input.
             mouseTouchInput.gameObject.SetActive(true);
@@ -815,6 +831,25 @@ namespace RM_BBTS
                 }
             }
         }
+
+        // Opens the info window.
+        public void ToggleInfoWindow()
+        {
+            // Gets the change in activity.
+            bool active = !infoWindow.gameObject.activeSelf;
+
+            // Hides all the windows and prompts.
+            HideAllWindowsAndPrompts();
+
+            // Shows (or hides) the specific window/prompt.
+            infoWindow.gameObject.SetActive(active);
+
+            // Called since the window/prompt is being toggled.
+            OnToggleWindowOrPrompt(active);
+        }
+
+
+
 
         // Checks the mouse and touch to see if there's any object to use.
         public void MouseTouchCheck()
@@ -978,6 +1013,14 @@ namespace RM_BBTS
             // Enables the main menu button.
             mainMenuButton.interactable = true;
 
+            // The 'useTutorial' object in this class could also be referenced, but I don't think it matters.
+            if(GameSettings.Instance.UseTutorial)
+            {
+                // Loads the stat change tutorial if it hasn't happened already.
+                if (player.HasStatModifiers() && !tutorial.clearedStatChange)
+                    tutorial.LoadStatChangeTutorial();
+            }
+
             // Save that the player answered a question.
             SaveAndContinueGame();
         }
@@ -1033,7 +1076,7 @@ namespace RM_BBTS
         }
 
         // Call this function to enter the overworld.
-        public void EnterOverworld()
+        public void EnterOverworld(bool battleWon)
         {
             // TODO: play animation before transition.
             // if(useTransitions)
@@ -1048,7 +1091,7 @@ namespace RM_BBTS
             player.selectedMove = null; // TODO: may not be needed.
 
             // Called upon returning to the overworld.
-            overworld.OnOverworldReturn();
+            overworld.OnOverworldReturn(battleWon);
 
             // The intro text has already been shown, but not the overworld text.
             if (useTutorial && tutorial.clearedIntro && !tutorial.clearedOverworld)
@@ -1059,9 +1102,9 @@ namespace RM_BBTS
         }
 
         // Goes to the overworld with a transition.
-        public void EnterOverworldWithTransition()
+        public void EnterOverworldWithTransition(bool battleWon)
         {
-            StartCoroutine(EnterStateWithTransition(gameState.overworld, null));
+            StartCoroutine(EnterStateWithTransition(gameState.overworld, null, battleWon));
         }
 
         // Call to enter the battle world.
@@ -1140,11 +1183,13 @@ namespace RM_BBTS
                 stateTransitionImage.color = OverworldManager.GetDoorTypeColor(door.doorType);
             }
 
-            StartCoroutine(EnterStateWithTransition(gameState.battle, door));
+            StartCoroutine(EnterStateWithTransition(gameState.battle, door, false));
         }
 
         // A function called to turn off the damage animator once it has played.
-        private IEnumerator EnterStateWithTransition(gameState newState, Door door)
+        // Argument 'door' is used when entering the battle.
+        // Arugment 'battleWon' is used when entering the overworld.
+        private IEnumerator EnterStateWithTransition(gameState newState, Door door, bool battleWon)
         {
             // Gets the amount of wait time for each part of the animation finish.
             float waitTime = 0.0F;
@@ -1175,7 +1220,7 @@ namespace RM_BBTS
                     switch (newState)
                     {
                         case gameState.overworld: // Go to the overworld.
-                            EnterOverworld();
+                            EnterOverworld(battleWon);
                             break;
                         case gameState.battle: // Go to the battle.
                             EnterBattle(door);
@@ -1314,9 +1359,13 @@ namespace RM_BBTS
             results.totalTime = gameTimer;
             results.totalTurns = turnsPassed;
 
-            // The amount of questions asked, and the amount of questions correct.
-            results.totalQuestionsAsked = overworld.gameQuestion.questionsAskedCount;
-            results.totalQuestionsCorrect = overworld.gameQuestion.questionsCorrectCount;
+            // Copies the amount of questions used, and a version with no repeats.
+            results.questionsUsed = overworld.gameQuestion.GetQuestionsUsedCount(false);
+            results.questionsUsedNoRepeats = overworld.gameQuestion.GetQuestionsUsedCount(true);
+
+            // Copies the amount of correct responses, and a version with no repeats.
+            results.questionsCorrect = overworld.gameQuestion.GetQuestionResultsCorrect(false);
+            results.questionsCorrectNoRepeats = overworld.gameQuestion.GetQuestionResultsCorrect(true);
 
             // Saves the level and final moves the player had.
             // The player levels up after the boss battle, so the provided level is subtracted by 1.
@@ -1382,9 +1431,11 @@ namespace RM_BBTS
             saveData.clearedStatChange = tutorial.clearedStatChange;
             saveData.clearedBurn = tutorial.clearedBurn;
             saveData.clearedParalysis = tutorial.clearedParalysis;
-            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;
+            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;     
             saveData.clearedOverworld = tutorial.clearedOverworld;
             saveData.clearedTreasure = tutorial.clearedTreasure;
+            saveData.clearedQuestion = tutorial.clearedQuestion;
+            saveData.clearedPhase = tutorial.clearedPhase;
             saveData.clearedBoss = tutorial.clearedBoss;
             saveData.clearedGameOver = tutorial.clearedGameOver;
 
@@ -1394,61 +1445,40 @@ namespace RM_BBTS
             // saveData.roomsTotal = GetRoomsTotal();
 
             // Question information.
-            saveData.nextQuestionRound = overworld.nextQuestionRound;
-            saveData.questionsAskedCount = overworld.gameQuestion.questionsAskedCount;
-            saveData.questionsCorrectCount = overworld.gameQuestion.questionsCorrectCount;
+            // Question countdown information.
+            saveData.questionCountdown = overworld.questionCountdown;
 
-            // Puts the asked questions into the list.
-            for(int i = 0; i < GameQuestionManager.QUESTIONS_ASKED_SAVE_MAX; i++)
+            // Copies the asked questions into the array in the save system object.
             {
-                // Checks if there's a valid index in the list.
-                if(i < overworld.gameQuestion.questionsAsked.Count) // Index exists.
+                // Grabs the two lists.
+                List<int> questionsUsed = overworld.gameQuestion.GetQuestionsUsed(false);
+                List<bool> questionResults = overworld.gameQuestion.GetQuestionResults(false);
+
+                // Copies the used questions into the data array.
+                for (int i = 0; i < saveData.questionsUsed.Length; i++)
                 {
-                    // Places number in designated variable.
-                    switch (i)
-                    {
-                        case 0:
-                            saveData.questionsAsked0 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 1:
-                            saveData.questionsAsked1 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 2:
-                            saveData.questionsAsked2 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 3:
-                            saveData.questionsAsked3 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                        case 4:
-                            saveData.questionsAsked4 = overworld.gameQuestion.questionsAsked[i];
-                            break;
-                    }
+                    // Copies the question into the list if it exists.
+                    // If it doesn't exist, -1 is used to mark an empty space.
+                    if (i < questionsUsed.Count)
+                        saveData.questionsUsed[i] = questionsUsed[i];
+                    else
+                        saveData.questionsUsed[i] = -1;
 
                 }
-                else // Index does not exist.
+
+                // Copies the question results into the data array.
+                for (int i = 0; i < saveData.questionResults.Length; i++)
                 {
-                    // Set value to -1 at the provided slot.
-                    switch (i)
-                    {
-                        case 0:
-                            saveData.questionsAsked0 = -1;
-                            break;
-                        case 1:
-                            saveData.questionsAsked1 = -1;
-                            break;
-                        case 2:
-                            saveData.questionsAsked2 = -1;
-                            break;
-                        case 3:
-                            saveData.questionsAsked3 = -1;
-                            break;
-                        case 4:
-                            saveData.questionsAsked4 = -1;
-                            break;
-                    }
+                    // Copies the result into the list if it exists.
+                    // The length of the questionsUsed array (which is the same length of this array)...
+                    // Is used to know what spots are default entries, as those are set to false.
+                    if (i < questionResults.Count)
+                        saveData.questionResults[i] = questionResults[i];
+                    else
+                        saveData.questionResults[i] = false;
+
                 }
             }
-
 
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
@@ -1499,6 +1529,17 @@ namespace RM_BBTS
             SaveGame(true);
         }
 
+        // Called to save and continue the game using a button.
+        public void SaveAndContinueGameButton()
+        {
+            SaveAndContinueGame();
+
+            // TODO: should I keep this?
+            // // Play a voice cue to read out the save message text.
+            // if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            //     LOLManager.Instance.textToSpeech.SpeakText("sve_msg_savingGame");
+        }
+
         // Called when the game should be saved and quit.
         public void SaveAndQuitGame()
         {
@@ -1532,8 +1573,8 @@ namespace RM_BBTS
             // Checks current game state.
             if(state == gameState.battle) // Player is in the battle area, so go to the overworld.
             {
-                // Return to the overoworld.
-                battle.ToOverworld();
+                // Return to the overworld. The battle hasn't been completed, so set 'battleWon' to false.
+                battle.ToOverworld(false);
             }
             else if(state == gameState.none) // Game not initialized.
             {
@@ -1601,6 +1642,8 @@ namespace RM_BBTS
             tutorial.clearedFirstBattleDeath = saveData.clearedFirstBattleDeath;
             tutorial.clearedOverworld = saveData.clearedOverworld;
             tutorial.clearedTreasure = saveData.clearedTreasure;
+            tutorial.clearedQuestion = saveData.clearedQuestion;
+            tutorial.clearedPhase = saveData.clearedPhase;
             tutorial.clearedBoss = saveData.clearedBoss;
             tutorial.clearedGameOver = saveData.clearedGameOver;
 
@@ -1632,44 +1675,32 @@ namespace RM_BBTS
             // Rooms total isn't sent over since that value shouldn't changed.
 
             // Sets the question information.
-            overworld.nextQuestionRound = saveData.nextQuestionRound;
-            overworld.gameQuestion.questionsAskedCount = saveData.questionsAskedCount;
-            overworld.gameQuestion.questionsCorrectCount = saveData.questionsCorrectCount;
+            // Loads the question countdown information.
+            overworld.questionCountdown = saveData.questionCountdown;
 
-
-            // Clears out the list of asked questions.
-            overworld.gameQuestion.questionsAsked.Clear();
-
-            // Grabs the asked questions from the save data and adds thm to the list.
-            for (int i = 0; i < GameQuestions.QUESTION_OPTIONS_MAX; i++)
+            // Copies the question content into the question manager.
             {
-                // The value to be added.
-                int value = -1;
+                // Questions used list, and the question results.
+                List<int> questionsUsed = new List<int>();
+                List<bool> questionResults = new List<bool>();
 
-                // Checks the index to see which value is next.
-                switch (i)
+                // Goes through each used question and result, which are the same length.
+                for(int i = 0; i < saveData.questionsUsed.Length; i++)
                 {
-                    case 0:
-                        value = saveData.questionsAsked0;
-                        break;
-                    case 1:
-                        value = saveData.questionsAsked1;
-                        break;
-                    case 2:
-                        value = saveData.questionsAsked2;
-                        break;
-                    case 3:
-                        value = saveData.questionsAsked3;
-                        break;
-                    case 4:
-                        value = saveData.questionsAsked4;
-                        break;
+                    // Checks if the question number is valid (negatives are marked as invalid).
+                    if (saveData.questionsUsed[i] >= 0)
+                    {
+                        // Adds the save data contnet to the lists.
+                        questionsUsed.Add(saveData.questionsUsed[i]);
+                        questionResults.Add(saveData.questionResults[i]);
+                    }
+
+                    // NOTE: there shouldn't be any data after the first -1 marker, but all spots are checked anyway.
+                    // TODO: maybe have it break after the first negative marker?
                 }
 
-                // Adds the value to the memory if it is greater than or equal to 0.
-                // Negative numbers indicate that it's not an actual question.
-                if(value >= 0)
-                    overworld.gameQuestion.questionsAsked.Add(value);
+                // Replaces the questions used and results lists.
+                overworld.gameQuestion.ReplaceQuestionsUsedList(questionsUsed, questionResults);
             }
 
             // Sets the evolve waves.
