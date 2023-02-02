@@ -91,6 +91,9 @@ namespace RM_BBTS
         // The boost for critical damage.
         public const float CRITICAL_BOOST = 1.75F; // 1.20 originally.
         
+        // The move animation.
+        public moveAnim animation = moveAnim.none;
+
         // TODO: replace name with file citation for translation.
         // Move constructor
         public Move(moveId id, string name, int rank, float power, float accuracy, float energyUsage)
@@ -996,21 +999,10 @@ namespace RM_BBTS
                 if (useCritBoost) // Critical
                 {
                     newPages.Add(GetMoveHitCriticalPage());
-
-                    // newPages.Add(new Page(
-                    //                         BattleMessages.Instance.GetMoveHitCriticalMessage(),
-                    //                         BattleMessages.Instance.GetMoveHitCriticalSpeakKey()
-                    //                         ));
-
                 }
                 else // No Critical
                 {
                     newPages.Add(GetMoveHitPage());
-
-                    // newPages.Add(new Page(
-                    //                         BattleMessages.Instance.GetMoveHitMessage(),
-                    //                         BattleMessages.Instance.GetMoveHitSpeakKey()
-                    //                         ));
                 }
 
                 // Adds the recoil message, and triggers the recoil tutorial if applicable.
@@ -1077,21 +1069,34 @@ namespace RM_BBTS
 
                 // TODO: maybe move this to the battle script?
                 // Checks if the user is the player or not.
-                if (user is Player) // Is the player.
-                {
-                    // Moved.
-                    // battle.gameManager.UpdatePlayerEnergyUI();
-                    battle.UpdateOpponentUI(); // Updates enemy health bar.
+                // if (user is Player) // Is the player.
+                // {
+                //     // Moved.
+                //     // battle.gameManager.UpdatePlayerEnergyUI();
+                //     battle.UpdateOpponentUI(); // Updates enemy health bar.
+                // 
+                //     // Play opponent's damage animation.
+                //     battle.PlayOpponentHurtAnimation();
+                // }
+                // else // Not the player.
+                // {
+                //     battle.gameManager.UpdatePlayerHealthUI();
+                // 
+                //     // Play palyer damage animation.
+                //     battle.PlayPlayerHurtAnimation();
+                // }
 
-                    // Play opponent's damage animation.
-                    battle.PlayOpponentHurtAnimation();
+                // If animations should play, and the move has a proper animation.
+                if(BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
+                {
+                    // Sets the information and plays the animation.
+                    battle.moveAnimation.SetMove(this, user, target, battle);
+                    battle.moveAnimation.PlayAnimation(animation);
                 }
-                else // Not the player.
+                else
                 {
-                    battle.gameManager.UpdatePlayerHealthUI();
-
-                    // Play palyer damage animation.
-                    battle.PlayPlayerHurtAnimation();
+                    // Shows the move performance results right away.
+                    ShowPerformanceResults(user, target, battle);
                 }
 
                 return true;
@@ -1110,6 +1115,29 @@ namespace RM_BBTS
 
             
             
+        }
+
+        // Shows the performance results of the move, which calls functions to play animations and SFX.
+        public virtual void ShowPerformanceResults(BattleEntity user, BattleEntity target, BattleManager battle)
+        {
+            // TODO: maybe move this to the battle script?
+            // Checks if the user is the player or not.
+            if (user is Player) // Is the player.
+            {
+                // Moved.
+                // battle.gameManager.UpdatePlayerEnergyUI();
+                battle.UpdateOpponentUI(); // Updates enemy health bar.
+
+                // Play opponent's damage animation.
+                battle.PlayOpponentHurtAnimation();
+            }
+            else // Not the player.
+            {
+                battle.gameManager.UpdatePlayerHealthUI();
+
+                // Play player damage animation.
+                battle.PlayPlayerHurtAnimation();
+            }
         }
     }
 }
