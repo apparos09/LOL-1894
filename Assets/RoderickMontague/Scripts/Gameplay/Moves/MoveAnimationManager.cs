@@ -22,6 +22,7 @@ namespace RM_BBTS
         private const float ANIM_TIMER_EXTRA = 0.0F;
 
         // Set to call the move performance results once the animation is over.
+        [HideInInspector()]
         public bool callMoveResults = false;
 
         // The move this animation is playing for, the user, the target, and the battle.
@@ -40,8 +41,8 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("Test");
-            PlayTest();
+            // Debug.Log("Test");
+            // PlayTest();
         }
 
         // Plays the animation.
@@ -65,7 +66,7 @@ namespace RM_BBTS
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
-                DisableTextBoxControls();
+                textBox.DisableTextBoxControls();
         }
 
         // Plays the spiral animation.
@@ -85,7 +86,7 @@ namespace RM_BBTS
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
-                EnableTextBoxControls();
+                textBox.EnableTextBoxControls();
 
             // Turn off the animator object.
             animator.gameObject.SetActive(false);
@@ -111,30 +112,6 @@ namespace RM_BBTS
             battle = null;
 
             callMoveResults = false;
-        }
-
-        // Enables the text box controls.
-        public void EnableTextBoxControls()
-        {
-            // Disables the prev page button.
-            if (textBox.prevPageButton != null)
-                textBox.prevPageButton.enabled = false;
-
-            // Disables the next page button.
-            if (textBox.nextPageButton != null)
-                textBox.nextPageButton.enabled = false;
-        }
-
-        // Disables the text box controls.
-        public void DisableTextBoxControls()
-        {
-            // Disables the prev page button.
-            if (textBox.prevPageButton != null)
-                textBox.prevPageButton.enabled = true;
-
-            // Disables the next page button.
-            if (textBox.nextPageButton != null)
-                textBox.nextPageButton.enabled = true;
         }
 
 

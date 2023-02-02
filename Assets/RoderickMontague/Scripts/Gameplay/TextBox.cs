@@ -212,6 +212,30 @@ namespace RM_BBTS
             SetTextBoxText(currPageIndex - 1);
         }
 
+        // Enables the text box controls.
+        public void EnableTextBoxControls()
+        {
+            // Disables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = true;
+
+            // Disables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = true;
+        }
+
+        // Disables the text box controls.
+        public void DisableTextBoxControls()
+        {
+            // Disables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = false;
+
+            // Disables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = false;
+        }
+
         // Adds a page to the end of the pages list.
         public void AddPage(Page page)
         {
