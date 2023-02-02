@@ -39,6 +39,8 @@ namespace RM_BBTS
         public bool clearedFirstBattleDeath; // First battle death tutorial.
         public bool clearedOverworld; // Overworld tutorial.
         public bool clearedTreasure; // Treasure tutorial.
+        public bool clearedQuestion; // Question tutorial.
+        public bool clearedPhase; // Phase tutorial.
         public bool clearedBoss; // Boss tutorial.
         public bool clearedGameOver; // Game over tutorial.
 

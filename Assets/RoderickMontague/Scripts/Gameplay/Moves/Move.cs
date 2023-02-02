@@ -54,7 +54,7 @@ namespace RM_BBTS
 
         // STATUS EFFECTS/CHANCE EVENTS //
         // The chance of performing critical damage.
-        protected float criticalChance = 0.3F;
+        protected float criticalChance = 0.25F; // Originally 0.30
 
         // Chance of burning the opponent.
         protected float burnChance = 0.0F;
@@ -89,7 +89,7 @@ namespace RM_BBTS
         public float accuracyChangeChanceTarget = 0.0F; // chance
 
         // The boost for critical damage.
-        public const float CRITICAL_BOOST = 1.50F; // 1.20 originally.
+        public const float CRITICAL_BOOST = 1.75F; // 1.20 originally.
         
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -359,7 +359,7 @@ namespace RM_BBTS
 
             // New
             // power * 0.75 * ((attack *1.125)/(2.75 * defense)) * critical
-            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (2.75F * target.GetDefenseModified())) * critBoost;
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.00F * target.GetDefenseModified())) * critBoost;
 
             damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.

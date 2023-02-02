@@ -191,12 +191,12 @@ namespace RM_BBTS
                     data.displayName = "<Combat Bot>";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 140;
+                    data.maxHealth = 200;
                     data.health = data.maxHealth;
 
-                    data.attack = 55;
-                    data.defense = 52;
-                    data.speed = 53;
+                    data.attack = 100;
+                    data.defense = 70;
+                    data.speed = 80;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -213,12 +213,12 @@ namespace RM_BBTS
                     data.displayName = "<UFO>";
                     data.displayNameSpeakKey = "bey_ufo1_nme";
 
-                    data.maxHealth = 31;
+                    data.maxHealth = 45;
                     data.health = data.maxHealth;
 
-                    data.attack = 12;
-                    data.defense = 12;
-                    data.speed = 25;
+                    data.attack = 22;
+                    data.defense = 22;
+                    data.speed = 50;
 
                     data.statSpecial = BattleEntity.specialty.speed;
 
@@ -241,12 +241,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo2_nme";
 
                     // Stats
-                    data.maxHealth = 40;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 25;
-                    data.defense = 60;
-                    data.speed = 25;
+                    data.attack = 65;
+                    data.defense = 95;
+                    data.speed = 20;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -263,12 +263,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
-                    data.maxHealth = 70;
+                    data.maxHealth = 120;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
-                    data.defense = 40;
-                    data.speed = 60;
+                    data.attack = 100;
+                    data.defense = 90;
+                    data.speed = 95;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -286,12 +286,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
-                    data.maxHealth = 30;
+                    data.maxHealth = 50;
                     data.health = data.maxHealth;
 
-                    data.attack = 12;
-                    data.defense = 12;
-                    data.speed = 28;
+                    data.attack = 14;
+                    data.defense = 14;
+                    data.speed = 32;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -308,12 +308,12 @@ namespace RM_BBTS
                     data.displayName = "<Spacectoid>";
                     data.displayNameSpeakKey = "bey_insect2_nme";
 
-                    data.maxHealth = 50;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 34;
-                    data.defense = 17;
-                    data.speed = 48;
+                    data.attack = 41;
+                    data.defense = 25;
+                    data.speed = 81;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -330,11 +330,11 @@ namespace RM_BBTS
                     data.displayName = "<Techno Ghost>";
                     data.displayNameSpeakKey = "bey_ghost1_nme";
 
-                    data.maxHealth = 10;
+                    data.maxHealth = 30;
                     data.health = data.maxHealth;
 
                     data.attack = 22;
-                    data.defense = 54;
+                    data.defense = 49;
                     data.speed = 14;
 
                     data.maxEnergy = 100;
@@ -352,12 +352,12 @@ namespace RM_BBTS
                     data.displayName = "<Techno Phantom>";
                     data.displayNameSpeakKey = "bey_ghost2_nme";
 
-                    data.maxHealth = 20;
+                    data.maxHealth = 60;
                     data.health = data.maxHealth;
 
-                    data.attack = 30;
-                    data.defense = 122;
-                    data.speed = 28;
+                    data.attack = 32;
+                    data.defense = 121;
+                    data.speed = 29;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -374,12 +374,12 @@ namespace RM_BBTS
                     data.displayName = "<Comet>";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
-                    data.maxHealth = 120;
+                    data.maxHealth = 150;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 50;
-                    data.speed = 90;
+                    data.attack = 100;
+                    data.defense = 70;
+                    data.speed = 130;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -396,12 +396,12 @@ namespace RM_BBTS
                     data.displayName = "<Stellosis>";
                     data.displayNameSpeakKey = "bey_sunRock1_nme";
 
-                    data.maxHealth = 27;
+                    data.maxHealth = 42;
                     data.health = data.maxHealth;
 
-                    data.attack = 16;
-                    data.defense = 14;
-                    data.speed = 5;
+                    data.attack = 36;
+                    data.defense = 32;
+                    data.speed = 10;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -418,12 +418,12 @@ namespace RM_BBTS
                     data.displayName = "<Sunoliss>";
                     data.displayNameSpeakKey = "bey_sunRock2_nme";
 
-                    data.maxHealth = 42;
+                    data.maxHealth = 68;
                     data.health = data.maxHealth;
 
-                    data.attack = 46;
-                    data.defense = 20;
-                    data.speed = 50;
+                    data.attack = 86;
+                    data.defense = 41;
+                    data.speed = 71;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -440,12 +440,12 @@ namespace RM_BBTS
                     data.displayName = "<Stelluna>";
                     data.displayNameSpeakKey = "bey_moonRock1_nme";
 
-                    data.maxHealth = 27;
+                    data.maxHealth = 42;
                     data.health = data.maxHealth;
 
-                    data.attack = 14;
-                    data.defense = 16;
-                    data.speed = 5;
+                    data.attack = 32;
+                    data.defense = 36;
+                    data.speed = 10;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -462,12 +462,12 @@ namespace RM_BBTS
                     data.displayName = "<Lunooma>";
                     data.displayNameSpeakKey = "bey_moonRock2_nme";
 
-                    data.maxHealth = 42;
+                    data.maxHealth = 68;
                     data.health = data.maxHealth;
 
-                    data.attack = 20;
-                    data.defense = 46;
-                    data.speed = 50;
+                    data.attack = 41;
+                    data.defense = 86;
+                    data.speed = 71;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -485,12 +485,12 @@ namespace RM_BBTS
                     data.displayName = "<Pyrobot>";
                     data.displayNameSpeakKey = "bey_fireBot_nme";
 
-                    data.maxHealth = 30;
+                    data.maxHealth = 40;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 15;
-                    data.speed = 15;
+                    data.attack = 60;
+                    data.defense = 25;
+                    data.speed = 25;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -509,12 +509,12 @@ namespace RM_BBTS
                     data.displayName = "<Aquadroid>";
                     data.displayNameSpeakKey = "bey_waterBot_nme";
 
-                    data.maxHealth = 55;
+                    data.maxHealth = 90;
                     data.health = data.maxHealth;
 
-                    data.attack = 15;
-                    data.defense = 15;
-                    data.speed = 15;
+                    data.attack = 20;
+                    data.defense = 20;
+                    data.speed = 20;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -536,9 +536,9 @@ namespace RM_BBTS
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
 
-                    data.attack = 15;
-                    data.defense = 45;
-                    data.speed = 10;
+                    data.attack = 25;
+                    data.defense = 70;
+                    data.speed = 25;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -557,12 +557,12 @@ namespace RM_BBTS
                     data.displayName = "Airtomaton";
                     data.displayNameSpeakKey = "bey_airBot_nme";
 
-                    data.maxHealth = 30;
+                    data.maxHealth = 40;
                     data.health = data.maxHealth;
 
-                    data.attack = 15;
-                    data.defense = 15;
-                    data.speed = 40;
+                    data.attack = 25;
+                    data.defense = 20;
+                    data.speed = 65;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -581,12 +581,12 @@ namespace RM_BBTS
                     data.displayName = "<Inkarp>";
                     data.displayNameSpeakKey = "bey_sharp1_nme";
 
-                    data.maxHealth = 18;
+                    data.maxHealth = 30;
                     data.health = data.maxHealth;
 
-                    data.attack = 25;
+                    data.attack = 50;
                     data.defense = 10;
-                    data.speed = 25;
+                    data.speed = 40;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -604,12 +604,12 @@ namespace RM_BBTS
                     data.displayName = "<Poily>";
                     data.displayNameSpeakKey = "bey_sharp2_nme";
 
-                    data.maxHealth = 38;
+                    data.maxHealth = 65;
                     data.health = data.maxHealth;
 
-                    data.attack = 58;
-                    data.defense = 17;
-                    data.speed = 58;
+                    data.attack = 105;
+                    data.defense = 25;
+                    data.speed = 75;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -627,17 +627,18 @@ namespace RM_BBTS
                     data.displayName = "<Red>";
                     data.displayNameSpeakKey = "bey_cBugRed1_nme";
 
-                    data.maxHealth = 18;
+                    data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 5;
-                    data.defense = 10;
-                    data.speed = 5;
+                    data.attack = 50;
+                    data.defense = 15;
+                    data.speed = 30;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -650,17 +651,18 @@ namespace RM_BBTS
                     data.displayName = "<Red X>";
                     data.displayNameSpeakKey = "bey_cBugRed2_nme";
 
-                    data.maxHealth = 32;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 20;
-                    data.defense = 10;
-                    data.speed = 10;
+                    data.attack = 100;
+                    data.defense = 30;
+                    data.speed = 60;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -673,17 +675,18 @@ namespace RM_BBTS
                     data.displayName = "<Blue>";
                     data.displayNameSpeakKey = "bey_cBugBlue1_nme";
 
-                    data.maxHealth = 18;
+                    data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 5;
-                    data.defense = 5;
-                    data.speed = 10;
+                    data.attack = 30;
+                    data.defense = 15;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -696,17 +699,18 @@ namespace RM_BBTS
                     data.displayName = "<Blue X>";
                     data.displayNameSpeakKey = "bey_cBugBlue2_nme";
 
-                    data.maxHealth = 32;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 10;
-                    data.defense = 20;
-                    data.speed = 10;
+                    data.attack = 60;
+                    data.defense = 30;
+                    data.speed = 100;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -719,17 +723,18 @@ namespace RM_BBTS
                     data.displayName = "<Yellow>";
                     data.displayNameSpeakKey = "bey_cBugYellow1_nme";
 
-                    data.maxHealth = 18;
+                    data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 5;
-                    data.defense = 10;
-                    data.speed = 5;
+                    data.attack = 15;
+                    data.defense = 50;
+                    data.speed = 30;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -742,17 +747,18 @@ namespace RM_BBTS
                     data.displayName = "<Yellow X>";
                     data.displayNameSpeakKey = "bey_cBugYellow2_nme";
 
-                    data.maxHealth = 32;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 10;
-                    data.defense = 20;
-                    data.speed = 10;
+                    data.attack = 30;
+                    data.defense = 100;
+                    data.speed = 60;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -765,12 +771,12 @@ namespace RM_BBTS
                     data.displayName = "<Vortex>";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
-                    data.maxHealth = 100;
+                    data.maxHealth = 110;
                     data.health = data.maxHealth;
 
-                    data.attack = 45;
-                    data.defense = 110;
-                    data.speed = 45;
+                    data.attack = 70;
+                    data.defense = 220;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -788,12 +794,12 @@ namespace RM_BBTS
                     data.displayName = "<Strange Island>";
                     data.displayNameSpeakKey = "bey_planet1_nme";
 
-                    data.maxHealth = 40;
+                    data.maxHealth = 110;
                     data.health = data.maxHealth;
 
-                    data.attack = 12;
-                    data.defense = 19;
-                    data.speed = 1;
+                    data.attack = 21;
+                    data.defense = 15;
+                    data.speed = 4;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -811,12 +817,12 @@ namespace RM_BBTS
                     data.displayName = "<Strange Planet>";
                     data.displayNameSpeakKey = "bey_planet2_nme";
 
-                    data.maxHealth = 120;
+                    data.maxHealth = 222;
                     data.health = data.maxHealth;
 
-                    data.attack = 23;
-                    data.defense = 32;
-                    data.speed = 2;
+                    data.attack = 39;
+                    data.defense = 30;
+                    data.speed = 9;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -867,10 +873,10 @@ namespace RM_BBTS
                 case battleEntityId.combatBot: // BOSS 1
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.fireShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.fireBurst, moveId.elecBurst, moveId.soundWave, moveId.quickBurst,
-                        moveId.statClear, moveId.laserBlast, moveId.fireBlast, moveId.elecBlast,
-                        moveId.sonicWave, moveId.waterBlast, moveId.rockBlast, moveId.airBlast
+                        moveId.slimeShot, moveId.laserBurst, moveId.fireBurst, moveId.elecBurst,
+                        moveId.soundWave, moveId.quickBurst, moveId.statClear, moveId.laserBlast,
+                        moveId.fireBlast, moveId.elecBlast, moveId.sonicWave, moveId.twister,
+                        moveId.waterBlast, moveId.rockBlast, moveId.airBlast
                     };
                     break;
 
@@ -1084,8 +1090,8 @@ namespace RM_BBTS
                 case battleEntityId.blackHole: // BOSS 3
                     moveList = new List<moveId>() 
                     {
-                        moveId.bam, moveId.hpDrain1, moveId.hpDrain2, moveId.hpDrain3, 
-                        moveId.twister, moveId.wham, moveId.quickBurst, moveId.waterBlast, 
+                        moveId.hpDrain2, moveId.hpDrain3, 
+                        moveId.twister, moveId.quickBurst, moveId.waterBlast, 
                         moveId.rockBlast, moveId.quake, moveId.earlyBurst, moveId.kablam
                     };
                     break;
@@ -1102,10 +1108,10 @@ namespace RM_BBTS
                 case battleEntityId.planet2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.bam, 
-                        moveId.magnet, moveId.hpDrain2, moveId.statClear, moveId.cure,
-                        moveId.tidalWave, moveId.wham, moveId.hpDrain3, moveId.waterBlast, 
-                        moveId.airBlast, moveId.quake, moveId.chargeSun, moveId.chargeMoon, moveId.kablam
+                        moveId.heal, moveId.healthSplit, moveId.magnet, moveId.hpDrain2,
+                        moveId.statClear, moveId.cure, moveId.tidalWave, moveId.wham,
+                        moveId.hpDrain3, moveId.twister, moveId.waterBlast, moveId.airBlast,
+                        moveId.quake, moveId.chargeSun, moveId.chargeMoon, moveId.kablam
                     };
                     break;
             }
@@ -1323,7 +1329,7 @@ namespace RM_BBTS
             ids.Add(battleEntityId.insect1);
             // ids.Add(battleEntityId.sharp1);
             // ids.Add(battleEntityId.cBugRed1); // Too weak.
-            ids.Add(battleEntityId.moonRock1);
+            // ids.Add(battleEntityId.moonRock1);
             ids.Add(battleEntityId.cBugYellow1);
             // ids.Add(battleEntityId.cBugBlue1); // Too weak.
 

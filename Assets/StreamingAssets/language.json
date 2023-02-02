@@ -753,9 +753,9 @@
     "mve_magnify_dsc": "The user raises their accuracy by 1 stage.",
 
     "mve_heal_nme": "Heal",
-    "mve_heal_dsc": "The user heals 20% of their health.",
+    "mve_heal_dsc": "The user heals 30% of their health.",
     "mve_hpDrain1_nme": "Drain Heal 1",
-    "mve_hpDrain1_dsc": "The user attacks the target, and restores their health by 12.5% of the damage given.",
+    "mve_hpDrain1_dsc": "The user attacks the target, and restores their health by 25% of the damage given.",
     "mve_healthSplit_nme": "Health Split",
     "mve_healthSplit_dsc": "The user and the target add together their proportional health, then split said health evenly between themselves.",
     "mve_pushBack_nme": "Push Back",
@@ -784,7 +784,7 @@
     "mve_quickBurst_nme": "Quick Burst",
     "mve_quickBurst_dsc": "The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.",
     "mve_hpDrain2_nme": "Drain Heal 2",
-    "mve_hpDrain2_dsc": "The user attacks the target, gaining 25% of the damage dealt as health.",
+    "mve_hpDrain2_dsc": "The user attacks the target, gaining 35% of the damage dealt as health.",
     "mve_statClear_nme": "Stat Clear",
     "mve_statClear_dsc": "The user resets all stat changes for themselves and their opponent.",
 
@@ -807,7 +807,7 @@
     "mve_sonicWave_dsc": "A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.",
 
     "mve_hpDrain3_nme": "Drain Heal 3",
-    "mve_hpDrain3_dsc": "The user attacks the target, gaining 40% of the damage dealt as health.",
+    "mve_hpDrain3_dsc": "The user attacks the target, gaining 50% of the damage dealt as health.",
     "mve_twister_nme": "Twister",
     "mve_twister_dsc": "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.",
     "mve_waterBlast_nme": "Water Blast",

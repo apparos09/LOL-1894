@@ -14,10 +14,10 @@ namespace RM_BBTS
         private const bool USE_DEBUG_STATS = false;
 
         // The base stats for the player. (30)
-        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 30;
+        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 45;
+        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 45;
+        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 45;
         private float baseMaxEnergy = 100;
 
         // Restoration percents.
@@ -25,7 +25,7 @@ namespace RM_BBTS
         public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.30F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
-        public const float PHASE_BONUS_STAT_TOTAL = 120.0F;
+        public const float PHASE_BONUS_STAT_TOTAL = 100.0F;
 
         // Setting the player's stats.
         protected new void Awake()

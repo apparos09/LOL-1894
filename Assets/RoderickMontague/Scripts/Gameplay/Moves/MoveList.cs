@@ -246,21 +246,21 @@ namespace RM_BBTS
                     break;
 
                 case moveId.heal: // Heal
-                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.40F);
-                    (move as HealMove).healPercent = 0.20F;
+                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.50F);
+                    (move as HealMove).healPercent = 0.30F;
 
-                    move.description = "<The user heals 20% of their health.>";
+                    move.description = "<The user heals 30% of their health.>";
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
                     break;
 
                 case moveId.hpDrain1: // Drain Heal 1
-                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.3F);
+                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.30F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.125F;
+                    (move as HealthDrainMove).damageHealPercent = 0.25F;
 
-                    move.description = "<The user attacks the target, and restores their health by 12.5% of the damage given.>";
+                    move.description = "<The user attacks the target, and restores their health by 25% of the damage given.>";
 
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
@@ -379,7 +379,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.motivate: // Motivate
-                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.4F);
+                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.40F);
                     
                     move.useAccuracy = false;
                     move.priority = -1;
@@ -412,11 +412,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain2: // Drain Heal 2
-                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.35F);
+                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.40F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.25F;
+                    (move as HealthDrainMove).damageHealPercent = 0.35F;
 
-                    move.description = "<The user attacks the target, gaining 25% of the damage dealt as health.>";
+                    move.description = "<The user attacks the target, gaining 35% of the damage dealt as health.>";
 
                     nameKey = "mve_hpDrain2_nme";
                     descKey = "mve_hpDrain2_dsc";
@@ -519,11 +519,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain3: // Drain Heal 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.75F, 0.4F);
+                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.75F, 0.45F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 
-                    move.description = "<The user attacks the target, gaining 40% of the damage dealt as health.>";
+                    move.description = "<The user attacks the target, gaining 50% of the damage dealt as health.>";
 
                     nameKey = "mve_hpDrain3_nme";
                     descKey = "mve_hpDrain3_dsc";

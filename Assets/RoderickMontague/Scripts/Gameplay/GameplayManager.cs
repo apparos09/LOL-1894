@@ -1431,9 +1431,11 @@ namespace RM_BBTS
             saveData.clearedStatChange = tutorial.clearedStatChange;
             saveData.clearedBurn = tutorial.clearedBurn;
             saveData.clearedParalysis = tutorial.clearedParalysis;
-            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;
+            saveData.clearedFirstBattleDeath = tutorial.clearedFirstBattleDeath;     
             saveData.clearedOverworld = tutorial.clearedOverworld;
             saveData.clearedTreasure = tutorial.clearedTreasure;
+            saveData.clearedQuestion = tutorial.clearedQuestion;
+            saveData.clearedPhase = tutorial.clearedPhase;
             saveData.clearedBoss = tutorial.clearedBoss;
             saveData.clearedGameOver = tutorial.clearedGameOver;
 
@@ -1640,6 +1642,8 @@ namespace RM_BBTS
             tutorial.clearedFirstBattleDeath = saveData.clearedFirstBattleDeath;
             tutorial.clearedOverworld = saveData.clearedOverworld;
             tutorial.clearedTreasure = saveData.clearedTreasure;
+            tutorial.clearedQuestion = saveData.clearedQuestion;
+            tutorial.clearedPhase = saveData.clearedPhase;
             tutorial.clearedBoss = saveData.clearedBoss;
             tutorial.clearedGameOver = saveData.clearedGameOver;
 

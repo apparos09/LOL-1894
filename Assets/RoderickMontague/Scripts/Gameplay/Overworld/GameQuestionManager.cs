@@ -15,7 +15,6 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        // TODO: hide question when in a tutorial.
         // The object of the question window.
         public GameObject questionObject;
 
