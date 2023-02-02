@@ -140,7 +140,7 @@ namespace RM_BBTS
                 entry.nameKey = "ifo_probability_percent_nme";
 
                 entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
-                entry.descriptionKey = "ifo_probability_decimal_dsc";
+                entry.descriptionKey = "ifo_probability_percent_dsc";
 
                 entry.symbol = null;
                 entry.symbolColor = Color.white;
@@ -591,6 +591,58 @@ namespace RM_BBTS
 
             // Updates the page number.
             pageNumberText.text = (pageIndex + 1).ToString() + "/" + pages.Count.ToString();
+        }
+
+        // Speaks the provided entry, which ranges from 0 to 2.
+        private void SpeakEntry(int entryNumber)
+        {
+            // Checks if text-to-speech is enabled.
+            if (LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            {
+                // Entry display object.
+                InfoPageEntryDisplay iped = null;
+
+                // Checks the entry number.
+                switch (entryNumber)
+                {
+                    case 0:
+                        iped = pageEntry0;
+                        break;
+                    case 1:
+                        iped = pageEntry1;
+                        break;
+                    case 2:
+                        iped = pageEntry2;
+                        break;
+                }
+
+                // The object was set.
+                if(iped != null)
+                {
+                    // The speak key exists.
+                    if(iped.descriptionSpeakKey != string.Empty)
+                        LOLManager.Instance.textToSpeech.SpeakText(iped.descriptionSpeakKey);
+                }
+            }
+        }
+
+
+        // Reads the first entry on the page.
+        public void SpeakEntry0()
+        {
+            SpeakEntry(0);
+        }
+
+        // Reads the second entry on the page.
+        public void SpeakEntry1()
+        {
+            SpeakEntry(1);
+        }
+
+        // Reads the third entry on the page.
+        public void SpeakEntry2()
+        {
+            SpeakEntry(2);
         }
 
     }

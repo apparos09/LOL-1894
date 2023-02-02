@@ -13908,6 +13908,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 950516274}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpeakEntry1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RM_BBTS.InfoWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
 --- !u!224 &1002306877 stripped
@@ -15791,6 +15819,34 @@ PrefabInstance:
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 950516274}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpeakEntry2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RM_BBTS.InfoWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
@@ -29754,6 +29810,34 @@ PrefabInstance:
     - target: {fileID: 1163535252359927925, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 950516274}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpeakEntry0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RM_BBTS.InfoWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564367106560575582, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c36d1d95bbefb6428200a42ed617384, type: 3}
