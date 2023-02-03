@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1955186359514003337}
   - component: {fileID: 1955186359514003336}
   m_Layer: 5
-  m_Name: Move Animation
+  m_Name: Move Animation (World)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
