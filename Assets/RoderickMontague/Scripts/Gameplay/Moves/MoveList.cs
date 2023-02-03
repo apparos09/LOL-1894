@@ -295,6 +295,8 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_bam_nme";
                     descKey = "mve_bam_dsc";
+
+                    move.animation = moveAnim.smack;
                     break;
 
 
