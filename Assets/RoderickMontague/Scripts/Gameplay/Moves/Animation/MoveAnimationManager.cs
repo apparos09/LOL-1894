@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RM_BBTS
 {
     // The move animator ids.
-    public enum moveAnim { none, circle };
+    public enum moveAnim { none, smack };
 
     // The move animation manager.
     public class MoveAnimationManager : MonoBehaviour
@@ -14,6 +14,8 @@ namespace RM_BBTS
         // Animaton enum.
         // The animator for the move.
         public Animator animator;
+
+        private const string ANIM_VAR = "anim";
 
         // The timer to automatically tell an animaton to stop if it hasn't already.
         private float animTimer = 0.0F;
@@ -55,11 +57,15 @@ namespace RM_BBTS
             // Turn on the animator object.
             animator.gameObject.SetActive(true);
 
+
             // Changes the animation.
-            animator.SetInteger("anim", (int)anim);
-
-            // TODO: disable the forward button o the textbox when the animation plays.
-
+            switch(anim)
+            {
+                case moveAnim.smack: // Smack Animation
+                    animator.SetInteger(ANIM_VAR, 1);
+                    break;
+            }
+            
             // Sets the animation timer.
             animTimer = animator.GetCurrentAnimatorStateInfo(0).length / animator.speed + ANIM_TIMER_EXTRA;
 
@@ -69,12 +75,18 @@ namespace RM_BBTS
                 textBox.DisableTextBoxControls();
         }
 
-        // Plays the spiral animation.
-        public void PlayTest()
+        // // Plays the spiral animation.
+        // public void PlayTest()
+        // {
+        //     // Plays the test animation.
+        //     PlayAnimation(0);
+        //     // TODO: change the animation number, then turn on the object.
+        // }
+
+        // Plays the smack animation.
+        public void PlaySmack()
         {
-            // Plays the test animation.
-            PlayAnimation(0);
-            // TODO: change the animation number, then turn on the object.
+            PlayAnimation(moveAnim.smack);
         }
 
         // Called when the animation is finished.
@@ -89,6 +101,7 @@ namespace RM_BBTS
                 textBox.EnableTextBoxControls();
 
             // Turn off the animator object.
+            animator.SetInteger(ANIM_VAR, 0);
             animator.gameObject.SetActive(false);
         }
 
