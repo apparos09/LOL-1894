@@ -43,6 +43,10 @@ namespace RM_BBTS
         // Determines if the animation should be flipped.
         protected bool flip;
 
+        [Header("Audio")]
+        // The audio for the move animation.
+        public AudioSource audioSource;
+
         [Header("Text Box")]
         // A textbox that might be showing when the battle animation is playing.
         public TextBox textBox;
