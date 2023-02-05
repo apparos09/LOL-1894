@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1955186359514003337}
+  animatedImage: {fileID: 1955186359514003350}
+  animatedSpriteRender: {fileID: 0}
   callMoveResults: 0
   textBox: {fileID: 0}
   disableTextBoxControlsWhenPlaying: 0

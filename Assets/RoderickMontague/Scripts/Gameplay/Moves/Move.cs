@@ -91,8 +91,9 @@ namespace RM_BBTS
         // The boost for critical damage.
         public const float CRITICAL_BOOST = 1.75F; // 1.20 originally.
         
-        // The move animation.
+        // The move animation, and its color.
         public moveAnim animation = moveAnim.none;
+        public Color animationColor = Color.white;
 
         // TODO: replace name with file citation for translation.
         // Move constructor
@@ -1090,7 +1091,8 @@ namespace RM_BBTS
                 if(BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
                 {
                     // Sets the information and plays the animation.
-                    battle.moveAnimation.SetMove(this, user, target, battle);
+                    // The animation is flipped if the opponent is using the move.
+                    battle.moveAnimation.SetMove(this, user, target, battle, !(user is Player));
                     battle.moveAnimation.PlayAnimation(animation);
                 }
                 else
