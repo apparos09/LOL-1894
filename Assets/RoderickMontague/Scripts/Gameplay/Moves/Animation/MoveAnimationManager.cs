@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RM_BBTS
 {
     // The move animator ids.
-    public enum moveAnim { none, smack };
+    public enum moveAnim { none, blast1, blast2, burst1, colorWave1, crawl1, fill1, shield1, shootingStar1, shot1, shot2, slash1, slash2, smack1, smack2, smack3, twister1, wave1, wave2, wave3 };
 
     // The move animation manager.
     public class MoveAnimationManager : MonoBehaviour
@@ -71,15 +71,17 @@ namespace RM_BBTS
             animator.gameObject.SetActive(true);
 
 
-            // Changes the animation.
-            switch(anim)
-            {
-                case moveAnim.smack: // Smack Animation
-                    animator.SetInteger(ANIM_VAR, 1);
-                    break;
-            }
+            // // Changes the animation.
+            // switch(anim)
+            // {
+            //     case moveAnim.smack1: // Smack Animation
+            //         animator.SetInteger(ANIM_VAR, 1);
+            //         break;
+            // }
 
-            
+            // The numbers match up with the enum now.
+            animator.SetInteger(ANIM_VAR, (int)anim);
+
             // Sets the animation color.
             if (move != null)
             {
@@ -121,12 +123,6 @@ namespace RM_BBTS
         //     PlayAnimation(0);
         //     // TODO: change the animation number, then turn on the object.
         // }
-
-        // Plays the smack animation.
-        public void PlaySmack()
-        {
-            PlayAnimation(moveAnim.smack);
-        }
 
         // Called when the animation is finished.
         public void StopAnimation()

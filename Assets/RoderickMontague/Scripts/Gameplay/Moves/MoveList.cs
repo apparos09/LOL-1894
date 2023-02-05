@@ -296,7 +296,7 @@ namespace RM_BBTS
                     nameKey = "mve_bam_nme";
                     descKey = "mve_bam_dsc";
 
-                    move.animation = moveAnim.smack;
+                    move.animation = moveAnim.smack1;
                     break;
 
 
