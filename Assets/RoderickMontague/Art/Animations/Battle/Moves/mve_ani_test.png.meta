@@ -4,16 +4,16 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -937054733588567233
-    second: test_anim_circle_fill_0
+    second: mve_ani_test_0
   - first:
       213: 7083069421250726161
-    second: test_anim_circle_fill_1
+    second: mve_ani_test_1
   - first:
       213: 5426530760281473722
-    second: test_anim_circle_fill_2
+    second: mve_ani_test_2
   - first:
       213: -1048675088067917738
-    second: test_anim_circle_fill_3
+    second: mve_ani_test_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_anim_circle_fill_0
+      name: mve_ani_test_0
       rect:
         serializedVersion: 2
         x: 0
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_anim_circle_fill_1
+      name: mve_ani_test_1
       rect:
         serializedVersion: 2
         x: 128
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_anim_circle_fill_2
+      name: mve_ani_test_2
       rect:
         serializedVersion: 2
         x: 256
@@ -202,7 +202,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_anim_circle_fill_3
+      name: mve_ani_test_3
       rect:
         serializedVersion: 2
         x: 384
