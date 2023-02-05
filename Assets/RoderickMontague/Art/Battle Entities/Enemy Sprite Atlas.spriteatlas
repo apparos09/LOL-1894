@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Enemy Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 3
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b1d64fa3c3899d446bb643fad27d6e27, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7772a050919deaf4a9ccc6d6126913c3, type: 3}
+  - {fileID: 21300000, guid: 037371909e2c0264e9c93c2559065483, type: 3}
+  - {fileID: 21300000, guid: 93e1a4a0d44e0e04bb4842fbbb29d5a9, type: 3}
+  - {fileID: 21300000, guid: 65d6eba1f873bd1488fa74c4e7630122, type: 3}
+  - {fileID: 21300000, guid: 74c11c829c5ff8a4caf07ba63f1077cd, type: 3}
+  - {fileID: 21300000, guid: ffd9aab29b573d24185dc1c59a31f8de, type: 3}
+  - {fileID: 21300000, guid: b1073b23b3078f94f838fc81aa9155cb, type: 3}
+  - {fileID: 21300000, guid: 5eb4ae23bf79668419d6461a59389372, type: 3}
+  - {fileID: 21300000, guid: 3f9ab093263caab4a897f7d02aa532c1, type: 3}
+  - {fileID: 21300000, guid: b410d3c3cb7db1743b27f3bdca1b6554, type: 3}
+  - {fileID: 21300000, guid: bbb729c3881b4ac4c84dc693cce26997, type: 3}
+  - {fileID: 21300000, guid: c38b30a4f0e24674aa0b8a0894cddaf0, type: 3}
+  - {fileID: 21300000, guid: ff5b5f05181110749aaca8810b887cc7, type: 3}
+  - {fileID: 21300000, guid: c2205855eb247af4fa6353d757de2fe0, type: 3}
+  - {fileID: 21300000, guid: b8e6fb95b71c8bc42974aa9a9393b998, type: 3}
+  - {fileID: 21300000, guid: 731534c600705e449942c466c75289cb, type: 3}
+  - {fileID: 21300000, guid: 48a41ef64a3c57d41a8baa067450ed7f, type: 3}
+  - {fileID: 21300000, guid: f3e25507dd19ef84289993c1283b3f18, type: 3}
+  - {fileID: 21300000, guid: b9b4673733cef5f429501558ca040d54, type: 3}
+  - {fileID: 21300000, guid: 4aab19a70b2f38c40b3a355e3686a8e2, type: 3}
+  - {fileID: 21300000, guid: 72e0b308fcf444d449d4eaf2f5fdcef7, type: 3}
+  - {fileID: 21300000, guid: a91bf2496aabc9a41ab347f3000352bb, type: 3}
+  - {fileID: 21300000, guid: 2544fc79d63da6e44969e6807af95837, type: 3}
+  - {fileID: 21300000, guid: f956ac5bc279e3d4e93edd66e5b3ac37, type: 3}
+  - {fileID: 21300000, guid: f0206e9b2330a354583c4574bb8619e3, type: 3}
+  - {fileID: 21300000, guid: 18e9c6ecc9f49f54b8503da112c08aca, type: 3}
+  - {fileID: 21300000, guid: 98e84e4dbeac05040af5bacb5a3ea894, type: 3}
+  - {fileID: 21300000, guid: 89764e6dfcf6cf044ac3fbabf05ea651, type: 3}
+  - {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  - {fileID: 8200721904344378434, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
+  - {fileID: 21300000, guid: 959f63cedeb045c48abe786198eced7a, type: 3}
+  - {fileID: 21300000, guid: 7730a6febf905db48b777b44f2181967, type: 3}
+  - {fileID: 21300000, guid: 7761ad3f67b4c0342b0c6cbbb2d42d08, type: 3}
+  - {fileID: 21300000, guid: 782c2d4f008187a4d815cdb865ea4ca6, type: 3}
+  - {fileID: 21300000, guid: 52488ddf3319bb44e81cb429fae53358, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bey_airbot2
+  - bey_ufo1
+  - bey_firebot2
+  - bey_waterbot2
+  - bey_sunrock1
+  - bey_spaceghost2
+  - bey_insect1
+  - bey_ufo3
+  - bey_blackhole
+  - bey_firebot1
+  - bey_planet1
+  - bey_earthbot2
+  - bey_bluevirus1
+  - bey_insect2
+  - bey_spaceghost1
+  - bey_yellowvirus1
+  - bey_planet2
+  - bey_redvirus1
+  - bey_moonrock2
+  - bey_moonrock1
+  - bey_redvirus2
+  - bey_yellowvirus2
+  - bey_waterbot1
+  - bey_bluevirus2
+  - bey_spike2
+  - bey_earthbot1
+  - bey_combatbot
+  - bey_ufo2
+  - bey_treasure_0
+  - bey_treasure_1
+  - bey_sunrock2
+  - bey_comet
+  - bey_airbot1
+  - battle_entity_placeholder
+  - bey_spike1
+  m_RenderDataMap: {}
+  m_Tag: Enemy Sprite Atlas
+  m_IsVariant: 0

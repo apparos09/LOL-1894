@@ -15,6 +15,12 @@ namespace RM_BBTS
         // The animator for the move.
         public Animator animator;
 
+        // The image being animated (if being used in screen space).
+        public Image animatedImage;
+
+        // The sprite being animated (if being used in world space).
+        public SpriteRenderer animatedSpriteRender;
+
         private const string ANIM_VAR = "anim";
 
         // The timer to automatically tell an animaton to stop if it hasn't already.
@@ -33,6 +39,13 @@ namespace RM_BBTS
         protected BattleEntity user;
         protected BattleEntity target;
         protected BattleManager battle;
+
+        // Determines if the animation should be flipped.
+        protected bool flip;
+
+        [Header("Audio")]
+        // The audio for the move animation.
+        public AudioSource audioSource;
 
         [Header("Text Box")]
         // A textbox that might be showing when the battle animation is playing.
@@ -65,7 +78,33 @@ namespace RM_BBTS
                     animator.SetInteger(ANIM_VAR, 1);
                     break;
             }
+
             
+            // Sets the animation color.
+            if (move != null)
+            {
+                // If the image is being used.
+                if(animatedImage != null)
+                {
+                    // Give move color.
+                    animatedImage.color = move.animationColor;
+
+                    // Images don't have a built-in flip feature, so this needs to be done instead.
+                    animatedImage.transform.localScale = (flip) ? new Vector3(-1.0F, 1.0F, 1.0F) : Vector3.one;
+                }
+
+                // If the sprite is being used.
+                if(animatedSpriteRender != null)
+                {
+                    // Give move color.
+                    animatedSpriteRender.color = move.animationColor;
+
+                    // Flips the sprite.
+                    animatedSpriteRender.flipX = flip;
+                }
+                    
+            }
+
             // Sets the animation timer.
             animTimer = animator.GetCurrentAnimatorStateInfo(0).length / animator.speed + ANIM_TIMER_EXTRA;
 
@@ -102,16 +141,39 @@ namespace RM_BBTS
 
             // Turn off the animator object.
             animator.SetInteger(ANIM_VAR, 0);
+
+            // Resets hte image color.
+            if (animatedImage != null)
+            {
+                // Reset colour.
+                animatedImage.color = Color.white;
+
+                // Reset flip.
+                // Images don't have a built-in flip feature, so this needs to be done instead.
+                animatedImage.transform.localScale = (flip) ? new Vector3(-1.0F, 1.0F, 1.0F): Vector3.one;
+            }
+                
+
+
+            // Resets the sprite renderer color.
+            if (animatedSpriteRender != null)
+            {
+                // Reset the colour, and the flip.
+                animatedSpriteRender.color = Color.white;
+                animatedSpriteRender.flipX = false;
+            }
+
             animator.gameObject.SetActive(false);
         }
 
         // Sets the move for the animation.
-        public void SetMove(Move move, BattleEntity user, BattleEntity target, BattleManager battle)
+        public void SetMove(Move move, BattleEntity user, BattleEntity target, BattleManager battle, bool flip)
         {
             this.move = move;
             this.user = user;
             this.target = target;
             this.battle = battle;
+            this.flip = flip;
 
             callMoveResults = true;
         }
