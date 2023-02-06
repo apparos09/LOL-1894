@@ -27,7 +27,7 @@ namespace RM_BBTS
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.0F;
+        private const float ANIM_TIMER_EXTRA = 100.0F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -82,7 +82,6 @@ namespace RM_BBTS
             // The numbers match up with the enum now.
             int animInt = (int)anim;
             animator.SetInteger(ANIM_VAR, animInt);
-            Debug.Log(animInt);
 
             // Sets the animation color.
             if (move != null)
@@ -138,7 +137,7 @@ namespace RM_BBTS
                 textBox.EnableTextBoxControls();
 
             // Turn off the animator object.
-            animator.SetInteger(ANIM_VAR, 0);
+            // animator.SetInteger(ANIM_VAR, 0);
 
             // Resets hte image color.
             if (animatedImage != null)
