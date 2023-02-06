@@ -62,18 +62,10 @@ namespace RM_BBTS
                 {
                     // Update the energy bar.
                     battle.UpdatePlayerEnergyUI();
+                }
 
-                    // Status animation.
-                    if(success)
-                        battle.PlayPlayerStatusAnimation();
-                }
-                else // User is opponent.
-                {
-                    // Status animation.
-                    if (success)
-                        battle.PlayOpponentStatusAnimation();
-                }
-                    
+                if (success) // Play animations.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
 
             }
             else // Not usable - not enough energy.

@@ -57,7 +57,7 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
 
                     // Status animation.
-                    battle.PlayPlayerStatusAnimation();
+                    // battle.PlayPlayerStatusAnimation();
                 }
                 else // Opponent
                 {
@@ -66,8 +66,11 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
 
                     // Status animation.
-                    battle.PlayOpponentStatusAnimation();
+                    // battle.PlayOpponentStatusAnimation();
                 }
+                
+                // Play the status animation.
+                PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
 
                 // Original
                 // float chargePlus = user.MaxEnergy * CHARGE_PERCENT;

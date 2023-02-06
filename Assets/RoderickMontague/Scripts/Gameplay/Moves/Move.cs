@@ -11,6 +11,9 @@ namespace RM_BBTS
     // This inherits from monobehaviour so that related functions can be called.
     public class Move
     {
+        // An enum used to determine what animaton to play for the user, and the target.
+        public enum moveEffect { none, hurt, status, heal};
+
         // The number of the move.
         protected moveId id = 0;
 
@@ -361,7 +364,7 @@ namespace RM_BBTS
 
             // New
             // power * 0.75 * ((attack *1.125)/(2.75 * defense)) * critical
-            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.00F * target.GetDefenseModified())) * critBoost;
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.25F * target.GetDefenseModified())) * critBoost;
 
             damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
@@ -1089,19 +1092,8 @@ namespace RM_BBTS
                     //     battle.PlayPlayerHurtAnimation();
                     // }
 
-                    // If animations should play, and the move has a proper animation.
-                    if(BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
-                    {
-                        // Sets the information and plays the animation.
-                        // The animation is flipped if the opponent is using the move.
-                        battle.moveAnimation.SetMove(this, user, target, battle, !(user is Player));
-                        battle.moveAnimation.PlayAnimation(animation);
-                    }
-                    else
-                    {
-                        // Shows the move performance results right away.
-                        ShowPerformanceResults(user, target, battle);
-                    }
+                    // Play the animations.
+                    PlayAnimations(user, target, battle, moveEffect.none, moveEffect.hurt);
 
                     return true;
                 }
@@ -1128,27 +1120,164 @@ namespace RM_BBTS
             
         }
 
-        // Shows the performance results of the move, which calls functions to play animations and SFX.
-        public virtual void ShowPerformanceResults(BattleEntity user, BattleEntity target, BattleManager battle)
+        // Plays animations for the move, taking the user, target, battle, the user's effect, and the target's effect.
+        public void PlayAnimations(BattleEntity user, BattleEntity target, BattleManager battle,
+            moveEffect userEffect, moveEffect targetEffect)
         {
-            // TODO: maybe move this to the battle script?
-            // Checks if the user is the player or not.
-            if (user is Player) // Is the player.
+            // If animations should play, and the move has a proper animation.
+            if (BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
             {
-                // Moved.
-                // battle.gameManager.UpdatePlayerEnergyUI();
-                battle.UpdateOpponentUI(); // Updates enemy health bar.
-
-                // Play opponent's damage animation.
-                battle.PlayOpponentHurtAnimation();
+                // Sets the information and plays the animation.
+                // The animation is flipped if the opponent is using the move.
+                battle.moveAnimation.SetMove(this, user, target, battle, userEffect, targetEffect, !(user is Player));
+                battle.moveAnimation.PlayAnimation(animation);
             }
-            else // Not the player.
+            else
             {
-                battle.gameManager.UpdatePlayerHealthUI();
-
-                // Play player damage animation.
-                battle.PlayPlayerHurtAnimation();
+                // Shows the move performance results right away.
+                ShowPerformanceResults(user, target, battle, userEffect, targetEffect);
             }
+        }
+
+        // Shows the performance results of the move, which calls functions to play animations and SFX.
+        public virtual void ShowPerformanceResults(BattleEntity user, BattleEntity target, BattleManager battle,
+            moveEffect userEffect, moveEffect targetEffect)
+        {
+            // The list of effects.
+            List<BattleEntity> entities = new List<BattleEntity>() { user, target };
+            List<moveEffect> effects = new List<moveEffect>() { userEffect, targetEffect };
+
+
+            // Goes through each animation.
+            for (int i = 0; i < entities.Count && i < effects.Count; i++)
+            {
+                // Checks if the entity is the player, or the enemy.
+                bool isPlayer = entities[i] is Player;
+
+                // NOTE: the energy isn't updated here because this doesn't get called if the move fails.
+                // But if the move fails, it still uses energy.
+
+                // Checks the effect.
+                switch (effects[i])
+                {
+                    case moveEffect.hurt:
+                        // Checks who the animation applies to.
+                        if (isPlayer)
+                        {
+                            battle.UpdatePlayerHealthUI();
+                            battle.PlayPlayerHurtAnimation();
+                        }
+                        else
+                        {
+                            battle.UpdateOpponentUI();
+                            battle.PlayOpponentHurtAnimation();
+                        }
+
+                        break;
+
+                    case moveEffect.status:
+                        // Checks who the animation applies to.
+                        if (isPlayer)
+                        {
+                            battle.PlayPlayerStatusAnimation();
+                        }
+                        else
+                        {
+                            battle.PlayOpponentStatusAnimation();
+                        }
+
+                        break;
+
+                    case moveEffect.heal:
+                        // Checks who the animation applies to.
+                        if (isPlayer)
+                        {
+                            battle.UpdatePlayerHealthUI();
+                            battle.PlayPlayerHealAnimation();
+                        }
+                        else
+                        {
+                            battle.UpdateOpponentUI();
+                            battle.PlayOpponentHealAnimation();
+                        }
+
+                        break;
+                }
+            }
+
+            //// Checks if the user is the player or not.
+            //if (user is Player) // Is the player.
+            //{
+            //    // Checks which action to perform for the user's animation.
+            //    switch(userEffect)
+            //    {
+            //        case moveEffect.hurt:
+            //            battle.UpdatePlayerHealthUI();
+            //            battle.PlayPlayerHurtAnimation();
+            //            break;
+
+            //        case moveEffect.status:
+            //            battle.PlayPlayerStatusAnimation();
+            //            break;
+
+            //        case moveEffect.heal:
+            //            battle.PlayPlayerHealAnimation();
+            //            break;
+            //    }
+
+            //    // Checks which action to perform for the target's animation.
+            //    switch (targetEffect)
+            //    {
+            //        case moveEffect.hurt:
+            //            battle.UpdateOpponentUI();
+            //            battle.PlayOpponentHurtAnimation();
+            //            break;
+
+            //        case moveEffect.status:
+            //            battle.PlayOpponentStatusAnimation();
+            //            break;
+
+            //        case moveEffect.heal:
+            //            battle.PlayOpponentHealAnimation();
+            //            break;
+            //    }
+            //}
+            //else // Not the player, which means its the opponent.
+            //{
+            //    // Checks which action to perform for the user's animation.
+            //    switch (userEffect)
+            //    {
+            //        case moveEffect.hurt:
+            //            battle.UpdateOpponentUI();
+            //            battle.PlayOpponentHurtAnimation();
+            //            break;
+
+            //        case moveEffect.status:
+            //            battle.PlayOpponentStatusAnimation();
+            //            break;
+
+            //        case moveEffect.heal:
+            //            battle.PlayOpponentHealAnimation();
+            //            break;
+            //    }
+
+            //    // Checks which action to perform for the target's animation.
+            //    switch (targetEffect)
+            //    {
+            //        case moveEffect.hurt:
+            //            battle.UpdatePlayerHealthUI();
+            //            battle.PlayPlayerHurtAnimation();
+            //            break;
+
+            //        case moveEffect.status:
+            //            battle.PlayPlayerStatusAnimation();
+            //            break;
+
+            //        case moveEffect.heal:
+            //            battle.PlayPlayerHealAnimation();
+            //            break;
+            //    }
+            //}
         }
     }
 }

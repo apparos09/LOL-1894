@@ -69,16 +69,11 @@ namespace RM_BBTS
                 if (user is Player) // Player
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
+                }
 
-                    if(success) // Player Animation
-                        battle.PlayPlayerStatusAnimation();
-                }
-                else // Opponent
-                {
-                    if(success) // Opponent Animation
-                        battle.PlayOpponentStatusAnimation();
-                }
-                    
+                if (success) // Play the status animations for both.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.status);
+
             }
             else // Not usable.
             {
