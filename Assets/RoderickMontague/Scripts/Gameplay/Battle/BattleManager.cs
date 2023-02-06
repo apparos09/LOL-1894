@@ -241,7 +241,7 @@ namespace RM_BBTS
         public Animator opponentAnimator;
 
         // If set to 'true', the move animations are played.
-        public const bool PLAY_MOVE_ANIMATIONS = false;
+        public const bool PLAY_MOVE_ANIMATIONS = true;
 
         // The animation manager for the moves.
         public MoveAnimationManager moveAnimation;

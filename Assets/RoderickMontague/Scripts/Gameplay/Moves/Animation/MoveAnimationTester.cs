@@ -25,11 +25,11 @@ namespace RM_BBTS
         // Plays the animation.
         public void PlayAnimation()
         {
-            // if (moveAnimation != null)
-            //     moveAnimation.PlayAnimation(anim);
+            if (moveAnimation != null)
+                moveAnimation.PlayAnimation(anim);
 
             // moveAnimation.PlayAnimation(anim);
-            moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, (int)anim);
+            // moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, (int)anim);
         }
 
         // Plays the next animation.

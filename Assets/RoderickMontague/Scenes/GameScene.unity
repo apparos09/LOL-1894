@@ -2596,6 +2596,7 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
+  vulnerable: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 1467642233}
@@ -21144,6 +21145,7 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
+  vulnerable: 1
   burned: 0
   paralyzed: 0
 --- !u!4 &1467642234
@@ -23520,6 +23522,7 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
+  vulnerable: 1
   burned: 0
   paralyzed: 0
   player: {fileID: 0}
@@ -26096,10 +26099,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Move Animation (Screen)
       objectReference: {fileID: 0}
-    - target: {fileID: 1955186359514003338, guid: 18c01291ef0f32f4fa9f08f228456387, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1955186359514003339, guid: 18c01291ef0f32f4fa9f08f228456387, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -26183,10 +26182,6 @@ PrefabInstance:
     - target: {fileID: 1955186359514003339, guid: 18c01291ef0f32f4fa9f08f228456387, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955186359514003350, guid: 18c01291ef0f32f4fa9f08f228456387, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18c01291ef0f32f4fa9f08f228456387, type: 3}
@@ -26912,6 +26907,7 @@ MonoBehaviour:
   evoId: 0
   levelRate: 1
   statSpecial: 0
+  vulnerable: 1
   burned: 0
   paralyzed: 0
   closedSprite: {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
