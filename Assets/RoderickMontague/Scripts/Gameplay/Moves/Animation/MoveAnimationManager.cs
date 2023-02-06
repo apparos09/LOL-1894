@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static RM_BBTS.Move;
 
 namespace RM_BBTS
 {
@@ -33,7 +34,7 @@ namespace RM_BBTS
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.5F;
+        private const float ANIM_TIMER_EXTRA = 0.25F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -45,6 +46,10 @@ namespace RM_BBTS
         protected BattleEntity user;
         protected BattleEntity target;
         protected BattleManager battle;
+
+        // The effects that are played for the user and the target.
+        protected moveEffect userEffect = moveEffect.none;
+        protected moveEffect targetEffect = moveEffect.none;
 
         // Determines if the animation should be flipped.
         protected bool flip;
@@ -135,7 +140,7 @@ namespace RM_BBTS
         {
             // Show the performance results since the animation is finished.
             if (callMoveResults)
-                move.ShowPerformanceResults(user, target, battle);
+                move.ShowPerformanceResults(user, target, battle, userEffect, targetEffect);
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
@@ -172,12 +177,17 @@ namespace RM_BBTS
         }
 
         // Sets the move for the animation.
-        public void SetMove(Move move, BattleEntity user, BattleEntity target, BattleManager battle, bool flip)
+        public void SetMove(Move move, BattleEntity user, BattleEntity target, BattleManager battle,
+            moveEffect userEffect, moveEffect targetEffect, bool flip)
         {
             this.move = move;
             this.user = user;
             this.target = target;
             this.battle = battle;
+
+            this.userEffect = userEffect;
+            this.targetEffect = targetEffect;
+
             this.flip = flip;
 
             callMoveResults = true;

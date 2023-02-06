@@ -61,15 +61,18 @@ namespace RM_BBTS
                     // Success page.
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
 
-                    // Checks what status animation to play.
-                    if (user is Player) // Player
-                    {
-                        battle.PlayPlayerStatusAnimation();
-                    }
-                    else // Opponent
-                    {
-                        battle.PlayOpponentStatusAnimation();
-                    }
+                    // // Checks what status animation to play.
+                    // if (user is Player) // Player
+                    // {
+                    //     battle.PlayPlayerStatusAnimation();
+                    // }
+                    // else // Opponent
+                    // {
+                    //     battle.PlayOpponentStatusAnimation();
+                    // }
+                    
+                    // Play the status animation for the user.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
 
                     return true;
                 } 
