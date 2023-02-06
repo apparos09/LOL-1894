@@ -132,6 +132,9 @@ namespace RM_BBTS
         protected float maxEnergy = 100;
         protected float energy = 100;
 
+        // Checks if the entity is vulernable to attacking moves.
+        public bool vulnerable = true;
+
         // STAT MOFIDIERS (TEMP INC/DEC)
 
         // Modifier for attack, defense, speed, and accuracy.
@@ -171,10 +174,10 @@ namespace RM_BBTS
         [Header("Stauses")]
 
         // Has burn status, which causes damage every turn.
-        public bool burned;
+        public bool burned = false;
 
         // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
-        public bool paralyzed;
+        public bool paralyzed = false;
 
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
@@ -1164,7 +1167,8 @@ namespace RM_BBTS
         // Called when a turn happens during a battle.
         public virtual void OnBattleTurn()
         {
-            // ...
+            // The entity is vulernable by default.
+            vulnerable = true;
         }
 
         // Update is called once per frame

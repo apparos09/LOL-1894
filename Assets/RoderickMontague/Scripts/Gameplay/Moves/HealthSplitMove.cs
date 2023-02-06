@@ -14,6 +14,10 @@ namespace RM_BBTS
         {
             description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
 
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.98F, 0.978F, 0.687F);
+
             // Loads the translation for the health.
             LoadTranslation("mve_healthSplit_nme", "mve_healthSplit_dsc");
         }
@@ -36,6 +40,12 @@ namespace RM_BBTS
                     InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
                     return false;
 
+                }
+                // Checks if the target can be hit.
+                else if(!TargetIsVulnerable(target))
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
                 }
 
                 // Calculates the percentages.

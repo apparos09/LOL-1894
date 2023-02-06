@@ -18,6 +18,8 @@ namespace RM_BBTS
             description = "<The user charges their energy by 40%.>";
             useAccuracy = false;
 
+            // No Animation
+
             // Loads in the translation for the run name and description.
             LoadTranslation("mve_charge_nme", "mve_charge_dsc");
         }

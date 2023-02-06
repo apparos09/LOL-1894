@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RM_BBTS
 {
     // The move animator ids.
-    public enum moveAnim { none, smack };
+    public enum moveAnim { none, blast1, blast2, burst1, colorWave1, crawl1, fill1, shield1, shootingStar1, shot1, shot2, slash1, slash2, smack1, smack2, smack3, twister1, wave1, wave2, wave3 };
 
     // The move animation manager.
     public class MoveAnimationManager : MonoBehaviour
@@ -21,13 +21,13 @@ namespace RM_BBTS
         // The sprite being animated (if being used in world space).
         public SpriteRenderer animatedSpriteRender;
 
-        private const string ANIM_VAR = "anim";
+        public const string ANIM_VAR = "anim";
 
         // The timer to automatically tell an animaton to stop if it hasn't already.
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.0F;
+        private const float ANIM_TIMER_EXTRA = 100.0F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -71,15 +71,14 @@ namespace RM_BBTS
             animator.gameObject.SetActive(true);
 
 
-            // Changes the animation.
-            switch(anim)
-            {
-                case moveAnim.smack: // Smack Animation
-                    animator.SetInteger(ANIM_VAR, 1);
-                    break;
-            }
+            // // Changes the animation.
+            // switch(anim)
+            // {
+            //     case moveAnim.smack1: // Smack Animation
+            //         animator.SetInteger(ANIM_VAR, 1);
+            //         break;
+            // }
 
-            
             // Sets the animation color.
             if (move != null)
             {
@@ -122,12 +121,6 @@ namespace RM_BBTS
         //     // TODO: change the animation number, then turn on the object.
         // }
 
-        // Plays the smack animation.
-        public void PlaySmack()
-        {
-            PlayAnimation(moveAnim.smack);
-        }
-
         // Called when the animation is finished.
         public void StopAnimation()
         {
@@ -140,7 +133,7 @@ namespace RM_BBTS
                 textBox.EnableTextBoxControls();
 
             // Turn off the animator object.
-            animator.SetInteger(ANIM_VAR, 0);
+            // animator.SetInteger(ANIM_VAR, 0);
 
             // Resets hte image color.
             if (animatedImage != null)
@@ -153,8 +146,6 @@ namespace RM_BBTS
                 animatedImage.transform.localScale = (flip) ? new Vector3(-1.0F, 1.0F, 1.0F): Vector3.one;
             }
                 
-
-
             // Resets the sprite renderer color.
             if (animatedSpriteRender != null)
             {

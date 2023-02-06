@@ -85,7 +85,7 @@ namespace RM_BBTS
             // // ACTUAL
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);
             Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
-            Move2 = MoveList.Instance.GenerateMove(moveId.heal);
+            Move2 = MoveList.Instance.GenerateMove(moveId.shield1);
             Move3 = null;
 
             // sprite = data.sprite;
@@ -174,6 +174,13 @@ namespace RM_BBTS
         {
             selectedMove = MoveList.Instance.RunMove;
         }
+
+        // // Called when a battle turn is happening.
+        // public override void OnBattleTurn()
+        // {
+        //     // Calls the parent's battle turn function.
+        //     base.OnBattleTurn();
+        // }
 
         // Update is called once per frame
         protected new void Update()

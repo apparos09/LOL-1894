@@ -241,7 +241,7 @@ namespace RM_BBTS
         public Animator opponentAnimator;
 
         // If set to 'true', the move animations are played.
-        public const bool PLAY_MOVE_ANIMATIONS = true;
+        public const bool PLAY_MOVE_ANIMATIONS = false;
 
         // The animation manager for the moves.
         public MoveAnimationManager moveAnimation;
@@ -356,6 +356,7 @@ namespace RM_BBTS
 
             // Reset the stat modifiers and statuses before the battle starts.
             player.selectedMove = null;
+            player.vulnerable = true; // The player can be damaged.
             // player.ResetStatModifiers(); // This is no longer done since questions can apply them.
             player.ResetStatuses();
 
@@ -387,6 +388,9 @@ namespace RM_BBTS
                 // SPRITE
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
+
+                // The opponent can be damaged.
+                opponent.vulnerable = true;
 
                 // Resets the stat modifiers and statuses.
                 opponent.ResetStatModifiers();
@@ -1514,6 +1518,7 @@ namespace RM_BBTS
             // Remove stat changes and status effects
             // This already happens in the initialization phase, but it happens here just to be sure. 
             // TODO: maybe take this out?
+            player.vulnerable = true;
             player.ResetStatModifiers();
             player.ResetStatuses();
 
@@ -1522,6 +1527,7 @@ namespace RM_BBTS
 
             // Remove selected move.
             opponent.selectedMove = null;
+            opponent.vulnerable = true;
 
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
