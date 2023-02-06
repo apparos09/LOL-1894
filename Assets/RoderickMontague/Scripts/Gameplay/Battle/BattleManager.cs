@@ -84,7 +84,7 @@ namespace RM_BBTS
         public const float BURN_DAMAGE = 0.0625F;
 
         // The chance to skip a turn if paralyzed.
-        public const float PARALYSIS_SKIP_CHANCE = 0.4F;
+        public const float PARALYSIS_SKIP_CHANCE = 0.2F;
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 1.00F; // 0.80
