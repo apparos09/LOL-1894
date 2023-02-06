@@ -16,6 +16,10 @@ namespace RM_BBTS
 
             description = "<The user resets all stat changes for themselves and their opponent.>";
 
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.971F, 0.897F, 0.982F);
+
             LoadTranslation("mve_statClear_nme", "mve_statClear_dsc");
         }
 

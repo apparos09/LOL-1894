@@ -80,7 +80,9 @@ namespace RM_BBTS
             // }
 
             // The numbers match up with the enum now.
-            animator.SetInteger(ANIM_VAR, (int)anim);
+            int animInt = (int)anim;
+            animator.SetInteger(ANIM_VAR, animInt);
+            Debug.Log(animInt);
 
             // Sets the animation color.
             if (move != null)
@@ -149,8 +151,6 @@ namespace RM_BBTS
                 animatedImage.transform.localScale = (flip) ? new Vector3(-1.0F, 1.0F, 1.0F): Vector3.one;
             }
                 
-
-
             // Resets the sprite renderer color.
             if (animatedSpriteRender != null)
             {
@@ -159,6 +159,7 @@ namespace RM_BBTS
                 animatedSpriteRender.flipX = false;
             }
 
+            Debug.Log("Ending");
             animator.gameObject.SetActive(false);
         }
 

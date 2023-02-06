@@ -17,7 +17,11 @@ namespace RM_BBTS
             name = "<Cure>";
 
             description = "<The user removes all their status ailments.>";
-    
+
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.897F, 0.982F, 0.974F);
+
             LoadTranslation("mve_cure_nme", "mve_cure_dsc");
         }
 
