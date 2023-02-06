@@ -18,6 +18,9 @@ namespace RM_BBTS
         // The image being animated (if being used in screen space).
         public Image animatedImage;
 
+        // The blank sprite, which is the default sprite
+        public Sprite defaultSprite;
+
         // The sprite being animated (if being used in world space).
         public SpriteRenderer animatedSpriteRender;
 
@@ -68,8 +71,8 @@ namespace RM_BBTS
             //     return;
 
             // Turn on the animator object.
-            animator.gameObject.SetActive(true);
-
+            // animator.gameObject.SetActive(true);
+            animator.enabled = true;
 
             // // Changes the animation.
             // switch(anim)
@@ -138,7 +141,8 @@ namespace RM_BBTS
             // Resets hte image color.
             if (animatedImage != null)
             {
-                // Reset colour.
+                // Reset sprite and colour.
+                animatedImage.sprite = defaultSprite;
                 animatedImage.color = Color.white;
 
                 // Reset flip.
@@ -149,12 +153,14 @@ namespace RM_BBTS
             // Resets the sprite renderer color.
             if (animatedSpriteRender != null)
             {
-                // Reset the colour, and the flip.
+                // Reset the sprite, the colour, and the flip.
+                animatedSpriteRender.sprite = defaultSprite;
                 animatedSpriteRender.color = Color.white;
                 animatedSpriteRender.flipX = false;
             }
 
-            animator.gameObject.SetActive(false);
+            // animator.gameObject.SetActive(false);
+            animator.enabled = false;
         }
 
         // Sets the move for the animation.
