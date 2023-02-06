@@ -42,6 +42,12 @@ namespace RM_BBTS
                     return false;
 
                 }
+                else if(!TargetIsVulnerable(target))
+                {
+                    // Note that the move won't effect the user or the opponent if one can't be hit.
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }
 
                 // There are stat changes to be reset.
                 if (user.HasStatModifiers() || target.HasStatModifiers())

@@ -33,8 +33,6 @@ namespace RM_BBTS
         // The amount of energy a move uses.
         protected float energyUsage;
 
-        // TODO: add space for animation.
-
         // The description of a move.
         public string description = "";
 
@@ -165,12 +163,6 @@ namespace RM_BBTS
         public float EnergyUsage
         {
             get { return energyUsage; }
-        }
-
-        // Called to play the move animation.
-        public void PlayAnimation()
-        {
-            // TODO: implement.
         }
 
         // Sets the percentage of recoil received from the attack, based on the damage to the target (0.0-1.0 range).
@@ -304,6 +296,12 @@ namespace RM_BBTS
             }
 
             return result;
+        }
+
+        // Checks to see if the target is vulnerable.
+        public bool TargetIsVulnerable(BattleEntity target)
+        {
+            return target.vulnerable;
         }
 
         // Checks if a move accuracy returns a success.
@@ -927,195 +925,206 @@ namespace RM_BBTS
             if(user is Player)
                 battle.gameManager.UpdatePlayerEnergyUI();
 
-            // If the move hit successfully (or if 'useAccuracy' is set to false, meaning it always hits)
-            if (AccuracySuccessful(user))
+
+            // Checks if the target can actually be hit.
+            if(TargetIsVulnerable(target))
             {
-                // The new pages.
-                List<Page> newPages = new List<Page>();
+                // If the move hit successfully (or if 'useAccuracy' is set to false, meaning it always hits)
+                if (AccuracySuccessful(user))
+                {
+                    // The new pages.
+                    List<Page> newPages = new List<Page>();
 
-                // NEW
-                // The variable.
-                bool useCritBoost = false;
+                    // NEW
+                    // The variable.
+                    bool useCritBoost = false;
                 
-                // If there is a critical chance, run the randomizer.
-                if(criticalChance > 0.0F)
-                    useCritBoost = BattleManager.GenerateRandomFloat01() <= criticalChance;
+                    // If there is a critical chance, run the randomizer.
+                    if(criticalChance > 0.0F)
+                        useCritBoost = BattleManager.GenerateRandomFloat01() <= criticalChance;
 
-                // Calculates the damage.
-                float damage = CalculateDamage(user, target, battle, useCritBoost);
+                    // Calculates the damage.
+                    float damage = CalculateDamage(user, target, battle, useCritBoost);
 
-                // OLD
-                // Does damage.
-                // float damage = 0.0F;
-                // float critBoost = 1.0F;
+                    // OLD
+                    // Does damage.
+                    // float damage = 0.0F;
+                    // float critBoost = 1.0F;
 
-                // // Randomization chance for doing a critical (extra) damage.
-                // if(Random.Range(0.0F, 1.0F) <= criticalChance) // extra damage
-                // {
-                //     critBoost = 1.125F;
-                // }
-                // 
-                // // Calculation
-                // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
-                // damage = Mathf.Round(damage); // Round damage to whole number.
-                // damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
+                    // // Randomization chance for doing a critical (extra) damage.
+                    // if(Random.Range(0.0F, 1.0F) <= criticalChance) // extra damage
+                    // {
+                    //     critBoost = 1.125F;
+                    // }
+                    // 
+                    // // Calculation
+                    // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
+                    // damage = Mathf.Round(damage); // Round damage to whole number.
+                    // damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
 
-                // If the target is the player.
-                if (target is Player)
-                {
-                    // If the damage is higher than the amount of health the player 
-                    battle.playerDamageTaken += (target.Health < damage) ? target.Health : damage;
-                }
-
-                // Saves the old target health.
-                float oldTargetHealth = target.Health;
-
-                // Damages the target.
-                target.Health -= damage;
-
-                // Damages the user with recoil.
-                // Calculates recoil damage (always does at least 1 damage).
-
-                // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
-                float recoilDamage = damage * recoilPercent; // Old (damage done)
-                // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New (health lost)
-                if (recoilDamage < 1.0F && recoilPercent != 0.0F) // Always does at least 1 damage.
-                    recoilDamage = 1.0F;
-
-                // Reduces the user's health.
-                // OLD
-                // // If it would kill the user, then they are left with 1 health.
-                // user.Health = (user.Health - recoilDamage < 0.0F) ? 1.0F : user.Health - recoilDamage;
-                
-                // NEW
-                // Recoil can kill the user.
-                // If both the player and the opponent die, the player wins.
-                user.Health -= recoilDamage;
-
-                // Moved so that the user uses energy regardless of if the move goes off or not.
-                // Uses energy.
-                // user.Energy -= energyUsed; // energy
-
-                // Adds the new page.
-                if (useCritBoost) // Critical
-                {
-                    newPages.Add(GetMoveHitCriticalPage());
-                }
-                else // No Critical
-                {
-                    newPages.Add(GetMoveHitPage());
-                }
-
-                // Adds the recoil message, and triggers the recoil tutorial if applicable.
-                if (recoilPercent != 0.0F)
-                {
-                    // Updates the user's HP for recoil damage.
-                    if (user is Player) // Player
-                        battle.UpdatePlayerHealthUI();
-                    else // Opponent
-                        battle.UpdateOpponentUI();
-
-                    // Add the recoil page.
-                    newPages.Add(GetMoveHitRecoilPage(user));
-                    battle.gotRecoil = true;
-                }
-
-                // Burn Infliction
-                if (!target.burned && BattleManager.GenerateRandomFloat01() < burnChance)
-                {
-                    target.burned = true;
-
-                    newPages.Add(GetMoveBurnedPage());
-
-                    // newPages.Add(new Page(
-                    //     BattleMessages.Instance.GetMoveBurnedMessage(),
-                    //     BattleMessages.Instance.GetMoveBurnedSpeakKey()
-                    //     ));
-                }
-
-                // Paralysis Infliction
-                if (!target.paralyzed && BattleManager.GenerateRandomFloat01() < paralysisChance)
-                {
-                    target.paralyzed = true;
-
-                    newPages.Add(GetMoveParalyzedPage());
-
-                    // newPages.Add(new Page(
-                    //     BattleMessages.Instance.GetMoveParalyzedMessage(),
-                    //     BattleMessages.Instance.GetMoveParalyzedSpeakKey()
-                    //     ));
-                }
-
-                // STAT CHANGES
-                if(HasStatChanges()) // There are stat changes to apply.
-                {
-                    // Gets the pages for applying stat changes.
-                    List<Page> statPages = ApplyStatChanges(user, target, battle);
-
-                    // The list was made.
-                    if(statPages != null)
+                    // If the target is the player.
+                    if (target is Player)
                     {
-                        // Changes were made, so add the pages to the end of the list.
-                        if(statPages.Count != 0)
+                        // If the damage is higher than the amount of health the player 
+                        battle.playerDamageTaken += (target.Health < damage) ? target.Health : damage;
+                    }
+
+                    // Saves the old target health.
+                    float oldTargetHealth = target.Health;
+
+                    // Damages the target.
+                    target.Health -= damage;
+
+                    // Damages the user with recoil.
+                    // Calculates recoil damage (always does at least 1 damage).
+
+                    // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
+                    float recoilDamage = damage * recoilPercent; // Old (damage done)
+                    // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New (health lost)
+                    if (recoilDamage < 1.0F && recoilPercent != 0.0F) // Always does at least 1 damage.
+                        recoilDamage = 1.0F;
+
+                    // Reduces the user's health.
+                    // OLD
+                    // // If it would kill the user, then they are left with 1 health.
+                    // user.Health = (user.Health - recoilDamage < 0.0F) ? 1.0F : user.Health - recoilDamage;
+                
+                    // NEW
+                    // Recoil can kill the user.
+                    // If both the player and the opponent die, the player wins.
+                    user.Health -= recoilDamage;
+
+                    // Moved so that the user uses energy regardless of if the move goes off or not.
+                    // Uses energy.
+                    // user.Energy -= energyUsed; // energy
+
+                    // Adds the new page.
+                    if (useCritBoost) // Critical
+                    {
+                        newPages.Add(GetMoveHitCriticalPage());
+                    }
+                    else // No Critical
+                    {
+                        newPages.Add(GetMoveHitPage());
+                    }
+
+                    // Adds the recoil message, and triggers the recoil tutorial if applicable.
+                    if (recoilPercent != 0.0F)
+                    {
+                        // Updates the user's HP for recoil damage.
+                        if (user is Player) // Player
+                            battle.UpdatePlayerHealthUI();
+                        else // Opponent
+                            battle.UpdateOpponentUI();
+
+                        // Add the recoil page.
+                        newPages.Add(GetMoveHitRecoilPage(user));
+                        battle.gotRecoil = true;
+                    }
+
+                    // Burn Infliction
+                    if (!target.burned && BattleManager.GenerateRandomFloat01() < burnChance)
+                    {
+                        target.burned = true;
+
+                        newPages.Add(GetMoveBurnedPage());
+
+                        // newPages.Add(new Page(
+                        //     BattleMessages.Instance.GetMoveBurnedMessage(),
+                        //     BattleMessages.Instance.GetMoveBurnedSpeakKey()
+                        //     ));
+                    }
+
+                    // Paralysis Infliction
+                    if (!target.paralyzed && BattleManager.GenerateRandomFloat01() < paralysisChance)
+                    {
+                        target.paralyzed = true;
+
+                        newPages.Add(GetMoveParalyzedPage());
+
+                        // newPages.Add(new Page(
+                        //     BattleMessages.Instance.GetMoveParalyzedMessage(),
+                        //     BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+                        //     ));
+                    }
+
+                    // STAT CHANGES
+                    if(HasStatChanges()) // There are stat changes to apply.
+                    {
+                        // Gets the pages for applying stat changes.
+                        List<Page> statPages = ApplyStatChanges(user, target, battle);
+
+                        // The list was made.
+                        if(statPages != null)
                         {
-                            newPages.AddRange(statPages);
+                            // Changes were made, so add the pages to the end of the list.
+                            if(statPages.Count != 0)
+                            {
+                                newPages.AddRange(statPages);
+                            }
                         }
                     }
-                }
 
-                // Inserts a range of pages.
-                InsertPagesAfterCurrentPage(battle, newPages);
-                // battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, newPages);
+                    // Inserts a range of pages.
+                    InsertPagesAfterCurrentPage(battle, newPages);
+                    // battle.textBox.pages.InsertRange(battle.textBox.CurrentPageIndex + 1, newPages);
 
 
-                // TODO: maybe move this to the battle script?
-                // Checks if the user is the player or not.
-                // if (user is Player) // Is the player.
-                // {
-                //     // Moved.
-                //     // battle.gameManager.UpdatePlayerEnergyUI();
-                //     battle.UpdateOpponentUI(); // Updates enemy health bar.
-                // 
-                //     // Play opponent's damage animation.
-                //     battle.PlayOpponentHurtAnimation();
-                // }
-                // else // Not the player.
-                // {
-                //     battle.gameManager.UpdatePlayerHealthUI();
-                // 
-                //     // Play palyer damage animation.
-                //     battle.PlayPlayerHurtAnimation();
-                // }
+                    // TODO: maybe move this to the battle script?
+                    // Checks if the user is the player or not.
+                    // if (user is Player) // Is the player.
+                    // {
+                    //     // Moved.
+                    //     // battle.gameManager.UpdatePlayerEnergyUI();
+                    //     battle.UpdateOpponentUI(); // Updates enemy health bar.
+                    // 
+                    //     // Play opponent's damage animation.
+                    //     battle.PlayOpponentHurtAnimation();
+                    // }
+                    // else // Not the player.
+                    // {
+                    //     battle.gameManager.UpdatePlayerHealthUI();
+                    // 
+                    //     // Play palyer damage animation.
+                    //     battle.PlayPlayerHurtAnimation();
+                    // }
 
-                // If animations should play, and the move has a proper animation.
-                if(BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
-                {
-                    // Sets the information and plays the animation.
-                    // The animation is flipped if the opponent is using the move.
-                    battle.moveAnimation.SetMove(this, user, target, battle, !(user is Player));
-                    battle.moveAnimation.PlayAnimation(animation);
+                    // If animations should play, and the move has a proper animation.
+                    if(BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
+                    {
+                        // Sets the information and plays the animation.
+                        // The animation is flipped if the opponent is using the move.
+                        battle.moveAnimation.SetMove(this, user, target, battle, !(user is Player));
+                        battle.moveAnimation.PlayAnimation(animation);
+                    }
+                    else
+                    {
+                        // Shows the move performance results right away.
+                        ShowPerformanceResults(user, target, battle);
+                    }
+
+                    return true;
                 }
                 else
                 {
-                    // Shows the move performance results right away.
-                    ShowPerformanceResults(user, target, battle);
-                }
+                    // The move missed.
+                    InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
 
-                return true;
+                    // battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
+                    //     BattleMessages.Instance.GetMoveMissedMessage(),
+                    //     BattleMessages.Instance.GetMoveMissedSpeakKey()));
+
+                    return false;
+                }
             }
             else
             {
-                // The move missed.
-                InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
+                // The target isn't vulnerable, so the move failed.
+                InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
 
-                // battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1, new Page(
-                //     BattleMessages.Instance.GetMoveMissedMessage(),
-                //     BattleMessages.Instance.GetMoveMissedSpeakKey()));
-
+                // Move failed.
                 return false;
             }
-
-            
             
         }
 

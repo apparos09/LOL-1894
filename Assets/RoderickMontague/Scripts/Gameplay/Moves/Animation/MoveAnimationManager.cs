@@ -21,7 +21,7 @@ namespace RM_BBTS
         // The sprite being animated (if being used in world space).
         public SpriteRenderer animatedSpriteRender;
 
-        private const string ANIM_VAR = "anim";
+        public const string ANIM_VAR = "anim";
 
         // The timer to automatically tell an animaton to stop if it hasn't already.
         private float animTimer = 0.0F;

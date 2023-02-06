@@ -34,6 +34,14 @@ namespace RM_BBTS
                     return false;
 
                 }
+                // Checks to see if this move will have effect on the target, and if the target can be hit.
+                else if(
+                    (attackChangeTarget != 0 || defenseChangeTarget != 0 ||
+                    speedChangeTarget != 0 || accuracyChangeTarget != 0) && !TargetIsVulnerable(target))
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }
 
                 // Applies the stat changes.
                 List<Page> statPages = ApplyStatChanges(user, target, battle);

@@ -10,9 +10,10 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, bam, 
-        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, wham, 
-        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, kablam}
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, shield1, bam, 
+        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, shield2, wham, 
+        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, shield3, kablam
+    }
 
     // The list of moves for the game.
     public class MoveList : MonoBehaviour
@@ -353,6 +354,20 @@ namespace RM_BBTS
                     descKey = "mve_pushBack_dsc";
                     break;
 
+                case moveId.shield1: // Shield 1
+                    move = new ShieldMove(moveId.shield1, "<Shield 1>", 1, 0.0F, 0.50F, 0.25F);
+
+                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.>";
+
+                    // Animation
+                    move.animation = moveAnim.shield1;
+                    move.animationColor = new Color(1.0F, 0.811F, 0.760F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_shield1_nme";
+                    descKey = "mve_shield1_dsc";
+                    break;
+
                 case moveId.bam: // Bam
                     move = new Move(moveId.bam, "<Bam>", 1, 25.0F, 1.0F, 0.10F);
 
@@ -580,6 +595,20 @@ namespace RM_BBTS
 
                     nameKey = "mve_tidalWave_nme";
                     descKey = "mve_tidalWave_dsc";
+                    break;
+
+                case moveId.shield2: // Shield 2
+                    move = new ShieldMove(moveId.shield2, "<Shield 2>", 1, 0.0F, 0.75F, 0.40F);
+
+                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.>";
+
+                    // Animation
+                    move.animation = moveAnim.shield1;
+                    move.animationColor = new Color(1.0F, 0.992F, 0.760F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_shield2_nme";
+                    descKey = "mve_shield2_dsc";
                     break;
 
                 case moveId.wham: // Wham
@@ -814,6 +843,20 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_allOut_nme";
                     descKey = "mve_allOut_dsc";
+                    break;
+
+                case moveId.shield3: // Shield 3
+                    move = new ShieldMove(moveId.shield3, "<Shield 3>", 1, 0.0F, 1.00F, 0.50F);
+
+                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works every time.>";
+
+                    // Animation
+                    move.animation = moveAnim.shield1;
+                    move.animationColor = new Color(0.850F, 1.00F, 0.760F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_shield3_nme";
+                    descKey = "mve_shield3_dsc";
                     break;
 
                 case moveId.kablam: // Kablam

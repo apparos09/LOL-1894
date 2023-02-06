@@ -257,8 +257,11 @@
       "mve_pushBack_nme": 16,
       "mve_pushBack_dsc": 180,
 
+      "mve_shield1_nme": 16,
+      "mve_shield1_dsc": 180,
       "mve_bam_nme": 16,
       "mve_bam_dsc": 180,
+
       "mve_laserBurst_nme": 16,
       "mve_laserBurst_dsc": 180,
       "mve_fireBurst_nme": 16,
@@ -290,6 +293,9 @@
       "mve_risk_dsc": 180,
       "mve_tidalWave_nme": 16,
       "mve_tidalWave_dsc": 180,
+
+      "mve_shield2_nme": 16,
+      "mve_shield2_dsc": 180,
       "mve_wham_nme": 16,
       "mve_wham_dsc": 180,
 
@@ -324,6 +330,8 @@
       "mve_earlyBurst_dsc": 180,
       "mve_allOut_nme": 16,
       "mve_allOut_dsc": 180,
+      "mve_shield3_nme": 16,
+      "mve_shield3_dsc": 180,
       "mve_kablam_nme": 16,
       "mve_kablam_dsc": 180,
 
@@ -761,8 +769,13 @@
     "mve_pushBack_nme": "Push Back",
     "mve_pushBack_dsc": "The user pushes the target back, which has a 0.20 chance of increasing the user's defense.",
 
+
+    "mve_shield1_nme": "Shield 1",
+    "mve_shield1_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.",
     "mve_bam_nme": "Bam",
     "mve_bam_dsc": "A weak, basic attack.",
+
+
     "mve_laserBurst_nme": "Laser Burst",
     "mve_laserBurst_dsc": "A decent laser attack.",
     "mve_fireBurst_nme": "Fire Burst",
@@ -794,6 +807,9 @@
     "mve_risk_dsc": "The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.",
     "mve_tidalWave_nme": "Tidal Wave",
     "mve_tidalWave_dsc": "The user hits the target with a strong attack that never misses.",
+
+    "mve_shield2_nme": "Shield 2",
+    "mve_shield2_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.",
     "mve_wham_nme": "Wham",
     "mve_wham_dsc": "The user hits the target with a decent, basic attack.",
 
@@ -828,6 +844,8 @@
     "mve_earlyBurst_dsc": "A move that gets weaker the longer the battle goes on.",
     "mve_allOut_nme": "All Out Attack",
     "mve_allOut_dsc": "A move that lowers the user's attack stat by 1 stage every time it's used.",
+    "mve_shield3_nme": "Shield 3",
+    "mve_shield3_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works every time.",
     "mve_kablam_nme": "Kablam",
     "mve_kablam_dsc": "A strong, basic attack.",
 

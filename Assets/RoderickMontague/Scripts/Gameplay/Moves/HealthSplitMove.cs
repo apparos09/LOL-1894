@@ -41,6 +41,12 @@ namespace RM_BBTS
                     return false;
 
                 }
+                // Checks if the target can be hit.
+                else if(!TargetIsVulnerable(target))
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }
 
                 // Calculates the percentages.
                 float userHealthPercent = user.Health / user.MaxHealth;
