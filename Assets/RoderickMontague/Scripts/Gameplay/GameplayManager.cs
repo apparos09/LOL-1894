@@ -353,7 +353,7 @@ namespace RM_BBTS
                     if (tutorial.TextBoxIsVisible())
                     {
                         // Closes the textbox.
-                        tutorial.CloseTextbox();
+                        tutorial.CloseTextBox();
 
                         // Stops the text-to-speech if it's active.
                         if (GameSettings.Instance.UseTextToSpeech)
