@@ -159,7 +159,6 @@ namespace RM_BBTS
                 animatedSpriteRender.flipX = false;
             }
 
-            Debug.Log("Ending");
             animator.gameObject.SetActive(false);
         }
 
