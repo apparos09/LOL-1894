@@ -28,8 +28,8 @@ namespace RM_BBTS
             // if (moveAnimation != null)
             //     moveAnimation.PlayAnimation(anim);
 
-            moveAnimation.PlayAnimation(anim);
-            // moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, (int)anim);
+            // moveAnimation.PlayAnimation(anim);
+            moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, (int)anim);
         }
 
         // Plays the next animation.
