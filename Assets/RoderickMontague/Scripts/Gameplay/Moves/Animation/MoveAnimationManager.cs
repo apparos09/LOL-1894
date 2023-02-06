@@ -79,10 +79,6 @@ namespace RM_BBTS
             //         break;
             // }
 
-            // The numbers match up with the enum now.
-            int animInt = (int)anim;
-            animator.SetInteger(ANIM_VAR, animInt);
-
             // Sets the animation color.
             if (move != null)
             {
