@@ -1,4 +1,5 @@
 using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ namespace RM_BBTS
 
         // Automatically shows the textbox when text is loaded.
         public bool showTextboxOnLoad;
+
+        // The amount the textbox is shifted by to put it in the middle of the screen.
+        protected const float TEXTBOX_SHIFT_Y = 100.0F;
 
         [Header("Tutorial Steps")]
 
@@ -76,13 +80,13 @@ namespace RM_BBTS
         // }
 
         // Opens the textbox.
-        public void OpenTextbox()
+        public void OpenTextBox()
         {
             textBox.Open();
         }
 
         // Closes the textbox.
-        public void CloseTextbox()
+        public void CloseTextBox()
         {
             textBox.Close();
         }
@@ -91,6 +95,18 @@ namespace RM_BBTS
         public bool TextBoxIsVisible()
         {
             return textBox.IsVisible();
+        }
+
+        // Moves the textbox up so that the score isn't covered for one page.
+        protected void TranslateTextBoxUp()
+        {
+            textBox.transform.Translate(0, TEXTBOX_SHIFT_Y, 0);
+        }
+
+        // Moves the textbox down so that it goes back to its original place.
+        protected void TranslateTextBoxDown()
+        {
+            textBox.transform.Translate(0, -TEXTBOX_SHIFT_Y, 0);
         }
 
         // Loads the tutorial
@@ -119,6 +135,9 @@ namespace RM_BBTS
             // Page Object
             List<Page> pages = new List<Page>();
 
+            // THe hud page for the intro, which needs to move the textbox so that the score is visible.
+            Page hudPage;
+
             // Pages
             if(defs != null) // Translation
             {
@@ -129,7 +148,12 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_intro_04"], "trl_intro_04"));
                 pages.Add(new Page(defs["trl_intro_05"], "trl_intro_05"));
                 pages.Add(new Page(defs["trl_intro_06"], "trl_intro_06"));
-                pages.Add(new Page(defs["trl_intro_07"], "trl_intro_07"));
+
+                // Hud page has unique behaviour, so save it.
+                // pages.Add(new Page(defs["trl_intro_07"], "trl_intro_07"));
+                hudPage = new Page(defs["trl_intro_07"], "trl_intro_07");
+                pages.Add(hudPage);
+
                 pages.Add(new Page(defs["trl_intro_08"], "trl_intro_08"));
             }
             else // Default
@@ -141,10 +165,19 @@ namespace RM_BBTS
                 pages.Add(new Page("<Probability can also be in expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively.>"));
                 pages.Add(new Page("<In fraction form (x/y), the larger (x) is compared to (y), the more likely the event is. (y) equates to 1.00 for the fraction, with (x) acting as the chance value. The event chance is 0.00 when (x) is equal to 0 and is 1.00 when (x) is equal to (y).>"));
                 pages.Add(new Page("<With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they池e behind that scary locked door! Looks like you値l have to go through a different door for now�>"));
-                pages.Add(new Page("<To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I値l elaborate on later. There are also various buttons at the top, so check those out at your leisure.>"));
+
+                // Hud page has unique behaviour, so save it.
+                // pages.Add(new Page("<To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I値l elaborate on later. There are also various buttons at the top, so check those out at your leisure.>"));
+                hudPage = new Page("<To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I値l elaborate on later. There are also various buttons at the top, so check those out at your leisure.>");
+                pages.Add(hudPage);
+                
                 pages.Add(new Page("<With all that explained, please select an open door to start your first battle!>"));
 
             }
+
+            // Move the text box so thatthe score is visible.
+            hudPage.OnPageOpenedAddCallback(TranslateTextBoxUp);
+            hudPage.OnPageClosedAddCallback(TranslateTextBoxDown);
 
             // Loads the pages.
             LoadTutorial(ref pages);
