@@ -55,6 +55,8 @@ namespace RM_BBTS
                     battle.UpdateOpponentUI();
                     battle.PlayOpponentHealAnimation();
                 }
+
+                
             }
 
             return success;
