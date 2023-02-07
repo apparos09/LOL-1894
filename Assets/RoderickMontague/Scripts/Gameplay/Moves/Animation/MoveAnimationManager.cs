@@ -30,11 +30,14 @@ namespace RM_BBTS
 
         public const string ANIM_VAR = "anim";
 
+        // Gets set to 'true' if the animation is running.
+        private bool animPlaying = false;
+
         // The timer to automatically tell an animaton to stop if it hasn't already.
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.25F;
+        private const float ANIM_TIMER_EXTRA = 0.01F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -69,6 +72,12 @@ namespace RM_BBTS
         {
             // Debug.Log("Test");
             // PlayTest();
+        }
+
+        // Returns 'true' if the animation is playing.
+        public bool AnimationIsPlaying()
+        {
+            return animPlaying;
         }
 
         // Plays the animation.
@@ -117,6 +126,9 @@ namespace RM_BBTS
             // Turn on the animator object. This function call replays the animation.
             // animator.gameObject.SetActive(true);
             animator.enabled = true;
+
+            // animation is running.
+            animPlaying = true;
 
             // Sets the animation timer.
             animTimer = animator.GetCurrentAnimatorStateInfo(0).length / animator.speed + ANIM_TIMER_EXTRA;
@@ -170,6 +182,8 @@ namespace RM_BBTS
                 animatedSpriteRender.flipX = false;
             }
 
+            // animation is no longer running, and neither is the timer.
+            animPlaying = false;
             animTimer = 0.0F;
 
             // animator.gameObject.SetActive(false);
@@ -209,7 +223,7 @@ namespace RM_BBTS
         void Update()
         {
             // Operates a timer for automatically ending an animation.
-            if (animTimer > 0.0F)
+            if (animPlaying && animTimer > 0.0F)
             {
                 // Reduces the timer.
                 animTimer -= Time.deltaTime;
