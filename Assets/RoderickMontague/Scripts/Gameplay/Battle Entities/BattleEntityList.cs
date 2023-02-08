@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    // The list of IDs.
+    // The list of IDs. CombatBot, Comet, and BlackHole are all bosses.
     public enum battleEntityId { 
         unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, ghost1, ghost2, comet,
         sunRock1, sunRock2, moonRock1, moonRock2, fireBot1, fireBot2, waterBot1, waterBot2, earthBot1, 
@@ -66,7 +66,7 @@ namespace RM_BBTS
             // So, this was all moved here.
 
             // Creates the entity weights, and lcamps them to the battle entity ID count.
-            // <unknown, treasure, and boss should always be 0>
+            // <unknown, treasure, and bosses should always be 0>
             baseWeights = new List<int> { 
                 0, 0, 0, 40, 0, 0, 30, 0, 0, 20, 0, 20, 
                 0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
@@ -1392,7 +1392,8 @@ namespace RM_BBTS
                     }
 
                     // The id is valid, so use it. Also show that an id has been chosen.
-                    if (idNum >= 0 && idNum <= (int)lastEnemyId)
+                    // This ignroes ids 0 and 1, which are unknown and treasure respectively.
+                    if (idNum >= (int)firstEnemyId && idNum <= (int)lastEnemyId)
                     {
                         randomId = (battleEntityId)idNum;
                         // idChosen = true;

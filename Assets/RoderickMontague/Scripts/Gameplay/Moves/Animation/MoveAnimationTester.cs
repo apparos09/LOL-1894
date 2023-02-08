@@ -13,11 +13,9 @@ namespace RM_BBTS
         // The animation.
         public moveAnim anim = moveAnim.none;
 
+        // The first and last animations.
         public const moveAnim FIRST_ANIM = moveAnim.none;
         public const moveAnim LAST_ANIM = moveAnim.wave3;
-
-        // The current state hash for replaying the animation.
-        private int currentStateHash = 0;
 
         // // Start is called before the first frame update
         // void Start()
@@ -61,12 +59,13 @@ namespace RM_BBTS
             // Return to default.
             // moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, 0);
 
-            moveAnimation.animator.Play("MVE - Blast 1 Animation");
+            // moveAnimation.animator.play(;
 
             // moveAnimation.animator.GetCurrentAnimatorStateInfo(0).nameHash;
 
             // Return to the other animaton on the next frame.
             // callPlayInUpdate = true;
+            moveAnimation.PlayAnimation(anim);
         }
 
         // Plays the previous animation.
