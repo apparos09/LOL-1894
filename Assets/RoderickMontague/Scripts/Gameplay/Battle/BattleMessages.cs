@@ -558,7 +558,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "<The target has been paralyzed!>";
+                msg = "<The target has been inflicted with paralysis status!>";
             }
 
             return msg;
