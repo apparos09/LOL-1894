@@ -7,7 +7,9 @@ using static RM_BBTS.Move;
 namespace RM_BBTS
 {
     // The move animator ids.
-    public enum moveAnim { none, blast1, blast2, burst1, colorWave1, crawl1, fill1, shield1, shootingStar1, shot1, shot2, slash1, slash2, smack1, smack2, smack3, twister1, wave1, wave2, wave3 };
+    public enum moveAnim { 
+        none, blast1, blast2, burst1, colorWave1, crawl1, fill1, shield1, shootingStar1, 
+        shot1, shot2, slash1, slash2, smack1, smack2, smack3, twister1, wave1, wave2, wave3 };
 
     // The move animation manager.
     public class MoveAnimationManager : MonoBehaviour
@@ -28,6 +30,7 @@ namespace RM_BBTS
         // The default color for the image/sprite.
         public Color defaultColor = Color.white;
 
+        // The variable to be changed.
         public const string ANIM_VAR = "anim";
 
         // Gets set to 'true' if the animation is running.
@@ -111,6 +114,10 @@ namespace RM_BBTS
             //         break;
             // }
 
+            // Stop the current animation if it is playing.
+            if (animPlaying)
+                StopAnimation();
+
             // Just reuses the enum value.
             animator.SetInteger(ANIM_VAR, (int)anim);
 
@@ -141,13 +148,14 @@ namespace RM_BBTS
 
             // Turn on the animator object. This function call replays the animation.
             // animator.gameObject.SetActive(true);
-            animator.enabled = true;
+            // TODO: Doesn't seem to do anything, so take it out.
+            // animator.enabled = true;
 
             // animation is running.
             animPlaying = true;
 
             // Sets the animation timer.
-            animTimer = animator.GetCurrentAnimatorStateInfo(0).length / animator.speed + ANIM_TIMER_EXTRA;
+            animTimer = animator.GetCurrentAnimatorClipInfo(0).Length / animator.speed + ANIM_TIMER_EXTRA;
 
 
             // Disables the text box controls when playing the animation.
@@ -249,6 +257,13 @@ namespace RM_BBTS
             PlaySound(windSfx);
         }
 
+        // Stops the audio.
+        public void StopAudio()
+        {
+            // Stop the audio.
+            if (audioSource != null)
+                audioSource.Stop();
+        }
 
         // Called when the animation is finished.
         public void StopAnimation()
@@ -285,16 +300,16 @@ namespace RM_BBTS
                 animatedSpriteRender.flipX = false;
             }
 
+            // This cuts off different audio events, but it can't be helped.
             // Stops any remaining move audio from playing.
-            if (audioSource != null)
-                audioSource.Stop();
+            StopAudio();
 
             // animation is no longer running, and neither is the timer.
             animPlaying = false;
             animTimer = 0.0F;
 
             // animator.gameObject.SetActive(false);
-            animator.enabled = false;
+            // animator.enabled = false;
         }
 
         // Sets the move for the animation.

@@ -13,6 +13,7 @@ namespace RM_BBTS
         // The animation.
         public moveAnim anim = moveAnim.none;
 
+        // The first and last animations.
         public const moveAnim FIRST_ANIM = moveAnim.none;
         public const moveAnim LAST_ANIM = moveAnim.wave3;
 
@@ -25,10 +26,13 @@ namespace RM_BBTS
         // Plays the animation.
         public void PlayAnimation()
         {
-            if (moveAnimation != null)
-                moveAnimation.PlayAnimation(anim);
+            // if (moveAnimation != null)
+            //     moveAnimation.PlayAnimation(anim);
 
-            // moveAnimation.PlayAnimation(anim);
+            moveAnimation.PlayAnimation(anim);
+            // currentStateHash = moveAnimation.animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+
+            // Debug.Log(moveAnimation.animator.GetCurrentAnimatorStateInfo(0).shortNameHash);
             // moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, (int)anim);
         }
 
@@ -43,6 +47,25 @@ namespace RM_BBTS
 
             anim = (moveAnim)value;
             PlayAnimation();
+        }
+
+        // Replays the animation (doesn't work).
+        public void ReplayAnimation()
+        {
+            // This doesn't cause the animation to replay.
+            // moveAnimation.animator.enabled = false;
+            // moveAnimation.animator.enabled = true;
+
+            // Return to default.
+            // moveAnimation.animator.SetInteger(MoveAnimationManager.ANIM_VAR, 0);
+
+            // moveAnimation.animator.play(;
+
+            // moveAnimation.animator.GetCurrentAnimatorStateInfo(0).nameHash;
+
+            // Return to the other animaton on the next frame.
+            // callPlayInUpdate = true;
+            moveAnimation.PlayAnimation(anim);
         }
 
         // Plays the previous animation.
@@ -61,7 +84,6 @@ namespace RM_BBTS
         // // Update is called once per frame
         // void Update()
         // {
-        // 
         // }
     }
 }
