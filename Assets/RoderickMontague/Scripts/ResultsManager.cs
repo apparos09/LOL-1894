@@ -34,8 +34,8 @@ namespace RM_BBTS
         // The questions correct text.
         public TMP_Text questionsCorrectText;
 
-        // The questions correct (no repeats) text.
-        public TMP_Text questionsCorrectNoRepeatsText;
+        // The questions asked (no repeats) text.
+        public TMP_Text questionsAsked;
 
         // The text for the final level.
         public TMP_Text finalLevelText;
@@ -87,7 +87,8 @@ namespace RM_BBTS
             string totalTimeLabel = "<Total Time>";
             string totalTurnsLabel = "<Total Turns>";
             string questionsCorrectLabel = "<Questions Correct>";
-            string noRepeatsLabel = "<Questions Correct (No Repeats)>";
+            string questionsAskedLabel = "<Questions Asked>";
+            string noRepeatsLabel = "<No Repeats>";
             string finalLevelLabel = "<Final Level>";
             string finalMovesLabel = "<Final Moves>";
 
@@ -108,6 +109,7 @@ namespace RM_BBTS
                 totalTimeLabel = defs["kwd_totalTime"];
                 totalTurnsLabel = defs["kwd_totalTurns"];
                 questionsCorrectLabel = defs["kwd_questionsCorrect"];
+                questionsAskedLabel = defs["kwd_questionsAsked"];
                 noRepeatsLabel = defs["kwd_noRepeats"];
                 finalLevelLabel = defs["kwd_finalLevel"];
                 finalMovesLabel = defs["kwd_finalMoves"];
@@ -158,8 +160,12 @@ namespace RM_BBTS
                     rd.questionsCorrect.ToString() + "/" + rd.questionsUsed.ToString();
 
                 // Questions Correct (No Repeats) Text
-                questionsCorrectNoRepeatsText.text = questionsCorrectLabel + " (" + noRepeatsLabel + "): " +
-                    rd.questionsCorrectNoRepeats.ToString() + "/" + rd.questionsUsedNoRepeats.ToString();
+                // questionsAsked.text = questionsCorrectLabel + " (" + noRepeatsLabel + "): " +
+                //     rd.questionsCorrectNoRepeats.ToString() + "/" + rd.questionsUsedNoRepeats.ToString();
+
+                // Questions Asked (No Repeats) Text
+                questionsAsked.text = questionsAskedLabel + " (" + noRepeatsLabel + "): " + 
+                    rd.questionsUsedNoRepeats.ToString();
 
                 // Final player level
                 finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
