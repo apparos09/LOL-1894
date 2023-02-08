@@ -683,7 +683,7 @@ namespace RM_BBTS
 
                     data.attack = 50;
                     data.defense = 10;
-                    data.speed = 40;
+                    data.speed = 60;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -706,7 +706,7 @@ namespace RM_BBTS
 
                     data.attack = 105;
                     data.defense = 25;
-                    data.speed = 75;
+                    data.speed = 90;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1025,27 +1025,27 @@ namespace RM_BBTS
                 case battleEntityId.ghost1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
-                        moveId.laserBurst, moveId.electrify, moveId.risk 
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast, 
+                        moveId.elecBurst, moveId.laserBurst, moveId.electrify, moveId.risk 
                     };
                     break;
 
                 case battleEntityId.ghost2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
-                        moveId.laserBurst, moveId.electrify, moveId.risk, moveId.elecBlast, 
-                        moveId.laserBlast
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast, 
+                        moveId.elecBurst, moveId.laserBurst, moveId.electrify, moveId.risk, 
+                        moveId.elecBlast, moveId.laserBlast
                     };
                     break;
 
                 case battleEntityId.comet: // BOSS 2
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slam, moveId.chip, moveId.quickBurst, moveId.bam, 
-                        moveId.tidalWave, moveId.wham, moveId.quake, moveId.waterBlast, 
-                        moveId.airBlast, moveId.chargeSun, moveId.chargeMoon, 
-                        moveId.earlyBurst, moveId.allOut, moveId.kablam
+                        moveId.slam, moveId.chip, moveId.quickBurst, moveId.powerFirst,
+                        moveId.bam, moveId.tidalWave, moveId.wham, moveId.quake, 
+                        moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
+                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.kablam
                     };
                     break;
 
@@ -1053,15 +1053,16 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     {
                         moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                        moveId.powerLast, moveId.bam, moveId.magnet, moveId.wham, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.sunRock2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slam, moveId.chip, moveId.heal, moveId.bam, 
-                        moveId.magnet, moveId.wham, moveId.chargeSun, 
+                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeSun, 
                         moveId.quake, moveId.kablam
                     };
                     break;
@@ -1069,16 +1070,17 @@ namespace RM_BBTS
                 case battleEntityId.moonRock1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                        moveId.poke, moveId.slam, moveId.chip, moveId.heal,
+                        moveId.powerLast, moveId.bam, moveId.magnet, moveId.wham, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.moonRock2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.slam, moveId.chip, moveId.heal, moveId.bam,
-                        moveId.magnet, moveId.wham, moveId.chargeMoon,
+                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeMoon,
                         moveId.quake, moveId.kablam
                     };
                     break;
@@ -1095,7 +1097,7 @@ namespace RM_BBTS
                     moveList = new List<moveId>()
                     {
                         moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst,
-                        moveId.fireBurst, moveId.torch, moveId.laserBlast, moveId.fireBlast
+                        moveId.fireBurst, moveId.torch, moveId.burnBoostTarget, moveId.laserBlast, moveId.fireBlast
                     };
                     break;
 
@@ -1111,23 +1113,27 @@ namespace RM_BBTS
                     moveList = new List<moveId>()
                     {
                          moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
-                        moveId.laserBlast, moveId.waterBlast
+                         moveId.powerLast, moveId.laserBlast, moveId.waterBlast
                     };
                     break;
 
                 case battleEntityId.earthBot1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, moveId.toss, moveId.bam, moveId.magnify, moveId.magnet,
-                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, moveId.kablam
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
+                        moveId.toss, moveId.bam, moveId.magnify, moveId.magnet, 
+                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.earthBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, moveId.toss, moveId.bam, moveId.magnify, moveId.magnet,
-                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, moveId.kablam
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
+                        moveId.toss, moveId.powerLast, moveId.bam, moveId.magnify, 
+                        moveId.magnet, moveId.statClear, moveId.wham, moveId.rockBlast, 
+                        moveId.quake, moveId.kablam
                     };
                     break;
 
@@ -1143,9 +1149,9 @@ namespace RM_BBTS
                 case battleEntityId.airBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.elecBurst, moveId.laserBlast, moveId.elecBlast,
-                        moveId.twister, moveId.airBlast
+                        moveId.laserShot, moveId.elecShot, moveId.powerFirst,
+                        moveId.laserBurst, moveId.elecBurst, moveId.laserBlast, 
+                        moveId.elecBlast, moveId.twister, moveId.airBlast
                     };
                     break;
 
@@ -1170,16 +1176,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugRed1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech, 
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugRed2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.screech,moveId.elecShot, 
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst, 
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave, 
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst, 
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1187,16 +1194,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugBlue1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugBlue2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech,moveId.elecShot,
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave,
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1204,16 +1212,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugYellow1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugYellow2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech,moveId.elecShot,
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave,
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1221,7 +1230,7 @@ namespace RM_BBTS
                 case battleEntityId.blackHole: // BOSS 3
                     moveList = new List<moveId>() 
                     {
-                        moveId.hpDrain2, moveId.hpDrain3, 
+                        moveId.powerLast, moveId.hpDrain2, moveId.hpDrain3, 
                         moveId.twister, moveId.quickBurst, moveId.waterBlast, 
                         moveId.rockBlast, moveId.quake, moveId.earlyBurst, moveId.kablam
                     };

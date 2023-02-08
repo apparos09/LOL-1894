@@ -14,10 +14,10 @@ namespace RM_BBTS
         private const bool USE_DEBUG_STATS = false;
 
         // The base stats for the player. (30)
-        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 50;
-        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 45;
-        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 45;
-        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 45;
+        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 60;
+        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 60;
+        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 60;
+        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 60;
         private float baseMaxEnergy = 100;
 
         // Restoration percents.
@@ -82,7 +82,13 @@ namespace RM_BBTS
             // // Move3 = null;
             // Move3 = MoveList.Instance.GenerateMove(moveId.torch);
 
-            // // ACTUAL
+            // // TEST
+            // Move0 = MoveList.Instance.GenerateMove(moveId.burnBoostUser);
+            // Move1 = MoveList.Instance.GenerateMove(moveId.paraBoostUser);
+            // Move2 = MoveList.Instance.GenerateMove(moveId.shield2);
+            // Move3 = MoveList.Instance.GenerateMove(moveId.paraBoostTarget);
+
+            // ACTUAL
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);
             Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
             Move2 = MoveList.Instance.GenerateMove(moveId.shield1);

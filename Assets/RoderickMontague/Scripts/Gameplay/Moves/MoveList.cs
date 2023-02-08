@@ -10,9 +10,9 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, shield1, bam, 
-        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, shield2, wham, 
-        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, shield3, kablam
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, powerFirst, powerLast, shield1, bam, 
+        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, burnBoostTarget, paraBoostTarget, shield2, wham, 
+        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, burnBoostUser, paraBoostUser, shield3, kablam
     }
 
     // The list of moves for the game.
@@ -317,9 +317,9 @@ namespace RM_BBTS
                 case moveId.hpDrain1: // Drain Heal 1
                     move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.30F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.25F;
+                    (move as HealthDrainMove).damageHealPercent = 0.30F;
 
-                    move.description = "<The user attacks the target, and restores their health by 25% of the damage given.>";
+                    move.description = "<The user attacks the target, and restores their health by 30% of the damage given.>";
 
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
@@ -338,7 +338,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.pushBack: // Push Back
-                    move = new Move(moveId.pushBack, "<Push Back>", 1, 25.0F, 0.9F, 0.15F);
+                    move = new Move(moveId.pushBack, "<Push Back>", 1, 25.0F, 0.90F, 0.15F);
 
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.2F;
@@ -352,6 +352,38 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_pushBack_nme";
                     descKey = "mve_pushBack_dsc";
+                    break;
+
+                case moveId.powerFirst: // Quick Strike
+                    move = new TurnOrderMove(moveId.powerFirst, "<Quick Strike>", 1, 40.0F, 0.90F, 0.15F);
+
+                    ((TurnOrderMove)move).boostFirst = true;
+
+                    move.description = "<An attack that does more damage if the user moves before the target.>";
+
+                    // Animation
+                    move.animation = moveAnim.slash1;
+                    move.animationColor = new Color(0.929F, 0.216F, 0.035F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_powerFirst_nme";
+                    descKey = "mve_powerFirst_dsc";
+                    break;
+
+                case moveId.powerLast: // Slow Strike
+                    move = new TurnOrderMove(moveId.powerLast, "<Slow Strike>", 1, 40.0F, 0.90F, 0.15F);
+
+                    ((TurnOrderMove)move).boostFirst = false;
+
+                    move.description = "<An attack that does more damage if the user moves after the target.>";
+
+                    // Animation
+                    move.animation = moveAnim.slash1;
+                    move.animationColor = new Color(0.035F, 0.722F, 0.929F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_powerLast_nme";
+                    descKey = "mve_powerLast_dsc";
                     break;
 
                 case moveId.shield1: // Shield 1
@@ -535,9 +567,9 @@ namespace RM_BBTS
                 case moveId.hpDrain2: // Drain Heal 2
                     move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.40F);
 
-                    (move as HealthDrainMove).damageHealPercent = 0.35F;
+                    (move as HealthDrainMove).damageHealPercent = 0.40F;
 
-                    move.description = "<The user attacks the target, gaining 35% of the damage dealt as health.>";
+                    move.description = "<The user attacks the target, gaining 40% of the damage dealt as health.>";
 
                     // Animation
                     move.animation = moveAnim.crawl1;
@@ -595,6 +627,36 @@ namespace RM_BBTS
 
                     nameKey = "mve_tidalWave_nme";
                     descKey = "mve_tidalWave_dsc";
+                    break;
+
+                case moveId.burnBoostTarget: // Livefire
+                    move = new StatusAttackMove(moveId.burnBoostTarget, "<Livefire>", 2, 45, 0.90F, 0.30F);
+
+                    (move as StatusAttackMove).targetBurned = true;
+
+                    move.description = "<An attack that does more damage if the target is burned.>";
+
+                    // Animation
+                    move.animation = moveAnim.burst1;
+                    move.animationColor = new Color(0.967F, 0.396F, 0.106F);
+
+                    nameKey = "mve_burnBoostTarget_nme";
+                    descKey = "mve_burnBoostTarget_dsc";
+                    break;
+
+                case moveId.paraBoostTarget: // Livewire
+                    move = new StatusAttackMove(moveId.paraBoostTarget, "<Livewire>", 2, 50, 0.90F, 0.30F);
+
+                    (move as StatusAttackMove).targetParalyzed = true;
+
+                    move.description = "<An attack that does more damage if the target is paralyzed.>";
+
+                    // Animation
+                    move.animation = moveAnim.burst1;
+                    move.animationColor = new Color(0.741F, 0.969F, 0.106F);
+
+                    nameKey = "mve_paraBoostTarget_nme";
+                    descKey = "mve_paraBoostTarget_dsc";
                     break;
 
                 case moveId.shield2: // Shield 2
@@ -843,6 +905,36 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_allOut_nme";
                     descKey = "mve_allOut_dsc";
+                    break;
+
+                case moveId.burnBoostUser: // Fire Boost
+                    move = new StatusAttackMove(moveId.burnBoostUser, "<Fire Boost>", 3, 60, 0.90F, 0.40F);
+
+                    (move as StatusAttackMove).userBurned = true;
+
+                    move.description = "<An attack that does more damage if the user is burned.>";
+
+                    // Animation
+                    move.animation = moveAnim.smack2;
+                    move.animationColor = new Color(0.902F, 0.169F, 0.071F);
+
+                    nameKey = "mve_burnBoostUser_nme";
+                    descKey = "mve_burnBoostUser_dsc";
+                    break;
+
+                case moveId.paraBoostUser: // Electro Boost
+                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electro Boost>", 3, 60, 0.90F, 0.40F);
+
+                    (move as StatusAttackMove).userParalyzed = true;
+
+                    move.description = "<An attack that does more damage if the user is paralyzed.>";
+
+                    // Animation
+                    move.animation = moveAnim.smack2;
+                    move.animationColor = new Color(0.902F, 0.886F, 0.071F);
+
+                    nameKey = "mve_paraBoostUser_nme";
+                    descKey = "mve_paraBoostUser_dsc";
                     break;
 
                 case moveId.shield3: // Shield 3

@@ -46,8 +46,9 @@ namespace RM_BBTS
         // The player.
         public Player player;
 
-        // Values used to calculate score.
-        private int turnsTaken = 0;  // The amount of turns the battle took.    
+        // The amount of turns the battle took, which is used to help calculate score.
+        // This is about the amount of full turn rotations, not individual moves made.
+        private int turnsTaken = 0;  
 
         // The Move class handles the calculations for damage taken.
         public float playerDamageTaken = 0; // The amount of damage the player took.
