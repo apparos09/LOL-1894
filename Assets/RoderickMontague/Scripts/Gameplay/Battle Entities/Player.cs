@@ -14,11 +14,14 @@ namespace RM_BBTS
         private const bool USE_DEBUG_STATS = false;
 
         // The base stats for the player. (30)
-        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 60;
-        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 60;
-        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 60;
-        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 60;
+        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 50;
         private float baseMaxEnergy = 100;
+
+        // Level Up Rate
+        public const float LEVEL_UP_RATE = 1.05F;
 
         // Restoration percents.
         public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.30F;
@@ -54,7 +57,7 @@ namespace RM_BBTS
             statSpecial = specialty.none;
 
             // The player levels up faster than the enemies.
-            levelRate = 1.05F;
+            levelRate = LEVEL_UP_RATE;
 
             // NOTE: the player doesn't use the battle entity sprite, so nothing is set.
 

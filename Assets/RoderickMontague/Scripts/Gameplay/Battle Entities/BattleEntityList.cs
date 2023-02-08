@@ -192,12 +192,12 @@ namespace RM_BBTS
                     data.displayName = "<Combat Bot>";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 200;
+                    data.maxHealth = 210;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
-                    data.defense = 70;
-                    data.speed = 80;
+                    data.attack = 110;
+                    data.defense = 80;
+                    data.speed = 100;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -375,12 +375,12 @@ namespace RM_BBTS
                     data.displayName = "<Comet>";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
-                    data.maxHealth = 150;
+                    data.maxHealth = 180;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
-                    data.defense = 70;
-                    data.speed = 130;
+                    data.attack = 120;
+                    data.defense = 80;
+                    data.speed = 120;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -868,10 +868,10 @@ namespace RM_BBTS
                     data.displayName = "<Vortex>";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
-                    data.maxHealth = 110;
+                    data.maxHealth = 140;
                     data.health = data.maxHealth;
 
-                    data.attack = 70;
+                    data.attack = 90;
                     data.defense = 220;
                     data.speed = 50;
 
@@ -1043,9 +1043,9 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     { 
                         moveId.slam, moveId.chip, moveId.quickBurst, moveId.powerFirst,
-                        moveId.bam, moveId.tidalWave, moveId.wham, moveId.quake, 
-                        moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
-                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.kablam
+                        moveId.bam, moveId.tidalWave, moveId.shield2, moveId.wham, 
+                        moveId.quake, moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
+                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.shield3, moveId.kablam
                     };
                     break;
 
@@ -1230,9 +1230,10 @@ namespace RM_BBTS
                 case battleEntityId.blackHole: // BOSS 3
                     moveList = new List<moveId>() 
                     {
-                        moveId.powerLast, moveId.hpDrain2, moveId.hpDrain3, 
-                        moveId.twister, moveId.quickBurst, moveId.waterBlast, 
-                        moveId.rockBlast, moveId.quake, moveId.earlyBurst, moveId.kablam
+                        moveId.heal, moveId.powerLast, moveId.hpDrain2, moveId.hpDrain3, 
+                        moveId.twister, moveId.quickBurst, moveId.waterBlast, moveId.rockBlast, 
+                        moveId.quake, moveId.earlyBurst, moveId.burnBoostUser, moveId.paraBoostUser,
+                        moveId.kablam
                     };
                     break;
 
