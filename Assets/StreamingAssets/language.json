@@ -925,7 +925,7 @@
     "mve_allOut_dsc": "A move that lowers the user's attack stat by 1 stage every time it's used.",
     "mve_burnBoostUser_nme": "Fire Boost",
     "mve_burnBoostUser_dsc": "An attack that does more damage if the user is burned.",
-    "mve_paraBoostUser_nme": "Electro Boost",
+    "mve_paraBoostUser_nme": "Electric Boost",
     "mve_paraBoostUser_dsc": "An attack that does more damage if the user is paralyzed.",
 
     "mve_shield3_nme": "Shield 3",

@@ -922,8 +922,8 @@ namespace RM_BBTS
                     descKey = "mve_burnBoostUser_dsc";
                     break;
 
-                case moveId.paraBoostUser: // Electro Boost
-                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electro Boost>", 3, 60, 0.90F, 0.40F);
+                case moveId.paraBoostUser: // Electric Boost
+                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electric Boost>", 3, 60, 0.90F, 0.40F);
 
                     (move as StatusAttackMove).userParalyzed = true;
 

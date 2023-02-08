@@ -33,11 +33,11 @@ namespace RM_BBTS
         // Minimum and maximum adjustment values.
         private const int MIN_ADJUST = 0, MAX_ADJUST = 10;
 
-        // The first enemy id (ignores the boss).
-        private battleEntityId firstEnemyId = battleEntityId.combatBot;
+        // The first enemy id (combat bot is currently a boss.).
+        private const battleEntityId FIRST_ENEMY_ID = battleEntityId.combatBot;
 
         // The last enemy id (ignores the boss).
-        private battleEntityId lastEnemyId = battleEntityId.planet2;
+        private const battleEntityId LAST_ENEMY_ID = battleEntityId.planet2;
 
         // The list of entities
         public List<Sprite> entitySprites;
@@ -1350,7 +1350,7 @@ namespace RM_BBTS
             // Sets a random id.
             // This will be overwritten if weights should be used.
             // This was done so that this variable will be set to something.
-            randomId = (battleEntityId)Random.Range((int)firstEnemyId, (int)lastEnemyId + 1);
+            randomId = (battleEntityId)Random.Range((int)FIRST_ENEMY_ID, (int)LAST_ENEMY_ID + 1);
 
 
             // Checks if enemy weights should be used.
@@ -1394,7 +1394,7 @@ namespace RM_BBTS
 
                     // The id is valid, so use it. Also show that an id has been chosen.
                     // This ignroes ids 0 and 1, which are unknown and treasure respectively.
-                    if (idNum >= (int)firstEnemyId && idNum <= (int)lastEnemyId)
+                    if (idNum >= (int)FIRST_ENEMY_ID && idNum <= (int)LAST_ENEMY_ID)
                     {
                         randomId = (battleEntityId)idNum;
                         // idChosen = true;
