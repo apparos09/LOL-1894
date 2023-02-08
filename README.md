@@ -163,3 +163,99 @@ Original creation for the game by sole developer.
 == Paralysis Effect (SFX) ==
 Original creation for the game by sole developer.
 
+
+== Clong SFX ==
+Song Title: Clong 2
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Horns%20and%20Clangs
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Creeping Vines SFX ==
+Song Title: Paper Crumple 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Laser SFX ==
+Song Title: Button 2
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Ping (High) SFX ==
+Original creation for the game by sole developer.
+
+
+== Ping (Low) SFX ==
+Original creation for the game by sole developer.
+
+
+== River SFX ==
+Song Title: River 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Water
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Smack SFX ==
+Song Title: Smack 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Warp 01 SFX ==
+Song Title: Button 1
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Warp 02 SFX ==
+Song Title: Button 2
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Warp 03 SFX ==
+Song Title: Button 14
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects/Buttons
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Whoosh (High) SFX ==
+Song Title: Whip Whoosh 01
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Whoosh (Low) SFX ==
+Song Title: Whip Whoosh 03
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+
+
+== Wind SFX ==
+Song Title: Wind 01
+Artist(s): Unknown Artist
+Source(s): GameSounds.xyz
+Link: https://gamesounds.xyz/?dir=Sound%20Effects
+Note(s): confirmed to be copyright free by GameSounds.xyz.
+

@@ -58,6 +58,22 @@ namespace RM_BBTS
         // The audio for the move animation.
         public AudioSource audioSource;
 
+        // Sound Effects
+        [Header("Audio/Sound Effects")]
+        public AudioClip pingHighSfx;
+        public AudioClip pingLowSfx;
+        public AudioClip laserSfx;
+        public AudioClip warp01Sfx;
+        public AudioClip warp02Sfx;
+        public AudioClip warp03Sfx;
+        public AudioClip riverSfx;
+        public AudioClip clongSfx;
+        public AudioClip creepingVinesSfx;
+        public AudioClip smackSfx;
+        public AudioClip whooshHighSfx;
+        public AudioClip whooshLowSfx;
+        public AudioClip windSfx;
+
         [Header("Text Box")]
         // A textbox that might be showing when the battle animation is playing.
         public TextBox textBox;
@@ -135,6 +151,93 @@ namespace RM_BBTS
         //     // TODO: change the animation number, then turn on the object.
         // }
 
+
+        // Plays a sound.
+        public void PlaySound(AudioClip clip)
+        {
+            // Plays the provided audio clip.
+            if (audioSource != null && clip != null)
+                audioSource.PlayOneShot(clip);
+        }
+
+        // Plays a specific sound.
+        public void PlayPingHighSfx()
+        {
+            PlaySound(pingHighSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayPingLowSfx()
+        {
+            PlaySound(pingLowSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayLaserSfx()
+        {
+            PlaySound(laserSfx);
+        }
+        // Plays a specific sound.
+        public void PlayWarp01Sfx()
+        {
+            PlaySound(warp01Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWarp02Sfx()
+        {
+            PlaySound(warp02Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWarp03Sfx()
+        {
+            PlaySound(warp03Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayRiverSfx()
+        {
+            PlaySound(riverSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayClongSfx()
+        {
+            PlaySound(clongSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayCreepingVinesSfx()
+        {
+            PlaySound(creepingVinesSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlaySmackSfx()
+        {
+            PlaySound(smackSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWhooshHighSfx()
+        {
+            PlaySound(whooshHighSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWhooshLowSfx()
+        {
+            PlaySound(whooshLowSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWindSfx()
+        {
+            PlaySound(windSfx);
+        }
+
+
         // Called when the animation is finished.
         public void StopAnimation()
         {
@@ -169,6 +272,10 @@ namespace RM_BBTS
                 animatedSpriteRender.color = defaultColor;
                 animatedSpriteRender.flipX = false;
             }
+
+            // Stops any remaining move audio from playing.
+            if (audioSource != null)
+                audioSource.Stop();
 
             animTimer = 0.0F;
 

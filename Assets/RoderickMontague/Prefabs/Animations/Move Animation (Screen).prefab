@@ -111,11 +111,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1955186359514003337}
   animatedImage: {fileID: 1955186359514003350}
+  animatedSpriteRender: {fileID: 0}
   defaultSprite: {fileID: 21300000, guid: 5fb404eb7652d0b4c817e5b2b40ce86f, type: 3}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  animatedSpriteRender: {fileID: 0}
   callMoveResults: 0
   audioSource: {fileID: 1955186359753261685}
+  pingHighSfx: {fileID: 8300000, guid: 5eaca6a5cf6cb2b4196464b2fefc4d51, type: 3}
+  pingLowSfx: {fileID: 8300000, guid: 2ef8324c306916c4f86ef3a6390dad0d, type: 3}
+  laserSfx: {fileID: 8300000, guid: 957589988f2318745bbd466034afbdbd, type: 3}
+  warp01Sfx: {fileID: 8300000, guid: 5ec69db0f13e60142b49f293e7de7768, type: 3}
+  warp02Sfx: {fileID: 8300000, guid: fd7d6d9f03bd2d54a8432127df1137c1, type: 3}
+  warp03Sfx: {fileID: 8300000, guid: 3653419d4b0cc49489a9364504239072, type: 3}
+  riverSfx: {fileID: 8300000, guid: 6f918701ed7c7d14c81b58d51c5257c5, type: 3}
+  clongSfx: {fileID: 8300000, guid: db5dd5ce68d9d694193fc914f6365c29, type: 3}
+  creepingVinesSfx: {fileID: 8300000, guid: 9770d6d9e3ff76e4cbfb52c2fdadbed2, type: 3}
+  smackSfx: {fileID: 8300000, guid: 63c3f2f4f23f08f4b9799c636fcb91df, type: 3}
+  whooshHighSfx: {fileID: 8300000, guid: 345f00d85ee30ec43bd75d73b7c20650, type: 3}
+  whooshLowSfx: {fileID: 8300000, guid: de9c05314cdea8c41bec2e384b94390c, type: 3}
+  windSfx: {fileID: 8300000, guid: d39a0b8bdff37aa438d5086c71140f34, type: 3}
   textBox: {fileID: 0}
   disableTextBoxControlsWhenPlaying: 0
 --- !u!1 &1955186359753261687
