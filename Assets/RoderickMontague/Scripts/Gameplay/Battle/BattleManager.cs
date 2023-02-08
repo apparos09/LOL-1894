@@ -46,8 +46,9 @@ namespace RM_BBTS
         // The player.
         public Player player;
 
-        // Values used to calculate score.
-        private int turnsTaken = 0;  // The amount of turns the battle took.    
+        // The amount of turns the battle took, which is used to help calculate score.
+        // This is about the amount of full turn rotations, not individual moves made.
+        private int turnsTaken = 0;  
 
         // The Move class handles the calculations for damage taken.
         public float playerDamageTaken = 0; // The amount of damage the player took.
@@ -84,7 +85,7 @@ namespace RM_BBTS
         public const float BURN_DAMAGE = 0.0625F;
 
         // The chance to skip a turn if paralyzed.
-        public const float PARALYSIS_SKIP_CHANCE = 0.4F;
+        public const float PARALYSIS_SKIP_CHANCE = 0.2F;
 
         // The chance of learning a new move.
         private float NEW_MOVE_CHANCE = 1.00F; // 0.80

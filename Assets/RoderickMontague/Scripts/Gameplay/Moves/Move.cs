@@ -55,7 +55,7 @@ namespace RM_BBTS
 
         // STATUS EFFECTS/CHANCE EVENTS //
         // The chance of performing critical damage.
-        protected float criticalChance = 0.25F; // Originally 0.30
+        protected float criticalChance = 0.20F; // Originally 0.30
 
         // Chance of burning the opponent.
         protected float burnChance = 0.0F;

@@ -198,13 +198,139 @@ namespace RM_BBTS
 
             audioCredits.Add(credit);
 
-            // Move Effect (SFX)
+            // Move Effect (SFX) / Warp 01 (SFX)
             credit = new AudioCredit();
             credit.song = "Button 1";
             credit.artist = "Unknown Artist";
             credit.collection = "Sound Effects/Buttons";
             credit.source = "GameSounds.xyz";
             credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Clong (SFX)
+            credit = new AudioCredit();
+            credit.song = "Clong 2";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects/Horns and Clangs";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Horns%20and%20Clangs";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Creeping Vines (SFX)
+            credit = new AudioCredit();
+            credit.song = "Paper Crumple 1";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Laser (SFX) / Warp 02 (SFX)
+            credit = new AudioCredit();
+            credit.song = "Button 2";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects/Buttons";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // River 1 (SFX)
+            credit = new AudioCredit();
+            credit.song = "River 1";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects/Water";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Water";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Smack (SFX)
+            credit = new AudioCredit();
+            credit.song = "Smack 1";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Warp 03 (SFX)
+            credit = new AudioCredit();
+            credit.song = "Button 14";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects/Buttons";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects/Buttons";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Whoosh (High) (SFX)
+            credit = new AudioCredit();
+            credit.song = "Whip Whoosh 01";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Whoosh (Low) (SFX)
+            credit = new AudioCredit();
+            credit.song = "Whip Whoosh 03";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects";
+            credit.link2 = string.Empty;
+
+            credit.copyright = copyrightGameSounds;
+            credit.copyright += "\n" + modification;
+
+            audioCredits.Add(credit);
+
+            // Wind
+            credit = new AudioCredit();
+            credit.song = "Wind 01";
+            credit.artist = "Unknown Artist";
+            credit.collection = "Sound Effects";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Sound%20Effects";
             credit.link2 = string.Empty;
 
             credit.copyright = copyrightGameSounds;

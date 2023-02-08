@@ -871,9 +871,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4aab19a70b2f38c40b3a355e3686a8e2, type: 3}
   - {fileID: 21300000, guid: b9b4673733cef5f429501558ca040d54, type: 3}
   - {fileID: 21300000, guid: b410d3c3cb7db1743b27f3bdca1b6554, type: 3}
+  - {fileID: 21300000, guid: 93e1a4a0d44e0e04bb4842fbbb29d5a9, type: 3}
   - {fileID: 21300000, guid: 2544fc79d63da6e44969e6807af95837, type: 3}
+  - {fileID: 21300000, guid: 65d6eba1f873bd1488fa74c4e7630122, type: 3}
   - {fileID: 21300000, guid: 18e9c6ecc9f49f54b8503da112c08aca, type: 3}
+  - {fileID: 21300000, guid: c38b30a4f0e24674aa0b8a0894cddaf0, type: 3}
   - {fileID: 21300000, guid: 7761ad3f67b4c0342b0c6cbbb2d42d08, type: 3}
+  - {fileID: 21300000, guid: 7772a050919deaf4a9ccc6d6126913c3, type: 3}
   - {fileID: 21300000, guid: 52488ddf3319bb44e81cb429fae53358, type: 3}
   - {fileID: 21300000, guid: f0206e9b2330a354583c4574bb8619e3, type: 3}
   - {fileID: 21300000, guid: f3e25507dd19ef84289993c1283b3f18, type: 3}
@@ -9446,7 +9450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875582632115, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875582632115, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11265,7 +11269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &788251608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15902,7 +15906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -168}
+  m_AnchoredPosition: {x: 0, y: -170}
   m_SizeDelta: {x: 500, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129041253
@@ -24631,7 +24635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -134}
+  m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 720, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737250088
@@ -24687,7 +24691,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535

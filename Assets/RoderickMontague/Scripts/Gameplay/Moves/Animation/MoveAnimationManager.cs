@@ -30,11 +30,14 @@ namespace RM_BBTS
 
         public const string ANIM_VAR = "anim";
 
+        // Gets set to 'true' if the animation is running.
+        private bool animPlaying = false;
+
         // The timer to automatically tell an animaton to stop if it hasn't already.
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.25F;
+        private const float ANIM_TIMER_EXTRA = 0.01F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -58,6 +61,22 @@ namespace RM_BBTS
         // The audio for the move animation.
         public AudioSource audioSource;
 
+        // Sound Effects
+        [Header("Audio/Sound Effects")]
+        public AudioClip pingHighSfx;
+        public AudioClip pingLowSfx;
+        public AudioClip laserSfx;
+        public AudioClip warp01Sfx;
+        public AudioClip warp02Sfx;
+        public AudioClip warp03Sfx;
+        public AudioClip riverSfx;
+        public AudioClip clongSfx;
+        public AudioClip creepingVinesSfx;
+        public AudioClip smackSfx;
+        public AudioClip whooshHighSfx;
+        public AudioClip whooshLowSfx;
+        public AudioClip windSfx;
+
         [Header("Text Box")]
         // A textbox that might be showing when the battle animation is playing.
         public TextBox textBox;
@@ -69,6 +88,12 @@ namespace RM_BBTS
         {
             // Debug.Log("Test");
             // PlayTest();
+        }
+
+        // Returns 'true' if the animation is playing.
+        public bool AnimationIsPlaying()
+        {
+            return animPlaying;
         }
 
         // Plays the animation.
@@ -85,6 +110,10 @@ namespace RM_BBTS
             //         animator.SetInteger(ANIM_VAR, 1);
             //         break;
             // }
+
+            // Stop the current animation if it is playing.
+            if (animPlaying)
+                StopAnimation();
 
             // Just reuses the enum value.
             animator.SetInteger(ANIM_VAR, (int)anim);
@@ -116,7 +145,11 @@ namespace RM_BBTS
 
             // Turn on the animator object. This function call replays the animation.
             // animator.gameObject.SetActive(true);
-            animator.enabled = true;
+            // TODO: Doesn't seem to do anything, so take it out.
+            // animator.enabled = true;
+
+            // animation is running.
+            animPlaying = true;
 
             // Sets the animation timer.
             animTimer = animator.GetCurrentAnimatorStateInfo(0).length / animator.speed + ANIM_TIMER_EXTRA;
@@ -134,6 +167,93 @@ namespace RM_BBTS
         //     PlayAnimation(0);
         //     // TODO: change the animation number, then turn on the object.
         // }
+
+
+        // Plays a sound.
+        public void PlaySound(AudioClip clip)
+        {
+            // Plays the provided audio clip.
+            if (audioSource != null && clip != null)
+                audioSource.PlayOneShot(clip);
+        }
+
+        // Plays a specific sound.
+        public void PlayPingHighSfx()
+        {
+            PlaySound(pingHighSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayPingLowSfx()
+        {
+            PlaySound(pingLowSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayLaserSfx()
+        {
+            PlaySound(laserSfx);
+        }
+        // Plays a specific sound.
+        public void PlayWarp01Sfx()
+        {
+            PlaySound(warp01Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWarp02Sfx()
+        {
+            PlaySound(warp02Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWarp03Sfx()
+        {
+            PlaySound(warp03Sfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayRiverSfx()
+        {
+            PlaySound(riverSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayClongSfx()
+        {
+            PlaySound(clongSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayCreepingVinesSfx()
+        {
+            PlaySound(creepingVinesSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlaySmackSfx()
+        {
+            PlaySound(smackSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWhooshHighSfx()
+        {
+            PlaySound(whooshHighSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWhooshLowSfx()
+        {
+            PlaySound(whooshLowSfx);
+        }
+
+        // Plays a specific sound.
+        public void PlayWindSfx()
+        {
+            PlaySound(windSfx);
+        }
+
 
         // Called when the animation is finished.
         public void StopAnimation()
@@ -170,10 +290,16 @@ namespace RM_BBTS
                 animatedSpriteRender.flipX = false;
             }
 
+            // Stops any remaining move audio from playing.
+            if (audioSource != null)
+                audioSource.Stop();
+
+            // animation is no longer running, and neither is the timer.
+            animPlaying = false;
             animTimer = 0.0F;
 
             // animator.gameObject.SetActive(false);
-            animator.enabled = false;
+            // animator.enabled = false;
         }
 
         // Sets the move for the animation.
@@ -209,7 +335,7 @@ namespace RM_BBTS
         void Update()
         {
             // Operates a timer for automatically ending an animation.
-            if (animTimer > 0.0F)
+            if (animPlaying && animTimer > 0.0F)
             {
                 // Reduces the timer.
                 animTimer -= Time.deltaTime;

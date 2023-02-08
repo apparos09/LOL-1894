@@ -278,9 +278,9 @@ namespace RM_BBTS
             //     string.Empty, string.Empty, string.Empty, string.Empty
             // };
 
-            // TODO: implement.
-            question.incorrectAnswerResponse = string.Empty;
+            // Not putting brackets around these since I'm low on time and I'd have to take it out later.
             question.correctAnswerResponse = string.Empty;
+            question.incorrectAnswerResponse = string.Empty;
 
             // Checks the question number.
             switch (number)
@@ -298,6 +298,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "This is indeed a test.";
+                    question.incorrectAnswerResponse = "This is very likely a test.";
 
                     // // Translates the question.
                     // if (translate)
@@ -324,11 +326,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Since there are only 2 outcomes, each event has a 0.50 chance.";
+                    question.incorrectAnswerResponse = "When something is perfectly random, all outcomes have an equal chance of occurring.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que01"];
+                        question.correctAnswerResponse = defs["que01_correct"];
+                        question.incorrectAnswerResponse = defs["que01_incorrect"];
                     }
 
                     break;
@@ -345,6 +351,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "The burn chance is 0.00, meaning the move cannot burn the target.";
+                    question.incorrectAnswerResponse = "In a 0-1 scale, 0 means the event never happens, and 1 means the event always happens.";
 
                     // Translates the question.
                     if (translate)
@@ -354,6 +362,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que02_res01"];
                         question.Response2 = defs["que02_res02"];
                         question.Response3 = defs["que02_res03"];
+                        question.correctAnswerResponse = defs["que02_correct"];
+                        question.incorrectAnswerResponse = defs["que02_incorrect"];
                     }
 
                     break;
@@ -370,6 +380,9 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+                    question.correctAnswerResponse = "Since the paralysis chance is 1.00, the event is guaranteed to happen.";
+                    question.incorrectAnswerResponse = "In a 0-1 scale, 0 means the event never happens, and 1 means the event always happens.";
+
 
                     // Translates the question.
                     if (translate)
@@ -379,6 +392,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que03_res01"];
                         question.Response2 = defs["que03_res02"];
                         question.Response3 = defs["que03_res03"];
+                        question.correctAnswerResponse = defs["que03_correct"];
+                        question.incorrectAnswerResponse = defs["que03_incorrect"];
                     }
                     break;
 
@@ -395,6 +410,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+                    question.correctAnswerResponse = "Move A always hits, but Move B hits harder.";
+                    question.incorrectAnswerResponse = "Strong moves usually have a trade off. In this case, power is traded for accuracy.";
 
                     // Translates the question.
                     if (translate)
@@ -404,6 +421,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que04_res01"];
                         question.Response2 = defs["que04_res02"];
                         question.Response3 = defs["que04_res03"];
+                        question.correctAnswerResponse = defs["que04_correct"];
+                        question.incorrectAnswerResponse = defs["que04_incorrect"];
                     }
                     break;
                 
@@ -422,11 +441,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Since 3/4 moves can heal the user, your foe has a 75% chance of healing themselves.";
+                    question.incorrectAnswerResponse = "Since your foe won’t charge their energy, they only have 4 moves to choose from.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que05"];
+                        question.correctAnswerResponse = defs["que05_correct"];
+                        question.incorrectAnswerResponse = defs["que05_incorrect"];
                     }
 
                     break;
@@ -444,6 +467,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Since your accuracy has gone up, your moves are more likely to hit your target.";
+                    question.incorrectAnswerResponse = "Accuracy determines how likely it is for a move to hit its target.";
 
                     // Translates the question.
                     if (translate)
@@ -453,6 +478,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que06_res01"];
                         question.Response2 = defs["que06_res02"];
                         question.Response3 = defs["que06_res03"];
+                        question.correctAnswerResponse = defs["que06_correct"];
+                        question.incorrectAnswerResponse = defs["que06_incorrect"];
                     }
                     break;
 
@@ -469,6 +496,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "Since your accuracy has gone down, yoru moves are more likely to miss.";
+                    question.incorrectAnswerResponse = "Accuracy determines how likely it is for a move to hit its target.";
 
                     // Translates the question.
                     if (translate)
@@ -478,6 +507,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que07_res01"];
                         question.Response2 = defs["que07_res02"];
                         question.Response3 = defs["que07_res03"];
+                        question.correctAnswerResponse = defs["que07_correct"];
+                        question.incorrectAnswerResponse = defs["que07_incorrect"];
                     }
                     break;
 
@@ -494,11 +525,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Since there are only 2 options, each event has a 0.50 chance of happening.";
+                    question.incorrectAnswerResponse = "There are only 2 possible outcomes.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que08"];
+                        question.correctAnswerResponse = defs["que08_correct"];
+                        question.incorrectAnswerResponse = defs["que08_incorrect"];
                     }
                     break;
                 
@@ -517,6 +552,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Move B is stronger, but it’s more likely to miss.";
+                    question.incorrectAnswerResponse = "Accuracy works on a 0-1 scale, with 1.00 meaning a move will always hit.";
 
                     // Translates the question.
                     if (translate)
@@ -524,6 +561,8 @@ namespace RM_BBTS
                         question.question = defs["que09"];
                         question.Response0 = defs["kwd_yes"];
                         question.Response1 = defs["kwd_no"];
+                        question.correctAnswerResponse = defs["que09_correct"];
+                        question.incorrectAnswerResponse = defs["que09_incorrect"];
                     }
                     break;
 
@@ -540,6 +579,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "Move B is stronger, but Move A is more accurate.";
+                    question.incorrectAnswerResponse = "Accuracy works on a 0-1 scale, with 0 meaning a move will never hit.";
 
                     // Translates the question.
                     if (translate)
@@ -547,6 +588,8 @@ namespace RM_BBTS
                         question.question = defs["que10"];
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
+                        question.correctAnswerResponse = defs["que10_correct"];
+                        question.incorrectAnswerResponse = defs["que10_incorrect"];
                     }
                     break;
 
@@ -563,6 +606,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Move C has a burn chance of 1.00, meaning it always burns the target.";
+                    question.incorrectAnswerResponse = "An event that will always happen has a chance value of 1.00.";
 
                     // Translates the question.
                     if (translate)
@@ -571,6 +616,8 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+                        question.correctAnswerResponse = defs["que11_correct"];
+                        question.incorrectAnswerResponse = defs["que11_incorrect"];
                     }
                     break;
 
@@ -587,6 +634,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Since Move B has the lowest burn chance, it is the least likely to inflict burn status.";
+                    question.incorrectAnswerResponse = "In a 0-1 scale, an event chance of 0.00 means said event will never happen.";
 
                     // Translates the question.
                     if (translate)
@@ -595,6 +644,8 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+                        question.correctAnswerResponse = defs["que12_correct"];
+                        question.incorrectAnswerResponse = defs["que12_incorrect"];
                     }
                     break;
 
@@ -613,6 +664,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "While Move B is the most accurate, it has the lowest paralysis chance of the 3.";
+                    question.incorrectAnswerResponse = "Since paralysis is the focus, the accuracy of each move is not important.";
 
                     // Translates the question.
                     if (translate)
@@ -621,6 +674,8 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+                        question.correctAnswerResponse = defs["que13_correct"];
+                        question.incorrectAnswerResponse = defs["que13_incorrect"];
                     }
                     break;
 
@@ -637,6 +692,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+                    question.correctAnswerResponse = "Since your accuracy has been lowered, no move is guaranteed to hit its target.";
+                    question.incorrectAnswerResponse = "In a 0-1 scale, the closer an event chance is to 0.00, the less likely said event is.";
 
                     // Translates the question.
                     if (translate)
@@ -646,6 +703,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que14_res03"];
+                        question.correctAnswerResponse = defs["que14_correct"];
+                        question.incorrectAnswerResponse = defs["que14_incorrect"];
                     }
                     break;
 
@@ -662,6 +721,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Since your accuracy has increased, Move B now has a 1.00 chance of hitting its target.";
+                    question.incorrectAnswerResponse = "In a 0-1 scale, the closer an event chance is to 1.00, the more likely said event is.";
 
                     // Translates the question.
                     if (translate)
@@ -671,6 +732,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que15_res01"];
                         question.Response2 = defs["que15_res02"];
                         question.Response3 = defs["que15_res03"];
+                        question.correctAnswerResponse = defs["que15_correct"];
+                        question.incorrectAnswerResponse = defs["que15_incorrect"];
                     }
                     break;
 
@@ -687,6 +750,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Move C getting a critical damage bonus is the most likely event to happen.";
+                    question.incorrectAnswerResponse = "The higher the chance value, the more likely the event is.";
 
                     // Translates the question.
                     if (translate)
@@ -695,6 +760,8 @@ namespace RM_BBTS
                         question.Response0 = defs["que16_res00"];
                         question.Response1 = defs["que16_res01"];
                         question.Response2 = defs["que16_res02"];
+                        question.correctAnswerResponse = defs["que16_correct"];
+                        question.incorrectAnswerResponse = defs["que16_incorrect"];
                     }
                     break;
 
@@ -713,6 +780,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "Since Move A has the lowest accuracy, it is the riskiest move to use.";
+                    question.incorrectAnswerResponse = "The lower the accuracy, the more likely a move is to miss.";
 
                     // Translates the question.
                     if (translate)
@@ -722,6 +791,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que17_res03"];
+                        question.correctAnswerResponse = defs["que17_correct"];
+                        question.incorrectAnswerResponse = defs["que17_incorrect"];
                     }
                     break;
 
@@ -738,6 +809,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Move B is the least accurate, so it’s the least likely to hit you.";
+                    question.incorrectAnswerResponse = "The lower the accuracy, the less likely the move is to hit its target.";
 
                     // Translates the question.
                     if (translate)
@@ -747,6 +820,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que_res_moveD"];
+                        question.correctAnswerResponse = defs["que18_correct"];
+                        question.incorrectAnswerResponse = defs["que18_incorrect"];
                     }
                     break;
 
@@ -763,6 +838,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Since your attack stat cannot go higher, Move A’s event is irrelevant.";
+                    question.incorrectAnswerResponse = "If an event would have no effect, then it can be ignored.";
 
                     // Translates the question.
                     if (translate)
@@ -772,6 +849,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que19_res01"];
                         question.Response2 = defs["que19_res02"];
                         question.Response3 = defs["que19_res03"];
+                        question.correctAnswerResponse = defs["que19_correct"];
+                        question.incorrectAnswerResponse = defs["que19_incorrect"];
                     }
                     break;
 
@@ -788,6 +867,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
+                    question.correctAnswerResponse = "Your defense is not maxed out, so Move B’s event can still happen.";
+                    question.incorrectAnswerResponse = "A stat that cannot go any lower can still be raised.";
 
                     // Translates the question.
                     if (translate)
@@ -797,6 +878,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que20_res01"];
                         question.Response2 = defs["que20_res02"];
                         question.Response3 = defs["que20_res03"];
+                        question.correctAnswerResponse = defs["que20_correct"];
+                        question.incorrectAnswerResponse = defs["que20_incorrect"];
                     }
                     break;
 
@@ -815,11 +898,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
+                    question.correctAnswerResponse = "Since 2/10 doors are treasure doors, there’s a 20% chance of choosing one.";
+                    question.incorrectAnswerResponse = "When the numerator is equal to the denominator, it is the same as the chance value being 1.00.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que21"];
+                        question.correctAnswerResponse = defs["que21_correct"];
+                        question.incorrectAnswerResponse = defs["que21_incorrect"];
                     }
                     break;
 
@@ -836,11 +923,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+                    question.correctAnswerResponse = "4/5 doors are not treasure doors, so a non-treasure door has an 80% chance of being chosen.";
+                    question.incorrectAnswerResponse = "The larger the numerator, the more likely the event is.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que22"];
+                        question.correctAnswerResponse = defs["que22_correct"];
+                        question.incorrectAnswerResponse = defs["que22_incorrect"];
                     }
                     break;
 
@@ -857,6 +948,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "Since Enemy C has the highest door count, you are most likely to encounter one of them next.";
+                    question.incorrectAnswerResponse = "The lower the numerator, the less likely the event is.";
 
                     // Translates the question.
                     if (translate)
@@ -866,6 +959,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_enemyB"];
                         question.Response2 = defs["que_res_enemyC"];
                         question.Response3 = defs["que_res_enemyD"];
+                        question.correctAnswerResponse = defs["que23_correct"];
+                        question.incorrectAnswerResponse = defs["que23_incorrect"];
                     }
                     break;
 
@@ -882,6 +977,8 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 3;
+                    question.correctAnswerResponse = "Enemy D is behind 1/9 doors, so it is the least likely enemy to be encountered next.";
+                    question.incorrectAnswerResponse = "The denominator is the total number of doors.";
 
                     // Translates the question.
                     if (translate)
@@ -891,6 +988,8 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_enemyB"];
                         question.Response2 = defs["que_res_enemyC"];
                         question.Response3 = defs["que_res_enemyD"];
+                        question.correctAnswerResponse = defs["que24_correct"];
+                        question.incorrectAnswerResponse = defs["que24_incorrect"];
                     }
                     break;
 
@@ -907,11 +1006,15 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
+                    question.correctAnswerResponse = "The critical damage chance is also the chance of ending the battle in one turn.";
+                    question.incorrectAnswerResponse = "The amount of turns needed to win the battle hinges on getting a critical damage bonus.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que25"];
+                        question.correctAnswerResponse = defs["que25_correct"];
+                        question.incorrectAnswerResponse = defs["que25_incorrect"];
                     }
                     break;
 

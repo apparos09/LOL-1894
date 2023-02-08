@@ -9,8 +9,9 @@ namespace RM_BBTS
     // The list of IDs.
     public enum battleEntityId { 
         unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, ghost1, ghost2, comet,
-        sunRock1, sunRock2, moonRock1, moonRock2, fireBot, waterBot, earthBot, airBot, sharp1, sharp2, 
-        cBugRed1, cBugRed2, cBugBlue1, cBugBlue2, cBugYellow1, cBugYellow2, blackHole, planet1, planet2
+        sunRock1, sunRock2, moonRock1, moonRock2, fireBot1, fireBot2, waterBot1, waterBot2, earthBot1, 
+        earthBot2, airBot1, airBot2, sharp1, sharp2, cBugRed1, cBugRed2, cBugBlue1, cBugBlue2, 
+        cBugYellow1, cBugYellow2, blackHole, planet1, planet2
     }
 
     // The list of entities for the game. There only needs to be one instance of this list.
@@ -20,7 +21,7 @@ namespace RM_BBTS
         private static BattleEntityList instance;
 
         // The amount of opponents in the list.
-        public const int BATTLE_ENTITY_ID_COUNT = 30;
+        public const int BATTLE_ENTITY_ID_COUNT = 34;
 
         // Weights should not be negative.
         // The chance rates of the entities.
@@ -67,9 +68,9 @@ namespace RM_BBTS
             // Creates the entity weights, and lcamps them to the battle entity ID count.
             // <unknown, treasure, and boss should always be 0>
             baseWeights = new List<int> { 
-                0, 0, 0, 40, 0, 0, 30, 0, 0, 20, 0, 
-                20, 0, 20, 0, 10, 10, 10, 10, 20, 0, 
-                35, 0, 35, 0, 35, 0, 0, 5, 0  
+                0, 0, 0, 40, 0, 0, 30, 0, 0, 20, 0, 20, 
+                0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
+                20, 0, 35, 0, 35, 0, 35, 0, 0, 5, 0  
             };
 
             // If it exceeds the ID count.
@@ -476,14 +477,14 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.fireBot: // Pyrobot
-                    data.id = battleEntityId.fireBot;
+                case battleEntityId.fireBot1: // Pyrobot
+                    data.id = battleEntityId.fireBot1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.unknown;
+                    data.evoId = battleEntityId.fireBot2;
 
                     // Stats
                     data.displayName = "<Pyrobot>";
-                    data.displayNameSpeakKey = "bey_fireBot_nme";
+                    data.displayNameSpeakKey = "bey_fireBot1_nme";
 
                     data.maxHealth = 40;
                     data.health = data.maxHealth;
@@ -496,18 +497,42 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.15F;
+                    data.levelRate = 1.05F;
 
                     break;
 
-                case battleEntityId.waterBot: // Aquadroid
-                    data.id = battleEntityId.waterBot;
-                    data.preEvoId = battleEntityId.unknown;
+                case battleEntityId.fireBot2: // Pyrobot MK 2
+                    data.id = battleEntityId.fireBot2;
+                    data.preEvoId = battleEntityId.fireBot1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
+                    data.displayName = "<Pyrobot MK 2>";
+                    data.displayNameSpeakKey = "bey_fireBot2_nme";
+
+                    data.maxHealth = 90;
+                    data.health = data.maxHealth;
+
+                    data.attack = 110;
+                    data.defense = 50;
+                    data.speed = 50;
+
+                    data.maxEnergy = 100;
+                    data.energy = data.maxEnergy;
+
+                    data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.30F;
+
+                    break;
+
+                case battleEntityId.waterBot1: // Aquadroid
+                    data.id = battleEntityId.waterBot1;
+                    data.preEvoId = battleEntityId.unknown;
+                    data.evoId = battleEntityId.waterBot2;
+
+                    // Stats
                     data.displayName = "<Aquadroid>";
-                    data.displayNameSpeakKey = "bey_waterBot_nme";
+                    data.displayNameSpeakKey = "bey_waterBot1_nme";
 
                     data.maxHealth = 90;
                     data.health = data.maxHealth;
@@ -520,18 +545,42 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.15F;
+                    data.levelRate = 1.05F;
 
                     break;
 
-                case battleEntityId.earthBot: // Terrachine
-                    data.id = battleEntityId.earthBot;
-                    data.preEvoId = battleEntityId.unknown;
+                case battleEntityId.waterBot2: // Aquadroid MK 2
+                    data.id = battleEntityId.waterBot2;
+                    data.preEvoId = battleEntityId.waterBot1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
+                    data.displayName = "<Aquadroid MK 2>";
+                    data.displayNameSpeakKey = "bey_waterBot2_nme";
+
+                    data.maxHealth = 180;
+                    data.health = data.maxHealth;
+
+                    data.attack = 40;
+                    data.defense = 40;
+                    data.speed = 40;
+
+                    data.maxEnergy = 100;
+                    data.energy = data.maxEnergy;
+
+                    data.statSpecial = BattleEntity.specialty.health;
+                    data.levelRate = 1.30F;
+
+                    break;
+
+                case battleEntityId.earthBot1: // Terrachine
+                    data.id = battleEntityId.earthBot1;
+                    data.preEvoId = battleEntityId.unknown;
+                    data.evoId = battleEntityId.earthBot2;
+
+                    // Stats
                     data.displayName = "<Terrachine>";
-                    data.displayNameSpeakKey = "bey_earthBot_nme";
+                    data.displayNameSpeakKey = "bey_earthBot1_nme";
 
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
@@ -544,18 +593,42 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.15F;
+                    data.levelRate = 1.05F;
 
                     break;
 
-                case battleEntityId.airBot: // Airtomaton
-                    data.id = battleEntityId.airBot;
-                    data.preEvoId = battleEntityId.unknown;
+                case battleEntityId.earthBot2: // Terrachine MK 2
+                    data.id = battleEntityId.earthBot2;
+                    data.preEvoId = battleEntityId.earthBot1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
+                    data.displayName = "<Terrachine MK 2>";
+                    data.displayNameSpeakKey = "bey_earthBot2_nme";
+
+                    data.maxHealth = 70;
+                    data.health = data.maxHealth;
+
+                    data.attack = 40;
+                    data.defense = 150;
+                    data.speed = 40;
+
+                    data.maxEnergy = 100;
+                    data.energy = data.maxEnergy;
+
+                    data.statSpecial = BattleEntity.specialty.defense;
+                    data.levelRate = 1.30F;
+
+                    break;
+
+                case battleEntityId.airBot1: // Airtomaton
+                    data.id = battleEntityId.airBot1;
+                    data.preEvoId = battleEntityId.unknown;
+                    data.evoId = battleEntityId.airBot2;
+
+                    // Stats
                     data.displayName = "Airtomaton";
-                    data.displayNameSpeakKey = "bey_airBot_nme";
+                    data.displayNameSpeakKey = "bey_airBot1_nme";
 
                     data.maxHealth = 40;
                     data.health = data.maxHealth;
@@ -568,7 +641,31 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.15F;
+                    data.levelRate = 1.05F;
+
+                    break;
+
+                case battleEntityId.airBot2: // Airtomaton MK 2
+                    data.id = battleEntityId.airBot2;
+                    data.preEvoId = battleEntityId.airBot1;
+                    data.evoId = battleEntityId.unknown;
+
+                    // Stats
+                    data.displayName = "Airtomaton MK 2";
+                    data.displayNameSpeakKey = "bey_airBot2_nme";
+
+                    data.maxHealth = 90;
+                    data.health = data.maxHealth;
+
+                    data.attack = 40;
+                    data.defense = 40;
+                    data.speed = 130;
+
+                    data.maxEnergy = 100;
+                    data.energy = data.maxEnergy;
+
+                    data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.30F;
 
                     break;
 
@@ -586,7 +683,7 @@ namespace RM_BBTS
 
                     data.attack = 50;
                     data.defense = 10;
-                    data.speed = 40;
+                    data.speed = 60;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -609,7 +706,7 @@ namespace RM_BBTS
 
                     data.attack = 105;
                     data.defense = 25;
-                    data.speed = 75;
+                    data.speed = 90;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -928,27 +1025,27 @@ namespace RM_BBTS
                 case battleEntityId.ghost1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
-                        moveId.laserBurst, moveId.electrify, moveId.risk 
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast, 
+                        moveId.elecBurst, moveId.laserBurst, moveId.electrify, moveId.risk 
                     };
                     break;
 
                 case battleEntityId.ghost2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.elecBurst, 
-                        moveId.laserBurst, moveId.electrify, moveId.risk, moveId.elecBlast, 
-                        moveId.laserBlast
+                        moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast, 
+                        moveId.elecBurst, moveId.laserBurst, moveId.electrify, moveId.risk, 
+                        moveId.elecBlast, moveId.laserBlast
                     };
                     break;
 
                 case battleEntityId.comet: // BOSS 2
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slam, moveId.chip, moveId.quickBurst, moveId.bam, 
-                        moveId.tidalWave, moveId.wham, moveId.quake, moveId.waterBlast, 
-                        moveId.airBlast, moveId.chargeSun, moveId.chargeMoon, 
-                        moveId.earlyBurst, moveId.allOut, moveId.kablam
+                        moveId.slam, moveId.chip, moveId.quickBurst, moveId.powerFirst,
+                        moveId.bam, moveId.tidalWave, moveId.wham, moveId.quake, 
+                        moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
+                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.kablam
                     };
                     break;
 
@@ -956,15 +1053,16 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     {
                         moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                        moveId.powerLast, moveId.bam, moveId.magnet, moveId.wham, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.sunRock2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.slam, moveId.chip, moveId.heal, moveId.bam, 
-                        moveId.magnet, moveId.wham, moveId.chargeSun, 
+                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeSun, 
                         moveId.quake, moveId.kablam
                     };
                     break;
@@ -972,21 +1070,22 @@ namespace RM_BBTS
                 case battleEntityId.moonRock1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.poke, moveId.slam, moveId.chip, moveId.heal, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.kablam
+                        moveId.poke, moveId.slam, moveId.chip, moveId.heal,
+                        moveId.powerLast, moveId.bam, moveId.magnet, moveId.wham, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.moonRock2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.slam, moveId.chip, moveId.heal, moveId.bam,
-                        moveId.magnet, moveId.wham, moveId.chargeMoon,
+                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeMoon,
                         moveId.quake, moveId.kablam
                     };
                     break;
 
-                case battleEntityId.fireBot:
+                case battleEntityId.fireBot1:
                     moveList = new List<moveId>() 
                     { 
                         moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst, 
@@ -994,7 +1093,15 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.waterBot:
+                case battleEntityId.fireBot2:
+                    moveList = new List<moveId>()
+                    {
+                        moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst,
+                        moveId.fireBurst, moveId.torch, moveId.burnBoostTarget, moveId.laserBlast, moveId.fireBlast
+                    };
+                    break;
+
+                case battleEntityId.waterBot1:
                     moveList = new List<moveId>() 
                     {
                          moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
@@ -1002,15 +1109,35 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.earthBot:
-                    moveList = new List<moveId>() 
-                    { 
-                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, moveId.toss, moveId.bam, moveId.magnify, moveId.magnet,
-                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, moveId.kablam
+                case battleEntityId.waterBot2:
+                    moveList = new List<moveId>()
+                    {
+                         moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
+                         moveId.powerLast, moveId.laserBlast, moveId.waterBlast
                     };
                     break;
 
-                case battleEntityId.airBot:
+                case battleEntityId.earthBot1:
+                    moveList = new List<moveId>() 
+                    { 
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
+                        moveId.toss, moveId.bam, moveId.magnify, moveId.magnet, 
+                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, 
+                        moveId.kablam
+                    };
+                    break;
+
+                case battleEntityId.earthBot2:
+                    moveList = new List<moveId>()
+                    {
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
+                        moveId.toss, moveId.powerLast, moveId.bam, moveId.magnify, 
+                        moveId.magnet, moveId.statClear, moveId.wham, moveId.rockBlast, 
+                        moveId.quake, moveId.kablam
+                    };
+                    break;
+
+                case battleEntityId.airBot1:
                     moveList = new List<moveId>() 
                     { 
                         moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
@@ -1018,6 +1145,16 @@ namespace RM_BBTS
                         moveId.twister, moveId.airBlast
                     };
                     break;
+
+                case battleEntityId.airBot2:
+                    moveList = new List<moveId>()
+                    {
+                        moveId.laserShot, moveId.elecShot, moveId.powerFirst,
+                        moveId.laserBurst, moveId.elecBurst, moveId.laserBlast, 
+                        moveId.elecBlast, moveId.twister, moveId.airBlast
+                    };
+                    break;
+
 
                 case battleEntityId.sharp1:
                     moveList = new List<moveId>() 
@@ -1039,16 +1176,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugRed1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech, 
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugRed2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.screech,moveId.elecShot, 
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst, 
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave, 
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst, 
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1056,16 +1194,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugBlue1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugBlue2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech,moveId.elecShot,
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave,
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1073,16 +1212,17 @@ namespace RM_BBTS
                 case battleEntityId.cBugYellow1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst,
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.cBugYellow2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech,moveId.elecShot,
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave,
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1090,7 +1230,7 @@ namespace RM_BBTS
                 case battleEntityId.blackHole: // BOSS 3
                     moveList = new List<moveId>() 
                     {
-                        moveId.hpDrain2, moveId.hpDrain3, 
+                        moveId.powerLast, moveId.hpDrain2, moveId.hpDrain3, 
                         moveId.twister, moveId.quickBurst, moveId.waterBlast, 
                         moveId.rockBlast, moveId.quake, moveId.earlyBurst, moveId.kablam
                     };
