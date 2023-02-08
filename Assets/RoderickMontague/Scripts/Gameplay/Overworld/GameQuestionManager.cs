@@ -26,7 +26,7 @@ namespace RM_BBTS
 
         // The maximum amount of asked questions that will be saved when saving the game.
         // TODO: update number to match the total amount of rounds.
-        public const int QUESTIONS_USED_SAVE_MAX = 15;
+        // public const int QUESTIONS_USED_SAVE_MAX = 15;
 
         // The list of asked questions (goes by question number).
         // This is to help prevent the randomizer from asking the same question multiple times.
@@ -236,10 +236,10 @@ namespace RM_BBTS
         }
 
         // Returns the used questions.
-        public List<int> GetQuestionsUsed(bool removeDuplicates)
+        public List<int> GetQuestionsUsed(bool removeRepeats)
         {
             // Checks if duplicate questions should be removed.
-            if(removeDuplicates)
+            if(removeRepeats)
             {
                 // Copies the list into a temp variable.
                 List<int> temp = new List<int>();
@@ -280,8 +280,10 @@ namespace RM_BBTS
                 // The list of temporary results (will remove results).
                 List<bool> tempRes = new List<bool>();
 
+                // If the player answers the question directly, they won't be asked the same thing again.
+                // As such, this goes from the end of the list to the start.
                 // Goes through each question used.
-                for (int i = 0; i < questionsUsed.Count; i++)
+                for (int i = questionsUsed.Count - 1; i >= 0; i--)
                 {
                     // Add the question number to the list if it hasn't been put in there already.
                     if (!tempQues.Contains(questionsUsed[i]))
@@ -290,6 +292,10 @@ namespace RM_BBTS
                         tempRes.Add(questionResults[i]);
                     }
                 }
+
+                // The lists are backwards, so reverse them.
+                tempQues.Reverse();
+                tempRes.Reverse();
 
                 // Returns the temporary results.
                 return tempRes;
@@ -810,7 +816,18 @@ namespace RM_BBTS
                 // Checks both keys at the same time. There'd be no point in speaking one without the other being available.
                 if (GameSettings.Instance.UseTextToSpeech && correctKey != string.Empty && incorrectKey != string.Empty)
                 {
-                    LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                    // Now reads out the message instead of saying correct/incorrect.
+                    if(currentQuestion.correctAnswerSpeakKey != "" && currentQuestion.incorrectAnswerSpeakKey != "")
+                    {
+                        // NEW - Now reads out the correct/incorrect message.
+                        LOLManager.Instance.textToSpeech.SpeakText((correct) ?
+                            currentQuestion.correctAnswerSpeakKey : currentQuestion.incorrectAnswerSpeakKey);
+                    }
+                    else
+                    {
+                        // OLD - Just says correct/incorrect
+                        LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                    }
                 }
             }
 
