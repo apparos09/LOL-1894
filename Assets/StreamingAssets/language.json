@@ -723,8 +723,8 @@
     "btl_msg_mve_moveStatLow_alt00": "The player's stat can't go any lower!",
     "btl_msg_mve_moveStatLow_alt01": "The opponent's stat can't go any lower!",
 
-    "btl_msg_mve_moveBurned": "The target has been burned!",
-    "btl_msg_mve_moveParalyzed": "The target has been paralyzed!",
+    "btl_msg_mve_moveBurned": "The target has been inflicted with burn status!",
+    "btl_msg_mve_moveParalyzed": "The target has been inflicted with paralysis status!",
 
     "btl_msg_mve_chargeUsed": "{0} charged their energy!",
     "btl_msg_mve_chargeUsed_alt00": "The player charged their energy!",
