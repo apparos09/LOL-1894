@@ -338,7 +338,8 @@ namespace RM_BBTS
             {
                 // Load the data.
                 // This function also updates the UI once the data is loaded.
-                bool success = LoadGame(LOLManager.Instance.saveSystem.loadedData);
+                // This now does not allow completed game data to be reloaded.
+                bool success = LoadGame(LOLManager.Instance.saveSystem.loadedData, false);
 
                 // Clear data.
                 LOLManager.Instance.saveSystem.ClearLoadedData();
@@ -403,7 +404,7 @@ namespace RM_BBTS
                 // LoadGameTest();
             }
 
-            // Called so that game phase contnet gets updated.
+            // Called so that game phase content gets updated.
             overworld.OnGamePhaseChange();
 
             // The post start function was called.
@@ -1553,7 +1554,9 @@ namespace RM_BBTS
         }
 
         // Loads the game using the provided save data.
-        public bool LoadGame(BBTS_GameData saveData)
+        // If 'allowCompletedGame' is 'true', this function loads the data, even if said data's game was finished.
+        // If 'allowCompletedGame' is false, then the program will not load the data if its game was already completed.
+        public bool LoadGame(BBTS_GameData saveData, bool allowCompletedGame)
         {
             // Null data check.
             if (saveData == null)
@@ -1568,6 +1571,16 @@ namespace RM_BBTS
             {
                 Debug.LogError("Data is not marked as valid. Data was not read.");
                 return false;
+            }
+
+            // If the program should not load in completed games.
+            if(!allowCompletedGame)
+            {
+                // If the amount of rooms completed matches the amount of rooms total...
+                // Start a new game.
+                if (saveData.roomsCompleted == GetRoomsTotal())
+                    return false;
+
             }
 
             // Checks current game state.
@@ -1786,7 +1799,8 @@ namespace RM_BBTS
             saveData.turnsPassed = saveData.roomsCompleted;
 
             // Loads the save data.
-            LoadGame(saveData);
+            // Since this is just a test, completed games are allowed.
+            LoadGame(saveData, true);
         }
 
         // Goes to the main menu.
