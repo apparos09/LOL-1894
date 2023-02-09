@@ -439,7 +439,7 @@ namespace RM_BBTS
                     move.description = "<A decent fire attack that has a 0.20 chance of burning the target.>";
 
                     // Animation
-                    move.animation = moveAnim.crawl1;
+                    move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.978F, 0.205F, 0.059F);
 
                     nameKey = "mve_fireBurst_nme";
@@ -582,13 +582,13 @@ namespace RM_BBTS
                 case moveId.statClear: // Stat Clear
                     move = new StatClearMove();
 
-                    // Translated AND AN in constructor.
+                    // Translated and animated in constructor.
                     break;
 
                 case moveId.cure: // Cure
                     move = new CureMove();
                     
-                    // Translation in constructor.
+                    // Translation and animated in constructor.
                     break;
 
                 case moveId.risk: // Risk
