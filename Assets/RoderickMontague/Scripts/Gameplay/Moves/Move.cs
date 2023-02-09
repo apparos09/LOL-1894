@@ -363,8 +363,8 @@ namespace RM_BBTS
             // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
 
             // New
-            // power * 0.75 * ((attack *1.125)/(3.35 * defense)) * critical
-            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.35F * target.GetDefenseModified())) * critBoost;
+            // power * 0.75 * ((attack *1.125)/(3.25 * defense)) * critical
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.25F * target.GetDefenseModified())) * critBoost;
 
             damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.

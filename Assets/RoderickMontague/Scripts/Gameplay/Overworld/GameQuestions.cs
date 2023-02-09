@@ -29,11 +29,18 @@ namespace RM_BBTS
         // The index of the correct response.
         public int answerIndex;
 
+        // This message is used if the user gets the question right.
+        public string correctAnswerResponse;
+
+        // The speak key for the correct answer message.
+        public string correctAnswerSpeakKey;
+
         // This message is used if the user gets the question wrong.
         public string incorrectAnswerResponse;
 
-        // This message is used if the user gets the question right.
-        public string correctAnswerResponse;
+        // The speak key for the incorrect answer message.
+        public string incorrectAnswerSpeakKey;
+
 
         // Returns the response by the index.
         public string GetResponseByIndex(int index)
@@ -280,7 +287,9 @@ namespace RM_BBTS
 
             // Not putting brackets around these since I'm low on time and I'd have to take it out later.
             question.correctAnswerResponse = string.Empty;
+            question.correctAnswerSpeakKey = string.Empty;
             question.incorrectAnswerResponse = string.Empty;
+            question.incorrectAnswerSpeakKey = string.Empty;
 
             // Checks the question number.
             switch (number)
@@ -333,8 +342,11 @@ namespace RM_BBTS
                     if (translate)
                     {
                         question.question = defs["que01"];
+
                         question.correctAnswerResponse = defs["que01_correct"];
+                        question.correctAnswerSpeakKey = "que01_correct";
                         question.incorrectAnswerResponse = defs["que01_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que01_incorrect";
                     }
 
                     break;
@@ -362,8 +374,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que02_res01"];
                         question.Response2 = defs["que02_res02"];
                         question.Response3 = defs["que02_res03"];
+
                         question.correctAnswerResponse = defs["que02_correct"];
+                        question.correctAnswerSpeakKey = "que02_correct";
                         question.incorrectAnswerResponse = defs["que02_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que02_incorrect";
                     }
 
                     break;
@@ -392,8 +407,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que03_res01"];
                         question.Response2 = defs["que03_res02"];
                         question.Response3 = defs["que03_res03"];
+
                         question.correctAnswerResponse = defs["que03_correct"];
+                        question.correctAnswerSpeakKey = "que03_correct";
                         question.incorrectAnswerResponse = defs["que03_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que03_incorrect";
                     }
                     break;
 
@@ -421,8 +439,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que04_res01"];
                         question.Response2 = defs["que04_res02"];
                         question.Response3 = defs["que04_res03"];
+
                         question.correctAnswerResponse = defs["que04_correct"];
+                        question.correctAnswerSpeakKey = "que04_correct";
                         question.incorrectAnswerResponse = defs["que04_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que04_incorrect";
                     }
                     break;
                 
@@ -448,8 +469,11 @@ namespace RM_BBTS
                     if (translate)
                     {
                         question.question = defs["que05"];
+
                         question.correctAnswerResponse = defs["que05_correct"];
+                        question.correctAnswerSpeakKey = "que05_correct";
                         question.incorrectAnswerResponse = defs["que05_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que05_incorrect";
                     }
 
                     break;
@@ -478,8 +502,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que06_res01"];
                         question.Response2 = defs["que06_res02"];
                         question.Response3 = defs["que06_res03"];
+
                         question.correctAnswerResponse = defs["que06_correct"];
+                        question.correctAnswerSpeakKey = "que06_correct";
                         question.incorrectAnswerResponse = defs["que06_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que06_incorrect";
                     }
                     break;
 
@@ -496,7 +523,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
-                    question.correctAnswerResponse = "Since your accuracy has gone down, yoru moves are more likely to miss.";
+                    question.correctAnswerResponse = "Since your accuracy has gone down, your moves are more likely to miss.";
                     question.incorrectAnswerResponse = "Accuracy determines how likely it is for a move to hit its target.";
 
                     // Translates the question.
@@ -507,8 +534,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que07_res01"];
                         question.Response2 = defs["que07_res02"];
                         question.Response3 = defs["que07_res03"];
+
                         question.correctAnswerResponse = defs["que07_correct"];
+                        question.correctAnswerSpeakKey = "que07_correct";
                         question.incorrectAnswerResponse = defs["que07_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que07_incorrect";
                     }
                     break;
 
@@ -532,8 +562,11 @@ namespace RM_BBTS
                     if (translate)
                     {
                         question.question = defs["que08"];
+                        
                         question.correctAnswerResponse = defs["que08_correct"];
+                        question.correctAnswerSpeakKey = "que08_correct";
                         question.incorrectAnswerResponse = defs["que08_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que08_incorrect";
                     }
                     break;
                 
@@ -561,8 +594,11 @@ namespace RM_BBTS
                         question.question = defs["que09"];
                         question.Response0 = defs["kwd_yes"];
                         question.Response1 = defs["kwd_no"];
+
                         question.correctAnswerResponse = defs["que09_correct"];
+                        question.correctAnswerSpeakKey = "que09_correct";
                         question.incorrectAnswerResponse = defs["que09_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que09_incorrect";
                     }
                     break;
 
@@ -588,8 +624,11 @@ namespace RM_BBTS
                         question.question = defs["que10"];
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
+                        
                         question.correctAnswerResponse = defs["que10_correct"];
+                        question.correctAnswerSpeakKey = "que10_correct";
                         question.incorrectAnswerResponse = defs["que10_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que10_incorrect";
                     }
                     break;
 
@@ -616,8 +655,11 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+
                         question.correctAnswerResponse = defs["que11_correct"];
+                        question.correctAnswerSpeakKey = "que11_correct";
                         question.incorrectAnswerResponse = defs["que11_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que11_incorrect";
                     }
                     break;
 
@@ -644,8 +686,11 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+                        
                         question.correctAnswerResponse = defs["que12_correct"];
+                        question.correctAnswerSpeakKey = "que12_correct";
                         question.incorrectAnswerResponse = defs["que12_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que12_incorrect";
                     }
                     break;
 
@@ -674,8 +719,11 @@ namespace RM_BBTS
                         question.Response0 = defs["que_res_moveA"];
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
+
                         question.correctAnswerResponse = defs["que13_correct"];
+                        question.correctAnswerSpeakKey = "que13_correct";
                         question.incorrectAnswerResponse = defs["que13_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que13_incorrect";
                     }
                     break;
 
@@ -703,8 +751,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que14_res03"];
+                        
                         question.correctAnswerResponse = defs["que14_correct"];
+                        question.correctAnswerSpeakKey = "que14_correct";
                         question.incorrectAnswerResponse = defs["que14_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que14_incorrect";
                     }
                     break;
 
@@ -732,8 +783,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que15_res01"];
                         question.Response2 = defs["que15_res02"];
                         question.Response3 = defs["que15_res03"];
+
                         question.correctAnswerResponse = defs["que15_correct"];
+                        question.correctAnswerSpeakKey = "que15_correct";
                         question.incorrectAnswerResponse = defs["que15_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que15_incorrect";
                     }
                     break;
 
@@ -760,8 +814,11 @@ namespace RM_BBTS
                         question.Response0 = defs["que16_res00"];
                         question.Response1 = defs["que16_res01"];
                         question.Response2 = defs["que16_res02"];
+
                         question.correctAnswerResponse = defs["que16_correct"];
+                        question.correctAnswerSpeakKey = "que16_correct";
                         question.incorrectAnswerResponse = defs["que16_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que16_incorrect";
                     }
                     break;
 
@@ -781,7 +838,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 0;
                     question.correctAnswerResponse = "Since Move A has the lowest accuracy, it is the riskiest move to use.";
-                    question.incorrectAnswerResponse = "The lower the accuracy, the more likely a move is to miss.";
+                    question.incorrectAnswerResponse = "The lower the accuracy, the more likely the move is to miss.";
 
                     // Translates the question.
                     if (translate)
@@ -791,8 +848,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que17_res03"];
+
                         question.correctAnswerResponse = defs["que17_correct"];
+                        question.correctAnswerSpeakKey = "que17_correct";
                         question.incorrectAnswerResponse = defs["que17_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que17_incorrect";
                     }
                     break;
 
@@ -820,6 +880,7 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_moveB"];
                         question.Response2 = defs["que_res_moveC"];
                         question.Response3 = defs["que_res_moveD"];
+
                         question.correctAnswerResponse = defs["que18_correct"];
                         question.incorrectAnswerResponse = defs["que18_incorrect"];
                     }
@@ -849,8 +910,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que19_res01"];
                         question.Response2 = defs["que19_res02"];
                         question.Response3 = defs["que19_res03"];
+
                         question.correctAnswerResponse = defs["que19_correct"];
+                        question.correctAnswerSpeakKey = "que19_correct";
                         question.incorrectAnswerResponse = defs["que19_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que19_incorrect";
                     }
                     break;
 
@@ -878,8 +942,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que20_res01"];
                         question.Response2 = defs["que20_res02"];
                         question.Response3 = defs["que20_res03"];
+
                         question.correctAnswerResponse = defs["que20_correct"];
+                        question.correctAnswerSpeakKey = "que20_correct";
                         question.incorrectAnswerResponse = defs["que20_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que20_incorrect";
                     }
                     break;
 
@@ -899,14 +966,17 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 0;
                     question.correctAnswerResponse = "Since 2/10 doors are treasure doors, there’s a 20% chance of choosing one.";
-                    question.incorrectAnswerResponse = "When the numerator is equal to the denominator, it is the same as the chance value being 1.00.";
+                    question.incorrectAnswerResponse = "When the left value is equal to the right value, the chance value is 1.00 in decimal form.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que21"];
+
                         question.correctAnswerResponse = defs["que21_correct"];
+                        question.correctAnswerSpeakKey = "que21_correct";
                         question.incorrectAnswerResponse = defs["que21_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que21_incorrect";
                     }
                     break;
 
@@ -924,14 +994,17 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 3;
                     question.correctAnswerResponse = "4/5 doors are not treasure doors, so a non-treasure door has an 80% chance of being chosen.";
-                    question.incorrectAnswerResponse = "The larger the numerator, the more likely the event is.";
+                    question.incorrectAnswerResponse = "The larger the numerator (left value), the more likely the event is.";
 
                     // Translates the question.
                     if (translate)
                     {
                         question.question = defs["que22"];
+
                         question.correctAnswerResponse = defs["que22_correct"];
+                        question.correctAnswerSpeakKey = "que22_correct";
                         question.incorrectAnswerResponse = defs["que22_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que22_incorrect";
                     }
                     break;
 
@@ -949,7 +1022,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 2;
                     question.correctAnswerResponse = "Since Enemy C has the highest door count, you are most likely to encounter one of them next.";
-                    question.incorrectAnswerResponse = "The lower the numerator, the less likely the event is.";
+                    question.incorrectAnswerResponse = "The lower the numerator (left value), the less likely the event is.";
 
                     // Translates the question.
                     if (translate)
@@ -959,8 +1032,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_enemyB"];
                         question.Response2 = defs["que_res_enemyC"];
                         question.Response3 = defs["que_res_enemyD"];
+
                         question.correctAnswerResponse = defs["que23_correct"];
+                        question.correctAnswerSpeakKey = "que23_correct";
                         question.incorrectAnswerResponse = defs["que23_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que23_incorrect";
                     }
                     break;
 
@@ -978,7 +1054,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 3;
                     question.correctAnswerResponse = "Enemy D is behind 1/9 doors, so it is the least likely enemy to be encountered next.";
-                    question.incorrectAnswerResponse = "The denominator is the total number of doors.";
+                    question.incorrectAnswerResponse = "The denominator (right value) is the total number of doors.";
 
                     // Translates the question.
                     if (translate)
@@ -988,8 +1064,11 @@ namespace RM_BBTS
                         question.Response1 = defs["que_res_enemyB"];
                         question.Response2 = defs["que_res_enemyC"];
                         question.Response3 = defs["que_res_enemyD"];
+
                         question.correctAnswerResponse = defs["que24_correct"];
+                        question.correctAnswerSpeakKey = "que24_correct";
                         question.incorrectAnswerResponse = defs["que24_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que24_incorrect";
                     }
                     break;
 
@@ -1014,7 +1093,9 @@ namespace RM_BBTS
                     {
                         question.question = defs["que25"];
                         question.correctAnswerResponse = defs["que25_correct"];
+                        question.correctAnswerSpeakKey = "que25_correct";
                         question.incorrectAnswerResponse = defs["que25_incorrect"];
+                        question.incorrectAnswerSpeakKey = "que25_incorrect";
                     }
                     break;
 

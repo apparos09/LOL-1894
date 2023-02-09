@@ -439,7 +439,7 @@ namespace RM_BBTS
                     move.description = "<A decent fire attack that has a 0.20 chance of burning the target.>";
 
                     // Animation
-                    move.animation = moveAnim.crawl1;
+                    move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.978F, 0.205F, 0.059F);
 
                     nameKey = "mve_fireBurst_nme";
@@ -582,13 +582,13 @@ namespace RM_BBTS
                 case moveId.statClear: // Stat Clear
                     move = new StatClearMove();
 
-                    // Translated AND AN in constructor.
+                    // Translated and animated in constructor.
                     break;
 
                 case moveId.cure: // Cure
                     move = new CureMove();
                     
-                    // Translation in constructor.
+                    // Translation and animated in constructor.
                     break;
 
                 case moveId.risk: // Risk
@@ -922,8 +922,8 @@ namespace RM_BBTS
                     descKey = "mve_burnBoostUser_dsc";
                     break;
 
-                case moveId.paraBoostUser: // Electro Boost
-                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electro Boost>", 3, 60, 0.90F, 0.40F);
+                case moveId.paraBoostUser: // Electric Boost
+                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electric Boost>", 3, 60, 0.90F, 0.40F);
 
                     (move as StatusAttackMove).userParalyzed = true;
 
