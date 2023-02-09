@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using SimpleJSON;
-using System.ComponentModel.Design.Serialization;
 using LoLSDK;
 
 // Namespace.
@@ -16,26 +15,30 @@ namespace RM_BBTS
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        // TODO: hide question when in a tutorial.
         // The object of the question window.
         public GameObject questionObject;
 
         // The title text of the question window.
         public TMP_Text titleText;
 
-        // The amount of questions that have been asked to the player.
-        public int questionsAskedCount = 0;
+        // // The amount of questions that have been asked to the player.
+        // public int questionsUsedCount = 0;
 
         // The maximum amount of asked questions that will be saved when saving the game.
-        public const int QUESTIONS_ASKED_SAVE_MAX = 5;
+        // TODO: update number to match the total amount of rounds.
+        // public const int QUESTIONS_USED_SAVE_MAX = 15;
 
         // The list of asked questions (goes by question number).
         // This is to help prevent the randomizer from asking the same question multiple times.
-        [Header("A list of the asked questions by question number. This helps prevent the randomizer from asking a used question.")]
-        public List<int> questionsAsked = new List<int>();
+        [Header("A list of the used questions by question number. This helps prevent the randomizer from asking a used question.")]
+        private List<int> questionsUsed = new List<int>();
 
         // The amount of questions answered correctly.
-        public int questionsCorrectCount = 0;
+        // private int questionsCorrectCount = 0;
+
+        // This is a list of the questions results, which tracks if the user's answers were correct or incorrect.
+        // This list should match the length of the questions used list. As such, it includes responses to duplicate responses.
+        private List<bool> questionResults = new List<bool>();
 
         // Plays the audio for the question manager.
         public bool playAudio = true;
@@ -59,6 +62,18 @@ namespace RM_BBTS
 
         // If 'true', the response order is randomized.
         public bool randomResponseOrder = true;
+
+        // If set to 'true', the right answer is always shown when the question response is given.
+        public bool alwaysShowAnswer = false;
+
+        // If set to 'true', questions are redone if the user doesn't get them correct.
+        public bool redoQuestionIfWrong = true;
+
+        // The number of the past question. This is negative 1 by default.
+        private int priorQuestion = -1;
+
+        // Redoes the prior question.
+        private bool redoPriorQuestion = false;
 
         // The button text for the four responses.
         // Response 0
@@ -148,12 +163,41 @@ namespace RM_BBTS
 
         // The correct and incorrect string.
         // Correct
-        private string correctString = "Correct";
+        private string correctString = "[Correct]";
         private string correctKey = "kwd_correct";
 
         // Incorrect
-        private string incorrectString = "Incorrect";
+        private string incorrectString = "[Incorrect]";
         private string incorrectKey = "kwd_incorrect";
+
+        [Header("Evaluation/Battle Effects")]
+        // The object that's enabled/disabled to show the stat changes for the results.
+        public GameObject statChanges;
+
+        // Arrow Up and Arrow Down Rotations
+        private const float ARROW_UP_ROT = 90.0F;
+        private const float ARROW_DOWN_ROT = -90.0F;
+
+        // The health icon's arrow.
+        public Image healthArrow;
+        public const float HEALTH_CHANGE_PERCENT = 0.20F;
+
+        // The energy icon's arrow.
+        public Image energyArrow;
+        public const float ENERGY_CHANGE_PERCENT = 0.20F;
+
+        [Header("Evaluation/Battle Effects/Stat Mods")]
+        // The icons for attack, defense, and speed.
+        public Image battleStatIcon; // The image used for one of the three battle stats.
+        public Sprite attackIcon;
+        public Color attackIconColor = Color.white;
+        public Sprite defenseIcon;
+        public Color defenseIconColor = Color.white;
+        public Sprite speedIcon;
+        public Color speedIconColor = Color.white;
+
+        // The arrow image for the attack/defense/speed stat change.
+        public Image battleStatArrow;
 
         // Awake is called when the script instance is being loaded.
         private void Awake()
@@ -190,6 +234,151 @@ namespace RM_BBTS
         { 
             get { return currentQuestion.answerIndex; }
         }
+
+        // Returns the used questions.
+        public List<int> GetQuestionsUsed(bool removeRepeats)
+        {
+            // Checks if duplicate questions should be removed.
+            if(removeRepeats)
+            {
+                // Copies the list into a temp variable.
+                List<int> temp = new List<int>();
+
+                // Goes through each question used.
+                foreach(int q in questionsUsed)
+                {
+                    // Add the question number to the list if it hasn't been put in there already.
+                    if (!temp.Contains(q))
+                        temp.Add(q);
+                }
+
+                // Returns the list.
+                return temp;
+            }
+            else // Return the length of the list, which includes duplicates.
+            {
+                return questionsUsed;
+            }
+        }
+
+        // Gets the number of used questions.
+        public int GetQuestionsUsedCount(bool removeRepeats)
+        {
+            List<int> temp = GetQuestionsUsed(removeRepeats);
+            return temp.Count;
+        }
+
+        // Gets a list of the question results, which has 'true' for correct answers, and 'false' for incorrect answers.
+        public List<bool> GetQuestionResults(bool removeRepeats)
+        {
+            // Checks if duplicates should be removed.
+            if(removeRepeats)
+            {
+                // The temporary list of questions (will remove duplicates).
+                List<int> tempQues = new List<int>();
+
+                // The list of temporary results (will remove results).
+                List<bool> tempRes = new List<bool>();
+
+                // If the player answers the question directly, they won't be asked the same thing again.
+                // As such, this goes from the end of the list to the start.
+                // Goes through each question used.
+                for (int i = questionsUsed.Count - 1; i >= 0; i--)
+                {
+                    // Add the question number to the list if it hasn't been put in there already.
+                    if (!tempQues.Contains(questionsUsed[i]))
+                    {
+                        tempQues.Add(questionsUsed[i]);
+                        tempRes.Add(questionResults[i]);
+                    }
+                }
+
+                // The lists are backwards, so reverse them.
+                tempQues.Reverse();
+                tempRes.Reverse();
+
+                // Returns the temporary results.
+                return tempRes;
+            }
+            else // Return the results.
+            {
+                return questionResults;
+            }
+        }
+
+        // Gets the number of question results that were correct.
+        public int GetQuestionResultsCorrect(bool removeRepeats)
+        {
+            // The list of results.
+            List<bool> tempList = GetQuestionResults(removeRepeats);
+            
+            // The number of correct answers. 
+            int correctCount = 0;
+
+            // Goes through the temporary list to see how many responses were correct.
+            foreach (bool result in tempList)
+            {
+                // If a correct response was found, then add to the counter.
+                if(result)
+                    correctCount++;
+            }
+
+            // Returns the correct count.
+            return correctCount;
+        }
+
+        // Gets the number of question results that were incorrect.
+        public int GetQuestionResultsIncorrect(bool removeRepeats)
+        {
+            // The list of results.
+            List<bool> tempList = GetQuestionResults(removeRepeats);
+
+            // The number of incorrect answers. 
+            int incorrectCount = 0;
+
+            // Goes through the temporary list to see how many responses were correct.
+            foreach (bool result in tempList)
+            {
+                // If an incorrect response was found, then add to the counter.
+                if (!result)
+                    incorrectCount++;
+            }
+
+            // Returns the incorrect counter.
+            return incorrectCount;
+        }
+
+
+
+        // Replaces the questions used and results list with the provided used questions and results list.
+        // This copies the values, so it doesn't provide the list directly.
+        public void ReplaceQuestionsUsedList(List<int> newUsed, List<bool> newResults)
+        {
+            // If the numbers don't match, the replacement fails.
+            if (questionsUsed.Count != questionResults.Count)
+            {
+                Debug.LogError("The lists must be of the same length. Replacement failed.");
+                return;
+            }
+
+            // Copies the values form the questions used list.
+            questionsUsed.Clear();
+            questionsUsed = new List<int>(newUsed);
+
+            // Copies the values from the question results list.
+            questionResults.Clear();
+            questionResults = new List<bool>(newResults);
+        }
+
+        // Replaces the questions used and results list with the provided used questions and results arrays.
+        public void ReplaceQuestionsUsedList(int[] newUsed, bool[] newResults)
+        {
+            // Calls the other function, converting the arrays to lists.
+            ReplaceQuestionsUsedList(new List<int>(newUsed), new List<bool>(newResults));
+        }
+
+
+
 
         // Returns 'true' if a question is being asked.
         public bool QuestionIsRunning()
@@ -294,32 +483,77 @@ namespace RM_BBTS
             // Gets given the random queston generated.
             GameQuestion randQuestion;
 
+            // Gets set to 'true' when the random question has been found.
+            bool found = false;
+
             // Amount of attempts taken to generate a new question.
-            int attempts = 0;
+            // int attempts = 0;
 
             // Clears out the list if the question count has been reached.
             // This doesn't mean every question has been asked, but there are few to no new questions to ask.
-            if (questionsAsked.Count >= GameQuestions.QUESTION_COUNT)
-                questionsAsked.Clear();
+            // TODO: remove this.
+            if (questionsUsed.Count >= GameQuestions.QUESTION_COUNT)
+                questionsUsed.Clear();
 
-            do
+
+            // Old - Do Not Give Asked Question List
+            // do
+            // {
+            //     // Generates the random question.
+            //     randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+            // 
+            //     // Checks to see if it's a new question.
+            //     if(questionsAsked.Contains(randQuestion.number)) // Already got this question.
+            //     {
+            //         attempts++;
+            //     }
+            //     else // New 
+            //     {
+            //         // Breaks out of the loop.
+            //         break;
+            //     }
+            // 
+            // } while (attempts <= 3);
+
+            // Sets this to a new question by default since it caused complier issues.
+            // If this go correctly, this generated question shouldn't be used.
+            randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
+
+            // New - Makes sure to only get new questions.
+            if (redoQuestionIfWrong) // Redo prior question.
             {
-                // Generates the random question.
-                randQuestion = GameQuestions.Instance.GetRandomQuestion(randomResponseOrder);
-
-                // Checks to see if it's a new question.
-                if(questionsAsked.Contains(randQuestion.number)) // Already got this question.
+                // If the prior question should be redone, and there is a prior question set.
+                if(redoPriorQuestion && priorQuestion != -1)
                 {
-                    attempts++;
-                }
-                else // New 
-                {
-                    // Breaks out of the loop.
-                    break;
-                }
+                    // For some reason, simply saving hte current question again didn't work.
 
-            } while (attempts <= 3);
+                    // // If the current question number is equal to the prior question, just re-ask this question.
+                    // if(currentQuestion.number == priorQuestion)
+                    // {
+                    //     // Reuse the question.
+                    //     randQuestion = currentQuestion;
+                    //     found = true;
+                    // }
+                    // else // Try to find the question again.
+                    // {
+                    //     // Try to find the prior question.
+                    //     randQuestion = GameQuestions.Instance.GetQuestion(priorQuestion);
+                    //     
+                    //     // If the numbers match, that means the question was found, which would make this true.
+                    //     found = (randQuestion.number == currentQuestion.number);
+                    // }
 
+                    // Try to find the prior question.
+                    randQuestion = GameQuestions.Instance.GetQuestion(priorQuestion);
+
+                    // If the numbers match, that means the question was found, which would make this true.
+                    found = (randQuestion.number == currentQuestion.number);
+                }
+            }          
+
+            // Load up a new question if none have been found yet.
+            if(!found)
+                randQuestion = GameQuestions.Instance.GetRandomQuestion(questionsUsed, randomResponseOrder);
 
             // Loads the question.
             LoadQuestion(randQuestion);
@@ -366,9 +600,19 @@ namespace RM_BBTS
             responded = false;
             selectedResponse = -1;
 
-            // A question has been asked, so add to the counter, and to the list.
-            questionsAskedCount++;
-            questionsAsked.Add(currentQuestion.number);
+            // A question has been asked, so add to the list.
+            questionsUsed.Add(currentQuestion.number);
+
+            // TODO: implement this. You need to differentiate the asked questions list from the question count.
+            // Checks if the question has been asked before.
+            // if(questionsAsked.Contains(CurrentQuestion.number)) // Asked before.
+            // {
+            // 
+            // }
+            // else // Not asked before.
+            // {
+            //     
+            // }
 
             // Deselect all of the responses since a question is now being asked.
             DeselectAllResponses();
@@ -377,8 +621,22 @@ namespace RM_BBTS
             ResetTimer();
             pausedTimer = false;
 
+            // Hide the stat changes, and reset the arrows (to be safe).
+            statChanges.SetActive(false);
+            healthArrow.transform.rotation = Quaternion.identity;
+            healthArrow.color = unansweredColor;
+
+            energyArrow.transform.rotation = Quaternion.identity;
+            energyArrow.color = unansweredColor;
+
+            // Resets the icon and arrow.
+            battleStatIcon.sprite = null;
+            battleStatIcon.color = Color.white;
+            battleStatArrow.transform.rotation = Quaternion.identity;
+            battleStatArrow.color = unansweredColor;
+
             // Plays the bgm for the game question.
-            if(playAudio)
+            if (playAudio)
             {
                 // Plays the question BGM.
                 gameManager.overworld.PlayQuestionBgm();
@@ -509,21 +767,24 @@ namespace RM_BBTS
             // The question has been responded to.
             responded = true;
 
-            // Gets the correct response.
+            // Checks if the response is correct.
             bool correct = currentQuestion.CorrectAnswer(selectedResponse);
 
-            // Shows the evaluation text.
-            evaluationText.text = (correct) ? correctString : incorrectString;
+            // Shows the evaluation text, which says if the answer was correct, and provides a message response.
+            if(correct)
+                evaluationText.text = correctString + "! " + CurrentQuestion.correctAnswerResponse;
+            else
+                evaluationText.text = incorrectString + "! " + CurrentQuestion.incorrectAnswerResponse;
 
             // The maximum score addition to be made.
             int scorePlus = 0;
 
             // Checks if the user got the question right or not.
+            // SCORE
             if(correct)
             {
                 // Pause the timer, and increment the question correct variable.
                 pausedTimer = true;
-                questionsCorrectCount++;
 
                 // Adjust score plus.
                 scorePlus = Mathf.RoundToInt(maxScorePlus * (timer / reduceRewardTime));
@@ -543,6 +804,10 @@ namespace RM_BBTS
                     gameManager.overworld.PlayQuestionIncorrectSfx();
             }
 
+
+            // Add the result to the results list.
+            questionResults.Add(correct);
+
             // Reads out evaluation response.
             // If the LOLSDK is initialized.
             if (LOLSDK.Instance.IsInitialized)
@@ -551,40 +816,158 @@ namespace RM_BBTS
                 // Checks both keys at the same time. There'd be no point in speaking one without the other being available.
                 if (GameSettings.Instance.UseTextToSpeech && correctKey != string.Empty && incorrectKey != string.Empty)
                 {
-                    LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                    // Now reads out the message instead of saying correct/incorrect.
+                    if(currentQuestion.correctAnswerSpeakKey != "" && currentQuestion.incorrectAnswerSpeakKey != "")
+                    {
+                        // NEW - Now reads out the correct/incorrect message.
+                        LOLManager.Instance.textToSpeech.SpeakText((correct) ?
+                            currentQuestion.correctAnswerSpeakKey : currentQuestion.incorrectAnswerSpeakKey);
+                    }
+                    else
+                    {
+                        // OLD - Just says correct/incorrect
+                        LOLManager.Instance.textToSpeech.SpeakText((correct) ? correctKey : incorrectKey);
+                    }
                 }
             }
 
 
+            // If the answer should always be shown, highlight the correct and incorrect answers.
             {
                 // Makes an array for recoloring the bubbles.
                 Image[] responseButtonBubbles = new Image[] 
                 { response0Bubble, response1Bubble, response2Bubble, response3Bubble };
 
-                // Checks each button.
-                for(int i = 0; i < responseButtonBubbles.Length; i++)
+                // If the answer should always be shown.
+                if (alwaysShowAnswer)
                 {
-                    // Grabs the response button bubble.
-                    Image rbb = responseButtonBubbles[i];
+                    // Checks each button.
+                    for (int i = 0; i < responseButtonBubbles.Length; i++)
+                    {
+                        // Grabs the response button bubble.
+                        Image rbb = responseButtonBubbles[i];
 
-                    // Change the bubble colours.
-                    rbb.color = (currentQuestion.CorrectAnswer(i)) ? correctColor : incorrectColor;
+                        // Change the bubble colours.
+                        rbb.color = (currentQuestion.CorrectAnswer(i)) ? correctColor : incorrectColor;
+                    }
                 }
-            }            
+                else
+                {
+                    // Reset all the colours.
+                    foreach (Image rbb in responseButtonBubbles)
+                        rbb.color = unansweredColor;
 
-            // Add to the score, and display it.
-            // Add score plus to game score.
-            gameManager.score += scorePlus;
+                    // Only confirm/deny the answer the player provided.
+                    if(selectedResponse >= 0 && selectedResponse < responseButtonBubbles.Length)
+                    {
+                        // Grabs the bubble of the user's selected response.
+                        Image rbb = responseButtonBubbles[selectedResponse];
 
-            // If the score is now negative, set it to 0.
-            if (gameManager.score < 0)
-                gameManager.score = 0;
+                        // Sets the colour of the response.
+                        rbb.color = (currentQuestion.CorrectAnswer(selectedResponse)) ? correctColor : incorrectColor;
+                    }
 
-            // Updates the UI to display the new score.
-            gameManager.overworld.UpdateUI(); 
+                }
+                    
+            }
 
-            // Updates the score text.
-            scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
+            // Provide Reward/Punishment to the Player
+            {
+                // SCORE
+                // Add to the score, and display it.
+                // Add score plus to game score.
+                gameManager.score += scorePlus;
+
+                // If the score is now negative, set it to 0.
+                if (gameManager.score < 0)
+                    gameManager.score = 0;
+
+                // Updates the UI to display the new score.
+                gameManager.overworld.UpdateUI(); 
+
+                // Updates the score text.
+                scorePlusText.text = (scorePlus != 0) ? scorePlus.ToString("+#;-#;0") : "-";
+
+                // STAT CHANGES
+                // Grab the player object.
+                Player player = gameManager.player;
+                
+                // Sets whether the stat change will be positive or negative.
+                int change = (correct) ? 1 : -1;
+
+                // The battle stat, where 1 = attack, 2 = defense, and 3 = speed.
+                int battleStat = 0;
+
+                // The euler rotation of the arrows.
+                Vector3 arrowRot = new Vector3(0, 0, (correct) ? ARROW_UP_ROT : ARROW_DOWN_ROT);
+
+                // HEALTH
+                // Changes the player's health.
+                player.Health += player.MaxHealth * HEALTH_CHANGE_PERCENT * change;
+
+                // The player will always have at least 1 hit point.
+                if (player.Health <= 0)
+                    player.Health = 1;
+
+                // ENERGY
+                // Changes the player's energy.
+                player.Energy += player.MaxEnergy * ENERGY_CHANGE_PERCENT * change;
+
+                // Updates the UI for the player's health and energy.
+                gameManager.UpdatePlayerHealthUI();
+                gameManager.UpdatePlayerEnergyUI();
+
+                // BATTLE STAT CHANGE
+                battleStat = Random.Range(1, 4); // 1 = atk, 2 = def, 3 = spd
+
+                // Checks which stat is being changed.
+                switch(battleStat)
+                {
+                    default:
+                    case 1: // Attack
+                        player.AttackMod += 1 * change;
+                        battleStatIcon.sprite = attackIcon;
+                        battleStatIcon.color = attackIconColor;
+                        break;
+
+                    case 2: // Defense
+                        player.DefenseMod += 1 * change;
+                        battleStatIcon.sprite = defenseIcon;
+                        battleStatIcon.color = defenseIconColor;
+                        break;
+
+                    case 3: // Speed
+                        player.SpeedMod += 1 * change;
+                        battleStatIcon.sprite = speedIcon;
+                        battleStatIcon.color = speedIconColor;
+                        break;
+                }
+
+                // TODO: you'll need to change symbol colours.
+
+                // Changes the arrow colours, and rotates them.
+                Quaternion eulerQuat = Quaternion.Euler(arrowRot);
+                healthArrow.transform.rotation = eulerQuat;
+                healthArrow.color = (correct) ? correctColor : incorrectColor;
+
+                energyArrow.transform.rotation = eulerQuat;
+                energyArrow.color = (correct) ? correctColor : incorrectColor;
+
+                battleStatArrow.transform.rotation = eulerQuat;
+                battleStatArrow.color = (correct) ? correctColor : incorrectColor;
+            }
+            
+
+            // Saves this as the prior question now that it has been answered.
+            priorQuestion = currentQuestion.number;
+
+            // Sets this variable to see if the prior question should be redone or not.
+            redoPriorQuestion = !correct;
+
+            // Show the stat changes.
+            statChanges.SetActive(true);
+
+            // TODO: implement the stat changes.
 
             // Response locked in.
             confirmButton.interactable = false;
@@ -623,11 +1006,19 @@ namespace RM_BBTS
             gameManager.OnQuestionEnd();
         }
 
-        // Resets the amount of asked questions.
-        public void ResetAskedQuestionCount()
+        // Resets the question history.
+        public void ResetQuestionHistory()
         {
-            questionsAskedCount = 0;
-            questionsCorrectCount = 0;
+            // Clears out the questionsAsked list.
+            questionsUsed.Clear();
+
+            // Clears out the questions asked and question results count.
+            questionsUsed.Clear();
+            questionResults.Clear();
+
+            // Removes the prior question from the history, and says not to use it.
+            priorQuestion = -1;
+            redoPriorQuestion= false;
         }
 
         // Disables the question (prevents all interaction from the user).
@@ -645,7 +1036,8 @@ namespace RM_BBTS
         }
 
         // Enables the question (enables interaction from the user).
-        public void EnableQuestion()
+        // If 'read' is set to true, the question is read using text-to-speech, but only if it is enabled.
+        public void EnableQuestion(bool speakQuestion)
         {
             // Enable the responses (some may not be visible anyway).
             EnableAllResponseButtons();
@@ -667,6 +1059,13 @@ namespace RM_BBTS
                 // Unpause the timer if the question is running.
                 if (running)
                     pausedTimer = false;
+            }
+
+            // Reads out the question again.
+            if(GameSettings.Instance.UseTextToSpeech && speakQuestion)
+            {
+                // Reads out the current question again.
+                LOLManager.Instance.textToSpeech.SpeakText(currentQuestion.questionSpeakKey);
             }
         }
 

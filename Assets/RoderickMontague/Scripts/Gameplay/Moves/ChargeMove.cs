@@ -12,11 +12,13 @@ namespace RM_BBTS
 
         // Constructor for the charge move.
         public ChargeMove() : 
-            base(moveId.charge, "Charge", 1, 0, 1.0F, 0)
+            base(moveId.charge, "<Charge>", 1, 0, 1.0F, 0)
         {
 
-            description = "The user charges their energy by 40%.";
+            description = "<The user charges their energy by 40%.>";
             useAccuracy = false;
+
+            // No Animation
 
             // Loads in the translation for the run name and description.
             LoadTranslation("mve_charge_nme", "mve_charge_dsc");
@@ -55,7 +57,7 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey0()));
 
                     // Status animation.
-                    battle.PlayPlayerStatusAnimation();
+                    // battle.PlayPlayerStatusAnimation();
                 }
                 else // Opponent
                 {
@@ -64,8 +66,11 @@ namespace RM_BBTS
                                     BattleMessages.Instance.GetMoveChargeUsedSpeakKey1()));
 
                     // Status animation.
-                    battle.PlayOpponentStatusAnimation();
+                    // battle.PlayOpponentStatusAnimation();
                 }
+                
+                // Play the status animation.
+                PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
 
                 // Original
                 // float chargePlus = user.MaxEnergy * CHARGE_PERCENT;

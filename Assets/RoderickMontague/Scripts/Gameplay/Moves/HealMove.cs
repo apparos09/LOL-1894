@@ -50,7 +50,9 @@ namespace RM_BBTS
                 {
                     battle.UpdateOpponentUI();
                 }
-                   
+
+                
+
                 // TODO: overlaps with the button SFX.
                 // Play the move effect sfx.
                 // battle.PlayMoveEffectSfx();
@@ -60,12 +62,9 @@ namespace RM_BBTS
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
 
-                    // Plays the heal animation.
-                    if(user is Player) // Player
-                        battle.PlayPlayerHealAnimation();
-                    else // Opponent
-                        battle.PlayOpponentHealAnimation();
-
+                    // Play the heal animation.
+                    if (success)
+                        PlayAnimations(user, target, battle, moveEffect.heal, moveEffect.none);
                 }
                 else // The move fail message - entity was at full health.
                 {

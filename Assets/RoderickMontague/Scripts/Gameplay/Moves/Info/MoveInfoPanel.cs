@@ -11,6 +11,9 @@ namespace RM_BBTS
         // The id of the move being represented.
         private moveId id;
 
+        // The move that the information came from.
+        private Move move;
+
         // Move Title
         public TMPro.TMP_Text nameText;
 
@@ -53,6 +56,36 @@ namespace RM_BBTS
             // Description
             description.text = move.description;
 
+            // Save the move.
+            this.move = move;
+        }
+
+        // Clears out the move info.
+        public void ClearMoveInfo()
+        {
+            // Id
+            id = 0;
+
+            // Name
+            nameText.text = "-";
+
+            // Rank
+            rankText.text = "-";
+
+            // Power
+            powerText.text = "-";
+
+            // Accuracy
+            accuracyText.text = "-";
+
+            // Energy
+            energyText.text = "-";
+
+            // Description
+            description.text = "-";
+
+            // Empty out the object.
+            move = null;
         }
     }
 }

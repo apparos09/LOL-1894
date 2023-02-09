@@ -38,7 +38,7 @@ namespace RM_BBTS
         public List<Door> doors = new List<Door>();
 
         // The total amount of rooms in the game.
-        public const int ROOM_COUNT = 15;
+        public const int ROOM_COUNT = 12;
 
         // The boss door.
         public Door bossDoor = null;
@@ -47,7 +47,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 3;
+        public const int TREASURE_COUNT = 2;
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
@@ -106,13 +106,19 @@ namespace RM_BBTS
         // The game question manager.
         public GameQuestionManager gameQuestion;
 
-        // The increment for the round spacing for asking questions.
-        [Tooltip("The multiple used to determine what round to ask questions on.")]
-        public int questionRoundInc = 3;
+        // Asks questions if set to true.
+        public bool askQuestions = true;
 
-        // The next round that a question will be asked on.
-        [Tooltip("The next round the question will be asked on (roomsCompleted + 1). This is set to questionRoundInc when the overworld is initialized.")]
-        public int nextQuestionRound = 0;
+        // The wait time (in rounds) for automatically asking a question.
+        [Tooltip("The wait time (in rounds) to ask a question.")]
+        public int questionWaitTime = 3;
+
+        // Counts down to the next time a question will be asked.
+        [Tooltip("The countdown for asking the user a question.")]
+        public int questionCountdown = 0;
+
+        // Starts asking questions from this round onwards.
+        public int askQuestionsFromRound = 0;
 
         [Header("UI")]
         
@@ -265,7 +271,7 @@ namespace RM_BBTS
 
 
             // Prepares for when the question will be asked.
-            nextQuestionRound = questionRoundInc;
+            questionCountdown = questionWaitTime;
 
             // Updates the UI.
             UpdateUI();
@@ -344,8 +350,12 @@ namespace RM_BBTS
         {
             // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Disables the question if one is being asked.
-            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            // NOTE: you removed the activeSelf check to fix a problem.
+            if (gameQuestion.QuestionIsRunning())
+            {
                 gameQuestion.DisableQuestion();
+                gameQuestion.gameObject.SetActive(false);
+            }
 
         }
 
@@ -354,10 +364,12 @@ namespace RM_BBTS
         {
             // I don't think a tutorial is run when a question is shown, but just to be sure, this handles it.
             // Enables the question if one is being asked.
-            if (gameQuestion.questionObject.activeSelf && gameQuestion.QuestionIsRunning())
+            // NOTE: you removed the activeSelf check to fix a re-activation problem.
+            if (gameQuestion.QuestionIsRunning())
             {
                 // Enable the question.
-                gameQuestion.EnableQuestion();
+                gameQuestion.EnableQuestion(true);
+                gameQuestion.gameObject.SetActive(true);
 
                 // Makes sure that the mouse touch input is still off since there's a question.
                 gameManager.mouseTouchInput.gameObject.SetActive(false);
@@ -560,6 +572,14 @@ namespace RM_BBTS
 
         }
 
+
+        // Asks the user a random question.
+        public void AskQuestion()
+        {
+            // Asks the question.
+            gameQuestion.AskRandomQuestion();
+        }
+
         // Updates the UI for the overworld.
         public void UpdateUI()
         {
@@ -626,7 +646,7 @@ namespace RM_BBTS
         }
 
         // Called when returning to the overworld.
-        public void OnOverworldReturn()
+        public void OnOverworldReturn(bool battleWon)
         {
             // Currently in the overworld.
             gameManager.SetStateToOverworld();
@@ -658,13 +678,51 @@ namespace RM_BBTS
                 }
             }
 
-            // Asking a question of the question round number has been reached or surpassed.
-            if(gameManager.GetCurrentRoomNumber() >= nextQuestionRound)
+            // If set to 'true', questions are asked.
+            if(askQuestions)
             {
-                // Ask a random question, and increase the next round counter.
-                gameQuestion.AskRandomQuestion();
-                nextQuestionRound += questionRoundInc;
+                // If the questions should now start being asked.
+                if(gameManager.GetRoomsCompleted() >= askQuestionsFromRound)
+                {
+                    // Subtracts from the countdown if a battle was completed.
+                    // NOTE: this won't be asked on the first turn since this function isn't called until a battle is completed.
+                    // This will show up on every following turn though.ns.
+                    if (battleWon)
+                    {
+                        questionCountdown--;
+
+                        // If the countdown has reached (or fallen below) 0, ask a question.
+                        if (questionCountdown <= 0)
+                        {
+                            AskQuestion();
+                            questionCountdown = questionWaitTime;
+
+                            // Triggers the tutorial for asking questions.
+                            if (GameSettings.Instance.UseTutorial)
+                            {
+                                // If the phase tutorial hasn't been loaded yet.
+                                if (!gameManager.tutorial.clearedQuestion && !gameManager.tutorial.TextBoxIsVisible())
+                                {
+                                    // Load the phase tutorial.
+                                    gameManager.tutorial.LoadQuestionTutorial();
+                                }
+                            }
+
+                            // If a tutorial is running, disalbe the question for now.
+                            if (gameManager.tutorial.TextBoxIsVisible())
+                            {
+                                gameQuestion.DisableQuestion();
+                                gameQuestion.gameObject.SetActive(false);
+
+                                // Re-reads the current page so that the tutorial TTS dialogue doesn't override it.
+                                gameManager.tutorial.SpeakCurrentPage();
+                            }
+                        }
+                    }
+                }
+
             }
+            
 
             // Update the UI for the overworld.
             UpdateUI();
@@ -678,6 +736,9 @@ namespace RM_BBTS
         {
             // Evolves the entities.
             int phase = gameManager.GetGamePhase();
+
+            // Gets set to 'true' when the phase changes.
+            bool phaseChanged = false;
 
             // Time to level up enemies if 'true'.
             // If no rooms have been completed, then nothing happens.
@@ -711,6 +772,9 @@ namespace RM_BBTS
             // If in the end phase, and the evolutions have not been run a second time.
             if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
             {
+                // The phase is changing.
+                phaseChanged = true;
+
                 // Goes through each door.
                 foreach (Door door in doors)
                 {
@@ -757,6 +821,17 @@ namespace RM_BBTS
                     default: // White
                         background.color = Color.white;
                         break;
+                }
+            }
+
+            // Triggers the tutorial.
+            if(GameSettings.Instance.UseTutorial && phaseChanged)
+            {
+                // If the phase tutorial hasn't been loaded yet.
+                if(!gameManager.tutorial.clearedPhase && !gameManager.tutorial.TextBoxIsVisible())
+                {
+                    // Load the phase tutorial.
+                    gameManager.tutorial.LoadPhaseTutorial();
                 }
             }
         }

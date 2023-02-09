@@ -37,6 +37,9 @@ namespace RM_BBTS
         // Called when a battle turn is happening.
         public override void OnBattleTurn()
         {
+            // Calls the parent's battle turn function.
+            base.OnBattleTurn();
+
             // Move not selected yet.
             if (selectedMove == null)
                 SelectMove();

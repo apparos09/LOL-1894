@@ -36,6 +36,8 @@ namespace RM_BBTS
             // Performs the move.
             bool success = base.Perform(user, target, battle);
 
+            // NOTE: because of the way this function is set up, this doesn't re-call the PlayAnimations() function.
+
             // Attack was success.
             if(success)
             {
@@ -53,6 +55,8 @@ namespace RM_BBTS
                     battle.UpdateOpponentUI();
                     battle.PlayOpponentHealAnimation();
                 }
+
+                
             }
 
             return success;

@@ -34,6 +34,9 @@ namespace RM_BBTS
         // The questions correct text.
         public TMP_Text questionsCorrectText;
 
+        // The questions asked (no repeats) text.
+        public TMP_Text questionsAsked;
+
         // The text for the final level.
         public TMP_Text finalLevelText;
 
@@ -78,17 +81,19 @@ namespace RM_BBTS
             JSONNode defs = SharedState.LanguageDefs;
 
             // Labels for translation.
-            string titleLabel = "Results";
-            string scoreLabel = "Final Score";
-            string roomsClearedLabel = "Rooms Cleared";
-            string totalTimeLabel = "Total Time";
-            string totalTurnsLabel = "Total Turns";
-            string questionsCorrectLabel = "Questions Correct";
-            string finalLevelLabel = "Final Level";
-            string finalMovesLabel = "Final Moves";
+            string titleLabel = "<Results>";
+            string scoreLabel = "<Final Score>";
+            string roomsClearedLabel = "<Rooms Cleared>";
+            string totalTimeLabel = "<Total Time>";
+            string totalTurnsLabel = "<Total Turns>";
+            string questionsCorrectLabel = "<Questions Correct>";
+            string questionsAskedLabel = "<Questions Asked>";
+            string noRepeatsLabel = "<No Repeats>";
+            string finalLevelLabel = "<Final Level>";
+            string finalMovesLabel = "<Final Moves>";
 
             // The main menu title text.
-            string finishLabel = "Finish";
+            string finishLabel = "<Finish>";
 
             // The speak key for the title.
             string titleSpeakKey = "";
@@ -104,6 +109,8 @@ namespace RM_BBTS
                 totalTimeLabel = defs["kwd_totalTime"];
                 totalTurnsLabel = defs["kwd_totalTurns"];
                 questionsCorrectLabel = defs["kwd_questionsCorrect"];
+                questionsAskedLabel = defs["kwd_questionsAsked"];
+                noRepeatsLabel = defs["kwd_noRepeats"];
                 finalLevelLabel = defs["kwd_finalLevel"];
                 finalMovesLabel = defs["kwd_finalMoves"];
 
@@ -150,7 +157,15 @@ namespace RM_BBTS
 
                 // Questions Correct Text
                 questionsCorrectText.text = questionsCorrectLabel + ": " + 
-                    rd.totalQuestionsCorrect.ToString() + "/" + rd.totalQuestionsAsked.ToString();
+                    rd.questionsCorrect.ToString() + "/" + rd.questionsUsed.ToString();
+
+                // Questions Correct (No Repeats) Text
+                // questionsAsked.text = questionsCorrectLabel + " (" + noRepeatsLabel + "): " +
+                //     rd.questionsCorrectNoRepeats.ToString() + "/" + rd.questionsUsedNoRepeats.ToString();
+
+                // Questions Asked (No Repeats) Text
+                questionsAsked.text = questionsAskedLabel + " (" + noRepeatsLabel + "): " + 
+                    rd.questionsUsedNoRepeats.ToString();
 
                 // Final player level
                 finalLevelText.text = finalLevelLabel + ": " + rd.finalLevel.ToString();
@@ -202,15 +217,16 @@ namespace RM_BBTS
             }
             else
             {
-                Debug.LogError("SDK NOT INITIALIZED");
+                // Logs the error.
+                Debug.LogError("SDK NOT INITIALIZED. RETURNING TO MAIN MENU.");
 
                 // Return to the main menu scene.
-                // ToMainMenu();
+                ToMainMenu();
             }
 
-            // Return to the main scene no matter what.
-            // If the SDK has been initialized, the LOL website will move onto a review screen.
-            ToMainMenu();
+            // Do not return to the main menu scene if running through the LOL platform.
+            // This is because you can't have the game get repeated in the same session.
+            // ToMainMenu();
         }
     }
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: <Name>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f4bff042595e34da736152d9910846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   nameText: {fileID: 5478968730287243814}
   rankText: {fileID: 8268435785249667926}
   powerText: {fileID: 7227188281552574322}
@@ -260,7 +261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Desc Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas
+  m_text: <Desc> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas
     porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus
     malesuada libero (...).
   m_isRightToLeft: 0

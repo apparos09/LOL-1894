@@ -10,11 +10,15 @@ namespace RM_BBTS
     {
         // The stat clear move.
         public StatClearMove()
-            : base(moveId.statClear, "Stat Clear", 2, 0.0F, 100.0F, 0.35F)
+            : base(moveId.statClear, "<Stat Clear>", 2, 0.0F, 100.0F, 0.35F)
         {
             useAccuracy = false;
 
-            description = "The user resets all stat changes for themselves and their opponent.";
+            description = "<The user resets all stat changes for themselves and their opponent.>";
+
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.971F, 0.897F, 0.982F);
 
             LoadTranslation("mve_statClear_nme", "mve_statClear_dsc");
         }
@@ -38,6 +42,12 @@ namespace RM_BBTS
                     return false;
 
                 }
+                else if(!TargetIsVulnerable(target))
+                {
+                    // Note that the move won't effect the user or the opponent if one can't be hit.
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }
 
                 // There are stat changes to be reset.
                 if (user.HasStatModifiers() || target.HasStatModifiers())
@@ -59,16 +69,11 @@ namespace RM_BBTS
                 if (user is Player) // Player
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
+                }
 
-                    if(success) // Player Animation
-                        battle.PlayPlayerStatusAnimation();
-                }
-                else // Opponent
-                {
-                    if(success) // Opponent Animation
-                        battle.PlayOpponentStatusAnimation();
-                }
-                    
+                if (success) // Play the status animations for both.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.status);
+
             }
             else // Not usable.
             {

@@ -9,15 +9,19 @@ namespace RM_BBTS
     {
         // Heals the user.
         public CureMove() :
-            base(moveId.cure, "Cure", 2, 0.0F, 100.0F, 0.1F)
+            base(moveId.cure, "<Cure>", 2, 0.0F, 100.0F, 0.1F)
         {
             // Heal moves don't have power or accuracy.
 
             // Name and Desc
-            name = "Cure";
+            name = "<Cure>";
 
-            description = "The user removes all their status ailments.";
-    
+            description = "<The user removes all their status ailments.>";
+
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.897F, 0.982F, 0.974F);
+
             LoadTranslation("mve_cure_nme", "mve_cure_dsc");
         }
 
@@ -57,15 +61,18 @@ namespace RM_BBTS
                     // Success page.
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
 
-                    // Checks what status animation to play.
-                    if (user is Player) // Player
-                    {
-                        battle.PlayPlayerStatusAnimation();
-                    }
-                    else // Opponent
-                    {
-                        battle.PlayOpponentStatusAnimation();
-                    }
+                    // // Checks what status animation to play.
+                    // if (user is Player) // Player
+                    // {
+                    //     battle.PlayPlayerStatusAnimation();
+                    // }
+                    // else // Opponent
+                    // {
+                    //     battle.PlayOpponentStatusAnimation();
+                    // }
+                    
+                    // Play the status animation for the user.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
 
                     return true;
                 } 

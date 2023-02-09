@@ -992,18 +992,15 @@ MonoBehaviour:
     clearedFirstBattleDeath: 0
     clearedOverworld: 0
     clearedTreasure: 0
+    clearedQuestion: 0
+    clearedPhase: 0
     clearedBoss: 0
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
-    nextQuestionRound: 0
-    questionsAskedCount: 0
-    questionsCorrectCount: 0
-    questionsAsked0: -1
-    questionsAsked1: -1
-    questionsAsked2: -1
-    questionsAsked3: -1
-    questionsAsked4: -1
+    questionCountdown: 0
+    questionsUsed: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    questionResults: 000000000000000000000000
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0
@@ -1377,18 +1374,15 @@ MonoBehaviour:
     clearedFirstBattleDeath: 0
     clearedOverworld: 0
     clearedTreasure: 0
+    clearedQuestion: 0
+    clearedPhase: 0
     clearedBoss: 0
     clearedGameOver: 0
     score: 0
     roomsCompleted: 0
-    nextQuestionRound: 0
-    questionsAskedCount: 0
-    questionsCorrectCount: 0
-    questionsAsked0: -1
-    questionsAsked1: -1
-    questionsAsked2: -1
-    questionsAsked3: -1
-    questionsAsked4: -1
+    questionCountdown: 0
+    questionsUsed: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    questionResults: 000000000000000000000000
     evolveWaves: 0
     gameTime: 0
     turnsPassed: 0

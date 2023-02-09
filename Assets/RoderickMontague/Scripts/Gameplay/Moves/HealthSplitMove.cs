@@ -10,9 +10,13 @@ namespace RM_BBTS
     {
         // The stat change move.
         public HealthSplitMove()
-            : base(moveId.healthSplit, "Health Split", 1, 0, 1.0F, 0.2F)
+            : base(moveId.healthSplit, "<Health Split>", 1, 0, 1.0F, 0.2F)
         {
-            description = "The user and the target add together their proportional health, then split said health evenly between themselves.";
+            description = "<The user and the target add together their proportional health, then split said health evenly between themselves.>";
+
+            // Animation
+            animation = moveAnim.colorWave1;
+            animationColor = new Color(0.98F, 0.978F, 0.687F);
 
             // Loads the translation for the health.
             LoadTranslation("mve_healthSplit_nme", "mve_healthSplit_dsc");
@@ -36,6 +40,12 @@ namespace RM_BBTS
                     InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
                     return false;
 
+                }
+                // Checks if the target can be hit.
+                else if(!TargetIsVulnerable(target))
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
                 }
 
                 // Calculates the percentages.
@@ -69,12 +79,10 @@ namespace RM_BBTS
                 if (user is Player)
                     battle.gameManager.UpdatePlayerEnergyUI();
 
-                // Since this move effects both sides, the animation plays on both the player and the opponent.
-                if(success)
-                {
-                    battle.PlayPlayerStatusAnimation();
-                    battle.PlayOpponentStatusAnimation();
-                }
+
+                // Play status animations for both.
+                if (success) 
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.status);
             }
             else // Not usable.
             {

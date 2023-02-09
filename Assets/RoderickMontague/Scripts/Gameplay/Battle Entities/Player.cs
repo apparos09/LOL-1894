@@ -14,18 +14,21 @@ namespace RM_BBTS
         private const bool USE_DEBUG_STATS = false;
 
         // The base stats for the player. (30)
-        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 30;
-        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 30;
+        private float baseMaxHealth = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseAttack = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseDefense = (USE_DEBUG_STATS) ? 999 : 50;
+        private float baseSpeed = (USE_DEBUG_STATS) ? 999 : 50;
         private float baseMaxEnergy = 100;
 
+        // Level Up Rate
+        public const float LEVEL_UP_RATE = 1.05F;
+
         // Restoration percents.
-        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.50F;
-        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.50F;
+        public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.30F;
+        public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.30F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
-        public const float PHASE_BONUS_STAT_TOTAL = 120.0F;
+        public const float PHASE_BONUS_STAT_TOTAL = 100.0F;
 
         // Setting the player's stats.
         protected new void Awake()
@@ -35,7 +38,8 @@ namespace RM_BBTS
             preEvoId = 0;
             evoId = 0;
 
-            displayName = "Player";
+            // displayName = "<Player>";
+            displayName = "<Battle Bot>";
             displayNameSpeakKey = "bey_player_nme";
             level = 1;
 
@@ -53,7 +57,7 @@ namespace RM_BBTS
             statSpecial = specialty.none;
 
             // The player levels up faster than the enemies.
-            levelRate = 1.05F;
+            levelRate = LEVEL_UP_RATE;
 
             // NOTE: the player doesn't use the battle entity sprite, so nothing is set.
 
@@ -81,10 +85,16 @@ namespace RM_BBTS
             // // Move3 = null;
             // Move3 = MoveList.Instance.GenerateMove(moveId.torch);
 
-            // // ACTUAL
+            // // TEST
+            // Move0 = MoveList.Instance.GenerateMove(moveId.burnBoostUser);
+            // Move1 = MoveList.Instance.GenerateMove(moveId.paraBoostUser);
+            // Move2 = MoveList.Instance.GenerateMove(moveId.shield2);
+            // Move3 = MoveList.Instance.GenerateMove(moveId.paraBoostTarget);
+
+            // ACTUAL
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);
             Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
-            Move2 = MoveList.Instance.GenerateMove(moveId.heal);
+            Move2 = MoveList.Instance.GenerateMove(moveId.shield1);
             Move3 = null;
 
             // sprite = data.sprite;
@@ -173,6 +183,13 @@ namespace RM_BBTS
         {
             selectedMove = MoveList.Instance.RunMove;
         }
+
+        // // Called when a battle turn is happening.
+        // public override void OnBattleTurn()
+        // {
+        //     // Calls the parent's battle turn function.
+        //     base.OnBattleTurn();
+        // }
 
         // Update is called once per frame
         protected new void Update()

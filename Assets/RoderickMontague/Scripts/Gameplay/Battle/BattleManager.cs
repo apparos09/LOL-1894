@@ -33,8 +33,10 @@ namespace RM_BBTS
         // The prompt for asking the player about the treasure.
         public GameObject treasurePrompt;
 
-        // The panel for learning a new move.
+        // The panel for learning a new move, and the move to be offered.
         public LearnMove learnMovePanel;
+        public MultipleMoveOffer multiMoveOfferPanel;
+        private Move moveOffer;
 
         // Auto save the game when exiting the battle scene.
         public bool autoSaveOnExit = false;
@@ -44,8 +46,9 @@ namespace RM_BBTS
         // The player.
         public Player player;
 
-        // Values used to calculate score.
-        private int turnsTaken = 0;  // The amount of turns the battle took.    
+        // The amount of turns the battle took, which is used to help calculate score.
+        // This is about the amount of full turn rotations, not individual moves made.
+        private int turnsTaken = 0;  
 
         // The Move class handles the calculations for damage taken.
         public float playerDamageTaken = 0; // The amount of damage the player took.
@@ -82,10 +85,10 @@ namespace RM_BBTS
         public const float BURN_DAMAGE = 0.0625F;
 
         // The chance to skip a turn if paralyzed.
-        public const float PARALAYSIS_SKIP_CHANCE = 0.4F;
+        public const float PARALYSIS_SKIP_CHANCE = 0.2F;
 
         // The chance of learning a new move.
-        private float NEW_MOVE_CHANCE = 0.80F;
+        private float NEW_MOVE_CHANCE = 1.00F; // 0.80
 
         // The chance of the randomly learned move being a random rank.
         private float RANDOM_RANK_MOVE_CHANCE = 0.05F;
@@ -238,6 +241,12 @@ namespace RM_BBTS
         // The opponent's animator.
         public Animator opponentAnimator;
 
+        // If set to 'true', the move animations are played.
+        public const bool PLAY_MOVE_ANIMATIONS = true;
+
+        // The animation manager for the moves.
+        public MoveAnimationManager moveAnimation;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -348,7 +357,8 @@ namespace RM_BBTS
 
             // Reset the stat modifiers and statuses before the battle starts.
             player.selectedMove = null;
-            player.ResetStatModifiers();
+            player.vulnerable = true; // The player can be damaged.
+            // player.ResetStatModifiers(); // This is no longer done since questions can apply them.
             player.ResetStatuses();
 
             // Checks to see what type of entity is being faced.
@@ -379,6 +389,9 @@ namespace RM_BBTS
                 // SPRITE
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
+
+                // The opponent can be damaged.
+                opponent.vulnerable = true;
 
                 // Resets the stat modifiers and statuses.
                 opponent.ResetStatModifiers();
@@ -514,7 +527,8 @@ namespace RM_BBTS
             // No moves have been performed.
             order = 0;
 
-            // No move has neen learned for this battle.
+            // No move has been learned for this battle yet, so set moveOffer to null, and learnedMove to false.
+            moveOffer = null;
             learnedMove = false;
 
             // The battle has been initialized.
@@ -802,6 +816,28 @@ namespace RM_BBTS
             }
         }
 
+        // Generates a random float in the 0-1 range.
+        public static float GenerateRandomFloat01()
+        {
+            // I'm doing it this way to try and improve the randomizer.
+            // Originally it just randomized a float from 0.0 to 1.0, which may have been weighted poorly.
+
+            // Generates a random value of [0, 100), which gives a value from 0 to 99.
+            float value = Random.Range(0, 100);
+
+            // Adds a float, which has the potential to increase the value to 100.0.
+            value += Random.Range(0.0F, 1.0F);
+
+            // Divides the value by 100 so that it's in a [0.0, 1.0] scale.
+            value /= 100.0F;
+
+            // Clamping the value to be sure nothing screwed up.
+            value = Mathf.Clamp01(value);
+
+            // Returns the result.
+            return value;
+        }
+
         // Called to perform the player's move.
         private void PerformPlayerMove()
         {
@@ -923,7 +959,7 @@ namespace RM_BBTS
                 if(player.paralyzed && player.selectedMove.Id != moveId.run && player.selectedMove.Id != moveId.charge)
                 {
                     // If turn should be skipped.
-                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                    turnSkip = GenerateRandomFloat01() <= PARALYSIS_SKIP_CHANCE;
                 }
                 else
                 {
@@ -958,7 +994,7 @@ namespace RM_BBTS
                 if (opponent.paralyzed)
                 {
                     // If turn should be skipped.
-                    turnSkip = Random.Range(0.0F, 1.0F) <= PARALAYSIS_SKIP_CHANCE;
+                    turnSkip = GenerateRandomFloat01() <= PARALYSIS_SKIP_CHANCE;
                 }
                 else
                 {
@@ -1143,7 +1179,7 @@ namespace RM_BBTS
             // Returns to the overworld if the run was successful.
             if (success)
             {
-                ToOverworld();
+                ToOverworld(false);
             }
             else
             {
@@ -1279,7 +1315,7 @@ namespace RM_BBTS
             }
 
             // Go to the overworld.
-            ToOverworld();
+            ToOverworld(true);
         }
 
         // Called when the player has lost the battle.
@@ -1287,7 +1323,7 @@ namespace RM_BBTS
         {
             textBox.OnTextBoxFinishedRemoveCallback(OnPlayerBattleLost);
             gameManager.OnGameOver();
-            ToOverworld();
+            ToOverworld(false);
         }
 
         // Call this function to open the treasure.
@@ -1312,14 +1348,14 @@ namespace RM_BBTS
                 
         }
 
-        // Call this function to leave the treasure.
+        // Call this function to leave the treasure (the treasure was not opened).
         public void LeaveTreasure()
         {
             // Hide prompt.
             treasurePrompt.gameObject.SetActive(false);
 
             // Return to the overworld.
-            ToOverworld();
+            ToOverworld(false);
         }
 
         // Called when potentially learning a new move.
@@ -1340,16 +1376,12 @@ namespace RM_BBTS
             // textBox.Close();
             textBox.Hide();
 
-            // TODO: implement new move learning.
             // The phase.
             int phase = gameManager.GetGamePhase();
 
             // Runs a randomizer to see if a move of a random rank will be chosen.
             // The random rank being chosen.
-            int randRank = (Random.Range(0.0F, 1.0F) <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
-
-            // The new move.
-            Move newMove;
+            int randRank = (GenerateRandomFloat01() <= RANDOM_RANK_MOVE_CHANCE) ? -1 : phase;
 
             // Becomes 'true' if the move was found.
             bool moveFound = false;
@@ -1357,49 +1389,53 @@ namespace RM_BBTS
             // The attempts to get a new move.
             int attempts = 0;
 
-            do
+            // If the move offer has not been generated yet, generate the new move.
+            if (moveOffer == null)
             {
-                // Checks the phase.
-                switch (randRank)
+                do
                 {
-                    case 1: // beginning - 1
-                        newMove = MoveList.Instance.GetRandomRank1Move();
-                        break;
-                    case 2: // middle - 2
-                        newMove = MoveList.Instance.GetRandomRank2Move();
-                        break;
-                    case 3: // end - 3
-                        newMove = MoveList.Instance.GetRandomRank3Move();
-                        break;
-                    default: // random
-                        newMove = MoveList.Instance.GetRandomMove();
-                        break;
-                }
+                    // Checks the phase.
+                    switch (randRank)
+                    {
+                        case 1: // beginning - 1
+                            moveOffer = MoveList.Instance.GetRandomRank1Move();
+                            break;
+                        case 2: // middle - 2
+                            moveOffer = MoveList.Instance.GetRandomRank2Move();
+                            break;
+                        case 3: // end - 3
+                            moveOffer = MoveList.Instance.GetRandomRank3Move();
+                            break;
+                        default: // random
+                            moveOffer = MoveList.Instance.GetRandomMove();
+                            break;
+                    }
 
-                // Checks if the player has the move already.
-                if(player.HasMove(newMove)) // Move is not valid.
-                {
-                    // Pick from all moves.
-                    randRank = 0;
+                    // Checks if the player has the move already.
+                    if (player.HasMove(moveOffer)) // Move is not valid.
+                    {
+                        // Pick from all moves.
+                        randRank = 0;
 
-                    // Move has not been found.
-                    moveFound = false;
-                }
-                else // Move is valid.
-                {
-                    moveFound = true;
-                }
+                        // Move has not been found.
+                        moveFound = false;
+                    }
+                    else // Move is valid.
+                    {
+                        moveFound = true;
+                    }
 
-                // Increases the amount of attempts made.
-                attempts++;
+                    // Increases the amount of attempts made.
+                    attempts++;
 
-                // Max amount of attempts were made, so just stick with whatever move the game gave.
-                if (attempts >= 5)
-                    moveFound = true;
+                    // Max amount of attempts were made, so just stick with whatever move the game gave.
+                    if (attempts >= 5)
+                        moveFound = true;
 
-            } while (!moveFound);
+                } while (!moveFound);
+            }
 
-           
+
             // If the player has less than 4 moves, automatically learn the move.
             if (player.GetMoveCount() < 4)
             {
@@ -1408,7 +1444,7 @@ namespace RM_BBTS
                 {
                     if (player.moves[i] == null)
                     {
-                        player.moves[i] = newMove;
+                        player.moves[i] = moveOffer;
                         break;
                     }
                 }
@@ -1424,7 +1460,7 @@ namespace RM_BBTS
 
                 // Inserts a new page.
                 textBox.InsertAfterCurrentPage(new Page(
-                    BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name),
+                    BattleMessages.Instance.GetLearnMoveYesMessage(moveOffer.Name),
                     BattleMessages.Instance.GetLearnMoveYesSpeakKey()));
 
                 // NOT NEEDED.
@@ -1442,18 +1478,29 @@ namespace RM_BBTS
                 textBox.Hide(); // This already gets called in the learn move panel OnEnable(). (TODO: remove?)
 
                 // Update the information.
-                learnMovePanel.newMove = newMove;
+                learnMovePanel.newMove = moveOffer;
                 learnMovePanel.LoadMoveInformation(); // Happens on enable (TODO: remove?)
 
                 // Turn on the move panel, which also updates the move list.
                 learnMovePanel.Activate(); // Turns on the object.
+            }
 
-                
-            }            
+            // Clear this out for the next move offer.
+            moveOffer = null;
+        }
+
+        // Called when being offered multiple moves.
+        public void OnMultipleMovesOffered()
+        {
+            // Hide the textbox so that it doesn't get in the way of the multi move offer pnale.
+            textBox.Hide();
+
+            // Activates the object - functions are called in OnEnable().
+            multiMoveOfferPanel.Activate();
         }
 
         // Goes to the overworld.
-        public void ToOverworld()
+        public void ToOverworld(bool battleWon)
         {
             // Clear out the textbox.
             if (textBox.IsVisible())
@@ -1472,6 +1519,7 @@ namespace RM_BBTS
             // Remove stat changes and status effects
             // This already happens in the initialization phase, but it happens here just to be sure. 
             // TODO: maybe take this out?
+            player.vulnerable = true;
             player.ResetStatModifiers();
             player.ResetStatuses();
 
@@ -1480,6 +1528,7 @@ namespace RM_BBTS
 
             // Remove selected move.
             opponent.selectedMove = null;
+            opponent.vulnerable = true;
 
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
@@ -1488,6 +1537,9 @@ namespace RM_BBTS
             // Stops the jingle from playing before leaving the battle.
             // This is in case the jingle is still playing when the player goes back to the overworld.
             gameManager.audioManager.StopJingle();
+
+            // Nullifies the move offer for the next round.
+            moveOffer = null;
 
             // Prepare for next battle.
             gotCritical = false;
@@ -1512,9 +1564,9 @@ namespace RM_BBTS
 
             // Checks if transitions are being used to know the right function to call.
             if (gameManager.useTransitions)
-                gameManager.EnterOverworldWithTransition();
+                gameManager.EnterOverworldWithTransition(battleWon);
             else
-                gameManager.EnterOverworld();
+                gameManager.EnterOverworld(battleWon);
         }
 
         // Updates all UI elements.
@@ -2147,7 +2199,7 @@ namespace RM_BBTS
                             }
 
                             // Checks to see if a new move should be learned.
-                            bool learningMove = (Random.Range(0.0F, 1.0F) <= NEW_MOVE_CHANCE || opponent is Treasure);
+                            bool learningMove = (GenerateRandomFloat01() <= NEW_MOVE_CHANCE || opponent is Treasure);
 
                             // If this is the tutorial, and it's the first room cleared, always give the player a new move.
                             if(learningMove == false)
@@ -2162,21 +2214,46 @@ namespace RM_BBTS
                                 learningMove = false;
                             
 
+                            
                             // Checks to see if the player will be learning a new move.
                             // If the opponet was a treasure box the player will always get the chance to learn a new move.
                             if (learningMove)
                             {
-                                Page newMovePage = new Page(
-                                    BattleMessages.Instance.GetLearnMoveMessage(),
-                                    BattleMessages.Instance.GetLearnMoveSpeakKey()
-                                    );
+                                // Checks if the opponent was a treasure or not.
+                                // If it was, the player can learn from multiple moves.
+                                if(opponent is Treasure) // Offer multiple moves.
+                                {
+                                    // Generates the page.
+                                    Page multiMovePage = new Page(
+                                        BattleMessages.Instance.GetMultipleMoveOfferMessage(),
+                                        BattleMessages.Instance.GetMultipleMoveOfferSpeakKey()
+                                        );
 
-                                newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
-                                textBox.pages.Add(newMovePage);
+                                    // Add the callback, and put the page in the list.
+                                    multiMovePage.OnPageClosedAddCallback(OnMultipleMovesOffered);
+                                    textBox.pages.Add(multiMovePage);
 
-                                // Needed for the learn move panel to skip through.
-                                // This page is active when learning the move.
-                                textBox.pages.Add(new Page("..."));
+                                    // Needed for the learn move panel to skip through.
+                                    // This page is active when learning the move.
+                                    textBox.pages.Add(new Page("..."));
+                                }
+                                else // Only offer one move.
+                                {
+                                    // Generates the page.
+                                    Page newMovePage = new Page(
+                                        BattleMessages.Instance.GetLearnMoveMessage(),
+                                        BattleMessages.Instance.GetLearnMoveSpeakKey()
+                                        );
+                                    
+                                    // Add the callback, and put the page in the list.
+                                    newMovePage.OnPageClosedAddCallback(OnLearningNewMove);
+                                    textBox.pages.Add(newMovePage);
+                                    
+                                    // Needed for the learn move panel to skip through.
+                                    // This page is active when learning the move.
+                                    textBox.pages.Add(new Page("..."));
+                                }
+                                
                             }
 
                             // Set up the textbox.

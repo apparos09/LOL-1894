@@ -40,12 +40,12 @@ namespace RM_BBTS
         public TMP_Text energyText;
 
         // // String labels for each piece of text.
-        // private string levelString = "Level";
-        // private string healthString = "Health";
-        // private string attackString = "Attack";
-        // private string defenseString = "Defense";
-        // private string speedString = "Speed";
-        // private string energyString = "Energy";
+        // private string levelString = "<Level>";
+        // private string healthString = "<Health>";
+        // private string attackString = "<Attack>";
+        // private string defenseString = "<Defense>";
+        // private string speedString = "<Speed>";
+        // private string energyString = "<Energy>";
 
         [Header("Buttons")]
         // Moves

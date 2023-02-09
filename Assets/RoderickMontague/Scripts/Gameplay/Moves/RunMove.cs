@@ -14,15 +14,17 @@ namespace RM_BBTS
 
         // Constructor for the charge move.
         public RunMove() :
-            base(moveId.run, "Run", 1, 0, SUCCESS_CHANCE, 0)
+            base(moveId.run, "<Run>", 1, 0, SUCCESS_CHANCE, 0)
         {
-            description = "The user attempts to run away. There is a 50% chance of success.";
+            description = "<The user attempts to run away. There is a 50% chance of success.>";
 
             // Don't use the accuracy parameter.
             useAccuracy = false;
 
             // This is arbitrary. It's just there for making the run failed message appear first.
             priority = 10;
+
+            // No Animation
 
             // Loads in the translation for the run name and description.
             LoadTranslation("mve_run_nme", "mve_run_dsc");
@@ -43,7 +45,7 @@ namespace RM_BBTS
             {
                 // Calls the run function.
                 // bool success = AccuracySuccessful(user, false);
-                bool success = GenerateRandomFloat01() <= SUCCESS_CHANCE;
+                bool success = BattleManager.GenerateRandomFloat01() <= SUCCESS_CHANCE;
 
                 // Checks if the player was able to run away successfully.
                 if (success)

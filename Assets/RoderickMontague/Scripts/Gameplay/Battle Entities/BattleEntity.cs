@@ -44,6 +44,11 @@ namespace RM_BBTS
         // The stat specialty
         public BattleEntity.specialty statSpecial;
 
+        // Stat modifiers
+        public int attackMod;
+        public int defenseMod;
+        public int speedMod;
+
         // The moves
         public moveId move0, move1, move2, move3;
 
@@ -127,6 +132,9 @@ namespace RM_BBTS
         protected float maxEnergy = 100;
         protected float energy = 100;
 
+        // Checks if the entity is vulernable to attacking moves.
+        public bool vulnerable = true;
+
         // STAT MOFIDIERS (TEMP INC/DEC)
 
         // Modifier for attack, defense, speed, and accuracy.
@@ -166,10 +174,10 @@ namespace RM_BBTS
         [Header("Stauses")]
 
         // Has burn status, which causes damage every turn.
-        public bool burned;
+        public bool burned = false;
 
         // Has paralysis status, which lows the entity down and maybe makes them miss a turn.
-        public bool paralyzed;
+        public bool paralyzed = false;
 
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
@@ -239,19 +247,29 @@ namespace RM_BBTS
             data.displayName = displayName;
             data.displayNameSpeakKey = displayNameSpeakKey;
 
+            // Level
             data.level = level;
             data.levelRate = levelRate;
 
+            // Health
             data.maxHealth = maxHealth;
             data.health = health;
 
+            // Stats
             data.attack = attack;
             data.defense = defense;
             data.speed = speed;
 
+            // Energy
             data.maxEnergy = maxEnergy;
             data.energy = energy;
 
+            // Modifiers
+            data.attackMod = attackMod;
+            data.defenseMod = defenseMod;
+            data.speedMod = speedMod;
+
+            // Stat speciality.
             data.statSpecial = statSpecial;
 
             // Move 0 Set.
@@ -364,6 +382,7 @@ namespace RM_BBTS
             level = data.level;
             levelRate = data.levelRate;
 
+            // Main Stats
             maxHealth = data.maxHealth;
             health = data.health;
 
@@ -375,6 +394,11 @@ namespace RM_BBTS
 
             maxEnergy = data.maxEnergy;
             energy = data.energy;
+
+            // Stat modifiers.
+            attackMod = data.attackMod;
+            defenseMod = data.defenseMod;
+            speedMod = data.speedMod;
 
             // Generates the four moves and adds them in as objects.
             // Moves are set to 'null' if the move provied is Run or Charge (they don't get put in standard move slots).
@@ -976,6 +1000,19 @@ namespace RM_BBTS
 
         }
 
+        // Checks to see if the battle entity has 4 moves.
+        public bool HasFourFightMoves()
+        {
+            // The result variable.
+            bool result = true;
+
+            // Checks that he has all four move slots filled.
+            result = (moves[0] != null && moves[1] != null && moves[2] != null && moves[3] != null);
+
+            // Return result.
+            return result;
+        }
+
         // Checks if the battle entity has a certain move.
         public bool HasMove(Move move)
         {
@@ -1130,7 +1167,8 @@ namespace RM_BBTS
         // Called when a turn happens during a battle.
         public virtual void OnBattleTurn()
         {
-            // ...
+            // The entity is vulernable by default.
+            vulnerable = true;
         }
 
         // Update is called once per frame

@@ -34,6 +34,14 @@ namespace RM_BBTS
                     return false;
 
                 }
+                // Checks to see if this move will have effect on the target, and if the target can be hit.
+                else if(
+                    (attackChangeTarget != 0 || defenseChangeTarget != 0 ||
+                    speedChangeTarget != 0 || accuracyChangeTarget != 0) && !TargetIsVulnerable(target))
+                {
+                    InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
+                    return false;
+                }
 
                 // Applies the stat changes.
                 List<Page> statPages = ApplyStatChanges(user, target, battle);
@@ -54,16 +62,11 @@ namespace RM_BBTS
                 if (user is Player) // Player
                 {
                     battle.gameManager.UpdatePlayerEnergyUI();
+                }
 
-                    if(success) // Player Animation
-                        battle.PlayPlayerStatusAnimation();
-                }
-                else
-                {
-                    if(success) // Opponent Animation
-                        battle.PlayOpponentStatusAnimation();
-                }
-                    
+                if (success) // Play animations.
+                    PlayAnimations(user, target, battle, moveEffect.status, moveEffect.none);
+
             }
             else // Not usable - not enough energy.
             {
