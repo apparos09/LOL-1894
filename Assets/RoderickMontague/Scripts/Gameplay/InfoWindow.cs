@@ -115,7 +115,7 @@ namespace RM_BBTS
             // Probability Page
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Probability>";
+                page.title = "Probability";
                 page.titleKey = "ifo_probability";
                 page.entries = new List<InfoPageEntry>();
 
@@ -170,7 +170,7 @@ namespace RM_BBTS
             // Battle Stats Page - 1
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Battler Stats>";
+                page.title = "Battler Stats";
                 page.titleKey = "ifo_stats";
                 page.entries = new List<InfoPageEntry>();
 
@@ -222,7 +222,7 @@ namespace RM_BBTS
             // Battle Stats Page - 2
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Battler Stats>";
+                page.title = "Battler Stats";
                 page.titleKey = "ifo_stats";
                 page.entries = new List<InfoPageEntry>();
 
@@ -277,7 +277,7 @@ namespace RM_BBTS
             // Moves - 1
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Moves>";
+                page.title = "Moves";
                 page.titleKey = "ifo_moves";
                 page.entries = new List<InfoPageEntry>();
 
@@ -330,7 +330,7 @@ namespace RM_BBTS
             // Moves - 2
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Moves>";
+                page.title = "Moves";
                 page.titleKey = "ifo_moves";
                 page.entries = new List<InfoPageEntry>();
 
@@ -383,7 +383,7 @@ namespace RM_BBTS
             // Moves - 3
             {
                 InfoPage page = new InfoPage();
-                page.title = "<Moves>";
+                page.title = "Moves";
                 page.titleKey = "ifo_moves";
                 page.entries = new List<InfoPageEntry>();
 
