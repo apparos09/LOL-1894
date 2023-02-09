@@ -10,11 +10,11 @@ namespace RM_BBTS
     {
         // The stat clear move.
         public StatClearMove()
-            : base(moveId.statClear, "<Stat Clear>", 2, 0.0F, 100.0F, 0.35F)
+            : base(moveId.statClear, "Stat Clear", 2, 0.0F, 100.0F, 0.35F)
         {
             useAccuracy = false;
 
-            description = "<The user resets all stat changes for themselves and their opponent.>";
+            description = "The user resets all stat changes for themselves and their opponent.";
 
             // Animation
             animation = moveAnim.colorWave1;
