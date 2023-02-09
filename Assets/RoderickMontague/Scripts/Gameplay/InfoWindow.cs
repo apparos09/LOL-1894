@@ -136,10 +136,10 @@ namespace RM_BBTS
 
                 // Probability (Percent)
                 entry = ClearInfoPageEntry(entry);
-                entry.name = "Probability";
+                entry.name = "Probability (Percentage Form)";
                 entry.nameKey = "ifo_probability_percent_nme";
 
-                entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
+                entry.description = "A probability format where percentages are used instead of decimals. 0% equates to 0.00 and 100% equates to 1.00. The higher the chance percentage, the more likely the event is. Multiplying a decimal by 100 converts it to a percentage, and dividing a percentage by 100 converts it to a decimal.";
                 entry.descriptionKey = "ifo_probability_percent_dsc";
 
                 entry.symbol = null;
@@ -149,7 +149,7 @@ namespace RM_BBTS
 
                 // Probability (Fraction)
                 entry = ClearInfoPageEntry(entry);
-                entry.name = "Probability";
+                entry.name = "Probability (Fraction Form)";
                 entry.nameKey = "ifo_probability_fraction_nme";
 
                 entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";

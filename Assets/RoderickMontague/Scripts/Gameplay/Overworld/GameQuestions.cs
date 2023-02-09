@@ -523,7 +523,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
-                    question.correctAnswerResponse = "Since your accuracy has gone down, yoru moves are more likely to miss.";
+                    question.correctAnswerResponse = "Since your accuracy has gone down, your moves are more likely to miss.";
                     question.incorrectAnswerResponse = "Accuracy determines how likely it is for a move to hit its target.";
 
                     // Translates the question.
@@ -838,7 +838,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 0;
                     question.correctAnswerResponse = "Since Move A has the lowest accuracy, it is the riskiest move to use.";
-                    question.incorrectAnswerResponse = "The lower the accuracy, the more likely a move is to miss.";
+                    question.incorrectAnswerResponse = "The lower the accuracy, the more likely the move is to miss.";
 
                     // Translates the question.
                     if (translate)
@@ -966,7 +966,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 0;
                     question.correctAnswerResponse = "Since 2/10 doors are treasure doors, there’s a 20% chance of choosing one.";
-                    question.incorrectAnswerResponse = "When the numerator is equal to the denominator, it is the same as the chance value being 1.00.";
+                    question.incorrectAnswerResponse = "When the left value is equal to the right value, the chance value is 1.00 in decimal form.";
 
                     // Translates the question.
                     if (translate)
@@ -994,7 +994,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 3;
                     question.correctAnswerResponse = "4/5 doors are not treasure doors, so a non-treasure door has an 80% chance of being chosen.";
-                    question.incorrectAnswerResponse = "The larger the numerator, the more likely the event is.";
+                    question.incorrectAnswerResponse = "The larger the numerator (left value), the more likely the event is.";
 
                     // Translates the question.
                     if (translate)
@@ -1022,7 +1022,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 2;
                     question.correctAnswerResponse = "Since Enemy C has the highest door count, you are most likely to encounter one of them next.";
-                    question.incorrectAnswerResponse = "The lower the numerator, the less likely the event is.";
+                    question.incorrectAnswerResponse = "The lower the numerator (left value), the less likely the event is.";
 
                     // Translates the question.
                     if (translate)
@@ -1054,7 +1054,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 3;
                     question.correctAnswerResponse = "Enemy D is behind 1/9 doors, so it is the least likely enemy to be encountered next.";
-                    question.incorrectAnswerResponse = "The denominator is the total number of doors.";
+                    question.incorrectAnswerResponse = "The denominator (right value) is the total number of doors.";
 
                     // Translates the question.
                     if (translate)

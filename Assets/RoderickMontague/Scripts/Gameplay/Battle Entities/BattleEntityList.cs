@@ -68,9 +68,9 @@ namespace RM_BBTS
             // Creates the entity weights, and lcamps them to the battle entity ID count.
             // <unknown, treasure, and bosses should always be 0>
             baseWeights = new List<int> { 
-                0, 0, 0, 40, 0, 0, 30, 0, 0, 20, 0, 20, 
-                0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
-                20, 0, 35, 0, 35, 0, 35, 0, 0, 5, 0  
+                0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20, 
+                0, 20, 0, 15, 0, 15, 0, 15, 0, 15, 0, 
+                20, 0, 35, 0, 35, 0, 35, 0, 0, 10, 0  
             };
 
             // If it exceeds the ID count.

@@ -19,6 +19,12 @@ namespace RM_BBTS
         // Automatically shows the textbox when text is loaded.
         public bool showTextboxOnLoad;
 
+        // The default text box position.
+        public Vector3 textBoxDefaultPos;
+
+        // Automatically sets the text box's default position.
+        public bool autoSetTextBoxDefaultPos = true;
+
         // The amount the textbox is shifted by to put it in the middle of the screen.
         protected const float TEXTBOX_SHIFT_Y = 100.0F;
 
@@ -73,11 +79,13 @@ namespace RM_BBTS
             defs = SharedState.LanguageDefs;
         }
 
-        // // Start is called before the first frame update
-        // void Start()
-        // {
-        //     
-        // }
+        // Start is called before the first frame update
+        void Start()
+        {
+            // Automatically sets the textbox position.
+            if (autoSetTextBoxDefaultPos)
+                textBoxDefaultPos = textBox.transform.position;
+        }
 
         // Opens the textbox.
         public void OpenTextBox()
@@ -107,6 +115,12 @@ namespace RM_BBTS
         protected void TranslateTextBoxDown()
         {
             textBox.transform.Translate(0, -TEXTBOX_SHIFT_Y, 0);
+        }
+
+        // Sets the text box to it's default position.
+        public void SetTextBoxToDefaultPosition()
+        {
+            textBox.transform.position = textBoxDefaultPos;
         }
 
         // Loads the tutorial
@@ -171,13 +185,16 @@ namespace RM_BBTS
                 hudPage = new Page("<To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure.>");
                 pages.Add(hudPage);
                 
-                pages.Add(new Page("<With all that explained, please select an open door to start your first battle!>"));
+                pages.Add(new Page("<With all that covered, please select an open door to start your first battle!>"));
 
             }
 
             // Move the text box so thatthe score is visible.
             hudPage.OnPageOpenedAddCallback(TranslateTextBoxUp);
-            hudPage.OnPageClosedAddCallback(TranslateTextBoxDown);
+
+            // This caused problems, so now the textbox is just set to it's default position instead of translated back down.
+            // hudPage.OnPageClosedAddCallback(TranslateTextBoxDown);
+            hudPage.OnPageClosedAddCallback(SetTextBoxToDefaultPosition);
 
             // Loads the pages.
             LoadTutorial(ref pages);
@@ -465,8 +482,8 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("<It looks like you’ve entered a new phase of the simulation! A phase change seems to happen every time you complete a certain of rooms… Interesting!>"));
-                pages.Add(new Page("<Hmm. It appears you’ve gotten a permanent stat boost! Cool! But it seems like some of your foes have evolved, and learned new moves… Which is less cool. Well, I’m sure you can handle it! Good luck!>"));
+                pages.Add(new Page("<It looks like you’ve entered a new phase of the simulation! A phase change seems to happen every time you complete a certain number of rooms… Interesting!>"));
+                pages.Add(new Page("<Hmm… It appears that a phase change gives you a permanent stat boost! Cool! But it also appears that foes can evolve and learn new moves from a phase change, which is less cool… Well, I’m sure you can handle it! Good luck!>"));
 
             }
 
