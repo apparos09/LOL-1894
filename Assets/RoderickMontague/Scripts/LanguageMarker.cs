@@ -25,11 +25,20 @@ namespace RM_BBTS
             // ...
         }
 
-        // // Start is called before the first frame update
-        // void Start()
-        // {
-        // 
-        // }
+        // Awake is called when the script is loaded.
+        private void Awake()
+        {
+            // Instance saving.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+                return;
+            }
+        }
 
         // Returns the instance of the language marker.
         public static LanguageMarker Instance

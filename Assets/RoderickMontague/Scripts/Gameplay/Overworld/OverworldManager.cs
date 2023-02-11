@@ -740,6 +740,10 @@ namespace RM_BBTS
             // Gets set to 'true' when the phase changes.
             bool phaseChanged = false;
 
+            // NOTE: entities only evolve when the door is unlocked.
+            // Since doors never become unlocked after they are locked (not counting the battle tutorial)...
+            // This shouldn't cause any problems. The boss stats are simply high enough to meet the player's final level.
+
             // Time to level up enemies if 'true'.
             // If no rooms have been completed, then nothing happens.
             if (gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0 && gameManager.roomsCompleted != 0)
@@ -768,37 +772,45 @@ namespace RM_BBTS
                 }
             }
 
-            // If in the middle phase, and no evolutions have happened.
-            // If in the end phase, and the evolutions have not been run a second time.
-            if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
+            // This is an attempt to fix a bug where enemies either weren't evolving, or reverted back to prior evolution stages.
+            // This bug only happened when I went down from 15 doors to 12 doors (as far as I can tell)...
+            // But I don't know what caused it.
+            if (gameManager.evolveWaves < GameplayManager.EVOLVE_WAVES_MAX)
             {
-                // The phase is changing.
-                phaseChanged = true;
-
-                // Goes through each door.
-                foreach (Door door in doors)
+                // If in the middle phase, and no evolutions have happened.
+                // If in the end phase, and the evolutions have not been run a second time.
+                if ((phase == 2 && gameManager.evolveWaves == 0) || (phase == 3 && gameManager.evolveWaves == 1))
                 {
-                    // Only evolve the entity if the door is unlocked.
-                    // It helps save on evolution time.
-                    if (!door.Locked)
-                    {
-                        door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                    // The phase is changing.
+                    phaseChanged = true;
 
-                        // TODO: maybe don't restore it entirely?
-                        // Restore health and energy levels to max even if the entity didn't evolve.
-                        door.battleEntity.health = door.battleEntity.maxHealth;
-                        door.battleEntity.energy = door.battleEntity.maxEnergy;
+                    // Goes through each door.
+                    foreach (Door door in doors)
+                    {
+                        // Only evolve the entity if the door is unlocked.
+                        // It helps save on evolution time.
+                        if (!door.Locked)
+                        {
+                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+
+                            // TODO: maybe don't restore it entirely?
+                            // Restore health and energy levels to max even if the entity didn't evolve.
+                            door.battleEntity.health = door.battleEntity.maxHealth;
+                            door.battleEntity.energy = door.battleEntity.maxEnergy;
+
+                        }
 
                     }
 
+                    // Entities evolved.
+                    gameManager.evolveWaves++;
+
+                    // Gives the new phase bonus.
+                    gameManager.player.ApplyNewPhaseBonus();
                 }
-
-                // Entities evolved.
-                gameManager.evolveWaves++;
-
-                // Gives the new phase bonus.
-                gameManager.player.ApplyNewPhaseBonus();
             }
+
+
 
             // Change the background image colours.
             if (usePhaseColors)

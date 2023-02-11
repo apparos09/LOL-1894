@@ -165,6 +165,7 @@ namespace RM_BBTS
             RestoreEnergy(LEVEL_UP_ENERGY_RESTORE_PERCENT * times, 0);
         }
 
+        // TODO: move this to the battle entity script and have enemies that don't evolve get a stat boost too?
         // Applies the new phase bonus for the player.
         // This gives them a 100+ stat increase.
         public void ApplyNewPhaseBonus()

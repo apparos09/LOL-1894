@@ -60,6 +60,9 @@ namespace RM_BBTS
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
+        // The maximum amount of evolution waves allowed in a single game.
+        public const int EVOLVE_WAVES_MAX = 2;
+
         // String labels for each stat (used for translation).
         private string levelString = "Level";
         private string healthString = "Health";
