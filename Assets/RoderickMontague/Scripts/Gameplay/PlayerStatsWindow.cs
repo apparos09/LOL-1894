@@ -40,12 +40,12 @@ namespace RM_BBTS
         public TMP_Text energyText;
 
         // // String labels for each piece of text.
-        // private string levelString = "<Level>";
-        // private string healthString = "<Health>";
-        // private string attackString = "<Attack>";
-        // private string defenseString = "<Defense>";
-        // private string speedString = "<Speed>";
-        // private string energyString = "<Energy>";
+        // private string levelString = "Level";
+        // private string healthString = "Health";
+        // private string attackString = "Attack";
+        // private string defenseString = "Defense";
+        // private string speedString = "Speed";
+        // private string energyString = "Energy";
 
         [Header("Buttons")]
         // Moves
@@ -135,6 +135,37 @@ namespace RM_BBTS
                 switchButtonText.text = defs["kwd_switch"];
                 backButtonText.text = defs["kwd_back"];
             }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+
+                marker.MarkText(levelText);
+                marker.MarkText(healthText);
+                marker.MarkText(attackText);
+                marker.MarkText(defenseText);
+                marker.MarkText(speedText);
+                marker.MarkText(energyText);
+
+                marker.MarkText(move0ButtonText);
+                marker.MarkText(move1ButtonText);
+                marker.MarkText(move2ButtonText);
+                marker.MarkText(move3ButtonText);
+                marker.MarkText(chargeButtonText);
+                marker.MarkText(runButtonText);
+
+                marker.MarkText(switchButtonText);
+                marker.MarkText(backButtonText);
+
+                marker.MarkText(moveNameText);
+                marker.MarkText(moveRankText);
+                marker.MarkText(movePowerText);
+                marker.MarkText(moveAccuracyText);
+                marker.MarkText(moveEnergyText);
+                marker.MarkText(moveDescriptionText);
+            }
+
 
             ResetMoveButtonColors();
             UpdatePlayerInfo();

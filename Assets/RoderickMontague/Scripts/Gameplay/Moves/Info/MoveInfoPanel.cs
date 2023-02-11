@@ -1,3 +1,4 @@
+using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,35 @@ namespace RM_BBTS
 
         // Move Description
         public TMPro.TMP_Text description;
+
+        // Start is called just before any of the Update methods is called the first time.
+        private void Start()
+        {
+            // If the LOLSDK has not been initialized.
+            if(!LOLSDK.Instance.IsInitialized)
+            {
+                // Changes the text colour to show that the language file isn't loaded.
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                // Name
+                marker.MarkText(nameText);
+
+                // Rank
+                marker.MarkText(rankText);
+
+                // Power
+                marker.MarkText(powerText);
+
+                // Accuracy
+                marker.MarkText(accuracyText);
+
+                // Energy
+                marker.MarkText(energyText);
+
+                // Description
+                marker.MarkText(description);
+            }
+        }
 
         // Gets the move id.
         public moveId Id

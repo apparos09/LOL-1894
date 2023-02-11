@@ -147,14 +147,14 @@ namespace RM_BBTS
                     break;
 
                 case moveId.poke: // Poke
-                    move = new Move(moveId.poke, "<Poke>", 1, 15.0F, 1.0F, 0.10F);
+                    move = new Move(moveId.poke, "Poke", 1, 15.0F, 1.0F, 0.10F);
 
                     move.CriticalChance = 0.4F;
 
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.05F;
 
-                    move.description = "<An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.>";
+                    move.description = "An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.smack3;
@@ -166,12 +166,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.slimeShot: // Slime Shot
-                    move = new Move(moveId.slimeShot, "<Slime Shot>", 1, 30.0F, 0.95F, 0.14F);
+                    move = new Move(moveId.slimeShot, "Slime Shot", 1, 30.0F, 0.95F, 0.14F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.15F;
 
-                    move.description = "<An attack that has a 0.15 chance of lowering the target's speed by 1 stage.>";
+                    move.description = "An attack that has a 0.15 chance of lowering the target's speed by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.shot2;
@@ -182,9 +182,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.laserShot: // Laser Shot
-                    move = new Move(moveId.laserShot, "<Laser Shot>", 1, 40.0F, 0.95F, 0.12F);
+                    move = new Move(moveId.laserShot, "Laser Shot", 1, 40.0F, 0.95F, 0.12F);
 
-                    move.description = "<A weak laser attack.>";
+                    move.description = "A weak laser attack.";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_laserShot_nme";
@@ -197,10 +197,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireShot: // Fire Shot
-                    move = new Move(moveId.fireShot, "<Fire Shot>", 1, 30.0F, 0.95F, 0.14F);
+                    move = new Move(moveId.fireShot, "Fire Shot", 1, 30.0F, 0.95F, 0.14F);
                     move.BurnChance = 0.1F;
 
-                    move.description = "<A weak fire attack with a burn chance of 0.10.>";
+                    move.description = "A weak fire attack with a burn chance of 0.10.";
 
                     // Animation
                     move.animation = moveAnim.shot1;
@@ -212,10 +212,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecShot: // Electric Shot
-                    move = new Move(moveId.elecShot, "<Electric Shot>", 1, 30.0F, 0.95F, 0.14F);
+                    move = new Move(moveId.elecShot, "Electric Shot", 1, 30.0F, 0.95F, 0.14F);
                     move.ParalysisChance = 0.1F;
 
-                    move.description = "<A weak electric attack with a paralysis chance of 0.10.>";
+                    move.description = "A weak electric attack with a paralysis chance of 0.10.";
                     
                     // Animation
                     move.animation = moveAnim.shot1;
@@ -227,12 +227,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.screech: // Screech
-                    move = new Move(moveId.screech, "<Screech>", 1, 25.0F, 1.0F, 0.12F);
+                    move = new Move(moveId.screech, "Screech", 1, 25.0F, 1.0F, 0.12F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.15F;
 
-                    move.description = "<A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.wave1;
@@ -243,10 +243,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.slam: // Slam
-                    move = new Move(moveId.slam, "<Slam>", 1, 30, 0.90F, 0.15F);
+                    move = new Move(moveId.slam, "Slam", 1, 30, 0.90F, 0.15F);
                     move.CriticalChance = 0.6F;
 
-                    move.description = "<An attack that has a critical damage chance of 0.60.>";
+                    move.description = "An attack that has a critical damage chance of 0.60.";
 
                     // Animation
                     move.animation = moveAnim.slash2;
@@ -257,10 +257,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chip: // Chip Off
-                    move = new Move(moveId.chip, "<Chip Off>", 1, 10, 0.95F, 0.15F);
+                    move = new Move(moveId.chip, "Chip Off", 1, 10, 0.95F, 0.15F);
                     move.priority = 1;
 
-                    move.description = "<A weak attack that always goes first.>";
+                    move.description = "A weak attack that always goes first.";
 
                     // Animation
                     move.animation = moveAnim.slash1;
@@ -271,12 +271,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.toss: // Toss
-                    move = new Move(moveId.toss, "<Toss>", 1, 25, 0.95F, 0.1F);
+                    move = new Move(moveId.toss, "Toss", 1, 25, 0.95F, 0.1F);
                     
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.10F;
 
-                    move.description = "<An attack that has a 0.10 chance of lowering the target's attack by 1 stage.>";
+                    move.description = "An attack that has a 0.10 chance of lowering the target's attack by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.slash1;
@@ -287,12 +287,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnify: // Magnify
-                    move = new StatChangeMove(moveId.magnify, "<Magnify>", 1, 0.12F);
+                    move = new StatChangeMove(moveId.magnify, "Magnify", 1, 0.12F);
 
                     move.accuracyChangeUser = 1;
                     move.accuracyChangeChanceUser = 1.0F;
 
-                    move.description = "<The user raises their accuracy by 1 stage.>";
+                    move.description = "The user raises their accuracy by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.wave3;
@@ -303,10 +303,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.heal: // Heal
-                    move = new HealMove(moveId.heal, "<Heal>", 1, 0.50F);
+                    move = new HealMove(moveId.heal, "Heal", 1, 0.50F);
                     (move as HealMove).healPercent = 0.30F;
 
-                    move.description = "<The user heals 30% of their health.>";
+                    move.description = "The user heals 30% of their health.";
 
                     // No Animation
 
@@ -315,11 +315,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain1: // Drain Heal 1
-                    move = new HealthDrainMove(moveId.hpDrain1, "<Drain Heal 1>", 1, 25, 0.95F, 0.30F);
+                    move = new HealthDrainMove(moveId.hpDrain1, "Drain Heal 1", 1, 25, 0.95F, 0.30F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.30F;
 
-                    move.description = "<The user attacks the target, and restores their health by 30% of the damage given.>";
+                    move.description = "The user attacks the target, and restores their health by 30% of the damage given.";
 
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
@@ -338,12 +338,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.pushBack: // Push Back
-                    move = new Move(moveId.pushBack, "<Push Back>", 1, 25.0F, 0.90F, 0.15F);
+                    move = new Move(moveId.pushBack, "Push Back", 1, 25.0F, 0.90F, 0.15F);
 
                     move.defenseChangeUser = 1;
                     move.defenseChangeChanceUser = 0.2F;
 
-                    move.description = "<The user pushes the target back, which has a 0.20 chance of increasing the user's defense.>";
+                    move.description = "The user pushes the target back, which has a 0.20 chance of increasing the user's defense.";
 
                     // Animation
                     move.animation = moveAnim.smack1;
@@ -355,11 +355,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.powerFirst: // Quick Strike
-                    move = new TurnOrderMove(moveId.powerFirst, "<Quick Strike>", 1, 40.0F, 0.90F, 0.15F);
+                    move = new TurnOrderMove(moveId.powerFirst, "Quick Strike", 1, 40.0F, 0.90F, 0.15F);
 
                     ((TurnOrderMove)move).boostFirst = true;
 
-                    move.description = "<An attack that does more damage if the user moves before the target.>";
+                    move.description = "An attack that does more damage if the user moves before the target.";
 
                     // Animation
                     move.animation = moveAnim.slash1;
@@ -371,11 +371,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.powerLast: // Slow Strike
-                    move = new TurnOrderMove(moveId.powerLast, "<Slow Strike>", 1, 40.0F, 0.90F, 0.15F);
+                    move = new TurnOrderMove(moveId.powerLast, "Slow Strike", 1, 40.0F, 0.90F, 0.15F);
 
                     ((TurnOrderMove)move).boostFirst = false;
 
-                    move.description = "<An attack that does more damage if the user moves after the target.>";
+                    move.description = "An attack that does more damage if the user moves after the target.";
 
                     // Animation
                     move.animation = moveAnim.slash1;
@@ -387,9 +387,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.shield1: // Shield 1
-                    move = new ShieldMove(moveId.shield1, "<Shield 1>", 1, 0.0F, 0.50F, 0.25F);
+                    move = new ShieldMove(moveId.shield1, "Shield 1", 1, 0.0F, 0.50F, 0.25F);
 
-                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.>";
+                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -401,9 +401,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.bam, "<Bam>", 1, 25.0F, 1.0F, 0.10F);
+                    move = new Move(moveId.bam, "Bam", 1, 25.0F, 1.0F, 0.10F);
 
-                    move.description = "<A weak, basic attack.>";
+                    move.description = "A weak, basic attack.";
 
                     // Sets the keys for translating the data.
                     nameKey = "mve_bam_nme";
@@ -419,9 +419,9 @@ namespace RM_BBTS
 
                     // RANK 2
                 case moveId.laserBurst: // Laser Burst
-                    move = new Move(moveId.laserBurst, "<Laser Burst>", 2, 70.0F, 0.90F, 0.18F);
+                    move = new Move(moveId.laserBurst, "Laser Burst", 2, 70.0F, 0.90F, 0.18F);
 
-                    move.description = "<A decent laser attack.>";
+                    move.description = "A decent laser attack.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -433,10 +433,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireBurst: // Fire Burst
-                    move = new Move(moveId.fireBurst, "<Fire Burst>", 2, 60.0F, 0.85F, 0.20F);
+                    move = new Move(moveId.fireBurst, "Fire Burst", 2, 60.0F, 0.85F, 0.20F);
                     move.BurnChance = 0.20F;
 
-                    move.description = "<A decent fire attack that has a 0.20 chance of burning the target.>";
+                    move.description = "A decent fire attack that has a 0.20 chance of burning the target.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -447,10 +447,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecBurst: // Electric Burst
-                    move = new Move(moveId.elecBurst, "<Electric Burst>", 2, 60.0F, 0.85F, 0.20F);
+                    move = new Move(moveId.elecBurst, "Electric Burst", 2, 60.0F, 0.85F, 0.20F);
                     move.ParalysisChance = 0.20F;
 
-                    move.description = "<A decent electric attack that has a 0.20 chance of paralyzing the target.>";
+                    move.description = "A decent electric attack that has a 0.20 chance of paralyzing the target.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -461,12 +461,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.soundWave: // Soundwave
-                    move = new Move(moveId.soundWave, "<Soundwave>", 2, 50.0F, 0.95F, 0.18F);
+                    move = new Move(moveId.soundWave, "Soundwave", 2, 50.0F, 0.95F, 0.18F);
                     
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
 
-                    move.description = "<A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.wave2;
@@ -477,7 +477,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnet: // Magnet
-                    move = new Move(moveId.magnet, "<Magnet>", 2, 45.0F, 0.9F, 0.15F);
+                    move = new Move(moveId.magnet, "Magnet", 2, 45.0F, 0.9F, 0.15F);
 
                     move.accuracyChangeUser = 2;
                     move.accuracyChangeChanceUser = 1.0F;
@@ -485,7 +485,7 @@ namespace RM_BBTS
                     move.accuracyChangeTarget = 1;
                     move.accuracyChangeChanceTarget = 1.0F;
 
-                    move.description = "<The user pulls the target towards them, which increases the user's accuracy by 2 stages, and the target's accuracy by 1 stage.>";
+                    move.description = "The user pulls the target towards them, which increases the user's accuracy by 2 stages, and the target's accuracy by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.smack1;
@@ -496,10 +496,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "<Scorch>", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.torch, "Scorch", 2, 10, 0.9F, 0.40F);
                     move.BurnChance = 1.0F;
 
-                    move.description = "<A weak attack that always burns the target.>";
+                    move.description = "A weak attack that always burns the target.";
 
                     // Animation
                     move.animation = moveAnim.crawl1;
@@ -510,10 +510,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "<Electrify>", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.electrify, "Electrify", 2, 10, 0.9F, 0.40F);
                     move.ParalysisChance = 1.0F;
 
-                    move.description = "<A weak attack that always paralyzes the target.>";
+                    move.description = "A weak attack that always paralyzes the target.";
 
                     // Animation
                     move.animation = moveAnim.crawl1;
@@ -524,7 +524,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.motivate: // Motivate
-                    move = new StatChangeMove(moveId.motivate, "<Motivate>", 2, 0.40F);
+                    move = new StatChangeMove(moveId.motivate, "Motivate", 2, 0.40F);
                     
                     move.useAccuracy = false;
                     move.priority = -1;
@@ -538,7 +538,7 @@ namespace RM_BBTS
                     move.speedChangeUser = 1;
                     move.speedChangeChanceUser = 1.0F;
 
-                    move.description = "<The user increases their attack, defense, and speed by 1 stage each. This move will always go last.>";
+                    move.description = "The user increases their attack, defense, and speed by 1 stage each. This move will always go last.";
 
                     // Animation
                     move.animation = moveAnim.colorWave1;
@@ -550,11 +550,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.quickBurst: // Quick Burst
-                    move = new Move(moveId.quickBurst, "<Quick Burst>", 2, 55, 0.95F, 0.3F);
+                    move = new Move(moveId.quickBurst, "Quick Burst", 2, 55, 0.95F, 0.3F);
                     move.RecoilPercent = 0.15F;
                     move.priority = 1;
 
-                    move.description = "<The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.>";
+                    move.description = "The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -565,11 +565,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain2: // Drain Heal 2
-                    move = new HealthDrainMove(moveId.hpDrain2, "<Drain Heal 2>", 2, 60, 0.85F, 0.40F);
+                    move = new HealthDrainMove(moveId.hpDrain2, "Drain Heal 2", 2, 60, 0.85F, 0.40F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.40F;
 
-                    move.description = "<The user attacks the target, gaining 40% of the damage dealt as health.>";
+                    move.description = "The user attacks the target, gaining 40% of the damage dealt as health.";
 
                     // Animation
                     move.animation = moveAnim.crawl1;
@@ -592,7 +592,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.risk: // Risk
-                    move = new StatChangeMove(moveId.risk, "<Risk>", 2, 0.20F);
+                    move = new StatChangeMove(moveId.risk, "Risk", 2, 0.20F);
 
                     move.attackChangeUser = 2;
                     move.attackChangeChanceUser = 1.0F;
@@ -605,7 +605,7 @@ namespace RM_BBTS
 
                     move.useAccuracy = false;
 
-                    move.description = "<The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.>";
+                    move.description = "The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.colorWave1;
@@ -616,10 +616,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.tidalWave: // Tidal Wave
-                    move = new Move(moveId.tidalWave, "<Tidal Wave>", 2, 70, 1.0F, 0.20F);
+                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.20F);
                     move.useAccuracy = false;
 
-                    move.description = "<The user hits the target with a strong attack that never misses.>";
+                    move.description = "The user hits the target with a strong attack that never misses.";
 
                     // Animation
                     move.animation = moveAnim.fill1;
@@ -630,11 +630,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.burnBoostTarget: // Livefire
-                    move = new StatusAttackMove(moveId.burnBoostTarget, "<Livefire>", 2, 45, 0.90F, 0.30F);
+                    move = new StatusAttackMove(moveId.burnBoostTarget, "Livefire", 2, 45, 0.90F, 0.30F);
 
                     (move as StatusAttackMove).targetBurned = true;
 
-                    move.description = "<An attack that does more damage if the target is burned.>";
+                    move.description = "An attack that does more damage if the target is burned.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -645,11 +645,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.paraBoostTarget: // Livewire
-                    move = new StatusAttackMove(moveId.paraBoostTarget, "<Livewire>", 2, 50, 0.90F, 0.30F);
+                    move = new StatusAttackMove(moveId.paraBoostTarget, "Livewire", 2, 50, 0.90F, 0.30F);
 
                     (move as StatusAttackMove).targetParalyzed = true;
 
-                    move.description = "<An attack that does more damage if the target is paralyzed.>";
+                    move.description = "An attack that does more damage if the target is paralyzed.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -660,9 +660,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.shield2: // Shield 2
-                    move = new ShieldMove(moveId.shield2, "<Shield 2>", 1, 0.0F, 0.75F, 0.40F);
+                    move = new ShieldMove(moveId.shield2, "Shield 2", 1, 0.0F, 0.75F, 0.40F);
 
-                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.>";
+                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -674,9 +674,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "<Wham>", 2, 50.0F, 1.0F, 0.15F);
+                    move = new Move(moveId.wham, "Wham", 2, 50.0F, 1.0F, 0.15F);
 
-                    move.description = "<The user hits the target with a decent, basic attack.>";
+                    move.description = "The user hits the target with a decent, basic attack.";
 
                     // Animation
                     move.animation = moveAnim.smack3;
@@ -691,9 +691,9 @@ namespace RM_BBTS
 
                 // RANK 3
                 case moveId.laserBlast: // Laser Blast
-                    move = new Move(moveId.laserBlast, "<Laser Blast>", 3, 90.0F, 0.85F, 0.27F);
+                    move = new Move(moveId.laserBlast, "Laser Blast", 3, 90.0F, 0.85F, 0.27F);
 
-                    move.description = "<A strong laser blast.>";
+                    move.description = "A strong laser blast.";
 
                     // Animation
                     move.animation = moveAnim.blast1;
@@ -704,10 +704,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireBlast: // Fire Blast
-                    move = new Move(moveId.fireBlast, "<Fire Blast>", 3, 85.0F, 0.8F, 0.30F);
+                    move = new Move(moveId.fireBlast, "Fire Blast", 3, 85.0F, 0.8F, 0.30F);
                     move.BurnChance = 0.30F;
 
-                    move.description = "<A strong fire blast with a 0.30 chance of burning the target.>";
+                    move.description = "A strong fire blast with a 0.30 chance of burning the target.";
 
                     // Animation
                     move.animation = moveAnim.blast1;
@@ -718,10 +718,10 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecBlast: // Electric Blast
-                    move = new Move(moveId.elecBlast, "<Electric Blast>", 3, 85.0F, 0.8F, 0.30F);
+                    move = new Move(moveId.elecBlast, "Electric Blast", 3, 85.0F, 0.8F, 0.30F);
                     move.ParalysisChance = 0.30F;
 
-                    move.description = "<A strong electric blast with a 0.30 chance of paralyzing the target.>";
+                    move.description = "A strong electric blast with a 0.30 chance of paralyzing the target.";
 
                     // Animation
                     move.animation = moveAnim.blast1;
@@ -732,12 +732,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "<Sonic Wave>", 3, 80.0F, 0.90F, 0.27F);
+                    move = new Move(moveId.sonicWave, "Sonic Wave", 3, 80.0F, 0.90F, 0.27F);
 
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.25F;
 
-                    move.description = "<A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.>";
+                    move.description = "A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.wave2;
@@ -748,11 +748,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain3: // Drain Heal 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "<Drain Heal 3>", 3, 80, 0.75F, 0.45F);
+                    move = new HealthDrainMove(moveId.hpDrain3, "Drain Heal 3", 3, 80, 0.75F, 0.45F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 
-                    move.description = "<The user attacks the target, gaining 50% of the damage dealt as health.>";
+                    move.description = "The user attacks the target, gaining 50% of the damage dealt as health.";
 
                     // Animation
                     move.animation = moveAnim.crawl1;
@@ -763,14 +763,14 @@ namespace RM_BBTS
                     break;
 
                 case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "<Twister>", 3, 70, 0.95F, 0.30F);
+                    move = new Move(moveId.twister, "Twister", 3, 70, 0.95F, 0.30F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 1.0F;
 
                     move.CriticalChance = 0.0F;
 
-                    move.description = "<The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.>";
+                    move.description = "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.";
 
                     // Animation
                     move.animation = moveAnim.twister1;
@@ -781,12 +781,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.waterBlast: // Water Blast
-                    move = new Move(moveId.waterBlast, "<Water Blast>", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.waterBlast, "Water Blast", 3, 85, 0.80F, 0.30F);
 
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.30F;
 
-                    move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.>";
+                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.blast2;
@@ -797,12 +797,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.rockBlast: // Rock Blast
-                    move = new Move(moveId.rockBlast, "<Rock Blast>", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.rockBlast, "Rock Blast", 3, 85, 0.80F, 0.30F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 0.30F;
 
-                    move.description = "<The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.>";
+                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.blast2;
@@ -813,12 +813,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.airBlast: // Air Blast
-                    move = new Move(moveId.airBlast, "<Air Blast>", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.airBlast, "Air Blast", 3, 85, 0.80F, 0.30F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.30F;
 
-                    move.description = "<The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.>";
+                    move.description = "The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.";
 
                     // Animation
                     move.animation = moveAnim.blast2;
@@ -830,12 +830,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.quake: // Quake
-                    move = new Move(moveId.quake, "<Quake>", 3, 75, 0.80F, 0.30F);
+                    move = new Move(moveId.quake, "Quake", 3, 75, 0.80F, 0.30F);
 
                     move.CriticalChance = 0.30F;
                     move.RecoilPercent = 0.40F;
 
-                    move.description = "<The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user.>";
+                    move.description = "The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user.";
 
                     // Animation
                     move.animation = moveAnim.slash2;
@@ -847,11 +847,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "<Charging Sun>", 3, 100, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 100, 0.85F);
                     move.BurnChance = 0.20F;
                     move.priority = -3;
 
-                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.>";
+                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.";
 
                     // Animation
                     move.animation = moveAnim.shootingStar1;
@@ -863,11 +863,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "<Charging Moon>", 3, 100, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 100, 0.85F);
                     move.ParalysisChance = 0.20F;
                     move.priority = -3;
 
-                    move.description = "<A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.>";
+                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.";
 
                     // Animation
                     move.animation = moveAnim.shootingStar1;
@@ -878,9 +878,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "<Early Burst>", 3, 90, 0.85F, 0.30F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "Early Burst", 3, 90, 0.85F, 0.30F);
 
-                    move.description = "<A move that gets weaker the longer the battle goes on.>";
+                    move.description = "A move that gets weaker the longer the battle goes on.";
 
                     // Animation
                     move.animation = moveAnim.burst1;
@@ -891,12 +891,12 @@ namespace RM_BBTS
                     break;
 
                 case moveId.allOut: // All-Out Attack
-                    move = new Move(moveId.allOut, "<All Out Attack>", 3, 90, 0.90F, 0.45F);
+                    move = new Move(moveId.allOut, "All Out Attack", 3, 90, 0.90F, 0.45F);
 
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
 
-                    move.description = "<A move that lowers the user's attack stat by 1 stage every time it's used.>";
+                    move.description = "A move that lowers the user's attack stat by 1 stage every time it's used.";
 
                     // Animation
                     move.animation = moveAnim.smack2;
@@ -908,11 +908,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.burnBoostUser: // Fire Boost
-                    move = new StatusAttackMove(moveId.burnBoostUser, "<Fire Boost>", 3, 60, 0.90F, 0.40F);
+                    move = new StatusAttackMove(moveId.burnBoostUser, "Fire Boost", 3, 60, 0.90F, 0.40F);
 
                     (move as StatusAttackMove).userBurned = true;
 
-                    move.description = "<An attack that does more damage if the user is burned.>";
+                    move.description = "An attack that does more damage if the user is burned.";
 
                     // Animation
                     move.animation = moveAnim.smack2;
@@ -923,11 +923,11 @@ namespace RM_BBTS
                     break;
 
                 case moveId.paraBoostUser: // Electric Boost
-                    move = new StatusAttackMove(moveId.paraBoostUser, "<Electric Boost>", 3, 60, 0.90F, 0.40F);
+                    move = new StatusAttackMove(moveId.paraBoostUser, "Electric Boost", 3, 60, 0.90F, 0.40F);
 
                     (move as StatusAttackMove).userParalyzed = true;
 
-                    move.description = "<An attack that does more damage if the user is paralyzed.>";
+                    move.description = "An attack that does more damage if the user is paralyzed.";
 
                     // Animation
                     move.animation = moveAnim.smack2;
@@ -938,9 +938,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.shield3: // Shield 3
-                    move = new ShieldMove(moveId.shield3, "<Shield 3>", 1, 0.0F, 1.00F, 0.50F);
+                    move = new ShieldMove(moveId.shield3, "Shield 3", 1, 0.0F, 1.00F, 0.50F);
 
-                    move.description = "<A priority move that blocks all direct attacks on the user for a turn. It works every time.>";
+                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works every time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -952,9 +952,9 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "<Kablam>", 3, 70.0F, 1.0F, 0.20F);
+                    move = new Move(moveId.kablam, "Kablam", 3, 70.0F, 1.0F, 0.20F);
 
-                    move.description = "<A strong, but basic attack.>";
+                    move.description = "A strong, but basic attack.";
 
                     // Animation
                     move.animation = moveAnim.smack3;

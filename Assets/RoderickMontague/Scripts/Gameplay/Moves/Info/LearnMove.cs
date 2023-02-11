@@ -82,6 +82,25 @@ namespace RM_BBTS
                 switchMove2Text.text = defs["kwd_switch"];
                 switchMove3Text.text = defs["kwd_switch"];
             }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                // The switch move message text.
+                marker.MarkText(switchMoveMessageText);
+
+                // The player moves header text.
+                marker.MarkText(playerMovesHeaderText);
+
+                // Confirm button text.
+                marker.MarkText(confirmButtonText);
+
+                // Switch move text.
+                marker.MarkText(switchMove0Text);
+                marker.MarkText(switchMove1Text);
+                marker.MarkText(switchMove2Text);
+                marker.MarkText(switchMove3Text);
+            }
         }
 
         // This function is called when the object becomes enabled and visible.

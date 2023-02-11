@@ -144,6 +144,31 @@ namespace RM_BBTS
                 burnLabel.text = defs["kwd_burnChance"];
                 paralysisLabel.text = defs["kwd_paralysisChance"];
             }
+            else // Mark text to show that it's not loaded from the langauge file.
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(legendTitleText);
+
+                // Standard Symbols
+                marker.MarkText(rankLabel);
+                marker.MarkText(powerLabel);
+                marker.MarkText(accuracyLabel);
+                marker.MarkText(energyLabel);
+
+                // Stat Changes
+                marker.MarkText(attackChangeLabel);
+                marker.MarkText(defenseChangeLabel);
+                marker.MarkText(speedChangeLabel);
+                marker.MarkText(accuracyChangeLabel);
+
+                // Effects
+                marker.MarkText(effectSelfLabel);
+                marker.MarkText(effectTargetLabel);
+                marker.MarkText(criticalLabel);
+                marker.MarkText(burnLabel);
+                marker.MarkText(paralysisLabel);
+            }
 
 
             UpdatePlayerInfo();

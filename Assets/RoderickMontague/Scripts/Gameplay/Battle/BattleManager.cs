@@ -7,6 +7,7 @@ using SimpleJSON;
 using UnityEngine.SceneManagement;
 using System.Data.Common;
 using LoLSDK;
+using UnityEngine.Timeline;
 
 namespace RM_BBTS
 {
@@ -315,6 +316,24 @@ namespace RM_BBTS
                 treasurePromptText.text = defs[TREASURE_PROMPT_TEXT_KEY];
                 treasureYesButtonText.text = defs["kwd_yes"];
                 treasureNoButtonText.text = defs["kwd_no"];
+            }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(chargeButtonText);
+                marker.MarkText(runButtonText);
+                
+                marker.MarkText(move0NameText);
+                marker.MarkText(move1NameText);
+                marker.MarkText(move2NameText);
+                marker.MarkText(move3NameText);
+
+                marker.MarkText(treasurePromptText);
+                marker.MarkText(treasureYesButtonText);
+                marker.MarkText(treasureNoButtonText);
+
+                marker.MarkText(opponentNameText);
             }
         }
 
