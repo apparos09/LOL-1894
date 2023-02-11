@@ -442,7 +442,7 @@ namespace RM_BBTS
             }
         }
 
-        // TODO: check callbacks.
+        
         // A callback function for when all the text is finished.
         // This is only called if the user attempts to go onto the next page when there is none.
         public void OnTextBoxFinishedAddCallback(TextBoxCallback callback)
