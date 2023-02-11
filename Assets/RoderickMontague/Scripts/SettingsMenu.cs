@@ -139,7 +139,21 @@ namespace RM_BBTS
                 textToSpeechLabel.text = defs["kwd_textToSpeech"];
                 tutorialLabel.text = defs["kwd_tutorial"];
                 backButtonText.text = defs["kwd_back"];
-            }    
+            }  
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+                marker.MarkText(bgmLabelText);
+                marker.MarkText(sfxLabelText);
+                marker.MarkText(ttsLabelText);
+
+                marker.MarkText(muteLabel);
+                marker.MarkText(textToSpeechLabel);
+                marker.MarkText(tutorialLabel);
+                marker.MarkText(backButtonText);
+            }
 
         }
 
