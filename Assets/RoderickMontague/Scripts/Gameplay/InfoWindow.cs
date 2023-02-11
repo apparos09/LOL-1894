@@ -104,6 +104,12 @@ namespace RM_BBTS
                 titleText.text = defs["kwd_info"];
                 backButtonText.text = defs["kwd_returnToGame"];
             }
+            else
+            {
+                LanguageMarker.Instance.MarkText(titleText);
+                LanguageMarker.Instance.MarkText(pageTitle);
+                LanguageMarker.Instance.MarkText(backButtonText);
+            }
 
             // Initialize the list.
             pages = new List<InfoPage>();
@@ -450,6 +456,14 @@ namespace RM_BBTS
             UpdatePage();
         }
 
+        // This object is called when the object is enabled and active.
+        private void OnEnable()
+        {
+            // Enable/disable the speak keys.
+            RefreshSpeakButtons();
+        }
+
+
         // Checks if the index is in the bounds.
         public static bool IndexInBounds<T>(List<T> list, int index)
         {
@@ -645,5 +659,13 @@ namespace RM_BBTS
             SpeakEntry(2);
         }
 
+
+        // Refreshes the speak buttons.
+        public void RefreshSpeakButtons()
+        {
+            pageEntry0.RefreshSpeakButton();
+            pageEntry1.RefreshSpeakButton();
+            pageEntry2.RefreshSpeakButton();
+        }
     }
 }

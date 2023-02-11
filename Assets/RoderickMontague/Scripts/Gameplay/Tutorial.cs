@@ -16,6 +16,9 @@ namespace RM_BBTS
         // The textbox for the tutorial.
         public TextBox textBox;
 
+        // The definitions from the json file.
+        private JSONNode defs;
+
         // Automatically shows the textbox when text is loaded.
         public bool showTextboxOnLoad;
 
@@ -25,13 +28,16 @@ namespace RM_BBTS
         // Automatically sets the text box's default position.
         public bool autoSetTextBoxDefaultPos = true;
 
+        // The position for a raised textbox.
+        public Vector3 textBoxOffsetPos;
+
+        // Automatically sets the position for an offset text box (puts it in the middle of the screen).
+        public bool autoSetTextBoxOffsetPos = true;
+
         // The amount the textbox is shifted by to put it in the middle of the screen.
-        protected const float TEXTBOX_SHIFT_Y = 100.0F;
-
+        protected const float TEXTBOX_SHIFT_Y = 85.0F;
+        
         [Header("Tutorial Steps")]
-
-        // The definitions from the json file.
-        JSONNode defs;
 
         // Set to 'true' when the intro text has been loaded up.
         public bool clearedIntro = false;
@@ -82,9 +88,16 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
+            // These use the local position since that gives the text box's position in the Canvas.
+
             // Automatically sets the textbox position.
             if (autoSetTextBoxDefaultPos)
-                textBoxDefaultPos = textBox.transform.position;
+                textBoxDefaultPos = textBox.transform.localPosition;
+
+            // Gets the offset position of the textbox. This needs to use local position to work.
+            // For some reason this gets added twice at random, so I just manually set it now.
+            if (autoSetTextBoxOffsetPos)
+                textBoxOffsetPos = textBox.transform.localPosition + new Vector3(0, TEXTBOX_SHIFT_Y, 0);
         }
 
         // Opens the textbox.
@@ -105,22 +118,34 @@ namespace RM_BBTS
             return textBox.IsVisible();
         }
 
-        // Moves the textbox up so that the score isn't covered for one page.
+        // Moves the textbox up/down by the provided amount.
+        protected void TranslateTextBoxY(float y)
+        {
+            textBox.transform.Translate(0, y, 0);
+        }
+
+        // Moves the textbox on the y-axis so that the score isn't covered for one page.
         protected void TranslateTextBoxUp()
         {
-            textBox.transform.Translate(0, TEXTBOX_SHIFT_Y, 0);
+            TranslateTextBoxY(TEXTBOX_SHIFT_Y);
         }
 
         // Moves the textbox down so that it goes back to its original place.
         protected void TranslateTextBoxDown()
         {
-            textBox.transform.Translate(0, -TEXTBOX_SHIFT_Y, 0);
+            TranslateTextBoxY(-TEXTBOX_SHIFT_Y);
         }
 
         // Sets the text box to it's default position.
         public void SetTextBoxToDefaultPosition()
         {
-            textBox.transform.position = textBoxDefaultPos;
+            textBox.transform.localPosition = textBoxDefaultPos;
+        }
+
+        // Sets the text box to it's offset position.
+        public void SetTextBoxToOffsetPosition()
+        {
+            textBox.transform.localPosition = textBoxOffsetPos;
         }
 
         // Loads the tutorial
@@ -190,10 +215,10 @@ namespace RM_BBTS
             }
 
             // Move the text box so thatthe score is visible.
-            hudPage.OnPageOpenedAddCallback(TranslateTextBoxUp);
+            // This now moves to a fixed position since using Translate() caused problems.
+            hudPage.OnPageOpenedAddCallback(SetTextBoxToOffsetPosition);
 
-            // This caused problems, so now the textbox is just set to it's default position instead of translated back down.
-            // hudPage.OnPageClosedAddCallback(TranslateTextBoxDown);
+            // Moves the textbox back to its default position.
             hudPage.OnPageClosedAddCallback(SetTextBoxToDefaultPosition);
 
             // Loads the pages.

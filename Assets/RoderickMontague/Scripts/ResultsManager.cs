@@ -116,6 +116,30 @@ namespace RM_BBTS
 
                 finishLabel = defs["kwd_finish"];
             }
+            else // If the language file isn't loaded, then mark the text objects.
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+                marker.MarkText(saveFeedbackText);
+
+                marker.MarkText(scoreText);
+                marker.MarkText(roomsClearedText);
+                marker.MarkText(totalTimeText);
+                marker.MarkText(totalTurnsText);
+                marker.MarkText(questionsCorrectText);
+                marker.MarkText(questionsAsked);
+                marker.MarkText(finalLevelText);
+                marker.MarkText(moveSubtitleText);
+
+                marker.MarkText(move0Text);
+                marker.MarkText(move1Text);
+                marker.MarkText(move2Text);
+                marker.MarkText(move3Text);
+
+                marker.MarkText(finishButtonText);
+
+            }
 
             // Change out titles and buttons with translated label.
             titleText.text = titleLabel;

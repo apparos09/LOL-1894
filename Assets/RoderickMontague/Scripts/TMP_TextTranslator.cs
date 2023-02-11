@@ -15,6 +15,9 @@ namespace RM_BBTS
         // The translation key.
         public string key = "";
 
+        // Marks text if the language file is not loaded.
+        public bool markIfFailed = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -26,6 +29,11 @@ namespace RM_BBTS
             if(LOLSDK.Instance.IsInitialized && text != null)
             {
                 text.text = LOLManager.Instance.GetLanguageText(key);
+            }
+            else
+            {
+                // Mark the text.
+                LanguageMarker.Instance.MarkText(text);
             }
         }
 

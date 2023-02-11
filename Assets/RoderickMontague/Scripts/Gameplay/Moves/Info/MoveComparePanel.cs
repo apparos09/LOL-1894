@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.Timeline;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -14,52 +17,60 @@ namespace RM_BBTS
         private moveId id;
 
         // The name of the move.
-        public TMPro.TMP_Text nameText;
+        public TMP_Text nameText;
 
         // Move Attributes
         // Standard Info
         [Header("Primary Stats")]
-        public TMPro.TMP_Text rankText;
-        public TMPro.TMP_Text powerText;
-        public TMPro.TMP_Text accuracyText;
-        public TMPro.TMP_Text energyText;
+        public TMP_Text rankText;
+        public TMP_Text powerText;
+        public TMP_Text accuracyText;
+        public TMP_Text energyText;
 
         // Stat Change Info
 
         // Attack
         [Header("Attack Chance Events")]
-        public TMPro.TMP_Text attackChangeUserText;
-        public TMPro.TMP_Text attackChanceUserText;
-        public TMPro.TMP_Text attackChangeTargetText;
-        public TMPro.TMP_Text attackChanceTargetText;
+        public TMP_Text attackChangeUserText;
+        public TMP_Text attackChanceUserText;
+        public TMP_Text attackChangeTargetText;
+        public TMP_Text attackChanceTargetText;
 
         // Defense
         [Header("Defense Chance Events")]
-        public TMPro.TMP_Text defenseChangeUserText;
-        public TMPro.TMP_Text defenseChanceUserText;
-        public TMPro.TMP_Text defenseChangeTargetText;
-        public TMPro.TMP_Text defenseChanceTargetText;
+        public TMP_Text defenseChangeUserText;
+        public TMP_Text defenseChanceUserText;
+        public TMP_Text defenseChangeTargetText;
+        public TMP_Text defenseChanceTargetText;
 
         // Speed
         [Header("Speed Chance Events")]
-        public TMPro.TMP_Text speedChangeUserText;
-        public TMPro.TMP_Text speedChanceUserText;
-        public TMPro.TMP_Text speedChangeTargetText;
-        public TMPro.TMP_Text speedChanceTargetText;
+        public TMP_Text speedChangeUserText;
+        public TMP_Text speedChanceUserText;
+        public TMP_Text speedChangeTargetText;
+        public TMP_Text speedChanceTargetText;
 
         // Accuracy
         [Header("Accuracy Chance Events")]
-        public TMPro.TMP_Text accuracyChangeUserText;
-        public TMPro.TMP_Text accuracyChanceUserText;
-        public TMPro.TMP_Text accuracyChangeTargetText;
-        public TMPro.TMP_Text accuracyChanceTargetText;
+        public TMP_Text accuracyChangeUserText;
+        public TMP_Text accuracyChanceUserText;
+        public TMP_Text accuracyChangeTargetText;
+        public TMP_Text accuracyChanceTargetText;
 
 
         // Critical, Burn, and Paralysis
         [Header("Other Chance Events")]
-        public TMPro.TMP_Text criticalChanceText;
-        public TMPro.TMP_Text burnChanceText;
-        public TMPro.TMP_Text paralysisChanceText;
+        public TMP_Text criticalChanceText;
+        public TMP_Text burnChanceText;
+        public TMP_Text paralysisChanceText;
+
+        // Start is just before any of the update methods are called for the first time.
+        private void Start()
+        {
+            // Colour the text to show that it's not coming form the language file.
+            if(!LOLSDK.Instance.IsInitialized)
+                LanguageMarker.Instance.MarkText(nameText);
+        }
 
         // Checks to see if a move is loaded in.
         // Recommended you use the LoadMoveInfo() function, and don't load text in manually...

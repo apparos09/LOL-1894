@@ -945,7 +945,7 @@ namespace RM_BBTS
         // Evolves the battle entity.
         public static BattleEntityGameData EvolveData(BattleEntityGameData oldData)
         {
-            // Can't evolve.
+            // Can't evolve if the evolution is the same entity, or if it's set to unknown.
             if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
                 return oldData;
 
@@ -955,20 +955,27 @@ namespace RM_BBTS
             // Gets the evolved data.
             BattleEntityGameData evolved = BattleEntityList.Instance.GenerateBattleEntityData(oldData.evoId);
 
-            // Same Level and Rate
+            // Same level as old data (don't keep the same level rate).
             evolved.level = oldData.level;
-            evolved.levelRate = oldData.levelRate;
 
             // Give stats to evolved form.
+            // Health
             evolved.maxHealth += oldData.maxHealth - baseData.maxHealth;
             evolved.health = evolved.maxHealth;
 
+            // Attack, Defense, and Speed
             evolved.attack += oldData.attack - baseData.attack;
             evolved.defense += oldData.defense - baseData.defense;
             evolved.speed += oldData.speed - baseData.speed;
 
+            // Energy levels (return to full energy level as well).
             evolved.maxEnergy += oldData.maxEnergy - baseData.maxEnergy;
             evolved.energy = evolved.maxEnergy;
+
+            // Keep modifiers, though this shouldn't do anything.
+            evolved.attackMod = oldData.attackMod;
+            evolved.defenseMod = oldData.defenseMod;
+            evolved.speedMod = oldData.speedMod;
 
             // Return the evolved form.
             return evolved;

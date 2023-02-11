@@ -60,6 +60,9 @@ namespace RM_BBTS
         // Shows how many times evolution waves have been done
         public int evolveWaves = 0;
 
+        // The maximum amount of evolution waves allowed in a single game.
+        public const int EVOLVE_WAVES_MAX = 2;
+
         // String labels for each stat (used for translation).
         private string levelString = "Level";
         private string healthString = "Health";
@@ -301,6 +304,35 @@ namespace RM_BBTS
                 // The score string.
                 scoreString = defs["kwd_score"];
             }
+            else
+            {
+                // For marking text to show it's not loaded from the language file.
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                // Windows/Prompts
+                // STATS WINDOW
+                marker.MarkText(statsButtonText);
+
+                // SAVE PROMPT //
+                marker.MarkText(saveButtonText);
+                marker.MarkText(savePromptText);
+                marker.MarkText(saveAndContinueText);
+                marker.MarkText(saveAndQuitText);
+                marker.MarkText(savePromptBackText);
+
+                // SETTINGS WINDOW //
+                marker.MarkText(settingsButtonText);
+
+                // MAIN MENU (TITLE SCREEN) PROMPT
+                marker.MarkText(mainMenuButtonText);
+                marker.MarkText(mainMenuPromptText);
+                marker.MarkText(mainMenuYesText);
+                marker.MarkText(mainMenuNoText);
+
+                // INFO WINDOW
+                marker.MarkText(infoButtonText);
+            }
+
 
             // Turns off the entrance animation if scene transitions shouldn't be used.
             sceneTransition.useSceneEnterAnim = useTransitions;

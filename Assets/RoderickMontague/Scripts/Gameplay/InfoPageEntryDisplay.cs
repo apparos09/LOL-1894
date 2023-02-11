@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using LoLSDK;
 
 namespace RM_BBTS
 {
@@ -33,6 +34,20 @@ namespace RM_BBTS
         public void Start()
         {
             symbol.color = symbolColor;
+
+            // If the SDK has not been initialized, mark the text.
+            if(!LOLSDK.Instance.IsInitialized)
+            {
+                LanguageMarker.Instance.MarkText(nameText);
+                LanguageMarker.Instance.MarkText(descriptionText);
+            }
+        }
+
+        // Called when the script is enabled.
+        private void OnEnable()
+        {
+            // Refreshes the speak button if this object was ever turned off.
+            RefreshSpeakButton();
         }
 
         // Load the entry.
@@ -49,12 +64,34 @@ namespace RM_BBTS
             symbolColor = newEntry.symbolColor;
             symbol.color = symbolColor;
 
-            // Enables/disables the speak key button.
-            speakKeyButton.interactable = descriptionSpeakKey != string.Empty;
-            speakKeyButton.gameObject.SetActive(descriptionSpeakKey != string.Empty);
+            // // Enables/disables the speak key button.
+            // speakKeyButton.interactable = descriptionSpeakKey != string.Empty;
+            // speakKeyButton.gameObject.SetActive(descriptionSpeakKey != string.Empty);
+
+            // Refreshes the speak button to see if it can be used.
+            RefreshSpeakButton();
 
             // Shows the symbol i the alpha value is not set to 0.
             symbol.gameObject.SetActive(symbol.sprite != null);
+        }
+
+        // Refreshes the speak button to see if it should be enabled.
+        public void RefreshSpeakButton()
+        {
+            // Checks if the speak button should be read based on the game settings.
+            if (!LOLSDK.Instance.IsInitialized || !GameSettings.Instance.UseTextToSpeech)
+            {
+                // The TTS isn't available, so disable the speak button.
+                speakKeyButton.interactable = false;
+            }
+            else
+            {
+                // Check if there's information to read.
+                speakKeyButton.interactable = descriptionSpeakKey != string.Empty;     
+            }
+
+            // Turn on/off the speak key button object if there is a description to be read.
+            speakKeyButton.gameObject.SetActive(descriptionSpeakKey != string.Empty);
         }
 
         // Clear the entry.

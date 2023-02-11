@@ -60,6 +60,12 @@ namespace RM_BBTS
                 titleText.text = defs["kwd_licenses"];
                 backButtonText.text = defs["kwd_back"];
             }
+            else
+            {
+                // Mark the auto load text.
+                LanguageMarker.Instance.MarkText(titleText);
+                LanguageMarker.Instance.MarkText(backButtonText);
+            }
 
             // Loads credit and sets page number.
             UpdateCredit();

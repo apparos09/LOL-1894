@@ -221,6 +221,22 @@ namespace RM_BBTS
                 confirmButtonText.text = defs["kwd_confirm"];
                 finishButtonText.text = defs["kwd_finish"];
             }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+
+                marker.MarkText(questionText);
+                marker.MarkText(response0Text);
+                marker.MarkText(response1Text);
+                marker.MarkText(response2Text);
+                marker.MarkText(response3Text);
+
+                marker.MarkText(evaluationText);
+                marker.MarkText(confirmButtonText);
+                marker.MarkText(finishButtonText);
+            }
         }
 
         // Returns the current question.
