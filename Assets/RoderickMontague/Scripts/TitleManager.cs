@@ -85,7 +85,7 @@ namespace RM_BBTS
             JSONNode defs = SharedState.LanguageDefs;
 
             // Translate text.
-            if(defs != null)
+            if (defs != null)
             {
                 // Main Menu
                 // startButtonText.text = defs["kwd_start"];
@@ -101,7 +101,25 @@ namespace RM_BBTS
                 controlsInstructText.text = defs["mnu_controls_instruct"];
                 controlsDescText.text = defs[controlsDescTextKey];
                 controlsBackButtonText.text = defs["kwd_back"];
+            }
+            else
+            {
+                // Mark all of the text.
+                LanguageMarker marker = LanguageMarker.Instance;
 
+                marker.MarkText(saveFeedbackText);
+
+                marker.MarkText(newGameButtonText);
+                marker.MarkText(continueButtonText);
+
+                marker.MarkText(controlsButtonText);
+                marker.MarkText(settingsButtonText);
+                marker.MarkText(creditsButtonText);
+
+                marker.MarkText(controlsTitleText);
+                marker.MarkText(controlsInstructText);
+                marker.MarkText(controlsDescText);
+                marker.MarkText(controlsBackButtonText);
             }
 
             // Checks for initialization
@@ -186,6 +204,9 @@ namespace RM_BBTS
             {
                 // Just empty out the string.
                 saveFeedbackText.text = string.Empty;
+
+                // Mark this as debug text.
+                LanguageMarker.Instance.MarkText(saveFeedbackText);
             }
         }
 

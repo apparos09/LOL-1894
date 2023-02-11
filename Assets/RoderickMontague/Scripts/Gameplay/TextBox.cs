@@ -1,6 +1,8 @@
+using LoLSDK;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace RM_BBTS
 {
@@ -17,7 +19,7 @@ namespace RM_BBTS
         public List<Page> pages = new List<Page>();
 
         // The text in the text box.
-        public TMPro.TMP_Text boxText;
+        public TMP_Text boxText;
 
         // Closes the text box when all the end has been reached.
         public bool closeOnEnd = true;
@@ -75,6 +77,10 @@ namespace RM_BBTS
             // Sets the box object to the game object.
             // if (boxObject == null)
             //     boxObject = gameObject;
+
+            // Recolour the text to show that the text loaded is not coming from the language file.
+            if (!LOLSDK.Instance.IsInitialized)
+                LanguageMarker.Instance.MarkText(boxText);
         }
 
         // TODO: add touch and mouse for going onto the next page.
@@ -436,7 +442,7 @@ namespace RM_BBTS
             }
         }
 
-        // TODO: check callbacks.
+        
         // A callback function for when all the text is finished.
         // This is only called if the user attempts to go onto the next page when there is none.
         public void OnTextBoxFinishedAddCallback(TextBoxCallback callback)

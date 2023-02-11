@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 namespace RM_BBTS
@@ -84,6 +85,19 @@ namespace RM_BBTS
                 descriptionText.text = defs["multMoveOffer_msg_prompt"];
                 nextButtonText.text = defs["kwd_next"];
                 skipButtonText.text = defs["kwd_skip"];
+            }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(descriptionText);
+
+                marker.MarkText(move0ButtonText);
+                marker.MarkText(move1ButtonText);
+                marker.MarkText(move2ButtonText);
+
+                marker.MarkText(nextButtonText);
+                marker.MarkText(skipButtonText);
             }
         }
 

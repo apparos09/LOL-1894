@@ -81,19 +81,19 @@ namespace RM_BBTS
             JSONNode defs = SharedState.LanguageDefs;
 
             // Labels for translation.
-            string titleLabel = "<Results>";
-            string scoreLabel = "<Final Score>";
-            string roomsClearedLabel = "<Rooms Cleared>";
-            string totalTimeLabel = "<Total Time>";
-            string totalTurnsLabel = "<Total Turns>";
-            string questionsCorrectLabel = "<Questions Correct>";
-            string questionsAskedLabel = "<Questions Asked>";
-            string noRepeatsLabel = "<No Repeats>";
-            string finalLevelLabel = "<Final Level>";
-            string finalMovesLabel = "<Final Moves>";
+            string titleLabel = "Results";
+            string scoreLabel = "Final Score";
+            string roomsClearedLabel = "Rooms Cleared";
+            string totalTimeLabel = "Total Time";
+            string totalTurnsLabel = "Total Turns";
+            string questionsCorrectLabel = "Questions Correct";
+            string questionsAskedLabel = "Questions Asked";
+            string noRepeatsLabel = "No Repeats";
+            string finalLevelLabel = "Final Level";
+            string finalMovesLabel = "Final Moves";
 
             // The main menu title text.
-            string finishLabel = "<Finish>";
+            string finishLabel = "Finish";
 
             // The speak key for the title.
             string titleSpeakKey = "";
@@ -115,6 +115,30 @@ namespace RM_BBTS
                 finalMovesLabel = defs["kwd_finalMoves"];
 
                 finishLabel = defs["kwd_finish"];
+            }
+            else // If the language file isn't loaded, then mark the text objects.
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+                marker.MarkText(saveFeedbackText);
+
+                marker.MarkText(scoreText);
+                marker.MarkText(roomsClearedText);
+                marker.MarkText(totalTimeText);
+                marker.MarkText(totalTurnsText);
+                marker.MarkText(questionsCorrectText);
+                marker.MarkText(questionsAsked);
+                marker.MarkText(finalLevelText);
+                marker.MarkText(moveSubtitleText);
+
+                marker.MarkText(move0Text);
+                marker.MarkText(move1Text);
+                marker.MarkText(move2Text);
+                marker.MarkText(move3Text);
+
+                marker.MarkText(finishButtonText);
+
             }
 
             // Change out titles and buttons with translated label.

@@ -9,7 +9,7 @@ namespace RM_BBTS
     // a class for the LOL
     public class LOLManager : MonoBehaviour
     {
-        // the instance of the game settings.
+        // the instance of the LOL manager.
         private static LOLManager instance;
 
         // Language definition for translation.
@@ -75,7 +75,7 @@ namespace RM_BBTS
         // 
         // }
 
-        // returns the instance of the accessibility.
+        // Returns the instance of the accessibility.
         public static LOLManager Instance
         {
             get

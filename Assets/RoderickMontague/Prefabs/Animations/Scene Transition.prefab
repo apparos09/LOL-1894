@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneEnterObject: {fileID: 5237375251705733816}
+  sceneEnterAnimator: {fileID: 5237375251705733822}
   sceneEnterAnimClip: {fileID: 7400000, guid: f9cd8681499bf224797a217cea276503, type: 2}
   useSceneEnterAnim: 1
+  sceneExitAnimator: {fileID: 40425227377688825}
   sceneExitObject: {fileID: 40425227377688831}
   sceneExitAnimClip: {fileID: 7400000, guid: 6bfa0b0387286844baed03285f22ca0b, type: 2}
   useSceneExitAnim: 1
@@ -161,6 +163,11 @@ GameObject:
 --- !u!224 &40425227377688830 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6818067328297405134, guid: 182271c5c245e8a4c8ed8bf9593a0d68, type: 3}
+  m_PrefabInstance: {fileID: 6778263352370186800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &40425227377688825 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6818067328297405129, guid: 182271c5c245e8a4c8ed8bf9593a0d68, type: 3}
   m_PrefabInstance: {fileID: 6778263352370186800}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6778263353463544003
@@ -272,5 +279,10 @@ GameObject:
 --- !u!224 &5237375251705733817 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1639274605806467706, guid: 0d5f333e29e638d4887064421354e775, type: 3}
+  m_PrefabInstance: {fileID: 6778263353463544003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5237375251705733822 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1639274605806467709, guid: 0d5f333e29e638d4887064421354e775, type: 3}
   m_PrefabInstance: {fileID: 6778263353463544003}
   m_PrefabAsset: {fileID: 0}

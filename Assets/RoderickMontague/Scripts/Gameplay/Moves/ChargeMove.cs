@@ -12,10 +12,10 @@ namespace RM_BBTS
 
         // Constructor for the charge move.
         public ChargeMove() : 
-            base(moveId.charge, "<Charge>", 1, 0, 1.0F, 0)
+            base(moveId.charge, "Charge", 1, 0, 1.0F, 0)
         {
 
-            description = "<The user charges their energy by 40%.>";
+            description = "The user charges their energy by 40%.";
             useAccuracy = false;
 
             // No Animation

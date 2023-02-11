@@ -163,11 +163,11 @@ namespace RM_BBTS
 
         // The correct and incorrect string.
         // Correct
-        private string correctString = "[Correct]";
+        private string correctString = "Correct";
         private string correctKey = "kwd_correct";
 
         // Incorrect
-        private string incorrectString = "[Incorrect]";
+        private string incorrectString = "Incorrect";
         private string incorrectKey = "kwd_incorrect";
 
         [Header("Evaluation/Battle Effects")]
@@ -220,6 +220,22 @@ namespace RM_BBTS
                 incorrectString = defs[incorrectKey];
                 confirmButtonText.text = defs["kwd_confirm"];
                 finishButtonText.text = defs["kwd_finish"];
+            }
+            else
+            {
+                LanguageMarker marker = LanguageMarker.Instance;
+
+                marker.MarkText(titleText);
+
+                marker.MarkText(questionText);
+                marker.MarkText(response0Text);
+                marker.MarkText(response1Text);
+                marker.MarkText(response2Text);
+                marker.MarkText(response3Text);
+
+                marker.MarkText(evaluationText);
+                marker.MarkText(confirmButtonText);
+                marker.MarkText(finishButtonText);
             }
         }
 
