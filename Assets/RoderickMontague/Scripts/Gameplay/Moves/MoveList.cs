@@ -147,7 +147,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.poke: // Poke
-                    move = new Move(moveId.poke, "Poke", 1, 15.0F, 1.0F, 0.10F);
+                    move = new Move(moveId.poke, "Poke", 1, 20.0F, 1.0F, 0.10F);
 
                     move.CriticalChance = 0.4F;
 
@@ -257,7 +257,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chip: // Chip Off
-                    move = new Move(moveId.chip, "Chip Off", 1, 10, 0.95F, 0.15F);
+                    move = new Move(moveId.chip, "Chip Off", 1, 20.0F, 0.95F, 0.15F);
                     move.priority = 1;
 
                     move.description = "A weak attack that always goes first.";
@@ -401,7 +401,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.bam: // Bam
-                    move = new Move(moveId.bam, "Bam", 1, 25.0F, 1.0F, 0.10F);
+                    move = new Move(moveId.bam, "Bam", 1, 30.0F, 1.0F, 0.10F);
 
                     move.description = "A weak, basic attack.";
 
@@ -674,7 +674,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "Wham", 2, 50.0F, 1.0F, 0.15F);
+                    move = new Move(moveId.wham, "Wham", 2, 55.0F, 1.0F, 0.15F);
 
                     move.description = "The user hits the target with a decent, basic attack.";
 
@@ -908,7 +908,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.burnBoostUser: // Fire Boost
-                    move = new StatusAttackMove(moveId.burnBoostUser, "Fire Boost", 3, 60, 0.90F, 0.40F);
+                    move = new StatusAttackMove(moveId.burnBoostUser, "Fire Boost", 3, 65, 0.90F, 0.40F);
 
                     (move as StatusAttackMove).userBurned = true;
 
@@ -952,7 +952,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.kablam: // Kablam
-                    move = new Move(moveId.kablam, "Kablam", 3, 70.0F, 1.0F, 0.20F);
+                    move = new Move(moveId.kablam, "Kablam", 3, 75.0F, 1.0F, 0.20F);
 
                     move.description = "A strong, but basic attack.";
 
