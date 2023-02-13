@@ -52,7 +52,7 @@ namespace RM_BBTS
         public int roomsCompleted = 0;
         
         // The amount of rooms completed for the enemies to level up.
-        public int roomsPerLevelUp = 3;
+        public const int ROOMS_PER_LEVEL_UP = 2; // Originally 3
 
         // The last time the enemies were leveled up (is room the player is on).
         public int lastEnemyLevelUps = -1;
