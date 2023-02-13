@@ -682,7 +682,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 50;
-                    data.defense = 10;
+                    data.defense = 20;
                     data.speed = 60;
 
                     data.maxEnergy = 100;
@@ -705,7 +705,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 105;
-                    data.defense = 25;
+                    data.defense = 35;
                     data.speed = 90;
 
                     data.maxEnergy = 100;
@@ -728,7 +728,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 50;
-                    data.defense = 15;
+                    data.defense = 25;
                     data.speed = 30;
 
                     data.maxEnergy = 100;
@@ -752,7 +752,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 100;
-                    data.defense = 30;
+                    data.defense = 40;
                     data.speed = 60;
 
                     data.maxEnergy = 100;
@@ -776,7 +776,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 30;
-                    data.defense = 15;
+                    data.defense = 25;
                     data.speed = 50;
 
                     data.maxEnergy = 100;
@@ -800,7 +800,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 60;
-                    data.defense = 30;
+                    data.defense = 40;
                     data.speed = 100;
 
                     data.maxEnergy = 100;
@@ -823,7 +823,7 @@ namespace RM_BBTS
                     data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 15;
+                    data.attack = 25;
                     data.defense = 50;
                     data.speed = 30;
 
@@ -847,7 +847,7 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 30;
+                    data.attack = 40;
                     data.defense = 100;
                     data.speed = 60;
 
@@ -980,7 +980,7 @@ namespace RM_BBTS
                 case battleEntityId.ufo1:
                     moveList = new List<moveId>() { 
                         moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot, 
-                        moveId.magnify, moveId.bam 
+                        moveId.slam, moveId.magnify, moveId.pushBack, moveId.shield1, moveId.bam 
                     };
                     break;
 
@@ -988,8 +988,9 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     {
                         moveId.slimeShot, moveId.laserShot, moveId.fireShot, moveId.elecShot,
-                        moveId.magnify, moveId.bam, moveId.laserBurst, moveId.fireBurst, 
-                        moveId.elecBurst, moveId.quickBurst, moveId.electrify, moveId.wham
+                        moveId.slam, moveId.magnify, moveId.bam, moveId.laserBurst, 
+                        moveId.fireBurst, moveId.elecBurst, moveId.quickBurst, moveId.magnet, 
+                        moveId.electrify, moveId.wham
                     };
                     break;
 
@@ -1062,8 +1063,8 @@ namespace RM_BBTS
                     moveList = new List<moveId>() 
                     { 
                         moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeSun, 
-                        moveId.quake, moveId.kablam
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.quake, 
+                        moveId.rockBlast, moveId.airBlast, moveId.chargeSun, moveId.kablam
                     };
                     break;
 
@@ -1079,9 +1080,9 @@ namespace RM_BBTS
                 case battleEntityId.moonRock2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast, 
-                        moveId.bam, moveId.magnet, moveId.wham, moveId.chargeMoon,
-                        moveId.quake, moveId.kablam
+                        moveId.slam, moveId.chip, moveId.heal, moveId.powerLast,
+                        moveId.bam, moveId.magnet, moveId.wham, moveId.quake,
+                        moveId.rockBlast, moveId.airBlast, moveId.chargeMoon, moveId.kablam
                     };
                     break;
 
@@ -1240,19 +1241,20 @@ namespace RM_BBTS
                 case battleEntityId.planet1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.bam, 
-                        moveId.magnet, moveId.hpDrain2, moveId.statClear, moveId.cure, 
-                        moveId.wham, moveId.quake
+                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.hpDrain2, moveId.statClear, 
+                        moveId.cure, moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
                     };
                     break;
 
                 case battleEntityId.planet2:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.heal, moveId.healthSplit, moveId.magnet, moveId.hpDrain2,
-                        moveId.statClear, moveId.cure, moveId.tidalWave, moveId.wham,
-                        moveId.hpDrain3, moveId.twister, moveId.waterBlast, moveId.airBlast,
-                        moveId.quake, moveId.chargeSun, moveId.chargeMoon, moveId.kablam
+                        moveId.heal, moveId.healthSplit, moveId.powerLast, moveId.magnet, 
+                        moveId.hpDrain2, moveId.statClear, moveId.cure, moveId.tidalWave, 
+                        moveId.wham, moveId.hpDrain3, moveId.twister, moveId.waterBlast, 
+                        moveId.airBlast, moveId.quake, moveId.chargeSun, moveId.chargeMoon, 
+                        moveId.burnBoostUser, moveId.paraBoostUser, moveId.kablam
                     };
                     break;
             }
