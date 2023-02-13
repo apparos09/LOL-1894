@@ -8,7 +8,7 @@ namespace RM_BBTS
     public class StatusAttackMove : Move
     {
         // The attack boost.
-        public const float POWER_BOOST = 1.5F;
+        public const float POWER_BOOST = 1.8F;
 
         // The kind of condition needed to get a boost.
         public bool userBurned = false;
