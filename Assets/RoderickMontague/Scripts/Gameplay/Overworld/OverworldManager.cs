@@ -51,7 +51,7 @@ namespace RM_BBTS
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
-         * 0 = Varies
+         * 0 = Varies (Random)
          * 1 = Combat Bot (ATTACK/DEFAULT)
          *  - Default option.
          * 2 = Comet (SPEED)
@@ -556,7 +556,7 @@ namespace RM_BBTS
                 door.battleEntity, 
                 door.battleEntity.levelRate,
                 door.battleEntity.statSpecial, 
-                (uint)Random.Range(1, gameManager.roomsPerLevelUp + 1));
+                (uint)Random.Range(1, GameplayManager.ROOMS_PER_LEVEL_UP + 1));
 
 
             // TODO: randomize the enemy being placed behind the door.
@@ -746,7 +746,7 @@ namespace RM_BBTS
 
             // Time to level up enemies if 'true'.
             // If no rooms have been completed, then nothing happens.
-            if (gameManager.roomsCompleted % gameManager.roomsPerLevelUp == 0 && gameManager.roomsCompleted != 0)
+            if (gameManager.roomsCompleted % GameplayManager.ROOMS_PER_LEVEL_UP == 0 && gameManager.roomsCompleted != 0)
             {
                 // The enemies haven't been leveled up yet.
                 if (gameManager.lastEnemyLevelUps < gameManager.roomsCompleted)
@@ -762,7 +762,7 @@ namespace RM_BBTS
                                 door.battleEntity,
                                 door.battleEntity.levelRate,
                                 door.battleEntity.statSpecial,
-                                (uint)gameManager.roomsPerLevelUp
+                                (uint)GameplayManager.ROOMS_PER_LEVEL_UP
                                 );
                         }
                     }

@@ -52,7 +52,7 @@ namespace RM_BBTS
         public int roomsCompleted = 0;
         
         // The amount of rooms completed for the enemies to level up.
-        public int roomsPerLevelUp = 3;
+        public const int ROOMS_PER_LEVEL_UP = 2; // Originally 3
 
         // The last time the enemies were leveled up (is room the player is on).
         public int lastEnemyLevelUps = -1;
@@ -1227,6 +1227,9 @@ namespace RM_BBTS
             // Gets the amount of wait time for each part of the animation finish.
             float waitTime = 0.0F;
 
+            // Extra wait time.
+            const float EXTRA_WAIT_TIME = 0.25F;
+
             // Gets set to 'true' when the transition has happened.
             bool switched = false;
 
@@ -1238,7 +1241,7 @@ namespace RM_BBTS
             stateTransition.SetInteger("animPart", 1);
 
             // Wait for the animation to finish (screen is fully covered when it does).
-            waitTime = stateTransition.GetCurrentAnimatorClipInfo(0).Length / stateTransition.speed;
+            waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
 
             // While the operation is going.
             while (waitTime > 0.0F)
@@ -1262,7 +1265,7 @@ namespace RM_BBTS
 
                     // Part 1 of the animation is over, so switch to part 2.
                     stateTransition.SetInteger("animPart", 2);
-                    waitTime = stateTransition.GetCurrentAnimatorClipInfo(0).Length / stateTransition.speed;
+                    waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
 
                     // Switched state.
                     switched = true;

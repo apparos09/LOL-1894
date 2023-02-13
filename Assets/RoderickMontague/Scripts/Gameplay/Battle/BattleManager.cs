@@ -242,6 +242,9 @@ namespace RM_BBTS
         // The opponent's animator.
         public Animator opponentAnimator;
 
+        // Extra time for playing out animations.
+        private float EXTRA_ANIM_TIME = 0.5F;
+
         // If set to 'true', the move animations are played.
         public const bool PLAY_MOVE_ANIMATIONS = true;
 
@@ -1750,7 +1753,7 @@ namespace RM_BBTS
             playerAnimator.gameObject.SetActive(true);
 
             // Get the length of the animation.
-            float animTime = playerAnimator.GetCurrentAnimatorStateInfo(0).length / playerAnimator.speed;
+            float animTime = (playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / playerAnimator.speed;
 
             // Turn off the animation.
             StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
@@ -1807,7 +1810,8 @@ namespace RM_BBTS
 
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
-            float animTime = opponentAnimator.GetCurrentAnimatorStateInfo(0).length / opponentAnimator.speed;
+            float animTime = (opponentAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / opponentAnimator.speed;
+            Debug.Log(animTime);
 
             // Turn off the animation.
             StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, 0));

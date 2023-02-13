@@ -40,7 +40,7 @@ namespace RM_BBTS
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.01F;
+        private const float ANIM_TIMER_EXTRA = 0.75F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]
@@ -154,9 +154,9 @@ namespace RM_BBTS
             // animation is running.
             animPlaying = true;
 
-            // Sets the animation timer.
-            animTimer = animator.GetCurrentAnimatorClipInfo(0).Length / animator.speed + ANIM_TIMER_EXTRA;
-
+            // Gets the current time for the animation, plus extra time.
+            // Just going by the clip legnth doesn't allow the animation to play out fully.
+            animTimer = (animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + ANIM_TIMER_EXTRA) / animator.speed;
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
@@ -307,6 +307,8 @@ namespace RM_BBTS
             // animation is no longer running, and neither is the timer.
             animPlaying = false;
             animTimer = 0.0F;
+
+            // Debug.Log("Finished");
 
             // animator.gameObject.SetActive(false);
             // animator.enabled = false;

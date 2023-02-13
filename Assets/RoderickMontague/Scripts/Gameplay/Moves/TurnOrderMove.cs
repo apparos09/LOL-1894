@@ -8,7 +8,7 @@ namespace RM_BBTS
     public class TurnOrderMove : Move
     {
         // The attack boost.
-        public const float POWER_BOOST = 1.5F;
+        public const float POWER_BOOST = 1.7F;
 
         // If 'true', the power is boosted for the user moving first.
         // If 'false', the power is boosted for the user moving last.
