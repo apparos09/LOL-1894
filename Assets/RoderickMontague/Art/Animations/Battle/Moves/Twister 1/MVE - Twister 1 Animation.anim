@@ -74,6 +74,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.26666668
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -96,7 +105,9 @@ AnimationClip:
     - time: 0.23333333
       value: {fileID: 0}
     - time: 0.25
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 5fb404eb7652d0b4c817e5b2b40ce86f, type: 3}
+    - time: 0.26666668
+      value: {fileID: 21300000, guid: 5fb404eb7652d0b4c817e5b2b40ce86f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -129,13 +140,14 @@ AnimationClip:
     - {fileID: 21300000, guid: f20a32a7971aea646b5db3a472b1fc1b, type: 3}
     - {fileID: 21300000, guid: 19eaaed2171ed1c46bdb39d5977596fb, type: 3}
     - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 5fb404eb7652d0b4c817e5b2b40ce86f, type: 3}
+    - {fileID: 21300000, guid: 5fb404eb7652d0b4c817e5b2b40ce86f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.26666668
+    m_StopTime: 0.28333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -208,6 +220,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.26666668
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -221,6 +242,13 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayWindSfx
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.26666668
+    functionName: StopAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
