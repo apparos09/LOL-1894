@@ -791,13 +791,14 @@ namespace RM_BBTS
                         // It helps save on evolution time.
                         if (!door.Locked)
                         {
-                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true);
+                            // TODO: for some reason, some enemies aren't being generated with an evo id, and aren't evolving...
+                            // Even though they should be.
+                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true, true);
 
                             // TODO: maybe don't restore it entirely?
                             // Restore health and energy levels to max even if the entity didn't evolve.
                             door.battleEntity.health = door.battleEntity.maxHealth;
                             door.battleEntity.energy = door.battleEntity.maxEnergy;
-
                         }
 
                     }
@@ -880,6 +881,13 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
+
+            // Slight boost to the player's stats.
+            player.SetHealthRelativeToMaxHealth(player.MaxHealth + 5);
+            player.Attack += 5;
+            player.Defense += 5;
+            player.Speed += 5;
+
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
@@ -1028,8 +1036,12 @@ namespace RM_BBTS
                     
             }
 
-            gameOver = false;
+            // Loads the game over tutorial.
+            if (gameManager.useTutorial && !gameManager.tutorial.clearedGameOver)
+                gameManager.tutorial.LoadGameOverTutorial();
 
+            // Turns off the variable.
+            gameOver = false;
         }
 
 

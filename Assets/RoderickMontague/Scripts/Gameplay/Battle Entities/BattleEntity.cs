@@ -242,8 +242,12 @@ namespace RM_BBTS
             // Creates the data object.
             BattleEntityGameData data = new BattleEntityGameData();
 
-            // Sets the values.
+            // Sets the evolutions.
             data.id = id;
+            data.preEvoId = preEvoId;
+            data.evoId = evoId;
+
+            // Sets the name.
             data.displayName = displayName;
             data.displayNameSpeakKey = displayNameSpeakKey;
 
@@ -288,6 +292,8 @@ namespace RM_BBTS
             if (Move3 != null)
                 data.move3 = Move3.Id;
 
+
+            // Sprite
             data.sprite = sprite;
 
             return data;
@@ -375,10 +381,16 @@ namespace RM_BBTS
         // Loads the battle data into this object.
         public virtual void LoadBattleGameData(BattleEntityGameData data)
         {
+            // Evos
             id = data.id;
+            preEvoId = data.preEvoId;
+            evoId = data.evoId;
+
+            // Names
             displayName = data.displayName;
             displayNameSpeakKey = data.displayNameSpeakKey;
 
+            // Levels
             level = data.level;
             levelRate = data.levelRate;
 
@@ -390,10 +402,11 @@ namespace RM_BBTS
             defense = data.defense;
             speed = data.speed;
 
-            statSpecial = data.statSpecial;
-
             maxEnergy = data.maxEnergy;
             energy = data.energy;
+
+            // Stat specialty.
+            statSpecial = data.statSpecial;
 
             // Stat modifiers.
             attackMod = data.attackMod;
@@ -436,7 +449,7 @@ namespace RM_BBTS
             // Move2 = MoveList.Instance.GenerateMove(data.move2);
             // Move3 = MoveList.Instance.GenerateMove(data.move3);
 
-            // Save sprite data.
+            // Set sprite data.
             sprite = data.sprite;
         }
 
@@ -925,7 +938,9 @@ namespace RM_BBTS
         }
 
         // Evolves the entity. It fails if the entity does not have an evolution.
-        public bool Evolve(bool levelUpIfUnevolved)
+        // If 'setUnknownEvos' is true, then the function sets the evos to the entity's defaults if they are unknown.
+        // If 'levelUpIfUnevolved' is true, then the function can level up the entity if it doesn't evolve.
+        public bool Evolve(bool setUnknownEvos, bool levelUpIfUnevolved)
         {
             // If there is no evolution, and the enemy shouldn't level up if it doesn't evolve.
             if ((evoId == battleEntityId.unknown || evoId == id) && !levelUpIfUnevolved)
@@ -935,7 +950,7 @@ namespace RM_BBTS
             else // Evolve, or at least level up the enemy.
             {
                 BattleEntityGameData data = GenerateBattleEntityGameData();
-                data = EvolveData(data, levelUpIfUnevolved);
+                data = EvolveData(data, setUnknownEvos, levelUpIfUnevolved);
                 LoadBattleGameData(data);
                 return true;
             }
@@ -943,8 +958,26 @@ namespace RM_BBTS
         }
 
         // Evolves the battle entity.
-        public static BattleEntityGameData EvolveData(BattleEntityGameData oldData, bool levelUpIfUnevolved)
+        // If 'setUnknownEvos' is true, then the function sets the evos to the entity's defaults if they are unknown.
+        // If 'levelUpIfUnevolved' is true, then the function can level up the entity if it doesn't evolve.
+        public static BattleEntityGameData EvolveData(BattleEntityGameData oldData, bool setUnknownEvos, bool levelUpIfUnevolved)
         {
+            // This is to address a glitch where an enemy wasn't evolving.
+            // It appeared to happen because the evolution ids weren't being saved when loading up and shuting down a battle.
+            // But I wanted to make sure that this glitch is addressed regardless, hence this addition.
+
+            // If the unknown evolutions should be attempted to be set.
+            if(setUnknownEvos)
+            {
+                // If the pre-evolution is not set, try to find and set it.
+                if (oldData.preEvoId == battleEntityId.unknown)
+                    oldData.preEvoId = BattleEntityList.GetPreEvolution(oldData.id);
+
+                // If the evolution is not set, try to find and set it.
+                if (oldData.evoId == battleEntityId.unknown)
+                    oldData.evoId = BattleEntityList.GetEvolution(oldData.id);
+            }
+
             // Can't evolve if the evolution is the same entity, or if it's set to unknown.
             if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
             {
@@ -957,8 +990,9 @@ namespace RM_BBTS
                     // Increase to the base stat total per level up.
                     // 12 * 10 = 120, and the bonuses should at least bring the entity over the 100 point threshold.
 
-                    // For balance reasons, this has been reduced to 5 levels ups instead of 10.
-                    BattleEntityGameData leveledData = LevelUpData(oldData, oldData.levelRate, oldData.statSpecial, 5);
+                    // For balance reasons, this has been reduced to 1 level up instead of 10.
+                    // Prior to this, the enemy levels up by roomsPerLevelUp anyway, which is currently set to 2.
+                    BattleEntityGameData leveledData = LevelUpData(oldData, oldData.levelRate, oldData.statSpecial, 1);
                     
                     // Returns the leveled data.
                     return leveledData;

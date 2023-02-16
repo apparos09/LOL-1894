@@ -27,7 +27,12 @@ namespace RM_BBTS
                 // If the user already has full health, the move will fail to do anything.
                 bool success = !user.HasFullHealth();
 
-                ReduceEnergy(user); // Reduce energy
+                // Reduces the energy.
+                ReduceEnergy(user);
+
+                // Update the player's energy UI if they were the one that used the move.
+                if (user is Player)
+                    battle.UpdatePlayerEnergyUI();
 
                 // This really shouldn't be needed since it would make no sense, but it's here anyway.
                 // Checks if the move successfully hit its target.
@@ -38,20 +43,19 @@ namespace RM_BBTS
 
                 }
 
+                // Restore health.
                 user.Health += user.MaxHealth * healPercent; // Heal
 
                 // TODO: maybe don't update it if the move fails since it wouldn't be needed?
                 // Update the health and the energy.
-                if (user is Player) // User is player.
-                {
-                    battle.gameManager.UpdateUI();
-                }                    
-                else // User is opponent.
-                {
-                    battle.UpdateOpponentUI();
-                }
-
-                
+                // if (user is Player) // User is player.
+                // {
+                //     battle.gameManager.UpdateUI();
+                // }                    
+                // else // User is opponent.
+                // {
+                //     battle.UpdateOpponentUI();
+                // }
 
                 // TODO: overlaps with the button SFX.
                 // Play the move effect sfx.

@@ -69,8 +69,8 @@ namespace RM_BBTS
             // <unknown, treasure, and bosses should always be 0>
             baseWeights = new List<int> { 
                 0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20, 
-                0, 20, 0, 12, 0, 12, 0, 12, 0, 12, 0, 
-                20, 0, 30, 0, 30, 0, 30, 0, 0, 10, 0  
+                0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
+                20, 0, 30, 0, 30, 0, 30, 0, 0, 5, 0  
             };
 
             // If it exceeds the ID count.
@@ -192,12 +192,12 @@ namespace RM_BBTS
                     data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 220;
+                    data.maxHealth = 210;
                     data.health = data.maxHealth;
 
-                    data.attack = 120;
-                    data.defense = 90;
-                    data.speed = 110;
+                    data.attack = 110;
+                    data.defense = 80;
+                    data.speed = 100;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -375,12 +375,12 @@ namespace RM_BBTS
                     data.displayName = "Comet";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
-                    data.maxHealth = 190;
+                    data.maxHealth = 180;
                     data.health = data.maxHealth;
 
-                    data.attack = 125;
-                    data.defense = 95;
-                    data.speed = 130;
+                    data.attack = 115;
+                    data.defense = 85;
+                    data.speed = 120;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -868,11 +868,11 @@ namespace RM_BBTS
                     data.displayName = "Vortex";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
-                    data.maxHealth = 150;
+                    data.maxHealth = 140;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
-                    data.defense = 220;
+                    data.attack = 90;
+                    data.defense = 200;
                     data.speed = 70;
 
                     data.maxEnergy = 100;
@@ -1462,6 +1462,257 @@ namespace RM_BBTS
 
             return data;
         }
+
+
+
+        // Gets the entity's pre-evolution based on the provided id.
+        public static battleEntityId GetPreEvolution(battleEntityId id)
+        {
+            return GetEvolution(id, false);
+        }
+
+        // Gets the entity's evolution based on the provided id.
+        public static battleEntityId GetEvolution(battleEntityId id)
+        {
+            return GetEvolution(id, true);
+        }
+
+        // Returns the evolution for the entity of the provided id.
+        // If 'getEvo' is true, it returns the entity's evolution.
+        // If 'getPreEvo' is false, then it returns the entity's pre-evolution.
+        public static battleEntityId GetEvolution(battleEntityId id, bool getEvo)
+        {
+            // The result of this function call.
+            battleEntityId result;
+
+            // Checks the ID.
+            switch(id)
+            {
+                case battleEntityId.ufo1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.ufo2;
+                    break;
+
+                case battleEntityId.ufo2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.ufo1;
+                    else // Evolution
+                        result = battleEntityId.ufo3;
+                    break;
+
+                case battleEntityId.ufo3:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.ufo2;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.insect1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.insect2;
+                    break;
+
+                case battleEntityId.insect2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.insect1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.ghost1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.ghost2;
+                    break;
+
+                case battleEntityId.ghost2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.ghost1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.sunRock1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.sunRock2;
+                    break;
+
+                case battleEntityId.sunRock2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.sunRock1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.moonRock1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.moonRock2;
+                    break;
+
+                case battleEntityId.moonRock2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.moonRock1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.fireBot1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.fireBot2;
+                    break;
+
+                case battleEntityId.fireBot2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.fireBot1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.waterBot1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.waterBot2;
+                    break;
+
+                case battleEntityId.waterBot2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.waterBot1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.earthBot1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.earthBot2;
+                    break;
+
+                case battleEntityId.earthBot2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.earthBot1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.airBot1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.airBot2;
+                    break;
+
+                case battleEntityId.airBot2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.airBot1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.sharp1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.sharp2;
+                    break;
+
+                case battleEntityId.sharp2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.sharp1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.cBugRed1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.cBugRed2;
+                    break;
+
+                case battleEntityId.cBugRed2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.cBugRed1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.cBugBlue1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.cBugBlue2;
+                    break;
+
+                case battleEntityId.cBugBlue2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.cBugBlue1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.cBugYellow1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.cBugYellow2;
+                    break;
+
+                case battleEntityId.cBugYellow2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.cBugYellow1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                case battleEntityId.planet1:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.unknown;
+                    else // Evolution
+                        result = battleEntityId.planet2;
+                    break;
+
+                case battleEntityId.planet2:
+                    if (getEvo == false) // Pre-Evolution
+                        result = battleEntityId.planet1;
+                    else // Evolution
+                        result = battleEntityId.unknown;
+                    break;
+
+
+                default: // No evolution or pre-evolution for the provided id.
+                    result = battleEntityId.unknown;
+                    break;
+            }
+
+            return result;
+        }        
+
 
         // Checks to see if it's a tutorial enemy.
         public static bool IsTutorialEnemy(battleEntityId id)

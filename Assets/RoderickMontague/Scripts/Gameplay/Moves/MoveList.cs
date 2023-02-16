@@ -705,7 +705,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.fireBlast: // Fire Blast
-                    move = new Move(moveId.fireBlast, "Fire Blast", 3, 85.0F, 0.8F, 0.30F);
+                    move = new Move(moveId.fireBlast, "Fire Blast", 3, 85.0F, 0.8F, 0.25F);
                     move.BurnChance = 0.30F;
 
                     move.description = "A strong fire blast with a 0.30 chance of burning the target.";
@@ -719,7 +719,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.elecBlast: // Electric Blast
-                    move = new Move(moveId.elecBlast, "Electric Blast", 3, 85.0F, 0.8F, 0.30F);
+                    move = new Move(moveId.elecBlast, "Electric Blast", 3, 85.0F, 0.8F, 0.25F);
                     move.ParalysisChance = 0.30F;
 
                     move.description = "A strong electric blast with a 0.30 chance of paralyzing the target.";
@@ -749,7 +749,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.hpDrain3: // Drain Heal 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "Drain Heal 3", 3, 80, 0.75F, 0.45F);
+                    move = new HealthDrainMove(moveId.hpDrain3, "Drain Heal 3", 3, 80, 0.80F, 0.45F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.50F;
 
@@ -764,7 +764,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "Twister", 3, 70, 0.95F, 0.30F);
+                    move = new Move(moveId.twister, "Twister", 3, 75, 0.95F, 0.25F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 1.0F;
@@ -782,7 +782,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.waterBlast: // Water Blast
-                    move = new Move(moveId.waterBlast, "Water Blast", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.waterBlast, "Water Blast", 3, 85, 0.80F, 0.25F);
 
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.30F;
@@ -798,7 +798,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.rockBlast: // Rock Blast
-                    move = new Move(moveId.rockBlast, "Rock Blast", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.rockBlast, "Rock Blast", 3, 85, 0.80F, 0.25F);
 
                     move.defenseChangeTarget = -1;
                     move.defenseChangeChanceTarget = 0.30F;
@@ -814,7 +814,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.airBlast: // Air Blast
-                    move = new Move(moveId.airBlast, "Air Blast", 3, 85, 0.80F, 0.30F);
+                    move = new Move(moveId.airBlast, "Air Blast", 3, 85, 0.80F, 0.25F);
 
                     move.speedChangeTarget = -1;
                     move.speedChangeChanceTarget = 0.30F;
@@ -848,7 +848,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 105, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 120, 0.85F);
                     move.BurnChance = 0.20F;
                     move.priority = -3;
 
@@ -864,7 +864,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 105, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 120, 0.85F);
                     move.ParalysisChance = 0.20F;
                     move.priority = -3;
 
