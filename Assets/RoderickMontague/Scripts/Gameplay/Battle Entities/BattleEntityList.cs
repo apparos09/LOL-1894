@@ -68,7 +68,7 @@ namespace RM_BBTS
             // Creates the entity weights, and lcamps them to the battle entity ID count.
             // <unknown, treasure, and bosses should always be 0>
             baseWeights = new List<int> { 
-                0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20, 
+                0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20,
                 0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
                 20, 0, 30, 0, 30, 0, 30, 0, 0, 5, 0  
             };
@@ -287,17 +287,19 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
-                    data.maxHealth = 50;
+                    data.maxHealth = 58;
                     data.health = data.maxHealth;
 
-                    data.attack = 14;
-                    data.defense = 14;
-                    data.speed = 32;
+                    data.attack = 18;
+                    data.defense = 18;
+                    data.speed = 36;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.10F;
+
                     break;
 
                 case battleEntityId.insect2: // Spacectoid
@@ -309,17 +311,19 @@ namespace RM_BBTS
                     data.displayName = "Spacectoid";
                     data.displayNameSpeakKey = "bey_insect2_nme";
 
-                    data.maxHealth = 70;
+                    data.maxHealth = 80;
                     data.health = data.maxHealth;
 
-                    data.attack = 41;
-                    data.defense = 25;
-                    data.speed = 81;
+                    data.attack = 46;
+                    data.defense = 28;
+                    data.speed = 86;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
+                    data.levelRate = 1.15F;
+
                     break;
 
                 case battleEntityId.ghost1: // Techno Ghost
@@ -335,8 +339,8 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 22;
-                    data.defense = 49;
-                    data.speed = 14;
+                    data.defense = 45;
+                    data.speed = 18;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -356,9 +360,9 @@ namespace RM_BBTS
                     data.maxHealth = 60;
                     data.health = data.maxHealth;
 
-                    data.attack = 32;
-                    data.defense = 121;
-                    data.speed = 29;
+                    data.attack = 38;
+                    data.defense = 116;
+                    data.speed = 26;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -521,7 +525,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.30F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -569,7 +573,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.30F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -617,7 +621,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.30F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -665,7 +669,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.30F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -689,6 +693,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -712,6 +717,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -735,7 +741,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.25F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -759,7 +765,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.50F;
+                    data.levelRate = 1.20F;
 
                     break;
 
@@ -783,7 +789,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.25F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -807,7 +813,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.50F;
+                    data.levelRate = 1.20F;
 
                     break;
 
@@ -831,7 +837,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.25F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -855,7 +861,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.50F;
+                    data.levelRate = 1.20F;
 
                     break;
 
@@ -891,12 +897,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Island";
                     data.displayNameSpeakKey = "bey_planet1_nme";
 
-                    data.maxHealth = 110;
+                    data.maxHealth = 105;
                     data.health = data.maxHealth;
 
-                    data.attack = 21;
-                    data.defense = 15;
-                    data.speed = 4;
+                    data.attack = 23;
+                    data.defense = 18;
+                    data.speed = 14;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -914,12 +920,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Planet";
                     data.displayNameSpeakKey = "bey_planet2_nme";
 
-                    data.maxHealth = 222;
+                    data.maxHealth = 205;
                     data.health = data.maxHealth;
 
-                    data.attack = 39;
-                    data.defense = 30;
-                    data.speed = 9;
+                    data.attack = 40;
+                    data.defense = 27;
+                    data.speed = 18;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1107,18 +1113,18 @@ namespace RM_BBTS
                 case battleEntityId.waterBot1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.magnify, moveId.heal, moveId.pushBack,
-                        moveId.powerLast, moveId.bam, moveId.laserBurst, moveId.tidalWave,
-                        moveId.wham
+                        moveId.laserShot, moveId.chip, moveId.toss, moveId.magnify, 
+                        moveId.hpDrain1, moveId.pushBack, moveId.powerLast, moveId.bam, 
+                        moveId.laserBurst, moveId.tidalWave, moveId.wham
                     };
                     break;
 
                 case battleEntityId.waterBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.laserShot, moveId.magnify, moveId.heal, moveId.healthSplit,
-                        moveId.laserBurst, moveId.tidalWave, moveId.powerLast, moveId.laserBlast, 
-                        moveId.waterBlast, moveId.kablam
+                        moveId.laserShot, moveId.chip, moveId.toss, moveId.magnify, 
+                        moveId.hpDrain1, moveId.healthSplit, moveId.laserBurst, moveId.tidalWave, 
+                        moveId.powerLast, moveId.laserBlast, moveId.waterBlast, moveId.kablam
                     };
                     break;
 
@@ -1243,17 +1249,17 @@ namespace RM_BBTS
                 case battleEntityId.planet1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
-                        moveId.bam, moveId.magnet, moveId.hpDrain2, moveId.statClear, 
-                        moveId.cure, moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
+                        moveId.magnify, moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.statClear, moveId.cure, 
+                        moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
                     };
                     break;
 
                 case battleEntityId.planet2:
                     moveList = new List<moveId>() 
-                    { 
-                        moveId.heal, moveId.healthSplit, moveId.powerLast, moveId.magnet, 
-                        moveId.hpDrain2, moveId.statClear, moveId.cure, moveId.tidalWave, 
+                    {
+                        moveId.magnify, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
+                        moveId.magnet,  moveId.statClear, moveId.cure, moveId.tidalWave, 
                         moveId.wham, moveId.hpDrain3, moveId.twister, moveId.waterBlast, 
                         moveId.airBlast, moveId.quake, moveId.chargeSun, moveId.chargeMoon, 
                         moveId.burnBoostUser, moveId.paraBoostUser, moveId.kablam

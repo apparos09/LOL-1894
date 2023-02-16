@@ -791,7 +791,6 @@ namespace RM_BBTS
                         // It helps save on evolution time.
                         if (!door.Locked)
                         {
-                            // TODO: for some reason, some enemies aren't being generated with an evo id, and aren't evolving...
                             // Even though they should be.
                             door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true, true);
 
@@ -882,11 +881,12 @@ namespace RM_BBTS
             // Randomize player moves
             Player player = gameManager.player;
 
-            // Slight boost to the player's stats.
-            player.SetHealthRelativeToMaxHealth(player.MaxHealth + 5);
-            player.Attack += 5;
-            player.Defense += 5;
-            player.Speed += 5;
+            // TODO: maybe take this out since the game doesn't explain it?
+            // // Slight boost to the player's stats.
+            // player.SetHealthRelativeToMaxHealth(player.MaxHealth + 10);
+            // player.Attack += 10;
+            // player.Defense += 10;
+            // player.Speed += 10;
 
 
             // List of 4 index spots.

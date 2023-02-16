@@ -258,7 +258,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chip: // Chip Off
-                    move = new Move(moveId.chip, "Chip Off", 1, 20.0F, 0.95F, 0.15F);
+                    move = new Move(moveId.chip, "Chip Off", 1, 20.0F, 0.95F, 0.12F);
                     move.priority = 1;
 
                     move.description = "A weak attack that always goes first.";
@@ -617,7 +617,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.tidalWave: // Tidal Wave
-                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.20F);
+                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.30F);
                     move.useAccuracy = false;
 
                     move.description = "The user hits the target with a strong attack that never misses.";
