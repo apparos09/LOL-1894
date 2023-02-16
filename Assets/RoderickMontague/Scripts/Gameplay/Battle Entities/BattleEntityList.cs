@@ -562,12 +562,12 @@ namespace RM_BBTS
                     data.displayName = "Aquadroid MK 2";
                     data.displayNameSpeakKey = "bey_waterBot2_nme";
 
-                    data.maxHealth = 180;
+                    data.maxHealth = 160;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
+                    data.attack = 50;
                     data.defense = 40;
-                    data.speed = 40;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -610,12 +610,12 @@ namespace RM_BBTS
                     data.displayName = "Terrachine MK 2";
                     data.displayNameSpeakKey = "bey_earthBot2_nme";
 
-                    data.maxHealth = 70;
+                    data.maxHealth = 65;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 150;
-                    data.speed = 40;
+                    data.attack = 50;
+                    data.defense = 130;
+                    data.speed = 55;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -920,12 +920,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Planet";
                     data.displayNameSpeakKey = "bey_planet2_nme";
 
-                    data.maxHealth = 205;
+                    data.maxHealth = 200;
                     data.health = data.maxHealth;
 
                     data.attack = 40;
                     data.defense = 27;
-                    data.speed = 18;
+                    data.speed = 23;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1052,7 +1052,7 @@ namespace RM_BBTS
                         moveId.slam, moveId.chip, moveId.quickBurst, moveId.powerFirst,
                         moveId.bam, moveId.tidalWave, moveId.shield2, moveId.wham, 
                         moveId.quake, moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
-                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.shield3, moveId.kablam
+                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.kablam
                     };
                     break;
 
@@ -1249,7 +1249,7 @@ namespace RM_BBTS
                 case battleEntityId.planet1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.magnify, moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
+                        moveId.magnify, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
                         moveId.bam, moveId.magnet, moveId.statClear, moveId.cure, 
                         moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
                     };

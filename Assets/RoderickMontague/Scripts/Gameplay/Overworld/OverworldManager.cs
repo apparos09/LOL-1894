@@ -792,7 +792,7 @@ namespace RM_BBTS
                         if (!door.Locked)
                         {
                             // Even though they should be.
-                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true, true);
+                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true, false);
 
                             // TODO: maybe don't restore it entirely?
                             // Restore health and energy levels to max even if the entity didn't evolve.
