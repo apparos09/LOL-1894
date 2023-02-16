@@ -1093,7 +1093,14 @@ namespace RM_BBTS
                     // }
 
                     // Play the animations.
-                    PlayAnimations(user, target, battle, moveEffect.none, moveEffect.hurt);
+                    if(this is HealthDrainMove) // Checks if it's a health drain move.
+                    {
+                        PlayAnimations(user, target, battle, moveEffect.heal, moveEffect.hurt);
+                    }
+                    else // Regular move.
+                    {
+                        PlayAnimations(user, target, battle, moveEffect.none, moveEffect.hurt);
+                    }
 
                     return true;
                 }

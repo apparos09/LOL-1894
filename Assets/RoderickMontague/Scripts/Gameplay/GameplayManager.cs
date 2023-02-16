@@ -1241,7 +1241,12 @@ namespace RM_BBTS
             stateTransition.SetInteger("animPart", 1);
 
             // Wait for the animation to finish (screen is fully covered when it does).
-            waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
+            // To avoid a potential out-of-bounds error, this goes by the animator state info if the clip doesn't exist.
+            if (stateTransition.GetCurrentAnimatorClipInfo(0).Length > 0)
+                waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
+            else
+                waitTime = (stateTransition.GetCurrentAnimatorStateInfo(0).length + EXTRA_WAIT_TIME) / stateTransition.speed;
+
 
             // While the operation is going.
             while (waitTime > 0.0F)
@@ -1265,7 +1270,13 @@ namespace RM_BBTS
 
                     // Part 1 of the animation is over, so switch to part 2.
                     stateTransition.SetInteger("animPart", 2);
-                    waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
+
+                    // There was a bug where an index out of bounds error was returned for the stat transition.
+                    // This goes by the animator state info instead of the clip info if the clip is unavailable.
+                    if(stateTransition.GetCurrentAnimatorClipInfo(0).Length > 0)
+                        waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
+                    else
+                        waitTime = (stateTransition.GetCurrentAnimatorStateInfo(0).length + EXTRA_WAIT_TIME) / stateTransition.speed;
 
                     // Switched state.
                     switched = true;

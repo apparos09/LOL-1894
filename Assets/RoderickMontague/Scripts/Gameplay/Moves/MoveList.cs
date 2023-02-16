@@ -3,6 +3,7 @@ using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using System.Xml.Linq;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -496,7 +497,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "Scorch", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.torch, "Scorch", 2, 15, 0.9F, 0.40F);
                     move.BurnChance = 1.0F;
 
                     move.description = "A weak attack that always burns the target.";
@@ -510,7 +511,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "Electrify", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.electrify, "Electrify", 2, 15, 0.9F, 0.40F);
                     move.ParalysisChance = 1.0F;
 
                     move.description = "A weak attack that always paralyzes the target.";
@@ -660,7 +661,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.shield2: // Shield 2
-                    move = new ShieldMove(moveId.shield2, "Shield 2", 1, 0.0F, 0.75F, 0.40F);
+                    move = new ShieldMove(moveId.shield2, "Shield 2", 2, 0.0F, 0.75F, 0.40F);
 
                     move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.";
 
@@ -847,7 +848,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 100, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 105, 0.85F);
                     move.BurnChance = 0.20F;
                     move.priority = -3;
 
@@ -863,7 +864,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 100, 0.85F);
+                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 105, 0.85F);
                     move.ParalysisChance = 0.20F;
                     move.priority = -3;
 
@@ -878,7 +879,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "Early Burst", 3, 90, 0.85F, 0.30F);
+                    move = new TurnsLowMove(moveId.earlyBurst, "Early Burst", 3, 120.0F, 0.85F, 0.30F);
 
                     move.description = "A move that gets weaker the longer the battle goes on.";
 
@@ -891,7 +892,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.allOut: // All-Out Attack
-                    move = new Move(moveId.allOut, "All Out Attack", 3, 90, 0.90F, 0.45F);
+                    move = new Move(moveId.allOut, "All Out Attack", 3, 100, 0.90F, 0.45F);
 
                     move.attackChangeUser = -1;
                     move.attackChangeChanceUser = 1.0F;
@@ -938,7 +939,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.shield3: // Shield 3
-                    move = new ShieldMove(moveId.shield3, "Shield 3", 1, 0.0F, 1.00F, 0.50F);
+                    move = new ShieldMove(moveId.shield3, "Shield 3", 3, 0.0F, 1.00F, 0.50F);
 
                     move.description = "A priority move that blocks all direct attacks on the user for a turn. It works every time.";
 
@@ -1039,14 +1040,14 @@ namespace RM_BBTS
             List<Move> chosenMoves = new List<Move>();
 
             // The number of the last move.
-            int lastMoveNum = (int)LAST_RANK_3;
+            const int LAST_MOVE_NUM = (int)LAST_RANK_3;
 
             // Returns an empty list if the count is invalid.
             if (count <= 0)
                 return chosenMoves;
 
             // While there are still moves to add.
-            for (int i = MOVE_ID_RAND_START; i <= lastMoveNum; i++)
+            for (int i = MOVE_ID_RAND_START; i <= LAST_MOVE_NUM; i++)
             {
                 // Grabs the move id.
                 moveId mid = (moveId)i;
@@ -1096,5 +1097,6 @@ namespace RM_BBTS
             // Re-uses the other function.
             return GetRandomMoves(count, ignoreList);
         }
+        
     }
 }

@@ -791,7 +791,7 @@ namespace RM_BBTS
                         // It helps save on evolution time.
                         if (!door.Locked)
                         {
-                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity, true);
 
                             // TODO: maybe don't restore it entirely?
                             // Restore health and energy levels to max even if the entity didn't evolve.
@@ -851,7 +851,6 @@ namespace RM_BBTS
         // Rearranges the doors.
         public void OnOverworldReturnGameOver()
         {
-            // TODO: don't move the boss door.
             // The new positions
             List<Vector3> doorLocs = new List<Vector3>();
 
@@ -885,6 +884,9 @@ namespace RM_BBTS
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
 
+            // Gets the game phase for determining how the randomization works.
+            int phase = gameManager.GetGamePhase();
+
             // Removes two indexes.
             moveIndexes.Remove(Random.Range(0, moveIndexes.Count));
             moveIndexes.Remove(Random.Range(0, moveIndexes.Count));
@@ -907,22 +909,64 @@ namespace RM_BBTS
                     // Checks that the move exists in the player's list.
                     if (player.moves[moveIndex] != null)
                     {
-                        // Grabs the move rank, and replaces the move.
-                        switch (player.moves[moveIndex].Rank)
+                        switch(phase)
                         {
-                            case 1: // R1
-                                move = MoveList.Instance.GetRandomRank1Move();
+                            default: // Phase 1 - replace with move of the same rank.
+                            case 1:
+                                // Grabs the move rank, and replaces the move.
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    case 1: // R1
+                                        move = MoveList.Instance.GetRandomRank1Move();
+                                        break;
+                                    case 2: // R2
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                    case 3: // R3
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    default: // Not applicable rank.
+                                        move = MoveList.Instance.GetRandomMove();
+                                        break;
+                                }
                                 break;
-                            case 2: // R2
-                                move = MoveList.Instance.GetRandomRank2Move();
+
+                            case 2: // Phase 2 - If rank 1 (or no rank) move, replace with rank 2 or rank 3 move.
+                                // Grabs the move rank, and replaces the move.
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    default:
+                                    case 1: // R1
+                                        // More likely to get rank 2 (6/10) over rank 3 (4/10).
+                                        move = Random.Range(1, 11) <= 6 ? 
+                                            MoveList.Instance.GetRandomRank2Move() :
+                                            MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    case 2: // R2
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                    case 3: // R3
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                }
                                 break;
-                            case 3: // R3
-                                move = MoveList.Instance.GetRandomRank3Move();
-                                break;
-                            default: // Not applicable rank.
-                                move = MoveList.Instance.GetRandomMove();
+
+                            case 3: // Phase 3 - If rank 1, replace with a rank 3.
+                                // Grabs the move rank, and replaces the move.
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    default:
+                                    case 1: // R1 and R3
+                                    case 3:
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    case 2: // R2
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                }
                                 break;
                         }
+
                     }
                     else
                     {

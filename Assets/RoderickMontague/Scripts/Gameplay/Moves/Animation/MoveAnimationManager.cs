@@ -156,7 +156,11 @@ namespace RM_BBTS
 
             // Gets the current time for the animation, plus extra time.
             // Just going by the clip legnth doesn't allow the animation to play out fully.
-            animTimer = (animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + ANIM_TIMER_EXTRA) / animator.speed;
+            // Goes by the state length if the clip does not exist.
+            if (animator.GetCurrentAnimatorClipInfo(0).Length > 0)
+                animTimer = (animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + ANIM_TIMER_EXTRA) / animator.speed;
+            else
+                animTimer = (animator.GetCurrentAnimatorStateInfo(0).length + ANIM_TIMER_EXTRA) / animator.speed;
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)

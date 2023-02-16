@@ -38,26 +38,28 @@ namespace RM_BBTS
 
             // NOTE: because of the way this function is set up, this doesn't re-call the PlayAnimations() function.
 
-            // Attack was success.
-            if(success)
-            {
-                // The health of the target has already updated, so the other one needs to be called.
-                // Checks if the user is a Player or an Enemy.
-                if (user is Player)
-                {
-                    // Updates player's health for healed content.
-                    battle.UpdatePlayerHealthUI();
-                    battle.PlayPlayerHealAnimation();
-                }
-                else
-                {
-                    // Updates opponent's health.
-                    battle.UpdateOpponentUI();
-                    battle.PlayOpponentHealAnimation();
-                }
+            // The animations are now handled in the base Perform function.
 
-                
-            }
+            // // Attack was success.
+            // if(success)
+            // {
+            //     // The health of the target has already updated, so the other one needs to be called.
+            //     // Checks if the user is a Player or an Enemy.
+            //     if (user is Player)
+            //     {
+            //         // Updates player's health for healed content.
+            //         battle.UpdatePlayerHealthUI();
+            //         battle.PlayPlayerHealAnimation();
+            //     }
+            //     else
+            //     {
+            //         // Updates opponent's health.
+            //         battle.UpdateOpponentUI();
+            //         battle.PlayOpponentHealAnimation();
+            //     }
+            // 
+            //     
+            // }
 
             return success;
             

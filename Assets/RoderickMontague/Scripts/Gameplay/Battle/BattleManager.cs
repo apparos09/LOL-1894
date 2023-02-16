@@ -1973,11 +1973,17 @@ namespace RM_BBTS
                         opponent.selectedMove = null;
 
                         // Prevents the player from dying during the first battle.
+                        // Restore all health.
                         player.SetHealthToMax();
                         UpdatePlayerHealthUI();
 
+                        // Restore all energy.
                         player.SetEnergyToMax();
                         UpdatePlayerEnergyUI();
+
+                        // Reset statuses and stat modifiers.
+                        player.ResetStatuses();
+                        player.ResetStatModifiers();
 
                         // Tutorial for first battle death.
                         if(!gameManager.tutorial.clearedFirstBattleDeath)
