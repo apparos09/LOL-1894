@@ -32,19 +32,17 @@ namespace RM_BBTS
         // The next page button.
         public Button nextPageButton;
 
+        // Animation was taken out.
+
         [Header("Animation")]
-        // The animator.
-        public Animator animator;
-
-        // Animation for opening the textbox.
-        public AnimationClip openClip;
-
-        // Animation for closing the textbox.
-        public AnimationClip closeClip;
-
-        [Header("Animation/Text")]
         // If 'true', all the shown is shown at once. If false, the text is shown letter by letter.
         public bool instantText = true;
+
+        // Allows the user to skip the text loading animation if this is set to 'true'.
+        public bool enableAnimationSkip = true;
+
+        // Allows the user to skip the text loading animation if they're going back a page.
+        public bool enableAnimationBackSkip = true;
 
         // A queue of text for progressive character loading.
         private Queue<char> charQueue = new Queue<char>();
@@ -52,8 +50,11 @@ namespace RM_BBTS
         // The timer for loading in a new char.
         private float charTimer = 0.0F;
 
+        // The amount of characters loaded per interation.
+        public int charsPerLoad = 1;
+
         // The speed that the text is shown on the screen. This is ignored if the text is instantly shown.
-        public float textSpeed = 10.0F;
+        public float textSpeed = 0.0F;
 
         // Becomes 'true' when characters are loading up.
         private bool loadingChars = false;
@@ -214,8 +215,20 @@ namespace RM_BBTS
         // Returns to the previous page.
         public void PreviousPage()
         {
-            // Decreases the index, and sets the text.
-            SetTextBoxText(currPageIndex - 1);
+            // If the animation should be skipped when going back, and only when going back.
+            if (enableAnimationBackSkip && !enableAnimationSkip)
+            {
+                // Finishes the page instead of finishing it.
+                SetTextBoxText(currPageIndex - 1, false);
+            }
+            else // Standard
+            {
+                // TODO: maybe have the back button skip the text always instead of loading up the rest of the page?
+
+                // Decreases the index, and sets the text.
+                // SetTextBoxText(currPageIndex - 1);
+                SetTextBoxText(currPageIndex - 1);
+            }
         }
 
         // Enables the text box controls.
@@ -319,21 +332,32 @@ namespace RM_BBTS
             // If text is still being loaded just sub in the rest and stop loading in new characters.
             if (loadingChars)
             {
-                // No longer loading characters.
-                loadingChars = false;
-
-                // If the text should be finished, or if it should just skip to the next page.
-                // If there is no next page then the rest of the text is loaded regardless of 'finishPage's value.
-                // TODO: maybe make it so that a callback is called when the dialog box is finished.
-
-                if (finishPage || !(nextPageIndex >= 0 && nextPageIndex < pages.Count)) // Finsih loading the page.
+                // If the animation skip has been enabled.
+                if(enableAnimationSkip)
                 {
-                    // Finishes the text instead of replacing the page.
-                    boxText.text = pages[currPageIndex].text;
-                    charQueue.Clear();
-                    charTimer = 0.0F;
-                    return;
+                    // No longer loading characters.
+                    loadingChars = false;
+
+                    // If the text should be finished, or if it should just skip to the next page.
+                    // If there is no next page then the rest of the text is loaded regardless of 'finishPage's value.
+                    // TODO: maybe make it so that a callback is called when the dialog box is finished.
+
+                    if (finishPage || !(nextPageIndex >= 0 && nextPageIndex < pages.Count)) // Finish loading the page.
+                    {
+                        // Finishes the text instead of replacing the page.
+                        boxText.text = pages[currPageIndex].text;
+                        charQueue.Clear();
+                        charTimer = 0.0F;
+                        return;
+                    }
                 }
+                // Skipping is not allowed, so just leave the function.
+                else
+                {
+                    // If the page should be finished first, leave the function so that the page can be completed.
+                    if(finishPage)
+                        return;
+                }   
             }
 
             // There's no next page, so don't change the text.
@@ -418,7 +442,14 @@ namespace RM_BBTS
                 {
                     // Adds to the string.
                     string temp = boxText.text;
-                    temp += charQueue.Dequeue();
+
+                    // Loads (X) amount of characters based on 'charsPerLoad'.
+                    // Stops if the char queue runs out of characters.
+                    for(int i = 0; i < charsPerLoad && charQueue.Count > 0; i++)
+                    {
+                        temp += charQueue.Dequeue();
+                    }
+                    
                     boxText.text = temp;
 
                     // If the text speed is set to 0 the new char will load on the next frame.
