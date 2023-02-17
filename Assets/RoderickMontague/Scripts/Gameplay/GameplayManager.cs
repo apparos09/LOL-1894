@@ -6,6 +6,7 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
+using RM_BTSS;
 
 namespace RM_BBTS
 {
@@ -235,6 +236,9 @@ namespace RM_BBTS
 
         // The scene transition object.
         public SceneTransition sceneTransition;
+
+        // The room transition object.
+        public RoomTransition roomTransition;
 
         // A game object used to transition between states.
         public Animator stateTransition;
@@ -1137,7 +1141,11 @@ namespace RM_BBTS
         // Goes to the overworld with a transition.
         public void EnterOverworldWithTransition(bool battleWon)
         {
-            StartCoroutine(EnterStateWithTransition(gameState.overworld, null, battleWon));
+            // Old
+            // StartCoroutine(EnterStateWithTransition(gameState.overworld, null, battleWon));
+
+            // New
+            roomTransition.TransitionToOverworld(null, battleWon);
         }
 
         // Call to enter the battle world.
@@ -1216,7 +1224,11 @@ namespace RM_BBTS
                 stateTransitionImage.color = OverworldManager.GetDoorTypeColor(door.doorType);
             }
 
-            StartCoroutine(EnterStateWithTransition(gameState.battle, door, false));
+            // Old
+            // StartCoroutine(EnterStateWithTransition(gameState.battle, door, false));
+
+            // New
+            roomTransition.TransitionToBattle(door);
         }
 
         // A function called to turn off the damage animator once it has played.

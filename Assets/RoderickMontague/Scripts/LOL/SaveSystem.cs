@@ -288,7 +288,7 @@ namespace RM_BBTS
             // TODO: save data for game loading.
             if(!IsGameManagerSet())
             {
-                Debug.LogError("Game manager not found.");
+                Debug.LogError("Game gameManager not found.");
                 return;
             }
 
