@@ -727,7 +727,7 @@ namespace RM_BBTS
                     data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
+                    data.attack = 45;
                     data.defense = 25;
                     data.speed = 30;
 
@@ -777,7 +777,7 @@ namespace RM_BBTS
 
                     data.attack = 30;
                     data.defense = 25;
-                    data.speed = 50;
+                    data.speed = 45;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -824,7 +824,7 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 25;
-                    data.defense = 50;
+                    data.defense = 45;
                     data.speed = 30;
 
                     data.maxEnergy = 100;
@@ -1160,17 +1160,19 @@ namespace RM_BBTS
                 case battleEntityId.sharp1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.poke, moveId.slam, moveId.chip, moveId.bam, 
-                        moveId.motivate, moveId.risk, moveId.wham
+                        moveId.poke, moveId.slam, moveId.chip, moveId.toss, 
+                        moveId.breaker1, moveId.bam, moveId.motivate, moveId.risk, 
+                        moveId.breaker2, moveId.wham
                     };
                     break;
 
                 case battleEntityId.sharp2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.poke, moveId.slam, moveId.chip, moveId.toss,
-                        moveId.bam, moveId.motivate, moveId.risk, moveId.wham,
-                        moveId.kablam, moveId.allOut
+                        moveId.poke, moveId.slam, moveId.chip, moveId.toss, 
+                        moveId.powerFirst, moveId.bam, moveId.motivate, moveId.risk, 
+                        moveId.breaker2, moveId.wham, moveId.allOut, moveId.breaker3, 
+                        moveId.kablam
                     };
                     break;
 
