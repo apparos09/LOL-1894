@@ -89,7 +89,7 @@
       "ifo_moves_power_nme": 80,
       "ifo_moves_power_dsc": 310,
       "ifo_moves_accuracy_nme": 80,
-      
+
       "ifo_moves_energyUsage_nme": 80,
       "ifo_moves_energyUsage_dsc": 310,
       "ifo_moves_critical_nme": 80,
@@ -229,44 +229,47 @@
       "mve_run_dsc": 180,
       "mve_charge_nme": 16,
       "mve_charge_dsc": 180,
+
       "mve_poke_nme": 16,
       "mve_poke_dsc": 180,
       "mve_slimeShot_nme": 16,
       "mve_slimeShot_dsc": 180,
-
       "mve_laserShot_nme": 16,
       "mve_laserShot_dsc": 180,
       "mve_fireShot_nme": 16,
       "mve_fireShot_dsc": 180,
+
       "mve_elecShot_nme": 16,
       "mve_elecShot_dsc": 180,
       "mve_screech_nme": 16,
       "mve_screech_dsc": 180,
-
       "mve_slam_nme": 16,
       "mve_slam_dsc": 180,
       "mve_chip_nme": 16,
       "mve_chip_dsc": 180,
+
       "mve_toss_nme": 16,
       "mve_toss_dsc": 180,
       "mve_magnify_nme": 16,
       "mve_magnify_dsc": 180,
-
       "mve_heal_nme": 16,
       "mve_heal_dsc": 180,
       "mve_hpDrain1_nme": 16,
       "mve_hpDrain1_dsc": 180,
+
       "mve_healthSplit_nme": 16,
       "mve_healthSplit_dsc": 180,
       "mve_pushBack_nme": 16,
       "mve_pushBack_dsc": 180,
-
       "mve_powerFirst_nme": 16,
       "mve_powerFirst_dsc": 180,
       "mve_powerLast_nme": 16,
       "mve_powerLast_dsc": 180,
+
       "mve_shield1_nme": 16,
       "mve_shield1_dsc": 180,
+      "mve_breaker1_nme": 16,
+      "mve_breaker1_dsc": 180,
       "mve_bam_nme": 16,
       "mve_bam_dsc": 180,
 
@@ -301,13 +304,16 @@
       "mve_risk_dsc": 180,
       "mve_tidalWave_nme": 16,
       "mve_tidalWave_dsc": 180,
-
       "mve_burnBoostTarget_nme": 16,
       "mve_burnBoostTarget_dsc": 180,
+
+
       "mve_paraBoostTarget_nme": 16,
       "mve_paraBoostTarget_dsc": 180,
       "mve_shield2_nme": 16,
       "mve_shield2_dsc": 180,
+      "mve_breaker2_nme": 16,
+      "mve_breaker2_dsc": 180,
       "mve_wham_nme": 16,
       "mve_wham_dsc": 180,
 
@@ -349,6 +355,8 @@
 
       "mve_shield3_nme": 16,
       "mve_shield3_dsc": 180,
+      "mve_breaker3_nme": 16,
+      "mve_breaker3_dsc": 180,
       "mve_kablam_nme": 16,
       "mve_kablam_dsc": 180,
 
@@ -808,44 +816,47 @@
     "mve_run_dsc": "The user attempts to run away. There is a 0.50 chance of success.",
     "mve_charge_nme": "Charge",
     "mve_charge_dsc": "The user charges their energy by 40%.",
+
     "mve_poke_nme": "Poke",
     "mve_poke_dsc": "An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.",
     "mve_slimeShot_nme": "Slime Shot",
     "mve_slimeShot_dsc": "An attack that has a 0.15 chance of lowering the target's speed by 1 stage.",
-
     "mve_laserShot_nme": "Laser Shot",
     "mve_laserShot_dsc": "A weak laser attack.",
     "mve_fireShot_nme": "Fire Shot",
     "mve_fireShot_dsc": "A weak fire attack with a burn chance of 0.10.",
+
     "mve_elecShot_nme": "Electric Shot",
     "mve_elecShot_dsc": "A weak electric attack with a paralysis chance of 0.10.",
     "mve_screech_nme": "Screech",
     "mve_screech_dsc": "A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.",
-
     "mve_slam_nme": "Slam",
     "mve_slam_dsc": "An attack that has a critical damage chance of 0.60.",
     "mve_chip_nme": "Chip Off",
     "mve_chip_dsc": "A weak attack that always goes first.",
+
     "mve_toss_nme": "Toss",
     "mve_toss_dsc": "An attack that has a 0.10 chance of lowering the target's attack by 1 stage.",
     "mve_magnify_nme": "Magnify",
     "mve_magnify_dsc": "The user raises their accuracy by 1 stage.",
-
     "mve_heal_nme": "Heal",
     "mve_heal_dsc": "The user heals 30% of their health.",
     "mve_hpDrain1_nme": "Drain Heal 1",
     "mve_hpDrain1_dsc": "The user attacks the target, and restores their health by 30% of the damage given.",
+
     "mve_healthSplit_nme": "Health Split",
     "mve_healthSplit_dsc": "The user and the target add together their proportional health, then split said health evenly between themselves.",
     "mve_pushBack_nme": "Push Back",
     "mve_pushBack_dsc": "The user pushes the target back, which has a 0.20 chance of increasing the user's defense.",
-
     "mve_powerFirst_nme": "Quick Strike",
     "mve_powerFirst_dsc": "An attack that does more damage if the user moves before the target.",
     "mve_powerLast_nme": "Slow Strike",
     "mve_powerLast_dsc": "An attack that does more damage if the user moves after the target.",
+
     "mve_shield1_nme": "Shield 1",
-    "mve_shield1_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.",
+    "mve_shield1_dsc": "A priority move that blocks direct attacks on the user for a turn. It works 50% of the time.",
+    "mve_breaker1_nme": "Breaker 1",
+    "mve_breaker1_dsc": "A weak attack that can break through shields. The attack does more damage if the target is shielded.",
     "mve_bam_nme": "Bam",
     "mve_bam_dsc": "A weak, basic attack.",
 
@@ -855,38 +866,40 @@
     "mve_fireBurst_dsc": "A decent fire attack that has a 0.20 chance of burning the target.",
     "mve_elecBurst_nme": "Electric Burst",
     "mve_elecBurst_dsc": "A decent electric attack that has a 0.20 chance of paralyzing the target.",
-
     "mve_soundWave_nme": "Soundwave",
     "mve_soundWave_dsc": "A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.",
+
     "mve_magnet_nme": "Magnet",
     "mve_magnet_dsc": "The user increases their accuracy by 2 stages, and the target's accuracy by 1 stage.",
     "mve_torch_nme": "Torch",
     "mve_torch_dsc": "A weak attack that always burns the target.",
     "mve_electrify_nme": "Electrify",
     "mve_electrify_dsc": "A weak attack that always paralyzes the target.",
-
     "mve_motivate_nme": "Motivate",
     "mve_motivate_dsc": "The user increases their attack, defense, and speed by 1 stage each. This move will always go last.",
+
     "mve_quickBurst_nme": "Quick Burst",
     "mve_quickBurst_dsc": "The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.",
     "mve_hpDrain2_nme": "Drain Heal 2",
     "mve_hpDrain2_dsc": "The user attacks the target, gaining 40% of the damage dealt as health.",
     "mve_statClear_nme": "Stat Clear",
     "mve_statClear_dsc": "The user resets all stat changes for themselves and their opponent.",
-
     "mve_cure_nme": "Cure",
     "mve_cure_dsc": "The user removes all their status ailments.",
+
     "mve_risk_nme": "Risk",
     "mve_risk_dsc": "The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.",
     "mve_tidalWave_nme": "Tidal Wave",
     "mve_tidalWave_dsc": "The user hits the target with a strong attack that never misses.",
-
     "mve_burnBoostTarget_nme": "Livefire",
     "mve_burnBoostTarget_dsc": "An attack that does more damage if the target is burned.",
     "mve_paraBoostTarget_nme": "Livewire",
     "mve_paraBoostTarget_dsc": "An attack that does more damage if the target is paralyzed.",
+
     "mve_shield2_nme": "Shield 2",
-    "mve_shield2_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.",
+    "mve_shield2_dsc": "A priority move that blocks direct attacks on the user for a turn. It works 75% of the time.",
+    "mve_breaker2_nme": "Breaker 2",
+    "mve_breaker2_dsc": "A decent attack that can break through shields. The attack does more damage if the target is shielded.",
     "mve_wham_nme": "Wham",
     "mve_wham_dsc": "The user hits the target with a decent, basic attack.",
 
@@ -927,7 +940,9 @@
     "mve_paraBoostUser_dsc": "An attack that does more damage if the user is paralyzed.",
 
     "mve_shield3_nme": "Shield 3",
-    "mve_shield3_dsc": "A priority move that blocks all direct attacks on the user for a turn. It works every time.",
+    "mve_shield3_dsc": "A priority move that blocks direct attacks on the user for a turn. It works every time.",
+    "mve_breaker3_nme": "Breaker 3",
+    "mve_breaker3_dsc": "A strong attack that can break through shields. The attack does more damage if the target is shielded.",
     "mve_kablam_nme": "Kablam",
     "mve_kablam_dsc": "A strong, basic attack.",
 
@@ -951,7 +966,7 @@
 
     "que_res_enemyA": "Enemy A",
     "que_res_enemyB": "Enemy B",
-    "que_res_enemyC": "Enemy C"
+    "que_res_enemyC": "Enemy C",
     "que_res_enemyD": "Enemy D",
 
     "que01": "When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance that you go first?",
