@@ -1811,7 +1811,7 @@ namespace RM_BBTS
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
             float animTime = (opponentAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / opponentAnimator.speed;
-            Debug.Log(animTime);
+            // Debug.Log(animTime);
 
             // Turn off the animation.
             StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, 0));

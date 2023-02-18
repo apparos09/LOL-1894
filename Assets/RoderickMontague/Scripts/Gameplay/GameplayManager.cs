@@ -6,6 +6,7 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
+using RM_BTSS;
 
 namespace RM_BBTS
 {
@@ -236,11 +237,8 @@ namespace RM_BBTS
         // The scene transition object.
         public SceneTransition sceneTransition;
 
-        // A game object used to transition between states.
-        public Animator stateTransition;
-
-        // The image of the state transition used for colour changes.
-        public Image stateTransitionImage;
+        // The room transition object.
+        public RoomTransition roomTransition;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -1137,7 +1135,8 @@ namespace RM_BBTS
         // Goes to the overworld with a transition.
         public void EnterOverworldWithTransition(bool battleWon)
         {
-            StartCoroutine(EnterStateWithTransition(gameState.overworld, null, battleWon));
+            // New
+            roomTransition.TransitionToOverworld(null, battleWon);
         }
 
         // Call to enter the battle world.
@@ -1209,83 +1208,8 @@ namespace RM_BBTS
         // Goes to the battle with a transition.
         public void EnterBattleWithTransition(Door door)
         {
-            // Changes the transition colour.
-            if(door != null)
-            {
-                // Returns the door type color.
-                stateTransitionImage.color = OverworldManager.GetDoorTypeColor(door.doorType);
-            }
-
-            StartCoroutine(EnterStateWithTransition(gameState.battle, door, false));
-        }
-
-        // A function called to turn off the damage animator once it has played.
-        // Argument 'door' is used when entering the battle.
-        // Arugment 'battleWon' is used when entering the overworld.
-        private IEnumerator EnterStateWithTransition(gameState newState, Door door, bool battleWon)
-        {
-            // Gets the amount of wait time for each part of the animation finish.
-            float waitTime = 0.0F;
-
-            // Extra wait time.
-            const float EXTRA_WAIT_TIME = 0.25F;
-
-            // Gets set to 'true' when the transition has happened.
-            bool switched = false;
-
-            // Activate the object so that the transition plays.
-            // The GetCurrentAnimatorClipInfo() function won't work otherwise.
-            stateTransition.gameObject.SetActive(true);
-
-            // Plays the first part of the animation.
-            stateTransition.SetInteger("animPart", 1);
-
-            // Wait for the animation to finish (screen is fully covered when it does).
-            waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
-
-            // While the operation is going.
-            while (waitTime > 0.0F)
-            {
-                // Reduce by delta time.
-                waitTime -= Time.deltaTime;
-
-                // Checks to see if the animation has not switched over yet.
-                if(!switched && waitTime <= 0.0F)
-                {
-                    // Checks what state to switch to.
-                    switch (newState)
-                    {
-                        case gameState.overworld: // Go to the overworld.
-                            EnterOverworld(battleWon);
-                            break;
-                        case gameState.battle: // Go to the battle.
-                            EnterBattle(door);
-                            break;
-                    }
-
-                    // Part 1 of the animation is over, so switch to part 2.
-                    stateTransition.SetInteger("animPart", 2);
-                    waitTime = (stateTransition.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_WAIT_TIME) / stateTransition.speed;
-
-                    // Switched state.
-                    switched = true;
-                }
-            
-                // Tells the program to stall.
-                if(waitTime > 0.0F)
-                    yield return null;
-            }
-
-            // Switch back to default.
-            stateTransition.SetInteger("animPart", 1);
-
-            // Deactives the object so that the transition animation stops.
-            stateTransition.gameObject.SetActive(false);
-
-            // TODO: the animation appears to break sometimes, and I'm not sure why.
-            // It appears to happen because its been too short since the last transition?
-            // I'm not sure why that would cause the visual bug though.
-
+            // New
+            roomTransition.TransitionToBattle(door);
         }
 
         // Updates the UI

@@ -10,9 +10,9 @@ namespace RM_BBTS
     // NOTE: organize moves based on rank (all rank 1 moves > all rank 2 moves > all rank 3 moves)
     // The list of move ids.
     public enum moveId { run, charge, 
-        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, powerFirst, powerLast, shield1, bam, 
-        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, burnBoostTarget, paraBoostTarget, shield2, wham, 
-        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, burnBoostUser, paraBoostUser, shield3, kablam
+        poke, slimeShot, laserShot, fireShot, elecShot, screech, slam, chip, toss, magnify, heal, hpDrain1, healthSplit, pushBack, powerFirst, powerLast, shield1, breaker1, bam, 
+        laserBurst, fireBurst, elecBurst, soundWave, magnet, torch, electrify, motivate, quickBurst, hpDrain2, statClear, cure, risk, tidalWave, burnBoostTarget, paraBoostTarget, shield2, breaker2, wham, 
+        laserBlast, fireBlast, elecBlast, sonicWave, hpDrain3, twister, waterBlast, rockBlast, airBlast, quake, chargeSun, chargeMoon, earlyBurst, allOut, burnBoostUser, paraBoostUser, shield3, breaker3, kablam
     }
 
     // The list of moves for the game.
@@ -389,7 +389,7 @@ namespace RM_BBTS
                 case moveId.shield1: // Shield 1
                     move = new ShieldMove(moveId.shield1, "Shield 1", 1, 0.0F, 0.50F, 0.25F);
 
-                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.";
+                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works 50% of the time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -398,6 +398,20 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_shield1_nme";
                     descKey = "mve_shield1_dsc";
+                    break;
+
+                case moveId.breaker1: // Breaker 1
+                    move = new ShieldBreakerMove(moveId.breaker1, "Breaker 1", 1, 20.0F, 1.00F, 0.10F);
+
+                    move.description = "A weak attack that can break through shields. The attack does more damage if the target is shielded.";
+
+                    // Animation
+                    move.animation = moveAnim.smack1;
+                    move.animationColor = new Color(0.647F, 0.961F, 0.067F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_breaker1_nme";
+                    descKey = "mve_breaker1_dsc";
                     break;
 
                 case moveId.bam: // Bam
@@ -496,7 +510,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "Scorch", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.torch, "Scorch", 2, 10, 0.9F, 0.35F);
                     move.BurnChance = 1.0F;
 
                     move.description = "A weak attack that always burns the target.";
@@ -510,7 +524,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "Electrify", 2, 10, 0.9F, 0.40F);
+                    move = new Move(moveId.electrify, "Electrify", 2, 10, 0.9F, 0.35F);
                     move.ParalysisChance = 1.0F;
 
                     move.description = "A weak attack that always paralyzes the target.";
@@ -662,7 +676,7 @@ namespace RM_BBTS
                 case moveId.shield2: // Shield 2
                     move = new ShieldMove(moveId.shield2, "Shield 2", 1, 0.0F, 0.75F, 0.40F);
 
-                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.";
+                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works 75% of the time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -671,6 +685,20 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_shield2_nme";
                     descKey = "mve_shield2_dsc";
+                    break;
+
+                case moveId.breaker2: // Breaker 2
+                    move = new ShieldBreakerMove(moveId.breaker2, "Breaker 2", 2, 40.0F, 0.95F, 0.15F);
+
+                    move.description = "A decent attack that can break through shields. The attack does more damage if the target is shielded.";
+
+                    // Animation
+                    move.animation = moveAnim.smack1;
+                    move.animationColor = new Color(0.067F, 0.941F, 0.4F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_breaker2_nme";
+                    descKey = "mve_breaker2_dsc";
                     break;
 
                 case moveId.wham: // Wham
@@ -940,7 +968,7 @@ namespace RM_BBTS
                 case moveId.shield3: // Shield 3
                     move = new ShieldMove(moveId.shield3, "Shield 3", 1, 0.0F, 1.00F, 0.50F);
 
-                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works every time.";
+                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works every time.";
 
                     // Animation
                     move.animation = moveAnim.shield1;
@@ -949,6 +977,20 @@ namespace RM_BBTS
                     // Sets the keys for translating the data.
                     nameKey = "mve_shield3_nme";
                     descKey = "mve_shield3_dsc";
+                    break;
+
+                case moveId.breaker3: // Breaker 3
+                    move = new ShieldBreakerMove(moveId.breaker3, "Breaker 3", 3, 60.0F, 0.90F, 0.20F);
+
+                    move.description = "A strong attack that can break through shields. The attack does more damage if the target is shielded.";
+
+                    // Animation
+                    move.animation = moveAnim.smack1;
+                    move.animationColor = new Color(0.027F, 0.945F, 0.941F);
+
+                    // Sets the keys for translating the data.
+                    nameKey = "mve_breaker3_nme";
+                    descKey = "mve_breaker3_dsc";
                     break;
 
                 case moveId.kablam: // Kablam

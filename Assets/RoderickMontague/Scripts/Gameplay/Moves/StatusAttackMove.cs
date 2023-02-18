@@ -37,7 +37,7 @@ namespace RM_BBTS
             float oldPower = power;
             float newPower = (useBoost) ? power * POWER_BOOST : power;
 
-            // Changes the power for teh damage calculation, then puts it back.
+            // Changes the power for the damage calculation, then puts it back to its default.
             power = newPower;
             float result = base.CalculateDamage(user, target, battle, useCritBoost);
             power = oldPower;
