@@ -364,7 +364,7 @@ namespace RM_BBTS
 
             // New
             // power * 0.75 * ((attack *1.125)/(3.25 * defense)) * critical
-            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.20F * target.GetDefenseModified())) * critBoost;
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.125F) / (3.25F * target.GetDefenseModified())) * critBoost;
 
             damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
@@ -1093,14 +1093,7 @@ namespace RM_BBTS
                     // }
 
                     // Play the animations.
-                    if(this is HealthDrainMove) // Checks if it's a health drain move.
-                    {
-                        PlayAnimations(user, target, battle, moveEffect.heal, moveEffect.hurt);
-                    }
-                    else // Regular move.
-                    {
-                        PlayAnimations(user, target, battle, moveEffect.none, moveEffect.hurt);
-                    }
+                    PlayAnimations(user, target, battle, moveEffect.none, moveEffect.hurt);
 
                     return true;
                 }

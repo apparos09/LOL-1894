@@ -68,9 +68,9 @@ namespace RM_BBTS
             // Creates the entity weights, and lcamps them to the battle entity ID count.
             // <unknown, treasure, and bosses should always be 0>
             baseWeights = new List<int> { 
-                0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20,
-                0, 20, 0, 10, 0, 10, 0, 10, 0, 10, 0, 
-                20, 0, 30, 0, 30, 0, 30, 0, 0, 5, 0  
+                0, 0, 0, 40, 0, 0, 30, 0, 15, 0, 0, 20, 
+                0, 20, 0, 15, 0, 15, 0, 15, 0, 15, 0, 
+                20, 0, 30, 0, 30, 0, 30, 0, 0, 10, 0  
             };
 
             // If it exceeds the ID count.
@@ -287,19 +287,17 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
-                    data.maxHealth = 58;
+                    data.maxHealth = 50;
                     data.health = data.maxHealth;
 
-                    data.attack = 18;
-                    data.defense = 18;
-                    data.speed = 36;
+                    data.attack = 14;
+                    data.defense = 14;
+                    data.speed = 32;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.10F;
-
                     break;
 
                 case battleEntityId.insect2: // Spacectoid
@@ -311,19 +309,17 @@ namespace RM_BBTS
                     data.displayName = "Spacectoid";
                     data.displayNameSpeakKey = "bey_insect2_nme";
 
-                    data.maxHealth = 80;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 46;
-                    data.defense = 28;
-                    data.speed = 86;
+                    data.attack = 41;
+                    data.defense = 25;
+                    data.speed = 81;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.15F;
-
                     break;
 
                 case battleEntityId.ghost1: // Techno Ghost
@@ -339,8 +335,8 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 22;
-                    data.defense = 45;
-                    data.speed = 18;
+                    data.defense = 49;
+                    data.speed = 14;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -360,9 +356,9 @@ namespace RM_BBTS
                     data.maxHealth = 60;
                     data.health = data.maxHealth;
 
-                    data.attack = 38;
-                    data.defense = 116;
-                    data.speed = 26;
+                    data.attack = 32;
+                    data.defense = 121;
+                    data.speed = 29;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -382,8 +378,8 @@ namespace RM_BBTS
                     data.maxHealth = 180;
                     data.health = data.maxHealth;
 
-                    data.attack = 115;
-                    data.defense = 85;
+                    data.attack = 120;
+                    data.defense = 80;
                     data.speed = 120;
 
                     data.maxEnergy = 100;
@@ -525,7 +521,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.30F;
 
                     break;
 
@@ -562,18 +558,18 @@ namespace RM_BBTS
                     data.displayName = "Aquadroid MK 2";
                     data.displayNameSpeakKey = "bey_waterBot2_nme";
 
-                    data.maxHealth = 160;
+                    data.maxHealth = 180;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
+                    data.attack = 40;
                     data.defense = 40;
-                    data.speed = 50;
+                    data.speed = 40;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.30F;
 
                     break;
 
@@ -610,18 +606,18 @@ namespace RM_BBTS
                     data.displayName = "Terrachine MK 2";
                     data.displayNameSpeakKey = "bey_earthBot2_nme";
 
-                    data.maxHealth = 65;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
-                    data.defense = 130;
-                    data.speed = 55;
+                    data.attack = 40;
+                    data.defense = 150;
+                    data.speed = 40;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.30F;
 
                     break;
 
@@ -669,7 +665,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.30F;
 
                     break;
 
@@ -682,7 +678,7 @@ namespace RM_BBTS
                     data.displayName = "Inkarp";
                     data.displayNameSpeakKey = "bey_sharp1_nme";
 
-                    data.maxHealth = 40;
+                    data.maxHealth = 30;
                     data.health = data.maxHealth;
 
                     data.attack = 50;
@@ -693,7 +689,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.05F;
 
                     break;
 
@@ -706,7 +701,7 @@ namespace RM_BBTS
                     data.displayName = "Poily";
                     data.displayNameSpeakKey = "bey_sharp2_nme";
 
-                    data.maxHealth = 75;
+                    data.maxHealth = 65;
                     data.health = data.maxHealth;
 
                     data.attack = 105;
@@ -717,7 +712,6 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.10F;
 
                     break;
 
@@ -733,7 +727,7 @@ namespace RM_BBTS
                     data.maxHealth = 35;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
+                    data.attack = 45;
                     data.defense = 25;
                     data.speed = 30;
 
@@ -741,7 +735,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -765,7 +759,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -783,13 +777,13 @@ namespace RM_BBTS
 
                     data.attack = 30;
                     data.defense = 25;
-                    data.speed = 50;
+                    data.speed = 45;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -813,7 +807,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -830,14 +824,14 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 25;
-                    data.defense = 50;
+                    data.defense = 45;
                     data.speed = 30;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.25F;
 
                     break;
 
@@ -861,7 +855,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.50F;
 
                     break;
 
@@ -878,8 +872,8 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 90;
-                    data.defense = 200;
-                    data.speed = 70;
+                    data.defense = 220;
+                    data.speed = 50;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -897,12 +891,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Island";
                     data.displayNameSpeakKey = "bey_planet1_nme";
 
-                    data.maxHealth = 105;
+                    data.maxHealth = 110;
                     data.health = data.maxHealth;
 
-                    data.attack = 23;
-                    data.defense = 18;
-                    data.speed = 14;
+                    data.attack = 21;
+                    data.defense = 15;
+                    data.speed = 4;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -920,12 +914,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Planet";
                     data.displayNameSpeakKey = "bey_planet2_nme";
 
-                    data.maxHealth = 200;
+                    data.maxHealth = 222;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 27;
-                    data.speed = 23;
+                    data.attack = 39;
+                    data.defense = 30;
+                    data.speed = 9;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1052,7 +1046,7 @@ namespace RM_BBTS
                         moveId.slam, moveId.chip, moveId.quickBurst, moveId.powerFirst,
                         moveId.bam, moveId.tidalWave, moveId.shield2, moveId.wham, 
                         moveId.quake, moveId.waterBlast, moveId.airBlast, moveId.chargeSun, 
-                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.kablam
+                        moveId.chargeMoon, moveId.earlyBurst, moveId.allOut, moveId.shield3, moveId.kablam
                     };
                     break;
 
@@ -1095,9 +1089,8 @@ namespace RM_BBTS
                 case battleEntityId.fireBot1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.pushBack,
-                        moveId.powerLast, moveId.bam, moveId.laserBurst, moveId.fireBurst, 
-                        moveId.torch, moveId.burnBoostTarget, moveId.wham
+                        moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst, 
+                        moveId.fireBurst, moveId.torch, moveId.laserBlast, moveId.fireBlast
                     };
                     break;
 
@@ -1105,26 +1098,23 @@ namespace RM_BBTS
                     moveList = new List<moveId>()
                     {
                         moveId.laserShot, moveId.fireShot, moveId.magnify, moveId.laserBurst,
-                        moveId.fireBurst, moveId.torch, moveId.burnBoostTarget, moveId.laserBlast, 
-                        moveId.fireBlast, moveId.kablam
+                        moveId.fireBurst, moveId.torch, moveId.burnBoostTarget, moveId.laserBlast, moveId.fireBlast
                     };
                     break;
 
                 case battleEntityId.waterBot1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.chip, moveId.toss, moveId.magnify, 
-                        moveId.hpDrain1, moveId.pushBack, moveId.powerLast, moveId.bam, 
-                        moveId.laserBurst, moveId.tidalWave, moveId.wham
+                         moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
+                        moveId.laserBlast, moveId.waterBlast
                     };
                     break;
 
                 case battleEntityId.waterBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.laserShot, moveId.chip, moveId.toss, moveId.magnify, 
-                        moveId.hpDrain1, moveId.healthSplit, moveId.laserBurst, moveId.tidalWave, 
-                        moveId.powerLast, moveId.laserBlast, moveId.waterBlast, moveId.kablam
+                         moveId.laserShot, moveId.magnify, moveId.laserBurst,moveId.tidalWave,
+                         moveId.powerLast, moveId.laserBlast, moveId.waterBlast
                     };
                     break;
 
@@ -1133,15 +1123,16 @@ namespace RM_BBTS
                     { 
                         moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
                         moveId.toss, moveId.bam, moveId.magnify, moveId.magnet, 
-                        moveId.statClear, moveId.paraBoostTarget, moveId.wham
+                        moveId.statClear, moveId.wham, moveId.rockBlast, moveId.quake, 
+                        moveId.kablam
                     };
                     break;
 
                 case battleEntityId.earthBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.chip, moveId.slam, moveId.toss, moveId.powerLast, 
-                        moveId.bam, moveId.laserBurst, moveId.elecBurst, moveId.magnify, 
+                        moveId.laserShot, moveId.elecShot, moveId.chip, moveId.slam, 
+                        moveId.toss, moveId.powerLast, moveId.bam, moveId.magnify, 
                         moveId.magnet, moveId.statClear, moveId.wham, moveId.rockBlast, 
                         moveId.quake, moveId.kablam
                     };
@@ -1150,17 +1141,18 @@ namespace RM_BBTS
                 case battleEntityId.airBot1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.laserShot, moveId.elecShot, moveId.screech, moveId.bam, 
-                        moveId.laserBurst, moveId.elecBurst, moveId.soundWave, moveId.wham
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
+                        moveId.elecBurst, moveId.laserBlast, moveId.elecBlast, 
+                        moveId.twister, moveId.airBlast
                     };
                     break;
 
                 case battleEntityId.airBot2:
                     moveList = new List<moveId>()
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.powerFirst,moveId.laserBurst, 
-                        moveId.elecBurst, moveId.soundWave, moveId.laserBlast, moveId.elecBlast, 
-                        moveId.sonicWave, moveId.twister, moveId.airBlast, moveId.kablam
+                        moveId.laserShot, moveId.elecShot, moveId.powerFirst,
+                        moveId.laserBurst, moveId.elecBurst, moveId.laserBlast, 
+                        moveId.elecBlast, moveId.twister, moveId.airBlast
                     };
                     break;
 
@@ -1168,17 +1160,19 @@ namespace RM_BBTS
                 case battleEntityId.sharp1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.poke, moveId.slam, moveId.chip, moveId.bam, 
-                        moveId.motivate, moveId.risk, moveId.wham
+                        moveId.poke, moveId.slam, moveId.chip, moveId.toss, 
+                        moveId.breaker1, moveId.bam, moveId.motivate, moveId.risk, 
+                        moveId.breaker2, moveId.wham
                     };
                     break;
 
                 case battleEntityId.sharp2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.poke, moveId.slam, moveId.chip, moveId.toss,
-                        moveId.bam, moveId.motivate, moveId.risk, moveId.wham,
-                        moveId.kablam, moveId.allOut
+                        moveId.poke, moveId.slam, moveId.chip, moveId.toss, 
+                        moveId.powerFirst, moveId.bam, moveId.motivate, moveId.risk, 
+                        moveId.breaker2, moveId.wham, moveId.allOut, moveId.breaker3, 
+                        moveId.kablam
                     };
                     break;
 
@@ -1249,17 +1243,17 @@ namespace RM_BBTS
                 case battleEntityId.planet1:
                     moveList = new List<moveId>() 
                     { 
-                        moveId.magnify, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
-                        moveId.bam, moveId.magnet, moveId.statClear, moveId.cure, 
-                        moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
+                        moveId.heal, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
+                        moveId.bam, moveId.magnet, moveId.hpDrain2, moveId.statClear, 
+                        moveId.cure, moveId.wham, moveId.quake, moveId.burnBoostUser, moveId.paraBoostUser
                     };
                     break;
 
                 case battleEntityId.planet2:
                     moveList = new List<moveId>() 
-                    {
-                        moveId.magnify, moveId.hpDrain1, moveId.healthSplit, moveId.powerLast, 
-                        moveId.magnet,  moveId.statClear, moveId.cure, moveId.tidalWave, 
+                    { 
+                        moveId.heal, moveId.healthSplit, moveId.powerLast, moveId.magnet, 
+                        moveId.hpDrain2, moveId.statClear, moveId.cure, moveId.tidalWave, 
                         moveId.wham, moveId.hpDrain3, moveId.twister, moveId.waterBlast, 
                         moveId.airBlast, moveId.quake, moveId.chargeSun, moveId.chargeMoon, 
                         moveId.burnBoostUser, moveId.paraBoostUser, moveId.kablam
@@ -1468,257 +1462,6 @@ namespace RM_BBTS
 
             return data;
         }
-
-
-
-        // Gets the entity's pre-evolution based on the provided id.
-        public static battleEntityId GetPreEvolution(battleEntityId id)
-        {
-            return GetEvolution(id, false);
-        }
-
-        // Gets the entity's evolution based on the provided id.
-        public static battleEntityId GetEvolution(battleEntityId id)
-        {
-            return GetEvolution(id, true);
-        }
-
-        // Returns the evolution for the entity of the provided id.
-        // If 'getEvo' is true, it returns the entity's evolution.
-        // If 'getPreEvo' is false, then it returns the entity's pre-evolution.
-        public static battleEntityId GetEvolution(battleEntityId id, bool getEvo)
-        {
-            // The result of this function call.
-            battleEntityId result;
-
-            // Checks the ID.
-            switch(id)
-            {
-                case battleEntityId.ufo1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.ufo2;
-                    break;
-
-                case battleEntityId.ufo2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.ufo1;
-                    else // Evolution
-                        result = battleEntityId.ufo3;
-                    break;
-
-                case battleEntityId.ufo3:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.ufo2;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.insect1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.insect2;
-                    break;
-
-                case battleEntityId.insect2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.insect1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.ghost1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.ghost2;
-                    break;
-
-                case battleEntityId.ghost2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.ghost1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.sunRock1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.sunRock2;
-                    break;
-
-                case battleEntityId.sunRock2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.sunRock1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.moonRock1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.moonRock2;
-                    break;
-
-                case battleEntityId.moonRock2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.moonRock1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.fireBot1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.fireBot2;
-                    break;
-
-                case battleEntityId.fireBot2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.fireBot1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.waterBot1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.waterBot2;
-                    break;
-
-                case battleEntityId.waterBot2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.waterBot1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.earthBot1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.earthBot2;
-                    break;
-
-                case battleEntityId.earthBot2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.earthBot1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.airBot1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.airBot2;
-                    break;
-
-                case battleEntityId.airBot2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.airBot1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.sharp1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.sharp2;
-                    break;
-
-                case battleEntityId.sharp2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.sharp1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.cBugRed1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.cBugRed2;
-                    break;
-
-                case battleEntityId.cBugRed2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.cBugRed1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.cBugBlue1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.cBugBlue2;
-                    break;
-
-                case battleEntityId.cBugBlue2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.cBugBlue1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.cBugYellow1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.cBugYellow2;
-                    break;
-
-                case battleEntityId.cBugYellow2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.cBugYellow1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                case battleEntityId.planet1:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.unknown;
-                    else // Evolution
-                        result = battleEntityId.planet2;
-                    break;
-
-                case battleEntityId.planet2:
-                    if (getEvo == false) // Pre-Evolution
-                        result = battleEntityId.planet1;
-                    else // Evolution
-                        result = battleEntityId.unknown;
-                    break;
-
-
-                default: // No evolution or pre-evolution for the provided id.
-                    result = battleEntityId.unknown;
-                    break;
-            }
-
-            return result;
-        }        
-
 
         // Checks to see if it's a tutorial enemy.
         public static bool IsTutorialEnemy(battleEntityId id)

@@ -126,7 +126,7 @@ namespace RM_BBTS
         }
 
         // Adds the timer. Timers are removed when they're finished.
-        public void AddTimer(float maxTime)
+        public Timer AddTimer(float maxTime)
         {
             // The timer object.
             Timer timer = new Timer();
@@ -138,10 +138,13 @@ namespace RM_BBTS
 
             // Adds the timer to the list.
             AddTimer(timer);
+
+            // Returns the new timer.
+            return timer;
         }
 
         // Adds the timer. Timers are removed when they're finished.
-        public void AddTimer(string name, string tag, float maxTime, bool paused)
+        public Timer AddTimer(string name, string tag, float maxTime, bool paused)
         {
             // The timer object.
             Timer timer = new Timer();
@@ -153,6 +156,9 @@ namespace RM_BBTS
 
             // Adds the timer to the list.
             AddTimer(timer);
+
+            // Returns the new timer.
+            return timer;
         }
 
         // Adds the timer. Timers are removed when they're finished.

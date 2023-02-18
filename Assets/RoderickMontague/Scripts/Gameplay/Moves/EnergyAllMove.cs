@@ -11,7 +11,7 @@ namespace RM_BBTS
         // The lowest amount of power the move can have.
         // The energy-percentage based power is based off of the provided power minus the lowest power.
         // power = lowestPower + (power * energy/maxEnergy).
-        public float lowestPower = 30.0F;
+        public float lowestPower = 20.0F;
 
         public EnergyAllMove(moveId id, string name, int rank, float power, float accuracy) : 
             base(id, name, rank, power, accuracy, 0.0F)

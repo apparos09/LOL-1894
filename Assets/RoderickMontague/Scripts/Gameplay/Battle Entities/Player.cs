@@ -21,7 +21,7 @@ namespace RM_BBTS
         private float baseMaxEnergy = 100;
 
         // Level Up Rate
-        public const float LEVEL_UP_RATE = 1.10F;
+        public const float LEVEL_UP_RATE = 1.05F;
 
         // Restoration percents.
         public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.30F;

@@ -162,7 +162,7 @@ namespace RM_BBTS
         // Moves
         [Header("Moves")]
         // The moves that the battle entity has.
-        public Move[] moves = new Move[4] { null, null, null, null };
+        public Move[] moves = new Move[4] {null, null, null, null};
 
         // The total amount of moves.
         public const int MOVE_COUNT = 4;
@@ -197,7 +197,7 @@ namespace RM_BBTS
             // NOTE: this caused an error when loading in game data before.
             // This overrides any existing data when loading in a game save.
             // As such, the game save load was moved to a PostStart() function.
-
+            
             // NOTE: this still causes issues for enemies when loading in from a saved game (overrides save data health and energy).
             // I don't want to move or comment this out, so I wrote a workaround in BattleManager.cs.
             health = maxHealth;
@@ -242,12 +242,8 @@ namespace RM_BBTS
             // Creates the data object.
             BattleEntityGameData data = new BattleEntityGameData();
 
-            // Sets the evolutions.
+            // Sets the values.
             data.id = id;
-            data.preEvoId = preEvoId;
-            data.evoId = evoId;
-
-            // Sets the name.
             data.displayName = displayName;
             data.displayNameSpeakKey = displayNameSpeakKey;
 
@@ -277,7 +273,7 @@ namespace RM_BBTS
             data.statSpecial = statSpecial;
 
             // Move 0 Set.
-            if (Move0 != null)
+            if(Move0 != null)
                 data.move0 = Move0.Id;
 
             // Move 1 Set
@@ -292,8 +288,6 @@ namespace RM_BBTS
             if (Move3 != null)
                 data.move3 = Move3.Id;
 
-
-            // Sprite
             data.sprite = sprite;
 
             return data;
@@ -381,16 +375,10 @@ namespace RM_BBTS
         // Loads the battle data into this object.
         public virtual void LoadBattleGameData(BattleEntityGameData data)
         {
-            // Evos
             id = data.id;
-            preEvoId = data.preEvoId;
-            evoId = data.evoId;
-
-            // Names
             displayName = data.displayName;
             displayNameSpeakKey = data.displayNameSpeakKey;
 
-            // Levels
             level = data.level;
             levelRate = data.levelRate;
 
@@ -402,11 +390,10 @@ namespace RM_BBTS
             defense = data.defense;
             speed = data.speed;
 
+            statSpecial = data.statSpecial;
+
             maxEnergy = data.maxEnergy;
             energy = data.energy;
-
-            // Stat specialty.
-            statSpecial = data.statSpecial;
 
             // Stat modifiers.
             attackMod = data.attackMod;
@@ -449,7 +436,7 @@ namespace RM_BBTS
             // Move2 = MoveList.Instance.GenerateMove(data.move2);
             // Move3 = MoveList.Instance.GenerateMove(data.move3);
 
-            // Set sprite data.
+                // Save sprite data.
             sprite = data.sprite;
         }
 
@@ -475,8 +462,8 @@ namespace RM_BBTS
         {
             get { return maxHealth; }
 
-            set
-            {
+            set 
+            { 
                 maxHealth = (value < 0) ? 1 : value;
                 health = Mathf.Clamp(value, 0, maxHealth);
             }
@@ -519,8 +506,8 @@ namespace RM_BBTS
         {
             get { return maxEnergy; }
 
-            set
-            {
+            set 
+            { 
                 maxEnergy = (value < 0) ? 1 : value;
                 energy = Mathf.Clamp(value, 0, MaxEnergy);
             }
@@ -758,7 +745,7 @@ namespace RM_BBTS
             burned = false;
             paralyzed = false;
         }
-
+        
         // Checks if the battle entity is dead.
         public bool IsDead()
         {
@@ -826,11 +813,11 @@ namespace RM_BBTS
             newData.level += times;
 
             // Run the randomizer for each stat.
-            for (int n = 0; n < 5; n++)
+            for(int n = 0; n < 5; n++)
             {
                 // Calculates the additional value.
                 float value = Mathf.Ceil(Random.Range(STAT_LEVEL_INC_MIN, STAT_LEVEL_INC_MAX + 1) * levelRate * times);
-
+                
                 // Choose what stat to add the value too.
                 switch (n)
                 {
@@ -924,7 +911,7 @@ namespace RM_BBTS
             newData.defense = Mathf.Ceil(newData.defense);
             newData.speed = Mathf.Ceil(newData.speed);
 
-
+            
             // Proportional changes to health and energy.
             newData.health = Mathf.Ceil(hpPercent * newData.maxHealth);
             newData.energy = Mathf.Ceil(engPercent * newData.maxEnergy);
@@ -938,19 +925,17 @@ namespace RM_BBTS
         }
 
         // Evolves the entity. It fails if the entity does not have an evolution.
-        // If 'setUnknownEvos' is true, then the function sets the evos to the entity's defaults if they are unknown.
-        // If 'levelUpIfUnevolved' is true, then the function can level up the entity if it doesn't evolve.
-        public bool Evolve(bool setUnknownEvos, bool levelUpIfUnevolved)
+        public bool Evolve()
         {
-            // If there is no evolution, and the enemy shouldn't level up if it doesn't evolve.
-            if ((evoId == battleEntityId.unknown || evoId == id) && !levelUpIfUnevolved)
+            // If there is no evolution, it returns false.
+            if (evoId == battleEntityId.unknown)
             {
                 return false;
             }
-            else // Evolve, or at least level up the enemy.
+            else // Evolve.
             {
                 BattleEntityGameData data = GenerateBattleEntityGameData();
-                data = EvolveData(data, setUnknownEvos, levelUpIfUnevolved);
+                data = EvolveData(data);
                 LoadBattleGameData(data);
                 return true;
             }
@@ -958,51 +943,11 @@ namespace RM_BBTS
         }
 
         // Evolves the battle entity.
-        // If 'setUnknownEvos' is true, then the function sets the evos to the entity's defaults if they are unknown.
-        // If 'levelUpIfUnevolved' is true, then the function can level up the entity if it doesn't evolve.
-        public static BattleEntityGameData EvolveData(BattleEntityGameData oldData, bool setUnknownEvos, bool levelUpIfUnevolved)
+        public static BattleEntityGameData EvolveData(BattleEntityGameData oldData)
         {
-            // This is to address a glitch where an enemy wasn't evolving.
-            // It appeared to happen because the evolution ids weren't being saved when loading up and shuting down a battle.
-            // But I wanted to make sure that this glitch is addressed regardless, hence this addition.
-
-            // If the unknown evolutions should be attempted to be set.
-            if(setUnknownEvos)
-            {
-                // If the pre-evolution is not set, try to find and set it.
-                if (oldData.preEvoId == battleEntityId.unknown)
-                    oldData.preEvoId = BattleEntityList.GetPreEvolution(oldData.id);
-
-                // If the evolution is not set, try to find and set it.
-                if (oldData.evoId == battleEntityId.unknown)
-                    oldData.evoId = BattleEntityList.GetEvolution(oldData.id);
-            }
-
             // Can't evolve if the evolution is the same entity, or if it's set to unknown.
             if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
-            {
-                // Checks if the entity should be leveled up if it doesn't evolve.
-                if(levelUpIfUnevolved)
-                {
-                    // Levels up the entity 8 times if the enemy did not evolve.
-                    // An evolution is typically an increase of at least 100+ points to the stat total.
-                    // A level up adds at most 3 points to each stat (ignoring bonuses), which means a max of 12 points...
-                    // Increase to the base stat total per level up.
-                    // 12 * 10 = 120, and the bonuses should at least bring the entity over the 100 point threshold.
-
-                    // For balance reasons, this has been reduced to 1 level up instead of 10.
-                    // Prior to this, the enemy levels up by roomsPerLevelUp anyway, which is currently set to 2.
-                    BattleEntityGameData leveledData = LevelUpData(oldData, oldData.levelRate, oldData.statSpecial, 1);
-                    
-                    // Returns the leveled data.
-                    return leveledData;
-                }
-                else
-                {
-                    return oldData;
-                }
-            }
-                
+                return oldData;
 
             // Gets the base data.
             BattleEntityGameData baseData = BattleEntityList.Instance.GenerateBattleEntityData(oldData.id);

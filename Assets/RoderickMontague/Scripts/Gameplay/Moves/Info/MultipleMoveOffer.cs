@@ -23,9 +23,6 @@ namespace RM_BBTS
         // The three moves that will be offered.
         private Move[] moves;
 
-        // The amount of new moves that get offered.
-        public const int MOVE_OFFER_COUNT = 3;
-
         // The index of the selected move.
         private int selectedMoveIndex = -1;
 
@@ -71,7 +68,7 @@ namespace RM_BBTS
         private void Awake()
         {
             // Initialize the list of moves.
-            moves = new Move[MOVE_OFFER_COUNT] { null, null, null };
+            moves = new Move[3] { null, null, null };
         }
 
         // Start is called before the first frame update
@@ -172,81 +169,14 @@ namespace RM_BBTS
             // The player.
             Player player = battle.player;
 
-            // Gets the current game phase.
-            int phase = battle.gameManager.GetGamePhase();
-
             // Clears out the moves.
             ClearMoves();
 
-            // If not set, set it.
-            if (moves == null)
-                moves = new Move[MOVE_OFFER_COUNT] { null, null, null };
-
-            // Gets the list of new moves.
+            // Generates the new moves.
             List<Move> newMoves = MoveList.Instance.GetRandomMoves(moves.Length, player);
-
-            // A temporary variable for saving a move.
-            Move move = null;
-
-            // Checks the game phase to see how moves should be generated.
-            switch (phase)
-            {
-                default:
-                case 1: // Phase 1 - Default (moves of any rank are generated)
-                    // Go with what was already generated.
-                    break;
-
-                case 2: // Phase 2 - Generate a Move of Each Rank
-                    // New move to be generated.
-                    move = null;
-
-                    // Rank 1 - Slot 0
-                    move = MoveList.Instance.GetRandomRank1Move();
-
-                    // Checks if the player has the move. If they don't, offer it.
-                    if (!player.HasMove(move))
-                        moves[0] = move;
-
-
-                    // Rank 2 - Slot 1
-                    move = MoveList.Instance.GetRandomRank2Move();
-
-                    // Checks if the player has the move. If they don't, offer it.
-                    if (!player.HasMove(move))
-                        moves[1] = move;
-
-
-                    // Rank 3 - Slot 2
-                    move = MoveList.Instance.GetRandomRank3Move();
-
-                    // Checks if the player has the move. If they don't, offer it.
-                    if (!player.HasMove(move))
-                        moves[2] = move;
-
-                    break;
-
-                case 3: // Phase 3 - Generate Rank 2 and Rank 3 Moves Only
-
-                    // Provides mostly rank 3 moves, but it can also provide a rank 2 move.
-                    for(int i = 0; i < moves.Length; i++)
-                    {
-                        // Generates a random integer.
-                        int randInt = Random.Range(1, 11);
-
-                        // (7/10) - Rank 3, (3/10) - Rank 2 
-                        move = (randInt <= 7) ? MoveList.Instance.GetRandomRank3Move() : MoveList.Instance.GetRandomRank2Move();
-
-                        
-                        // If the player doesn't have the generated move, replace the move at the current index.
-                        if (!player.HasMove(move))
-                            moves[i] = move;   
-                    }
-
-                    break;
-            }
-
+            
             // Puts the new moves into the move array.
-            for (int i = 0; i < moves.Length && i < newMoves.Count; i++)
+            for(int i = 0; i < moves.Length && i < newMoves.Count; i++)
             {
                 moves[i] = newMoves[i];
             }

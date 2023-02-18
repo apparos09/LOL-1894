@@ -10,7 +10,7 @@ namespace RM_BBTS
     public class TurnsLowMove : Move
     {
         // The lowest amount of power the move can have.
-        public float lowestPower = 30.0F;
+        public float lowestPower = 20.0F;
 
         // The amount of reduction for each turn taken.
         public float turnReduct = 0.1F;
