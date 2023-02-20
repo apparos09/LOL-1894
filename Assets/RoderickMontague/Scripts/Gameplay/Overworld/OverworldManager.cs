@@ -38,7 +38,12 @@ namespace RM_BBTS
         public List<Door> doors = new List<Door>();
 
         // The total amount of rooms in the game.
-        public const int ROOM_COUNT = 12;
+        // NOTE: if you change the room count, change the amount of doors in the list, and change the phase percentages.
+        public const int ROOM_COUNT = 10;
+
+        // The phase 2 and phase 3 thresholds. This is below (3/10 and 6/10) so that the phase changes after 3 rooms cleared.
+        public const float PHASE_2_THRESOLD = 0.29F; // 0.33
+        public const float PHASE_3_THRESOLD = 0.59F; // 0.66
 
         // The boss door.
         public Door bossDoor = null;
@@ -47,7 +52,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 2;
+        public const int TREASURE_COUNT = 3; // 2
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
@@ -848,10 +853,9 @@ namespace RM_BBTS
             }
         }
         
-        // Rearranges the doors.
+        // Called when the player gets a game over.
         public void OnOverworldReturnGameOver()
         {
-            // TODO: don't move the boss door.
             // The new positions
             List<Vector3> doorLocs = new List<Vector3>();
 
@@ -881,6 +885,14 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
+
+            // Boosts the player's stats if they get a game over.
+            float boost = 10.0F;
+
+            player.SetHealthRelativeToMaxHealth(player.MaxHealth + boost);
+            player.Attack += boost;
+            player.Defense += boost;
+            player.Speed += boost;
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
