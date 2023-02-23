@@ -239,8 +239,14 @@ namespace RM_BBTS
         // The image for the player animation (is recoloured as needed).
         public Image playerAnimationImage;
 
+        // The timer for player animations.
+        private TimerManager.Timer playerAnimTimer;
+
         // The opponent's animator.
         public Animator opponentAnimator;
+
+        // The timer for opponent animations.
+        private TimerManager.Timer opponentAnimTimer;
 
         // Extra time for playing out animations.
         private float EXTRA_ANIM_TIME = 0.5F;
@@ -310,6 +316,10 @@ namespace RM_BBTS
 
             // Run (does it this way for translation)
             runButtonText.text = MoveList.Instance.RunMove.Name;
+
+            // Initialize the timers.
+            playerAnimTimer = new TimerManager.Timer();
+            opponentAnimTimer = new TimerManager.Timer();
 
             // The defs are not set.
             if(defs != null)
@@ -1555,6 +1565,15 @@ namespace RM_BBTS
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
             PlayDefaultOpponentAnimation();
+
+
+            // Removes the timers from the list, and pauses them so that they can't be triggered regardless.
+            // These timers are re-generated when a new battle begins.
+            TimerManager.Instance.RemoveTimer(playerAnimTimer);
+            playerAnimTimer.paused = true;
+
+            TimerManager.Instance.RemoveTimer(opponentAnimTimer);
+            opponentAnimTimer.paused = true;
 
             // Stops the jingle from playing before leaving the battle.
             // This is in case the jingle is still playing when the player goes back to the overworld.
