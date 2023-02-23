@@ -289,7 +289,7 @@ namespace RM_BBTS
                 textBox.autoNextTimerPaused = false;
 
                 // Reset the timer to the max. If it isn't enabled, it won't run anyway.
-                textBox.autoNextTimer = textBox.autoNextTimerMax;
+                textBox.SetAutoNextTimerToMax();
             }
                 
 

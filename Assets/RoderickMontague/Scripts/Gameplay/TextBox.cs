@@ -501,6 +501,12 @@ namespace RM_BBTS
             }
         }
 
+        // Sets the timer to its max.
+        public void SetAutoNextTimerToMax()
+        {
+            autoNextTimer = autoNextTimerMax;
+        }
+
         
         // A callback function for when all the text is finished.
         // This is only called if the user attempts to go onto the next page when there is none.
