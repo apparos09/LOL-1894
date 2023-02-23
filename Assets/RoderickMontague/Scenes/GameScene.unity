@@ -26041,6 +26041,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: autoNext
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798211, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_Name
       value: Battle Text Box

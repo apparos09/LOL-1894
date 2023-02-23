@@ -21,6 +21,18 @@ namespace RM_BBTS
         // The text in the text box.
         public TMP_Text boxText;
 
+        // If enabled, the program will automatically go to the next page once it is loaded.
+        public bool autoNext = false;
+
+        // The max time it takes for a box to automatically turn to the next page.
+        public float autoNextTimerMax = 5.0F;
+
+        // The timer for automatically going to the next page.
+        public float autoNextTimer = 0.0F;
+
+        // Set to 'true' to pause the timer.
+        public bool autoNextTimerPaused = false;
+
         // Closes the text box when all the end has been reached.
         public bool closeOnEnd = true;
 
@@ -78,6 +90,9 @@ namespace RM_BBTS
             // Sets the box object to the game object.
             // if (boxObject == null)
             //     boxObject = gameObject;
+
+            // Set this to the max by default.
+            autoNextTimer = autoNextTimerMax;
 
             // Recolour the text to show that the text loaded is not coming from the language file.
             if (!LOLSDK.Instance.IsInitialized)
@@ -244,7 +259,8 @@ namespace RM_BBTS
         }
 
         // Disables the text box controls.
-        public void DisableTextBoxControls()
+        // If 'stopAutoTimer' is true, the text box's auto page turn timer is stopped.
+        public void DisableTextBoxControls(bool stopAutoTimer = true)
         {
             // Disables the prev page button.
             if (prevPageButton != null)
@@ -429,6 +445,13 @@ namespace RM_BBTS
                 // TODO: close textbox?
             }
 
+            // If instant text is on, and if the text box should automatically go onto the next page.
+            if(instantText && autoNext)
+            {
+                // Set the timer.
+                autoNextTimer = autoNextTimerMax;
+            }
+
         }
 
         // Loads character by character.
@@ -470,6 +493,11 @@ namespace RM_BBTS
                 // No characters to load.
                 loadingChars = false;
                 charTimer = 0.0F;
+
+                // If the text box should automatically go onto the next page when it's done after a certain period of time...
+                // Set the timer.
+                if (autoNext)
+                    autoNextTimer = autoNextTimerMax;
             }
         }
 
@@ -524,6 +552,28 @@ namespace RM_BBTS
             // Changed this from the courtine version.
             if (loadingChars)
                 LoadCharacterByCharacter();
+
+
+            // If the page should automatically change.
+            if(autoNext)
+            {
+                // If the timer is not finished yet, reduce the time.
+                // Don't do it if the timer is paused.
+                if(autoNextTimer > 0.0F && !autoNextTimerPaused)
+                {
+                    autoNextTimer -= Time.deltaTime;
+
+                    // If the timer is now finished, turn the page.
+                    if(autoNextTimer <= 0.0F)
+                    {
+                        // Set the timer to 0.
+                        autoNextTimer = 0.0F;
+
+                        // Moves onto the next page.
+                        NextPage();
+                    }
+                }
+            }
         }
     }
 }
