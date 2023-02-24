@@ -239,14 +239,21 @@ namespace RM_BBTS
         // The image for the player animation (is recoloured as needed).
         public Image playerAnimationImage;
 
-        // The timer for player animations.
-        private TimerManager.Timer playerAnimTimer;
+        // // Used to see if the player's object should be disabled when it's off, or just the component.
+        // private const bool PLAYER_ANIM_DISABLE_OBJECT = true;
+        // 
+        // // The timer for player animations.
+        // private TimerManager.Timer playerAnimTimer;
 
         // The opponent's animator.
         public Animator opponentAnimator;
 
-        // The timer for opponent animations.
-        private TimerManager.Timer opponentAnimTimer;
+        // // The timer for opponent animations.
+        // private TimerManager.Timer opponentAnimTimer;
+        // 
+        // // Used to see if the opponent's object should be disabled when it's off, or just the component.
+        // // I don't think I actually use this.
+        // private const bool OPPONENT_ANIM_DISABLE_OBJECT = true;
 
         // Extra time for playing out animations.
         private float EXTRA_ANIM_TIME = 0.5F;
@@ -317,9 +324,12 @@ namespace RM_BBTS
             // Run (does it this way for translation)
             runButtonText.text = MoveList.Instance.RunMove.Name;
 
-            // Initialize the timers.
-            playerAnimTimer = new TimerManager.Timer();
-            opponentAnimTimer = new TimerManager.Timer();
+            // // Initialize the timers.
+            // playerAnimTimer = new TimerManager.Timer();
+            // playerAnimTimer.tag = "player";
+            // 
+            // opponentAnimTimer = new TimerManager.Timer();
+            // opponentAnimTimer.tag = "opponent";
 
             // The defs are not set.
             if(defs != null)
@@ -549,6 +559,10 @@ namespace RM_BBTS
                 // Battle BGM.
                 PlayBattleBgm();
             }
+
+            // // Create the timers.
+            // playerAnimTimer = new TimerManager.Timer();
+            // opponentAnimTimer = new TimerManager.Timer();
 
             // The battle has begun.
             initBattleEnd = false;
@@ -1567,13 +1581,13 @@ namespace RM_BBTS
             PlayDefaultOpponentAnimation();
 
 
-            // Removes the timers from the list, and pauses them so that they can't be triggered regardless.
-            // These timers are re-generated when a new battle begins.
-            TimerManager.Instance.RemoveTimer(playerAnimTimer);
-            playerAnimTimer.paused = true;
-
-            TimerManager.Instance.RemoveTimer(opponentAnimTimer);
-            opponentAnimTimer.paused = true;
+            // // Removes the timers from the list, and pauses them so that they can't be triggered regardless.
+            // // These timers are re-generated when a new battle begins.
+            // TimerManager.Instance.RemoveTimer(playerAnimTimer);
+            // playerAnimTimer.paused = true;
+            // 
+            // TimerManager.Instance.RemoveTimer(opponentAnimTimer);
+            // opponentAnimTimer.paused = true;
 
             // Stops the jingle from playing before leaving the battle.
             // This is in case the jingle is still playing when the player goes back to the overworld.
@@ -1774,8 +1788,22 @@ namespace RM_BBTS
             // Get the length of the animation.
             float animTime = (playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / playerAnimator.speed;
 
+            // Old - use corotuine
             // Turn off the animation.
             StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
+
+            // This new method kept throwing errors. Not sure if I'll rectify that or not.
+            // // New - use timer class.
+            // // playerAnimTimer.tag = "player"; // Since I never change the tag, this is unneeded.
+            // playerAnimTimer.maxTime = animTime;
+            // playerAnimTimer.Set();
+            // playerAnimTimer.paused = false;
+            // 
+            // // Add the callback.
+            // playerAnimTimer.OnTimerFinishedAddCallback(AnimatorDisableDelayed);
+            // 
+            // // Give to the timer manager.
+            // TimerManager.Instance.AddTimer(playerAnimTimer);
         }
 
         // Stops the player paralysis animation.
@@ -1926,6 +1954,35 @@ namespace RM_BBTS
                 animator.gameObject.SetActive(false);
             }
         }
+
+        // // Disables the animator as part of a callback from the timer.
+        // private void AnimatorDisableDelayed(TimerManager.Timer timer)
+        // {
+        //     // Gets a lower version of the string.
+        //     string strLower = timer.tag.ToLower();
+        // 
+        //     // Disable's the player's animator.
+        //     if (strLower == "player")
+        //     {
+        //         // Determines if the component should be disabled, or the object.
+        //         if (PLAYER_ANIM_DISABLE_OBJECT)
+        //             playerAnimator.gameObject.SetActive(false);
+        //         else
+        //             playerAnimator.enabled = false;
+        //     }
+        //     // Disable's the opponent's animator.
+        //     else if(strLower == "opponent")
+        //     {
+        //         // Determines if the component should be disabled, or the object.
+        //         if (OPPONENT_ANIM_DISABLE_OBJECT)
+        //             opponentAnimator.gameObject.SetActive(false);
+        //         else
+        //             opponentAnimator.enabled = false;
+        //     }
+        // 
+        //     // Remove this callback now that the timer is done.
+        //     timer.OnTimerFinishedRemoveCallback(AnimatorDisableDelayed);
+        // }
 
         // A function called to set an int after the timer runs out.
         private IEnumerator AnimationSetIntegerDelayed(Animator animator, string parameter, float animTime, int value)
