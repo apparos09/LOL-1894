@@ -38,6 +38,8 @@ namespace RM_BBTS
 
                 }
 
+                // TODO: the health restore animation is broken (it goes instantly instead of gradually now).
+                // I don't know what happened, but fix it.
                 user.Health += user.MaxHealth * healPercent; // Heal
 
                 // TODO: maybe don't update it if the move fails since it wouldn't be needed?

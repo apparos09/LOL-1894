@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using SimpleJSON;
-
+using UnityEngine.UI;
+using System.Linq;
 
 namespace RM_BBTS
 {
@@ -15,91 +16,130 @@ namespace RM_BBTS
         // The player.
         public Player player;
 
-        // The new move.
-        public Move newMove;
-
-        // The move being learned.
-        private Move learningMove;
-
         // The battle object.
         public BattleManager battle;
 
-        // The existing moves.
-        private Move move0;
-        private Move move1;
-        private Move move2;
-        private Move move3;
+        // The title text.
+        public TMP_Text titleText;
 
-        // The new move message text.
-        public TMP_Text switchMoveMessageText;
-
-        // The player moves header text.
-        public TMP_Text playerMovesHeaderText;
+        // The instructional text.
+        public TMP_Text instructText;
 
         // The move panels
-        [Header("Panels")]
+        [Header("Moves")]
+
+        // The instructional text.
+        public TMP_Text moveOfferHeaderText;
+
+        // The move being offered to be switched.
+        // This changes when moves are switched.
+        private Move moveOffer;
+
+        // The new move being offered. 
+        // This is used to see if the new move was added or not.
+        private Move newMove = null;
+
         // New move info panel.
-        public MoveInfoPanel newMoveInfo;
+        public MoveInfoPanel moveOfferInfo = null;
 
-        // Move info panels.
-        public MoveInfoPanel move0Info;
-        public MoveInfoPanel move1Info;
-        public MoveInfoPanel move2Info;
-        public MoveInfoPanel move3Info;
+        // The move objects.
+        private Move moveSelect;
 
-        // The buttons components for translation.
-        [Header("Buttons")]
-        // Switch text for the confirm button.
-        public TMP_Text confirmButtonText;
+        // The colours for the move buttons when deselected, and selected.
+        public Color moveDeselectColor = Color.white;
+        public Color moveSelectColor = Color.green;
 
-        // The switch button text for the four moves.
-        public TMP_Text switchMove0Text;
-        public TMP_Text switchMove1Text;
-        public TMP_Text switchMove2Text;
-        public TMP_Text switchMove3Text;
+        // The instructional text.
+        public TMP_Text playerMovesHeaderText;
+
+        [Header("Moves/Move 0")]
+        // Move 0
+        public Button move0Button;
+        public TMP_Text move0ButtonText;
+
+        [Header("Moves/Move 1")]
+        // Move 1
+        public Button move1Button;
+        public TMP_Text move1ButtonText;
+
+        [Header("Moves/Move 2")]
+        // Move 2
+        public Button move2Button;
+        public TMP_Text move2ButtonText;
+
+        [Header("Moves/Move 3")]
+        // Move 3
+        public Button move3Button;
+        public TMP_Text move3ButtonText;
+
+        [Header("Moves/Switch")]
+
+        // The info panel for the selected move.
+        public MoveInfoPanel moveSelectInfo;
+
+        // The text for the switch moves button
+        public Button switchButton;
+        
+        // The switch button text.
+        public TMP_Text switchButtonText;
+
+        // The finish button text.
+        public TMP_Text finishButtonText;
 
         // Start is called before the first frame update
         void Start()
         {
+            // NOTE: enabled is called before start, so be careful.
+
+            // The switch button cannot be used until a move is selected.
+            switchButton.interactable = false;
+
             // Translation
             JSONNode defs = SharedState.LanguageDefs;
 
             // Language definitions set.
             if (defs != null)
             {
-                // The switch move message text.
-                switchMoveMessageText.text = defs["switchMoveMessage"];
+                // Title text.
+                titleText.text = defs["kwd_learnMoveTitle"];
+
+                // The instructional text.
+                instructText.text = defs["msg_learnMove"];
+
+                // The player moves header text.
+                moveOfferHeaderText.text = defs["kwd_moveOffer"];
 
                 // The player moves header text.
                 playerMovesHeaderText.text = defs["kwd_playerMoves"];
 
-                // Confirm button text.
-                confirmButtonText.text = defs["kwd_confirm"];
+                // The switch move message text.
+                switchButtonText.text = defs["kwd_switchMoves"];
 
-                // Switch move text.
-                switchMove0Text.text = defs["kwd_switch"];
-                switchMove1Text.text = defs["kwd_switch"];
-                switchMove2Text.text = defs["kwd_switch"];
-                switchMove3Text.text = defs["kwd_switch"];
+                // The switch move message text.
+                finishButtonText.text = defs["kwd_finish"];
             }
             else
             {
+                // The language marker.
                 LanguageMarker marker = LanguageMarker.Instance;
 
-                // The switch move message text.
-                marker.MarkText(switchMoveMessageText);
+                // The title text.
+                marker.MarkText(titleText);
+
+                // The instructional text.
+                marker.MarkText(instructText);
+
+                // The move offer header text.
+                marker.MarkText(moveOfferHeaderText);
 
                 // The player moves header text.
                 marker.MarkText(playerMovesHeaderText);
 
-                // Confirm button text.
-                marker.MarkText(confirmButtonText);
+                // The switch moves text.
+                marker.MarkText(switchButtonText);
 
-                // Switch move text.
-                marker.MarkText(switchMove0Text);
-                marker.MarkText(switchMove1Text);
-                marker.MarkText(switchMove2Text);
-                marker.MarkText(switchMove3Text);
+                // The finish text.
+                marker.MarkText(finishButtonText);
             }
         }
 
@@ -123,109 +163,174 @@ namespace RM_BBTS
             windowObject.SetActive(false);
         }
 
+        // Sets the move being learned.
+        // If all the move information should be refreshed now, refresh it.
+        public void SetLearningMove(Move move, bool refreshInfo)
+        {
+            // These two variables are used to check if a new move was learned.
+            moveOffer = move;
+            newMove = move;
+
+            // If the information should be reloaded.
+            if (refreshInfo && move != null)
+                LoadMoveInformation();
+        }
+
         // Loads the player moves.
         public void LoadMoveInformation()
         {
             // NEW MOVE
-            newMoveInfo.LoadMoveInfo(newMove);
-            learningMove = newMove;
+            moveOfferInfo.LoadMoveInfo(moveOffer);
 
-            // MOVE 0
-            move0 = player.Move0;
-            move0Info.LoadMoveInfo(move0);
+            // Array of move buttons and texts.
+            Button[] moveButtons = new Button[4] { move0Button, move1Button, move2Button, move3Button };
+            TMP_Text[] moveTexts = new TMP_Text[4] { move0ButtonText, move1ButtonText, move2ButtonText, move3ButtonText };
 
-            // MOVE 1
-            move1 = player.Move1;
-            move1Info.LoadMoveInfo(move1);
+            // Loads the move text.
+            for(int i = 0; i < moveTexts.Length && i < player.moves.Length; i++)
+            {
+                // Filling the move information.
+                moveButtons[i].image.color = moveDeselectColor;
+                moveButtons[i].interactable = player.moves[i] != null;
+                moveTexts[i].text = player.moves[i] != null ? player.moves[i].Name : "-";
+            }
 
-            // MOVE 2
-            move2 = player.Move2;
-            move2Info.LoadMoveInfo(move2);
+            // Reset the colors.
+            ResetMoveButtonColors();
 
-            // MOVE 3
-            move3 = player.Move3;
-            move3Info.LoadMoveInfo(move3);
+            // Clear the selection info.
+            moveSelect = null;
+            moveSelectInfo.ClearMoveInfo();
+            switchButton.interactable = false;
         }
 
-        // Switches the new move with move 0.
-        public void SwitchWithMove0()
+        // Resets the button colours.
+        public void ResetMoveButtonColors()
         {
-            // Change out the player's move.
-            move0 = player.Move0;
-            player.Move0 = newMove;
-
-            // Switch the move slots.
-            Move temp = move0;
-            move0 = newMove;
-            newMove = temp;
-
-            // Reloads the move info.
-            newMoveInfo.LoadMoveInfo(newMove);
-            move0Info.LoadMoveInfo(move0);
+            // Reset the colours of the move buttons.
+            move0Button.image.color = moveDeselectColor;
+            move1Button.image.color = moveDeselectColor;
+            move2Button.image.color = moveDeselectColor;
+            move3Button.image.color = moveDeselectColor;
         }
 
-        // Switches the new move with move 1.
-        public void SwitchWithMove1()
+        // Selects a move.
+        public void SelectMove(int select)
         {
-            // Change out the player's move.
-            move1 = player.Move1;
-            player.Move1 = newMove;
+            // Reset button colours.
+            ResetMoveButtonColors();
 
-            // Change out the move slots.
-            Move temp = move1;
-            move1 = newMove;
-            newMove = temp;
+            // Checks which move to select.
+            switch (select)
+            {
+                case 0: // Move 0
+                    moveSelect = player.moves[0];
+                    move0Button.image.color = moveSelectColor;
+                    break;
 
-            // Reloads the move info.
-            newMoveInfo.LoadMoveInfo(newMove);
-            move1Info.LoadMoveInfo(move1);
+                case 1: // Move 1
+                    moveSelect = player.moves[1];
+                    move1Button.image.color = moveSelectColor;
+                    break;
+
+                case 2: // Move 2
+                    moveSelect = player.moves[2];
+                    move2Button.image.color = moveSelectColor;
+                    break;
+
+                case 3: // Move 3
+                    moveSelect = player.moves[3];
+                    move3Button.image.color = moveSelectColor;
+                    break;
+
+                default:
+                    moveSelect = null;
+                    break;
+            }
+
+
+            // Checks if a move was selected.
+            if(moveSelect != null) // Load info and set button to be interactable.
+            {
+                moveSelectInfo.LoadMoveInfo(moveSelect);
+                switchButton.interactable = true;
+            }
+            else // Clear info and make the button non-interactable.
+            {
+                moveSelectInfo.ClearMoveInfo();
+                switchButton.interactable = false;
+            }
         }
 
-        // Switches the new move with move 2.
-        public void SwitchWithMove2()
+        // Select move 0.
+        public void SelectMove0()
         {
-            // Change out the player's move.
-            move2 = player.Move2;
-            player.Move2 = newMove;
-
-            // Switch the move slots.
-            Move temp = move2;
-            move2 = newMove;
-            newMove = temp;
-
-            // Reloads the move info.
-            newMoveInfo.LoadMoveInfo(newMove);
-            move2Info.LoadMoveInfo(move2);
+            SelectMove(0);
         }
 
-        // Switches the new move with move 3.
-        public void SwitchWithMove3()
+        // Select move 1.
+        public void SelectMove1()
         {
-            // Change out the player's move.
-            move3 = player.Move3;
-            player.Move3 = newMove;
+            SelectMove(1);
+        }
 
-            // Switch the move slots.
-            Move temp = move3;
-            move3 = newMove;
-            newMove = temp;
+        // Select move 2.
+        public void SelectMove2()
+        {
+            SelectMove(2);
+        }
 
-            // Reloads the move info.
-            newMoveInfo.LoadMoveInfo(newMove);
-            move3Info.LoadMoveInfo(move3);
+        // Select move 3.
+        public void SelectMove3()
+        {
+            SelectMove(3);
+        }
+
+        public void SwitchMoves()
+        {
+            // If the move offer is not set, leave the function.
+            if (moveOffer == null)
+                return;
+
+            // The index of the selected move in the player's array.
+            int moveSelectIndex = 0;
+
+            // Gets the index of the move selected.
+            for(int i = 0; i < player.moves.Length; i++)
+            {
+                // If the selected move has been found, save the index.
+                if (player.moves[i] == moveSelect)
+                {
+                    moveSelectIndex = i;
+                    break;
+                }
+            }
+
+            // Switch the two moves.
+            {
+                Move temp = moveOffer;
+                moveOffer = moveSelect;
+
+                moveSelect = temp;
+                player.moves[moveSelectIndex] = temp;
+            }
+
+            // Reload the new move information now that changes have been made.
+            LoadMoveInformation();
         }
 
         // Accepts the move changes.
         public void ConfirmChanges()
         {
+            // Turn off the window object.
             windowObject.SetActive(false);
 
-            // Checks to see if a new move was learned or not.
-            if(newMove.Id == learningMove.Id) // new move was not learned.
+            // Checks to see if the new move was learned or not.
+            if(moveOffer.Id == newMove.Id) // new move was not learned.
             {
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
                     new Page(
-                        BattleMessages.Instance.GetLearnMoveNoMessage(learningMove.Name),
+                        BattleMessages.Instance.GetLearnMoveNoMessage(newMove.Name),
                         BattleMessages.Instance.GetLearnMoveNoSpeakKey()
                         ));
             }
@@ -233,7 +338,7 @@ namespace RM_BBTS
             {
                 battle.textBox.pages.Insert(battle.textBox.CurrentPageIndex + 1,
                     new Page(
-                        BattleMessages.Instance.GetLearnMoveYesMessage(learningMove.Name),
+                        BattleMessages.Instance.GetLearnMoveYesMessage(newMove.Name),
                         BattleMessages.Instance.GetLearnMoveYesSpeakKey()
                     ));
             }
@@ -245,10 +350,9 @@ namespace RM_BBTS
             // May not be needed.
             windowObject.SetActive(false);
 
-            // This might not be needed.
-            // Set these values to null.
+            // Reset these values.
+            moveOffer = null;
             newMove = null;
-            learningMove = null;
 
             // Show the textbox and go onto the move learned page.
             battle.textBox.Show();

@@ -294,7 +294,7 @@ namespace RM_BBTS
                 Deactivate();
 
                 // Activates the learned move.
-                learnMove.newMove = moves[selectedMoveIndex];
+                learnMove.SetLearningMove(moves[selectedMoveIndex], false);
                 learnMove.Activate();
             }
             else // Auto learn the move.

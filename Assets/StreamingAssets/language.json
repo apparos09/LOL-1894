@@ -361,15 +361,20 @@
       "mve_kablam_dsc": 180,
 
 
-      "switchMoveMessage": 45,
-      "kwd_playerMoves": 45,
-      "kwd_confirm": 12,
+      "kwd_learnMoveTitle": 30,
+      "msg_learnMove": 260,
+      "kwd_moveOffer": 38,
+      "kwd_playerMoves": 38,
+      "kwd_switchMoves": 20,
       "kwd_switch": 12,
+      "kwd_confirm": 12,
+      "kwd_finish": 12,
+
+
 
       "kwd_questionTime": 25,
       "kwd_correct": 12,
       "kwd_incorrect": 12,
-      "kwd_finish": 12,
 
 
 
@@ -947,15 +952,18 @@
     "mve_kablam_dsc": "A strong, basic attack.",
 
 
-    "switchMoveMessage": "Switch out for a new move?",
+    "kwd_learnMoveTitle": "Move Offer!",
+    "msg_learnMove": "Select the move you want to replace, then hit 'Switch Moves' to replace the current move with the offered move. When you're done making changes (or if you don't want to change anything), hit 'Finish'.",
+    "kwd_moveOffer": "Move Offer",
     "kwd_playerMoves": "Player Moves",
-    "kwd_confirm": "Confirm",
+    "kwd_switchMoves": "Switch Moves",
     "kwd_switch": "Switch",
+    "kwd_confirm": "Confirm",
+    "kwd_finish": "Finish",
 
     "kwd_questionTime": "Question Time!",
     "kwd_correct": "Correct",
     "kwd_incorrect": "Incorrect",
-    "kwd_finish": "Finish",
 
 
 

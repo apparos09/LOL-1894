@@ -1510,7 +1510,7 @@ namespace RM_BBTS
                 textBox.Hide(); // This already gets called in the learn move panel OnEnable(). (TODO: remove?)
 
                 // Update the information.
-                learnMovePanel.newMove = moveOffer;
+                learnMovePanel.SetLearningMove(moveOffer, false);
                 learnMovePanel.LoadMoveInformation(); // Happens on enable (TODO: remove?)
 
                 // Turn on the move panel, which also updates the move list.
