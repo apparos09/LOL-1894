@@ -42,18 +42,12 @@ namespace RM_BBTS
                 // I don't know what happened, but fix it.
                 user.Health += user.MaxHealth * healPercent; // Heal
 
-                // TODO: maybe don't update it if the move fails since it wouldn't be needed?
-                // Update the health and the energy.
+                // Update the energy display for the player if they're the one that used the move.
+                // The health is updated by calling 'PlayAnimations'
                 if (user is Player) // User is player.
                 {
-                    battle.gameManager.UpdateUI();
+                    battle.UpdatePlayerEnergyUI();
                 }                    
-                else // User is opponent.
-                {
-                    battle.UpdateOpponentUI();
-                }
-
-                
 
                 // TODO: overlaps with the button SFX.
                 // Play the move effect sfx.
