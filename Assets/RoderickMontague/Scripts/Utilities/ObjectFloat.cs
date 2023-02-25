@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -17,7 +18,7 @@ namespace RM_BBTS
         public bool autoSetLowHighPos = true;
 
         // The base position offset. This is only used if the low and high positions are automatically set.
-        public float basePosOffset = 10.0F;
+        public float basePosOffset = 1.0F;
 
         // If set to 'true', the animation is paused.
         public bool paused = false;
@@ -35,7 +36,7 @@ namespace RM_BBTS
         private float time = 0.0F;
 
         // Determines if the object is working towards the high point or the low point.
-        private bool onHigh = false;
+        private bool onHigh = true;
 
         // Start is called before the first frame update
         void Start()
@@ -43,8 +44,8 @@ namespace RM_BBTS
             // If the low and high positions should be automatically set.
             if(autoSetLowHighPos)
             {
-                lowPosition = gameObject.transform.localPosition - new Vector3(0.0F, -basePosOffset, 0.0F);
-                highPosition = gameObject.transform.localPosition - new Vector3(0.0F, +basePosOffset, 0.0F);
+                lowPosition = gameObject.transform.localPosition - new Vector3(0.0F, basePosOffset, 0.0F);
+                highPosition = gameObject.transform.localPosition + new Vector3(0.0F, basePosOffset, 0.0F);
             }
 
             // Resets the process to start it.
@@ -54,23 +55,73 @@ namespace RM_BBTS
         // Eases in and out of the provided positions.
         public Vector3 EaseInOutLerp(Vector3 start, Vector3 end, float t)
         {
-            // TODO: implement proper equation.
-            Vector3 result = Vector3.Lerp(start, end, t);
+            // ease in-out calculation
+            float newT = (t < 0.5F) ? 2 * Mathf.Pow(t, 2) : -2 * Mathf.Pow(t, 2) + 4 * t - 1;
+
+            // Use the lerp equation.
+            Vector3 result = Vector3.Lerp(start, end, newT);
             
+            // Return the result.
             return result;
         }
 
         // Starting values.
         public void ResetProcess()
         {
-            // The start position is half-way between low and high.
-            startPosition = (lowPosition + highPosition) / 2.0F;
+            // The start position is the low point.
+            startPosition = lowPosition;
 
             // End point is the high point.
             endPosition = highPosition;
 
-            // Since we're starting in the middle, put time to 0.5.
-            time = 0.5F;
+            // Calculates the rough T
+            {
+                // The current position of the object.
+                Vector3 currPos = transform.position;
+
+                // Calculates the t-value for all three location values.
+                // If the start and end are the same, the value is left at 0. 
+                float xT = 0, yT = 0, zT = 0;
+            
+                float sumT = 0.0F;
+                int added = 0;
+            
+                // X
+                if (highPosition.x != lowPosition.x)
+                {
+                    xT = Mathf.InverseLerp(lowPosition.x, highPosition.x, currPos.x);
+                    sumT += xT;
+                    added++;
+                }
+                    
+                // Y
+                if (highPosition.y != lowPosition.y)
+                {
+                    yT = Mathf.InverseLerp(lowPosition.y, highPosition.y, currPos.y);
+                    sumT += yT;
+                    added++;
+                }
+                    
+                // Z
+                if (highPosition.z != lowPosition.z)
+                {
+                    zT = Mathf.InverseLerp(lowPosition.z, highPosition.z, currPos.z);
+                    sumT += zT;
+                    added++;
+                }
+            
+                // Calculates the final t.
+                if (added != 0) // Average out the values.
+                    sumT /= added;
+                else // Set it to half.
+                    sumT = 0.5F;
+            
+                // Set the value.
+                time = sumT;
+            }
+
+            // Set the transformation's local position from the start.
+            transform.localPosition = EaseInOutLerp(startPosition, endPosition, time);
 
             // The object is going towards the high point.
             onHigh = true;
@@ -93,17 +144,17 @@ namespace RM_BBTS
                 if(time >= 1.0F)
                 {
                     // Checks if the object is going towards the high point or low point.
-                    if(onHigh) // High
+                    if(onHigh) // At the high point, so now you're going to the low point.
                     {
                         onHigh = false;
-                        startPosition = lowPosition;
-                        endPosition = highPosition;
-                    }
-                    else // Low
-                    {
-                        onHigh = true;
                         startPosition = highPosition;
                         endPosition = lowPosition;
+                    }
+                    else// At the low point, so now you're going to the low point.
+                    {
+                        onHigh = true;
+                        startPosition = lowPosition;
+                        endPosition = highPosition;
                     }
 
                     // Reset the time.

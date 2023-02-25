@@ -1565,7 +1565,7 @@ namespace RM_BBTS
             // If there is door data to pull from.
             if(saveData.doorData != null)
             {
-                // Load the door data.
+                // Loads the door data to replace the existing doors.
                 for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
                 {
                     // Loads the save data.

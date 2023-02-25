@@ -52,7 +52,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 3; // 2
+        public const int TREASURE_COUNT = 2; // 2
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
@@ -866,8 +866,8 @@ namespace RM_BBTS
                 door.battleEntity.health = door.battleEntity.maxHealth;
                 door.battleEntity.energy = door.battleEntity.maxEnergy;
 
-                // Adds the position to the list.
-                doorLocs.Add(door.gameObject.transform.position);
+                // Adds the local position to the list.
+                doorLocs.Add(door.gameObject.transform.localPosition);
             }
 
             // Goes through each door again.
@@ -877,7 +877,7 @@ namespace RM_BBTS
                 int randIndex = Random.Range(0, doorLocs.Count);
 
                 // Re-positions the door.
-                doors[i].transform.position = doorLocs[randIndex];
+                doors[i].gameObject.transform.localPosition = doorLocs[randIndex];
 
                 // Removes position from list.
                 doorLocs.RemoveAt(randIndex);
