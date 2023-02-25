@@ -266,13 +266,14 @@ MonoBehaviour:
   autoNext: 0
   autoNextTimerMax: 2.5
   autoNextTimer: 0
+  autoNextTimerPaused: 0
   closeOnEnd: 1
   prevPageButton: {fileID: 6215028496963668155}
   nextPageButton: {fileID: 6215028496522477456}
   instantText: 0
   enableAnimationSkip: 1
   enableAnimationBackSkip: 1
-  charsPerLoad: 5
+  charsPerLoad: 3
   textSpeed: 0
 --- !u!1 &6215028496522477458
 GameObject:

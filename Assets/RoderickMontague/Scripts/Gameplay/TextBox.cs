@@ -475,17 +475,26 @@ namespace RM_BBTS
                     
                     boxText.text = temp;
 
-                    // If the text speed is set to 0 the new char will load on the next frame.
-                    // NOTE: past a certain point, the char gets put every frame, which means there's a limit to the text speed.
+
+                    // NOTE: why did I divide by text speed instead of applying it to the timer itself?
+
+                    // // If the text speed is set to 0 the new char will load on the next frame.
+                    // // NOTE: past a certain point, the char gets put every frame, which means there's a limit to the text speed.
+                    // if (textSpeed > 0)
+                    //     charTimer = 1.0F / textSpeed;
+                    // else
+                    //     charTimer = 0.0F;
+
+                    // Reset the value.
+                    // If textSpeed is set to '0', then a character is loaded every frame.
                     if (textSpeed > 0)
-                        charTimer = 1.0F / textSpeed;
+                        charTimer = 1.0F;
                     else
                         charTimer = 0.0F;
-
                 }
                 else // Reduce timer.
                 {
-                    charTimer -= Time.deltaTime;
+                    charTimer -= Time.deltaTime * textSpeed;
                 }
             }
             else
