@@ -666,14 +666,21 @@ namespace RM_BBTS
         {
             Page page;
 
-            if (entity is Player) // The entity is a player.
+            if (entity is Player) // The entity is a player (doesn't display the player's name).
             {
+                // Old
+                // page = new Page(
+                //     BattleMessages.Instance.GetMoveHitRecoilMessage(entity.displayName),
+                //     BattleMessages.Instance.GetMoveHitRecoilSpeakKey0()
+                // );
+
+                // New - uses "you" instead of the player's name.
                 page = new Page(
-                    BattleMessages.Instance.GetMoveHitRecoilMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveHitRecoilMessage(entity),
                     BattleMessages.Instance.GetMoveHitRecoilSpeakKey0()
                 );
             }
-            else // The entity is an enemy.
+            else // The entity is an enemy (displays enemy's name).
             {
                 page = new Page(
                     BattleMessages.Instance.GetMoveHitRecoilMessage(entity.displayName),
@@ -686,22 +693,22 @@ namespace RM_BBTS
         }
 
         // Get move burned page.
-        public static Page GetMoveBurnedPage()
+        public static Page GetMoveBurnedPage(BattleEntity inflicted)
         {
             Page page = new Page(
-                BattleMessages.Instance.GetMoveBurnedMessage(),
-                BattleMessages.Instance.GetMoveBurnedSpeakKey()
+                BattleMessages.Instance.GetMoveBurnedMessage(inflicted),
+                BattleMessages.Instance.GetMoveBurnedSpeakKey(inflicted)
                 );
 
             return page;
         }
 
         // Get move paralyzed page.
-        public static Page GetMoveParalyzedPage()
+        public static Page GetMoveParalyzedPage(BattleEntity inflicted)
         {
             Page page = new Page(
-                BattleMessages.Instance.GetMoveParalyzedMessage(),
-                BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+                BattleMessages.Instance.GetMoveParalyzedMessage(inflicted),
+                BattleMessages.Instance.GetMoveParalyzedSpeakKey(inflicted)
                 );
 
             return page;
@@ -1030,7 +1037,7 @@ namespace RM_BBTS
                     {
                         target.burned = true;
 
-                        newPages.Add(GetMoveBurnedPage());
+                        newPages.Add(GetMoveBurnedPage(target));
 
                         // newPages.Add(new Page(
                         //     BattleMessages.Instance.GetMoveBurnedMessage(),
@@ -1043,7 +1050,7 @@ namespace RM_BBTS
                     {
                         target.paralyzed = true;
 
-                        newPages.Add(GetMoveParalyzedPage());
+                        newPages.Add(GetMoveParalyzedPage(target));
 
                         // newPages.Add(new Page(
                         //     BattleMessages.Instance.GetMoveParalyzedMessage(),
