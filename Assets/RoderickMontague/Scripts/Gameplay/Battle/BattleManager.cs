@@ -1028,8 +1028,8 @@ namespace RM_BBTS
                 {
                     // Adds the player's move.
                     playerMovePage = new Page(
-                        BattleMessages.Instance.GetMoveUsedMessage(player, player.selectedMove.Name),
-                        BattleMessages.Instance.GetMoveUsedSpeakKeyA0()
+                        BattleMessages.Instance.GetMoveUsedMessage(player.displayName, player.selectedMove.Name),
+                        BattleMessages.Instance.GetMoveUsedSpeakKey0()
                         );
 
                     playerMovePage.OnPageOpenedAddCallback(PerformPlayerMove);
@@ -1062,8 +1062,8 @@ namespace RM_BBTS
                 {
                     // Adds the opponent's move.
                     opponentMovePage = new Page(
-                        BattleMessages.Instance.GetMoveUsedMessage(opponent, opponent.selectedMove.Name),
-                        BattleMessages.Instance.GetMoveUsedSpeakKeyB0());
+                        BattleMessages.Instance.GetMoveUsedMessage(opponent.displayName, opponent.selectedMove.Name),
+                        BattleMessages.Instance.GetMoveUsedSpeakKey1());
                     
                     opponentMovePage.OnPageOpenedAddCallback(PerformOpponentMove);
                     opponentMovePage.OnPageOpenedAddCallback(PostPerformMove);

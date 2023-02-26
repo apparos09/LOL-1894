@@ -96,7 +96,7 @@ namespace RM_BBTS
         // }
 
         // MOVE USED //
-        // Gets the move used message - uses the provided name.
+        // Gets the move used message.
         public string GetMoveUsedMessage(string user, string move)
         {
             // The message string.
@@ -121,62 +121,16 @@ namespace RM_BBTS
             return msg;
         }
 
-        // Gets the move used message - uses the entity's type.
-        public string GetMoveUsedMessage(BattleEntity user, string move)
-        {
-            // The message string.
-            string msg = "";
-
-            // Checks if defs existed.
-            if (defs != null)
-            {
-                // Grabs the translated message.
-                msg = defs["btl_msg_mve_moveUsed"];
-            }
-            else
-            {
-                // Grabs the default mesage.
-                msg = "{0} used {1}!";
-            }
-
-            // Checks the type of the user.
-            if(user is Player) // Player
-            {
-                // Checks if the file is available.
-                if (defs != null) // File Text
-                    msg = defs["btl_msg_mve_moveUsedA"];
-                else // Default Text
-                    msg = "You used {0}!";
-            }
-            else if(user is Enemy) // Enemy
-            {
-                // Checks if the file is available.
-                if (defs != null) // File Text
-                    msg = defs["btl_msg_mve_moveUsedB"];
-                else // Default Text
-                    msg = "The opponent used {0}!";
-            }
-            else // None
-            {
-                return GetMoveUsedMessage("?", move);
-            }
-
-            // Replaces the information with the move name.
-            msg = msg.Replace("{0}", move);
-
-            return msg;
-        }
-
         // Gets the player speak key for move used.
-        public string GetMoveUsedSpeakKeyA0()
+        public string GetMoveUsedSpeakKey0()
         {
-            return "btl_msg_mve_moveUsedA_alt00";
+            return "btl_msg_mve_moveUsed_alt00";
         }
 
         // Gets the opponent speak key for move used.
-        public string GetMoveUsedSpeakKeyB0()
+        public string GetMoveUsedSpeakKey1()
         {
-            return "btl_msg_mve_moveUsedB_alt00";
+            return "btl_msg_mve_moveUsed_alt01";
         }
 
 
@@ -287,47 +241,6 @@ namespace RM_BBTS
 
             // Slot in the message text.
             msg = msg.Replace("{0}", user);
-
-            return msg;
-        }
-
-        // Gets the move hit with recoil message (entity specific).
-        public string GetMoveHitRecoilMessage(BattleEntity user)
-        {
-            // The message string.
-            string msg = "";
-
-            // Checks if defs exists.
-            if (defs != null)
-            {
-                // Pull translated messages.
-                msg = defs["btl_msg_mve_moveRecoil"];
-            }
-            else
-            {
-                // Grabs the default message.
-                msg = "{0} took recoil damage!";
-            }
-
-            // Checks the type of the user.
-            if(user is Player) // Player
-            {
-                if(defs != null)
-                    msg = defs["btl_msg_mve_moveRecoil_alt00"];
-                else
-                    msg = "You took recoil damage!";
-            }
-            else if(user is Enemy) // Enemy
-            {
-                if (defs != null)
-                    msg = defs["btl_msg_mve_moveRecoil_alt01"];
-                else
-                    msg = "The opponent took recoil damage!";
-            }
-            else // None
-            {
-                return GetMoveHitRecoilMessage("?");
-            }
 
             return msg;
         }
@@ -601,114 +514,60 @@ namespace RM_BBTS
 
         // MOVE BURNED //
         // Gets the move missed message.
-        public string GetMoveBurnedMessage(BattleEntity inflicted)
+        public string GetMoveBurnedMessage()
         {
             // The message string.
             string msg = "";
 
-            // Checks the type of the entity
-            if(inflicted is Player) // Player
+            // Checks if defs exists.
+            if (defs != null)
             {
-                // Set the message.
-                if(defs != null) // Load from file.
-                    msg = defs["btl_msg_mve_moveBurned_alt00"];
-                else // Load default text.
-                    msg = "You have been inflicted with burn status!";
-
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveBurned"];
             }
-            else if(inflicted is Enemy) // Enemy
+            else
             {
-                // Set the message.
-                if (defs != null) // Load from file.
-                    msg = defs["btl_msg_mve_moveBurned_alt01"];
-                else // Load default text.
-                    msg = "The opponent has been inflicted with burn status!";
-            }
-            else // Default
-            {
-                // Checks if defs exists.
-                if (defs != null)
-                {
-                    // Grabs the translated message.
-                    msg = defs["btl_msg_mve_moveBurned"];
-                }
-                else
-                {
-                    // Grabs the default mesage.
-                    msg = "The inflicted has been inflicted with burn status!";
-                }
+                // Grabs the default mesage.
+                msg = "The target has been inflicted with burn status!";
             }
 
             return msg;
         }
 
         // Gets the move missed speak key.
-        public string GetMoveBurnedSpeakKey(BattleEntity inflicted)
+        public string GetMoveBurnedSpeakKey()
         {
-            // Returns a different message based on the entity provided.
-            if(inflicted is Player)
-                return "btl_msg_mve_moveBurned_alt00";
-            else if(inflicted is Enemy)
-                return "btl_msg_mve_moveBurned_alt01";
-            else
-                return "btl_msg_mve_moveBurned";
+            return "btl_msg_mve_moveBurned";
         }
 
 
 
         // MOVE PARALYZED //
         // Gets the move missed message.
-        public string GetMoveParalyzedMessage(BattleEntity inflicted)
+        public string GetMoveParalyzedMessage()
         {
             // The message string.
             string msg = "";
 
-            // Checks the type of the entity
-            if (inflicted is Player) // Player
+            // Checks if defs exists.
+            if (defs != null)
             {
-                // Set the message.
-                if (defs != null) // Load from file.
-                    msg = defs["btl_msg_mve_moveParalyzed_alt00"];
-                else // Load default text.
-                    msg = "You have been inflicted with paralysis status!";
-
+                // Grabs the translated message.
+                msg = defs["btl_msg_mve_moveParalyzed"];
             }
-            else if (inflicted is Enemy) // Enemy
+            else
             {
-                // Set the message.
-                if (defs != null) // Load from file.
-                    msg = defs["btl_msg_mve_moveParalyzed_alt01"];
-                else // Load default text.
-                    msg = "The opponent has been inflicted with paralysis status!";
-            }
-            else // Default
-            {
-                // Checks if defs exists.
-                if (defs != null)
-                {
-                    // Grabs the translated message.
-                    msg = defs["btl_msg_mve_moveParalyzed"];
-                }
-                else
-                {
-                    // Grabs the default mesage.
-                    msg = "The inflicted has been inflicted with paralysis status!";
-                }
+                // Grabs the default mesage.
+                msg = "The target has been inflicted with paralysis status!";
             }
 
             return msg;
         }
 
         // Gets the move paralyzed speak key.
-        public string GetMoveParalyzedSpeakKey(BattleEntity inflicted)
+        public string GetMoveParalyzedSpeakKey()
         {
-            // Returns a different message based on the entity provided.
-            if (inflicted is Player)
-                return "btl_msg_mve_moveParalyzed_alt00";
-            else if (inflicted is Enemy)
-                return "btl_msg_mve_moveParalyzed_alt01";
-            else
-                return "btl_msg_mve_moveParalyzed";
+            return "btl_msg_mve_moveParalyzed";
         }
 
 
@@ -916,7 +775,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The opponent ran away! You won the battle!";
+                msg = "The opponent ran away! The player has won the battle!";
             }
 
             return msg;
@@ -946,7 +805,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The boss ran away! You have completed the simulation!";
+                msg = "The boss ran away! The player has completed the simulation!";
             }
 
             return msg;
@@ -976,7 +835,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You lost the battle and had to run away!";
+                msg = "The player lost the battle, and had to run away!";
             }
 
             return msg;
@@ -1006,7 +865,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You have taken the treasure!";
+                msg = "The player has taken the treasure!";
             }
 
             return msg;
@@ -1036,7 +895,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You got a level up!";
+                msg = "The player got a level up!";
             }
 
             return msg;
@@ -1066,7 +925,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You're trying to learn a new move!";
+                msg = "The player is trying to learn a new move!";
             }
 
             return msg;
@@ -1094,7 +953,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You learned {0}!";
+                msg = "The player learned {0}!";
             }
 
             // Slotting in content.
@@ -1125,7 +984,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You did not learn {0}.";
+                msg = "The player did not learn {0}.";
             }
 
             // Slotting in content.
@@ -1186,7 +1045,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "You did not learn any of the new moves!";
+                msg = "The player did not learn any of the new moves!";
             }
 
             return msg;
