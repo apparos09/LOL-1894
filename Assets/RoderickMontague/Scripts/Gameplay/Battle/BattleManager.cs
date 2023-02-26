@@ -2263,6 +2263,14 @@ namespace RM_BBTS
                                     player.LevelUp();
                                 }
 
+                                // If this is the first battle, restore the player's health and energy to their max.
+                                // Only for the first battle though.
+                                if (gameManager.useTutorial && gameManager.roomsCompleted == 0)
+                                {
+                                    player.SetHealthToMax();
+                                    player.SetEnergyToMax();
+                                }
+
                                 // NOTE: no longer shows energy levels since those don't matter anymore.
                                 // Adds page with the increases in stats.
                                 textBox.pages.Add(new Page(

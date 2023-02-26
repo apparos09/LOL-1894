@@ -514,7 +514,7 @@ namespace RM_BBTS
 
         // MOVE BURNED //
         // Gets the move missed message.
-        public string GetMoveBurnedMessage()
+        public string GetMoveBurnedMessage(string target)
         {
             // The message string.
             string msg = "";
@@ -528,23 +528,32 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The target has been inflicted with burn status!";
+                msg = "{0} has been inflicted with burn status!";
             }
+
+            // Slot in target name.
+            msg = msg.Replace("{0}", target);
 
             return msg;
         }
 
-        // Gets the move missed speak key.
-        public string GetMoveBurnedSpeakKey()
+        // Gets move burned speak key 0 (player burned).
+        public string GetMoveBurnedSpeakKey0()
         {
-            return "btl_msg_mve_moveBurned";
+            return "btl_msg_mve_moveBurned_alt00";
+        }
+
+        // Gets move burned speak key 1 (target burned).
+        public string GetMoveBurnedSpeakKey1()
+        {
+            return "btl_msg_mve_moveBurned_alt01";
         }
 
 
 
         // MOVE PARALYZED //
-        // Gets the move missed message.
-        public string GetMoveParalyzedMessage()
+        // Gets the move paralyzed message.
+        public string GetMoveParalyzedMessage(string target)
         {
             // The message string.
             string msg = "";
@@ -558,18 +567,26 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The target has been inflicted with paralysis status!";
+                msg = "{0} has been inflicted with paralysis status!";
             }
+
+            // Slot in target name.
+            msg = msg.Replace("{0}", target);
 
             return msg;
         }
 
-        // Gets the move paralyzed speak key.
-        public string GetMoveParalyzedSpeakKey()
+        // Gets move paralyzed speak key 0 (player paralyzed).
+        public string GetMoveParalyzedSpeakKey0()
         {
-            return "btl_msg_mve_moveParalyzed";
+            return "btl_msg_mve_moveParalyzed_alt00";
         }
 
+        // Gets  move paralyzed speak key 1 (opponent paralyzed).
+        public string GetMoveParalyzedSpeakKey1()
+        {
+            return "btl_msg_mve_moveParalyzed_alt01";
+        }
 
 
 
@@ -775,7 +792,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The opponent ran away! The player has won the battle!";
+                msg = "The opponent ran away! Battle Bot has won the battle!";
             }
 
             return msg;
@@ -805,7 +822,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The boss ran away! The player has completed the simulation!";
+                msg = "The boss ran away! Battle Bot has completed the simulation!";
             }
 
             return msg;
@@ -835,7 +852,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player lost the battle, and had to run away!";
+                msg = "Battle Bot lost the battle, and had to run away!";
             }
 
             return msg;
@@ -865,7 +882,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player has taken the treasure!";
+                msg = "Battle Bot has taken the treasure!";
             }
 
             return msg;
@@ -895,7 +912,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player got a level up!";
+                msg = "Battle Bot got a level up!";
             }
 
             return msg;
@@ -925,7 +942,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player is trying to learn a new move!";
+                msg = "Battle Bot is trying to learn a new move!";
             }
 
             return msg;
@@ -953,7 +970,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player learned {0}!";
+                msg = "Battle Bot learned {0}!";
             }
 
             // Slotting in content.
@@ -984,7 +1001,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player did not learn {0}.";
+                msg = "Battle Bot did not learn {0}.";
             }
 
             // Slotting in content.
@@ -1045,7 +1062,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The player did not learn any of the new moves!";
+                msg = "Battle Bot did not learn any of the new moves!";
             }
 
             return msg;

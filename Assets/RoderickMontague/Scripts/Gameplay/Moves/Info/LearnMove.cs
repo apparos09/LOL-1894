@@ -49,8 +49,8 @@ namespace RM_BBTS
         public Color moveDeselectColor = Color.white;
         public Color moveSelectColor = Color.green;
 
-        // The instructional text.
-        public TMP_Text playerMovesHeaderText;
+        // Player moves header text.
+        public TMP_Text currentMovesHeaderText;
 
         [Header("Moves/Move 0")]
         // Move 0
@@ -110,7 +110,7 @@ namespace RM_BBTS
                 moveOfferHeaderText.text = defs["kwd_moveOffer"];
 
                 // The player moves header text.
-                playerMovesHeaderText.text = defs["kwd_playerMoves"];
+                currentMovesHeaderText.text = defs["kwd_currentMoves"];
 
                 // The switch move message text.
                 switchButtonText.text = defs["kwd_switchMoves"];
@@ -133,7 +133,7 @@ namespace RM_BBTS
                 marker.MarkText(moveOfferHeaderText);
 
                 // The player moves header text.
-                marker.MarkText(playerMovesHeaderText);
+                marker.MarkText(currentMovesHeaderText);
 
                 // The switch moves text.
                 marker.MarkText(switchButtonText);

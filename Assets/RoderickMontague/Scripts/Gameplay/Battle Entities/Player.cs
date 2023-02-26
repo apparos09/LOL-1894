@@ -95,7 +95,7 @@ namespace RM_BBTS
             Move0 = MoveList.Instance.GenerateMove(moveId.bam);
             Move1 = MoveList.Instance.GenerateMove(moveId.laserShot);
             Move2 = MoveList.Instance.GenerateMove(moveId.shield1);
-            Move3 = MoveList.Instance.GenerateMove(moveId.heal); // null
+            Move3 = null;
 
             // sprite = data.sprite;
 
