@@ -14,6 +14,10 @@ namespace RM_BBTS
         // 
         // }
 
+        // The restore percentage for health and energy on a game over.
+        public const float GAME_OVER_HEALTH_RESTORE_PERCENT = 1.0F;
+        public const float GAME_OVER_ENERGY_RESTORE_PERCENT = 1.0F;
+
         [Header("Other")]
 
         // Holds a reference to the player.
@@ -168,6 +172,15 @@ namespace RM_BBTS
         // 
         //     selectedMove = Move0;
         // }
+
+        // Called when the player has gotten a game over.
+        public void OnGameOver()
+        {
+            // Restores the player's health and energy levels. This rounds up to a whole number.
+            // HEALTH and ENERGY
+            RestoreHealth(GAME_OVER_HEALTH_RESTORE_PERCENT);
+            RestoreEnergy(GAME_OVER_ENERGY_RESTORE_PERCENT);
+        }
 
 
         // Update is called once per frame

@@ -863,8 +863,20 @@ namespace RM_BBTS
             foreach(Door door in doors)
             {
                 // Restore health and energy to entity.
-                door.battleEntity.health = door.battleEntity.maxHealth;
-                door.battleEntity.energy = door.battleEntity.maxEnergy;
+                // Old (restores to max)
+                // door.battleEntity.health = door.battleEntity.maxHealth;
+                // door.battleEntity.energy = door.battleEntity.maxEnergy;
+
+                // TODO: test this.
+                // New (restores by amount)
+                // Restore health and energy by a percentage of maxes.
+                door.battleEntity.health += door.battleEntity.maxHealth * Enemy.GAME_OVER_HEALTH_RESTORE_PERCENT;
+                door.battleEntity.energy += door.battleEntity.maxEnergy * Enemy.GAME_OVER_ENERGY_RESTORE_PERCENT;
+
+                // Clamp the values so that they're within the bounds.
+                door.battleEntity.health = Mathf.Clamp(door.battleEntity.health, 0, door.battleEntity.maxHealth);
+                door.battleEntity.energy = Mathf.Clamp(door.battleEntity.energy, 0, door.battleEntity.maxEnergy);
+
 
                 // Adds the local position to the list.
                 doorLocs.Add(door.gameObject.transform.localPosition);

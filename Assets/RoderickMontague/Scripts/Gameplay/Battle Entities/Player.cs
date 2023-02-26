@@ -157,7 +157,9 @@ namespace RM_BBTS
 
             // Restores the player's health and energy levels. This rounds up to a whole number.
             // HEALTH
-            Health += Mathf.Ceil(MaxHealth * LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
+            // Health += Mathf.Ceil(MaxHealth * LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
+            // Now uses a dedicated function.
+            RestoreHealth(LEVEL_UP_HEALTH_RESTORE_PERCENT * times);
 
             // ENERGY
             // Energy += Mathf.Ceil(MaxEnergy * LEVEL_UP_ENERGY_RESTORE_PERCENT * times);
