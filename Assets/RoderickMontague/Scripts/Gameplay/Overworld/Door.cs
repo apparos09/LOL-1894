@@ -113,15 +113,19 @@ namespace RM_BBTS
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.
         private void OnMouseDown()
         {
-            // This sound plays to indicate that a door is locked.
-            if (locked && overworld != null)
+            // Plays a sound in response to a door interaction.
+            if(overworld != null && overworld.gameManager.mouseTouchInput.isActiveAndEnabled)
             {
-                // If the mouse touch input is disabled, then a UI element must be open.
-                // As such, this audio clip shouldn't play since the door is likely blocked.
-                if(overworld.gameManager.mouseTouchInput.isActiveAndEnabled)
+                // Has different sound effects for if the door is locked versus unlocked.
+                if(locked) // Locked
+                {
                     overworld.PlayDoorLockedSfx();
-            }
-                
+                }
+                else // Unlocked/Enter
+                {
+                    overworld.PlayDoorEnterSfx();
+                }
+            }   
         }
 
         // Sets the door animation.

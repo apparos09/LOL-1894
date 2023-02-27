@@ -144,6 +144,9 @@ namespace RM_BBTS
         // The bgm for having a question.
         public AudioClip questionBgm;
 
+        // The sound effect for entering a door.
+        public AudioClip doorEnterSfx;
+
         // The sound effect for a locked door.
         public AudioClip doorLockedSfx;
 
@@ -626,6 +629,16 @@ namespace RM_BBTS
         {
             // Plays the question bgm.
             gameManager.audioManager.PlayBackgroundMusic(questionBgm);
+        }
+
+        // Play the door enter SFX.
+        public void PlayDoorEnterSfx()
+        {
+            // Grabs the audio manager.
+            AudioManager audioManager = gameManager.audioManager;
+
+            // Plays the door enter SFX.
+            audioManager.PlaySoundEffect(doorEnterSfx);
         }
 
         // Play the door locked SFX.
