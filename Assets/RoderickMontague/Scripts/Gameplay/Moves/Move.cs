@@ -686,23 +686,47 @@ namespace RM_BBTS
         }
 
         // Get move burned page.
-        public static Page GetMoveBurnedPage()
+        public static Page GetMoveBurnedPage(BattleEntity entity)
         {
-            Page page = new Page(
-                BattleMessages.Instance.GetMoveBurnedMessage(),
-                BattleMessages.Instance.GetMoveBurnedSpeakKey()
-                );
+            Page page;
+
+            if(entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveBurnedMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveBurnedSpeakKey0()
+                    );
+            }
+            else // The entity is an opponent.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveBurnedMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveBurnedSpeakKey1()
+                    );
+            }
 
             return page;
         }
 
         // Get move paralyzed page.
-        public static Page GetMoveParalyzedPage()
+        public static Page GetMoveParalyzedPage(BattleEntity entity)
         {
-            Page page = new Page(
-                BattleMessages.Instance.GetMoveParalyzedMessage(),
-                BattleMessages.Instance.GetMoveParalyzedSpeakKey()
+            Page page;
+
+            if (entity is Player) // The entity is a player.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveParalyzedMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveParalyzedSpeakKey0()
                 );
+            }
+            else // The entity is an opponent.
+            {
+                page = new Page(
+                    BattleMessages.Instance.GetMoveParalyzedMessage(entity.displayName),
+                    BattleMessages.Instance.GetMoveParalyzedSpeakKey1()
+                );
+            }
 
             return page;
         }
@@ -1030,12 +1054,7 @@ namespace RM_BBTS
                     {
                         target.burned = true;
 
-                        newPages.Add(GetMoveBurnedPage());
-
-                        // newPages.Add(new Page(
-                        //     BattleMessages.Instance.GetMoveBurnedMessage(),
-                        //     BattleMessages.Instance.GetMoveBurnedSpeakKey()
-                        //     ));
+                        newPages.Add(GetMoveBurnedPage(target));
                     }
 
                     // Paralysis Infliction
@@ -1043,12 +1062,7 @@ namespace RM_BBTS
                     {
                         target.paralyzed = true;
 
-                        newPages.Add(GetMoveParalyzedPage());
-
-                        // newPages.Add(new Page(
-                        //     BattleMessages.Instance.GetMoveParalyzedMessage(),
-                        //     BattleMessages.Instance.GetMoveParalyzedSpeakKey()
-                        //     ));
+                        newPages.Add(GetMoveParalyzedPage(target));
                     }
 
                     // STAT CHANGES

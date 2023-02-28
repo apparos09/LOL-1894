@@ -548,6 +548,12 @@ namespace RM_BBTS
 
         }
 
+        // Restores the entity's health by the provided percentage of their max health.
+        public void RestoreHealth(float percent)
+        {
+            Health += Mathf.Ceil(MaxHealth * percent);
+        }
+
         // Returns 'true' if the entity has no energy.
         public bool HasNoEnergy()
         {

@@ -198,7 +198,7 @@ namespace RM_BBTS
 
             audioCredits.Add(credit);
 
-            // Move Effect (SFX) / Warp 01 (SFX)
+            // Move Effect (SFX) / Warp 01 (SFX) / Door Enter (SFX) [Mixed with Whip Whoosh 01]
             credit = new AudioCredit();
             credit.song = "Button 1";
             credit.artist = "Unknown Artist";
@@ -296,7 +296,7 @@ namespace RM_BBTS
 
             audioCredits.Add(credit);
 
-            // Whoosh (High) (SFX)
+            // Whoosh (High) (SFX) / Door Enter (SFX) [Mixed with Button 1]
             credit = new AudioCredit();
             credit.song = "Whip Whoosh 01";
             credit.artist = "Unknown Artist";

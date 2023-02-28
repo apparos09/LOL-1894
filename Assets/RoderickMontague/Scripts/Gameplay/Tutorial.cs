@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // The namespace for the tutorial.
 namespace RM_BBTS
@@ -21,6 +22,14 @@ namespace RM_BBTS
 
         // Automatically shows the textbox when text is loaded.
         public bool showTextboxOnLoad;
+
+        [Header("Tutorial Functions")]
+
+        // The image of the speaker (helper bot).
+        public Image speakerImage;
+
+        // The probability fraction diagram.
+        public Image probFractionDiagram;
 
         // The default text box position.
         public Vector3 textBoxDefaultPos;
@@ -118,6 +127,21 @@ namespace RM_BBTS
             return textBox.IsVisible();
         }
 
+        // Shows the probability fraction diagram.
+        protected void ShowProbabilityFractionDiagram()
+        {
+            speakerImage.gameObject.SetActive(false);
+            probFractionDiagram.gameObject.SetActive(true);
+        }
+
+        // Hides the probability fraction diagram.
+        protected void HideProbabilityFractionDiagram()
+        {
+            probFractionDiagram.gameObject.SetActive(false);
+            speakerImage.gameObject.SetActive(true);
+        }
+
+
         // Moves the textbox up/down by the provided amount.
         protected void TranslateTextBoxY(float y)
         {
@@ -177,6 +201,9 @@ namespace RM_BBTS
             // THe hud page for the intro, which needs to move the textbox so that the score is visible.
             Page hudPage;
 
+            // The probability fraction page.
+            Page probFractionPage;
+
             // Pages
             if(defs != null) // Translation
             {
@@ -185,7 +212,12 @@ namespace RM_BBTS
                 pages.Add(new Page(defs["trl_intro_02"], "trl_intro_02"));
                 pages.Add(new Page(defs["trl_intro_03"], "trl_intro_03"));
                 pages.Add(new Page(defs["trl_intro_04"], "trl_intro_04"));
-                pages.Add(new Page(defs["trl_intro_05"], "trl_intro_05"));
+
+
+                probFractionPage = new Page(defs["trl_intro_05"], "trl_intro_05");
+                pages.Add(probFractionPage);
+
+
                 pages.Add(new Page(defs["trl_intro_06"], "trl_intro_06"));
 
                 // Hud page has unique behaviour, so save it.
@@ -202,7 +234,10 @@ namespace RM_BBTS
                 pages.Add(new Page("Welcome to the battle simulator, Battle Bot! I’m Helper Bot, and I’ll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability."));
                 pages.Add(new Page("Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event’s chance, the more likely it is to happen."));
                 pages.Add(new Page("Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively."));
-                pages.Add(new Page("In fraction form (x/y), the larger (x) is compared to (y), the more likely the event is. (y) equates to 1.00 for the fraction, with (x) acting as the chance value. The event chance is 0.00 when (x) is equal to 0 and is 1.00 when (x) is equal to (y)."));
+
+                probFractionPage = new Page("In fraction form (x/y), the larger (x) is compared to (y), the more likely the event is. (y) equates to 1.00 for the fraction, with (x) acting as the chance value. The event chance is 0.00 when (x) is equal to 0 and is 1.00 when (x) is equal to (y).");
+                pages.Add(probFractionPage);
+
                 pages.Add(new Page("With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they’re behind that scary locked door! Looks like you’ll have to go through a different door for now…"));
 
                 // Hud page has unique behaviour, so save it.
@@ -220,6 +255,10 @@ namespace RM_BBTS
 
             // Moves the textbox back to its default position.
             hudPage.OnPageClosedAddCallback(SetTextBoxToDefaultPosition);
+
+            // Show the probability diagram when the page is opened, and hide it when it's closed.
+            probFractionPage.OnPageOpenedAddCallback(ShowProbabilityFractionDiagram);
+            probFractionPage.OnPageClosedAddCallback(HideProbabilityFractionDiagram);
 
             // Loads the pages.
             LoadTutorial(ref pages);

@@ -65,6 +65,13 @@ namespace RM_BBTS
         // Loads the move into the move info pnael.
         public void LoadMoveInfo(Move move)
         {
+            // If the move is null, clear the info.
+            if(move == null)
+            {
+                ClearMoveInfo();
+                return;
+            }
+
             // Id
             id = move.Id;
 

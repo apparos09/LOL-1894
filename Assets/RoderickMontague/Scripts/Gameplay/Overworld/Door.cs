@@ -26,7 +26,7 @@ namespace RM_BBTS
 
         // Saves the position of the door.
         // This is needed in case the door position changes from a game over.
-        public Vector3 position;
+        public Vector3 localPosition;
         
     }
 
@@ -113,15 +113,19 @@ namespace RM_BBTS
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.
         private void OnMouseDown()
         {
-            // This sound plays to indicate that a door is locked.
-            if (locked && overworld != null)
+            // Plays a sound in response to a door interaction.
+            if(overworld != null && overworld.gameManager.mouseTouchInput.isActiveAndEnabled)
             {
-                // If the mouse touch input is disabled, then a UI element must be open.
-                // As such, this audio clip shouldn't play since the door is likely blocked.
-                if(overworld.gameManager.mouseTouchInput.isActiveAndEnabled)
+                // Has different sound effects for if the door is locked versus unlocked.
+                if(locked) // Locked
+                {
                     overworld.PlayDoorLockedSfx();
-            }
-                
+                }
+                else // Unlocked/Enter
+                {
+                    overworld.PlayDoorEnterSfx();
+                }
+            }   
         }
 
         // Sets the door animation.
@@ -176,7 +180,7 @@ namespace RM_BBTS
             saveData.doorType = doorType;
 
             // Save the door's position.
-            saveData.position = transform.position;
+            saveData.localPosition = transform.localPosition;
 
             // Returns the save data.
             return saveData;
@@ -198,8 +202,8 @@ namespace RM_BBTS
             doorType = data.doorType;
             overworld.SetDoorSpritesByDoorType(this);
 
-            // Sets the door's position from the save data in case it got changed.
-            transform.position = data.position;
+            // Sets the door's local position from the save data in case it got changed.
+            transform.localPosition = data.localPosition;
 
             UpdateSprite();
         }

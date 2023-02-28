@@ -1097,9 +1097,9 @@ namespace RM_BBTS
             float completionRate = roomsCompleted / (float)GetRoomsTotal();
 
             // Returns the game phase.
-            if (completionRate < 0.33F)
+            if (completionRate < OverworldManager.PHASE_2_THRESOLD)
                 return 1;
-            else if (completionRate < 0.66F)
+            else if (completionRate < OverworldManager.PHASE_3_THRESOLD)
                 return 2;
             else
                 return 3;
@@ -1565,7 +1565,7 @@ namespace RM_BBTS
             // If there is door data to pull from.
             if(saveData.doorData != null)
             {
-                // Load the door data.
+                // Loads the door data to replace the existing doors.
                 for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
                 {
                     // Loads the save data.
