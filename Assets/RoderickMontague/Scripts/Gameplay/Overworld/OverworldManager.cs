@@ -287,6 +287,9 @@ namespace RM_BBTS
             // Plays the overworld BGM.
             PlayOverworldBgm();
 
+            // Enables the overworld background.
+            gameManager.EnableOverworldBackground();
+
             initialized = true;
         }
 
@@ -431,34 +434,8 @@ namespace RM_BBTS
         // Gets the color for the dedicated door type.
         public static Color GetDoorTypeColor(int doorType)
         {
-            // Color object.
-            Color color;
-
-            // Checks the door type.
-            switch (doorType)
-            {
-                case 0: // default (white)
-                default:
-                    color = Color.white;
-                    break;
-                case 1: // boss door (red)
-                    color = Color.red;
-                    break;
-                case 2: // blue
-                    color = Color.blue;
-                    break;
-                case 3: // yellow
-                    color = Color.yellow;
-                    break;
-                case 4: // green (it seems like it should be purple, but it's not).
-                    color = Color.green;
-                    break;
-                case 5: // purple (it seems like it should be green, but it's not).
-                    color = new Color(0.627F, 0.125F, 0.941F);
-                    break;
-            }
-
-            return color;
+            // Function moved to the door class.
+            return Door.GetDoorTypeColor(doorType);
         }
 
         // Generates a room for the door.
@@ -747,6 +724,9 @@ namespace RM_BBTS
 
             // Plays the overworld BGM.
             PlayOverworldBgm();
+
+            // Show the overworld background.
+            gameManager.EnableOverworldBackground();
         }
 
         // Called when the game phase changes.

@@ -264,6 +264,9 @@ namespace RM_BBTS
         // The animation manager for the moves.
         public MoveAnimationManager moveAnimation;
 
+        // If the battle background should be used.
+        public const bool USE_BATTLE_BACKGROUND = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -559,6 +562,11 @@ namespace RM_BBTS
                 // Battle BGM.
                 PlayBattleBgm();
             }
+
+            // Changes the background color for the animation.
+            if(USE_BATTLE_BACKGROUND)
+                gameManager.EnableBattleBackground("Blur", door.GetColor());
+
 
             // // Create the timers.
             // playerAnimTimer = new TimerManager.Timer();

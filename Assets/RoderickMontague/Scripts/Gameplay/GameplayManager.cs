@@ -231,6 +231,16 @@ namespace RM_BBTS
         // public AudioClip battleLostJng;
 
         [Header("Animations")]
+
+        // The overworld background
+        public SpriteRenderer overworldBackground;
+
+        // The battle background
+        public SpriteRenderer battleBackground;
+
+        // The background animator.
+        public Animator battleBackgroundAnimator;
+
         // Transitions should be used.
         public bool useTransitions = true;
 
@@ -880,7 +890,29 @@ namespace RM_BBTS
         }
 
 
+        // BACKGROUNDS //
+        // Shows the overworld background.
+        public void EnableOverworldBackground()
+        {
+            battleBackgroundAnimator.StopPlayback();
+            battleBackground.gameObject.SetActive(false);
+            battleBackground.sprite = null;
+            battleBackground.color = Color.white;
 
+            overworldBackground.gameObject.SetActive(true);
+        }
+
+        // Show the battle background.
+        public void EnableBattleBackground(string stateName, Color color)
+        {
+            overworldBackground.gameObject.SetActive(false);
+
+            battleBackground.gameObject.SetActive(true);
+            battleBackground.color = color;
+            battleBackgroundAnimator.Play(stateName);
+        }
+
+        // MOUSE
 
         // Checks the mouse and touch to see if there's any object to use.
         public void MouseTouchCheck()
@@ -1269,6 +1301,8 @@ namespace RM_BBTS
             playerEnergyText.text =
                     (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + DISPLAY_DECIMAL_PLACES.ToString()) + "%";
         }
+
+        
 
         // OTHER //
 
