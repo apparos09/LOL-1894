@@ -26,7 +26,7 @@ namespace RM_BBTS
 
         // Saves the position of the door.
         // This is needed in case the door position changes from a game over.
-        public Vector3 position;
+        public Vector3 localPosition;
         
     }
 
@@ -162,6 +162,45 @@ namespace RM_BBTS
             
         }
 
+        // Returns the color that's assigned to the door.
+        public Color GetColor()
+        {
+            return GetDoorTypeColor(doorType);
+        }
+
+        // Gets the color for the dedicated door type.
+        public static Color GetDoorTypeColor(int doorType)
+        {
+            // Color object.
+            Color color;
+
+            // Checks the door type.
+            switch (doorType)
+            {
+                case 0: // default (white)
+                default:
+                    color = Color.white;
+                    break;
+                case 1: // boss door (red)
+                    color = Color.red;
+                    break;
+                case 2: // blue
+                    color = Color.blue;
+                    break;
+                case 3: // yellow
+                    color = Color.yellow;
+                    break;
+                case 4: // green (it seems like it should be purple, but it's not).
+                    color = Color.green;
+                    break;
+                case 5: // purple (it seems like it should be green, but it's not).
+                    color = new Color(0.627F, 0.125F, 0.941F);
+                    break;
+            }
+
+            return color;
+        }
+
         // Generates the save data.
         public DoorSaveData GenerateSaveData()
         {
@@ -180,7 +219,7 @@ namespace RM_BBTS
             saveData.doorType = doorType;
 
             // Save the door's position.
-            saveData.position = transform.position;
+            saveData.localPosition = transform.localPosition;
 
             // Returns the save data.
             return saveData;
@@ -202,8 +241,8 @@ namespace RM_BBTS
             doorType = data.doorType;
             overworld.SetDoorSpritesByDoorType(this);
 
-            // Sets the door's position from the save data in case it got changed.
-            transform.position = data.position;
+            // Sets the door's local position from the save data in case it got changed.
+            transform.localPosition = data.localPosition;
 
             UpdateSprite();
         }

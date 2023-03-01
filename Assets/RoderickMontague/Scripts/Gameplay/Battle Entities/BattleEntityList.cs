@@ -1463,6 +1463,26 @@ namespace RM_BBTS
             return data;
         }
 
+        // Generates a tutorial enemy.
+        public BattleEntityGameData GenerateTutorialEnemy()
+        {
+            // List of tutorial ids.
+            List<battleEntityId> ids = new List<battleEntityId>();
+            
+            // Add the entities to the list.
+            ids.Add(battleEntityId.ufo1);
+            ids.Add(battleEntityId.insect1);
+            ids.Add(battleEntityId.cBugYellow1);
+
+            // Generates a random index for the ids list, and gets the id.
+            int randomIndex = Random.Range(0, ids.Count);
+            battleEntityId randId = ids[randomIndex];
+
+            // Generate the data, and return it.
+            BattleEntityGameData data = GenerateBattleEntityData(randId);
+            return data;
+        }
+
         // Checks to see if it's a tutorial enemy.
         public static bool IsTutorialEnemy(battleEntityId id)
         {
