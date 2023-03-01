@@ -519,11 +519,43 @@ namespace RM_BBTS
                         unusedDoors.RemoveAt(index);
                     }
 
-                    // Unlocks two random doors.
+                    // Unlocks (X) amount of random doors.
                     for (int n = 0; n < TRL_DOOR_COUNT && battleDoors.Count > 0; n++)
                     {
                         // Grabs a random index.
                         int randIndex = Random.Range(0, battleDoors.Count);
+
+                        // TODO: test this.
+                        // If the enemy is not a tutorial enemy, replace it with one.
+                        if (!BattleEntityList.IsTutorialEnemy(battleDoors[randIndex].battleEntity.id))
+                        {
+                            // Copies the level. 
+                            uint oldLevel = battleDoors[randIndex].battleEntity.level;
+
+                            // Generates a tutorial enemy to replace thi one.
+                            battleDoors[randIndex].battleEntity = BattleEntityList.Instance.GenerateTutorialEnemy();
+
+                            // Level up the new data if the level is less than the old level.
+                            if(battleDoors[randIndex].battleEntity.level != oldLevel)
+                            {
+                                // How many times the enemy should level up.
+                                uint times = 0;
+
+                                // Checks which level is higher for proper subtraction.
+                                if (oldLevel > battleDoors[randIndex].battleEntity.level)
+                                    times = oldLevel - battleDoors[randIndex].battleEntity.level;
+                                else if (oldLevel < battleDoors[randIndex].battleEntity.level)
+                                    times = battleDoors[randIndex].battleEntity.level - oldLevel;
+
+                                // Level up the entity.
+                                battleDoors[randIndex].battleEntity = BattleEntity.LevelUpData(
+                                    battleDoors[randIndex].battleEntity,
+                                    battleDoors[randIndex].battleEntity.levelRate,
+                                    battleDoors[randIndex].battleEntity.statSpecial,
+                                    times);
+                            }
+                        }
+
 
                         // Unlocks the door, and removes it from the list.
                         battleDoors[randIndex].Locked = false;
