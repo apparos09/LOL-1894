@@ -28338,6 +28338,14 @@ PrefabInstance:
       propertyPath: autoNext
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: textSpeed
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: DisableControlsIfAnimSkipDisabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798211, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_Name
       value: Battle Text Box
@@ -33168,6 +33176,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798208, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: textSpeed
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: charsPerLoad
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
+      propertyPath: enableAnimationSkip
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798211, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
