@@ -539,7 +539,6 @@
       "trl_intro_05": 270,
       "trl_intro_06": 270,
       "trl_intro_07": 270,
-      "trl_intro_08": 270,
 
       "trl_battle_00": 270,
       "trl_battle_01": 270,
@@ -663,7 +662,7 @@
     "ifo_probability_percent_nme": "Probability (Percentage Form)",
     "ifo_probability_percent_dsc": "A probability format where percentages are used instead of decimals. 0% equates to 0.00 and 100% equates to 1.00. The higher the chance percentage, the more likely the event is. Multiplying a decimal by 100 converts it to a percentage, and dividing a percentage by 100 converts it to a decimal.",
     "ifo_probability_fraction_nme": "Probability (Fraction Form)",
-    "ifo_probability_fraction_dsc": "A probability format that uses fractions (x/y). The denominator (y) equates to 1.00, with the numerator (x) acting as the chance value. The larger the value of (x), the more likely the event is. When (x) equals 0, the event will not happen, and when (x) equals (y), the event will always happen.",
+    "ifo_probability_fraction_dsc": "A probability format that uses fractions (x/y). The denominator (y) is the total group size, while the numerator (x) is the group portion size. The larger the portion, the more likely the event is. In decimal form, (x = y) equates to 1.00, and (x = 0) equates to 0.00.",
 
     "ifo_stats": "Battler Stats",
     "ifo_stats_level_nme": "Level",
@@ -1124,15 +1123,14 @@
 
 
 
-    "trl_intro_00": "Before we begin, I have a quick tip for you. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page.",
-    "trl_intro_01": "If there is no more text, you’ll move onto the next page, or close the textbox if there are no pages left. With all that out of the way…",
-    "trl_intro_02": "Welcome to the battle simulator, Battle Bot! I’m Helper Bot, and I’ll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability.",
-    "trl_intro_03": "Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event’s chance, the more likely it is to happen.",
-    "trl_intro_04": "Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively.",
-    "trl_intro_05": "In fraction form (x/y), the larger (x) is compared to (y), the more likely the event is. (y) equates to 1.00 for the fraction, with (x) acting as the chance value. The event chance is 0.00 when (x) is equal to 0 and is 1.00 when (x) is equal to (y).",
-    "trl_intro_06": "With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they’re behind that scary locked door! Looks like you’ll have to go through a different door for now…",
-    "trl_intro_07": "To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure.",
-    "trl_intro_08": "With all that covered, please select an open door to start your first battle!",
+    "trl_intro_00": "Welcome to the battle simulator, Battle Bot! I’m Helper Bot, and I’ll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability.",
+    "trl_intro_01": "Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event’s chance, the more likely it is to happen.",
+    "trl_intro_02": "Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively. The image above shows conversion examples.",
+    "trl_intro_03": "In fraction form (x/y), the denominator (y) represents the size of the whole group, while the numerator (x) represents the size of a portion of the group.",
+    "trl_intro_04": "The larger the portion (x) is in reference to the group size (y), the more likely the related event is.  When (x) is equal to (y), it is the equivalent of 1.00 in decimal form. When (x) is equal to 0, it equates to 0.00 in decimal form.",
+    "trl_intro_05": "With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they’re behind that scary locked door! Looks like you’ll have to go through a different door for now…",
+    "trl_intro_06": "To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure.",
+    "trl_intro_07": "With all that covered, please select an open door to start your first battle!",
 
     "trl_battle_00": "Welcome to your first battle, Battle Bot! To win the battle, you must bring your opponent’s health down to 0. But if the opponent brings your health down to 0, you’ll get a game over! To attack your opponent, you must use your battle moves!",
     "trl_battle_01": "You can have up to 4 battle moves at a time, which together with the run and charge moves makes for a total of 6 battle options! To learn a new move, you must accept a move offer, which is given out every time you clear a room.",
@@ -1142,7 +1140,7 @@
 
     "trl_firstMove_00": "You just finished your first turn of battle! As you can see, moves have different characteristics that determine how they perform in battle. Every move has at least 4 components, which are as follows: rank, power, accuracy, and energy usage.",
     "trl_firstMove_01": "A move’s rank determines how advanced it is, a move’s power determines how much damage it does, a move’s accuracy determines how likely it is to hit its target, and a move’s energy usage determines how much energy is needed to use said move.",
-    "trl_firstMove_02": "If a move does not list one of the four components, then it has unique behaviour that concerns said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions.",
+    "trl_firstMove_02": "If a move does not list one of the four components, then it has unique behavior that concerns said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions.",
     "trl_firstMove_03": "Make sure to check the stats window and info window if you ever need more information on your moves! With all that explained, on with the battle!",
 
     "trl_critical_00": "You have encountered critical damage! Critical damage multiplies the power of a move when it successfully hits its target. Unless a move’s description states otherwise, every directly damaging move has the same critical damage chance.",

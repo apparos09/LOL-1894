@@ -52,7 +52,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 2; // 2
+        public const int TREASURE_COUNT = 3; // 2
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
