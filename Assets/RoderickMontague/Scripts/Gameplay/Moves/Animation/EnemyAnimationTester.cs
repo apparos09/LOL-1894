@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RM_BBTS
 {
-    // A tester for enemy animations.
+    // A tester for opponent animations.
     public class EnemyAnimationTester : MonoBehaviour
     {
         // The animator.

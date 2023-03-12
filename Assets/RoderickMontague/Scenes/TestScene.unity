@@ -4398,9 +4398,9 @@ MonoBehaviour:
   highPosition: {x: 0, y: 0, z: 0}
   lowPosition: {x: 0, y: 0, z: 0}
   autoSetLowHighPos: 1
-  basePosOffset: 2.5
+  basePosOffset: 1
   paused: 0
-  speed: 1
+  speed: 0.25
 --- !u!224 &1597262461 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7255217518631417774, guid: bd6a234c3dae11349b9015bf04c52145, type: 3}

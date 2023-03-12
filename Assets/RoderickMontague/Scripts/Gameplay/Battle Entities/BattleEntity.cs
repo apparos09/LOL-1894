@@ -1184,6 +1184,7 @@ namespace RM_BBTS
             vulnerable = true;
         }
 
+
         // Update is called once per frame
         protected virtual void Update()
         {
