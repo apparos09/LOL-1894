@@ -6,7 +6,6 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
-using RM_BTSS;
 
 namespace RM_BBTS
 {
