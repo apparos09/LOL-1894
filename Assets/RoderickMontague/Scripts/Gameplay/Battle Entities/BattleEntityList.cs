@@ -7,7 +7,7 @@ namespace RM_BBTS
 {
     // The list of IDs. CombatBot, Comet, and BlackHole are all bosses.
     public enum battleEntityId { 
-        unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, ghost1, ghost2, comet,
+        unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, spaceGhost1, spaceGhost2, comet,
         sunRock1, sunRock2, moonRock1, moonRock2, fireBot1, fireBot2, waterBot1, waterBot2, earthBot1, 
         earthBot2, airBot1, airBot2, sharp1, sharp2, cBugRed1, cBugRed2, cBugBlue1, cBugBlue2, 
         cBugYellow1, cBugYellow2, blackHole, planet1, planet2
@@ -321,10 +321,10 @@ namespace RM_BBTS
                     data.statSpecial = BattleEntity.specialty.speed;
                     break;
 
-                case battleEntityId.ghost1: // Techno Ghost
-                    data.id = battleEntityId.ghost1;
+                case battleEntityId.spaceGhost1: // Techno Ghost
+                    data.id = battleEntityId.spaceGhost1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.ghost2;
+                    data.evoId = battleEntityId.spaceGhost2;
 
                     // Stats
                     data.displayName = "Techno Ghost";
@@ -343,9 +343,9 @@ namespace RM_BBTS
                     data.statSpecial = BattleEntity.specialty.defense;
                     break;
 
-                case battleEntityId.ghost2: // Techno Phantom
-                    data.id = battleEntityId.ghost2;
-                    data.preEvoId = battleEntityId.ghost1;
+                case battleEntityId.spaceGhost2: // Techno Phantom
+                    data.id = battleEntityId.spaceGhost2;
+                    data.preEvoId = battleEntityId.spaceGhost1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -1022,7 +1022,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.ghost1:
+                case battleEntityId.spaceGhost1:
                     moveList = new List<moveId>() 
                     {
                         moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast,
@@ -1030,7 +1030,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.ghost2:
+                case battleEntityId.spaceGhost2:
                     moveList = new List<moveId>() 
                     {
                         moveId.slimeShot, moveId.laserShot, moveId.elecShot, moveId.powerLast,

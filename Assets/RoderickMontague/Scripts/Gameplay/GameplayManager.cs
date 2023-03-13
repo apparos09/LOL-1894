@@ -936,10 +936,18 @@ namespace RM_BBTS
         // Show the battle background.
         public void EnableBattleBackground(string stateName, Color color)
         {
+            // Turn off overworld background.
             overworldBackground.gameObject.SetActive(false);
 
+            // Turn on battle background.
             battleBackground.gameObject.SetActive(true);
-            battleBackground.color = color;
+
+            // Sets the background colour, and reduces the brightest of the background slightly.
+            Color bgColor = color * 0.95F;
+            color.a = 1.0F;
+            battleBackground.color = bgColor;
+
+            // Play the background animation.
             battleBackgroundAnimator.Play(stateName);
         }
 

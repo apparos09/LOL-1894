@@ -96,11 +96,11 @@ namespace RM_BBTS
                     animator.Play("BEY - Insect 2 - Idle");
                     break;
 
-                case battleEntityId.ghost1:
+                case battleEntityId.spaceGhost1:
                     animator.Play("BEY - Space Ghost 1 - Idle");
                     break;
 
-                case battleEntityId.ghost2:
+                case battleEntityId.spaceGhost2:
                     animator.Play("BEY - Space Ghost 2 - Idle");
                     break;
 

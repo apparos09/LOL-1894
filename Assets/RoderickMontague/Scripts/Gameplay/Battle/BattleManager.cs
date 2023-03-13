@@ -2011,14 +2011,14 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.ghost1:
+                case battleEntityId.spaceGhost1:
                     opponentAnimator.Play("BEY - Space Ghost 1 - Idle");
 
                     speed = slowSpeed;
 
                     break;
 
-                case battleEntityId.ghost2:
+                case battleEntityId.spaceGhost2:
                     opponentAnimator.Play("BEY - Space Ghost 2 - Idle");
 
                     speed = slowSpeed;
