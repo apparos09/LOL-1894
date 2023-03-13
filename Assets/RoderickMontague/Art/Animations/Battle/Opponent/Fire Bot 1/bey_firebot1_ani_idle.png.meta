@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -4977573246174736223
     second: bey_firebot1_ani_idle_4
+  - first:
+      213: -6905443909889600968
+    second: bey_firebot1_ani_idle_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -242,6 +245,27 @@ TextureImporter:
       bones: []
       spriteID: 1a05442418b1ceab0800000000000000
       internalID: -4977573246174736223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bey_firebot1_ani_idle_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83255aeb95fea20a0800000000000000
+      internalID: -6905443909889600968
       vertices: []
       indices: 
       edges: []
