@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 415312768}
   - component: {fileID: 415312769}
   m_Layer: 5
-  m_Name: Enemy Animation Tester
+  m_Name: Opponent Animation Tester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,8 +531,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1579837078}
+  spriteRenderer: {fileID: 1579837076}
   entityId: 0
   battleAnim: 0
+  treasureSprite: {fileID: -7323353769793899963, guid: 9a43b48e5df73be43bcbcdc929af5268, type: 3}
 --- !u!1 &424578234
 GameObject:
   m_ObjectHideFlags: 0

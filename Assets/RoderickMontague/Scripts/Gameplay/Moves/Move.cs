@@ -1138,7 +1138,7 @@ namespace RM_BBTS
             moveEffect userEffect, moveEffect targetEffect)
         {
             // If animations should play, and the move has a proper animation.
-            if (BattleManager.PLAY_MOVE_ANIMATIONS && animation != moveAnim.none)
+            if (BattleManager.PLAY_IDLE_AND_MOVE_ANIMATIONS && animation != moveAnim.none)
             {
                 // Sets the information and plays the animation.
                 // The animation is flipped if the opponent is using the move.

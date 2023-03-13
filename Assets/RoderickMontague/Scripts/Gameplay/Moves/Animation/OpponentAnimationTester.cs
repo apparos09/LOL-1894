@@ -5,10 +5,13 @@ using UnityEngine;
 namespace RM_BBTS
 {
     // A tester for opponent animations.
-    public class EnemyAnimationTester : MonoBehaviour
+    public class OpponentAnimationTester : MonoBehaviour
     {
         // The animator.
         public Animator animator;
+
+        // The sprite renderer.
+        public SpriteRenderer spriteRenderer;
 
         // The id of the current entity whose animations are being played.
         public battleEntityId entityId = 0;
@@ -18,6 +21,8 @@ namespace RM_BBTS
 
         // The amount of battle animations.
         private const int BATTLE_ANIM_COUNT = 4;
+
+        public Sprite treasureSprite;
 
         // Start is called before the first frame update
         void Start()
@@ -66,6 +71,10 @@ namespace RM_BBTS
             // Checks the ID.
             switch(entityId)
             {
+                case battleEntityId.treasure:
+                    spriteRenderer.sprite = treasureSprite;
+                    break;
+
                 case battleEntityId.combatBot:
                     animator.Play("BEY - Combat Bot - Idle");
                     break;
@@ -193,6 +202,7 @@ namespace RM_BBTS
 
                 default:
                     animator.Play("No Idle");
+                    spriteRenderer.sprite = null;
                     break;
             }
         }

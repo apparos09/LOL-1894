@@ -1177,6 +1177,7 @@ namespace RM_BBTS
             }
         }
 
+        
         // Called when a turn happens during a battle.
         public virtual void OnBattleTurn()
         {

@@ -1222,8 +1222,6 @@ namespace RM_BBTS
             battle.door = door;
             battle.Initialize();
 
-            // TODO: add entity for the opponent.
-
             // Activates the battle object.
             battle.gameObject.SetActive(true);
 
