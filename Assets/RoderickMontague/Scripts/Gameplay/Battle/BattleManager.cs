@@ -2130,42 +2130,42 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugRed1:
+                case battleEntityId.virusRed1:
                     opponentAnimator.Play("BEY - Red Virus 1 - Idle");
 
                     speed = midSpeed;
 
                     break;
 
-                case battleEntityId.cBugRed2:
+                case battleEntityId.virusRed2:
                     opponentAnimator.Play("BEY - Red Virus 2 - Idle");
 
                     speed = midSpeed;
 
                     break;
 
-                case battleEntityId.cBugBlue1:
+                case battleEntityId.virusBlue1:
                     opponentAnimator.Play("BEY - Blue Virus 1 - Idle");
 
                     speed = fastSpeed;
 
                     break;
 
-                case battleEntityId.cBugBlue2:
+                case battleEntityId.virusBlue2:
                     opponentAnimator.Play("BEY - Blue Virus 2 - Idle");
 
                     speed = fastSpeed;
 
                     break;
 
-                case battleEntityId.cBugYellow1:
+                case battleEntityId.virusYellow1:
                     opponentAnimator.Play("BEY - Yellow Virus 1 - Idle");
 
                     speed = midSpeed;
 
                     break;
 
-                case battleEntityId.cBugYellow2:
+                case battleEntityId.virusYellow2:
                     opponentAnimator.Play("BEY - Yellow Virus 2 - Idle");
 
                     speed = midSpeed;

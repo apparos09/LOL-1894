@@ -9,8 +9,8 @@ namespace RM_BBTS
     public enum battleEntityId { 
         unknown, treasure, combatBot, ufo1, ufo2, ufo3, insect1, insect2, spaceGhost1, spaceGhost2, comet,
         sunRock1, sunRock2, moonRock1, moonRock2, fireBot1, fireBot2, waterBot1, waterBot2, earthBot1, 
-        earthBot2, airBot1, airBot2, sharp1, sharp2, cBugRed1, cBugRed2, cBugBlue1, cBugBlue2, 
-        cBugYellow1, cBugYellow2, blackHole, planet1, planet2
+        earthBot2, airBot1, airBot2, sharp1, sharp2, virusRed1, virusRed2, virusBlue1, virusBlue2, 
+        virusYellow1, virusYellow2, blackHole, planet1, planet2
     }
 
     // The list of entities for the game. There only needs to be one instance of this list.
@@ -714,10 +714,10 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugRed1: // Red
-                    data.id = battleEntityId.cBugRed1;
+                case battleEntityId.virusRed1: // Red
+                    data.id = battleEntityId.virusRed1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cBugRed2;
+                    data.evoId = battleEntityId.virusRed2;
 
                     // Stats
                     data.displayName = "Red";
@@ -738,9 +738,9 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugRed2: // Red X
-                    data.id = battleEntityId.cBugRed2;
-                    data.preEvoId = battleEntityId.cBugRed1;
+                case battleEntityId.virusRed2: // Red X
+                    data.id = battleEntityId.virusRed2;
+                    data.preEvoId = battleEntityId.virusRed1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -762,10 +762,10 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugBlue1: // Blue
-                    data.id = battleEntityId.cBugBlue1;
+                case battleEntityId.virusBlue1: // Blue
+                    data.id = battleEntityId.virusBlue1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cBugBlue2;
+                    data.evoId = battleEntityId.virusBlue2;
 
                     // Stats
                     data.displayName = "Blue";
@@ -786,9 +786,9 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugBlue2: // Blue X
-                    data.id = battleEntityId.cBugBlue2;
-                    data.preEvoId = battleEntityId.cBugBlue1;
+                case battleEntityId.virusBlue2: // Blue X
+                    data.id = battleEntityId.virusBlue2;
+                    data.preEvoId = battleEntityId.virusBlue1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -810,10 +810,10 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugYellow1: // Yellow
-                    data.id = battleEntityId.cBugYellow1;
+                case battleEntityId.virusYellow1: // Yellow
+                    data.id = battleEntityId.virusYellow1;
                     data.preEvoId = battleEntityId.unknown;
-                    data.evoId = battleEntityId.cBugYellow2;
+                    data.evoId = battleEntityId.virusYellow2;
 
                     // Stats
                     data.displayName = "Yellow";
@@ -834,9 +834,9 @@ namespace RM_BBTS
 
                     break;
 
-                case battleEntityId.cBugYellow2: // Yellow X
-                    data.id = battleEntityId.cBugYellow2;
-                    data.preEvoId = battleEntityId.cBugYellow1;
+                case battleEntityId.virusYellow2: // Yellow X
+                    data.id = battleEntityId.virusYellow2;
+                    data.preEvoId = battleEntityId.virusYellow1;
                     data.evoId = battleEntityId.unknown;
 
                     // Stats
@@ -1174,7 +1174,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugRed1:
+                case battleEntityId.virusRed1:
                     moveList = new List<moveId>() 
                     { 
                         moveId.laserShot, moveId.elecShot, moveId.shield1,
@@ -1183,7 +1183,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugRed2:
+                case battleEntityId.virusRed2:
                     moveList = new List<moveId>() 
                     { 
                         moveId.laserShot, moveId.screech,moveId.elecShot, moveId.soundWave, 
@@ -1192,7 +1192,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugBlue1:
+                case battleEntityId.virusBlue1:
                     moveList = new List<moveId>() 
                     {
                         moveId.laserShot, moveId.elecShot, moveId.shield1,
@@ -1201,7 +1201,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugBlue2:
+                case battleEntityId.virusBlue2:
                     moveList = new List<moveId>() 
                     {
                         moveId.laserShot, moveId.screech, moveId.elecShot, moveId.soundWave,
@@ -1210,7 +1210,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugYellow1:
+                case battleEntityId.virusYellow1:
                     moveList = new List<moveId>() 
                     {
                         moveId.laserShot, moveId.elecShot, moveId.shield1,
@@ -1219,7 +1219,7 @@ namespace RM_BBTS
                     };
                     break;
 
-                case battleEntityId.cBugYellow2:
+                case battleEntityId.virusYellow2:
                     moveList = new List<moveId>() 
                     {
                         moveId.laserShot, moveId.screech, moveId.elecShot, moveId.soundWave,
@@ -1468,7 +1468,7 @@ namespace RM_BBTS
             // Add the entities to the list.
             ids.Add(battleEntityId.ufo1);
             ids.Add(battleEntityId.insect1);
-            ids.Add(battleEntityId.cBugYellow1);
+            ids.Add(battleEntityId.virusYellow1);
 
             // Generates a random index for the ids list, and gets the id.
             int randomIndex = Random.Range(0, ids.Count);
@@ -1492,7 +1492,7 @@ namespace RM_BBTS
             // ids.Add(battleEntityId.sharp1);
             // ids.Add(battleEntityId.cBugRed1); // Too weak.
             // ids.Add(battleEntityId.moonRock1);
-            ids.Add(battleEntityId.cBugYellow1);
+            ids.Add(battleEntityId.virusYellow1);
             // ids.Add(battleEntityId.cBugBlue1); // Too weak.
 
             // Checks if this is a tutorial enemy or not.

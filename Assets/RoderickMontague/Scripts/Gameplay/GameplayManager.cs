@@ -943,7 +943,7 @@ namespace RM_BBTS
             battleBackground.gameObject.SetActive(true);
 
             // Sets the background colour, and reduces the brightest of the background slightly.
-            Color bgColor = color * 0.95F;
+            Color bgColor = color * 0.985F;
             color.a = 1.0F;
             battleBackground.color = bgColor;
 
