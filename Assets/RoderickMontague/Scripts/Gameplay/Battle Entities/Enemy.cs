@@ -15,8 +15,8 @@ namespace RM_BBTS
         // }
 
         // The restore percentage for health and energy on a game over.
-        public const float GAME_OVER_HEALTH_RESTORE_PERCENT = 1.0F;
-        public const float GAME_OVER_ENERGY_RESTORE_PERCENT = 1.0F;
+        public const float GAME_OVER_HEALTH_RESTORE_PERCENT = 0.50F;
+        public const float GAME_OVER_ENERGY_RESTORE_PERCENT = 0.50F;
 
         [Header("Other")]
 

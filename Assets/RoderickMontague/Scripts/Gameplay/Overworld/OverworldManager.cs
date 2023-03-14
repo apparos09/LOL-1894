@@ -91,6 +91,12 @@ namespace RM_BBTS
         // // the position offset for placing doors.
         // public Vector3 doorPosOffset = new Vector3(2.0F, -2.0F, 0);
 
+        // Used to determine if unevolved entities should level up when a new phase begins.
+        const bool LEVEL_UP_FOR_PHASE_IF_UNEVOLVED = true;
+
+        // The amount of levels an unevolved entity gets on a new phase (only used if LEVEL_UP_FOR_PHASE_IF_UNEVOLVED is true).
+        const int PHASE_LEVEL_UP_IF_UNEVOLVED = 1;
+
         [Header("Doors/Sprites")]
 
         // The list of unlocked and locked door sprites (does NOT include the boss door).
@@ -789,13 +795,30 @@ namespace RM_BBTS
                         // It helps save on evolution time.
                         if (!door.Locked)
                         {
-                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                            // Evolve the entity if it has an evolution.
+                            // If it can't evolve, raise it's level ith a basic level rate and no speciality. 
+                            
+
+                            // Checks if unevolved entities should receive a boost on a new phase or not.
+                            if(LEVEL_UP_FOR_PHASE_IF_UNEVOLVED) // All Entities Receive Boost
+                            {
+                                // IF the entity can evolve, evolve it. If it can't evolve, just level it up.
+                                if (BattleEntity.CanEvolve(door.battleEntity))
+                                    door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                                else
+                                    door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, PHASE_LEVEL_UP_IF_UNEVOLVED);
+                            }
+                            else // No Boost for Unevolved Entities
+                            {
+                                // Evolve the entity. If the entity can't evolve, nothing happens.
+                                door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, 1.0F, BattleEntity.specialty.none, 1);
+                            }
+
 
                             // TODO: maybe don't restore it entirely?
                             // Restore health and energy levels to max even if the entity didn't evolve.
                             door.battleEntity.health = door.battleEntity.maxHealth;
                             door.battleEntity.energy = door.battleEntity.maxEnergy;
-
                         }
 
                     }
@@ -860,11 +883,14 @@ namespace RM_BBTS
                 // door.battleEntity.health = door.battleEntity.maxHealth;
                 // door.battleEntity.energy = door.battleEntity.maxEnergy;
 
-                // TODO: test this.
-                // New (restores by amount)
+
                 // Restore health and energy by a percentage of maxes.
                 door.battleEntity.health += door.battleEntity.maxHealth * Enemy.GAME_OVER_HEALTH_RESTORE_PERCENT;
                 door.battleEntity.energy += door.battleEntity.maxEnergy * Enemy.GAME_OVER_ENERGY_RESTORE_PERCENT;
+
+                // Make the health and energy levels whole numbers.
+                door.battleEntity.health = Mathf.Ceil(door.battleEntity.health);
+                door.battleEntity.energy = Mathf.Ceil(door.battleEntity.energy);
 
                 // Clamp the values so that they're within the bounds.
                 door.battleEntity.health = Mathf.Clamp(door.battleEntity.health, 0, door.battleEntity.maxHealth);

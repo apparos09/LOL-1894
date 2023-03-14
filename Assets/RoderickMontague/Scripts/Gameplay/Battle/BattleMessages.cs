@@ -381,7 +381,7 @@ namespace RM_BBTS
                 if (amount == 1)
                     msg = "The move increased {0}'s {1} by 1 stage!";
                 else
-                    msg = "The move increased {0}'s {1} by {2} stage(s)!";
+                    msg = "The move increased {0}'s {1} by {2} stages!";
             }
 
             // Slot in values.
@@ -431,7 +431,7 @@ namespace RM_BBTS
                 if (amount == 1)
                     msg = "The move decreased {0}'s {1} by 1 stage!";
                 else
-                    msg = "The move decreased {0}'s {1} by {2} stage(s)!";
+                    msg = "The move decreased {0}'s {1} by {2} stages!";
             }
 
             // Slot in values.

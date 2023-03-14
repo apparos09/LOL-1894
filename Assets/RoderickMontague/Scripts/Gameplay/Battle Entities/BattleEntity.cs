@@ -930,6 +930,46 @@ namespace RM_BBTS
             return newData;
         }
 
+        // Levels up the data, slotting in its level rate and keeping the provided speciality.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, specialty special, uint times = 1)
+        {
+            return LevelUpData(data, data.levelRate, special, times);
+        }
+
+        // Levels up the data, slotting in its speciality.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, float levelRate, uint times = 1)
+        {
+            return LevelUpData(data, levelRate, data.statSpecial, times);
+        }
+
+        // Levels up the data, slotting in its level rate and specialty.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, uint times = 1)
+        {
+            return LevelUpData(data, data.levelRate, data.statSpecial, times);
+        }
+
+
+        // Returns 'true' if the entity can evolve.
+        public bool CanEvolve()
+        {
+            // If the evolution ID is the same, or if it is set to "unknown", the entity does not evolve.
+            bool evolves = !(evoId == id || evoId == battleEntityId.unknown);
+
+            // Return result.
+            return evolves;
+        }
+
+        // Returns 'true' if the entity can evolve.
+        public static bool CanEvolve(BattleEntityGameData data)
+        {
+            // If the evolution ID is the same, or if it is set to "unknown", the entity does not evolve.
+            bool evolves = !(data.evoId == data.id || data.evoId == battleEntityId.unknown);
+
+            // Return result.
+            return evolves;
+        }
+
+
         // Evolves the entity. It fails if the entity does not have an evolution.
         public bool Evolve()
         {
@@ -952,7 +992,7 @@ namespace RM_BBTS
         public static BattleEntityGameData EvolveData(BattleEntityGameData oldData)
         {
             // Can't evolve if the evolution is the same entity, or if it's set to unknown.
-            if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
+            if (!CanEvolve(oldData))
                 return oldData;
 
             // Gets the base data.
