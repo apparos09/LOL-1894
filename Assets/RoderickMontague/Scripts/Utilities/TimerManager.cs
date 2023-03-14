@@ -37,6 +37,12 @@ namespace RM_BBTS
             // The callback for when the timer finishes.
             private TimerCallback callback;
 
+            // Set the current time to the max time.
+            public void Set()
+            {
+                currTime = maxTime;
+            }
+
             // Add a timer callback.
             public void OnTimerFinishedAddCallback(TimerCallback callback)
             {
@@ -54,7 +60,10 @@ namespace RM_BBTS
             {
                 // The timer finished callback.
                 if (finishedCallback != null)
-                    finishedCallback(this);
+                {
+                    Timer timer = this;
+                    finishedCallback(timer);
+                }
             }
 
         }
@@ -164,13 +173,16 @@ namespace RM_BBTS
         // Adds the timer. Timers are removed when they're finished.
         public void AddTimer(Timer timer)
         {
-            timers.Add(timer);
+            // If this timer isn't already in the list, add it.
+            if(!timers.Contains(timer))
+                timers.Add(timer);
         }
 
         // Removes the timer of the list.
         public void RemoveTimer(Timer timer)
         {
-            timers.Remove(timer);
+            if(timers.Contains(timer))
+                timers.Remove(timer);
         }
 
         // Returns the index of the timer. Returns -1 if not in list.

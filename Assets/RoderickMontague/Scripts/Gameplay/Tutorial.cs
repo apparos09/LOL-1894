@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // The namespace for the tutorial.
 namespace RM_BBTS
@@ -21,6 +22,17 @@ namespace RM_BBTS
 
         // Automatically shows the textbox when text is loaded.
         public bool showTextboxOnLoad;
+
+        [Header("Tutorial Functions")]
+
+        // The image of the speaker (helper bot).
+        public Image speakerImage;
+
+        // The diagram for showing how percentages work.
+        public Image probPercentDiagram;
+
+        // The probability fraction diagram.
+        public Image probFractionDiagram;
 
         // The default text box position.
         public Vector3 textBoxDefaultPos;
@@ -118,6 +130,56 @@ namespace RM_BBTS
             return textBox.IsVisible();
         }
 
+        // Shows the speaker iamge.
+        protected void ShowSpeakerImage()
+        {
+            speakerImage.gameObject.SetActive(true);
+            probFractionDiagram.gameObject.SetActive(false);
+            probPercentDiagram.gameObject.SetActive(false);
+        }
+
+        // Hides the speaker image.
+        protected void HideSpeakerImage()
+        {
+            speakerImage.gameObject.SetActive(false);
+
+            // It's unknown what the user wants to replace the image with...
+            // So there is no other behaviour here.
+        }
+
+        // Shows the probability percent diagram.
+        protected void ShowProbabilityPercentDiagram()
+        {
+            speakerImage.gameObject.SetActive(false);
+            probFractionDiagram.gameObject.SetActive(false);
+            probPercentDiagram.gameObject.SetActive(true);
+        }
+
+        // Hides the probability percent diagram.
+        protected void HideProbabilityPercentDiagram()
+        {
+            speakerImage.gameObject.SetActive(true);
+            probFractionDiagram.gameObject.SetActive(false);
+            probPercentDiagram.gameObject.SetActive(false);
+        }
+
+        // Shows the probability fraction diagram.
+        protected void ShowProbabilityFractionDiagram()
+        {
+            speakerImage.gameObject.SetActive(false);
+            probFractionDiagram.gameObject.SetActive(true);
+            probPercentDiagram.gameObject.SetActive(false);
+        }
+
+        // Hides the probability fraction diagram.
+        protected void HideProbabilityFractionDiagram()
+        {
+            speakerImage.gameObject.SetActive(true);
+            probFractionDiagram.gameObject.SetActive(false);
+            probPercentDiagram.gameObject.SetActive(false);
+        }
+
+
         // Moves the textbox up/down by the provided amount.
         protected void TranslateTextBoxY(float y)
         {
@@ -174,39 +236,63 @@ namespace RM_BBTS
             // Page Object
             List<Page> pages = new List<Page>();
 
-            // THe hud page for the intro, which needs to move the textbox so that the score is visible.
+            // The probability percentage page.
+            Page probPercentPage;
+
+            // The probability fraction page(s).
+            Page probFractionPageStart;
+            Page probFractionPageEnd;
+
+            // The hud page for the intro, which needs to move the textbox so that the score is visible.
             Page hudPage;
 
             // Pages
-            if(defs != null) // Translation
+            if (defs != null) // Translation
             {
                 pages.Add(new Page(defs["trl_intro_00"], "trl_intro_00"));
                 pages.Add(new Page(defs["trl_intro_01"], "trl_intro_01"));
-                pages.Add(new Page(defs["trl_intro_02"], "trl_intro_02"));
-                pages.Add(new Page(defs["trl_intro_03"], "trl_intro_03"));
-                pages.Add(new Page(defs["trl_intro_04"], "trl_intro_04"));
-                pages.Add(new Page(defs["trl_intro_05"], "trl_intro_05"));
-                pages.Add(new Page(defs["trl_intro_06"], "trl_intro_06"));
 
-                // Hud page has unique behaviour, so save it.
-                // pages.Add(new Page(defs["trl_intro_07"], "trl_intro_07"));
-                hudPage = new Page(defs["trl_intro_07"], "trl_intro_07");
+                // Show/Hide the Probability Percent Diagram
+                probPercentPage = new Page(defs["trl_intro_02"], "trl_intro_02");
+                pages.Add(probPercentPage);
+
+                // Show Probability Fraction Diagram
+                probFractionPageStart = new Page(defs["trl_intro_03"], "trl_intro_03");
+                pages.Add(probFractionPageStart);
+
+                // Hide Probability Fraction Diagram
+                probFractionPageEnd = new Page(defs["trl_intro_04"], "trl_intro_04");
+                pages.Add(probFractionPageEnd);
+
+                pages.Add(new Page(defs["trl_intro_05"], "trl_intro_05"));
+
+                // Hud page requires moving the textbox, so save it.
+                hudPage = new Page(defs["trl_intro_06"], "trl_intro_06");
                 pages.Add(hudPage);
 
-                pages.Add(new Page(defs["trl_intro_08"], "trl_intro_08"));
+                pages.Add(new Page(defs["trl_intro_07"], "trl_intro_07"));
             }
             else // Default
             {
-                pages.Add(new Page("Before we begin, I have a quick tip for you. Pressing the forward button while the text is scrolling will automatically show the rest of the text for the current page."));
-                pages.Add(new Page("If there is no more text, you’ll move onto the next page, or close the textbox if there are no pages left. With all that out of the way…"));
                 pages.Add(new Page("Welcome to the battle simulator, Battle Bot! I’m Helper Bot, and I’ll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability."));
                 pages.Add(new Page("Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event’s chance, the more likely it is to happen."));
-                pages.Add(new Page("Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively."));
-                pages.Add(new Page("In fraction form (x/y), the larger (x) is compared to (y), the more likely the event is. (y) equates to 1.00 for the fraction, with (x) acting as the chance value. The event chance is 0.00 when (x) is equal to 0 and is 1.00 when (x) is equal to (y)."));
+                
+                // Probability Percentage Page
+                probPercentPage = new Page("Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively. The image above shows conversion examples.");
+                pages.Add(probPercentPage);
+
+                // Probability Fraction Page (Start)
+                probFractionPageStart = new Page("In fraction form (x/y), the denominator (y) represents the size of the whole group, while the numerator (x) represents the size of a portion of the group.");
+                pages.Add(probFractionPageStart);
+
+                // Probability Fraction Page (End)
+                probFractionPageEnd = new Page("The larger the portion (x) is in reference to the group size (y), the more likely the related event is.  When (x) is equal to (y), it is the equivalent of 1.00 in decimal form. When (x) is equal to 0, it equates to 0.00 in decimal form.");
+                pages.Add(probFractionPageEnd);
+
                 pages.Add(new Page("With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they’re behind that scary locked door! Looks like you’ll have to go through a different door for now…"));
 
-                // Hud page has unique behaviour, so save it.
-                // pages.Add(new Page("To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure."));
+                // Hud Page
+                // Hud page requires moving the textbox, so save it.
                 hudPage = new Page("To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure.");
                 pages.Add(hudPage);
                 
@@ -214,11 +300,23 @@ namespace RM_BBTS
 
             }
 
-            // Move the text box so thatthe score is visible.
+
+            // Show/hide the probability fraction diagram.
+            probPercentPage.OnPageOpenedAddCallback(ShowProbabilityPercentDiagram);
+            probPercentPage.OnPageClosedAddCallback(HideProbabilityPercentDiagram);
+
+            // Show the probability diagram when the first fraction page is opened, and hide it when the last fraction page is closed.
+            // The show and hide functions need to be called both times to make sure they show properly when...
+            // Going back to a prior page.
+            probFractionPageStart.OnPageOpenedAddCallback(ShowProbabilityFractionDiagram);
+            probFractionPageStart.OnPageClosedAddCallback(HideProbabilityFractionDiagram);
+
+            probFractionPageEnd.OnPageOpenedAddCallback(ShowProbabilityFractionDiagram);
+            probFractionPageEnd.OnPageClosedAddCallback(HideProbabilityFractionDiagram);
+
+            // Move the text box when the page opens so that the score is visible, and move it back when the page is closed.
             // This now moves to a fixed position since using Translate() caused problems.
             hudPage.OnPageOpenedAddCallback(SetTextBoxToOffsetPosition);
-
-            // Moves the textbox back to its default position.
             hudPage.OnPageClosedAddCallback(SetTextBoxToDefaultPosition);
 
             // Loads the pages.
@@ -277,7 +375,7 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("You just finished your first turn of battle! As you can see, moves have different characteristics that determine how they perform in battle. Every move has at least 4 components, which are as follows: rank, power, accuracy, and energy usage."));
                 pages.Add(new Page("A move’s rank determines how advanced it is, a move’s power determines how much damage it does, a move’s accuracy determines how likely it is to hit its target, and a move’s energy usage determines how much energy is needed to use said move."));
-                pages.Add(new Page("If a move does not list one of the four components, then it has unique behaviour that concerns said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions."));
+                pages.Add(new Page("If a move does not list one of the four components, then it has unique behavior that concerns said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions."));
                 pages.Add(new Page("Make sure to check the stats window and info window if you ever need more information on your moves! With all that explained, on with the battle!"));
             }
 

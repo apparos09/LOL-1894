@@ -263,13 +263,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxObject: {fileID: 6215028496071798211}
   boxText: {fileID: 6215028496055964518}
+  autoNext: 0
+  autoNextTimerMax: 2.5
+  autoNextTimer: 0
+  autoNextTimerPaused: 0
   closeOnEnd: 1
   prevPageButton: {fileID: 6215028496963668155}
   nextPageButton: {fileID: 6215028496522477456}
   instantText: 0
   enableAnimationSkip: 1
   enableAnimationBackSkip: 1
-  charsPerLoad: 5
+  DisableControlsIfAnimSkipDisabled: 1
+  charsPerLoad: 4
   textSpeed: 0
 --- !u!1 &6215028496522477458
 GameObject:

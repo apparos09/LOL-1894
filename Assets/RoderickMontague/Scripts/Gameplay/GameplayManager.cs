@@ -6,7 +6,6 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
-using RM_BTSS;
 
 namespace RM_BBTS
 {
@@ -231,6 +230,16 @@ namespace RM_BBTS
         // public AudioClip battleLostJng;
 
         [Header("Animations")]
+
+        // The overworld background
+        public SpriteRenderer overworldBackground;
+
+        // The battle background
+        public SpriteRenderer battleBackground;
+
+        // The background animator.
+        public Animator battleBackgroundAnimator;
+
         // Transitions should be used.
         public bool useTransitions = true;
 
@@ -509,11 +518,43 @@ namespace RM_BBTS
                         unusedDoors.RemoveAt(index);
                     }
 
-                    // Unlocks two random doors.
+                    // Unlocks (X) amount of random doors.
                     for (int n = 0; n < TRL_DOOR_COUNT && battleDoors.Count > 0; n++)
                     {
                         // Grabs a random index.
                         int randIndex = Random.Range(0, battleDoors.Count);
+
+                        // TODO: test this.
+                        // If the enemy is not a tutorial enemy, replace it with one.
+                        if (!BattleEntityList.IsTutorialEnemy(battleDoors[randIndex].battleEntity.id))
+                        {
+                            // Copies the level. 
+                            uint oldLevel = battleDoors[randIndex].battleEntity.level;
+
+                            // Generates a tutorial enemy to replace thi one.
+                            battleDoors[randIndex].battleEntity = BattleEntityList.Instance.GenerateTutorialEnemy();
+
+                            // Level up the new data if the level is less than the old level.
+                            if(battleDoors[randIndex].battleEntity.level != oldLevel)
+                            {
+                                // How many times the enemy should level up.
+                                uint times = 0;
+
+                                // Checks which level is higher for proper subtraction.
+                                if (oldLevel > battleDoors[randIndex].battleEntity.level)
+                                    times = oldLevel - battleDoors[randIndex].battleEntity.level;
+                                else if (oldLevel < battleDoors[randIndex].battleEntity.level)
+                                    times = battleDoors[randIndex].battleEntity.level - oldLevel;
+
+                                // Level up the entity.
+                                battleDoors[randIndex].battleEntity = BattleEntity.LevelUpData(
+                                    battleDoors[randIndex].battleEntity,
+                                    battleDoors[randIndex].battleEntity.levelRate,
+                                    battleDoors[randIndex].battleEntity.statSpecial,
+                                    times);
+                            }
+                        }
+
 
                         // Unlocks the door, and removes it from the list.
                         battleDoors[randIndex].Locked = false;
@@ -880,7 +921,37 @@ namespace RM_BBTS
         }
 
 
+        // BACKGROUNDS //
+        // Shows the overworld background.
+        public void EnableOverworldBackground()
+        {
+            battleBackgroundAnimator.StopPlayback();
+            battleBackground.gameObject.SetActive(false);
+            battleBackground.sprite = null;
+            battleBackground.color = Color.white;
 
+            overworldBackground.gameObject.SetActive(true);
+        }
+
+        // Show the battle background.
+        public void EnableBattleBackground(string stateName, Color color)
+        {
+            // Turn off overworld background.
+            overworldBackground.gameObject.SetActive(false);
+
+            // Turn on battle background.
+            battleBackground.gameObject.SetActive(true);
+
+            // Sets the background colour, and reduces the brightest of the background slightly.
+            Color bgColor = color * 0.985F;
+            color.a = 1.0F;
+            battleBackground.color = bgColor;
+
+            // Play the background animation.
+            battleBackgroundAnimator.Play(stateName);
+        }
+
+        // MOUSE
 
         // Checks the mouse and touch to see if there's any object to use.
         public void MouseTouchCheck()
@@ -1097,9 +1168,9 @@ namespace RM_BBTS
             float completionRate = roomsCompleted / (float)GetRoomsTotal();
 
             // Returns the game phase.
-            if (completionRate < 0.33F)
+            if (completionRate < OverworldManager.PHASE_2_THRESOLD)
                 return 1;
-            else if (completionRate < 0.66F)
+            else if (completionRate < OverworldManager.PHASE_3_THRESOLD)
                 return 2;
             else
                 return 3;
@@ -1158,8 +1229,6 @@ namespace RM_BBTS
             // Initialize the battle scene.
             battle.door = door;
             battle.Initialize();
-
-            // TODO: add entity for the opponent.
 
             // Activates the battle object.
             battle.gameObject.SetActive(true);
@@ -1269,6 +1338,8 @@ namespace RM_BBTS
             playerEnergyText.text =
                     (player.Energy / player.MaxEnergy * 100.0F).ToString("F" + DISPLAY_DECIMAL_PLACES.ToString()) + "%";
         }
+
+        
 
         // OTHER //
 
@@ -1565,7 +1636,7 @@ namespace RM_BBTS
             // If there is door data to pull from.
             if(saveData.doorData != null)
             {
-                // Load the door data.
+                // Loads the door data to replace the existing doors.
                 for (int i = 0; i < saveData.doorData.Length && i < overworld.doors.Count; i++)
                 {
                     // Loads the save data.

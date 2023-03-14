@@ -160,7 +160,14 @@ namespace RM_BBTS
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
+            {
+                // Disable the controls.
                 textBox.DisableTextBoxControls();
+
+                // Pause the auto timer so that it doesn't continue until the animation is done.
+                textBox.autoNextTimerPaused = true;
+            }
+                
         }
 
         // // Plays the spiral animation.
@@ -274,7 +281,17 @@ namespace RM_BBTS
 
             // Disables the text box controls when playing the animation.
             if (disableTextBoxControlsWhenPlaying)
+            {
+                // Enable the textbox controls.
                 textBox.EnableTextBoxControls();
+
+                // Unpause the auto timer.
+                textBox.autoNextTimerPaused = false;
+
+                // Reset the timer to the max. If it isn't enabled, it won't run anyway.
+                textBox.SetAutoNextTimerToMax();
+            }
+                
 
             // Turn off the animator object.
             animator.SetInteger(ANIM_VAR, (int)moveAnim.none);

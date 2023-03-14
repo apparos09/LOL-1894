@@ -239,17 +239,36 @@ namespace RM_BBTS
         // The image for the player animation (is recoloured as needed).
         public Image playerAnimationImage;
 
+        // // Used to see if the player's object should be disabled when it's off, or just the component.
+        // private const bool PLAYER_ANIM_DISABLE_OBJECT = true;
+        // 
+        // // The timer for player animations.
+        // private TimerManager.Timer playerAnimTimer;
+
         // The opponent's animator.
         public Animator opponentAnimator;
+
+        // // The timer for opponent animations.
+        // private TimerManager.Timer opponentAnimTimer;
+        // 
+        // // Used to see if the opponent's object should be disabled when it's off, or just the component.
+        // // I don't think I actually use this.
+        // private const bool OPPONENT_ANIM_DISABLE_OBJECT = true;
+
+        // A script used to cause the opponent object to float.
+        public ObjectFloat opponentFloat;
 
         // Extra time for playing out animations.
         private float EXTRA_ANIM_TIME = 0.5F;
 
         // If set to 'true', the move animations are played.
-        public const bool PLAY_MOVE_ANIMATIONS = true;
+        public const bool PLAY_IDLE_AND_MOVE_ANIMATIONS = true;
 
         // The animation manager for the moves.
         public MoveAnimationManager moveAnimation;
+
+        // If the battle background should be used.
+        public const bool USE_BATTLE_BACKGROUND = true;
 
         // Start is called before the first frame update
         void Start()
@@ -310,6 +329,13 @@ namespace RM_BBTS
 
             // Run (does it this way for translation)
             runButtonText.text = MoveList.Instance.RunMove.Name;
+
+            // // Initialize the timers.
+            // playerAnimTimer = new TimerManager.Timer();
+            // playerAnimTimer.tag = "player";
+            // 
+            // opponentAnimTimer = new TimerManager.Timer();
+            // opponentAnimTimer.tag = "opponent";
 
             // The defs are not set.
             if(defs != null)
@@ -408,9 +434,10 @@ namespace RM_BBTS
                 // Saves the opponent's name.
                 opponentNameText.text = opponent.displayName;
 
-                // SPRITE
+                // Setting hte sprite and enabling the object.
                 opponentSprite.sprite = opponent.sprite;
                 opponentSprite.gameObject.SetActive(true);
+
 
                 // The opponent can be damaged.
                 opponent.vulnerable = true;
@@ -540,6 +567,15 @@ namespace RM_BBTS
                 PlayBattleBgm();
             }
 
+            // Changes the background color for the animation.
+            if(USE_BATTLE_BACKGROUND)
+                gameManager.EnableBattleBackground("Blur", door.GetColor());
+
+
+            // // Create the timers.
+            // playerAnimTimer = new TimerManager.Timer();
+            // opponentAnimTimer = new TimerManager.Timer();
+
             // The battle has begun.
             initBattleEnd = false;
 
@@ -587,6 +623,12 @@ namespace RM_BBTS
                 opponent.MaxEnergy = opponentInitMaxEnergy;
                 opponent.Energy = opponentInitEnergy;
             }
+
+            // Play the idle animation. If there is no set idle animation, nothing will play.
+            // This needs to be odne here since the sprite must be enabled first.
+            if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
+                PlayOpponentIdleAnimation();
+
 
             // The function is finished, so don't call it again.
             postInitialized = true;
@@ -1500,7 +1542,7 @@ namespace RM_BBTS
                 textBox.Hide(); // This already gets called in the learn move panel OnEnable(). (TODO: remove?)
 
                 // Update the information.
-                learnMovePanel.newMove = moveOffer;
+                learnMovePanel.SetLearningMove(moveOffer, false);
                 learnMovePanel.LoadMoveInformation(); // Happens on enable (TODO: remove?)
 
                 // Turn on the move panel, which also updates the move list.
@@ -1552,13 +1594,27 @@ namespace RM_BBTS
             opponent.selectedMove = null;
             opponent.vulnerable = true;
 
+            // Stops the idle animation of the opponent (needs to be done before the sprite is disabled).
+            if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
+                StopOpponentIdleAnimation();
+
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
             PlayDefaultOpponentAnimation();
 
+
+            // // Removes the timers from the list, and pauses them so that they can't be triggered regardless.
+            // // These timers are re-generated when a new battle begins.
+            // TimerManager.Instance.RemoveTimer(playerAnimTimer);
+            // playerAnimTimer.paused = true;
+            // 
+            // TimerManager.Instance.RemoveTimer(opponentAnimTimer);
+            // opponentAnimTimer.paused = true;
+
             // Stops the jingle from playing before leaving the battle.
             // This is in case the jingle is still playing when the player goes back to the overworld.
             gameManager.audioManager.StopJingle();
+
 
             // Nullifies the move offer for the next round.
             moveOffer = null;
@@ -1755,8 +1811,22 @@ namespace RM_BBTS
             // Get the length of the animation.
             float animTime = (playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / playerAnimator.speed;
 
+            // Old - use corotuine
             // Turn off the animation.
             StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
+
+            // This new method kept throwing errors. Not sure if I'll rectify that or not.
+            // // New - use timer class.
+            // // playerAnimTimer.tag = "player"; // Since I never change the tag, this is unneeded.
+            // playerAnimTimer.maxTime = animTime;
+            // playerAnimTimer.Set();
+            // playerAnimTimer.paused = false;
+            // 
+            // // Add the callback.
+            // playerAnimTimer.OnTimerFinishedAddCallback(AnimatorDisableDelayed);
+            // 
+            // // Give to the timer manager.
+            // TimerManager.Instance.AddTimer(playerAnimTimer);
         }
 
         // Stops the player paralysis animation.
@@ -1881,6 +1951,288 @@ namespace RM_BBTS
             opponentAnimator.SetInteger("anim", 0);
         }
 
+        // ANIMATION //
+        // Sets the idle animation for the enemy with the provided animator.
+        public bool PlayOpponentIdleAnimation()
+        {
+            // Checks to see if the change was successful.
+            bool success = true;
+
+            // If set to 'false', the sprite does not float.
+            bool floatSprite = true;
+
+            // The speed settings.
+            float fastSpeed = 0.75F;
+            float midSpeed = 0.50F;
+            float slowSpeed = 0.25F;
+
+            // The speed the float plays at.
+            float speed = slowSpeed;
+
+            // Checks the ID.
+            switch (opponent.id)
+            {
+                case battleEntityId.combatBot:
+                    opponentAnimator.Play("BEY - Combat Bot - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+                case battleEntityId.ufo1:
+                    opponentAnimator.Play("BEY - UFO 1 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+                case battleEntityId.ufo2:
+                    opponentAnimator.Play("BEY - UFO 2 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+                case battleEntityId.ufo3:
+                    opponentAnimator.Play("BEY - UFO 3 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.insect1:
+                    opponentAnimator.Play("BEY - Insect 1 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.insect2:
+                    opponentAnimator.Play("BEY - Insect 2 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.spaceGhost1:
+                    opponentAnimator.Play("BEY - Space Ghost 1 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.spaceGhost2:
+                    opponentAnimator.Play("BEY - Space Ghost 2 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.comet:
+                    opponentAnimator.Play("BEY - Comet - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.sunRock1:
+                    opponentAnimator.Play("BEY - Sun Rock 1 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.sunRock2:
+                    opponentAnimator.Play("BEY - Sun Rock 2 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.moonRock1:
+                    opponentAnimator.Play("BEY - Moon Rock 1 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.moonRock2:
+                    opponentAnimator.Play("BEY - Moon Rock 2 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.fireBot1:
+                    opponentAnimator.Play("BEY - Fire Bot 1 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.fireBot2:
+                    opponentAnimator.Play("BEY - Fire Bot 2 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.waterBot1:
+                    opponentAnimator.Play("BEY - Water Bot 1 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.waterBot2:
+                    opponentAnimator.Play("BEY - Water Bot 2 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.earthBot1:
+                    opponentAnimator.Play("BEY - Earth Bot 1 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.earthBot2:
+                    opponentAnimator.Play("BEY - Earth Bot 2 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.airBot1:
+                    opponentAnimator.Play("BEY - Air Bot 1 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.airBot2:
+                    opponentAnimator.Play("BEY - Air Bot 2 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.sharp1:
+                    opponentAnimator.Play("BEY - Sharp 1 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.sharp2:
+                    opponentAnimator.Play("BEY - Sharp 2 - Idle");
+
+                    floatSprite = false;
+
+                    break;
+
+                case battleEntityId.virusRed1:
+                    opponentAnimator.Play("BEY - Red Virus 1 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.virusRed2:
+                    opponentAnimator.Play("BEY - Red Virus 2 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.virusBlue1:
+                    opponentAnimator.Play("BEY - Blue Virus 1 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.virusBlue2:
+                    opponentAnimator.Play("BEY - Blue Virus 2 - Idle");
+
+                    speed = fastSpeed;
+
+                    break;
+
+                case battleEntityId.virusYellow1:
+                    opponentAnimator.Play("BEY - Yellow Virus 1 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.virusYellow2:
+                    opponentAnimator.Play("BEY - Yellow Virus 2 - Idle");
+
+                    speed = midSpeed;
+
+                    break;
+
+                case battleEntityId.blackHole:
+                    opponentAnimator.Play("BEY - Black Hole - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.planet1:
+                    opponentAnimator.Play("BEY - Planet 1 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                case battleEntityId.planet2:
+                    opponentAnimator.Play("BEY - Planet 2 - Idle");
+
+                    speed = slowSpeed;
+
+                    break;
+
+                default:
+                    opponentAnimator.Play("No Idle");
+
+                    floatSprite = false;
+
+                    success = false;
+                    break;
+            }
+
+
+            // If the sprite shouldn't float.
+            if(!floatSprite)
+            {
+                // Float settings.
+                opponentFloat.paused = true;
+                opponentFloat.speed = 1.0F;
+                opponentFloat.ResetProcess();
+                opponentFloat.SetObjectToResetPosition();
+            }
+            else
+            {
+                opponentFloat.paused = false;
+                opponentFloat.speed = speed;
+            }
+
+            return success;
+        }
+
+
+        // Stops the opponent idle animation.
+        public void StopOpponentIdleAnimation()
+        {
+            opponentAnimator.Play("No Idle");
+
+            // Reset the floating animation.
+            opponentFloat.paused = true;
+            opponentFloat.ResetProcess();
+            opponentFloat.SetObjectToResetPosition();
+        }
+
 
         // Disables an animator after a certain amount of wait time.
         // If 'animatorOnly' is true, then the animator component is disabled.
@@ -1907,6 +2259,35 @@ namespace RM_BBTS
                 animator.gameObject.SetActive(false);
             }
         }
+
+        // // Disables the animator as part of a callback from the timer.
+        // private void AnimatorDisableDelayed(TimerManager.Timer timer)
+        // {
+        //     // Gets a lower version of the string.
+        //     string strLower = timer.tag.ToLower();
+        // 
+        //     // Disable's the player's animator.
+        //     if (strLower == "player")
+        //     {
+        //         // Determines if the component should be disabled, or the object.
+        //         if (PLAYER_ANIM_DISABLE_OBJECT)
+        //             playerAnimator.gameObject.SetActive(false);
+        //         else
+        //             playerAnimator.enabled = false;
+        //     }
+        //     // Disable's the opponent's animator.
+        //     else if(strLower == "opponent")
+        //     {
+        //         // Determines if the component should be disabled, or the object.
+        //         if (OPPONENT_ANIM_DISABLE_OBJECT)
+        //             opponentAnimator.gameObject.SetActive(false);
+        //         else
+        //             opponentAnimator.enabled = false;
+        //     }
+        // 
+        //     // Remove this callback now that the timer is done.
+        //     timer.OnTimerFinishedRemoveCallback(AnimatorDisableDelayed);
+        // }
 
         // A function called to set an int after the timer runs out.
         private IEnumerator AnimationSetIntegerDelayed(Animator animator, string parameter, float animTime, int value)
@@ -2185,6 +2566,14 @@ namespace RM_BBTS
                                 {
                                     // Standard level up.
                                     player.LevelUp();
+                                }
+
+                                // If this is the first battle, restore the player's health and energy to their max.
+                                // Only for the first battle though.
+                                if (gameManager.useTutorial && gameManager.roomsCompleted == 0)
+                                {
+                                    player.SetHealthToMax();
+                                    player.SetEnergyToMax();
                                 }
 
                                 // NOTE: no longer shows energy levels since those don't matter anymore.

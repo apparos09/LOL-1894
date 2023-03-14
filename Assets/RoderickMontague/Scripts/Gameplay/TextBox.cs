@@ -21,6 +21,18 @@ namespace RM_BBTS
         // The text in the text box.
         public TMP_Text boxText;
 
+        // If enabled, the program will automatically go to the next page once it is loaded.
+        public bool autoNext = false;
+
+        // The max time it takes for a box to automatically turn to the next page.
+        public float autoNextTimerMax = 5.0F;
+
+        // The timer for automatically going to the next page.
+        public float autoNextTimer = 0.0F;
+
+        // Set to 'true' to pause the timer.
+        public bool autoNextTimerPaused = false;
+
         // Closes the text box when all the end has been reached.
         public bool closeOnEnd = true;
 
@@ -39,10 +51,16 @@ namespace RM_BBTS
         public bool instantText = true;
 
         // Allows the user to skip the text loading animation if this is set to 'true'.
+        [Tooltip("If true, the user can skip to the next page before all the text is loaded. The back skip still works by default unless enableAnimationBackSkip is set to false.")]
         public bool enableAnimationSkip = true;
 
         // Allows the user to skip the text loading animation if they're going back a page.
+        [Tooltip("If true, the user can go back a page before all the text is loaded. This only applies if 'enableAnimationSkip' is false.")]
         public bool enableAnimationBackSkip = true;
+
+        // If set to 'true', the controls are hidden when the text is loading.
+        [Tooltip("If the controls shouldn't be enabled when the animation skip is disabled. The back button won't be disabled unless enableAnimationBackSkip is set to 'false'.")]
+        public bool DisableControlsIfAnimSkipDisabled = true;
 
         // A queue of text for progressive character loading.
         private Queue<char> charQueue = new Queue<char>();
@@ -78,6 +96,9 @@ namespace RM_BBTS
             // Sets the box object to the game object.
             // if (boxObject == null)
             //     boxObject = gameObject;
+
+            // Set this to the max by default.
+            autoNextTimer = autoNextTimerMax;
 
             // Recolour the text to show that the text loaded is not coming from the language file.
             if (!LOLSDK.Instance.IsInitialized)
@@ -231,29 +252,76 @@ namespace RM_BBTS
             }
         }
 
+        // CONTROLS //
+
+        // Enables/disables the textbox controls.
+        public void SetTextBoxControls(bool interactable)
+        {
+            // Enables/disables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = interactable;
+
+            // Enables/disables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = interactable;
+
+
+            // // Checks if auto next is enabled.
+            // if(autoNext)
+            // {
+            //     // Pause the auto next timer
+            //     if (stopAutoTimerOnDisable && !interactable)
+            //         autoNextTimerPaused = true;
+            // }
+        }
+
         // Enables the text box controls.
         public void EnableTextBoxControls()
         {
-            // Disables the prev page button.
-            if (prevPageButton != null)
-                prevPageButton.interactable = true;
-
-            // Disables the next page button.
-            if (nextPageButton != null)
-                nextPageButton.interactable = true;
+            SetTextBoxControls(true);
         }
 
         // Disables the text box controls.
+        // If 'stopAutoTimer' is true, the text box's auto page turn timer is stopped.
         public void DisableTextBoxControls()
+        {
+            SetTextBoxControls(false);
+        }
+
+        // Enables the previous button.
+        public void EnablePreviousButton()
+        {
+            // Enables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = true;
+        }
+
+        // Disables the previous button.
+        public void DisablePreviousButton()
         {
             // Disables the prev page button.
             if (prevPageButton != null)
                 prevPageButton.interactable = false;
+        }
 
+        // Enables the next button.
+        public void EnableNextButton()
+        {
+            // Enables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = true;
+        }
+
+        // Disables the previous button.
+        public void DisableNextButton()
+        {
             // Disables the next page button.
             if (nextPageButton != null)
                 nextPageButton.interactable = false;
         }
+
+
+        // SET PAGES //
 
         // Adds a page to the end of the pages list.
         public void AddPage(Page page)
@@ -421,12 +489,31 @@ namespace RM_BBTS
                     charQueue.Clear();
                     charQueue = new Queue<char>(pages[currPageIndex].text);
                     charTimer = 0.0F;
+
+
+                    // If the textbox controls should be disabled when the animation skip is turned off.
+                    if (!enableAnimationSkip && DisableControlsIfAnimSkipDisabled)
+                    {
+                        // Disables the next button.
+                        DisableNextButton();
+
+                        // Disables the previous button.
+                        if (!enableAnimationBackSkip)
+                            DisablePreviousButton();
+                    }
                 }
             }
             else
             {
                 boxText.text = string.Empty;
                 // TODO: close textbox?
+            }
+
+            // If instant text is on, and if the text box should automatically go onto the next page.
+            if(instantText && autoNext)
+            {
+                // Set the timer.
+                autoNextTimer = autoNextTimerMax;
             }
 
         }
@@ -452,17 +539,26 @@ namespace RM_BBTS
                     
                     boxText.text = temp;
 
-                    // If the text speed is set to 0 the new char will load on the next frame.
-                    // NOTE: past a certain point, the char gets put every frame, which means there's a limit to the text speed.
+
+                    // NOTE: why did I divide by text speed instead of applying it to the timer itself?
+
+                    // // If the text speed is set to 0 the new char will load on the next frame.
+                    // // NOTE: past a certain point, the char gets put every frame, which means there's a limit to the text speed.
+                    // if (textSpeed > 0)
+                    //     charTimer = 1.0F / textSpeed;
+                    // else
+                    //     charTimer = 0.0F;
+
+                    // Reset the value.
+                    // If textSpeed is set to '0', then a character is loaded every frame.
                     if (textSpeed > 0)
-                        charTimer = 1.0F / textSpeed;
+                        charTimer = 1.0F;
                     else
                         charTimer = 0.0F;
-
                 }
                 else // Reduce timer.
                 {
-                    charTimer -= Time.deltaTime;
+                    charTimer -= Time.deltaTime * textSpeed;
                 }
             }
             else
@@ -470,7 +566,26 @@ namespace RM_BBTS
                 // No characters to load.
                 loadingChars = false;
                 charTimer = 0.0F;
+
+                // If the text box should automatically go onto the next page when it's done after a certain period of time...
+                // Set the timer.
+                if (autoNext)
+                    autoNextTimer = autoNextTimerMax;
+
+
+                // If the textbox controls should be disabled when the animation skip is turned off.
+                if (!enableAnimationSkip && DisableControlsIfAnimSkipDisabled)
+                {
+                    // Enable the controls.
+                    EnableTextBoxControls();
+                }
             }
+        }
+
+        // Sets the timer to its max.
+        public void SetAutoNextTimerToMax()
+        {
+            autoNextTimer = autoNextTimerMax;
         }
 
         
@@ -524,6 +639,28 @@ namespace RM_BBTS
             // Changed this from the courtine version.
             if (loadingChars)
                 LoadCharacterByCharacter();
+
+
+            // If the page should automatically change.
+            if(autoNext)
+            {
+                // If the timer is not finished yet, reduce the time.
+                // Don't do it if the timer is paused.
+                if(autoNextTimer > 0.0F && !autoNextTimerPaused)
+                {
+                    autoNextTimer -= Time.deltaTime;
+
+                    // If the timer is now finished, turn the page.
+                    if(autoNextTimer <= 0.0F)
+                    {
+                        // Set the timer to 0.
+                        autoNextTimer = 0.0F;
+
+                        // Moves onto the next page.
+                        NextPage();
+                    }
+                }
+            }
         }
     }
 }

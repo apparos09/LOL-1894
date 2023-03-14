@@ -158,7 +158,7 @@ namespace RM_BBTS
                 entry.name = "Probability (Fraction Form)";
                 entry.nameKey = "ifo_probability_fraction_nme";
 
-                entry.description = "A math subject where you assess the chance of an event (or of a series of events) occurring. A chance of 0.00 means the event will never happen, and a chance of 1.00 means the event will always happen. The higher the chance, the more likely the event is.";
+                entry.description = "A probability format that uses fractions (x/y). The denominator (y) is the total group size, while the numerator (x) is the group portion size. The larger the portion, the more likely the event is. In decimal form, (x = y) equates to 1.00, and (x = 0) equates to 0.00.";
                 entry.descriptionKey = "ifo_probability_fraction_dsc";
 
                 entry.symbol = null;

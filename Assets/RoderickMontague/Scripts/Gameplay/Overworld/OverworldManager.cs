@@ -38,7 +38,12 @@ namespace RM_BBTS
         public List<Door> doors = new List<Door>();
 
         // The total amount of rooms in the game.
-        public const int ROOM_COUNT = 12;
+        // NOTE: if you change the room count, change the amount of doors in the list, and change the phase percentages.
+        public const int ROOM_COUNT = 10;
+
+        // The phase 2 and phase 3 thresholds. This is below (3/10 and 6/10) so that the phase changes after 3 rooms cleared.
+        public const float PHASE_2_THRESOLD = 0.29F; // 0.33
+        public const float PHASE_3_THRESOLD = 0.59F; // 0.66
 
         // The boss door.
         public Door bossDoor = null;
@@ -47,7 +52,7 @@ namespace RM_BBTS
         public List<Door> treasureDoors = null; 
 
         // The amount of treasures for the game.
-        public const int TREASURE_COUNT = 2;
+        public const int TREASURE_COUNT = 3; // 2
 
         /*
          * Determines the game boss. Any number other than 0 is only used for testing.
@@ -138,6 +143,9 @@ namespace RM_BBTS
 
         // The bgm for having a question.
         public AudioClip questionBgm;
+
+        // The sound effect for entering a door.
+        public AudioClip doorEnterSfx;
 
         // The sound effect for a locked door.
         public AudioClip doorLockedSfx;
@@ -278,6 +286,9 @@ namespace RM_BBTS
 
             // Plays the overworld BGM.
             PlayOverworldBgm();
+
+            // Enables the overworld background.
+            gameManager.EnableOverworldBackground();
 
             initialized = true;
         }
@@ -423,34 +434,8 @@ namespace RM_BBTS
         // Gets the color for the dedicated door type.
         public static Color GetDoorTypeColor(int doorType)
         {
-            // Color object.
-            Color color;
-
-            // Checks the door type.
-            switch (doorType)
-            {
-                case 0: // default (white)
-                default:
-                    color = Color.white;
-                    break;
-                case 1: // boss door (red)
-                    color = Color.red;
-                    break;
-                case 2: // blue
-                    color = Color.blue;
-                    break;
-                case 3: // yellow
-                    color = Color.yellow;
-                    break;
-                case 4: // green (it seems like it should be purple, but it's not).
-                    color = Color.green;
-                    break;
-                case 5: // purple (it seems like it should be green, but it's not).
-                    color = new Color(0.627F, 0.125F, 0.941F);
-                    break;
-            }
-
-            return color;
+            // Function moved to the door class.
+            return Door.GetDoorTypeColor(doorType);
         }
 
         // Generates a room for the door.
@@ -623,6 +608,16 @@ namespace RM_BBTS
             gameManager.audioManager.PlayBackgroundMusic(questionBgm);
         }
 
+        // Play the door enter SFX.
+        public void PlayDoorEnterSfx()
+        {
+            // Grabs the audio manager.
+            AudioManager audioManager = gameManager.audioManager;
+
+            // Plays the door enter SFX.
+            audioManager.PlaySoundEffect(doorEnterSfx);
+        }
+
         // Play the door locked SFX.
         public void PlayDoorLockedSfx()
         {
@@ -729,6 +724,9 @@ namespace RM_BBTS
 
             // Plays the overworld BGM.
             PlayOverworldBgm();
+
+            // Show the overworld background.
+            gameManager.EnableOverworldBackground();
         }
 
         // Called when the game phase changes.
@@ -848,10 +846,9 @@ namespace RM_BBTS
             }
         }
         
-        // Rearranges the doors.
+        // Called when the player gets a game over.
         public void OnOverworldReturnGameOver()
         {
-            // TODO: don't move the boss door.
             // The new positions
             List<Vector3> doorLocs = new List<Vector3>();
 
@@ -859,11 +856,23 @@ namespace RM_BBTS
             foreach(Door door in doors)
             {
                 // Restore health and energy to entity.
-                door.battleEntity.health = door.battleEntity.maxHealth;
-                door.battleEntity.energy = door.battleEntity.maxEnergy;
+                // Old (restores to max)
+                // door.battleEntity.health = door.battleEntity.maxHealth;
+                // door.battleEntity.energy = door.battleEntity.maxEnergy;
 
-                // Adds the position to the list.
-                doorLocs.Add(door.gameObject.transform.position);
+                // TODO: test this.
+                // New (restores by amount)
+                // Restore health and energy by a percentage of maxes.
+                door.battleEntity.health += door.battleEntity.maxHealth * Enemy.GAME_OVER_HEALTH_RESTORE_PERCENT;
+                door.battleEntity.energy += door.battleEntity.maxEnergy * Enemy.GAME_OVER_ENERGY_RESTORE_PERCENT;
+
+                // Clamp the values so that they're within the bounds.
+                door.battleEntity.health = Mathf.Clamp(door.battleEntity.health, 0, door.battleEntity.maxHealth);
+                door.battleEntity.energy = Mathf.Clamp(door.battleEntity.energy, 0, door.battleEntity.maxEnergy);
+
+
+                // Adds the local position to the list.
+                doorLocs.Add(door.gameObject.transform.localPosition);
             }
 
             // Goes through each door again.
@@ -873,7 +882,7 @@ namespace RM_BBTS
                 int randIndex = Random.Range(0, doorLocs.Count);
 
                 // Re-positions the door.
-                doors[i].transform.position = doorLocs[randIndex];
+                doors[i].gameObject.transform.localPosition = doorLocs[randIndex];
 
                 // Removes position from list.
                 doorLocs.RemoveAt(randIndex);
@@ -881,6 +890,14 @@ namespace RM_BBTS
 
             // Randomize player moves
             Player player = gameManager.player;
+
+            // Boosts the player's stats if they get a game over.
+            float boost = 10.0F;
+
+            player.SetHealthRelativeToMaxHealth(player.MaxHealth + boost);
+            player.Attack += boost;
+            player.Defense += boost;
+            player.Speed += boost;
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };

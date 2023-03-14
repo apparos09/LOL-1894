@@ -1,10 +1,9 @@
-using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RM_BTSS
+namespace RM_BBTS
 {
     // The transition for the room.
     public class RoomTransition : MonoBehaviour
