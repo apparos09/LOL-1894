@@ -1177,12 +1177,14 @@ namespace RM_BBTS
             }
         }
 
+        
         // Called when a turn happens during a battle.
         public virtual void OnBattleTurn()
         {
             // The entity is vulernable by default.
             vulnerable = true;
         }
+
 
         // Update is called once per frame
         protected virtual void Update()

@@ -51,10 +51,16 @@ namespace RM_BBTS
         public bool instantText = true;
 
         // Allows the user to skip the text loading animation if this is set to 'true'.
+        [Tooltip("If true, the user can skip to the next page before all the text is loaded. The back skip still works by default unless enableAnimationBackSkip is set to false.")]
         public bool enableAnimationSkip = true;
 
         // Allows the user to skip the text loading animation if they're going back a page.
+        [Tooltip("If true, the user can go back a page before all the text is loaded. This only applies if 'enableAnimationSkip' is false.")]
         public bool enableAnimationBackSkip = true;
+
+        // If set to 'true', the controls are hidden when the text is loading.
+        [Tooltip("If the controls shouldn't be enabled when the animation skip is disabled. The back button won't be disabled unless enableAnimationBackSkip is set to 'false'.")]
+        public bool DisableControlsIfAnimSkipDisabled = true;
 
         // A queue of text for progressive character loading.
         private Queue<char> charQueue = new Queue<char>();
@@ -246,30 +252,76 @@ namespace RM_BBTS
             }
         }
 
+        // CONTROLS //
+
+        // Enables/disables the textbox controls.
+        public void SetTextBoxControls(bool interactable)
+        {
+            // Enables/disables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = interactable;
+
+            // Enables/disables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = interactable;
+
+
+            // // Checks if auto next is enabled.
+            // if(autoNext)
+            // {
+            //     // Pause the auto next timer
+            //     if (stopAutoTimerOnDisable && !interactable)
+            //         autoNextTimerPaused = true;
+            // }
+        }
+
         // Enables the text box controls.
         public void EnableTextBoxControls()
         {
-            // Disables the prev page button.
-            if (prevPageButton != null)
-                prevPageButton.interactable = true;
-
-            // Disables the next page button.
-            if (nextPageButton != null)
-                nextPageButton.interactable = true;
+            SetTextBoxControls(true);
         }
 
         // Disables the text box controls.
         // If 'stopAutoTimer' is true, the text box's auto page turn timer is stopped.
-        public void DisableTextBoxControls(bool stopAutoTimer = true)
+        public void DisableTextBoxControls()
+        {
+            SetTextBoxControls(false);
+        }
+
+        // Enables the previous button.
+        public void EnablePreviousButton()
+        {
+            // Enables the prev page button.
+            if (prevPageButton != null)
+                prevPageButton.interactable = true;
+        }
+
+        // Disables the previous button.
+        public void DisablePreviousButton()
         {
             // Disables the prev page button.
             if (prevPageButton != null)
                 prevPageButton.interactable = false;
+        }
 
+        // Enables the next button.
+        public void EnableNextButton()
+        {
+            // Enables the next page button.
+            if (nextPageButton != null)
+                nextPageButton.interactable = true;
+        }
+
+        // Disables the previous button.
+        public void DisableNextButton()
+        {
             // Disables the next page button.
             if (nextPageButton != null)
                 nextPageButton.interactable = false;
         }
+
+
+        // SET PAGES //
 
         // Adds a page to the end of the pages list.
         public void AddPage(Page page)
@@ -437,6 +489,18 @@ namespace RM_BBTS
                     charQueue.Clear();
                     charQueue = new Queue<char>(pages[currPageIndex].text);
                     charTimer = 0.0F;
+
+
+                    // If the textbox controls should be disabled when the animation skip is turned off.
+                    if (!enableAnimationSkip && DisableControlsIfAnimSkipDisabled)
+                    {
+                        // Disables the next button.
+                        DisableNextButton();
+
+                        // Disables the previous button.
+                        if (!enableAnimationBackSkip)
+                            DisablePreviousButton();
+                    }
                 }
             }
             else
@@ -507,6 +571,14 @@ namespace RM_BBTS
                 // Set the timer.
                 if (autoNext)
                     autoNextTimer = autoNextTimerMax;
+
+
+                // If the textbox controls should be disabled when the animation skip is turned off.
+                if (!enableAnimationSkip && DisableControlsIfAnimSkipDisabled)
+                {
+                    // Enable the controls.
+                    EnableTextBoxControls();
+                }
             }
         }
 

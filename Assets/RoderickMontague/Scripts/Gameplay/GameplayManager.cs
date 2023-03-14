@@ -6,7 +6,6 @@ using SimpleJSON;
 using TMPro;
 using LoLSDK;
 using UnityEngine.UI;
-using RM_BTSS;
 
 namespace RM_BBTS
 {
@@ -937,10 +936,18 @@ namespace RM_BBTS
         // Show the battle background.
         public void EnableBattleBackground(string stateName, Color color)
         {
+            // Turn off overworld background.
             overworldBackground.gameObject.SetActive(false);
 
+            // Turn on battle background.
             battleBackground.gameObject.SetActive(true);
-            battleBackground.color = color;
+
+            // Sets the background colour, and reduces the brightest of the background slightly.
+            Color bgColor = color * 0.985F;
+            color.a = 1.0F;
+            battleBackground.color = bgColor;
+
+            // Play the background animation.
             battleBackgroundAnimator.Play(stateName);
         }
 
@@ -1222,8 +1229,6 @@ namespace RM_BBTS
             // Initialize the battle scene.
             battle.door = door;
             battle.Initialize();
-
-            // TODO: add entity for the opponent.
 
             // Activates the battle object.
             battle.gameObject.SetActive(true);

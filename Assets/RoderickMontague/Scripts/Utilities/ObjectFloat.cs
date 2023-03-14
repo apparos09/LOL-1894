@@ -7,6 +7,12 @@ namespace RM_BBTS
     // Causes an object to float in place by interpolating its position.
     public class ObjectFloat : MonoBehaviour
     {
+        // The reset position of the object float.
+        public Vector3 resetPosition;
+
+        // Automatically sets the reset position of the object.
+        public bool autoSetResetPosition = true;
+
         // The high position of the object.
         public Vector3 highPosition;
 
@@ -40,8 +46,13 @@ namespace RM_BBTS
         // Start is called before the first frame update
         void Start()
         {
+            // Sets the local position as the reset position.
+            if (autoSetResetPosition)
+                resetPosition = gameObject.transform.localPosition;
+
+
             // If the low and high positions should be automatically set.
-            if(autoSetLowHighPos)
+            if (autoSetLowHighPos)
             {
                 lowPosition = gameObject.transform.localPosition - new Vector3(0.0F, basePosOffset, 0.0F);
                 highPosition = gameObject.transform.localPosition + new Vector3(0.0F, basePosOffset, 0.0F);
@@ -124,6 +135,12 @@ namespace RM_BBTS
 
             // The object is going towards the high point.
             onHigh = true;
+        }
+
+        // Sets the object to the reset position.
+        public void SetObjectToResetPosition()
+        {
+            transform.localPosition = resetPosition;
         }
 
         // Update is called once per frame
