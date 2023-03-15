@@ -17,6 +17,10 @@ namespace RM_BBTS
         // Becomes set to 'true' to indicate that there is data to be read.
         public bool valid = false;
 
+        // Marks whether the data is from a completed game or not (game was finished if 'complete' is set to 'true').
+        // If the game was completed, start a new game instead.
+        public bool complete = false;
+
         // The player's data.
         public BattleEntitySaveData playerData;
 
