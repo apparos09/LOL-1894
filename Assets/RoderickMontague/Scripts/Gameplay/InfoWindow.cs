@@ -145,7 +145,7 @@ namespace RM_BBTS
                 entry.name = "Probability (Percentage Form)";
                 entry.nameKey = "ifo_probability_percent_nme";
 
-                entry.description = "A probability format where percentages are used instead of decimals. 0% equates to 0.00 and 100% equates to 1.00. The higher the chance percentage, the more likely the event is. Multiplying a decimal by 100 converts it to a percentage, and dividing a percentage by 100 converts it to a decimal.";
+                entry.description = "A probability format where percentages are used instead of decimals. The higher an event's chance percentage, the more likely it is to occur, with 0% equating to 0.00 and 100% equating to 1.00. Multiplying a decimal by 100 makes it a percentage, and dividing a percentage by 100 makes it a decimal.";
                 entry.descriptionKey = "ifo_probability_percent_dsc";
 
                 entry.symbol = null;
@@ -187,7 +187,7 @@ namespace RM_BBTS
                 entry.name = "Level";
                 entry.nameKey = "ifo_stats_level_nme";
 
-                entry.description = "A number value that marks a battler’s strength. Upon leveling up, a battler’s stats get permanent upgrades.";
+                entry.description = "A number value that conveys a battler's strength. Upon leveling up, a battler gets permanent increases to their stats.";
                 entry.descriptionKey = "ifo_stats_level_dsc";
 
                 entry.symbol = null;
@@ -199,7 +199,7 @@ namespace RM_BBTS
                 entry.name = "Health";
                 entry.nameKey = "ifo_stats_health_nme";
 
-                entry.description = "The hit points of a battler. When a battler’s health reaches 0, they have lost the battle.";
+                entry.description = "The hit points of a battler. When a battler's health reaches 0, they have lost the battle.";
                 entry.descriptionKey = "ifo_stats_health_dsc";
 
                 entry.symbol = healthSprite;
@@ -211,7 +211,7 @@ namespace RM_BBTS
                 entry.name = "Attack";
                 entry.nameKey = "ifo_stats_attack_nme";
 
-                entry.description = "The inherent strength of the battler. Combined with other factors, the battler’s attack determines how much damage they do to their target.";
+                entry.description = "The inherent strength of the battler. Combined with other factors, the battler's attack determines how much damage they do to their target.";
                 entry.descriptionKey = "ifo_stats_attack_dsc";
 
                 entry.symbol = attackSprite;
@@ -239,7 +239,7 @@ namespace RM_BBTS
                 entry.name = "Defense";
                 entry.nameKey = "ifo_stats_defense_nme";
 
-                entry.description = "The battler’s inherent resistance to damage. In combination with other factors, this is used to calculate the amount of damage the battler takes when hit by a move.";
+                entry.description = "The battler's inherent resistance to damage. In combination with other factors, this is used to calculate the amount of damage the battler takes when hit by a move.";
                 entry.descriptionKey = "ifo_stats_defense_dsc";
 
                 entry.symbol = defenseSprite;
@@ -264,7 +264,7 @@ namespace RM_BBTS
                 entry.name = "Energy";
                 entry.nameKey = "ifo_stats_energy_nme";
 
-                entry.description = "The power source for a battler’s moves. The battler cannot perform a move if they do not have enough energy. If a battler runs out of energy, they must take a turn to charge their energy.";
+                entry.description = "The power source for a battler's battle moves. The battler cannot perform a battle move if they do not have enough energy. If a battler runs out of energy, they must take a turn to charge their energy.";
                 entry.descriptionKey = "ifo_stats_energy_dsc";
 
                 entry.symbol = energySprite;
@@ -319,7 +319,7 @@ namespace RM_BBTS
                 entry.name = "Accuracy";
                 entry.nameKey = "ifo_moves_accuracy_nme";
 
-                entry.description = "The likelihood of a move hitting its target, with a 1.00 accuracy being a guaranteed hit. A move with no accuracy listed either always hits, or the move’s success is determined by some unique set of factors.";
+                entry.description = "The likelihood of a move hitting its target, with a 1.00 accuracy being a guaranteed hit. A move with no accuracy listed either always hits, or the move's success is determined by some unique set of factors.";
                 entry.descriptionKey = "ifo_moves_accuracy_dsc";
 
                 entry.symbol = accuracySprite;
@@ -347,7 +347,7 @@ namespace RM_BBTS
                 entry.name = "Energy Usage";
                 entry.nameKey = "ifo_moves_energyUsage_nme";
 
-                entry.description = "The amount of energy needed to perform a move. A move cannot be chosen if the user does not have enough energy to use it. If a move’s energy amount isn’t listed, then the move either uses no energy, or it calculates energy usage using unique factors.";
+                entry.description = "The amount of energy needed to perform a move. A move cannot be chosen if the user does not have enough energy to use it. If a move's energy amount isn't listed, then the move either uses no energy, or it calculates energy usage using unique factors.";
                 entry.descriptionKey = "ifo_moves_energyUsage_dsc";
 
                 entry.symbol = energySprite;
@@ -359,7 +359,7 @@ namespace RM_BBTS
                 entry.name = "Critical Damage";
                 entry.nameKey = "ifo_moves_critical_nme";
 
-                entry.description = "Extra damage done randomly when a directly damaging move successfully hits its target. Unless a move’s description states otherwise, every directly damaging move has the same critical damage chance.";
+                entry.description = "Extra damage done randomly when a directly damaging move successfully hits its target. Unless a move's description states otherwise, every directly damaging move has the same critical damage chance.";
                 entry.descriptionKey = "ifo_moves_critical_dsc";
 
                 entry.symbol = criticalSprite;
@@ -372,7 +372,7 @@ namespace RM_BBTS
                 entry.name = "Recoil Damage";
                 entry.nameKey = "ifo_moves_recoil_nme";
 
-                entry.description = "Damage dealt to the user for successfully performing a certain move. If a move has recoil damage, it will be stated in said move’s description.";
+                entry.description = "Damage dealt to the user for successfully performing certain moves. If a move has recoil damage, it will be stated in said move's description.";
                 entry.descriptionKey = "ifo_moves_recoil_dsc";
 
                 entry.symbol = null;
@@ -400,7 +400,7 @@ namespace RM_BBTS
                 entry.name = "Stat Change";
                 entry.nameKey = "ifo_moves_statChange_nme";
 
-                entry.description = "A modifier that will temporarily change one of the battler’s stats. Stat modifiers wear off for both the player and their opponent when they leave the battle. A stat change can modifier the target’s attack, defense, speed, or accuracy.";
+                entry.description = "A modifier that will temporarily change one of the battler's stats. Stat modifiers wear off for both the player and their opponent when the battle ends. A stat change can modify the target's attack, defense, speed, or accuracy.";
                 entry.descriptionKey = "ifo_moves_statChange_dsc";
 
                 entry.symbol = null;
@@ -412,7 +412,7 @@ namespace RM_BBTS
                 entry.name = "Burn";
                 entry.nameKey = "ifo_moves_burn_nme";
 
-                entry.description = "A status effect that applies damage to the inflicted battler every turn. This status wears off for both battlers when the battle ends.";
+                entry.description = "A status effect that applies damage to the inflicted battler every turn. This status effect wears off for both battlers when the battle ends.";
                 entry.descriptionKey = "ifo_moves_burn_dsc";
 
                 entry.symbol = burnSprite;
@@ -425,7 +425,7 @@ namespace RM_BBTS
                 entry.name = "Paralysis";
                 entry.nameKey = "ifo_moves_paralysis_nme";
 
-                entry.description = "A status effect that reduces the inflicted battler’s speed, and that causes them to randomly miss turns. This status effect wears off for both battlers when the battle ends.";
+                entry.description = "A status effect that reduces the inflicted battler's speed, and that causes them to randomly miss turns. This status effect wears off for both battlers when the battle ends.";
                 entry.descriptionKey = "ifo_moves_paralysis_dsc";
 
                 entry.symbol = paralysisSprite;
