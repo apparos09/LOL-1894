@@ -571,6 +571,27 @@ namespace RM_BBTS
             gameQuestion.AskRandomQuestion();
         }
 
+        // Checks if a question will be asked when returning to the overworld.
+        public bool AskingQuestionOnOverworldEnter(bool battleWon)
+        {
+            // Checks various conditions to see if a question will be asked.
+            /*
+             * Checks various conditions to see if a question will be asked.
+             * [1] Checks if questions will be asked.
+             * [2] Checks if the battle has been won (questions are asked if a battle is won).
+             * [3] Checks if the rooms completed count has risen enough to start asking questions.
+             * [4] Checks if the questionCountdown has reached 0 (time to ask question).
+             */
+
+            bool result = 
+                askQuestions &&
+                battleWon &&
+                (gameManager.GetRoomsCompleted() >= askQuestionsFromRound) &&
+                (questionCountdown - 1 <= 0);
+
+            return result;
+        }
+
         // Updates the UI for the overworld.
         public void UpdateUI()
         {

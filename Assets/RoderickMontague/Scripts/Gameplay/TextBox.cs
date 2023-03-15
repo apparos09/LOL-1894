@@ -101,7 +101,7 @@ namespace RM_BBTS
             //     boxObject = gameObject;
 
             // Set this to the max by default.
-            autoNextTimer = autoNextTimerMax;
+            SetAutoNextTimerToMax();
 
             // Recolour the text to show that the text loaded is not coming from the language file.
             if (!LOLSDK.Instance.IsInitialized)
@@ -164,6 +164,9 @@ namespace RM_BBTS
             // Calls the callbacks for opening the textbox.
             if (openedCallback != null)
                 openedCallback();
+
+            // Reset the timer.
+            SetAutoNextTimerToMax();
         }
 
         // Adds a callback for when the textbox is closed.
@@ -201,6 +204,9 @@ namespace RM_BBTS
         public void Show()
         {
             boxObject.SetActive(true);
+
+            // Reset the timer.
+            SetAutoNextTimerToMax();
         }
 
         // Hides the textbox. This does Not call the Close callbacks.
@@ -536,7 +542,7 @@ namespace RM_BBTS
             if(instantText && autoNext)
             {
                 // Set the timer.
-                autoNextTimer = autoNextTimerMax;
+                SetAutoNextTimerToMax();
             }
 
         }
@@ -593,7 +599,7 @@ namespace RM_BBTS
                 // If the text box should automatically go onto the next page when it's done after a certain period of time...
                 // Set the timer.
                 if (autoNext)
-                    autoNextTimer = autoNextTimerMax;
+                    SetAutoNextTimerToMax();
 
 
                 // If the textbox controls should be disabled when the animation skip is turned off.

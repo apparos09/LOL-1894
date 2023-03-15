@@ -21478,7 +21478,7 @@ MonoBehaviour:
   maxScorePlus: 500
   minScorePlus: 50
   pausedTimer: 1
-  startTime: 100
+  startTime: 90
   reduceRewardTime: 60
   ttsExtraTime: 60
   addExtraTime: 1
@@ -33365,10 +33365,6 @@ PrefabInstance:
     - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: textSpeed
       value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
-      propertyPath: charsPerLoad
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6215028496071798209, guid: e5a68852aaf78f94c87c92ff3e2805bc, type: 3}
       propertyPath: enableAnimationSkip

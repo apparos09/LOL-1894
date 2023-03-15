@@ -1163,8 +1163,7 @@ namespace RM_BBTS
                 }
 
 
-                // Show the textbox.
-                // TODO: hide player move controls.
+                // Replace the pages, reset the auto timer, and open the textbox.
                 textBox.ReplacePages(turnText);
                 textBox.Open();
 
@@ -1385,8 +1384,11 @@ namespace RM_BBTS
             // Auto save the game.
             if(autoSaveOnExit)
             {
-                // Save and continue the game.
-                gameManager.SaveAndContinueGame();
+                // If a question won't be asked, save the game.
+                // If a question will be asked, don't save the game, as it would allow...
+                // The player to skip the question if they shut the game down.
+                if(!gameManager.overworld.AskingQuestionOnOverworldEnter(true))
+                    gameManager.SaveAndContinueGame();
             }
 
             // Go to the overworld.
@@ -2507,9 +2509,11 @@ namespace RM_BBTS
                             // Play the battle lost jingle.
                             losePage.OnPageOpenedAddCallback(PlayBattleLostJng);
 
+                            // Set the textbox settings.
                             textBox.pages.Add(losePage);
                             textBox.SetPage(0);
                             textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
+
 
                             DisablePlayerOptions();
                             textBox.Open();
