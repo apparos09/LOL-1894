@@ -50,6 +50,19 @@ namespace RM_BBTS
         // If set to 'true', the fill alpha is automatically set on the start screen.
         public bool autoSetFillAlpha = true;
 
+        [Header("Bar Fill/Multi-Color")]
+        // If set to 'true', multi-colours are used. 
+        public bool useMultiColor = false;
+
+        // The colour for when the health bar is high (50% or more) 
+        public Color highColor = Color.green;
+
+        // The colour for when the health bar is mid (25% or more) 
+        public Color midColor = Color.yellow;
+
+        // The colour for when the health bar is low (12.5% or less) 
+        public Color lowColor = Color.red;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -131,6 +144,9 @@ namespace RM_BBTS
                 // Changes the progress bar visual.
                 startValue = value;
                 bar.value = value;
+
+                // Refreshes the color. 
+                RefreshColor();
             }
         }
 
@@ -156,6 +172,38 @@ namespace RM_BBTS
         public bool IsTransitioning()
         {
             return transitioning;
+        }
+
+        // Refreshes the color of the bar. If 'useMultiColor' is set to 'false', nothing happens. 
+        public void RefreshColor()
+        {
+            // Don't use multi-color. 
+            if (!useMultiColor)
+                return;
+
+            // The percentage. 
+            float percent = value / maxValue;
+
+            // The threshold values. 
+            const float MID = 0.25F;
+            const float HIGH = 0.50F;
+
+            // Checks how full the bar is. 
+            if (value / maxValue <= MID) // less than or equal to 25% 
+            {
+                if (barFill.color != lowColor)
+                    barFill.color = lowColor;
+            }
+            else if (value / maxValue <= HIGH) // less than or equal to 50% 
+            {
+                if (barFill.color != midColor)
+                    barFill.color = midColor;
+            }
+            else // Above 50% 
+            {
+                if (barFill.color != highColor)
+                    barFill.color = highColor;
+            }
         }
 
         // Update is called once per frame
@@ -209,6 +257,8 @@ namespace RM_BBTS
                     transitioning = false;
                 }
 
+                // Refresh the bar color. 
+                RefreshColor();
             }
             else
             {

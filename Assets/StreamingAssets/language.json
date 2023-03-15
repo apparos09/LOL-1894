@@ -89,6 +89,7 @@
       "ifo_moves_power_nme": 80,
       "ifo_moves_power_dsc": 310,
       "ifo_moves_accuracy_nme": 80,
+      "ifo_moves_accuracy_dsc": 310,
 
       "ifo_moves_energyUsage_nme": 80,
       "ifo_moves_energyUsage_dsc": 310,
@@ -671,7 +672,7 @@
     "ifo_stats_defense_nme": "Defense",
     "ifo_stats_defense_dsc": "The battler's inherent resistance to damage. In combination with other factors, this is used to calculate the amount of damage the battler takes when hit by a move.",
     "ifo_stats_speed_nme": "Speed",
-    "ifo_stats_speed_dsc": "The speed of the battler is the primary factor that determines the order that battlers go in. If two battlers have the same speed, the turn order is random.",
+    "ifo_stats_speed_dsc": "How fast the battler moves. This is the primary factor that determines the order that battlers go in. If two battlers have the same speed, the turn order is random.",
     "ifo_stats_energy_nme": "Energy",
     "ifo_stats_energy_dsc": "The power source for a battler's battle moves. The battler cannot perform a battle move if they do not have enough energy. If a battler runs out of energy, they must take a turn to charge their energy.",
 
@@ -679,7 +680,7 @@
     "ifo_moves_rank_nme": "Rank",
     "ifo_moves_rank_dsc": "A numerical label that conveys how advanced a move is, which ranges from 1 to 3. The higher the rank, the more advanced the move is. Higher rank moves become more common as the player progresses through the simulation.",
     "ifo_moves_power_nme": "Power",
-    "ifo_moves_power_dsc": "The base strength of a move, which along with other factors, determines how much damage the move does. A move with no power listed either does no damage, or does a varying amount of damage based on certain factors.",
+    "ifo_moves_power_dsc": "The base strength of a move, which along with other factors determines how much damage the move does. A move with no power listed either does no damage, or does a varying amount of damage based on certain factors.",
     "ifo_moves_accuracy_nme": "Accuracy",
     "ifo_moves_accuracy_dsc": "The likelihood of a move hitting its target, with a 1.00 accuracy being a guaranteed hit. A move with no accuracy listed either always hits, or the move's success is determined by some unique set of factors.",
     "ifo_moves_energyUsage_nme": "Energy Usage",

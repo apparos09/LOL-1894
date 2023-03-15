@@ -9,7 +9,7 @@ namespace RM_BBTS
     {
         // Heals the user.
         public CureMove() :
-            base(moveId.cure, "Cure", 2, 0.0F, 100.0F, 0.1F)
+            base(moveId.cure, "Cure", 2, 0.0F, 100.0F, 0.30F)
         {
             // Heal moves don't have power or accuracy.
 
