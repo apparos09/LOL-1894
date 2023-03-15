@@ -91,6 +91,12 @@ namespace RM_BBTS
         // // the position offset for placing doors.
         // public Vector3 doorPosOffset = new Vector3(2.0F, -2.0F, 0);
 
+        // Used to determine if unevolved entities should level up when a new phase begins.
+        const bool LEVEL_UP_FOR_PHASE_IF_UNEVOLVED = true;
+
+        // The amount of levels an unevolved entity gets on a new phase (only used if LEVEL_UP_FOR_PHASE_IF_UNEVOLVED is true).
+        const int PHASE_LEVEL_UP_IF_UNEVOLVED = 1;
+
         [Header("Doors/Sprites")]
 
         // The list of unlocked and locked door sprites (does NOT include the boss door).
@@ -789,7 +795,25 @@ namespace RM_BBTS
                         // It helps save on evolution time.
                         if (!door.Locked)
                         {
-                            door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                            // Evolve the entity if it has an evolution.
+                            // If it can't evolve, raise it's level ith a basic level rate and no speciality. 
+                            
+
+                            // Checks if unevolved entities should receive a boost on a new phase or not.
+                            if(LEVEL_UP_FOR_PHASE_IF_UNEVOLVED) // All Entities Receive Boost
+                            {
+                                // IF the entity can evolve, evolve it. If it can't evolve, just level it up.
+                                if (BattleEntity.CanEvolve(door.battleEntity))
+                                    door.battleEntity = BattleEntity.EvolveData(door.battleEntity);
+                                else
+                                    door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, PHASE_LEVEL_UP_IF_UNEVOLVED);
+                            }
+                            else // No Boost for Unevolved Entities
+                            {
+                                // Evolve the entity. If the entity can't evolve, nothing happens.
+                                door.battleEntity = BattleEntity.LevelUpData(door.battleEntity, 1.0F, BattleEntity.specialty.none, 1);
+                            }
+
 
                             // TODO: maybe don't restore it entirely?
                             // Restore health and energy levels to max even if the entity didn't evolve.
@@ -860,11 +884,14 @@ namespace RM_BBTS
                 // door.battleEntity.health = door.battleEntity.maxHealth;
                 // door.battleEntity.energy = door.battleEntity.maxEnergy;
 
-                // TODO: test this.
-                // New (restores by amount)
+
                 // Restore health and energy by a percentage of maxes.
                 door.battleEntity.health += door.battleEntity.maxHealth * Enemy.GAME_OVER_HEALTH_RESTORE_PERCENT;
                 door.battleEntity.energy += door.battleEntity.maxEnergy * Enemy.GAME_OVER_ENERGY_RESTORE_PERCENT;
+
+                // Make the health and energy levels whole numbers.
+                door.battleEntity.health = Mathf.Ceil(door.battleEntity.health);
+                door.battleEntity.energy = Mathf.Ceil(door.battleEntity.energy);
 
                 // Clamp the values so that they're within the bounds.
                 door.battleEntity.health = Mathf.Clamp(door.battleEntity.health, 0, door.battleEntity.maxHealth);
@@ -894,6 +921,7 @@ namespace RM_BBTS
             // Boosts the player's stats if they get a game over.
             float boost = 10.0F;
 
+            // Gives the playr a small stat boost upon getting a game over.
             player.SetHealthRelativeToMaxHealth(player.MaxHealth + boost);
             player.Attack += boost;
             player.Defense += boost;
@@ -901,6 +929,9 @@ namespace RM_BBTS
 
             // List of 4 index spots.
             List<int> moveIndexes = new List<int>() { 0, 1, 2, 3 };
+
+            // Gets the game phase for determining how the randomization works. 
+            int phase = gameManager.GetGamePhase();
 
             // Removes two indexes.
             moveIndexes.Remove(Random.Range(0, moveIndexes.Count));
@@ -921,25 +952,67 @@ namespace RM_BBTS
                     // The generated move.
                     Move move = null;
 
-                    // Checks that the move exists in the player's list.
+                    // Checks that the move exists in the player's list. 
                     if (player.moves[moveIndex] != null)
                     {
-                        // Grabs the move rank, and replaces the move.
-                        switch (player.moves[moveIndex].Rank)
+                        switch (phase)
                         {
-                            case 1: // R1
-                                move = MoveList.Instance.GetRandomRank1Move();
+                            default: // Phase 1 - replace with move of the same rank. 
+                            case 1:
+                                // Grabs the move rank, and replaces the move. 
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    case 1: // R1 
+                                        move = MoveList.Instance.GetRandomRank1Move();
+                                        break;
+                                    case 2: // R2 
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                    case 3: // R3 
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    default: // Not applicable rank. 
+                                        move = MoveList.Instance.GetRandomMove();
+                                        break;
+                                }
                                 break;
-                            case 2: // R2
-                                move = MoveList.Instance.GetRandomRank2Move();
+
+                            case 2: // Phase 2 - If rank 1 (or no rank) move, replace with rank 2 or rank 3 move. 
+                                // Grabs the move rank, and replaces the move. 
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    default:
+                                    case 1: // R1 
+                                        // More likely to get rank 2 (6/10) over rank 3 (4/10). 
+                                        move = Random.Range(1, 11) <= 6 ?
+                                            MoveList.Instance.GetRandomRank2Move() :
+                                            MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    case 2: // R2 
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                    case 3: // R3 
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                }
                                 break;
-                            case 3: // R3
-                                move = MoveList.Instance.GetRandomRank3Move();
-                                break;
-                            default: // Not applicable rank.
-                                move = MoveList.Instance.GetRandomMove();
+
+                            case 3: // Phase 3 - If rank 1, replace with a rank 3. 
+                                // Grabs the move rank, and replaces the move. 
+                                switch (player.moves[moveIndex].Rank)
+                                {
+                                    default:
+                                    case 1: // R1 and R3 
+                                    case 3:
+                                        move = MoveList.Instance.GetRandomRank3Move();
+                                        break;
+                                    case 2: // R2 
+                                        move = MoveList.Instance.GetRandomRank2Move();
+                                        break;
+                                }
                                 break;
                         }
+
                     }
                     else
                     {
@@ -1001,6 +1074,12 @@ namespace RM_BBTS
                     
             }
 
+            // Loads the game over tutorial. 
+            if (gameManager.useTutorial && !gameManager.tutorial.clearedGameOver)
+                gameManager.tutorial.LoadGameOverTutorial();
+
+
+            // Sets the variable to false.
             gameOver = false;
 
         }

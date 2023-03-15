@@ -21,14 +21,14 @@ namespace RM_BBTS
         private float baseMaxEnergy = 100;
 
         // Level Up Rate
-        public const float LEVEL_UP_RATE = 1.05F;
+        public const float LEVEL_UP_RATE = 1.10F;
 
         // Restoration percents.
         public const float LEVEL_UP_HEALTH_RESTORE_PERCENT = 0.30F;
         public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.30F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
-        public const float PHASE_BONUS_STAT_TOTAL = 108.0F; // 108/4 = 27
+        public const float PHASE_BONUS_STAT_TOTAL = 100.0F; // 100/4 = 25
 
         // Setting the player's stats.
         protected new void Awake()

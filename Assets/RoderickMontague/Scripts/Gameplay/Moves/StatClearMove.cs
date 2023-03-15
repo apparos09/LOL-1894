@@ -10,7 +10,7 @@ namespace RM_BBTS
     {
         // The stat clear move.
         public StatClearMove()
-            : base(moveId.statClear, "Stat Clear", 2, 0.0F, 100.0F, 0.35F)
+            : base(moveId.statClear, "Stat Clear", 2, 0.0F, 100.0F, 0.30F)
         {
             useAccuracy = false;
 

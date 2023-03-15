@@ -49,7 +49,7 @@ namespace RM_BBTS
 
         // The amount of turns the battle took, which is used to help calculate score.
         // This is about the amount of full turn rotations, not individual moves made.
-        private int turnsTaken = 0;  
+        private int turnsPassed = 0;  
 
         // The Move class handles the calculations for damage taken.
         public float playerDamageTaken = 0; // The amount of damage the player took.
@@ -298,7 +298,7 @@ namespace RM_BBTS
             // }
 
             // Gets the starting turns and health of the player for score calculation.
-            turnsTaken = 0;
+            turnsPassed = 0;
             playerDamageTaken = 0;
 
             // The language definitions.
@@ -576,8 +576,16 @@ namespace RM_BBTS
             // playerAnimTimer = new TimerManager.Timer();
             // opponentAnimTimer = new TimerManager.Timer();
 
+            // Resets the turns passed and player damage taken since a new battle is being initialized. 
+            turnsPassed = 0;
+            playerDamageTaken = 0;
+
             // The battle has begun.
             initBattleEnd = false;
+
+            // These events have not happened for this new battle. 
+            gotCritical = false;
+            gotRecoil = false;
 
             // Do not autosave unless the player actually wins.
             autoSaveOnExit = false;
@@ -677,9 +685,9 @@ namespace RM_BBTS
         }
 
         // Gets the amount of turns the battle has taken.
-        public float TurnsTaken
+        public float TurnsPassed
         {
-            get { return turnsTaken; }
+            get { return turnsPassed; }
         }
 
         // Sets player controls to interactable or not. RefreshPlayerOptions is also called to disable buttons that do nothing. 
@@ -1161,10 +1169,10 @@ namespace RM_BBTS
                 DisablePlayerOptions();
 
                 // Adds to the amount of turns the battle has taken.
-                turnsTaken++;
+                turnsPassed++;
 
                 // Add to the total turns counter.
-                gameManager.turnsPassed++;
+                gameManager.totalTurnsPassed++;
             }
             else
             {
@@ -1312,7 +1320,7 @@ namespace RM_BBTS
             int result = 0;
 
             // The par for turns taken.
-            int turnsTakenPar = 5;
+            int turnsPassedPar = 5;
 
             // The par for damage taken. This is 75% of the player's current max health.
             int damageTakenPar = Mathf.RoundToInt(player.MaxHealth * 0.75F);
@@ -1333,9 +1341,9 @@ namespace RM_BBTS
             }
 
             // Turns Taken Bonus
-            if(turnsTaken <= turnsTakenPar) // Took the expected amount of turns or less.
+            if(turnsPassed <= turnsPassedPar) // Took the expected amount of turns or less.
             {
-                result += 100 * turnsTakenPar - turnsTaken;
+                result += 100 * turnsPassedPar - turnsPassed;
             }
 
             // Damage Taken Bonus
@@ -1400,7 +1408,7 @@ namespace RM_BBTS
             opponent.Health = 0;
 
             // Counts this as a turn to avoid tutorial trigger issues.
-            turnsTaken++;
+            turnsPassed++;
 
             // Replaces the oponnent sprite with the treasure open sprite.
             if (treasureBase.openSprite != null)
@@ -1583,16 +1591,24 @@ namespace RM_BBTS
             // Remove stat changes and status effects
             // This already happens in the initialization phase, but it happens here just to be sure. 
             // TODO: maybe take this out?
+
+            // Reset temporary variables.
             player.vulnerable = true;
             player.ResetStatModifiers();
             player.ResetStatuses();
 
+            // Remove selected move from opponent.
+            opponent.selectedMove = null;
+
+            // Remove temporary opponent traits.
+            opponent.vulnerable = true;
+            opponent.ResetStatModifiers();
+            opponent.ResetStatuses();
+
+
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityGameData();
 
-            // Remove selected move.
-            opponent.selectedMove = null;
-            opponent.vulnerable = true;
 
             // Stops the idle animation of the opponent (needs to be done before the sprite is disabled).
             if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
@@ -2354,14 +2370,20 @@ namespace RM_BBTS
                         opponent.selectedMove = null;
 
                         // Prevents the player from dying during the first battle.
+                        // Restore all health.
                         player.SetHealthToMax();
                         UpdatePlayerHealthUI();
 
+                        // Restore all energy.
                         player.SetEnergyToMax();
                         UpdatePlayerEnergyUI();
 
+                        // Reset statuses and stat modifiers.
+                        player.ResetStatuses();
+                        player.ResetStatModifiers();
+
                         // Tutorial for first battle death.
-                        if(!gameManager.tutorial.clearedFirstBattleDeath)
+                        if (!gameManager.tutorial.clearedFirstBattleDeath)
                             gameManager.tutorial.LoadFirstBattleDeathTutorial();
                     }
 
@@ -2370,7 +2392,7 @@ namespace RM_BBTS
 
                     // If it's the first turn and the opponent is dead, give them 1 HP back.
                     // The other tutorials won't happen if the enemy dies in one turn.
-                    if (gameManager.roomsCompleted == 0 && opponent.IsDead() && turnsTaken <= 1)
+                    if (gameManager.roomsCompleted == 0 && opponent.IsDead() && turnsPassed <= 1)
                     {
                         opponent.Health = 1;
                         UpdateOpponentUI();
@@ -2393,7 +2415,7 @@ namespace RM_BBTS
 
                         // Loads tutorials.
                         // Loads the first move tutorial.
-                        if (!trl.clearedFirstMove && turnsTaken != 0)
+                        if (!trl.clearedFirstMove && turnsPassed != 0)
                         {
                             trl.LoadFirstMoveTutorial();
                         }

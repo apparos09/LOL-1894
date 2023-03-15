@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
-using RM_BBTS;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 using UnityEngine;
 
 namespace RM_BBTS
@@ -131,22 +128,22 @@ namespace RM_BBTS
 
             switch (id)
             {
-                    // RANK 1
-                case moveId.run: // Run
+                // RANK 1 
+                case moveId.run: // Run 
                     move = new RunMove();
 
-                    // Translated in constructor.
-                    // No Battle Animation
+                    // Translated in constructor. 
+                    // No Battle Animation 
                     break;
 
-                case moveId.charge: // Charge
+                case moveId.charge: // Charge 
                     move = new ChargeMove();
 
-                    // Translated in constructor.
-                    // No Battle Animation
+                    // Translated in constructor. 
+                    // No Battle Animation 
                     break;
 
-                case moveId.poke: // Poke
+                case moveId.poke: // Poke 
                     move = new Move(moveId.poke, "Poke", 1, 20.0F, 1.0F, 0.10F);
 
                     move.CriticalChance = 0.4F;
@@ -156,16 +153,16 @@ namespace RM_BBTS
 
                     move.description = "An attack that has a 0.40 critical damage chance, and a 0.05 chance of raising the user's defense by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.smack3;
                     move.animationColor = Color.white;
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_poke_nme";
                     descKey = "mve_poke_dsc";
                     break;
 
-                case moveId.slimeShot: // Slime Shot
+                case moveId.slimeShot: // Slime Shot 
                     move = new Move(moveId.slimeShot, "Slime Shot", 1, 30.0F, 0.95F, 0.14F);
 
                     move.speedChangeTarget = -1;
@@ -173,7 +170,7 @@ namespace RM_BBTS
 
                     move.description = "An attack that has a 0.15 chance of lowering the target's speed by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.shot2;
                     move.animationColor = new Color(0.40F, 0.93F, 0.10F);
 
@@ -181,52 +178,52 @@ namespace RM_BBTS
                     descKey = "mve_slimeShot_dsc";
                     break;
 
-                case moveId.laserShot: // Laser Shot
+                case moveId.laserShot: // Laser Shot 
                     move = new Move(moveId.laserShot, "Laser Shot", 1, 40.0F, 0.95F, 0.12F);
 
                     move.description = "A weak laser attack.";
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_laserShot_nme";
                     descKey = "mve_laserShot_dsc";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.shot1;
                     move.animationColor = new Color(0.942F, 0.19F, 98.7F);
 
                     break;
 
-                case moveId.fireShot: // Fire Shot
+                case moveId.fireShot: // Fire Shot 
                     move = new Move(moveId.fireShot, "Fire Shot", 1, 30.0F, 0.95F, 0.14F);
                     move.BurnChance = 0.1F;
 
                     move.description = "A weak fire attack with a burn chance of 0.10.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.shot1;
                     move.animationColor = new Color(0.956F, 0.305F, 0.071F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_fireShot_nme";
                     descKey = "mve_fireShot_dsc";
                     break;
 
-                case moveId.elecShot: // Electric Shot
+                case moveId.elecShot: // Electric Shot 
                     move = new Move(moveId.elecShot, "Electric Shot", 1, 30.0F, 0.95F, 0.14F);
                     move.ParalysisChance = 0.1F;
 
                     move.description = "A weak electric attack with a paralysis chance of 0.10.";
-                    
-                    // Animation
+
+                    // Animation 
                     move.animation = moveAnim.shot1;
                     move.animationColor = new Color(1.0F, 0.74F, 0.0F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_elecShot_nme";
                     descKey = "mve_elecShot_dsc";
                     break;
 
-                case moveId.screech: // Screech
+                case moveId.screech: // Screech 
                     move = new Move(moveId.screech, "Screech", 1, 25.0F, 1.0F, 0.12F);
 
                     move.accuracyChangeTarget = -1;
@@ -234,7 +231,7 @@ namespace RM_BBTS
 
                     move.description = "A weak attack that has a 0.15 chance of lowering the target's accuracy by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.wave1;
                     move.animationColor = new Color(0.899F, 0.972F, 100.0F);
 
@@ -242,13 +239,13 @@ namespace RM_BBTS
                     descKey = "mve_screech_dsc";
                     break;
 
-                case moveId.slam: // Slam
+                case moveId.slam: // Slam 
                     move = new Move(moveId.slam, "Slam", 1, 30, 0.90F, 0.15F);
                     move.CriticalChance = 0.6F;
 
                     move.description = "An attack that has a critical damage chance of 0.60.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.slash2;
                     move.animationColor = new Color(1.0F, 0.973F, 0.973F);
 
@@ -256,13 +253,13 @@ namespace RM_BBTS
                     descKey = "mve_slam_dsc";
                     break;
 
-                case moveId.chip: // Chip Off
-                    move = new Move(moveId.chip, "Chip Off", 1, 20.0F, 0.95F, 0.15F);
+                case moveId.chip: // Chip Off 
+                    move = new Move(moveId.chip, "Chip Off", 1, 20.0F, 0.95F, 0.12F);
                     move.priority = 1;
 
                     move.description = "A weak attack that always goes first.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.slash1;
                     move.animationColor = new Color(0.956F, 0.603F, 0.603F);
 
@@ -270,15 +267,15 @@ namespace RM_BBTS
                     descKey = "mve_chip_dsc";
                     break;
 
-                case moveId.toss: // Toss
+                case moveId.toss: // Toss 
                     move = new Move(moveId.toss, "Toss", 1, 25, 0.95F, 0.1F);
-                    
+
                     move.attackChangeTarget = -1;
                     move.attackChangeChanceTarget = 0.10F;
 
                     move.description = "An attack that has a 0.10 chance of lowering the target's attack by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.slash1;
                     move.animationColor = new Color(0.978F, 0.905F, 0.866F);
 
@@ -286,7 +283,7 @@ namespace RM_BBTS
                     descKey = "mve_toss_dsc";
                     break;
 
-                case moveId.magnify: // Magnify
+                case moveId.magnify: // Magnify 
                     move = new StatChangeMove(moveId.magnify, "Magnify", 1, 0.12F);
 
                     move.accuracyChangeUser = 1;
@@ -294,7 +291,7 @@ namespace RM_BBTS
 
                     move.description = "The user raises their accuracy by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.wave3;
                     move.animationColor = new Color(0.85F, 0.85F, 0.85F);
 
@@ -302,19 +299,19 @@ namespace RM_BBTS
                     descKey = "mve_magnify_dsc";
                     break;
 
-                case moveId.heal: // Heal
+                case moveId.heal: // Heal 
                     move = new HealMove(moveId.heal, "Heal", 1, 0.50F);
                     (move as HealMove).healPercent = 0.30F;
 
                     move.description = "The user heals 30% of their health.";
 
-                    // No Animation
+                    // No Animation 
 
                     nameKey = "mve_heal_nme";
                     descKey = "mve_heal_dsc";
                     break;
 
-                case moveId.hpDrain1: // Drain Heal 1
+                case moveId.hpDrain1: // Drain Heal 1 
                     move = new HealthDrainMove(moveId.hpDrain1, "Drain Heal 1", 1, 25, 0.95F, 0.30F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.30F;
@@ -324,20 +321,20 @@ namespace RM_BBTS
                     nameKey = "mve_hpDrain1_nme";
                     descKey = "mve_hpDrain1_dsc";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.crawl1;
                     move.animationColor = new Color(0.123F, 0.555F, 0.138F);
 
-                    // Translation in constructor.
+                    // Translation in constructor. 
                     break;
 
-                case moveId.healthSplit: // Health Split
+                case moveId.healthSplit: // Health Split 
                     move = new HealthSplitMove();
-                    
-                    // Translation is done in function.
+
+                    // Translation is done in function. 
                     break;
 
-                case moveId.pushBack: // Push Back
+                case moveId.pushBack: // Push Back 
                     move = new Move(moveId.pushBack, "Push Back", 1, 25.0F, 0.90F, 0.15F);
 
                     move.defenseChangeUser = 1;
@@ -345,57 +342,57 @@ namespace RM_BBTS
 
                     move.description = "The user pushes the target back, which has a 0.20 chance of increasing the user's defense.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.smack1;
                     move.animationColor = new Color(0.718F, 0.313F, 0.101F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_pushBack_nme";
                     descKey = "mve_pushBack_dsc";
                     break;
 
-                case moveId.powerFirst: // Quick Strike
+                case moveId.powerFirst: // Quick Strike 
                     move = new TurnOrderMove(moveId.powerFirst, "Quick Strike", 1, 40.0F, 0.90F, 0.15F);
 
                     ((TurnOrderMove)move).boostFirst = true;
 
                     move.description = "An attack that does more damage if the user moves before the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.slash1;
                     move.animationColor = new Color(0.929F, 0.216F, 0.035F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_powerFirst_nme";
                     descKey = "mve_powerFirst_dsc";
                     break;
 
-                case moveId.powerLast: // Slow Strike
+                case moveId.powerLast: // Slow Strike 
                     move = new TurnOrderMove(moveId.powerLast, "Slow Strike", 1, 40.0F, 0.90F, 0.15F);
 
                     ((TurnOrderMove)move).boostFirst = false;
 
                     move.description = "An attack that does more damage if the user moves after the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.slash1;
                     move.animationColor = new Color(0.035F, 0.722F, 0.929F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_powerLast_nme";
                     descKey = "mve_powerLast_dsc";
                     break;
 
-                case moveId.shield1: // Shield 1
+                case moveId.shield1: // Shield 1 
                     move = new ShieldMove(moveId.shield1, "Shield 1", 1, 0.0F, 0.50F, 0.25F);
 
-                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works 50% of the time.";
+                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 50% of the time.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.shield1;
                     move.animationColor = new Color(1.0F, 0.811F, 0.760F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_shield1_nme";
                     descKey = "mve_shield1_dsc";
                     break;
@@ -414,12 +411,12 @@ namespace RM_BBTS
                     descKey = "mve_breaker1_dsc";
                     break;
 
-                case moveId.bam: // Bam
+                case moveId.bam: // Bam 
                     move = new Move(moveId.bam, "Bam", 1, 30.0F, 1.0F, 0.10F);
 
                     move.description = "A weak, basic attack.";
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_bam_nme";
                     descKey = "mve_bam_dsc";
 
@@ -431,28 +428,28 @@ namespace RM_BBTS
 
 
 
-                    // RANK 2
-                case moveId.laserBurst: // Laser Burst
+                // RANK 2 
+                case moveId.laserBurst: // Laser Burst 
                     move = new Move(moveId.laserBurst, "Laser Burst", 2, 70.0F, 0.90F, 0.18F);
 
                     move.description = "A decent laser attack.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.942F, 0.19F, 0.9F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_laserBurst_nme";
                     descKey = "mve_laserBurst_dsc";
                     break;
 
-                case moveId.fireBurst: // Fire Burst
+                case moveId.fireBurst: // Fire Burst 
                     move = new Move(moveId.fireBurst, "Fire Burst", 2, 60.0F, 0.85F, 0.20F);
                     move.BurnChance = 0.20F;
 
                     move.description = "A decent fire attack that has a 0.20 chance of burning the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.978F, 0.205F, 0.059F);
 
@@ -460,13 +457,13 @@ namespace RM_BBTS
                     descKey = "mve_fireBurst_dsc";
                     break;
 
-                case moveId.elecBurst: // Electric Burst
+                case moveId.elecBurst: // Electric Burst 
                     move = new Move(moveId.elecBurst, "Electric Burst", 2, 60.0F, 0.85F, 0.20F);
                     move.ParalysisChance = 0.20F;
 
                     move.description = "A decent electric attack that has a 0.20 chance of paralyzing the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(1.0F, 0.783F, 0.07F);
 
@@ -474,15 +471,15 @@ namespace RM_BBTS
                     descKey = "mve_elecBurst_dsc";
                     break;
 
-                case moveId.soundWave: // Soundwave
+                case moveId.soundWave: // Soundwave 
                     move = new Move(moveId.soundWave, "Soundwave", 2, 50.0F, 0.95F, 0.18F);
-                    
+
                     move.accuracyChangeTarget = -1;
                     move.accuracyChangeChanceTarget = 0.2F;
 
                     move.description = "A decent attack that has a 0.20 chance of lowering the target's accuracy by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.wave2;
                     move.animationColor = new Color(0.914F, 0.982F, 0.987F);
 
@@ -490,7 +487,7 @@ namespace RM_BBTS
                     descKey = "mve_soundWave_dsc";
                     break;
 
-                case moveId.magnet: // Magnet
+                case moveId.magnet: // Magnet 
                     move = new Move(moveId.magnet, "Magnet", 2, 45.0F, 0.9F, 0.15F);
 
                     move.accuracyChangeUser = 2;
@@ -501,7 +498,7 @@ namespace RM_BBTS
 
                     move.description = "The user pulls the target towards them, which increases the user's accuracy by 2 stages, and the target's accuracy by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.smack1;
                     move.animationColor = new Color(0.912F, 0.789F, 0.618F);
 
@@ -509,13 +506,13 @@ namespace RM_BBTS
                     descKey = "mve_magnet_dsc";
                     break;
 
-                case moveId.torch: // Torch
-                    move = new Move(moveId.torch, "Scorch", 2, 10, 0.9F, 0.35F);
+                case moveId.torch: // Torch 
+                    move = new Move(moveId.torch, "Torch", 2, 15, 0.85F, 0.35F);
                     move.BurnChance = 1.0F;
 
                     move.description = "A weak attack that always burns the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.crawl1;
                     move.animationColor = new Color(0.947F, 0.202F, 0.089F);
 
@@ -523,13 +520,13 @@ namespace RM_BBTS
                     descKey = "mve_torch_dsc";
                     break;
 
-                case moveId.electrify: // Electrify
-                    move = new Move(moveId.electrify, "Electrify", 2, 10, 0.9F, 0.35F);
+                case moveId.electrify: // Electrify 
+                    move = new Move(moveId.electrify, "Electrify", 2, 15, 0.85F, 0.40F);
                     move.ParalysisChance = 1.0F;
 
                     move.description = "A weak attack that always paralyzes the target.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.crawl1;
                     move.animationColor = new Color(0.947F, 0.928F, 0.089F);
 
@@ -537,9 +534,9 @@ namespace RM_BBTS
                     descKey = "mve_electrify_dsc";
                     break;
 
-                case moveId.motivate: // Motivate
+                case moveId.motivate: // Motivate 
                     move = new StatChangeMove(moveId.motivate, "Motivate", 2, 0.40F);
-                    
+
                     move.useAccuracy = false;
                     move.priority = -1;
 
@@ -554,7 +551,7 @@ namespace RM_BBTS
 
                     move.description = "The user increases their attack, defense, and speed by 1 stage each. This move will always go last.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.colorWave1;
                     move.animationColor = new Color(0.978F, 0.440F, 0.125F);
 
@@ -563,14 +560,14 @@ namespace RM_BBTS
 
                     break;
 
-                case moveId.quickBurst: // Quick Burst
+                case moveId.quickBurst: // Quick Burst 
                     move = new Move(moveId.quickBurst, "Quick Burst", 2, 55, 0.95F, 0.3F);
                     move.RecoilPercent = 0.15F;
                     move.priority = 1;
 
                     move.description = "The user does a quick move that always goes first. This move will deal 0.15 of the damage dealt back to the user.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.831F, 0.982F, 0.972F);
 
@@ -578,14 +575,14 @@ namespace RM_BBTS
                     descKey = "mve_quickBurst_dsc";
                     break;
 
-                case moveId.hpDrain2: // Drain Heal 2
+                case moveId.hpDrain2: // Drain Heal 2 
                     move = new HealthDrainMove(moveId.hpDrain2, "Drain Heal 2", 2, 60, 0.85F, 0.40F);
 
                     (move as HealthDrainMove).damageHealPercent = 0.40F;
 
                     move.description = "The user attacks the target, gaining 40% of the damage dealt as health.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.crawl1;
                     move.animationColor = new Color(0.164F, 0.841F, 0.18F);
 
@@ -593,19 +590,19 @@ namespace RM_BBTS
                     descKey = "mve_hpDrain2_dsc";
                     break;
 
-                case moveId.statClear: // Stat Clear
+                case moveId.statClear: // Stat Clear 
                     move = new StatClearMove();
 
-                    // Translated and animated in constructor.
+                    // Translated and animated in constructor. 
                     break;
 
-                case moveId.cure: // Cure
+                case moveId.cure: // Cure 
                     move = new CureMove();
-                    
-                    // Translation and animated in constructor.
+
+                    // Translation and animated in constructor. 
                     break;
 
-                case moveId.risk: // Risk
+                case moveId.risk: // Risk 
                     move = new StatChangeMove(moveId.risk, "Risk", 2, 0.20F);
 
                     move.attackChangeUser = 2;
@@ -621,7 +618,7 @@ namespace RM_BBTS
 
                     move.description = "The user increases their attack by 2 stages and accuracy by 1 stage, but lowers their defense by 1 stage.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.colorWave1;
                     move.animationColor = new Color(0.965F, 0.078F, 0.0383F);
 
@@ -629,13 +626,13 @@ namespace RM_BBTS
                     descKey = "mve_risk_dsc";
                     break;
 
-                case moveId.tidalWave: // Tidal Wave
-                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.20F);
+                case moveId.tidalWave: // Tidal Wave 
+                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.30F);
                     move.useAccuracy = false;
 
                     move.description = "The user hits the target with a strong attack that never misses.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.fill1;
                     move.animationColor = new Color(0.052F, 0.545F, 0.969F);
 
@@ -643,14 +640,14 @@ namespace RM_BBTS
                     descKey = "mve_tidalWave_dsc";
                     break;
 
-                case moveId.burnBoostTarget: // Livefire
+                case moveId.burnBoostTarget: // Livefire 
                     move = new StatusAttackMove(moveId.burnBoostTarget, "Livefire", 2, 45, 0.90F, 0.30F);
 
                     (move as StatusAttackMove).targetBurned = true;
 
                     move.description = "An attack that does more damage if the target is burned.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.967F, 0.396F, 0.106F);
 
@@ -658,14 +655,14 @@ namespace RM_BBTS
                     descKey = "mve_burnBoostTarget_dsc";
                     break;
 
-                case moveId.paraBoostTarget: // Livewire
+                case moveId.paraBoostTarget: // Livewire 
                     move = new StatusAttackMove(moveId.paraBoostTarget, "Livewire", 2, 50, 0.90F, 0.30F);
 
                     (move as StatusAttackMove).targetParalyzed = true;
 
                     move.description = "An attack that does more damage if the target is paralyzed.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.burst1;
                     move.animationColor = new Color(0.741F, 0.969F, 0.106F);
 
@@ -673,16 +670,16 @@ namespace RM_BBTS
                     descKey = "mve_paraBoostTarget_dsc";
                     break;
 
-                case moveId.shield2: // Shield 2
-                    move = new ShieldMove(moveId.shield2, "Shield 2", 1, 0.0F, 0.75F, 0.40F);
+                case moveId.shield2: // Shield 2 
+                    move = new ShieldMove(moveId.shield2, "Shield 2", 2, 0.0F, 0.75F, 0.40F);
 
-                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works 75% of the time.";
+                    move.description = "A priority move that blocks all direct attacks on the user for a turn. It works 75% of the time.";
 
-                    // Animation
+                    // Animation 
                     move.animation = moveAnim.shield1;
                     move.animationColor = new Color(1.0F, 0.992F, 0.760F);
 
-                    // Sets the keys for translating the data.
+                    // Sets the keys for translating the data. 
                     nameKey = "mve_shield2_nme";
                     descKey = "mve_shield2_dsc";
                     break;
@@ -701,283 +698,283 @@ namespace RM_BBTS
                     descKey = "mve_breaker2_dsc";
                     break;
 
-                case moveId.wham: // Wham
-                    move = new Move(moveId.wham, "Wham", 2, 55.0F, 1.0F, 0.15F);
-
-                    move.description = "The user hits the target with a decent, basic attack.";
-
-                    // Animation
-                    move.animation = moveAnim.smack3;
-                    move.animationColor = new Color(0.65F, 0.65F, 0.65F);
-
-                    nameKey = "mve_wham_nme";
-                    descKey = "mve_wham_dsc";
-                    break;
-
-
-
-
-                // RANK 3
-                case moveId.laserBlast: // Laser Blast
-                    move = new Move(moveId.laserBlast, "Laser Blast", 3, 90.0F, 0.85F, 0.27F);
-
-                    move.description = "A strong laser blast.";
-
-                    // Animation
-                    move.animation = moveAnim.blast1;
-                    move.animationColor = new Color(0.891F, 0.078F, 0.965F);
-
-                    nameKey = "mve_laserBlast_nme";
-                    descKey = "mve_laserBlast_dsc";
-                    break;
-
-                case moveId.fireBlast: // Fire Blast
-                    move = new Move(moveId.fireBlast, "Fire Blast", 3, 85.0F, 0.8F, 0.30F);
-                    move.BurnChance = 0.30F;
-
-                    move.description = "A strong fire blast with a 0.30 chance of burning the target.";
-
-                    // Animation
-                    move.animation = moveAnim.blast1;
-                    move.animationColor = new Color(0.965F, 0.267F, 0.207F);
-
-                    nameKey = "mve_fireBlast_nme";
-                    descKey = "mve_fireBlast_dsc";
-                    break;
-
-                case moveId.elecBlast: // Electric Blast
-                    move = new Move(moveId.elecBlast, "Electric Blast", 3, 85.0F, 0.8F, 0.30F);
-                    move.ParalysisChance = 0.30F;
-
-                    move.description = "A strong electric blast with a 0.30 chance of paralyzing the target.";
-
-                    // Animation
-                    move.animation = moveAnim.blast1;
-                    move.animationColor = new Color(0.952F, 0.910F, 0.102F);
-
-                    nameKey = "mve_elecBlast_nme";
-                    descKey = "mve_elecBlast_dsc";
-                    break;
-
-                case moveId.sonicWave: // Sonic Wave
-                    move = new Move(moveId.sonicWave, "Sonic Wave", 3, 80.0F, 0.90F, 0.27F);
-
-                    move.accuracyChangeTarget = -1;
-                    move.accuracyChangeChanceTarget = 0.25F;
-
-                    move.description = "A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage.";
-
-                    // Animation
-                    move.animation = moveAnim.wave2;
-                    move.animationColor = new Color(0.901F, 0.869F, 0.974F);
-
-                    nameKey = "mve_sonicWave_nme";
-                    descKey = "mve_sonicWave_dsc";
-                    break;
-
-                case moveId.hpDrain3: // Drain Heal 3
-                    move = new HealthDrainMove(moveId.hpDrain3, "Drain Heal 3", 3, 80, 0.75F, 0.45F);
-
-                    (move as HealthDrainMove).damageHealPercent = 0.50F;
-
-                    move.description = "The user attacks the target, gaining 50% of the damage dealt as health.";
-
-                    // Animation
-                    move.animation = moveAnim.crawl1;
-                    move.animationColor = new Color(0.421F, 0.938F, 0.094F);
-
-                    nameKey = "mve_hpDrain3_nme";
-                    descKey = "mve_hpDrain3_dsc";
-                    break;
-
-                case moveId.twister: // Twister
-                    move = new Move(moveId.twister, "Twister", 3, 70, 0.95F, 0.30F);
-
-                    move.defenseChangeTarget = -1;
-                    move.defenseChangeChanceTarget = 1.0F;
-
-                    move.CriticalChance = 0.0F;
-
-                    move.description = "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage.";
-
-                    // Animation
-                    move.animation = moveAnim.twister1;
-                    move.animationColor = new Color(0.868F, 0.80F, 0.705F);
-
-                    nameKey = "mve_twister_nme";
-                    descKey = "mve_twister_dsc";
-                    break;
-
-                case moveId.waterBlast: // Water Blast
-                    move = new Move(moveId.waterBlast, "Water Blast", 3, 85, 0.80F, 0.30F);
-
-                    move.attackChangeTarget = -1;
-                    move.attackChangeChanceTarget = 0.30F;
-
-                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage.";
-
-                    // Animation
-                    move.animation = moveAnim.blast2;
-                    move.animationColor = new Color(0.09F, 0.788F, 0.960F);
-
-                    nameKey = "mve_waterBlast_nme";
-                    descKey = "mve_waterBlast_dsc";
-                    break;
-
-                case moveId.rockBlast: // Rock Blast
-                    move = new Move(moveId.rockBlast, "Rock Blast", 3, 85, 0.80F, 0.30F);
-
-                    move.defenseChangeTarget = -1;
-                    move.defenseChangeChanceTarget = 0.30F;
-
-                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage.";
-
-                    // Animation
-                    move.animation = moveAnim.blast2;
-                    move.animationColor = new Color(0.952F, 0.629F, 0.070F);
-
-                    nameKey = "mve_rockBlast_nme";
-                    descKey = "mve_rockBlast_dsc";
-                    break;
-
-                case moveId.airBlast: // Air Blast
-                    move = new Move(moveId.airBlast, "Air Blast", 3, 85, 0.80F, 0.30F);
-
-                    move.speedChangeTarget = -1;
-                    move.speedChangeChanceTarget = 0.30F;
-
-                    move.description = "The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage.";
-
-                    // Animation
-                    move.animation = moveAnim.blast2;
-                    move.animationColor = new Color(0.661F, 0.904F, 0.921F);
-
-                    nameKey = "mve_airBlast_nme";
-                    descKey = "mve_airBlast_dsc";
-
-                    break;
-
-                case moveId.quake: // Quake
-                    move = new Move(moveId.quake, "Quake", 3, 75, 0.80F, 0.30F);
-
-                    move.CriticalChance = 0.30F;
-                    move.RecoilPercent = 0.40F;
-
-                    move.description = "The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user.";
-
-                    // Animation
-                    move.animation = moveAnim.slash2;
-                    move.animationColor = new Color(1.0F, 0.898F, 0.893F);
-
-                    nameKey = "mve_quake_nme";
-                    descKey = "mve_quake_dsc";
-
-                    break;
-
-                case moveId.chargeSun: // Charging Sun
-                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 100, 0.85F);
-                    move.BurnChance = 0.20F;
-                    move.priority = -3;
-
-                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last.";
-
-                    // Animation
-                    move.animation = moveAnim.shootingStar1;
-                    move.animationColor = new Color(1.0F, 0.66F, 0.00F);
-
-                    nameKey = "mve_chargeSun_nme";
-                    descKey = "mve_chargeSun_dsc";
-
-                    break;
-
-                case moveId.chargeMoon: // Charging Moon
-                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 100, 0.85F);
-                    move.ParalysisChance = 0.20F;
-                    move.priority = -3;
-
-                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last.";
-
-                    // Animation
-                    move.animation = moveAnim.shootingStar1;
-                    move.animationColor = new Color(0.0F, 0.326F, 1.0F);
-
-                    nameKey = "mve_chargeMoon_nme";
-                    descKey = "mve_chargeMoon_dsc";
-                    break;
-
-                case moveId.earlyBurst: // Early Burst
-                    move = new TurnsLowMove(moveId.earlyBurst, "Early Burst", 3, 90, 0.85F, 0.30F);
-
-                    move.description = "A move that gets weaker the longer the battle goes on.";
-
-                    // Animation
-                    move.animation = moveAnim.burst1;
-                    move.animationColor = new Color(0.830F, 0.974F, 0.922F);
-
-                    nameKey = "mve_earlyBurst_nme";
-                    descKey = "mve_earlyBurst_dsc";
-                    break;
-
-                case moveId.allOut: // All-Out Attack
-                    move = new Move(moveId.allOut, "All Out Attack", 3, 90, 0.90F, 0.45F);
-
-                    move.attackChangeUser = -1;
-                    move.attackChangeChanceUser = 1.0F;
-
-                    move.description = "A move that lowers the user's attack stat by 1 stage every time it's used.";
-
-                    // Animation
-                    move.animation = moveAnim.smack2;
-                    move.animationColor = new Color(0.974F, 0.188F, 0.144F);
-
-                    // Sets the keys for translating the data.
-                    nameKey = "mve_allOut_nme";
-                    descKey = "mve_allOut_dsc";
-                    break;
-
-                case moveId.burnBoostUser: // Fire Boost
-                    move = new StatusAttackMove(moveId.burnBoostUser, "Fire Boost", 3, 65, 0.90F, 0.40F);
-
-                    (move as StatusAttackMove).userBurned = true;
-
-                    move.description = "An attack that does more damage if the user is burned.";
-
-                    // Animation
-                    move.animation = moveAnim.smack2;
-                    move.animationColor = new Color(0.902F, 0.169F, 0.071F);
-
-                    nameKey = "mve_burnBoostUser_nme";
-                    descKey = "mve_burnBoostUser_dsc";
-                    break;
-
-                case moveId.paraBoostUser: // Electric Boost
-                    move = new StatusAttackMove(moveId.paraBoostUser, "Electric Boost", 3, 60, 0.90F, 0.40F);
-
-                    (move as StatusAttackMove).userParalyzed = true;
-
-                    move.description = "An attack that does more damage if the user is paralyzed.";
-
-                    // Animation
-                    move.animation = moveAnim.smack2;
-                    move.animationColor = new Color(0.902F, 0.886F, 0.071F);
-
-                    nameKey = "mve_paraBoostUser_nme";
-                    descKey = "mve_paraBoostUser_dsc";
-                    break;
-
-                case moveId.shield3: // Shield 3
-                    move = new ShieldMove(moveId.shield3, "Shield 3", 1, 0.0F, 1.00F, 0.50F);
-
-                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works every time.";
-
-                    // Animation
-                    move.animation = moveAnim.shield1;
-                    move.animationColor = new Color(0.850F, 1.00F, 0.760F);
-
-                    // Sets the keys for translating the data.
-                    nameKey = "mve_shield3_nme";
-                    descKey = "mve_shield3_dsc";
-                    break;
+                case moveId.wham: // Wham 
+                    move = new Move(moveId.wham, "Wham", 2, 55.0F, 1.0F, 0.15F); 
+ 
+                    move.description = "The user hits the target with a decent, basic attack."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.smack3; 
+                    move.animationColor = new Color(0.65F, 0.65F, 0.65F); 
+ 
+                    nameKey = "mve_wham_nme"; 
+                    descKey = "mve_wham_dsc"; 
+                    break; 
+ 
+ 
+ 
+ 
+                // RANK 3 
+                case moveId.laserBlast: // Laser Blast 
+                    move = new Move(moveId.laserBlast, "Laser Blast", 3, 90.0F, 0.85F, 0.27F); 
+ 
+                    move.description = "A strong laser blast."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast1; 
+                    move.animationColor = new Color(0.891F, 0.078F, 0.965F); 
+ 
+                    nameKey = "mve_laserBlast_nme"; 
+                    descKey = "mve_laserBlast_dsc"; 
+                    break; 
+ 
+                case moveId.fireBlast: // Fire Blast 
+                    move = new Move(moveId.fireBlast, "Fire Blast", 3, 85.0F, 0.80F, 0.28F); 
+                    move.BurnChance = 0.30F; 
+ 
+                    move.description = "A strong fire blast with a 0.30 chance of burning the target."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast1; 
+                    move.animationColor = new Color(0.965F, 0.267F, 0.207F); 
+ 
+                    nameKey = "mve_fireBlast_nme"; 
+                    descKey = "mve_fireBlast_dsc"; 
+                    break; 
+ 
+                case moveId.elecBlast: // Electric Blast 
+                    move = new Move(moveId.elecBlast, "Electric Blast", 3, 85.0F, 0.80F, 0.28F); 
+                    move.ParalysisChance = 0.30F; 
+ 
+                    move.description = "A strong electric blast with a 0.30 chance of paralyzing the target."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast1; 
+                    move.animationColor = new Color(0.952F, 0.910F, 0.102F); 
+ 
+                    nameKey = "mve_elecBlast_nme"; 
+                    descKey = "mve_elecBlast_dsc"; 
+                    break; 
+ 
+                case moveId.sonicWave: // Sonic Wave 
+                    move = new Move(moveId.sonicWave, "Sonic Wave", 3, 80.0F, 0.85F, 0.27F); 
+ 
+                    move.accuracyChangeTarget = -1; 
+                    move.accuracyChangeChanceTarget = 0.25F; 
+ 
+                    move.description = "A strong attack that has a 0.25 chance of lowering the target's accuracy by 1 stage."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.wave2; 
+                    move.animationColor = new Color(0.901F, 0.869F, 0.974F); 
+ 
+                    nameKey = "mve_sonicWave_nme"; 
+                    descKey = "mve_sonicWave_dsc"; 
+                    break; 
+ 
+                case moveId.hpDrain3: // Drain Heal 3 
+                    move = new HealthDrainMove(moveId.hpDrain3, "Drain Heal 3", 3, 80, 0.80F, 0.45F); 
+ 
+                    (move as HealthDrainMove).damageHealPercent = 0.50F; 
+ 
+                    move.description = "The user attacks the target, gaining 50% of the damage dealt as health."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.crawl1; 
+                    move.animationColor = new Color(0.421F, 0.938F, 0.094F); 
+ 
+                    nameKey = "mve_hpDrain3_nme"; 
+                    descKey = "mve_hpDrain3_dsc"; 
+                    break; 
+ 
+                case moveId.twister: // Twister 
+                    move = new Move(moveId.twister, "Twister", 3, 75, 0.95F, 0.25F); 
+ 
+                    move.defenseChangeTarget = -1; 
+                    move.defenseChangeChanceTarget = 1.0F; 
+ 
+                    move.CriticalChance = 0.0F; 
+ 
+                    move.description = "The user attacks the target, lowering the target's defense by 1 stage. This move cannot do critical damage."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.twister1; 
+                    move.animationColor = new Color(0.868F, 0.80F, 0.705F); 
+ 
+                    nameKey = "mve_twister_nme"; 
+                    descKey = "mve_twister_dsc"; 
+                    break; 
+ 
+                case moveId.waterBlast: // Water Blast 
+                    move = new Move(moveId.waterBlast, "Water Blast", 3, 85, 0.80F, 0.28F); 
+ 
+                    move.attackChangeTarget = -1; 
+                    move.attackChangeChanceTarget = 0.30F; 
+ 
+                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's attack by 1 stage."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast2; 
+                    move.animationColor = new Color(0.09F, 0.788F, 0.960F); 
+ 
+                    nameKey = "mve_waterBlast_nme"; 
+                    descKey = "mve_waterBlast_dsc"; 
+                    break; 
+ 
+                case moveId.rockBlast: // Rock Blast 
+                    move = new Move(moveId.rockBlast, "Rock Blast", 3, 85, 0.80F, 0.28F); 
+ 
+                    move.defenseChangeTarget = -1; 
+                    move.defenseChangeChanceTarget = 0.30F; 
+ 
+                    move.description = "The user attacks the target. This move has a 0.30 chance of lowering the target's defense by 1 stage."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast2; 
+                    move.animationColor = new Color(0.952F, 0.629F, 0.070F); 
+ 
+                    nameKey = "mve_rockBlast_nme"; 
+                    descKey = "mve_rockBlast_dsc"; 
+                    break; 
+ 
+                case moveId.airBlast: // Air Blast 
+                    move = new Move(moveId.airBlast, "Air Blast", 3, 85, 0.80F, 0.28F); 
+ 
+                    move.speedChangeTarget = -1; 
+                    move.speedChangeChanceTarget = 0.30F; 
+ 
+                    move.description = "The user attacks the target. This move has a 0.30 of lowering the target's speed by 1 stage."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.blast2; 
+                    move.animationColor = new Color(0.661F, 0.904F, 0.921F); 
+ 
+                    nameKey = "mve_airBlast_nme"; 
+                    descKey = "mve_airBlast_dsc"; 
+ 
+                    break; 
+ 
+                case moveId.quake: // Quake 
+                    move = new Move(moveId.quake, "Quake", 3, 75, 0.80F, 0.30F); 
+ 
+                    move.CriticalChance = 0.30F; 
+                    move.RecoilPercent = 0.40F; 
+ 
+                    move.description = "The user hits the target with a strong move. The move has a critical chance of 0.30, and deals 40% of the damage dealt back to the user."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.slash2; 
+                    move.animationColor = new Color(1.0F, 0.898F, 0.893F); 
+ 
+                    nameKey = "mve_quake_nme"; 
+                    descKey = "mve_quake_dsc"; 
+ 
+                    break; 
+ 
+                case moveId.chargeSun: // Charging Sun 
+                    move = new EnergyAllMove(moveId.chargeSun, "Charging Sun", 3, 120, 0.80F); 
+                    move.BurnChance = 0.20F; 
+                    move.priority = -3; 
+ 
+                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a burn chance of 0.20, and always goes last."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.shootingStar1; 
+                    move.animationColor = new Color(1.0F, 0.66F, 0.00F); 
+ 
+                    nameKey = "mve_chargeSun_nme"; 
+                    descKey = "mve_chargeSun_dsc"; 
+ 
+                    break; 
+ 
+                case moveId.chargeMoon: // Charging Moon 
+                    move = new EnergyAllMove(moveId.chargeMoon, "Charging Moon", 3, 120, 0.80F); 
+                    move.ParalysisChance = 0.20F; 
+                    move.priority = -3; 
+ 
+                    move.description = "A move that uses all the user's energy. The more energy used, the stronger the move. This move has a paralysis chance of 0.20, and always goes last."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.shootingStar1; 
+                    move.animationColor = new Color(0.0F, 0.326F, 1.0F); 
+ 
+                    nameKey = "mve_chargeMoon_nme"; 
+                    descKey = "mve_chargeMoon_dsc"; 
+                    break; 
+ 
+                case moveId.earlyBurst: // Early Burst 
+                    move = new TurnsLowMove(moveId.earlyBurst, "Early Burst", 3, 120.0F, 0.85F, 0.30F); 
+ 
+                    move.description = "A move that gets weaker the longer the battle goes on."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.burst1; 
+                    move.animationColor = new Color(0.830F, 0.974F, 0.922F); 
+ 
+                    nameKey = "mve_earlyBurst_nme"; 
+                    descKey = "mve_earlyBurst_dsc"; 
+                    break; 
+ 
+                case moveId.allOut: // All-Out Attack 
+                    move = new Move(moveId.allOut, "All Out Attack", 3, 100, 0.90F, 0.45F); 
+ 
+                    move.attackChangeUser = -1; 
+                    move.attackChangeChanceUser = 1.0F; 
+ 
+                    move.description = "A move that lowers the user's attack stat by 1 stage every time it's used."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.smack2; 
+                    move.animationColor = new Color(0.974F, 0.188F, 0.144F); 
+ 
+                    // Sets the keys for translating the data. 
+                    nameKey = "mve_allOut_nme"; 
+                    descKey = "mve_allOut_dsc"; 
+                    break; 
+ 
+                case moveId.burnBoostUser: // Fire Boost 
+                    move = new StatusAttackMove(moveId.burnBoostUser, "Fire Boost", 3, 65, 0.90F, 0.40F); 
+ 
+                    (move as StatusAttackMove).userBurned = true; 
+ 
+                    move.description = "An attack that does more damage if the user is burned."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.smack2; 
+                    move.animationColor = new Color(0.902F, 0.169F, 0.071F); 
+ 
+                    nameKey = "mve_burnBoostUser_nme"; 
+                    descKey = "mve_burnBoostUser_dsc"; 
+                    break; 
+ 
+                case moveId.paraBoostUser: // Electric Boost 
+                    move = new StatusAttackMove(moveId.paraBoostUser, "Electric Boost", 3, 60, 0.90F, 0.40F); 
+ 
+                    (move as StatusAttackMove).userParalyzed = true; 
+ 
+                    move.description = "An attack that does more damage if the user is paralyzed."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.smack2; 
+                    move.animationColor = new Color(0.902F, 0.886F, 0.071F); 
+ 
+                    nameKey = "mve_paraBoostUser_nme"; 
+                    descKey = "mve_paraBoostUser_dsc"; 
+                    break; 
+ 
+                case moveId.shield3: // Shield 3 
+                    move = new ShieldMove(moveId.shield3, "Shield 3", 3, 0.0F, 1.00F, 0.50F); 
+ 
+                    move.description = "A priority move that blocks direct attacks on the user for a turn. It works every time."; 
+ 
+                    // Animation 
+                    move.animation = moveAnim.shield1; 
+                    move.animationColor = new Color(0.850F, 1.00F, 0.760F); 
+ 
+                    // Sets the keys for translating the data. 
+                    nameKey = "mve_shield3_nme"; 
+                    descKey = "mve_shield3_dsc"; 
+                    break; 
 
                 case moveId.breaker3: // Breaker 3
                     move = new ShieldBreakerMove(moveId.breaker3, "Breaker 3", 3, 60.0F, 0.90F, 0.20F);
@@ -1081,14 +1078,14 @@ namespace RM_BBTS
             List<Move> chosenMoves = new List<Move>();
 
             // The number of the last move.
-            int lastMoveNum = (int)LAST_RANK_3;
+            const int LAST_MOVE_NUM = (int)LAST_RANK_3;
 
             // Returns an empty list if the count is invalid.
             if (count <= 0)
                 return chosenMoves;
 
             // While there are still moves to add.
-            for (int i = MOVE_ID_RAND_START; i <= lastMoveNum; i++)
+            for (int i = MOVE_ID_RAND_START; i <= LAST_MOVE_NUM; i++)
             {
                 // Grabs the move id.
                 moveId mid = (moveId)i;
@@ -1138,5 +1135,6 @@ namespace RM_BBTS
             // Re-uses the other function.
             return GetRandomMoves(count, ignoreList);
         }
+
     }
 }

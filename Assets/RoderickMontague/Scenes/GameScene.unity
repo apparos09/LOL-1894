@@ -3432,6 +3432,46 @@ PrefabInstance:
       propertyPath: m_Direction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.g
+      value: 0.52267194
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.g
+      value: 0.65159893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.g
+      value: 0.8045454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: useMultiColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391322, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Name
       value: Player Energy Bar
@@ -9840,6 +9880,46 @@ PrefabInstance:
       propertyPath: speed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.b
+      value: 0.06848736
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.g
+      value: 0.060590927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: lowColor.r
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.b
+      value: 0.048540328
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.g
+      value: 0.7229085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: midColor.r
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.b
+      value: 0.08116763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: highColor.r
+      value: 0.13931125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: useMultiColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391322, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Name
       value: Opponent Health Bar
@@ -12275,7 +12355,7 @@ MonoBehaviour:
   roomsCompleted: 0
   lastEnemyLevelUps: -1
   evolveWaves: 0
-  turnsPassed: 0
+  totalTurnsPassed: 0
   gameTimer: 0
   pausedTimer: 0
   pauseTimerWhenTutorial: 1
@@ -13595,6 +13675,10 @@ PrefabInstance:
     - target: {fileID: 4866852875785391320, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Direction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: useMultiColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391322, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Name
