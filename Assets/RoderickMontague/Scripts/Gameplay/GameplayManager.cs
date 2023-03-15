@@ -1346,13 +1346,18 @@ namespace RM_BBTS
         // Called when the player gets a game over.
         public void OnGameOver()
         {
-            player.Health = player.MaxHealth;
-            player.Energy = player.MaxEnergy;
+            // Return health and energy levels to max.
+            player.SetHealthToMax();
+            player.SetEnergyToMax();
 
-            // Update the UI for the player's health and energy. 
-            // This happens again elsewhere, but I'm just doing it here for clarity. 
-            UpdatePlayerHealthUI();
-            UpdatePlayerEnergyUI();
+            // If the bars are called to update while transitioning, they jump to their end result instantly.
+            // As such, these UI calls were commented out, since they're called elsewhere.
+            // The code above for setting to max could probably also be commented out...
+            // But it's not causing any issues.
+
+            // // Update the UI for the player's health and energy. 
+            // UpdatePlayerHealthUI();
+            // UpdatePlayerEnergyUI();
 
             // Enemy powers are restored in the OnOverworldReturnGameOver() function. 
             overworld.gameOver = true;

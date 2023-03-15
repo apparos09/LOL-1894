@@ -57,8 +57,16 @@ namespace RM_BBTS
         // The colour for when the health bar is high (50% or more) 
         public Color highColor = Color.green;
 
+        // The threshold for the bar entering the 'high-range' (low-end).
+        [Tooltip("The threshold that must be surpassed to be in the high percentage range.")]
+        public float highThreshold = 0.50F;
+
         // The colour for when the health bar is mid (25% or more) 
         public Color midColor = Color.yellow;
+
+        // The threshold for the bar entering the 'mid range' (low-end).
+        [Tooltip("The threshold that must be surpassed to be in the mid percentage range.")]
+        public float midThreshold = 0.25F;
 
         // The colour for when the health bar is low (12.5% or less) 
         public Color lowColor = Color.red;
@@ -184,17 +192,18 @@ namespace RM_BBTS
             // The percentage. 
             float percent = value / maxValue;
 
-            // The threshold values. 
-            const float MID = 0.25F;
-            const float HIGH = 0.50F;
+            // If the bar is transitioning, use the bar's value instead of the destination value.
+            if (transitioning)
+                percent = bar.value / bar.maxValue;
+
 
             // Checks how full the bar is. 
-            if (value / maxValue <= MID) // less than or equal to 25% 
+            if (percent <= midThreshold) // less than or equal to 25% 
             {
                 if (barFill.color != lowColor)
                     barFill.color = lowColor;
             }
-            else if (value / maxValue <= HIGH) // less than or equal to 50% 
+            else if (percent <= highThreshold) // less than or equal to 50% 
             {
                 if (barFill.color != midColor)
                     barFill.color = midColor;

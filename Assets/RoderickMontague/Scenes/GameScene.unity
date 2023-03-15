@@ -12275,7 +12275,7 @@ MonoBehaviour:
   roomsCompleted: 0
   lastEnemyLevelUps: -1
   evolveWaves: 0
-  turnsPassed: 0
+  totalTurnsPassed: 0
   gameTimer: 0
   pausedTimer: 0
   pauseTimerWhenTutorial: 1
