@@ -50,6 +50,27 @@ namespace RM_BBTS
         // If set to 'true', the fill alpha is automatically set on the start screen.
         public bool autoSetFillAlpha = true;
 
+        [Header("Bar Fill/Multi-Color")]
+        // If set to 'true', multi-colours are used. 
+        public bool useMultiColor = false;
+
+        // The colour for when the health bar is high (50% or more) 
+        public Color highColor = Color.green;
+
+        // The threshold for the bar entering the 'high-range' (low-end).
+        [Tooltip("The threshold that must be surpassed to be in the high percentage range.")]
+        public float highThreshold = 0.50F;
+
+        // The colour for when the health bar is mid (25% or more) 
+        public Color midColor = Color.yellow;
+
+        // The threshold for the bar entering the 'mid range' (low-end).
+        [Tooltip("The threshold that must be surpassed to be in the mid percentage range.")]
+        public float midThreshold = 0.25F;
+
+        // The colour for when the health bar is low (12.5% or less) 
+        public Color lowColor = Color.red;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -131,6 +152,9 @@ namespace RM_BBTS
                 // Changes the progress bar visual.
                 startValue = value;
                 bar.value = value;
+
+                // Refreshes the color. 
+                RefreshColor();
             }
         }
 
@@ -156,6 +180,39 @@ namespace RM_BBTS
         public bool IsTransitioning()
         {
             return transitioning;
+        }
+
+        // Refreshes the color of the bar. If 'useMultiColor' is set to 'false', nothing happens. 
+        public void RefreshColor()
+        {
+            // Don't use multi-color. 
+            if (!useMultiColor)
+                return;
+
+            // The percentage. 
+            float percent = value / maxValue;
+
+            // If the bar is transitioning, use the bar's value instead of the destination value.
+            if (transitioning)
+                percent = bar.value / bar.maxValue;
+
+
+            // Checks how full the bar is. 
+            if (percent <= midThreshold) // less than or equal to 25% 
+            {
+                if (barFill.color != lowColor)
+                    barFill.color = lowColor;
+            }
+            else if (percent <= highThreshold) // less than or equal to 50% 
+            {
+                if (barFill.color != midColor)
+                    barFill.color = midColor;
+            }
+            else // Above 50% 
+            {
+                if (barFill.color != highColor)
+                    barFill.color = highColor;
+            }
         }
 
         // Update is called once per frame
@@ -209,6 +266,8 @@ namespace RM_BBTS
                     transitioning = false;
                 }
 
+                // Refresh the bar color. 
+                RefreshColor();
             }
             else
             {

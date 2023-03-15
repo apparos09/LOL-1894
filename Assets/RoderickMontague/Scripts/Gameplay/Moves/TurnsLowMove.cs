@@ -10,7 +10,7 @@ namespace RM_BBTS
     public class TurnsLowMove : Move
     {
         // The lowest amount of power the move can have.
-        public float lowestPower = 20.0F;
+        public float lowestPower = 30.0F;
 
         // The amount of reduction for each turn taken.
         public float turnReduct = 0.1F;
@@ -41,13 +41,13 @@ namespace RM_BBTS
             float newPower = 0.0F;
             
             // If 10 turns have passed, this move 
-            if(battle.TurnsTaken >= turnsMax) // Maximum amount of turns reached.
+            if(battle.TurnsPassed >= turnsMax) // Maximum amount of turns reached.
             {
                 newPower = lowestPower;
             }
             else // Reduce the power.
             {
-                newPower = lowestPower + Mathf.Ceil((power - lowestPower) * (1.0F - battle.TurnsTaken * turnReduct));
+                newPower = lowestPower + Mathf.Ceil((power - lowestPower) * (1.0F - battle.TurnsPassed * turnReduct));
             }
 
             // The damage to be returned.

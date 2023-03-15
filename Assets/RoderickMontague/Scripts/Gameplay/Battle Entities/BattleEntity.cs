@@ -162,7 +162,7 @@ namespace RM_BBTS
         // Moves
         [Header("Moves")]
         // The moves that the battle entity has.
-        public Move[] moves = new Move[4] {null, null, null, null};
+        public Move[] moves = new Move[4] { null, null, null, null };
 
         // The total amount of moves.
         public const int MOVE_COUNT = 4;
@@ -242,8 +242,12 @@ namespace RM_BBTS
             // Creates the data object.
             BattleEntityGameData data = new BattleEntityGameData();
 
-            // Sets the values.
+            // Sets the evolutions. 
             data.id = id;
+            data.preEvoId = preEvoId;
+            data.evoId = evoId;
+
+            // Sets the names.
             data.displayName = displayName;
             data.displayNameSpeakKey = displayNameSpeakKey;
 
@@ -288,6 +292,8 @@ namespace RM_BBTS
             if (Move3 != null)
                 data.move3 = Move3.Id;
 
+
+            // Sprite
             data.sprite = sprite;
 
             return data;
@@ -375,10 +381,16 @@ namespace RM_BBTS
         // Loads the battle data into this object.
         public virtual void LoadBattleGameData(BattleEntityGameData data)
         {
+            // Evos 
             id = data.id;
+            preEvoId = data.preEvoId;
+            evoId = data.evoId;
+
+            // Names 
             displayName = data.displayName;
             displayNameSpeakKey = data.displayNameSpeakKey;
 
+            // Levels
             level = data.level;
             levelRate = data.levelRate;
 
@@ -390,10 +402,13 @@ namespace RM_BBTS
             defense = data.defense;
             speed = data.speed;
 
-            statSpecial = data.statSpecial;
-
             maxEnergy = data.maxEnergy;
             energy = data.energy;
+
+
+            // Stat speciality.
+            statSpecial = data.statSpecial;
+
 
             // Stat modifiers.
             attackMod = data.attackMod;
@@ -436,7 +451,7 @@ namespace RM_BBTS
             // Move2 = MoveList.Instance.GenerateMove(data.move2);
             // Move3 = MoveList.Instance.GenerateMove(data.move3);
 
-                // Save sprite data.
+            // Set sprite data.
             sprite = data.sprite;
         }
 
@@ -462,8 +477,8 @@ namespace RM_BBTS
         {
             get { return maxHealth; }
 
-            set 
-            { 
+            set
+            {
                 maxHealth = (value < 0) ? 1 : value;
                 health = Mathf.Clamp(value, 0, maxHealth);
             }
@@ -506,8 +521,8 @@ namespace RM_BBTS
         {
             get { return maxEnergy; }
 
-            set 
-            { 
+            set
+            {
                 maxEnergy = (value < 0) ? 1 : value;
                 energy = Mathf.Clamp(value, 0, MaxEnergy);
             }
@@ -751,7 +766,7 @@ namespace RM_BBTS
             burned = false;
             paralyzed = false;
         }
-        
+ 
         // Checks if the battle entity is dead.
         public bool IsDead()
         {
@@ -930,6 +945,46 @@ namespace RM_BBTS
             return newData;
         }
 
+        // Levels up the data, slotting in its level rate and keeping the provided speciality.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, specialty special, uint times = 1)
+        {
+            return LevelUpData(data, data.levelRate, special, times);
+        }
+
+        // Levels up the data, slotting in its speciality.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, float levelRate, uint times = 1)
+        {
+            return LevelUpData(data, levelRate, data.statSpecial, times);
+        }
+
+        // Levels up the data, slotting in its level rate and specialty.
+        public static BattleEntityGameData LevelUpData(BattleEntityGameData data, uint times = 1)
+        {
+            return LevelUpData(data, data.levelRate, data.statSpecial, times);
+        }
+
+
+        // Returns 'true' if the entity can evolve.
+        public bool CanEvolve()
+        {
+            // If the evolution ID is the same, or if it is set to "unknown", the entity does not evolve.
+            bool evolves = !(evoId == id || evoId == battleEntityId.unknown);
+
+            // Return result.
+            return evolves;
+        }
+
+        // Returns 'true' if the entity can evolve.
+        public static bool CanEvolve(BattleEntityGameData data)
+        {
+            // If the evolution ID is the same, or if it is set to "unknown", the entity does not evolve.
+            bool evolves = !(data.evoId == data.id || data.evoId == battleEntityId.unknown);
+
+            // Return result.
+            return evolves;
+        }
+
+
         // Evolves the entity. It fails if the entity does not have an evolution.
         public bool Evolve()
         {
@@ -952,7 +1007,7 @@ namespace RM_BBTS
         public static BattleEntityGameData EvolveData(BattleEntityGameData oldData)
         {
             // Can't evolve if the evolution is the same entity, or if it's set to unknown.
-            if (oldData.evoId == oldData.id || oldData.evoId == battleEntityId.unknown)
+            if (!CanEvolve(oldData))
                 return oldData;
 
             // Gets the base data.

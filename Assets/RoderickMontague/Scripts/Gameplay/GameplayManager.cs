@@ -83,7 +83,7 @@ namespace RM_BBTS
         [Header("Game Stats/Time")]
 
         // The total amount of turns completed.
-        public int turnsPassed = 0;
+        public int totalTurnsPassed = 0;
 
         // The time the game has been going for.
         // This uses deltaTime, which is in seconds.
@@ -943,7 +943,7 @@ namespace RM_BBTS
             battleBackground.gameObject.SetActive(true);
 
             // Sets the background colour, and reduces the brightest of the background slightly.
-            Color bgColor = color * 0.985F;
+            Color bgColor = color * 0.99F;
             color.a = 1.0F;
             battleBackground.color = bgColor;
 
@@ -1346,15 +1346,27 @@ namespace RM_BBTS
         // Called when the player gets a game over.
         public void OnGameOver()
         {
-            player.Health = player.MaxHealth;
-            player.Energy = player.MaxEnergy;
+            // Return health and energy levels to max.
+            player.SetHealthToMax();
+            player.SetEnergyToMax();
 
-            // TODO: restore enemy powers.
+            // If the bars are called to update while transitioning, they jump to their end result instantly.
+            // As such, these UI calls were commented out, since they're called elsewhere.
+            // The code above for setting to max could probably also be commented out...
+            // But it's not causing any issues.
+
+            // // Update the UI for the player's health and energy. 
+            // UpdatePlayerHealthUI();
+            // UpdatePlayerEnergyUI();
+
+            // Enemy powers are restored in the OnOverworldReturnGameOver() function. 
             overworld.gameOver = true;
 
-            // Loads the game over tutorial.
-            if (useTutorial && !tutorial.clearedGameOver)
-                tutorial.LoadGameOverTutorial();
+
+            // Moved to OnOverworldReturnGameOver() so that it doesn't show up until the transition is done. 
+            // // Loads the game over tutorial. 
+            // if (useTutorial && !tutorial.clearedGameOver) 
+            //     tutorial.LoadGameOverTutorial(); 
         }
 
 
@@ -1388,7 +1400,7 @@ namespace RM_BBTS
 
             // Time and turns.
             results.totalTime = gameTimer;
-            results.totalTurns = turnsPassed;
+            results.totalTurns = totalTurnsPassed;
 
             // Copies the amount of questions used, and a version with no repeats.
             results.questionsUsed = overworld.gameQuestion.GetQuestionsUsedCount(false);
@@ -1513,7 +1525,7 @@ namespace RM_BBTS
 
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
-            saveData.turnsPassed = turnsPassed;
+            saveData.turnsPassed = totalTurnsPassed;
 
             // Final flag to indicate that the data is safe to read.
             // This is done last so that any errors that occur will cause this line to be skipped.
@@ -1750,7 +1762,7 @@ namespace RM_BBTS
             evolveWaves = saveData.evolveWaves;
             
             gameTimer = saveData.gameTime;
-            turnsPassed = saveData.turnsPassed;
+            totalTurnsPassed = saveData.turnsPassed;
 
             // Updates the UI in general.
             UpdateUI();

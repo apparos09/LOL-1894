@@ -274,11 +274,11 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("Welcome to the battle simulator, Battle Bot! I’m Helper Bot, and I’ll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability."));
-                pages.Add(new Page("Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event’s chance, the more likely it is to happen."));
+                pages.Add(new Page("Welcome to the battle simulator, Battle Bot! I'm Helper Bot, and I'll be teaching you battle strategies through this simulator! But first, you should know that these strategies revolve around the concept of probability."));
+                pages.Add(new Page("Probability is a math subject where you assess the likelihood of an event. In decimal form, an event with a 0.00 chance will never happen, and an event with a 1.00 chance will always happen. The higher an event's chance, the more likely it is to happen."));
                 
                 // Probability Percentage Page
-                probPercentPage = new Page("Probability can also be expressed in percentage form or fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively. The image above shows conversion examples.");
+                probPercentPage = new Page("Probability can also be expressed in percentage form and fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively.");
                 pages.Add(probPercentPage);
 
                 // Probability Fraction Page (Start)
@@ -286,14 +286,14 @@ namespace RM_BBTS
                 pages.Add(probFractionPageStart);
 
                 // Probability Fraction Page (End)
-                probFractionPageEnd = new Page("The larger the portion (x) is in reference to the group size (y), the more likely the related event is.  When (x) is equal to (y), it is the equivalent of 1.00 in decimal form. When (x) is equal to 0, it equates to 0.00 in decimal form.");
+                probFractionPageEnd = new Page("The larger the portion (x) is in reference to the group size (y), the more likely the related event is. When (x) is equal to (y), it is the equivalent of 1.00 in decimal form. When (x) is equal to 0, it equates to 0.00 in decimal form.");
                 pages.Add(probFractionPageEnd);
 
-                pages.Add(new Page("With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they’re behind that scary locked door! Looks like you’ll have to go through a different door for now…"));
+                pages.Add(new Page("With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they're behind that scary locked door! Looks like you'll have to go through a different door for now…"));
 
                 // Hud Page
                 // Hud page requires moving the textbox, so save it.
-                hudPage = new Page("To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I’ll elaborate on later. There are also various buttons at the top, so check those out at your leisure.");
+                hudPage = new Page("To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I'll elaborate on later. There are also various buttons at the top, so check those out at your leisure.");
                 pages.Add(hudPage);
                 
                 pages.Add(new Page("With all that covered, please select an open door to start your first battle!"));
@@ -344,10 +344,10 @@ namespace RM_BBTS
             }    
             else // Default
             {
-                pages.Add(new Page("Welcome to your first battle, Battle Bot! To win the battle, you must bring your opponent’s health down to 0. But if the opponent brings your health down to 0, you’ll get a game over! To attack your opponent, you must use your battle moves!"));
+                pages.Add(new Page("Welcome to your first battle, Battle Bot! To win the battle, you must bring your opponent's health down to 0. But if the opponent brings your health down to 0, you'll get a game over! To attack your opponent, you must use your battle moves!"));
                 pages.Add(new Page("You can have up to 4 battle moves at a time, which together with the run and charge moves makes for a total of 6 battle options! To learn a new move, you must accept a move offer, which is given out every time you clear a room."));
                 pages.Add(new Page("The charge and run moves are special options that cannot be replaced. The charge move is used to charge your energy, which you need to perform your battle moves, while the run move has you attempt to flee from the battle."));
-                pages.Add(new Page("If you run from battle, your health and energy levels stay the same. Your opponent keeps their health and energy levels as well, but they will get restored if you clear too many rooms without defeating them."));
+                pages.Add(new Page("If you flee from battle, your health and energy levels stay the same. Your opponent keeps their health and energy levels as well, but they will get restored if you clear too many rooms without defeating them."));
                 pages.Add(new Page("With all that covered, time to try out one of your moves! If you want to know what a move does, click the stats button!"));
             }
 
@@ -374,8 +374,8 @@ namespace RM_BBTS
             else // Default
             {
                 pages.Add(new Page("You just finished your first turn of battle! As you can see, moves have different characteristics that determine how they perform in battle. Every move has at least 4 components, which are as follows: rank, power, accuracy, and energy usage."));
-                pages.Add(new Page("A move’s rank determines how advanced it is, a move’s power determines how much damage it does, a move’s accuracy determines how likely it is to hit its target, and a move’s energy usage determines how much energy is needed to use said move."));
-                pages.Add(new Page("If a move does not list one of the four components, then it has unique behavior that concerns said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions."));
+                pages.Add(new Page("A move's rank determines how advanced it is, a move's power determines how much damage it does, a move's accuracy determines how likely it is to hit its target, and a move's energy usage determines how much energy is needed to use said move."));
+                pages.Add(new Page("If a move component isn't listed, then said move has unique behavior concerning said attribute. On that point, moves can have additional effects as well, which are always explained in their descriptions."));
                 pages.Add(new Page("Make sure to check the stats window and info window if you ever need more information on your moves! With all that explained, on with the battle!"));
             }
 
@@ -398,7 +398,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("You have encountered critical damage! Critical damage multiplies the power of a move when it successfully hits its target. Unless a move’s description states otherwise, every directly damaging move has the same critical damage chance."));
+                pages.Add(new Page("You have encountered critical damage! Critical damage multiplies the power of a move when it successfully hits its target. Unless a move's description states otherwise, every directly damaging move has the same critical damage chance."));
             }
 
             // Loads the pages.
@@ -420,7 +420,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("You just encountered recoil damage! Some moves deal damage to the user when performed successfully. A move’s description will state if it does recoil damage."));
+                pages.Add(new Page("You just encountered recoil damage! Some moves deal damage to the user when performed successfully. A move's description will state if it does recoil damage."));
             }
 
             // Loads the pages.
@@ -442,7 +442,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("You have encountered a stat change! A battler’s stats can be temporarily adjusted by certain moves, and by certain game events. These stat changes reset when the battle ends."));
+                pages.Add(new Page("You have encountered a stat change! A battler's stats can be temporarily adjusted by certain moves, and by certain game events. These stat changes reset when the battle ends."));
             }
 
             // Loads the pages.
@@ -527,12 +527,10 @@ namespace RM_BBTS
             if (defs != null) // Translation
             {
                 pages.Add(new Page(defs["trl_overworld_00"], "trl_overworld_00"));
-                pages.Add(new Page(defs["trl_overworld_01"], "trl_overworld_01"));
             }
             else // Default
             {
-                pages.Add(new Page("Look! The other doors have opened! But the boss door is still locked… I guess you’ll have to clear out all the other rooms before the boss accepts your challenge. But that shouldn’t be a problem."));
-                pages.Add(new Page("As the simulation progresses, you’ll grow stronger, and learn even better moves! Your foes will probably get stronger too, but I’m sure you can handle it! And remember, if you don’t understand something, check out the stats and info windows! Good luck!"));
+                pages.Add(new Page("Look! The other doors have opened, but the boss door is still locked! I guess you'll have to clear all the other rooms before the boss accepts your challenge. Both you and your foes will get stronger as the game progresses, so good luck!"));
             }
             
             // Loads the pages.
@@ -557,7 +555,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("This is a treasure room! If you take the treasure, you’ll get a free level up, and a chance to learn 1 of 3 moves! If you don’t take the treasure, the room will remain open, so you can always come back later."));
+                pages.Add(new Page("This is a treasure room! If you take the treasure, you'll get a free level up, and a chance to learn 1 of 3 moves! If you don't take the treasure, the room will remain open, so you can always come back later."));
             }
 
             // Loads the pages.
@@ -580,8 +578,8 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("Heads up! You’re about to be asked a question. From this point forward, you’ll get a question every time you clear a room."));
-                pages.Add(new Page("If you answer correctly, you’ll get a bonus that’ll help you in the next room. But if you answer wrong, you’ll get a penalty for the next room. Good luck!"));
+                pages.Add(new Page("Heads up! You're about to be asked a question. From this point forward, you'll get a question every time you clear a room."));
+                pages.Add(new Page("If you answer correctly, you'll get a bonus that'll help you in the next room. But if you answer incorrectly, you'll get a penalty for the next room. Good luck!"));
 
             }
 
@@ -601,12 +599,10 @@ namespace RM_BBTS
             if (defs != null) // Translation
             {
                 pages.Add(new Page(defs["trl_phase_00"], "trl_phase_00"));
-                pages.Add(new Page(defs["trl_phase_01"], "trl_phase_01"));
             }
             else // Default
             {
-                pages.Add(new Page("It looks like you’ve entered a new phase of the simulation! A phase change seems to happen every time you complete a certain number of rooms… Interesting!"));
-                pages.Add(new Page("Hmm… It appears that a phase change gives you a permanent stat boost! Cool! But it also appears that foes can evolve and learn new moves from a phase change, which is less cool… Well, I’m sure you can handle it! Good luck!"));
+                pages.Add(new Page("The game phase has changed! When the phase changes, you get permanent stat boosts, while the remaining enemies regain their health and energy. Enemies can also evolve from a phase change, which makes them stronger and gives them new moves. Good luck!"));
 
             }
 
@@ -629,7 +625,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("Look! It’s the boss of the simulation! Once you defeat them, the battle simulator will be complete! Good luck!"));
+                pages.Add(new Page("Look! It's the boss of the simulation! Once you defeat them, the battle simulator will be complete! Good luck!"));
             }
 
             // Loads the pages.
@@ -648,12 +644,10 @@ namespace RM_BBTS
             if (defs != null) // Translation
             {
                 pages.Add(new Page(defs["trl_gameOver_00"], "trl_gameOver_00"));
-                pages.Add(new Page(defs["trl_gameOver_01"], "trl_gameOver_01"));
             }
             else // Default
             {
-                pages.Add(new Page("You lost the battle and got a game over! But don’t worry, you can try again! Hmm… It appears that your health and energy have been completely restored, but that some of your battle moves are now different! And on another note…"));
-                pages.Add(new Page("The rooms you cleared are still locked, so I don’t think you have to redo them. I’m guessing the remaining enemies got their health and energy back though… Anyway, this is just a small setback. Remember, you’ve got this! Good luck!"));
+                pages.Add(new Page("You got a game over! Your health and energy have been restored, but some of your moves have changed, and the doors have switched places. The enemies have had their health and energy restored too, but their moves haven't changed. Good luck!"));
             }
 
             // Loads the pages.

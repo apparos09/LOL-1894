@@ -21,48 +21,56 @@ namespace RM_BBTS
         // Called when performing a move.
         public override bool Perform(BattleEntity user, BattleEntity target, BattleManager battle)
         {
-            // If the user's move is usable.
+            // If the user's move is usable. 
             if (Usable(user))
             {
-                // If the user already has full health, the move will fail to do anything.
+                // If the user already has full health, the move will fail to do anything. 
                 bool success = !user.HasFullHealth();
 
-                ReduceEnergy(user); // Reduce energy
+                // Reduces the energy. 
+                ReduceEnergy(user);
 
-                // This really shouldn't be needed since it would make no sense, but it's here anyway.
-                // Checks if the move successfully hit its target.
-                if (!AccuracySuccessful(user)) // Move missed.
+                // Update the player's energy UI if they were the one that used the move. 
+                if (user is Player)
+                    battle.UpdatePlayerEnergyUI();
+
+                // This really shouldn't be needed since it would make no sense, but it's here anyway. 
+                // Checks if the move successfully hit its target. 
+                if (!AccuracySuccessful(user)) // Move missed. 
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveMissedPage());
                     return false;
 
                 }
 
-                // TODO: the health restore animation is broken (it goes instantly instead of gradually now).
-                // I don't know what happened, but fix it.
-                user.Health += user.MaxHealth * healPercent; // Heal
+                // Restore health. 
+                user.Health += user.MaxHealth * healPercent; // Heal 
 
-                // Update the energy display for the player if they're the one that used the move.
-                // The health is updated by calling 'PlayAnimations'
-                if (user is Player) // User is player.
-                {
-                    battle.UpdatePlayerEnergyUI();
-                }                    
+                // TODO: maybe don't update it if the move fails since it wouldn't be needed? 
+                // Update the health and the energy. 
+                // if (user is Player) // User is player. 
+                // { 
+                //     battle.gameManager.UpdateUI(); 
+                // }                     
+                // else // User is opponent. 
+                // { 
+                //     battle.UpdateOpponentUI(); 
+                // } 
 
-                // TODO: overlaps with the button SFX.
-                // Play the move effect sfx.
-                // battle.PlayMoveEffectSfx();
+                // TODO: overlaps with the button SFX. 
+                // Play the move effect sfx. 
+                // battle.PlayMoveEffectSfx(); 
 
-                // Prints a different message based on if the move actually did anything.
-                if (success) // The move success message - health was restored.
+                // Prints a different message based on if the move actually did anything. 
+                if (success) // The move success message - health was restored. 
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveSuccessfulPage());
 
-                    // Play the heal animation.
+                    // Play the heal animation. 
                     if (success)
                         PlayAnimations(user, target, battle, moveEffect.heal, moveEffect.none);
                 }
-                else // The move fail message - entity was at full health.
+                else // The move fail message - entity was at full health. 
                 {
                     InsertPageAfterCurrentPage(battle, GetMoveFailedPage());
                 }
@@ -70,9 +78,9 @@ namespace RM_BBTS
                 return success;
 
             }
-            else // Not enough energy.
+            else // Not enough energy. 
             {
-                // Not enough energy to use the move.
+                // Not enough energy to use the move. 
                 InsertPageAfterCurrentPage(battle, GetMoveNoEnergyMessage(user));
 
                 return false;
