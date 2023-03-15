@@ -191,11 +191,11 @@ namespace RM_BBTS
                     data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 210;
+                    data.maxHealth = 200;
                     data.health = data.maxHealth;
 
-                    data.attack = 110;
-                    data.defense = 80;
+                    data.attack = 115;
+                    data.defense = 85;
                     data.speed = 100;
 
                     data.maxEnergy = 100;
@@ -876,9 +876,9 @@ namespace RM_BBTS
                     data.maxHealth = 140;
                     data.health = data.maxHealth;
 
-                    data.attack = 90;
-                    data.defense = 200;
-                    data.speed = 70;
+                    data.attack = 105;
+                    data.defense = 180;
+                    data.speed = 75;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
