@@ -324,7 +324,7 @@ namespace RM_BBTS
 
                 case 1:
                     // Question
-                    question.question = "When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance that you go first?";
+                    question.question = "When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance of you going first?";
                     question.questionSpeakKey = "que01";
 
                     // Responses

@@ -919,7 +919,7 @@ namespace RM_BBTS
             Player player = gameManager.player;
 
             // Boosts the player's stats if they get a game over.
-            float boost = 10.0F;
+            float boost = Player.GAME_OVER_BONUS_STAT_TOTAL / 4.0F;
 
             // Gives the playr a small stat boost upon getting a game over.
             player.SetHealthRelativeToMaxHealth(player.MaxHealth + boost);

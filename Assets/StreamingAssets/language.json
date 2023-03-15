@@ -958,7 +958,7 @@
 
 
     "kwd_learnMoveTitle": "Move Offer!",
-    "msg_learnMove": "Select the move you want to replace, then hit 'Switch Moves' to replace the current move with the offered move. When you're done making changes (or if you don't want to change anything), hit 'Finish'.",
+    "msg_learnMove": "Select the move you want to replace, then hit 'Switch Moves' to replace the selected move with the offered move. When you're done making changes (or if you don't want to change anything), hit 'Finish'.",
     "kwd_moveOffer": "Move Offer",
     "kwd_currentMoves": "Current Moves",
     "kwd_switchMoves": "Switch Moves",
@@ -982,7 +982,7 @@
     "que_res_enemyC": "Enemy C",
     "que_res_enemyD": "Enemy D",
 
-    "que01": "When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance that you go first?",
+    "que01": "When 2 battlers have the same speed, the turn order is perfectly random. If you have the same speed as your opponent, what is the chance of you going first?",
     "que01_correct": "Since there are only 2 outcomes, each event has a 0.50 chance.",
     "que01_incorrect": "When something is perfectly random, all outcomes have an equal chance of occurring.",
 
