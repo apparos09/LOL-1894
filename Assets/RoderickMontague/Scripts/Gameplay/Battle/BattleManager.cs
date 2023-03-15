@@ -1614,6 +1614,11 @@ namespace RM_BBTS
             if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
                 StopOpponentIdleAnimation();
 
+
+            // NOTE: if you don't turn off the sprite here, the enemy snaps back to its starting position before...
+            // The transition finishes. But if you don't do that, then the sprite disappears before the transition is done.
+            // You chose the latter.
+
             // Hide opponent sprite and reset the animation.
             opponentSprite.gameObject.SetActive(false);
             PlayDefaultOpponentAnimation();
