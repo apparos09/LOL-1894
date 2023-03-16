@@ -8,6 +8,7 @@ namespace RM_BBTS
     public class ObjectFloat : MonoBehaviour
     {
         // The reset position of the object float.
+        [Header("The reset position of the object. This is set as the object's local position.")]
         public Vector3 resetPosition;
 
         // Automatically sets the reset position of the object.

@@ -632,6 +632,9 @@ namespace RM_BBTS
                 opponent.Energy = opponentInitEnergy;
             }
 
+            // Play the opponent's default animation.
+            PlayDefaultOpponentAnimation();
+
             // Play the idle animation. If there is no set idle animation, nothing will play.
             // This needs to be odne here since the sprite must be enabled first.
             if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
@@ -1160,8 +1163,7 @@ namespace RM_BBTS
                 }
 
 
-                // Show the textbox.
-                // TODO: hide player move controls.
+                // Replace the pages, reset the auto timer, and open the textbox.
                 textBox.ReplacePages(turnText);
                 textBox.Open();
 
@@ -1382,8 +1384,11 @@ namespace RM_BBTS
             // Auto save the game.
             if(autoSaveOnExit)
             {
-                // Save and continue the game.
-                gameManager.SaveAndContinueGame();
+                // If a question won't be asked, save the game.
+                // If a question will be asked, don't save the game, as it would allow...
+                // The player to skip the question if they shut the game down.
+                if(!gameManager.overworld.AskingQuestionOnOverworldEnter(true))
+                    gameManager.SaveAndContinueGame();
             }
 
             // Go to the overworld.
@@ -1610,13 +1615,22 @@ namespace RM_BBTS
             door.battleEntity = opponent.GenerateBattleEntityGameData();
 
 
-            // Stops the idle animation of the opponent (needs to be done before the sprite is disabled).
-            if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
-                StopOpponentIdleAnimation();
+            // // Stops the idle animation of the opponent (needs to be done before the sprite is disabled).
+            // The sprite is no longer disabled, so this was taken out. It also prevents the animation from stopping mid transition.
+            // if (PLAY_IDLE_AND_MOVE_ANIMATIONS)
+            //     StopOpponentIdleAnimation();
 
-            // Hide opponent sprite and reset the animation.
-            opponentSprite.gameObject.SetActive(false);
-            PlayDefaultOpponentAnimation();
+
+            // NOTE: if you don't turn off the sprite here, the enemy snaps back to its starting position before...
+            // The transition finishes. But if you don't do that, then the sprite disappears before the transition is done.
+            // You chose the latter.
+
+            // The default opponent animation is now triggered in PostInitialize(), and not when the battle is over.
+            // This is because the sprite would be shown again if hidden from a game over. 
+
+            // // Hide opponent sprite and reset the animation.
+            // opponentSprite.gameObject.SetActive(false);
+            // PlayDefaultOpponentAnimation();
 
 
             // // Removes the timers from the list, and pauses them so that they can't be triggered regardless.
@@ -2218,15 +2232,17 @@ namespace RM_BBTS
                     break;
             }
 
+            // Reset the object to its reset position, and resets the float process.
+            opponentFloat.SetObjectToResetPosition();
+            opponentFloat.ResetProcess();
+
 
             // If the sprite shouldn't float.
-            if(!floatSprite)
+            if (!floatSprite)
             {
                 // Float settings.
                 opponentFloat.paused = true;
                 opponentFloat.speed = 1.0F;
-                opponentFloat.ResetProcess();
-                opponentFloat.SetObjectToResetPosition();
             }
             else
             {
@@ -2493,9 +2509,11 @@ namespace RM_BBTS
                             // Play the battle lost jingle.
                             losePage.OnPageOpenedAddCallback(PlayBattleLostJng);
 
+                            // Set the textbox settings.
                             textBox.pages.Add(losePage);
                             textBox.SetPage(0);
                             textBox.OnTextBoxFinishedAddCallback(OnPlayerBattleLost);
+
 
                             DisablePlayerOptions();
                             textBox.Open();

@@ -191,10 +191,10 @@ namespace RM_BBTS
                     data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 210;
+                    data.maxHealth = 180;
                     data.health = data.maxHealth;
 
-                    data.attack = 110;
+                    data.attack = 120;
                     data.defense = 80;
                     data.speed = 100;
 
@@ -378,12 +378,12 @@ namespace RM_BBTS
                     data.displayName = "Comet";
                     data.displayNameSpeakKey = "bey_comet_nme";
 
-                    data.maxHealth = 180;
+                    data.maxHealth = 150;
                     data.health = data.maxHealth;
 
-                    data.attack = 115;
-                    data.defense = 85;
-                    data.speed = 120;
+                    data.attack = 100;
+                    data.defense = 90;
+                    data.speed = 140;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -500,7 +500,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.03F;
 
                     break;
 
@@ -548,7 +548,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.03F;
 
                     break;
 
@@ -596,7 +596,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.03F;
 
                     break;
 
@@ -609,11 +609,11 @@ namespace RM_BBTS
                     data.displayName = "Terrachine MK 2";
                     data.displayNameSpeakKey = "bey_earthBot2_nme";
 
-                    data.maxHealth = 65;
+                    data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
-                    data.defense = 130;
+                    data.attack = 55;
+                    data.defense = 120;
                     data.speed = 55;
 
                     data.maxEnergy = 100;
@@ -644,7 +644,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.03F;
 
                     break;
 
@@ -873,12 +873,12 @@ namespace RM_BBTS
                     data.displayName = "Vortex";
                     data.displayNameSpeakKey = "bey_blackHole_nme";
 
-                    data.maxHealth = 140;
+                    data.maxHealth = 120;
                     data.health = data.maxHealth;
 
-                    data.attack = 90;
-                    data.defense = 200;
-                    data.speed = 70;
+                    data.attack = 100;
+                    data.defense = 180;
+                    data.speed = 80;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
