@@ -266,6 +266,8 @@ MonoBehaviour:
   autoNext: 0
   autoNextTimerMax: 2.5
   autoNextTimer: 0
+  ttsExtraTime: 1
+  addTtsExtraTime: 1
   autoNextTimerPaused: 0
   closeOnEnd: 1
   prevPageButton: {fileID: 6215028496963668155}

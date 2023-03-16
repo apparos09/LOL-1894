@@ -1034,7 +1034,7 @@ namespace RM_BBTS
             else
             {
                 // Grabs the default mesage.
-                msg = "The treasure had three moves inside! Choose one of the three moves to learn!";
+                msg = "The treasure had 3 moves inside! Choose one of the 3 moves to learn!";
             }
 
             return msg;
