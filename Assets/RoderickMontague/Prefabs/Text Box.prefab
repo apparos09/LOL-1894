@@ -270,6 +270,7 @@ MonoBehaviour:
   closeOnEnd: 1
   prevPageButton: {fileID: 6215028496963668155}
   nextPageButton: {fileID: 6215028496522477456}
+  autoDisablePrevButtonOnFirstPage: 1
   instantText: 0
   enableAnimationSkip: 1
   enableAnimationBackSkip: 1

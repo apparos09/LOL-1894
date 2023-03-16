@@ -627,7 +627,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.tidalWave: // Tidal Wave 
-                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 70, 1.0F, 0.30F);
+                    move = new Move(moveId.tidalWave, "Tidal Wave", 2, 65, 1.0F, 0.35F);
                     move.useAccuracy = false;
 
                     move.description = "The user hits the target with a strong attack that never misses.";

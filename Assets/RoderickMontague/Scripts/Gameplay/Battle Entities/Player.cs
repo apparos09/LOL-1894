@@ -28,7 +28,10 @@ namespace RM_BBTS
         public const float LEVEL_UP_ENERGY_RESTORE_PERCENT = 0.30F;
 
         // The stat total for the phase bonus, which is evenly split between health, attack, defense, and speed.
-        public const float PHASE_BONUS_STAT_TOTAL = 100.0F; // 100/4 = 25
+        public const float PHASE_BONUS_STAT_TOTAL = 120.0F; // 120/4 = 30
+
+        // A boost the player gets upon getting a game over.
+        public const float GAME_OVER_BONUS_STAT_TOTAL = 60.0F; // 60 / 4 = 15
 
         // Setting the player's stats.
         protected new void Awake()

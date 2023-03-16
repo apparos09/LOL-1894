@@ -44,7 +44,10 @@ namespace RM_BBTS
         // The next page button.
         public Button nextPageButton;
 
-        // Animation was taken out.
+        // If set to 'true', the back button gets disabled if the textbox is on the first page.
+        public bool autoDisablePrevButtonOnFirstPage = false;
+
+        // Animation clips were taken out, since animation is done entirely by char loading.
 
         [Header("Animation")]
         // If 'true', all the shown is shown at once. If false, the text is shown letter by letter.
@@ -98,7 +101,7 @@ namespace RM_BBTS
             //     boxObject = gameObject;
 
             // Set this to the max by default.
-            autoNextTimer = autoNextTimerMax;
+            SetAutoNextTimerToMax();
 
             // Recolour the text to show that the text loaded is not coming from the language file.
             if (!LOLSDK.Instance.IsInitialized)
@@ -161,6 +164,9 @@ namespace RM_BBTS
             // Calls the callbacks for opening the textbox.
             if (openedCallback != null)
                 openedCallback();
+
+            // Reset the timer.
+            SetAutoNextTimerToMax();
         }
 
         // Adds a callback for when the textbox is closed.
@@ -198,6 +204,9 @@ namespace RM_BBTS
         public void Show()
         {
             boxObject.SetActive(true);
+
+            // Reset the timer.
+            SetAutoNextTimerToMax();
         }
 
         // Hides the textbox. This does Not call the Close callbacks.
@@ -304,6 +313,21 @@ namespace RM_BBTS
                 prevPageButton.interactable = false;
         }
 
+        // Disables the previous page button if on the first page.
+        public void DisablePreviousButtonOnFirstPage()
+        {
+            // Checks for the previous page button being set.
+            if (prevPageButton != null)
+            {
+                // Checks if the button should be enabled.
+                bool enableButton = currPageIndex != 0;
+
+                // Change the button interaction setting if it doesn't match.
+                if (prevPageButton.interactable != enableButton)
+                    prevPageButton.interactable = enableButton;
+            }
+        }
+
         // Enables the next button.
         public void EnableNextButton()
         {
@@ -395,8 +419,6 @@ namespace RM_BBTS
         // Sets the text that's on the text box.
         private void SetTextBoxText(int nextPageIndex, bool finishPage = true)
         {
-            // TODO: account for glitch with an index out of bounds error with the pages.
-
             // If text is still being loaded just sub in the rest and stop loading in new characters.
             if (loadingChars)
             {
@@ -469,12 +491,19 @@ namespace RM_BBTS
                 return;
             }
 
+
             // Calls the 'open' function on the new page.
             pages[currPageIndex].OnPageOpened();
 
+
+            // If the previous button should be automatically disabled on the first page, try to disable it.
+            if(autoDisablePrevButtonOnFirstPage)
+                DisablePreviousButtonOnFirstPage();
+
+
             // A bounds check is done again to make sure that the pages weren't cleared in a callback.
             // This was to address an error that was being encountered.
-            if(currPageIndex >= 0 && currPageIndex < pages.Count)
+            if (currPageIndex >= 0 && currPageIndex < pages.Count)
             {
                 // Checks if the text should be shown automatically, or if it should be shown letter by letter.
                 if (instantText) // Instant
@@ -513,7 +542,7 @@ namespace RM_BBTS
             if(instantText && autoNext)
             {
                 // Set the timer.
-                autoNextTimer = autoNextTimerMax;
+                SetAutoNextTimerToMax();
             }
 
         }
@@ -570,7 +599,7 @@ namespace RM_BBTS
                 // If the text box should automatically go onto the next page when it's done after a certain period of time...
                 // Set the timer.
                 if (autoNext)
-                    autoNextTimer = autoNextTimerMax;
+                    SetAutoNextTimerToMax();
 
 
                 // If the textbox controls should be disabled when the animation skip is turned off.
@@ -578,6 +607,13 @@ namespace RM_BBTS
                 {
                     // Enable the controls.
                     EnableTextBoxControls();
+                }
+
+                // If the previous button should be disabled on the first page, attempt to disable it.
+                // This is put after the auto skip settings.
+                if (autoDisablePrevButtonOnFirstPage)
+                {
+                    DisablePreviousButtonOnFirstPage();
                 }
             }
         }

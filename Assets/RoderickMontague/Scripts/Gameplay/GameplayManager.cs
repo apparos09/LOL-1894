@@ -1133,6 +1133,17 @@ namespace RM_BBTS
             return roomsCompleted;
         }
 
+        // Checks if the game is complete.
+        public bool IsGameComplete()
+        {
+            // Checks if the amount of rooms completed is equal to the room total.
+            // If it is, then the game is complete.
+            bool result = GetRoomsCompleted() == GetRoomsTotal();
+
+            // Returns the result.
+            return result;
+        }
+
         // Gets the number of the current round.
         public int GetCurrentRoomNumber()
         {
@@ -1523,9 +1534,13 @@ namespace RM_BBTS
                 }
             }
 
+            // Game stat information.
             saveData.evolveWaves = evolveWaves;
             saveData.gameTime = gameTimer;
             saveData.turnsPassed = totalTurnsPassed;
+
+            // Saves whether the game has been completed or not.
+            saveData.complete = IsGameComplete();
 
             // Final flag to indicate that the data is safe to read.
             // This is done last so that any errors that occur will cause this line to be skipped.
@@ -1618,9 +1633,9 @@ namespace RM_BBTS
             // If the program should not load in completed games.
             if(!allowCompletedGame)
             {
-                // If the amount of rooms completed matches the amount of rooms total...
-                // Start a new game.
-                if (saveData.roomsCompleted == GetRoomsTotal())
+                // If the amount of rooms completed matches the amount of rooms total, a new game is started.
+                // The 'complete' variable tracks this information.
+                if (saveData.complete)
                     return false;
 
             }
