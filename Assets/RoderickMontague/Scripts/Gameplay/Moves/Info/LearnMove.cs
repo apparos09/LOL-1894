@@ -24,6 +24,8 @@ namespace RM_BBTS
 
         // The instructional text.
         public TMP_Text instructText;
+        // The language key for the instruct text.
+        public const string INSTRUCT_TEXT_LANG_KEY = "msg_learnMove";
 
         // The move panels
         [Header("Moves")]
@@ -104,7 +106,7 @@ namespace RM_BBTS
                 titleText.text = defs["kwd_learnMoveTitle"];
 
                 // The instructional text.
-                instructText.text = defs["msg_learnMove"];
+                instructText.text = defs[INSTRUCT_TEXT_LANG_KEY];
 
                 // The player moves header text.
                 moveOfferHeaderText.text = defs["kwd_moveOffer"];
@@ -149,6 +151,10 @@ namespace RM_BBTS
             // Hides the battle textbox.
             battle.textBox.Hide();
             LoadMoveInformation();
+
+            // Read out the instructional text if text-to-speech is enabled.
+            if (GameSettings.Instance.UseTextToSpeech)
+                LOLManager.Instance.textToSpeech.SpeakText(INSTRUCT_TEXT_LANG_KEY);
         }
         
         // Activates the panel.

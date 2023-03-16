@@ -142,10 +142,10 @@ namespace RM_BBTS
 
         // Adds extra time when TTS is active, as the question needs to be read.
         // This is the extra time that's aded to the game timer.
-        public float ttsExtraTime = 60.0F;
+        public float ttsExtraTime = 50.0F;
 
-        // Allows for extra time to the timer when TTS is active.
-        public bool addExtraTime = true;
+        // Allows for extra time to be added to the timer when TTS is active.
+        public bool addTtsExtraTime = true;
 
         // The timer for the game.
         public float timer = 0.0F;
@@ -595,7 +595,7 @@ namespace RM_BBTS
         {
             // Checks if extra time should be added.
             // Extra time won't be added if TTS is not being used.
-            if(addExtraTime && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
+            if(addTtsExtraTime && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
             {
                 timer = startTime + ttsExtraTime;
             }

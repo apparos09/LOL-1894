@@ -775,8 +775,8 @@
     "btl_msg_learnMoveNo": "Battle Bot did not learn {0}.",
     "btl_msg_learnMoveNo_alt": "You did not learn the new move.",
 
-    "btl_msg_multMoveOffer": "The treasure had three moves inside! Choose one of the three moves to learn!",
-    "multMoveOffer_msg_prompt": "Select one of the three moves, then hit 'Next' to move onto the move learning screen. If you don't want to learn any of the moves, hit 'Skip'.",
+    "btl_msg_multMoveOffer": "The treasure had 3 moves inside! Choose one of the 3 moves to learn!",
+    "multMoveOffer_msg_prompt": "Select one of the 3 moves, then hit 'Next' to move onto the move learning screen. If you don't want to learn any of the offered moves, hit 'Skip'.",
     "btl_msg_multMoveOfferSkip": "Battle Bot did not learn any of the new moves!",
     "kwd_next": "Next",
     "kwd_skip": "Skip",

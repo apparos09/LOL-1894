@@ -1966,8 +1966,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select one of the three moves, then hit 'Next' to move onto the move learning
-    screen. If you don't want to learn any of the moves, hit 'Skip'.
+  m_text: Select one of the 3 moves, then hit 'Next' to move onto the move learning
+    screen. If you don't want to learn any of the offered moves, hit 'Skip'.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21480,8 +21480,8 @@ MonoBehaviour:
   pausedTimer: 1
   startTime: 90
   reduceRewardTime: 60
-  ttsExtraTime: 60
-  addExtraTime: 1
+  ttsExtraTime: 50
+  addTtsExtraTime: 1
   timer: 0
   confirmButton: {fileID: 1576811981}
   confirmButtonText: {fileID: 1776744855}
