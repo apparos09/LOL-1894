@@ -15,6 +15,9 @@ namespace RM_BBTS
         // The sprite for the treasure chest when it's open.
         public Sprite openSprite;
 
+        // Gets set to 'true', when the treasure chest has been opened.
+        public bool closed = true;
+
         // Start is called before the first frame update
         new void Start()
         {
@@ -39,6 +42,17 @@ namespace RM_BBTS
             // If the treasure is called to use a move it will always use charge, which won't do anything for it.
             selectedMove = MoveList.Instance.ChargeMove;
         }
+
+        // Used to load battle game data.
+        public override void LoadBattleGameData(BattleEntityGameData data)
+        {
+            // Calls the base function for the data.
+            base.LoadBattleGameData(data);
+
+            // Sets 'closed' to true (opened treasure chests cannot be accessed again).
+            closed = true;
+        }
+
 
         // Update is called once per frame
         new void Update()

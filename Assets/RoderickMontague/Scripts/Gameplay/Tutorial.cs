@@ -530,7 +530,7 @@ namespace RM_BBTS
             }
             else // Default
             {
-                pages.Add(new Page("Look! The other doors have opened, but the boss door is still locked! I guess you'll have to clear all the other rooms before the boss accepts your challenge. Both you and your foes will get stronger as the game progresses, so good luck!"));
+                pages.Add(new Page("Look! The other doors have closed, but the boss door is still locked! I guess you'll have to clear all the other rooms before the boss accepts your challenge. Both you and your foes will get stronger as the game progresses, so good luck!"));
             }
             
             // Loads the pages.
