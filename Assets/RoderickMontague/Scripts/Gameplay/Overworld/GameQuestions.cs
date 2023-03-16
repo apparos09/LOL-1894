@@ -384,7 +384,7 @@ namespace RM_BBTS
                     break;
                 case 3:
                     // Question
-                    question.question = "If a move mentions that it can paralyze the target, its paralysis chance is greater than 0.00. If a move’s paralysis chance is 1.00, what does this mean?";
+                    question.question = "If a move mentions that it can paralyze the target, its paralysis chance is greater than 0.00. If a move's paralysis chance is 1.00, what does this mean?";
                     question.questionSpeakKey = "que03";
 
                     // Responses
@@ -463,7 +463,7 @@ namespace RM_BBTS
                     // Answer
                     question.answerIndex = 2;
                     question.correctAnswerResponse = "Since 3/4 moves can heal the user, your foe has a 75% chance of healing themselves.";
-                    question.incorrectAnswerResponse = "Since your foe won’t charge their energy, they only have 4 moves to choose from.";
+                    question.incorrectAnswerResponse = "Since your foe won't charge their energy, they only have 4 moves to choose from.";
 
                     // Translates the question.
                     if (translate)
@@ -487,11 +487,11 @@ namespace RM_BBTS
                     question.Response0 = "You will move faster than before.";
                     question.Response1 = "Your attacks will do more damage.";
                     question.Response2 = "Your moves are now more likely to hit their target.";
-                    question.Response3 = "You will now take less damage from your opponent’s attacks.";
+                    question.Response3 = "You will now take less damage from your opponent's attacks.";
 
                     // Answer
                     question.answerIndex = 2;
-                    question.correctAnswerResponse = "Since your accuracy has gone up, your moves are more likely to hit your target.";
+                    question.correctAnswerResponse = "Since your accuracy has gone up, your moves are more likely to hit their target.";
                     question.incorrectAnswerResponse = "Accuracy determines how likely it is for a move to hit its target.";
 
                     // Translates the question.
@@ -518,8 +518,8 @@ namespace RM_BBTS
                     // Responses
                     question.Response0 = "Your moves are more likely to miss their target.";
                     question.Response1 = "You will move slower than you did before.";
-                    question.Response2 = "You will now take more damage from your opponent’s attacks.";
-                    question.Response3 = "Your attacks will do less than damage than before.";
+                    question.Response2 = "You will now take more damage from your opponent's attacks.";
+                    question.Response3 = "Your attacks will do less damage than before.";
 
                     // Answer
                     question.answerIndex = 0;
@@ -574,7 +574,7 @@ namespace RM_BBTS
                 
                 case 9:
                     // Question
-                    question.question = "Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If you’re prioritizing moves with high accuracies, should you pick Move B over Move A?";
+                    question.question = "Move A has a power of 70 and an accuracy of 0.95. Move B has a power of 80 and an accuracy of 0.85. If you're prioritizing moves with high accuracies, should you pick Move B over Move A?";
                     question.questionSpeakKey = "que09";
 
                     // Responses
@@ -585,7 +585,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
-                    question.correctAnswerResponse = "Move B is stronger, but it’s more likely to miss.";
+                    question.correctAnswerResponse = "Move B is stronger, but it's more likely to miss.";
                     question.incorrectAnswerResponse = "Accuracy works on a 0-1 scale, with 1.00 meaning a move will always hit.";
 
                     // Translates the question.
@@ -604,7 +604,7 @@ namespace RM_BBTS
 
                 case 10:
                     // Question
-                    question.question = "Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If you’re prioritizing moves with high accuracies, which move would you pick?";
+                    question.question = "Move A has a power of 90 and an accuracy of 0.80. Move B has a power of 100 and an accuracy of 0.75. If you're prioritizing moves with high accuracies, which move would you pick?";
                     question.questionSpeakKey = "que10";
 
                     // Responses
@@ -645,7 +645,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 2;
-                    question.correctAnswerResponse = "Move C has a burn chance of 1.00, meaning it always burns the target.";
+                    question.correctAnswerResponse = "Move C has a burn chance of 1.00, which means that it always burns the target.";
                     question.incorrectAnswerResponse = "An event that will always happen has a chance value of 1.00.";
 
                     // Translates the question.
@@ -761,7 +761,7 @@ namespace RM_BBTS
 
                 case 15:
                     // Question
-                    question.question = "You have three moves: Move A, Move B, and Move C. Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If your accuracy was increased by 0.05, which moves would always hit their target?";
+                    question.question = "You have 3 moves: Move A, Move B, and Move C. Move A has an accuracy of 1.00, Move B has an accuracy of 0.95, and Move C has an accuracy of 0.90. If your accuracy was increased by 0.05, which moves would always hit their target?";
                     question.questionSpeakKey = "que15";
 
                     // Responses
@@ -793,7 +793,7 @@ namespace RM_BBTS
 
                 case 16:
                     // Question
-                    question.question = "Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Across these three moves, which event is the most likely to occur?";
+                    question.question = "Move A has a 0.25 chance of burning the target, Move B has a 0.30 chance of paralyzing the target, and Move C has a 0.50 chance of causing critical damage. Across these 3 moves, which event is the most likely to occur?";
                     question.questionSpeakKey = "que16";
 
                     // Responses
@@ -858,7 +858,7 @@ namespace RM_BBTS
 
                 case 18:
                     // Question
-                    question.question = "Your foe has 4 moves: Move A, Move B, Move C, and Move D. Move A’s accuracy is 0.90, Move B’s accuracy is 0.70, Move C never misses, and Move D’s accuracy is 0.85. Which move is least likely to hit you?";
+                    question.question = "Your foe has 4 moves: Move A, Move B, Move C, and Move D. Move A's accuracy is 0.90, Move B's accuracy is 0.70, Move C never misses, and Move D's accuracy is 0.85. Which move is least likely to hit you?";
                     question.questionSpeakKey = "que18";
 
                     // Responses
@@ -869,7 +869,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
-                    question.correctAnswerResponse = "Move B is the least accurate, so it’s the least likely to hit you.";
+                    question.correctAnswerResponse = "Move B is the least accurate, so it's the least likely to hit you.";
                     question.incorrectAnswerResponse = "The lower the accuracy, the less likely the move is to hit its target.";
 
                     // Translates the question.
@@ -888,7 +888,7 @@ namespace RM_BBTS
 
                 case 19:
                     // Question
-                    question.question = "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.30 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If your attack stat cannot go any higher, which event is the most likely?";
+                    question.question = "Move A has a 0.40 chance of raising the user's attack, Move B has a 0.30 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If your attack stat cannot go any higher, which event is the most likely?";
                     question.questionSpeakKey = "que19";
 
                     // Responses
@@ -899,7 +899,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
-                    question.correctAnswerResponse = "Since your attack stat cannot go higher, Move A’s event is irrelevant.";
+                    question.correctAnswerResponse = "Since your attack stat cannot go higher, Move A's event is irrelevant.";
                     question.incorrectAnswerResponse = "If an event would have no effect, then it can be ignored.";
 
                     // Translates the question.
@@ -920,7 +920,7 @@ namespace RM_BBTS
 
                 case 20:
                     // Question
-                    question.question = "Move A has a 0.40 chance of raising the user’s attack, Move B has a 0.60 chance of raising the user’s defense, and Move C has a 0.20 chance of raising the user’s speed. If your defense cannot go any lower, which event is the most likely?";
+                    question.question = "Move A has a 0.40 chance of raising the user's attack, Move B has a 0.60 chance of raising the user's defense, and Move C has a 0.20 chance of raising the user's speed. If your defense cannot go any lower, which event is the most likely?";
                     question.questionSpeakKey = "que20";
 
                     // Responses
@@ -931,7 +931,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 1;
-                    question.correctAnswerResponse = "Your defense is not maxed out, so Move B’s event can still happen.";
+                    question.correctAnswerResponse = "Your defense is not maxed out, so Move B's event can still happen.";
                     question.incorrectAnswerResponse = "A stat that cannot go any lower can still be raised.";
 
                     // Translates the question.
@@ -965,7 +965,7 @@ namespace RM_BBTS
 
                     // Answer
                     question.answerIndex = 0;
-                    question.correctAnswerResponse = "Since 2/10 doors are treasure doors, there’s a 20% chance of choosing one.";
+                    question.correctAnswerResponse = "Since 2/10 doors are treasure doors, there's a 20% chance of you choosing one.";
                     question.incorrectAnswerResponse = "When the left value is equal to the right value, the chance value is 1.00 in decimal form.";
 
                     // Translates the question.
@@ -1074,7 +1074,7 @@ namespace RM_BBTS
 
                 case 25:
                     // Question
-                    question.question = "Move A has a critical damage chance of 0.40. If you get the critical damage bonus, you will win the battle in 1 turn. If you don’t get the critical damage bonus, you will win the battle in 2 turns. What is your chance of winning the battle in 2 turns?";
+                    question.question = "Move A has a critical damage chance of 0.40. If you get the critical damage bonus, you will win the battle in 1 turn. If you don't get the critical damage bonus, you will win the battle in 2 turns. What is your chance of winning the battle in 2 turns?";
                     question.questionSpeakKey = "que25";
                     
                     // Responses
