@@ -34,6 +34,9 @@ namespace RM_BBTS
         // The description text.
         public TMP_Text descriptionText;
 
+        // The language key for the description text.
+        public const string DESCRIPTION_TEXT_LANG_KEY = "multMoveOffer_msg_prompt";
+
         // The color for a button that's not selected.
         public Color unselectedColor = Color.white;
 
@@ -82,7 +85,7 @@ namespace RM_BBTS
             // The defs are not set.
             if (defs != null)
             {
-                descriptionText.text = defs["multMoveOffer_msg_prompt"];
+                descriptionText.text = defs[DESCRIPTION_TEXT_LANG_KEY];
                 nextButtonText.text = defs["kwd_next"];
                 skipButtonText.text = defs["kwd_skip"];
             }
@@ -107,6 +110,10 @@ namespace RM_BBTS
             // Hides the battle textbox.
             battle.textBox.Hide();
             GenerateMoves();
+
+            // Read out the description text if text-to-speech is enabled.
+            if (GameSettings.Instance.UseTextToSpeech)
+                LOLManager.Instance.textToSpeech.SpeakText(DESCRIPTION_TEXT_LANG_KEY);
         }
 
         // Move 0

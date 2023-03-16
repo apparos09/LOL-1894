@@ -30,6 +30,12 @@ namespace RM_BBTS
         // The timer for automatically going to the next page.
         public float autoNextTimer = 0.0F;
 
+        // Extra time added when TTS is enabled.
+        public float ttsExtraTime = 1.0F;
+
+        // Allows for extra time to be added to the timer when TTS is active.
+        public bool addTtsExtraTime = true;
+
         // Set to 'true' to pause the timer.
         public bool autoNextTimerPaused = false;
 
@@ -538,13 +544,8 @@ namespace RM_BBTS
                 // TODO: close textbox?
             }
 
-            // If instant text is on, and if the text box should automatically go onto the next page.
-            if(instantText && autoNext)
-            {
-                // Set the timer.
-                SetAutoNextTimerToMax();
-            }
-
+            // Sets the auto next timer to max. If autoNext is set to false, the timer won't decrease anyway.
+            SetAutoNextTimerToMax();
         }
 
         // Loads character by character.
@@ -621,7 +622,12 @@ namespace RM_BBTS
         // Sets the timer to its max.
         public void SetAutoNextTimerToMax()
         {
+            // Set the time to the max.
             autoNextTimer = autoNextTimerMax;
+
+            // Adds the extra time for TTS reading.
+            if (addTtsExtraTime)
+                autoNextTimer += ttsExtraTime;
         }
 
         
