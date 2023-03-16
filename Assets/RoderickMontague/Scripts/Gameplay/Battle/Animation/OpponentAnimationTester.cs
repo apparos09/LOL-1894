@@ -72,7 +72,7 @@ namespace RM_BBTS
             switch(entityId)
             {
                 case battleEntityId.treasure:
-                    spriteRenderer.sprite = treasureSprite;
+                    animator.Play("BEY - Treasure - Close");
                     break;
 
                 case battleEntityId.combatBot:

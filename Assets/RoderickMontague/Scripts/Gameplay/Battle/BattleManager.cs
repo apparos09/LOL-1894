@@ -491,6 +491,9 @@ namespace RM_BBTS
             // If the opponent is a treasure box.
             if (opponent is Treasure)
             {
+                // Closes the treasure chest.
+                (opponent as Treasure).closed = true;
+
                 // The player has no battle options since this isn't a fight.
                 DisablePlayerOptions();
 
@@ -1415,12 +1418,19 @@ namespace RM_BBTS
             // Counts this as a turn to avoid tutorial trigger issues.
             turnsPassed++;
 
+            // The treasure chest has been opened, so set 'closed' to false.
+            treasureBase.closed = false;
+
             // Replaces the oponnent sprite with the treasure open sprite.
             if (treasureBase.openSprite != null)
             {
                 // Overwrite the sprite with the open treasure chest.
                 opponent.sprite = treasureBase.openSprite;
                 opponentSprite.sprite = opponent.sprite;
+
+                // Play the idle animation so that the sprite switches over.
+                if(PLAY_IDLE_AND_MOVE_ANIMATIONS)
+                    PlayOpponentIdleAnimation();
             }
                 
         }
@@ -1610,6 +1620,8 @@ namespace RM_BBTS
             opponent.ResetStatModifiers();
             opponent.ResetStatuses();
 
+            // Closes the treasure base in case the opponent was a treasure chest.
+            treasureBase.closed = true;
 
             // Save battle entity data.
             door.battleEntity = opponent.GenerateBattleEntityGameData();
@@ -2002,24 +2014,49 @@ namespace RM_BBTS
             // Checks the ID.
             switch (opponent.id)
             {
+                case battleEntityId.treasure:
+                    // Checks if the opponent is a treasure chest.
+                    if(opponent is Treasure)
+                    {
+                        // Checks if the treasure is closed, or open.
+                        if ((opponent as Treasure).closed)
+                            opponentAnimator.Play("BEY - Treasure - Close");
+                        else
+                            opponentAnimator.Play("BEY - Treasure - Open");
+
+                    }
+                    else
+                    {
+                        // If the opponent isn't a treasure chest, just play the close animation.
+                        opponentAnimator.Play("BEY - Treasure - Close");
+                    }
+
+                    // The sprite shouldn't float.
+                    floatSprite = false;
+
+                    break;
+
                 case battleEntityId.combatBot:
                     opponentAnimator.Play("BEY - Combat Bot - Idle");
 
                     speed = slowSpeed;
 
                     break;
+
                 case battleEntityId.ufo1:
                     opponentAnimator.Play("BEY - UFO 1 - Idle");
 
                     speed = midSpeed;
 
                     break;
+
                 case battleEntityId.ufo2:
                     opponentAnimator.Play("BEY - UFO 2 - Idle");
 
                     speed = slowSpeed;
 
                     break;
+
                 case battleEntityId.ufo3:
                     opponentAnimator.Play("BEY - UFO 3 - Idle");
 
@@ -2227,7 +2264,6 @@ namespace RM_BBTS
                     opponentAnimator.Play("No Idle");
 
                     floatSprite = false;
-
                     success = false;
                     break;
             }
