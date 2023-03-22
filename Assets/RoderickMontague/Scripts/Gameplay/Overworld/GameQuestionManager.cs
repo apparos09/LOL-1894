@@ -180,11 +180,13 @@ namespace RM_BBTS
 
         // The health icon's arrow.
         public Image healthArrow;
-        public const float HEALTH_CHANGE_PERCENT = 0.20F;
+        public const float HEALTH_INC_PERCENT = 0.20F;
+        public const float HEALTH_DEC_PERCENT = 0.25F;
 
         // The energy icon's arrow.
         public Image energyArrow;
-        public const float ENERGY_CHANGE_PERCENT = 0.20F;
+        public const float ENERGY_INC_PERCENT = 0.20F;
+        public const float ENERGY_DEC_PERCENT = 0.25F;
 
         [Header("Evaluation/Battle Effects/Stat Mods")]
         // The icons for attack, defense, and speed.
@@ -919,7 +921,11 @@ namespace RM_BBTS
 
                 // HEALTH
                 // Changes the player's health.
-                player.Health += player.MaxHealth * HEALTH_CHANGE_PERCENT * change;
+                if(correct) // Increase the health.
+                    player.Health += player.MaxHealth * HEALTH_INC_PERCENT * change;
+                else // Decrease the health.
+                    player.Health += player.MaxHealth * HEALTH_DEC_PERCENT * change;
+
 
                 // The player will always have at least 1 hit point.
                 if (player.Health <= 0)
@@ -927,7 +933,11 @@ namespace RM_BBTS
 
                 // ENERGY
                 // Changes the player's energy.
-                player.Energy += player.MaxEnergy * ENERGY_CHANGE_PERCENT * change;
+                if(correct) // Increase the energy.
+                    player.Energy += player.MaxEnergy * ENERGY_INC_PERCENT * change;
+                else // Decrease the energy.
+                    player.Energy += player.MaxEnergy * ENERGY_DEC_PERCENT * change;
+
 
                 // Updates the UI for the player's health and energy.
                 gameManager.UpdatePlayerHealthUI();

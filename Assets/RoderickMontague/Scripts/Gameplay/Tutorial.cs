@@ -346,7 +346,7 @@ namespace RM_BBTS
             {
                 pages.Add(new Page("Welcome to your first battle, Battle Bot! To win the battle, you must bring your opponent's health down to 0. But if the opponent brings your health down to 0, you'll get a game over! To attack your opponent, you must use your battle moves!"));
                 pages.Add(new Page("You can have up to 4 battle moves at a time, which together with the run and charge moves makes for a total of 6 battle options! To learn a new move, you must accept a move offer, which is given out every time you clear a room."));
-                pages.Add(new Page("The charge and run moves are special options that cannot be replaced. The charge move is used to charge your energy, which you need to perform your battle moves, while the run move has you attempt to flee from the battle."));
+                pages.Add(new Page("The charge move is used to charge your energy, which is needed to perform your battle moves, while the run move has you attempt to flee from the battle."));
                 pages.Add(new Page("If you flee from battle, your health and energy levels stay the same. Your opponent keeps their health and energy levels as well, but they will get restored if you clear too many rooms without defeating them."));
                 pages.Add(new Page("With all that covered, time to try out one of your moves! If you want to know what a move does, click the stats button!"));
             }
