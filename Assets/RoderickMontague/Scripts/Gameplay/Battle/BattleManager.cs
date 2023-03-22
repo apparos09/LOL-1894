@@ -1986,6 +1986,9 @@ namespace RM_BBTS
             // Should remain on this animation until the player goes back to the overworld.
             // As such, this doesn't call another function.
 
+            // NOTE: sometimes another animation is still playing, and it causes this change to fail.
+            // I don't feel like fixing this bug, so I'm going to leave it.
+
             // Play animation by changing the value.
             opponentAnimator.SetInteger("anim", 5);
         }

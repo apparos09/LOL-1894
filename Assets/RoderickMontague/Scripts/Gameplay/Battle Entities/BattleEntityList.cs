@@ -191,12 +191,12 @@ namespace RM_BBTS
                     data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 170;
+                    data.maxHealth = 150;
                     data.health = data.maxHealth;
 
-                    data.attack = 120;
-                    data.defense = 90;
-                    data.speed = 100;
+                    data.attack = 145;
+                    data.defense = 95;
+                    data.speed = 110;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -337,9 +337,9 @@ namespace RM_BBTS
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
 
-                    data.attack = 22;
-                    data.defense = 45;
-                    data.speed = 18;
+                    data.attack = 25;
+                    data.defense = 35;
+                    data.speed = 20;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -359,9 +359,9 @@ namespace RM_BBTS
                     data.maxHealth = 60;
                     data.health = data.maxHealth;
 
-                    data.attack = 38;
-                    data.defense = 116;
-                    data.speed = 26;
+                    data.attack = 45;
+                    data.defense = 75;
+                    data.speed = 30;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -381,9 +381,9 @@ namespace RM_BBTS
                     data.maxHealth = 150;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
+                    data.attack = 110;
                     data.defense = 90;
-                    data.speed = 140;
+                    data.speed = 150;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -877,8 +877,8 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 100;
-                    data.defense = 160;
-                    data.speed = 100;
+                    data.defense = 150;
+                    data.speed = 130;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1219,16 +1219,17 @@ namespace RM_BBTS
                 case battleEntityId.virusYellow1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
-                        moveId.elecBurst, moveId.screech, moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.shield1,
+                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
+                        moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.virusYellow2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech, moveId.elecShot, 
-                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech, moveId.elecShot, moveId.soundWave,
+                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;

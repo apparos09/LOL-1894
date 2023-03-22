@@ -45,7 +45,21 @@ namespace RM_BBTS
             {
                 // Calls the run function.
                 // bool success = AccuracySuccessful(user, false);
-                bool success = BattleManager.GenerateRandomFloat01() <= SUCCESS_CHANCE;
+
+                // Old
+                // bool success = BattleManager.GenerateRandomFloat01() <= SUCCESS_CHANCE;
+
+                // New - uses unique randomizer to improve odds.
+                // Used to generate a number from 1 to 10 (10% - 100%)
+                const int RAND_MAX = 10;
+
+                // Generates a random value, and divides it by the max.
+                float randValue = ((float)Random.Range(1, RAND_MAX + 1)) / RAND_MAX;
+                randValue = Mathf.Clamp01(randValue);
+
+                // Checks if the random value is less than
+                bool success = randValue <= SUCCESS_CHANCE;
+
 
                 // Checks if the player was able to run away successfully.
                 if (success)
