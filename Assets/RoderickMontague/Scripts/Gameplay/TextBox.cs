@@ -626,7 +626,7 @@ namespace RM_BBTS
             autoNextTimer = autoNextTimerMax;
 
             // Adds the extra time for TTS reading.
-            if (addTtsExtraTime && GameSettings.Instance.UseTextToSpeech)
+            if (addTtsExtraTime && LOLSDK.Instance.IsInitialized && GameSettings.Instance.UseTextToSpeech)
                 autoNextTimer += ttsExtraTime;
         }
 
