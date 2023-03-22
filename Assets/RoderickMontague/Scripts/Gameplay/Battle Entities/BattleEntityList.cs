@@ -1219,17 +1219,16 @@ namespace RM_BBTS
                 case battleEntityId.virusYellow1:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.elecShot, moveId.shield1,
-                        moveId.laserBurst, moveId.elecBurst, moveId.screech,
-                        moveId.sonicWave
+                        moveId.laserShot, moveId.elecShot, moveId.laserBurst, 
+                        moveId.elecBurst, moveId.screech, moveId.sonicWave
                     };
                     break;
 
                 case battleEntityId.virusYellow2:
                     moveList = new List<moveId>() 
                     {
-                        moveId.laserShot, moveId.screech, moveId.elecShot, moveId.soundWave,
-                        moveId.shield1, moveId.laserBurst, moveId.elecBurst,
+                        moveId.laserShot, moveId.screech, moveId.elecShot, 
+                        moveId.soundWave, moveId.laserBurst, moveId.elecBurst,
                         moveId.laserBlast, moveId.elecBlast, moveId.sonicWave
                     };
                     break;
@@ -1495,10 +1494,10 @@ namespace RM_BBTS
             // Said enemies also shouldn't die too quickly.
             ids.Add(battleEntityId.ufo1);
             ids.Add(battleEntityId.insect1);
-            // ids.Add(battleEntityId.sharp1);
+            // ids.Add(battleEntityId.sharp1); // Too annoying.
             // ids.Add(battleEntityId.cBugRed1); // Too weak.
-            // ids.Add(battleEntityId.moonRock1);
-            ids.Add(battleEntityId.virusYellow1);
+            // ids.Add(battleEntityId.moonRock1); // Too tanky
+            // ids.Add(battleEntityId.virusYellow1); // Too annoying
             // ids.Add(battleEntityId.cBugBlue1); // Too weak.
 
             // Checks if this is a tutorial enemy or not.

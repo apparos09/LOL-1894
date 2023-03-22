@@ -488,7 +488,7 @@ namespace RM_BBTS
                     break;
 
                 case moveId.magnet: // Magnet 
-                    move = new Move(moveId.magnet, "Magnet", 2, 45.0F, 0.9F, 0.15F);
+                    move = new Move(moveId.magnet, "Magnet", 2, 50.0F, 0.90F, 0.15F);
 
                     move.accuracyChangeUser = 2;
                     move.accuracyChangeChanceUser = 1.0F;

@@ -751,6 +751,9 @@ namespace RM_BBTS
         // Hides all the windows and prompts.
         private void HideAllWindowsAndPrompts()
         {
+            // Time should move normally.
+            Time.timeScale = 1.0F;
+
             // Hide the back panel.
             backPanel.gameObject.SetActive(false);
 
@@ -783,6 +786,10 @@ namespace RM_BBTS
         // 'Active' determines if the prompt is going to be active or not.
         private void OnToggleWindowOrPrompt(bool active)
         {
+            // If a prompt is being turned on, set the time scale to 0 so that game events do not happen.
+            // If a prompt is being turned off, set time scale to 1 so that game events do happen.
+            Time.timeScale = (active) ? 0.0F : 1.0F;
+
             // Change the back panel and mouse touch settings.
             backPanel.gameObject.SetActive(active);
             mouseTouchInput.gameObject.SetActive(!active);
