@@ -999,6 +999,11 @@ namespace RM_BBTS
                 turnText.Clear();
 
 
+                // Set these variables to false so that they can be triggered by the new set of turns.
+                gotCritical = false;
+                gotRecoil = false;
+
+
                 // If one of the moves have priority.
                 if (player.selectedMove.priority != opponent.selectedMove.priority)
                 {
