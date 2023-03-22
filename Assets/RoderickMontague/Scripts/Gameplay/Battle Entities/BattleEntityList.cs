@@ -561,12 +561,12 @@ namespace RM_BBTS
                     data.displayName = "Aquadroid MK 2";
                     data.displayNameSpeakKey = "bey_waterBot2_nme";
 
-                    data.maxHealth = 125;
+                    data.maxHealth = 110;
                     data.health = data.maxHealth;
 
-                    data.attack = 65;
-                    data.defense = 45;
-                    data.speed = 65;
+                    data.attack = 70;
+                    data.defense = 40;
+                    data.speed = 80;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -588,9 +588,9 @@ namespace RM_BBTS
                     data.maxHealth = 30;
                     data.health = data.maxHealth;
 
-                    data.attack = 25;
-                    data.defense = 70;
-                    data.speed = 25;
+                    data.attack = 30;
+                    data.defense = 60;
+                    data.speed = 30;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -612,8 +612,8 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 60;
-                    data.defense = 100;
+                    data.attack = 70;
+                    data.defense = 90;
                     data.speed = 70;
 
                     data.maxEnergy = 100;
