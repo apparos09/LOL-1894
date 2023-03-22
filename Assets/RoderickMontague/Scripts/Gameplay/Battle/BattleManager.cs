@@ -998,6 +998,12 @@ namespace RM_BBTS
                 // Clears out the past text.
                 turnText.Clear();
 
+                // These were causing issues, so they are no longer set back to false.
+                // Since these are only for the tutorial, this is fine.
+                // // Set these variables to false so that they can be triggered by the new set of turns.
+                // gotCritical = false;
+                // gotRecoil = false;
+
 
                 // If one of the moves have priority.
                 if (player.selectedMove.priority != opponent.selectedMove.priority)
@@ -2758,9 +2764,10 @@ namespace RM_BBTS
 
                 }
 
-                // Turns these tutorial variables to false so that they are reset.
-                gotCritical = false;
-                gotRecoil = false;
+                // Taken out because these were blocking the tutorials from triggering.
+                // // Turns these tutorial variables to false so that they are reset.
+                // gotCritical = false;
+                // gotRecoil = false;
             }
 
             // If the text should match the bars.

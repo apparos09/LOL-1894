@@ -350,9 +350,12 @@ namespace RM_BBTS
         {
             // The critical boost.
             float critBoost = (useCritBoost) ? CRITICAL_BOOST : 1.0F;
-            // Tells the battle someone got a critical.
+
+            // Tells the battle someone got a critical, which is needed to trigger the tutorial.
             // This was put here so that it applies to all the moves.
-            battle.gotCritical = useCritBoost;
+            // If gotCritical is 'true' already, don't change it so that the tutorial is guaranteed to trigger.
+            if(!battle.gotCritical)
+                battle.gotCritical = useCritBoost;
 
             // The damage amount.
             float damage;
@@ -362,8 +365,8 @@ namespace RM_BBTS
             // damage = user.GetAttackModified() * (power * 0.15F) * critBoost - target.GetDefenseModified() * (power * 0.20F);
 
             // New
-            // power * 0.75 * ((attack *1.125)/(3.20 * defense)) * critical
-            damage = power * 0.75F * ((user.GetAttackModified() * 1.130F) / (3.10F * target.GetDefenseModified())) * critBoost;
+            // power * 0.75 * ((attack * 1.15)/(defense * 3.05)) * critical
+            damage = power * 0.75F * ((user.GetAttackModified() * 1.15F) / (target.GetDefenseModified() * 3.05F)) * critBoost;
 
             damage = Mathf.Ceil(damage); // Round Up to nearest whole number.
             damage = damage <= 0 ? 1.0F : damage; // The attack should do at least 1 damage.
@@ -1007,6 +1010,7 @@ namespace RM_BBTS
                     // TODO: maybe change the recoil is based off of the amount of health lost, not the damage done.
                     float recoilDamage = damage * recoilPercent; // Old (damage done)
                     // float recoilDamage = (oldTargetHealth - target.Health) * recoilPercent; // New (health lost)
+                    
                     if (recoilDamage < 1.0F && recoilPercent != 0.0F) // Always does at least 1 damage.
                         recoilDamage = 1.0F;
 
@@ -1045,6 +1049,8 @@ namespace RM_BBTS
 
                         // Add the recoil page.
                         newPages.Add(GetMoveHitRecoilPage(user));
+
+                        // Mark that recoil has been received.
                         battle.gotRecoil = true;
                     }
 
