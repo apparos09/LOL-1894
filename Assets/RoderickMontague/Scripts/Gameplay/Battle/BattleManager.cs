@@ -993,16 +993,13 @@ namespace RM_BBTS
                 // Checks who goes first.
                 bool playerFirst = false;
 
-                // TODO: account for status effects.
-
                 // Clears out the past text.
                 turnText.Clear();
 
-                // These were causing issues, so they are no longer set back to false.
                 // Since these are only for the tutorial, this is fine.
                 // // Set these variables to false so that they can be triggered by the new set of turns.
-                // gotCritical = false;
-                // gotRecoil = false;
+                gotCritical = false;
+                gotRecoil = false;
 
 
                 // If one of the moves have priority.
@@ -2763,11 +2760,6 @@ namespace RM_BBTS
                     }
 
                 }
-
-                // Taken out because these were blocking the tutorials from triggering.
-                // // Turns these tutorial variables to false so that they are reset.
-                // gotCritical = false;
-                // gotRecoil = false;
             }
 
             // If the text should match the bars.
