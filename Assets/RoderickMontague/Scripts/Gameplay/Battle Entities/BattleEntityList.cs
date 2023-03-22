@@ -263,12 +263,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_ufo3_nme";
 
                     // Stats
-                    data.maxHealth = 120;
+                    data.maxHealth = 100;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
+                    data.attack = 105;
                     data.defense = 90;
-                    data.speed = 95;
+                    data.speed = 110;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -1474,7 +1474,6 @@ namespace RM_BBTS
             // Add the entities to the list.
             ids.Add(battleEntityId.ufo1);
             ids.Add(battleEntityId.insect1);
-            ids.Add(battleEntityId.virusYellow1);
 
             // Generates a random index for the ids list, and gets the id.
             int randomIndex = Random.Range(0, ids.Count);

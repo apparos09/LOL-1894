@@ -1986,8 +1986,10 @@ namespace RM_BBTS
             // Should remain on this animation until the player goes back to the overworld.
             // As such, this doesn't call another function.
 
-            // NOTE: sometimes another animation is still playing, and it causes this change to fail.
-            // I don't feel like fixing this bug, so I'm going to leave it.
+            // NOTE: sometimes another battle animation is still playing, and it causes the death animation not to play.
+            // Or at least I think that's what causes the death animation not to play consistently.
+            // It rarely happens, but it is a glitch that exists.
+            // I'm not fixing it.
 
             // Play animation by changing the value.
             opponentAnimator.SetInteger("anim", 5);
