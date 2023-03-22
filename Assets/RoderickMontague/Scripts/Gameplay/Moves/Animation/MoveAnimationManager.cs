@@ -40,7 +40,7 @@ namespace RM_BBTS
         private float animTimer = 0.0F;
 
         // Extra time to add to the anim timer.
-        private const float ANIM_TIMER_EXTRA = 0.75F;
+        private const float ANIM_TIMER_EXTRA = 0.60F;
 
         // Set to call the move performance results once the animation is over.
         [HideInInspector()]

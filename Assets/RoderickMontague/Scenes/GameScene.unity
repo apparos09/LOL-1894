@@ -3433,6 +3433,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: speed
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: lowColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -6879,7 +6883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334372386048466915, guid: 32975d3057963a14cb82ddd7936c351c, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5334372386048466915, guid: 32975d3057963a14cb82ddd7936c351c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8440,7 +8444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6778263351606299471, guid: d97f3835246935148b649298cd8dcc07, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9878,7 +9882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: speed
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: lowColor.b
@@ -13675,6 +13679,10 @@ PrefabInstance:
     - target: {fileID: 4866852875785391320, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: m_Direction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
+      propertyPath: speed
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4866852875785391321, guid: b721b9d06decddf4aa90ca10277e06a5, type: 3}
       propertyPath: useMultiColor
@@ -22581,7 +22589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460657621}
   m_Layer: 5
-  m_Name: Top Header
+  m_Name: Top Header (Buttons)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25074,7 +25082,7 @@ MonoBehaviour:
   clearedTreasure: 0
   clearedQuestion: 0
   clearedPhase: 0
-  clearedBoss: 0
+  clearedBoss: 1
   clearedGameOver: 0
 --- !u!4 &1635305063
 Transform:

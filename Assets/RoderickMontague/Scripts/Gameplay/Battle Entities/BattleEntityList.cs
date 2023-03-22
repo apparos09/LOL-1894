@@ -191,11 +191,11 @@ namespace RM_BBTS
                     data.displayName = "Combat Bot";
                     data.displayNameSpeakKey = "bey_combatBot_nme";
 
-                    data.maxHealth = 180;
+                    data.maxHealth = 170;
                     data.health = data.maxHealth;
 
                     data.attack = 120;
-                    data.defense = 80;
+                    data.defense = 90;
                     data.speed = 100;
 
                     data.maxEnergy = 100;
@@ -286,12 +286,12 @@ namespace RM_BBTS
                     data.displayNameSpeakKey = "bey_insect1_nme";
 
                     // Stats
-                    data.maxHealth = 58;
+                    data.maxHealth = 55;
                     data.health = data.maxHealth;
 
-                    data.attack = 18;
-                    data.defense = 18;
-                    data.speed = 36;
+                    data.attack = 25;
+                    data.defense = 25;
+                    data.speed = 35;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -313,9 +313,9 @@ namespace RM_BBTS
                     data.maxHealth = 80;
                     data.health = data.maxHealth;
 
-                    data.attack = 46;
-                    data.defense = 28;
-                    data.speed = 86;
+                    data.attack = 50;
+                    data.defense = 30;
+                    data.speed = 90;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -422,7 +422,7 @@ namespace RM_BBTS
                     data.displayName = "Sunoliss";
                     data.displayNameSpeakKey = "bey_sunRock2_nme";
 
-                    data.maxHealth = 68;
+                    data.maxHealth = 62;
                     data.health = data.maxHealth;
 
                     data.attack = 86;
@@ -466,7 +466,7 @@ namespace RM_BBTS
                     data.displayName = "Lunooma";
                     data.displayNameSpeakKey = "bey_moonRock2_nme";
 
-                    data.maxHealth = 68;
+                    data.maxHealth = 62;
                     data.health = data.maxHealth;
 
                     data.attack = 41;
@@ -500,7 +500,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.03F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -513,18 +513,18 @@ namespace RM_BBTS
                     data.displayName = "Pyrobot MK 2";
                     data.displayNameSpeakKey = "bey_fireBot2_nme";
 
-                    data.maxHealth = 90;
+                    data.maxHealth = 95;
                     data.health = data.maxHealth;
 
-                    data.attack = 110;
+                    data.attack = 100;
                     data.defense = 50;
-                    data.speed = 50;
+                    data.speed = 55;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -548,7 +548,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.03F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -561,18 +561,18 @@ namespace RM_BBTS
                     data.displayName = "Aquadroid MK 2";
                     data.displayNameSpeakKey = "bey_waterBot2_nme";
 
-                    data.maxHealth = 160;
+                    data.maxHealth = 125;
                     data.health = data.maxHealth;
 
-                    data.attack = 50;
-                    data.defense = 40;
-                    data.speed = 50;
+                    data.attack = 65;
+                    data.defense = 45;
+                    data.speed = 65;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.health;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -596,7 +596,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.03F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -612,15 +612,15 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 55;
-                    data.defense = 120;
-                    data.speed = 55;
+                    data.attack = 60;
+                    data.defense = 100;
+                    data.speed = 70;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -644,7 +644,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.03F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -660,15 +660,15 @@ namespace RM_BBTS
                     data.maxHealth = 90;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 40;
-                    data.speed = 130;
+                    data.attack = 65;
+                    data.defense = 45;
+                    data.speed = 100;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.05F;
+                    data.levelRate = 1.00F;
 
                     break;
 
@@ -740,7 +740,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -756,15 +756,15 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 100;
-                    data.defense = 40;
-                    data.speed = 60;
+                    data.attack = 90;
+                    data.defense = 45;
+                    data.speed = 65;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.attack;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -788,7 +788,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -804,15 +804,15 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 60;
-                    data.defense = 40;
-                    data.speed = 100;
+                    data.attack = 65;
+                    data.defense = 45;
+                    data.speed = 90;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.speed;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -836,7 +836,7 @@ namespace RM_BBTS
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.10F;
+                    data.levelRate = 1.05F;
 
                     break;
 
@@ -852,15 +852,15 @@ namespace RM_BBTS
                     data.maxHealth = 70;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 100;
-                    data.speed = 60;
+                    data.attack = 45;
+                    data.defense = 90;
+                    data.speed = 65;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
 
                     data.statSpecial = BattleEntity.specialty.defense;
-                    data.levelRate = 1.20F;
+                    data.levelRate = 1.10F;
 
                     break;
 
@@ -877,8 +877,8 @@ namespace RM_BBTS
                     data.health = data.maxHealth;
 
                     data.attack = 100;
-                    data.defense = 180;
-                    data.speed = 80;
+                    data.defense = 160;
+                    data.speed = 100;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -896,12 +896,12 @@ namespace RM_BBTS
                     data.displayName = "Strange Island";
                     data.displayNameSpeakKey = "bey_planet1_nme";
 
-                    data.maxHealth = 105;
+                    data.maxHealth = 100;
                     data.health = data.maxHealth;
 
-                    data.attack = 23;
-                    data.defense = 18;
-                    data.speed = 14;
+                    data.attack = 25;
+                    data.defense = 19;
+                    data.speed = 16;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;
@@ -922,9 +922,9 @@ namespace RM_BBTS
                     data.maxHealth = 200;
                     data.health = data.maxHealth;
 
-                    data.attack = 40;
-                    data.defense = 27;
-                    data.speed = 23;
+                    data.attack = 41;
+                    data.defense = 24;
+                    data.speed = 25;
 
                     data.maxEnergy = 100;
                     data.energy = data.maxEnergy;

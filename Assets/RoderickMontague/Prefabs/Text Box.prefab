@@ -264,9 +264,9 @@ MonoBehaviour:
   boxObject: {fileID: 6215028496071798211}
   boxText: {fileID: 6215028496055964518}
   autoNext: 0
-  autoNextTimerMax: 2.5
+  autoNextTimerMax: 2
   autoNextTimer: 0
-  ttsExtraTime: 1
+  ttsExtraTime: 1.5
   addTtsExtraTime: 1
   autoNextTimerPaused: 0
   closeOnEnd: 1
@@ -277,7 +277,7 @@ MonoBehaviour:
   enableAnimationSkip: 1
   enableAnimationBackSkip: 1
   DisableControlsIfAnimSkipDisabled: 1
-  charsPerLoad: 4
+  charsPerLoad: 6
   textSpeed: 0
 --- !u!1 &6215028496522477458
 GameObject:
