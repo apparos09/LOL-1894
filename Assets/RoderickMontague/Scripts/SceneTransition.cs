@@ -41,6 +41,9 @@ namespace RM_BBTS
         // Used to wait until a transition is done.
         private float waitTime = 0.0F;
 
+        // Extra wait time for the transition.
+        private const float EXTRA_WAIT_TIME = 0.5F;
+
         // The current clip being used.
         private AnimationClip currClip;
 
@@ -95,7 +98,7 @@ namespace RM_BBTS
         //     sceneEnterObject.SetActive(false);
         // }
 
-        // Plays teh scene enter animation.
+        // Plays the scene enter animation.
         public void PlaySceneEnterAnimation()
         {
             // Turn on the object.
@@ -105,7 +108,7 @@ namespace RM_BBTS
             sceneEnterAnimator.Play("Fade from Black Animation");
 
             // The wait time for the animation is equal to the length of the clip.
-            waitTime = sceneEnterAnimClip.length;
+            waitTime = (sceneEnterAnimClip.length + EXTRA_WAIT_TIME) / sceneExitAnimator.speed;
             currClip = sceneEnterAnimClip;
         }
 
@@ -163,7 +166,7 @@ namespace RM_BBTS
         {
             // NOTE: realistically you would use Asynchronous Scene Loading instead of this janky method.
             // But the game loads so fast that it isn't really needed to be set up.
-            
+
             // Start the animation.
             // As a UI object, this also blocks all mouse/touch input from the user since it covers the whole screen.
             // I do this so that nothing else can happen during a transition.
@@ -176,7 +179,7 @@ namespace RM_BBTS
             nextScene = sceneName;
 
             // The wait time for the animation is equal to the length of the clip.
-            waitTime = sceneExitAnimClip.length;
+            waitTime = (sceneExitAnimClip.length + EXTRA_WAIT_TIME) / sceneExitAnimator.speed;
             currClip = sceneExitAnimClip;
         }
 
