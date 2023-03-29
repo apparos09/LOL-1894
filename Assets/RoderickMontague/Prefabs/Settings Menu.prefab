@@ -800,6 +800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1270371493452826747}
   - component: {fileID: 5374016638448290170}
+  - component: {fileID: 530937659760565480}
   m_Layer: 5
   m_Name: Mute Toggle
   m_TagString: Untagged
@@ -888,6 +889,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &530937659760565480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950108921804275977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e29dbb6bb789cf48811999ddb5d7e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 5374016638448290170}
+  menuAudio: {fileID: 0}
 --- !u!1 &6388227620685030993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +1977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876103568646905745}
   - component: {fileID: 6876103568646905774}
+  - component: {fileID: 2151303919084202059}
   m_Layer: 5
   m_Name: Tutorial Toggle
   m_TagString: Untagged
@@ -2050,6 +2066,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &2151303919084202059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876103568646905744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e29dbb6bb789cf48811999ddb5d7e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 6876103568646905774}
+  menuAudio: {fileID: 0}
 --- !u!1 &6876103568690029937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876103568690029966}
   - component: {fileID: 6876103568690029967}
+  - component: {fileID: 5709833360190615503}
   m_Layer: 5
   m_Name: TextToSpeech Toggle
   m_TagString: Untagged
@@ -2148,6 +2179,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &5709833360190615503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876103568690029937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e29dbb6bb789cf48811999ddb5d7e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 6876103568690029967}
+  menuAudio: {fileID: 0}
 --- !u!1 &6876103568763519849
 GameObject:
   m_ObjectHideFlags: 0
