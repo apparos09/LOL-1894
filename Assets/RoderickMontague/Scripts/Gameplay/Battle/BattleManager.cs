@@ -1851,7 +1851,11 @@ namespace RM_BBTS
                     break;
 
             }
+            // Turn on the game object.
             playerAnimator.gameObject.SetActive(true);
+
+            // Play the battle effect animation.
+            playerAnimator.Play("Player Battle Effect Animation");
 
             // Get the length of the animation.
             float animTime = (playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / playerAnimator.speed;
