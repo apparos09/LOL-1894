@@ -236,6 +236,9 @@ namespace RM_BBTS
         // The player's animator.
         public Animator playerAnimator;
 
+        // Saves the player animation couroutine.
+        private Coroutine playerAnimCoroutine = null;
+
         // The image for the player animation (is recoloured as needed).
         public Image playerAnimationImage;
 
@@ -247,6 +250,9 @@ namespace RM_BBTS
 
         // The opponent's animator.
         public Animator opponentAnimator;
+
+        // Saves the opponent animation couroutine.
+        private Coroutine opponentAnimCoroutine = null;
 
         // // The timer for opponent animations.
         // private TimerManager.Timer opponentAnimTimer;
@@ -1851,14 +1857,28 @@ namespace RM_BBTS
                     break;
 
             }
+            // Turn on the game object.
             playerAnimator.gameObject.SetActive(true);
+
+            // Play the battle effect animation.
+            // Doing it this way isn't needed, but I want to make sure the player battle effect plays.
+            // The way it's set up is pretty janky, but it's too integrated to be gotten rid of easily.
+            playerAnimator.Play("Player Battle Effect Animation");
 
             // Get the length of the animation.
             float animTime = (playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / playerAnimator.speed;
 
+            // Stops the player animation coroutine if an animation is still going.
+            if (playerAnimCoroutine != null)
+            {
+                StopCoroutine(playerAnimCoroutine);
+                playerAnimCoroutine = null;
+            }
+
+
             // Old - use corotuine
             // Turn off the animation.
-            StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
+            playerAnimCoroutine = StartCoroutine(AnimatorDisableDelayed(playerAnimator, animTime, false));
 
             // This new method kept throwing errors. Not sure if I'll rectify that or not.
             // // New - use timer class.
@@ -1918,7 +1938,7 @@ namespace RM_BBTS
 
 
         // Plays the opponent damage animation.
-        public void PlayOpponentAnimation(string parameter, int value)
+        public void PlayOpponentAnimation(string parameter, int value, int valueOnEnd = 0)
         {
             // Play animation by changing the value, then change it again so that it only plays once.
             opponentAnimator.SetInteger(parameter, value);
@@ -1926,11 +1946,16 @@ namespace RM_BBTS
             // Get the length of the animation.
             // Added extra time to be safe - may be unneeded.
             float animTime = (opponentAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + EXTRA_ANIM_TIME) / opponentAnimator.speed;
-            // Debug.Log(animTime);
 
+            // Stops the opponent animation coroutine if an animation is still going.
+            if (opponentAnimCoroutine != null)
+            {
+                StopCoroutine(opponentAnimCoroutine);
+                opponentAnimCoroutine = null;
+            }
+                
             // Turn off the animation.
-            StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, 0));
-
+            opponentAnimCoroutine = StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, valueOnEnd));
         }
 
         // Called to stop an opponent animation.
@@ -1983,22 +2008,26 @@ namespace RM_BBTS
         // Plays the death animation for the opponent.
         public void PlayOpponentDeathAnimation()
         {
-            // Should remain on this animation until the player goes back to the overworld.
-            // As such, this doesn't call another function.
+            // NOTE: it appears that the reason why the death animation sometimes doesn't play...
+            // Is because the damage animation wasn't finished playing.
 
-            // NOTE: sometimes another battle animation is still playing, and it causes the death animation not to play.
-            // Or at least I think that's what causes the death animation not to play consistently.
-            // It rarely happens, but it is a glitch that exists.
-            // I'm not fixing it.
+            // You don't have the game wait until the animation is done, which may be a problem.
 
             // Play animation by changing the value.
-            opponentAnimator.SetInteger("anim", 5);
+            // opponentAnimator.SetInteger("anim", 5);
+
+            // Unlike the other animations, the death animation should not be reset back to the default.
+            PlayOpponentAnimation("anim", 5, 5);
+
+            // Shows the name of the current animation.
+            // Debug.Log(opponentAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         }
         // Plays the death animation for the opponent.
         public void PlayDefaultOpponentAnimation()
         {
             // Return to the default animation.
-            opponentAnimator.SetInteger("anim", 0);
+            // opponentAnimator.SetInteger("anim", 0);
+            PlayOpponentAnimation("anim", 0);
         }
 
         // ANIMATION //
@@ -2334,6 +2363,9 @@ namespace RM_BBTS
             {
                 animator.gameObject.SetActive(false);
             }
+
+            // Called since the coroutine is over.
+            OnAnimatorCoroutineEnd(animator);
         }
 
         // // Disables the animator as part of a callback from the timer.
@@ -2363,6 +2395,9 @@ namespace RM_BBTS
         // 
         //     // Remove this callback now that the timer is done.
         //     timer.OnTimerFinishedRemoveCallback(AnimatorDisableDelayed);
+        //     // Clear out the saved coroutine for the animator.
+        //     OnAnimatorCoroutineEnd(animator);
+        //
         // }
 
         // A function called to set an int after the timer runs out.
@@ -2383,6 +2418,9 @@ namespace RM_BBTS
 
             // Sets the integer.
             animator.SetInteger(parameter, value);
+
+            // Clears out the saved coroutine for the animator.
+            OnAnimatorCoroutineEnd(animator);
         }
 
         // A function called to set a bool after a timer runs out.
@@ -2403,6 +2441,26 @@ namespace RM_BBTS
 
             // Changes the animator so that the animation goes back.
             animator.SetBool(parameter, value);
+
+            // Clears out the saved coroutine for the animator.
+            OnAnimatorCoroutineEnd(animator);
+        }
+
+        // Called when the animator coroutine ends.
+        private void OnAnimatorCoroutineEnd(Animator animator)
+        {
+            // It's the player animator.
+            if(animator == playerAnimator)
+            {
+                // Clear out the coroutine.
+                playerAnimCoroutine = null;
+            }
+            // It's the opponent animator.
+            else if(animator == opponentAnimator)
+            {
+                // Clear out the coroutine.
+                opponentAnimCoroutine = null;
+            }
         }
 
 
