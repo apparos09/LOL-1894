@@ -1918,7 +1918,7 @@ namespace RM_BBTS
 
 
         // Plays the opponent damage animation.
-        public void PlayOpponentAnimation(string parameter, int value)
+        public void PlayOpponentAnimation(string parameter, int value, int valueOnEnd = 0)
         {
             // Play animation by changing the value, then change it again so that it only plays once.
             opponentAnimator.SetInteger(parameter, value);
@@ -1929,7 +1929,7 @@ namespace RM_BBTS
             // Debug.Log(animTime);
 
             // Turn off the animation.
-            StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, 0));
+            StartCoroutine(AnimationSetIntegerDelayed(opponentAnimator, parameter, animTime, valueOnEnd));
 
         }
 
@@ -1983,22 +1983,26 @@ namespace RM_BBTS
         // Plays the death animation for the opponent.
         public void PlayOpponentDeathAnimation()
         {
-            // Should remain on this animation until the player goes back to the overworld.
-            // As such, this doesn't call another function.
+            // NOTE: it appears that the reason why the death animation sometimes doesn't play...
+            // Is because the damage animation wasn't finished playing.
 
-            // NOTE: sometimes another battle animation is still playing, and it causes the death animation not to play.
-            // Or at least I think that's what causes the death animation not to play consistently.
-            // It rarely happens, but it is a glitch that exists.
-            // I'm not fixing it.
+            // You don't have the game wait until the animation is done, which may be a problem.
 
             // Play animation by changing the value.
-            opponentAnimator.SetInteger("anim", 5);
+            // opponentAnimator.SetInteger("anim", 5);
+
+            // Unlike the other animations, the death animation should not be reset back to the default.
+            PlayOpponentAnimation("anim", 5, 5);
+
+            // Shows the name of the current animation.
+            // Debug.Log(opponentAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         }
         // Plays the death animation for the opponent.
         public void PlayDefaultOpponentAnimation()
         {
             // Return to the default animation.
-            opponentAnimator.SetInteger("anim", 0);
+            // opponentAnimator.SetInteger("anim", 0);
+            PlayOpponentAnimation("anim", 0);
         }
 
         // ANIMATION //
