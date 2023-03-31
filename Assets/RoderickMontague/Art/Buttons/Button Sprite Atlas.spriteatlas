@@ -23,10 +23,10 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 512
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 3
+      m_TextureCompression: 2
       m_CompressionQuality: 100
       m_CrunchedCompression: 1
       m_AllowsAlphaSplitting: 0
@@ -51,12 +51,24 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 9ae38540e0bfaa54da098e635a084af1, type: 3}
   - {fileID: 21300000, guid: d8d78a428f57f3947800ab02984c79ff, type: 3}
+  - {fileID: 21300000, guid: 5e11554545330284a8be0748bb208c68, type: 3}
+  - {fileID: 21300000, guid: 30034d26de3e00d44b7715f81eb2f878, type: 3}
+  - {fileID: 21300000, guid: 20f5c33879dbd414ab4ca5ad2d3b10f2, type: 3}
+  - {fileID: 21300000, guid: 9bb11b989c7686245a664e92d5df1af4, type: 3}
+  - {fileID: 21300000, guid: 25cf987a40fda1d4b909a222de168255, type: 3}
   - {fileID: 21300000, guid: 4d39219ab7d288841ac54c9512a3a60f, type: 3}
+  - {fileID: 21300000, guid: 57b3e7ddbdddb0046a733eb9daff2710, type: 3}
   - {fileID: 21300000, guid: 76205f6e18730564eb39f5ae16d51da8, type: 3}
   m_PackedSpriteNamesToIndex:
   - button_move
   - button_menu
+  - button_move_blue_long
+  - button_move_red_long
+  - button_menu_mid
+  - button_menu_long
+  - button_move_red_mid
   - button_move_red
+  - button_move_blue_mid
   - button_move_and_accuracy
   m_RenderDataMap: {}
   m_Tag: Button Sprite Atlas
