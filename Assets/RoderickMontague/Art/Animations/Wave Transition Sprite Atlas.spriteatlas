@@ -31,6 +31,7 @@ SpriteAtlas:
       m_CrunchedCompression: 1
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
+      m_IgnorePlatformSupport: 0
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
@@ -40,6 +41,7 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 0
+      enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
@@ -47,6 +49,22 @@ SpriteAtlas:
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 6354576973757187778
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -6854301451569968208
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -2883968536477560947
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 948074019420730137
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -7230184666142664335
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 8936311073813461590
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -405438947600388905
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -281386467321057533
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 1597667363150926447
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 4134711948056123467
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 2789953017416701841
+    - ae170f1b2b36f8d4cadcab6d2de12d09: 5133626170831163304
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -8770463902826456141
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -4386586694259485901
+    - ae170f1b2b36f8d4cadcab6d2de12d09: -5706127559477579460
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 6354576973757187778, guid: ae170f1b2b36f8d4cadcab6d2de12d09, type: 3}

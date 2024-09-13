@@ -62,16 +62,13 @@ namespace LoL.Examples.Cooking
             purchasePanButton.interactable = false;
 
             // Create the WebGL (or mock) object
-            // This will all change in SDK V6 to be simplified and streamlined.
 #if UNITY_EDITOR
             ILOLSDK sdk = new LoLSDK.MockWebGL();
 #elif UNITY_WEBGL
             ILOLSDK sdk = new LoLSDK.WebGL();
-#elif UNITY_IOS || UNITY_ANDROID
-            ILOLSDK sdk = null; // TODO COMING SOON IN V6
 #endif
 
-            LOLSDK.Init(sdk, "com.legends-of-learning.unity.sdk.v5.3.example-cooking-game");
+            LOLSDK.Init(sdk, "com.legends-of-learning.unity.sdk.v5.4.example-cooking-game");
 
             // Register event handlers
             LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(StartGame);
@@ -145,8 +142,7 @@ namespace LoL.Examples.Cooking
 
         string GetText (string key)
         {
-            string value = _langNode?[key];
-            return value ?? "--missing--";
+            return _langNode?[key] ?? "--missing--";
         }
 
         // This could be done in a component with a listener attached to an lang change
@@ -156,8 +152,7 @@ namespace LoL.Examples.Cooking
             pantryText.text = GetText("pantry");
             newGameText.text = GetText("newGame");
             continueText.text = GetText("continue");
-            // "Purchase Pan  <color=#F9DD3B>{0}</color>"
-            purchasePanText.text = string.Format(GetText("purchasePan"), cookingData.cost_of_pan);
+            purchasePanText.text = $"{GetText("purchasePan")} <color=#F9DD3B>{cookingData.cost_of_pan}</color>";
         }
 
         /// <summary>
@@ -265,7 +260,6 @@ namespace LoL.Examples.Cooking
             food.gameObject.SetActive(true);
         }
 
-        // This would actually use addressables, just doing this as a quick, baked in example.
         Sprite GetFoodSprite (string image_key)
         {
             switch (image_key)
