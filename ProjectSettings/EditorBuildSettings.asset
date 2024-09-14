@@ -6,15 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/RoderickMontague/Scenes/InitScene.unity
+    path: Assets/Scenes/TestScene.unity
+    guid: a7db51e9d77502e458a65f3e11331eed
+  - enabled: 1
+    path: Assets/Scenes/InitScene.unity
     guid: 4ca225bbb30a82946876bb96ca48b732
   - enabled: 1
-    path: Assets/RoderickMontague/Scenes/TitleScene.unity
+    path: Assets/Scenes/TitleScene.unity
     guid: 3200e985de77f6247a5d0a9b35bdb047
+  - enabled: 0
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 7892a7cb658ebc74cac9ada8cde6a89b
   - enabled: 1
-    path: Assets/RoderickMontague/Scenes/GameScene.unity
+    path: Assets/Scenes/GameScene.unity
     guid: deb21fb312aaf0741996d88f03dad2d3
   - enabled: 1
-    path: Assets/RoderickMontague/Scenes/ResultsScene.unity
+    path: Assets/Scenes/ResultsScene.unity
     guid: 359898dfa4be7094a8deb69218d385ea
   m_configObjects: {}

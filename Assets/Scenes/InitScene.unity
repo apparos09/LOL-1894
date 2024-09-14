@@ -1,0 +1,1742 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &199354115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199354118}
+  - component: {fileID: 199354117}
+  - component: {fileID: 199354116}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &199354116
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199354115}
+  m_Enabled: 1
+--- !u!20 &199354117
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199354115}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &199354118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199354115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &297845794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297845795}
+  - component: {fileID: 297845797}
+  - component: {fileID: 297845796}
+  m_Layer: 5
+  m_Name: Saving Game Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &297845795
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297845794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1865606601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 500, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &297845796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297845794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: <Save Text>
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 26
+  m_fontSizeBase: 26
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &297845797
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297845794}
+  m_CullTransparentMesh: 1
+--- !u!1 &738152377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738152380}
+  - component: {fileID: 738152378}
+  - component: {fileID: 738152379}
+  m_Layer: 0
+  m_Name: TTS Audio Source
+  m_TagString: TTS
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &738152378
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738152377}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &738152379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738152377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27dec99b05473c4c943dd2e26183566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 738152378}
+  maxVolume: 1
+  autoSetMaxVolume: 1
+--- !u!4 &738152380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738152377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 807932443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &777872861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777872864}
+  - component: {fileID: 777872863}
+  - component: {fileID: 777872862}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &777872862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777872861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &777872863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777872861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &777872864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777872861}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &807932441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807932443}
+  - component: {fileID: 807932442}
+  - component: {fileID: 807932445}
+  - component: {fileID: 807932444}
+  m_Layer: 0
+  m_Name: LOL Manager
+  m_TagString: Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807932442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807932441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aa0f45505619b408684b84f203c1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveSystem: {fileID: 807932445}
+  textToSpeech: {fileID: 807932444}
+--- !u!4 &807932443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807932441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 738152380}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &807932444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807932441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc04ef8d74948c4a83fe2e7c3694254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ttsAudioSource: {fileID: 738152378}
+--- !u!114 &807932445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807932441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da00f731b5d5384e8b08947034166e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastSave:
+    valid: 0
+    complete: 0
+    playerData:
+      id: 0
+      level: 0
+      maxHealth: 0
+      health: 0
+      attack: 0
+      defense: 0
+      speed: 0
+      maxEnergy: 0
+      energy: 0
+      move0: 0
+      move1: 0
+      move2: 0
+      move3: 0
+    doorData:
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    clearedIntro: 0
+    clearedBattle: 0
+    clearedFirstMove: 0
+    clearedCritical: 0
+    clearedRecoil: 0
+    clearedStatChange: 0
+    clearedBurn: 0
+    clearedParalysis: 0
+    clearedFirstBattleDeath: 0
+    clearedOverworld: 0
+    clearedTreasure: 0
+    clearedQuestion: 0
+    clearedPhase: 0
+    clearedBoss: 0
+    clearedGameOver: 0
+    score: 0
+    roomsCompleted: 0
+    questionCountdown: 0
+    questionsUsed: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    questionResults: 000000000000000000000000
+    evolveWaves: 0
+    gameTime: 0
+    turnsPassed: 0
+  loadedData:
+    valid: 0
+    complete: 0
+    playerData:
+      id: 0
+      level: 0
+      maxHealth: 0
+      health: 0
+      attack: 0
+      defense: 0
+      speed: 0
+      maxEnergy: 0
+      energy: 0
+      move0: 0
+      move1: 0
+      move2: 0
+      move3: 0
+    doorData:
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    - isBossDoor: 0
+      isTreasureDoor: 0
+      battleEntity:
+        id: 0
+        level: 0
+        maxHealth: 0
+        health: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxEnergy: 0
+        energy: 0
+        move0: 0
+        move1: 0
+        move2: 0
+        move3: 0
+      locked: 0
+      doorType: 0
+      localPosition: {x: 0, y: 0, z: 0}
+    clearedIntro: 0
+    clearedBattle: 0
+    clearedFirstMove: 0
+    clearedCritical: 0
+    clearedRecoil: 0
+    clearedStatChange: 0
+    clearedBurn: 0
+    clearedParalysis: 0
+    clearedFirstBattleDeath: 0
+    clearedOverworld: 0
+    clearedTreasure: 0
+    clearedQuestion: 0
+    clearedPhase: 0
+    clearedBoss: 0
+    clearedGameOver: 0
+    score: 0
+    roomsCompleted: 0
+    questionCountdown: 0
+    questionsUsed: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    questionResults: 000000000000000000000000
+    evolveWaves: 0
+    gameTime: 0
+    turnsPassed: 0
+  gameManager: {fileID: 0}
+  feedbackText: {fileID: 297845796}
+--- !u!1 &1052461055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052461056}
+  - component: {fileID: 1052461058}
+  - component: {fileID: 1052461057}
+  m_Layer: 5
+  m_Name: Init Game Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1052461056
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052461055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1865606601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1052461057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052461055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Initializing Game...
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 28
+  m_fontSizeBase: 28
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1052461058
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052461055}
+  m_CullTransparentMesh: 1
+--- !u!1 &1331850694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331850695}
+  - component: {fileID: 1331850696}
+  m_Layer: 0
+  m_Name: Init
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331850695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331850694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1331850696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331850694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581351c8388a3e849bb9ffb80d46eac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initGame: 0
+  initText: {fileID: 1052461057}
+--- !u!1 &1730402699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730402701}
+  - component: {fileID: 1730402700}
+  m_Layer: 0
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1730402700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730402699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26d6ab3079c1b6439efc4c56044c802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1730402701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730402699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865606597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865606601}
+  - component: {fileID: 1865606600}
+  - component: {fileID: 1865606599}
+  - component: {fileID: 1865606598}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865606598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865606597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1865606599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865606597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1865606600
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865606597}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1865606601
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865606597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1052461056}
+  - {fileID: 297845795}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 199354118}
+  - {fileID: 1865606601}
+  - {fileID: 777872864}
+  - {fileID: 1331850695}
+  - {fileID: 807932443}
+  - {fileID: 1730402701}
