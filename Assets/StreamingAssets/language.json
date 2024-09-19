@@ -1126,7 +1126,7 @@
     "trl_intro_02": "Probability can also be expressed in percentage form and fraction form. In percentage form, the same rules apply, but percentages are used instead of decimals, with 0% and 100% meaning 0.00 and 1.00 respectively.",
     "trl_intro_03": "In fraction form (x/y), the denominator (y) represents the size of the whole group, while the numerator (x) represents the size of a portion of the group.",
     "trl_intro_04": "The larger the portion (x) is in reference to the group size (y), the more likely the related event is. When (x) is equal to (y), it is the equivalent of 1.00 in decimal form. When (x) is equal to 0, it equates to 0.00 in decimal form.",
-    "trl_intro_05": "With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they're behind that scary locked door! Looks like you'll have to go through a different door for now…",
+    "trl_intro_05": "With all that explained, welcome to the overworld! You need to beat the boss to finish the simulation, but they're behind that scary locked door! Looks like you'll have to go through a different door for now...",
     "trl_intro_06": "To the left is your health, to the right is your energy, at the bottom is your score, and at the top is the current round number, all of which I'll elaborate on later. There are also various buttons at the top, so check those out at your leisure.",
     "trl_intro_07": "With all that covered, please select an open door to start your first battle!",
 
