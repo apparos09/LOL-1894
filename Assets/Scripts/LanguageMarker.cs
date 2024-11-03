@@ -17,7 +17,7 @@ namespace RM_BBTS
         public Color noLoadColor = Color.red;
 
         // If the text colour should be changed.
-        public const bool CHANGE_TEXT_COLOR = false;
+        public const bool CHANGE_TEXT_COLOR = false; // NOTE: changed for the promo build.
 
         // The constructor
         private LanguageMarker()
