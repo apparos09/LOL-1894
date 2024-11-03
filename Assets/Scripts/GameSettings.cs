@@ -22,18 +22,22 @@ namespace RM_BBTS
         // This is only relevant when starting up the game scene.
         private bool useTutorial = true; // Off by default to help with game scene testing.
 
+        // The global volume, which is used for muting/unmuting the entire game.
+        // [HideInInspector] // Not needed since this is a private variable.
+        private float globalVolume = 1.0F;
+
         // Audio Tags
         // The tag for BGM objects.
         public const string BGM_TAG = "BGM";
 
         // The volume for the background music.
-        private float bgmVolume = 0.3F;
+        private float bgmVolume = 0.20F;
 
         // The tag for the SFX objects.
         public const string SFX_TAG = "SFX";
 
         // The volume for the sound effects.
-        private float sfxVolume = 0.6F;
+        private float sfxVolume = 0.45F;
 
         // The audio for the TTS.
         public const string TTS_TAG = "TTS";
@@ -155,14 +159,50 @@ namespace RM_BBTS
         {
             get
             {
-                // is audio muted.
-                return AudioListener.pause;
+                // Checks if the audio is muted.
+                // return AudioListener.pause; // Old
+
+                // New
+                // Checks if the global volume is less than or equal to 0.
+                // If it is, then the game is muted.
+                if (AudioListener.volume <= 0.0F)
+                {
+                    return true;
+                }
+                else
+                {
+                    // Updates the global volume to make sure it matches the set volume.
+                    globalVolume = AudioListener.volume;
+                    return false;
+                }
             }
 
             set
             {
-                // mutes/unmutes all audio.
-                AudioListener.pause = value;
+                // NOTE: using AudioListener.pause still stores the audio play calls.
+                // When the AudioListener is unpaused, those stored sound effects end up playing.
+                // As such, global volume is used instead of AudioListener.pause.
+
+                // Mutes/unmutes all audio.
+                // Old: uses AudioListener.pause.
+                // AudioListener.pause = value;
+
+                // New: uses AudioListener.volume.
+                if (value) // Mute the game.
+                {
+                    // Gets the AudioListener's volume, and sets it to 0.
+                    globalVolume = AudioListener.volume;
+                    AudioListener.volume = 0.0F;
+                }
+                else // Unmute the game.
+                {
+                    // If the global volume is 0, set it to 1.
+                    if (globalVolume <= 0.0F)
+                        globalVolume = 1.0F;
+
+                    // Sets the audio listener's volume to the global volume.
+                    AudioListener.volume = globalVolume;
+                }
             }
         }
 
