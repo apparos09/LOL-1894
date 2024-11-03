@@ -73,18 +73,18 @@ namespace RM_BBTS
         {
         }
 
-        // TODO: why did you take this out? I don't remember, but leave it out I guess.
-        // // This function is called when the object is enabled and active
-        // private void OnEnable()
-        // {
-        //     SceneManager.sceneLoaded += OnSceneLoaded;
-        // }
-        // 
-        // // This function is called when the behaviour becomes disabled or inactive
-        // private void OnDisable()
-        // {
-        //     SceneManager.sceneLoaded -= OnSceneLoaded;
-        // }
+        // Use instead of OnLevelWasLoaded, as said function has been depreciated.
+        // This function is called when the object is enabled and active
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        // This function is called when the behaviour becomes disabled or inactive
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
 
         // Returns the instance of the game settings.
         public static GameSettings Instance
@@ -383,12 +383,22 @@ namespace RM_BBTS
             AdjustTtsAudioLevels();
         }
 
-        // // called when a scene is loaded.
-        // public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        // {
-        //     // adjusts the audio levels.
-        //     AdjustAudioLevels(bgmVolume, sfxVolume);
-        // }
+        // Called when the scene was loaded.
+        public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            // Adjusts all the audio levels since a scene was loaded.
+            AdjustAllAudioLevels();
+
+            // Refreshes the game mute, since this caused problems before.
+            Mute = Mute;
+        }
+
+        // This behaviour is called when the MonoBehaviour will be destroyed.
+        private void OnDestroy()
+        {
+            // Remove from the scene manager.
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
 
     }
 }
