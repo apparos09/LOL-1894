@@ -2496,6 +2496,10 @@ namespace RM_BBTS
                         player.SetEnergyToMax();
                         UpdatePlayerEnergyUI();
 
+                        // Enable all of the player's options.
+                        // This also refreshes the options to check if some should be disabled.
+                        SetPlayerOptionsAvailable(true);
+
                         // Reset statuses and stat modifiers.
                         player.ResetStatuses();
                         player.ResetStatModifiers();
